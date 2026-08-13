@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Festivalguider — HARDLIST</title>
+<meta name="description" content="Djupguider till Defqon.1, Qlimax, Decibel, Dominator, Intents, Rebirth och de andra stora hardstyle-eventen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0612;
+  --surface:#140B23;
+  --surface-2:#1B0F2E;
+  --line:#2A1B42;
+  --bone:#F0EAF8;
+  --muted:#8E82A8;
+
+  --euphoric:#35D6E8;
+  --raw:#FF2E63;
+  --uptempo:#FFB020;
+  --hardcore:#8B5CFF;
+
+  --display:'Big Shoulders Display',system-ui,sans-serif;
+  --body:'Space Grotesk',system-ui,sans-serif;
+  --data:'JetBrains Mono',ui-monospace,monospace;
+
+  --bpm-min:140;
+  --bpm-max:220;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--bone);
+  font-family:var(--body);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{width:100%;max-width:940px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--uptempo);outline-offset:3px}
+
+/* ---------- header ---------- */
+.top{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,6,18,.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.logo{
+  font-family:var(--display);font-weight:900;font-size:26px;
+  letter-spacing:.02em;line-height:1;text-transform:uppercase;text-decoration:none;
+}
+.logo span{color:var(--raw)}
+.topnav{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{
+  font-family:var(--data);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:4px 0;white-space:nowrap;
+}
+.topnav a:hover,.topnav a:focus-visible,.topnav a[aria-current]{color:var(--bone)}
+
+/* ---------- hero ---------- */
+.hero{padding:52px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{
+  font-family:var(--data);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.badge{
+  border:1px solid var(--line);border-radius:2px;padding:2px 6px;
+  color:var(--uptempo);font-size:10px;letter-spacing:.1em;
+}
+h1{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(38px,9.5vw,80px);line-height:.86;letter-spacing:-.01em;margin-bottom:14px;
+}
+h1 em{font-style:normal;color:var(--raw)}
+.lede{color:var(--muted);max-width:46ch;font-size:15px}
+
+/* ---------- bpm-linjal ---------- */
+.ruler{margin-top:42px;position:relative;height:208px;display:flex;align-items:flex-end;padding-bottom:26px}
+.ruler-line{position:relative;width:100%;height:1px;background:var(--line)}
+.tick{position:absolute;top:0;width:1px;height:6px;background:var(--line)}
+.tick b{
+  position:absolute;top:9px;left:50%;transform:translateX(-50%);
+  font-family:var(--data);font-size:10px;color:var(--muted);font-weight:400;
+}
+.dot{
+  position:absolute;bottom:0;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;
+  animation:rise .5s cubic-bezier(.2,.8,.2,1) backwards;
+}
+.dot i{display:block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
+.dot u{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--c));text-decoration:none;opacity:.5}
+.dot em{
+  font-family:var(--data);font-style:normal;font-size:9px;color:var(--muted);
+  white-space:nowrap;margin-bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);
+  max-height:110px;overflow:hidden;
+}
+@keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1}}
+.ruler-legend{
+  display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;
+  font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+}
+.ruler-legend b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+
+/* ---------- sektioner ---------- */
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(28px,6vw,44px);line-height:.9}
+h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:26px;line-height:1;margin:34px 0 12px}
+h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:24px 0 8px;font-weight:400}
+.count{font-family:var(--data);font-size:11px;color:var(--muted);letter-spacing:.12em}
+.group-label{
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:28px 0 12px;display:flex;align-items:center;gap:12px;
+}
+.group-label:first-child{margin-top:0}
+.group-label::after{content:'';flex:1;height:1px;background:var(--line)}
+.group-label span{color:#5C5175;letter-spacing:.1em}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.chip{
+  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  background:none;border:1px solid var(--line);color:var(--muted);
+  padding:7px 12px;border-radius:2px;cursor:pointer;transition:.15s;
+}
+.chip:hover{color:var(--bone);border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.filter-note{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.08em;margin-bottom:22px}
+
+/* releaser */
+.rel{
+  display:grid;grid-template-columns:3px 1fr auto;gap:0 16px;align-items:center;
+  background:var(--surface);border:1px solid var(--line);border-left:0;
+  padding:0 16px 0 0;margin-bottom:8px;
+}
+.rel.soon{background:transparent;border-style:dashed}
+.rel:hover{background:var(--surface-2)}
+.rel .bar{background:var(--c);align-self:stretch}
+.rel .meta{min-width:0;padding:14px 0 14px 16px}
+.rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:20px;line-height:1}
+.rel .title{font-size:14px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rel .right{padding:14px 0;text-align:right;font-family:var(--data);font-size:11px;color:var(--muted);white-space:nowrap}
+.rel .when{color:var(--bone);font-weight:700;font-size:12px;display:block}
+.rel.soon .when{color:var(--c)}
+.rel .genre{font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-top:3px;display:block;color:var(--c)}
+.rel .play{font-size:10px;letter-spacing:.1em;display:block;margin-top:4px;text-decoration:none}
+.rel .play:hover{color:var(--bone)}
+
+/* events */
+.ev{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
+.ev:last-child{border-bottom:1px solid var(--line)}
+.ev .date{font-family:var(--data);font-size:11px;color:var(--muted);line-height:1.3}
+.ev .date b{display:block;font-family:var(--display);font-size:30px;color:var(--bone);font-weight:900;line-height:.9}
+.ev .name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:22px;line-height:1}
+.ev .where{font-size:13px;color:var(--muted);margin-top:3px}
+.ev .lineup{font-size:12px;color:var(--muted);margin-top:5px;opacity:.75}
+.ev .ticket{
+  font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--line);padding:8px 12px;text-decoration:none;white-space:nowrap;
+}
+.ev .ticket:hover{background:var(--bone);color:var(--ink)}
+.ev .tba{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.12em}
+
+.empty{border:1px dashed var(--line);padding:28px;text-align:center;color:var(--muted);font-size:14px}
+.empty b{display:block;color:var(--bone);font-family:var(--display);font-size:22px;text-transform:uppercase;margin-bottom:6px}
+
+/* ---------- text/guider ---------- */
+.prose{max-width:66ch}
+.prose p{margin-bottom:14px;color:#CFC5E0}
+.prose ul{margin:0 0 16px 0;list-style:none}
+.prose li{padding-left:18px;position:relative;margin-bottom:7px;color:#CFC5E0;font-size:15px}
+.prose li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:1px;background:var(--muted)}
+.prose strong{color:var(--bone)}
+
+.callout{border-left:2px solid var(--uptempo);background:var(--surface);padding:14px 18px;margin:18px 0;font-size:14px;color:#CFC5E0}
+.callout b{color:var(--uptempo);font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:5px}
+
+.fest{border:1px solid var(--line);background:var(--surface);padding:22px;margin-bottom:14px}
+.fest header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.fest h3{margin:0;font-size:28px}
+.fest .place{font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.rules{display:grid;gap:10px}
+.rule{display:grid;grid-template-columns:110px 1fr;gap:14px;font-size:14px;align-items:start}
+.rule dt{font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.rule dd{color:#CFC5E0}
+
+/* ordlista */
+.terms{display:grid;gap:0}
+.term{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+.term:last-child{border-bottom:1px solid var(--line)}
+.term dt{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1}
+.term dd{color:#CFC5E0;font-size:14px}
+
+/* subgenre-kort */
+.genres{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:8px}
+.gcard{border:1px solid var(--line);border-top:3px solid var(--c);background:var(--surface);padding:16px}
+.gcard h3{margin:0 0 4px;font-size:22px;color:var(--c)}
+.gcard .bpm{font-family:var(--data);font-size:10px;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:8px}
+.gcard p{font-size:13px;color:#CFC5E0;margin:0}
+
+.tracks{list-style:none;counter-reset:t}
+.tracks li{
+  counter-increment:t;display:grid;grid-template-columns:32px 1fr;gap:12px;
+  padding:11px 0;border-top:1px solid var(--line);align-items:baseline;
+}
+.tracks li:last-child{border-bottom:1px solid var(--line)}
+.tracks li::before{content:counter(t,decimal-leading-zero);font-family:var(--data);font-size:11px;color:var(--muted)}
+.tracks b{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:18px;letter-spacing:.01em}
+.tracks span{color:var(--muted);font-size:13px;display:block}
+
+footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:11px;letter-spacing:.06em;line-height:1.8}
+
+@media (max-width:640px){
+  .ruler{height:158px}
+  .dot em{max-height:76px;font-size:8px}
+  .rel .artist{font-size:17px}
+  .ev{grid-template-columns:52px 1fr;gap:12px}
+  .ev .ticket,.ev .tba{grid-column:2;justify-self:start;margin-top:8px}
+  .topnav{gap:12px}
+  .top .wrap{height:52px}
+  .logo{font-size:22px}
+  .rule{grid-template-columns:1fr;gap:2px}
+  .term{grid-template-columns:1fr;gap:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- festivalväljare ---------- */
+.picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.fbtn{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:19px;line-height:1;letter-spacing:.02em;
+  background:var(--surface);border:1px solid var(--line);color:var(--muted);
+  padding:12px 16px;cursor:pointer;transition:.15s;
+}
+.fbtn:hover{color:var(--bone);border-color:var(--muted)}
+.fbtn[aria-selected="true"]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+
+.panel{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.phead{margin-bottom:22px}
+.phead h2{margin-bottom:6px}
+.phead .place{font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.panel h3{margin:30px 0 10px}
+.panel p{color:#CFC5E0;margin-bottom:14px;max-width:66ch}
+.panel ul{list-style:none;max-width:66ch;margin-bottom:8px}
+.panel li{padding-left:18px;position:relative;margin-bottom:8px;color:#CFC5E0;font-size:15px}
+.panel li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:1px;background:var(--muted)}
+.panel strong{color:var(--bone)}
+
+.facts{display:grid;gap:0;margin-bottom:6px}
+.facts>div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
+.facts>div:last-child{border-bottom:1px solid var(--line)}
+.facts dt{font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.facts dd{color:#CFC5E0;font-size:14px}
+
+.stages{list-style:none;max-width:none!important}
+.stages li{
+  display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:baseline;
+  padding:12px 0;border-top:1px solid var(--line);padding-left:0!important;
+}
+.stages li::before{display:none}
+.stages li:last-child{border-bottom:1px solid var(--line)}
+.stages b{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:22px;line-height:1;color:var(--c);letter-spacing:.02em;
+}
+.stages span{color:#CFC5E0;font-size:14px}
+
+.callout.tip{border-left-color:var(--raw)}
+.callout.tip b{color:var(--raw)}
+.callout a{color:var(--bone)}
+
+@media (max-width:640px){
+  .fbtn{font-size:16px;padding:10px 13px}
+  .facts>div{grid-template-columns:1fr;gap:2px}
+  .stages li{grid-template-columns:1fr;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html">Hard<span>list</span></a>
+    <nav class="topnav">
+      <a href="index.html#releaser">Releaser</a>
+      <a href="index.html#events">Kalender</a>
+      <a href="events.html" aria-current="page">Festivaler</a>
+      <a href="guider.html">Camping</a>
+      <a href="nyborjare.html">Nybörjare</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Festivalguider</p>
+      <h1>Välj festival.<br><em>Få hela bilden.</em></h1>
+      <p class="lede">Stages, timing, transport och kostnad för de stora eventen. Tryck på ett namn.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="picker" id="picker" role="tablist" aria-label="Välj festival">
+        <button class="fbtn" data-f="defqon"    role="tab" aria-selected="true">Defqon.1</button>
+        <button class="fbtn" data-f="qlimax"    role="tab" aria-selected="false">Qlimax</button>
+        <button class="fbtn" data-f="decibel"   role="tab" aria-selected="false">Decibel</button>
+        <button class="fbtn" data-f="dominator" role="tab" aria-selected="false">Dominator</button>
+        <button class="fbtn" data-f="intents"   role="tab" aria-selected="false">Intents</button>
+        <button class="fbtn" data-f="rebirth"   role="tab" aria-selected="false">Rebirth</button>
+        <button class="fbtn" data-f="reverze"   role="tab" aria-selected="false">Reverze</button>
+        <button class="fbtn" data-f="onevision" role="tab" aria-selected="false">One Vision</button>
+      </div>
+
+      <!-- ============ DEFQON.1 ============ -->
+      <article class="panel" id="defqon" role="tabpanel">
+        <header class="phead">
+          <h2>Defqon.1</h2>
+          <span class="place">Biddinghuizen, NL · slutet av juni · 4 dagar</span>
+        </header>
+
+        <dl class="facts">
+          <div><dt>Storlek</dt><dd>Världens största hardstyle-event. Runt en kvarts miljon besökare över helgen.</dd></div>
+          <div><dt>Camping</dt><dd>Ja, incheckning från torsdag morgon. Utcheckning måndag.</dd></div>
+          <div><dt>Ålder</dt><dd>18+, original-leg krävs.</dd></div>
+          <div><dt>Avstånd</dt><dd>Cirka 75 km från Amsterdam, 90 km från Schiphol.</dd></div>
+        </dl>
+
+        <h3>Stagesen</h3>
+        <p>Namnen roterar något mellan åren, men tre är konstanta och avgör hur du planerar helgen.</p>
+        <ul class="stages">
+          <li><b style="--c:var(--raw)">RED</b><span>Mainstage, utomhus. Hardstyle och euphoric, de största namnen. Här ligger Opening Ceremony och Endshow.</span></li>
+          <li><b style="--c:var(--euphoric)">BLUE</b><span>Inomhus. Hardstyle och raw, ofta den tyngre och mer experimentella änden. Öppnar festivalen på torsdag med The Gathering.</span></li>
+          <li><b style="--c:var(--hardcore)">BLACK</b><span>Inomhus. Hardcore, frenchcore och uptempo. Ligger djupare in på området än RED — räkna med 5–8 minuters promenad mellan dem, mer när det är fullt.</span></li>
+          <li><b style="--c:var(--uptempo)">UV / YELLOW</b><span>Utomhus. Uptempo, frenchcore och hardcore. Här hamnar du om du inte gillar melodier.</span></li>
+          <li><b style="--c:var(--muted)">Roterande</b><span>MAGENTA, INDIGO, GREEN, PINK och GOLD byter roll mellan åren. GOLD är klassiker- och legendsscenen.</span></li>
+        </ul>
+
+        <h3>Dagarna</h3>
+        <ul>
+          <li><strong>Torsdag</strong> — The Gathering. Bara några scener öppnar, sen kväll. Lugnaste dagen, bäst för att lära känna området innan det blir fullt.</li>
+          <li><strong>Fredag</strong> — full festivaldag numera, i princip likvärdig med lördag.</li>
+          <li><strong>Lördag</strong> — toppdagen. Power Hour och The Spotlight. Allt är fullt, överallt.</li>
+          <li><strong>Söndag</strong> — Legends Day, avslutas med Endshow på RED.</li>
+        </ul>
+
+        <h3>Att röra sig på området</h3>
+        <div class="callout">
+          <b>Ärligt om rutter</b>
+          Jag kan inte ge dig "snabbaste vägen ut från mainstage" — det beror på var utgångarna ligger just det året, och det ändras. Q-dance släpper en <strong>officiell interaktiv karta</strong> inför varje edition. Ladda ner den i mobilen innan du åker, medan du har nät.
+        </div>
+        <p>Det här funkar däremot varje år, på varje stor festival:</p>
+        <ul>
+          <li><strong>Lämna två eller tre låtar innan setet tar slut</strong> om du ska vidare till en annan scen. Annars går du i samma folkström som tiotusen andra och tappar tjugo minuter.</li>
+          <li><strong>Gå längs kanten, aldrig genom mitten.</strong> Ytterkanten av ett fält rör sig flera gånger snabbare än mitten.</li>
+          <li><strong>De bakre hörnen töms först.</strong> Står du där när ett set slutar är du ute innan trycket byggs upp.</li>
+          <li><strong>Efter Endshow går hela festivalen ut samtidigt.</strong> Antingen är du bland de första, eller så sätter du dig ner i en halvtimme och går när det lugnat sig. Mellanläget är det sämsta.</li>
+          <li><strong>Toaletterna längst från scenerna har alltid kortast kö.</strong> Samma sak med barer.</li>
+          <li><strong>Ladda armbandet hemifrån.</strong> Top-up-köerna är värst precis vid öppning.</li>
+          <li><strong>Bestäm en fast mötesplats</strong> — en matvagn eller ett stagenamn, aldrig "vid scenen". Mobilnätet dör när området fylls.</li>
+        </ul>
+
+        <div class="callout tip">
+          <b>Har du ett riktigt insidertips?</b>
+          Vet du var den snabba passagen mellan RED och BLACK går, eller vilken ingång som alltid är tom? <a href="mailto:hej@example.se">Skicka in det</a> så läggs det upp här med ditt namn.
+        </div>
+      </article>
+
+      <!-- ============ QLIMAX ============ -->
+      <article class="panel" id="qlimax" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Qlimax</h2>
+          <span class="place">Arnhem, NL · Gelredome · november · en kväll</span>
+        </header>
+        <dl class="facts">
+          <div><dt>Format</dt><dd>Inomhus i en fotbollsarena. En scen, ett tema, ett genomkomponerat show-koncept från början till slut.</dd></div>
+          <div><dt>Camping</dt><dd>Nej. Boka hotell i Arnhem eller Nijmegen, och boka tidigt.</dd></div>
+          <div><dt>Passar</dt><dd>Den som vill ha produktion och känsla snarare än att välja mellan scener.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li>Det är <strong>en enda scen</strong>. Ingen planering behövs — du kommer, du står, du stannar. Motsatsen till Defqon.</li>
+          <li>Showen är byggd som en berättelse. Kommer du sent missar du uppbyggnaden, inte bara några låtar.</li>
+          <li>Inomhus i november betyder <strong>garderob</strong>. Räkna med kö både in och ut.</li>
+          <li>Arnhem är litet. Hotell tar slut månader i förväg och priserna tredubblas den helgen.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ DECIBEL ============ -->
+      <article class="panel" id="decibel" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Decibel Outdoor</h2>
+          <span class="place">Beekse Bergen, NL · augusti · 3 dagar</span>
+        </header>
+        <dl class="facts">
+          <div><dt>Bredd</dt><dd>Över 30 scener. Hardstyle, rawstyle, hardcore, uptempo, frenchcore och hard techno — varje scen har sin egen identitet.</dd></div>
+          <div><dt>Camping</dt><dd>Ja, på ett semesterområde. Riktiga faciliteter, duschar och matvagnar.</dd></div>
+          <div><dt>Alkohol</dt><dd>1,5 liter per person på campingen. Ingen dryck alls får bäras in på festivalområdet.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li>Med 30+ scener kan du <strong>inte se allt</strong>. Välj tre scener per dag och acceptera resten.</li>
+          <li>Campingen är en semesterpark, inte en åker — högre komfort, men också fler regler.</li>
+          <li>Eftersom ingen dryck får tas in på området <strong>budgetera för barpriser</strong> alla tre dagarna.</li>
+          <li>Bra förstagångsfestival om du inte vet vilken subgenre du gillar — du kan prova allt på en helg.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ DOMINATOR ============ -->
+      <article class="panel" id="dominator" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Dominator</h2>
+          <span class="place">Eersel, NL · juli</span>
+        </header>
+        <dl class="facts">
+          <div><dt>Profil</dt><dd>Rent hardcore-fokus. Ingen euphoric hardstyle att tala om.</dd></div>
+          <div><dt>Passar</dt><dd>Den som redan vet att hardcore och uptempo är hens grej.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li>Det här är <strong>inte en nybörjarfestival</strong>. Publiken kan sina låtar och tempot ligger högt hela dagen.</li>
+          <li>Öronproppar är obligatoriskt, inte valfritt.</li>
+          <li>Kolla arrangörens sida för aktuella camping- och dryckesregler — jag har inte verifierat årets.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ INTENTS ============ -->
+      <article class="panel" id="intents" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Intents</h2>
+          <span class="place">Oisterwijk, NL · juni · 3 dagar</span>
+        </header>
+        <dl class="facts">
+          <div><dt>Profil</dt><dd>Bredare än de rena hardstyle-festivalerna. Flera stilar sida vid sida.</dd></div>
+          <div><dt>Camping</dt><dd>IntentsCity. Egen mat och dryck tillåten på campingen, inte på festivalområdet.</dd></div>
+          <div><dt>Tältregel</dt><dd>Tältet får vara för högst en person mer än ni är.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li>Du får <strong>gå ut och in från campingen</strong> under angivna tider — bra om du vill sova ordentligt en stund.</li>
+          <li>Ett badhus har öppet dygnet runt. Ovanligt och värt mycket på dag tre.</li>
+          <li>Det finns en butik på campingen, så du behöver inte överpacka dryck.</li>
+          <li>Parkering P6 ligger närmast, cirka tio minuters promenad till campingingången.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ REBIRTH ============ -->
+      <article class="panel" id="rebirth" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Rebirth</h2>
+          <span class="place">Haaksbergen, NL · april</span>
+        </header>
+        <dl class="facts">
+          <div><dt>Profil</dt><dd>Tung raw- och hardcoreprofil.</dd></div>
+          <div><dt>Väder</dt><dd>April i Nederländerna. Kallaste campingen bland de stora.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li><strong>Packa som för svensk vår</strong>, inte som för sommarfestival. Sovsäck som tål nollgradigt, inte en sommarsäck.</li>
+          <li>Första stora eventet på säsongen — här hör du vad som kommer dominera resten av året.</li>
+          <li>Camping- och dryckesregler har jag inte kunnat verifiera. Läs arrangörens do's &amp; don'ts.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ REVERZE ============ -->
+      <article class="panel" id="reverze" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Reverze</h2>
+          <span class="place">Antwerpen, BE · februari · inomhus</span>
+        </header>
+        <dl class="facts">
+          <div><dt>Format</dt><dd>Inomhusevent med starkt showkoncept och eget tema varje år.</dd></div>
+          <div><dt>Camping</dt><dd>Nej.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li>Ligger tidigt på året och fungerar som <strong>säsongsöppning</strong> för många.</li>
+          <li>Antwerpen är enkelt att ta sig till med tåg från Amsterdam eller Bryssel.</li>
+          <li>Kolla aktuella tider och regler hos arrangören — jag har inte verifierat årets.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ ONE VISION ============ -->
+      <article class="panel" id="onevision" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>One Vision</h2>
+          <span class="place">Kristianstad, SE · augusti</span>
+        </header>
+        <dl class="facts">
+          <div><dt>Profil</dt><dd>Sveriges hardstyle-festival med camping.</dd></div>
+          <div><dt>Fördelen</dt><dd>Du kan köra dit. Ingen flygvikt, ingen valuta, ingen språkbarriär.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li><strong>Svenska alkoholregler gäller</strong> och de är stramare än de nederländska. Utgå inte från Defqon-gränserna.</li>
+          <li>Eftersom du kör: ta med ordentligt tält, kylbox och för mycket mat. Det kostar dig ingenting extra.</li>
+          <li>Minst av festivalerna i listan — kortare köer, och du hittar tillbaka till tältet.</li>
+          <li>Bra första camping-festival innan du satsar på en resa till Nederländerna.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    HARDLIST — byggd i Motala.<br>
+    Datum, regler och stagenamn ändras varje år. Kolla alltid arrangörens egen sida.
+  </div>
+</footer>
+
+<script>
+document.getElementById('picker').addEventListener('click', e => {
+  const b = e.target.closest('.fbtn');
+  if (!b) return;
+  document.querySelectorAll('.fbtn').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+  document.querySelectorAll('.panel').forEach(p => { p.hidden = (p.id !== b.dataset.f); });
+  document.getElementById(b.dataset.f).scrollIntoView({block:'nearest'});
+});
+</script>
+</body>
+</html>
