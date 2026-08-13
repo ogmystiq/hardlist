@@ -10,10 +10,11 @@
  *
  * Endpoints som används (båda finns kvar efter februari 2026-migreringen):
  *   GET /search?type=artist        max limit är numera 10, vi använder 1
- *   GET /artists/{id}/albums       oförändrad
+ *   GET /artists/{id}/albums       max limit är numera 10 (var 50) — vi
+ *                                  bläddrar två sidor för att täcka 20 album
  */
 
-import { writeFile, mkdir } from 'node:fs/promises';
+import { writeFile, readFile, mkdir } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -121,6 +122,13 @@ const DAGAR_BAKAT = 30;
    Vill du ha exakt BPM: skriv in den i OVERRIDE nedan. */
 const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190 };
 
+/* Längsta väntan vi accepterar vid rate limit, i sekunder. Ber Spotify oss
+   vänta längre än så avbryter skriptet och sparar det som hunnit hämtas. */
+const MAX_VANTAN = 90;
+
+/* Paus mellan anrop i millisekunder. Höj om du ofta får rate limit. */
+const PAUS = 250;
+
 /* Manuell BPM för enskilda spår: "Artist – Titel": BPM */
 const OVERRIDE = {
   // 'Yoshiko – Some Track': 203
@@ -167,14 +175,29 @@ async function api(path, token, forsok = 0) {
         'Development Mode-appar. Kör mer sällan eller korta ner ARTISTS-listan.'
       );
     }
-    if (forsok >= 5) throw new Error(`${path} → 429, gav upp efter 5 försök`);
-
     const wait = Number(res.headers.get('retry-after') || 2);
+
+    /* Spotify kan svara "vänta 20 minuter". Då är det bättre att avbryta och
+       spara det vi hunnit hämta än att låta jobbet hänga. */
+    if (wait > MAX_VANTAN) {
+      throw new Error(
+        `RATE LIMIT: Spotify ber oss vänta ${wait}s. Avbryter och sparar det ` +
+        'som hämtats hittills. Kör igen om en stund, eller korta ARTISTS-listan.'
+      );
+    }
+    if (forsok >= 2) throw new Error(`${path} → 429, gav upp efter 3 försök`);
+
     console.log(`  rate limit — väntar ${wait}s`);
     await new Promise(r => setTimeout(r, (wait + 1) * 1000));
     return api(path, token, forsok + 1);
   }
 
+  if (res.status === 400) {
+    throw new Error(
+      `${path} → 400. Någon parameter godkänns inte. Vanligaste orsaken: ` +
+      'limit är för högt — max är 10 sedan februari 2026.'
+    );
+  }
   if (res.status === 401 || res.status === 403) {
     throw new Error(
       `${path} → ${res.status}. Kontrollera nycklarna, och att kontot som äger ` +
@@ -185,10 +208,27 @@ async function api(path, token, forsok = 0) {
   return res.json();
 }
 
+/* Artist-ID ändras aldrig. Vi sparar dem i data/artist-ids.json och slipper
+   därmed en sökning per artist vid varje körning — en tredjedel färre anrop. */
+const ID_FIL = resolve(ROOT, 'data/artist-ids.json');
+let idCache = {};
+
+async function laddaCache() {
+  try { idCache = JSON.parse(await readFile(ID_FIL, 'utf8')); } catch { idCache = {}; }
+}
+
+async function sparaCache() {
+  await mkdir(resolve(ROOT, 'data'), { recursive: true });
+  await writeFile(ID_FIL, JSON.stringify(idCache, null, 2) + '\n', 'utf8');
+}
+
 async function findArtistId(name, token) {
+  if (idCache[name]) return idCache[name];
   const q = encodeURIComponent(name);
   const data = await api(`/search?q=${q}&type=artist&limit=1`, token);
-  return data.artists?.items?.[0]?.id ?? null;
+  const id = data.artists?.items?.[0]?.id ?? null;
+  if (id) idCache[name] = id;
+  return id;
 }
 
 /* Tar med allt som släpps framåt i tiden plus det som släppts
@@ -201,23 +241,46 @@ function isRelevant(dateStr) {
   return d >= cutoff;
 }
 
+async function skrivResultat(out) {
+  out.sort((a, b) => (a.date < b.date ? 1 : -1));
+  await mkdir(resolve(ROOT, 'data'), { recursive: true });
+  await writeFile(
+    resolve(ROOT, 'data/releases.json'),
+    JSON.stringify(out, null, 2) + '\n',
+    'utf8'
+  );
+  await sparaCache();
+  console.log(`\n${out.length} releaser skrivna till data/releases.json`);
+}
+
 async function run() {
   const token = await getToken();
+  await laddaCache();
   const out = [];
   const seen = new Set();
+  let avbrott = null;
 
   for (const { name, genre } of ARTISTS) {
     try {
       const id = await findArtistId(name, token);
       if (!id) { console.log(`✗ hittade inte ${name}`); continue; }
 
-      const albums = await api(
-        `/artists/${id}/albums?include_groups=single,album&market=SE&limit=10`,
-        token
-      );
+      /* Max 10 per anrop sedan februari 2026. Vi hämtar två sidor så att
+         täckningen blir densamma som tidigare. */
+      const items = [];
+      for (const offset of [0, 10]) {
+        const sida = await api(
+          `/artists/${id}/albums?include_groups=single,album&market=SE&limit=10&offset=${offset}`,
+          token
+        );
+        const del = sida.items || [];
+        items.push(...del);
+        if (del.length < 10) break;          // inga fler sidor
+        await new Promise(r => setTimeout(r, PAUS));
+      }
 
       let hits = 0;
-      for (const a of albums.items || []) {
+      for (const a of items) {
         if (!isRelevant(a.release_date)) continue;
 
         const artist = (a.artists || []).map(x => x.name).join(' × ') || name;
@@ -237,22 +300,18 @@ async function run() {
       }
       if (hits) console.log(`✓ ${name}: ${hits}`);
     } catch (err) {
-      if (/KVOTEN ÄR SLUT/.test(err.message)) throw err;   // ingen idé att fortsätta
+      if (/KVOTEN ÄR SLUT|RATE LIMIT/.test(err.message)) { avbrott = err; break; }
       console.log(`✗ ${name}: ${err.message}`);
     }
-    await new Promise(r => setTimeout(r, 100)); // var snäll mot API:et
+    await new Promise(r => setTimeout(r, PAUS));
   }
 
-  out.sort((a, b) => (a.date < b.date ? 1 : -1));
+  await skrivResultat(out);
 
-  await mkdir(resolve(ROOT, 'data'), { recursive: true });
-  await writeFile(
-    resolve(ROOT, 'data/releases.json'),
-    JSON.stringify(out, null, 2) + '\n',
-    'utf8'
-  );
-
-  console.log(`\nKlart — ${out.length} releaser skrivna till data/releases.json`);
+  if (avbrott) {
+    console.log('\n' + avbrott.message);
+    process.exitCode = 1;
+  }
 }
 
 run().catch(err => { console.error(err); process.exit(1); });
