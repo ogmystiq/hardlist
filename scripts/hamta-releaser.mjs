@@ -122,12 +122,20 @@ const DAGAR_BAKAT = 30;
    Vill du ha exakt BPM: skriv in den i OVERRIDE nedan. */
 const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190 };
 
-/* Längsta väntan vi accepterar vid rate limit, i sekunder. Ber Spotify oss
-   vänta längre än så avbryter skriptet och sparar det som hunnit hämtas. */
-const MAX_VANTAN = 90;
+/* --- Kvotskydd ---------------------------------------------------------
+   Development Mode har en daglig kvot per utvecklarkonto. Går den sönder är
+   du utelåst i ett dygn. Därför tre spärrar:
 
-/* Paus mellan anrop i millisekunder. Höj om du ofta får rate limit. */
-const PAUS = 250;
+   MAX_ANROP  hårt tak på antal API-anrop per körning. Nås det sparar
+              skriptet det den hunnit och slutar. Artisterna roteras mellan
+              körningar så alla kommer med över tid.
+   MAX_VANTAN ber Spotify oss vänta längre än så avbryts körningen direkt
+              istället för att ligga och hamra på kvoten.
+   PAUS       paus mellan anrop.
+------------------------------------------------------------------------ */
+const MAX_ANROP  = 100;
+const MAX_VANTAN = 30;
+const PAUS       = 300;
 
 /* Manuell BPM för enskilda spår: "Artist – Titel": BPM */
 const OVERRIDE = {
@@ -144,6 +152,21 @@ if (!ID || !SECRET) {
   process.exit(1);
 }
 
+const STATE_FIL = resolve(ROOT, 'data/artist-ids.json');
+const REL_FIL   = resolve(ROOT, 'data/releases.json');
+
+let state = { ids: {}, nextIndex: 0 };
+let anrop = 0;
+
+async function lasJson(fil, fallback) {
+  try { return JSON.parse(await readFile(fil, 'utf8')); } catch { return fallback; }
+}
+
+async function skrivJson(fil, data) {
+  await mkdir(resolve(ROOT, 'data'), { recursive: true });
+  await writeFile(fil, JSON.stringify(data, null, 2) + '\n', 'utf8');
+}
+
 async function getToken() {
   const res = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
@@ -157,32 +180,27 @@ async function getToken() {
   return (await res.json()).access_token;
 }
 
+class Stopp extends Error {}
+
 async function api(path, token, forsok = 0) {
+  if (anrop >= MAX_ANROP) throw new Stopp(`Anropstaket (${MAX_ANROP}) nått.`);
+  anrop++;
+
   const res = await fetch('https://api.spotify.com/v1' + path, {
     headers: { Authorization: 'Bearer ' + token }
   });
 
   if (res.status === 429) {
-    /* Sedan juli 2026 skiljer Spotify på rate limit och kvot i 429-svaret.
-       Rate limit går över av sig själv. Kvoten gör det inte — då är det
-       meningslöst att fortsätta försöka. */
     let reason = '';
     try { reason = (await res.clone().json())?.reason || ''; } catch {}
-
-    if (reason === 'QUOTA_EXCEEDED') {
-      throw new Error(
-        'KVOTEN ÄR SLUT för ditt utvecklarkonto. Kvoten delas mellan alla dina ' +
-        'Development Mode-appar. Kör mer sällan eller korta ner ARTISTS-listan.'
-      );
-    }
     const wait = Number(res.headers.get('retry-after') || 2);
 
-    /* Spotify kan svara "vänta 20 minuter". Då är det bättre att avbryta och
-       spara det vi hunnit hämta än att låta jobbet hänga. */
-    if (wait > MAX_VANTAN) {
-      throw new Error(
-        `RATE LIMIT: Spotify ber oss vänta ${wait}s. Avbryter och sparar det ` +
-        'som hämtats hittills. Kör igen om en stund, eller korta ARTISTS-listan.'
+    if (reason === 'QUOTA_EXCEEDED' || wait > MAX_VANTAN) {
+      const tim = Math.round(wait / 360) / 10;
+      throw new Stopp(
+        `KVOTEN ÄR SLUT. Spotify ber oss vänta ${wait}s (${tim}h). ` +
+        'Kvoten delas av alla dina Development Mode-appar och nollställs av sig själv. ' +
+        'Kör igen efter det, eller sänk MAX_ANROP.'
       );
     }
     if (forsok >= 2) throw new Error(`${path} → 429, gav upp efter 3 försök`);
@@ -193,10 +211,7 @@ async function api(path, token, forsok = 0) {
   }
 
   if (res.status === 400) {
-    throw new Error(
-      `${path} → 400. Någon parameter godkänns inte. Vanligaste orsaken: ` +
-      'limit är för högt — max är 10 sedan februari 2026.'
-    );
+    throw new Error(`${path} → 400. Parametern godkänns inte — limit får vara max 10.`);
   }
   if (res.status === 401 || res.status === 403) {
     throw new Error(
@@ -208,32 +223,15 @@ async function api(path, token, forsok = 0) {
   return res.json();
 }
 
-/* Artist-ID ändras aldrig. Vi sparar dem i data/artist-ids.json och slipper
-   därmed en sökning per artist vid varje körning — en tredjedel färre anrop. */
-const ID_FIL = resolve(ROOT, 'data/artist-ids.json');
-let idCache = {};
-
-async function laddaCache() {
-  try { idCache = JSON.parse(await readFile(ID_FIL, 'utf8')); } catch { idCache = {}; }
-}
-
-async function sparaCache() {
-  await mkdir(resolve(ROOT, 'data'), { recursive: true });
-  await writeFile(ID_FIL, JSON.stringify(idCache, null, 2) + '\n', 'utf8');
-}
-
-async function findArtistId(name, token) {
-  if (idCache[name]) return idCache[name];
-  const q = encodeURIComponent(name);
-  const data = await api(`/search?q=${q}&type=artist&limit=1`, token);
+async function hittaId(name, token) {
+  if (state.ids[name]) return state.ids[name];
+  const data = await api(`/search?q=${encodeURIComponent(name)}&type=artist&limit=1`, token);
   const id = data.artists?.items?.[0]?.id ?? null;
-  if (id) idCache[name] = id;
+  if (id) state.ids[name] = id;
   return id;
 }
 
-/* Tar med allt som släpps framåt i tiden plus det som släppts
-   de senaste DAGAR_BAKAT dagarna. */
-function isRelevant(dateStr) {
+function relevant(dateStr) {
   if (!dateStr || dateStr.length < 7) return false;
   const d = new Date(dateStr.length === 7 ? dateStr + '-01' : dateStr);
   const cutoff = new Date();
@@ -241,77 +239,76 @@ function isRelevant(dateStr) {
   return d >= cutoff;
 }
 
-async function skrivResultat(out) {
-  out.sort((a, b) => (a.date < b.date ? 1 : -1));
-  await mkdir(resolve(ROOT, 'data'), { recursive: true });
-  await writeFile(
-    resolve(ROOT, 'data/releases.json'),
-    JSON.stringify(out, null, 2) + '\n',
-    'utf8'
-  );
-  await sparaCache();
-  console.log(`\n${out.length} releaser skrivna till data/releases.json`);
-}
+const nyckel = r => `${r.artist} – ${r.title}`.toLowerCase();
 
 async function run() {
+  state = await lasJson(STATE_FIL, { ids: {}, nextIndex: 0 });
+
+  /* Tidigare fynd behålls. Delkörningar får aldrig radera det som redan finns. */
+  const tidigare = await lasJson(REL_FIL, []);
+  const alla = new Map(
+    (Array.isArray(tidigare) ? tidigare : [])
+      .filter(r => relevant(r.date))
+      .map(r => [nyckel(r), r])
+  );
+
   const token = await getToken();
-  await laddaCache();
-  const out = [];
-  const seen = new Set();
-  let avbrott = null;
+  const start = state.nextIndex % ARTISTS.length;
+  let klara = 0, stopp = null;
 
-  for (const { name, genre } of ARTISTS) {
+  for (let n = 0; n < ARTISTS.length; n++) {
+    const i = (start + n) % ARTISTS.length;
+    const { name, genre } = ARTISTS[i];
+
     try {
-      const id = await findArtistId(name, token);
-      if (!id) { console.log(`✗ hittade inte ${name}`); continue; }
+      const id = await hittaId(name, token);
+      if (!id) { console.log(`✗ hittade inte ${name}`); klara++; continue; }
 
-      /* Max 10 per anrop sedan februari 2026. Vi hämtar två sidor så att
-         täckningen blir densamma som tidigare. */
-      const items = [];
-      for (const offset of [0, 10]) {
-        const sida = await api(
-          `/artists/${id}/albums?include_groups=single,album&market=SE&limit=10&offset=${offset}`,
-          token
-        );
-        const del = sida.items || [];
-        items.push(...del);
-        if (del.length < 10) break;          // inga fler sidor
-        await new Promise(r => setTimeout(r, PAUS));
-      }
+      const sida = await api(
+        `/artists/${id}/albums?include_groups=single,album&market=SE&limit=10`,
+        token
+      );
 
-      let hits = 0;
-      for (const a of items) {
-        if (!isRelevant(a.release_date)) continue;
-
+      let nya = 0;
+      for (const a of sida.items || []) {
+        if (!relevant(a.release_date)) continue;
         const artist = (a.artists || []).map(x => x.name).join(' × ') || name;
-        const key = `${artist} – ${a.name}`.toLowerCase();
-        if (seen.has(key)) continue;
-        seen.add(key);
-
-        out.push({
+        const rel = {
           artist,
           title: a.name,
           genre,
           bpm: OVERRIDE[`${artist} – ${a.name}`] ?? BPM_PER_GENRE[genre] ?? 150,
           date: a.release_date.length === 7 ? a.release_date + '-01' : a.release_date,
           url: a.external_urls?.spotify || ''
-        });
-        hits++;
+        };
+        if (!alla.has(nyckel(rel))) { alla.set(nyckel(rel), rel); nya++; }
       }
-      if (hits) console.log(`✓ ${name}: ${hits}`);
+      if (nya) console.log(`✓ ${name}: ${nya}`);
+      klara++;
+
     } catch (err) {
-      if (/KVOTEN ÄR SLUT|RATE LIMIT/.test(err.message)) { avbrott = err; break; }
+      if (err instanceof Stopp) { stopp = err; break; }
       console.log(`✗ ${name}: ${err.message}`);
+      klara++;
     }
+
     await new Promise(r => setTimeout(r, PAUS));
   }
 
-  await skrivResultat(out);
+  state.nextIndex = (start + klara) % ARTISTS.length;
 
-  if (avbrott) {
-    console.log('\n' + avbrott.message);
-    process.exitCode = 1;
+  const out = [...alla.values()].sort((a, b) => (a.date < b.date ? 1 : -1));
+  await skrivJson(REL_FIL, out);
+  await skrivJson(STATE_FIL, state);
+
+  console.log(
+    `\n${klara}/${ARTISTS.length} artister denna körning, ${anrop} API-anrop.\n` +
+    `${out.length} releaser totalt i data/releases.json.`
+  );
+  if (klara < ARTISTS.length) {
+    console.log(`Nästa körning fortsätter från artist ${state.nextIndex + 1}.`);
   }
+  if (stopp) console.log('\n' + stopp.message);
 }
 
-run().catch(err => { console.error(err); process.exit(1); });
+run().catch(err => { console.error(err.message || err); process.exit(1); });
