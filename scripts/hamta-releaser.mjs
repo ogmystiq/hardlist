@@ -212,7 +212,7 @@ async function run() {
       if (!id) { console.log(`✗ hittade inte ${name}`); continue; }
 
       const albums = await api(
-        `/artists/${id}/albums?include_groups=single,album&market=SE&limit=20`,
+        `/artists/${id}/albums?include_groups=single,album&market=SE&limit=10`,
         token
       );
 
