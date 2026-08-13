@@ -11,6 +11,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 12          # hänger den längre är något fel — avbryt
     steps:
       - uses: actions/checkout@v4
 
