@@ -203,7 +203,68 @@ const ARTISTS = [
   { name: 'Rebekah',                    genre: 'techno' },
   { name: 'Nico Moreno',                genre: 'techno' },
   { name: 'Sara Landry',                genre: 'techno' },
-  { name: 'Hi-Lo',                      genre: 'techno' }
+  { name: 'Hi-Lo',                      genre: 'techno' },
+
+  /* --- euphoric, omgång 2 --- */
+  { name: 'Scope DJ',                    genre: 'euphoric' },
+  { name: 'A-lusion',                    genre: 'euphoric' },
+  { name: 'DJ Duro',                     genre: 'euphoric' },
+  { name: 'Hardheadz',                   genre: 'euphoric' },
+  { name: 'Demi Kanon',                  genre: 'euphoric' },
+  { name: 'A-RIZE',                      genre: 'euphoric' },
+  { name: 'Ghost Stories',               genre: 'euphoric' },
+  { name: 'Lady Faith',                  genre: 'euphoric' },
+  { name: 'High Resistance',             genre: 'euphoric' },
+  { name: 'Betavoice',                   genre: 'euphoric' },
+  { name: 'Retrospect',                  genre: 'euphoric' },
+  { name: 'Crystal Lake',                genre: 'euphoric' },
+  { name: 'Emphasis',                    genre: 'euphoric' },
+  { name: 'Audiofreq',                   genre: 'euphoric' },
+  { name: 'Dr. Rude',                    genre: 'euphoric' },
+  { name: 'Fenix',                       genre: 'euphoric' },
+
+  /* --- raw, omgång 2 --- */
+  { name: 'ANDY SVGE',                   genre: 'raw' },
+  { name: 'ERABREAK',                    genre: 'raw' },
+  { name: 'Thyron',                      genre: 'raw' },
+  { name: 'Wolv',                        genre: 'raw' },
+  { name: 'Disarray',                    genre: 'raw' },
+  { name: 'Michael Phase',               genre: 'raw' },
+  { name: 'Crossfight',                  genre: 'raw' },
+  { name: 'Sledgehammers',               genre: 'raw' },
+  { name: 'Sasha F',                     genre: 'raw' },
+  { name: 'Avoc',                        genre: 'raw' },
+  { name: 'Retaliation',                 genre: 'raw' },
+  { name: 'JNXD',                        genre: 'raw' },
+  { name: 'Inflame',                     genre: 'raw' },
+  { name: 'Mirage',                      genre: 'raw' },
+  { name: 'Brutalizer',                  genre: 'raw' },
+  { name: 'Flux Overload',               genre: 'raw' },
+  { name: 'Miss M',                      genre: 'raw' },
+  { name: "D'Ort",                       genre: 'raw' },
+  { name: 'Doris',                       genre: 'raw' },
+
+  /* --- uptempo, omgång 2 --- */
+  { name: 'JOSHA',                       genre: 'uptempo' },
+  { name: 'Cybergore',                   genre: 'uptempo' },
+
+  /* --- hardcore, omgång 2 --- */
+  { name: 'Pinotello',                   genre: 'hardcore' },
+  { name: 'Da Mouth Of Madness',         genre: 'hardcore' },
+  { name: 'Endymion',                    genre: 'hardcore' },
+
+  /* --- techno, omgång 2 --- */
+  { name: 'Fantasm',                     genre: 'techno' },
+  { name: 'Holy Priest',                 genre: 'techno' },
+  { name: 'Kruelty',                     genre: 'techno' },
+  { name: 'Winson',                      genre: 'techno' },
+  { name: 'Novah',                       genre: 'techno' },
+  { name: 'Nicolas Julian',              genre: 'techno' },
+  { name: 'New Beat Order',              genre: 'techno' },
+  { name: 'ZAPRAVKA',                    genre: 'techno' },
+  { name: 'Samuel Moriero',              genre: 'techno' },
+  { name: 'Jowi',                        genre: 'techno' },
+  { name: 'JAZZY',                       genre: 'techno' }
 ];
 
 /* Hur många dagar bakåt som hämtas och behålls. Sajten visar två grupper:
@@ -226,8 +287,9 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
               skriptet det den hunnit och slutar. Artisterna roteras mellan
               körningar så alla kommer med över tid.
               OBS: dagskvoten går sönder runt 200 anrop. Workflowen kör därför
-              DAGLIGEN med rotation istället för en gång i veckan — då hinner
-              hela listan betas av på några dygn, väl inom sjudagarsfönstret.
+              DAGLIGEN med rotation istället för en gång i veckan. Ett helt varv
+              tar ceil(antal artister / MAX_ANROP) dygn — med 205 artister alltså
+              två dygn, väl inom sjudagarsfönstret sajten visar.
    MAX_VANTAN ber Spotify oss vänta längre än så avbryts körningen direkt
               istället för att ligga och hamra på kvoten.
    PAUS       paus mellan anrop.
@@ -235,7 +297,7 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
 /* Uppmätt i praktiken: dagskvoten i Development Mode tar slut runt 200 anrop.
    Taket ligger därför med marginal under det. Kör HÖGST EN GÅNG PER DYGN tills
    artist-cachen är komplett — då kostar ett helt varv bara 80 anrop. */
-const MAX_ANROP    = 150;
+const MAX_ANROP    = 170;
 const MAX_VANTAN   = 180;   /* längsta enskilda väntan vi accepterar, sekunder */
 const TIDSBUDGET   = 8 * 60;/* hela körningen, sekunder. Under jobbets timeout. */
 const PAUS         = 300;
