@@ -337,7 +337,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
     <div class="wrap">
       <p class="eyebrow">Uppdaterad varje fredag <span class="badge" id="dataBadge" hidden>exempeldata</span></p>
       <h1>Vad som släpps.<br><em>Och när.</em></h1>
-      <p class="lede">Varje ny release inom hardstyle, raw, uptempo och hardcore — i datumordning. Kommande först, sen allt som släppts den senaste veckan.</p>
+      <p class="lede">Varje ny release inom hardstyle, raw, uptempo och hardcore — i datumordning. Kommande först, sen allt som släppts den senaste veckan. Inget äldre.</p>
 
       <div class="ruler" id="ruler" aria-label="Senaste releaser plottade på BPM-skala">
         <div class="ruler-line" id="rulerLine"></div>
@@ -398,6 +398,8 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 
 <script>
 const GENRES = ['euphoric','raw','uptempo','hardcore','techno'];
+/* Hur många dagar bakåt som visas. Måste matcha DAGAR_BAKAT i skriptet. */
+const DAGAR_VISAS = 7;
 const BPM_MIN = 140, BPM_MAX = 220;
 const MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
 
@@ -410,7 +412,7 @@ const SEED = (() => {
     {artist:'Sound Rush',      title:'Exempellåt', bpm:150, genre:'euphoric', date:day(-1),  url:''},
     {artist:'Angerfist',       title:'Exempellåt', bpm:190, genre:'hardcore', date:day(-4),  url:''},
     {artist:'Sub Zero Project',title:'Exempellåt', bpm:152, genre:'raw',      date:day(-6),  url:''},
-    {artist:'Vieze Asbak',     title:'Exempellåt', bpm:205, genre:'uptempo',  date:day(-14), url:''}
+    {artist:'Vieze Asbak',     title:'Exempellåt', bpm:150, genre:'techno',   date:day(-6),  url:''}
   ];
 })();
 
@@ -648,28 +650,31 @@ function relCard(r, soon){
 
 function drawReleases(){
   const list = document.getElementById('relList');
-  const items = filter === 'all' ? releases : releases.filter(r => r.genre === filter);
+  const grans = new Date(today()); grans.setDate(grans.getDate() - DAGAR_VISAS);
+  const items = (filter === 'all' ? releases : releases.filter(r => r.genre === filter))
+    .filter(r => new Date(r.date) >= grans);
   document.getElementById('relCount').textContent = items.length + ' spår';
 
-  if (!items.length){
+  if (!releases.length){
     list.innerHTML = '<div class="empty"><b>Inget här än</b>Kör skriptet i /scripts så fylls listan på.</div>';
     return;
   }
 
   const t = today();
-  const week = new Date(t); week.setDate(week.getDate() - 7);   // gränsen för "nyss släppt"
+  /* Allt äldre än en vecka visas inte. Skriptet rensar det ur filen också,
+     men sidan filtrerar för säkerhets skull om filen är gammal. */
+  const week = new Date(t); week.setDate(week.getDate() - DAGAR_VISAS);
 
-  const newest = (a,b) => a.date < b.date ? 1 : -1;   // nyast först
-  const soonest = (a,b) => a.date < b.date ? -1 : 1;  // närmast i tiden först
+  const newest  = (a,b) => a.date < b.date ? 1 : -1;   // nyast först
+  const soonest = (a,b) => a.date < b.date ? -1 : 1;   // närmast i tiden först
 
-  const kommande = items.filter(r => new Date(r.date) >  t).sort(soonest);
+  const kommande = items.filter(r => new Date(r.date) > t).sort(soonest);
   const nyss     = items.filter(r => { const d = new Date(r.date); return d <= t && d >= week; }).sort(newest);
-  const tidigare = items.filter(r => new Date(r.date) <  week).sort(newest);
 
   let html = '';
   if (kommande.length) html += '<p class="group-label">Kommande</p>' + kommande.map(r => relCard(r, true)).join('');
-  if (nyss.length)     html += '<p class="group-label">Nyss släppt <span>senaste 7 dagarna</span></p>' + nyss.map(r => relCard(r, false)).join('');
-  if (tidigare.length) html += '<p class="group-label">Tidigare</p>' + tidigare.map(r => relCard(r, false)).join('');
+  if (nyss.length)     html += '<p class="group-label">Nyss släppt <span>senaste ' + DAGAR_VISAS + ' dagarna</span></p>' + nyss.map(r => relCard(r, false)).join('');
+  if (!html) html = '<div class="empty"><b>Inget nytt den här veckan</b>Kommer tillbaka så fort någon släpper något.</div>';
   list.innerHTML = html;
 }
 
