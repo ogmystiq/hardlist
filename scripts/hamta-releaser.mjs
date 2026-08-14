@@ -145,10 +145,11 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
               istället för att ligga och hamra på kvoten.
    PAUS       paus mellan anrop.
 ------------------------------------------------------------------------ */
-const MAX_ANROP  = 100;   /* varje artist kostar 1 anrop när ID:t är cachat,
-                             2 första gången. Växer listan växer kvotbehovet. */
-const MAX_VANTAN = 30;
-const PAUS       = 300;
+const MAX_ANROP    = 100;   /* varje artist kostar 1 anrop när ID:t är cachat,
+                               2 första gången. Växer listan växer kvotbehovet. */
+const MAX_VANTAN   = 180;   /* längsta enskilda väntan vi accepterar, sekunder */
+const TIDSBUDGET   = 8 * 60;/* hela körningen, sekunder. Under jobbets timeout. */
+const PAUS         = 300;
 
 /* Manuell BPM för enskilda spår: "Artist – Titel": BPM */
 const OVERRIDE = {
@@ -170,6 +171,8 @@ const REL_FIL   = resolve(ROOT, 'data/releases.json');
 
 let state = { ids: {}, nextIndex: 0 };
 let anrop = 0;
+const T0 = Date.now();
+const forbrukat = () => Math.round((Date.now() - T0) / 1000);
 
 async function lasJson(fil, fallback) {
   try { return JSON.parse(await readFile(fil, 'utf8')); } catch { return fallback; }
@@ -197,6 +200,9 @@ class Stopp extends Error {}
 
 async function api(path, token, forsok = 0) {
   if (anrop >= MAX_ANROP) throw new Stopp(`Anropstaket (${MAX_ANROP}) nått.`);
+  if (forbrukat() > TIDSBUDGET) {
+    throw new Stopp(`Tidsbudgeten (${TIDSBUDGET}s) nådd. Sparar och avslutar.`);
+  }
   anrop++;
 
   const res = await fetch('https://api.spotify.com/v1' + path, {
@@ -208,17 +214,35 @@ async function api(path, token, forsok = 0) {
     try { reason = (await res.clone().json())?.reason || ''; } catch {}
     const wait = Number(res.headers.get('retry-after') || 2);
 
-    if (reason === 'QUOTA_EXCEEDED' || wait > MAX_VANTAN) {
-      const tim = Math.round(wait / 360) / 10;
+    /* Två helt olika saker döljer sig bakom 429:
+
+       QUOTA_EXCEEDED  dagskvoten är slut. Väntan mäts i timmar och fler
+                       försök gör bara saken värre. Avbryt.
+       Vanlig 429      kortvarig rate limit, ofta 1-3 minuter. Vänta ut den. */
+    if (reason === 'QUOTA_EXCEEDED') {
+      const tim = (wait / 3600).toFixed(1);
       throw new Stopp(
-        `KVOTEN ÄR SLUT. Spotify ber oss vänta ${wait}s (${tim}h). ` +
-        'Kvoten delas av alla dina Development Mode-appar och nollställs av sig själv. ' +
-        'Kör igen efter det, eller sänk MAX_ANROP.'
+        `KVOTEN ÄR SLUT för dygnet. Spotify ber oss vänta ${wait}s (${tim}h). ` +
+        'Kvoten delas av alla dina Development Mode-appar och nollställs av sig ' +
+        'själv. Kör igen efter det, eller sänk MAX_ANROP.'
       );
     }
-    if (forsok >= 2) throw new Error(`${path} → 429, gav upp efter 3 försök`);
 
-    console.log(`  rate limit — väntar ${wait}s`);
+    if (wait > MAX_VANTAN) {
+      throw new Stopp(
+        `RATE LIMIT på ${wait}s, längre än taket ${MAX_VANTAN}s. Inte kvoten — ` +
+        'bara en tillfällig broms. Vänta några minuter och kör igen.'
+      );
+    }
+    if (forbrukat() + wait > TIDSBUDGET) {
+      throw new Stopp(
+        `RATE LIMIT på ${wait}s ryms inte i tidsbudgeten. Sparar och avslutar. ` +
+        'Kör igen om en stund — den fortsätter där den slutade.'
+      );
+    }
+    if (forsok >= 3) throw new Error(`${path} → 429, gav upp efter 4 försök`);
+
+    console.log(`  rate limit — väntar ${wait}s (försök ${forsok + 1})`);
     await new Promise(r => setTimeout(r, (wait + 1) * 1000));
     return api(path, token, forsok + 1);
   }
@@ -315,8 +339,8 @@ async function run() {
   await skrivJson(STATE_FIL, state);
 
   console.log(
-    `\n${klara}/${ARTISTS.length} artister denna körning, ${anrop} API-anrop.\n` +
-    `${out.length} releaser totalt i data/releases.json.`
+    `\n${klara}/${ARTISTS.length} artister denna körning, ${anrop} API-anrop, ` +
+    `${forbrukat()}s.\n${out.length} releaser totalt i data/releases.json.`
   );
   if (klara < ARTISTS.length) {
     console.log(`Nästa körning fortsätter från artist ${state.nextIndex + 1}.`);
