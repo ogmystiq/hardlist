@@ -28,7 +28,13 @@ till de andra tre. `style.css` finns kvar som referens.
 |---|---|
 | Kommande | Releasedatum i framtiden. Visas som "Imorgon", "Om 1 vecka". |
 | Nyss släppt | De senaste 7 dagarna. |
-| Tidigare | 8–30 dagar gamla. |
+
+**Inget äldre än en vecka visas.** Skriptet rensar bort det ur
+`data/releases.json` vid varje körning, och sidan filtrerar dessutom bort det
+vid rendering ifall filen skulle vara gammal.
+
+Vill du ha en längre svans ändrar du på **två** ställen, och de måste matcha:
+`DAGAR_BAKAT` i `scripts/hamta-releaser.mjs` och `DAGAR_VISAS` i `index.html`.
 
 Genrefiltret ändrar bara vad som visas, aldrig ordningen.
 
@@ -37,11 +43,35 @@ Genrefiltret ändrar bara vad som visas, aldrig ordningen.
 ## Kvotskydd — läs det här
 
 Spotifys Development Mode har en **daglig kvot per utvecklarkonto**. Bränner du
-den är du utelåst i ungefär ett dygn. Skriptet har därför fyra spärrar:
+den är du utelåst i ungefär ett dygn.
+
+**Uppmätt i praktiken: kvoten tar slut runt 200 anrop per dygn.** Två körningar
+à 100 anrop räckte.
+
+Därför kör workflowen **dagligen med rotation** istället för en gång i veckan.
+Varje körning tar upp till `MAX_ANROP` anrop och fortsätter där förra slutade:
+
+| Artister | Anrop per varv (cachat) | Varv tar |
+|---|---|---|
+| 154 | 154 | ~1 dygn |
+| 300 | 300 | 2 dygn |
+| 500 | 500 | 3–4 dygn |
+
+Eftersom sajten bara visar sju dagar bakåt hinner varje artist kollas minst två
+gånger inom fönstret även vid 500 namn. Ingenting missas.
+
+Uppbyggnaden av cachen kostar dubbelt (sökning + albumanrop), så första veckan
+efter att du lagt till många namn går åt till att beta av listan.
+
+**Extended Quota Mode är inte ett alternativ.** Sedan maj 2025 tar Spotify bara
+emot ansökningar från organisationer, med krav på registrerat företag och
+250 000 månatliga användare.
+
+Skriptet har fyra spärrar:
 
 | Spärr | Vad den gör |
 |---|---|
-| `MAX_ANROP = 100` | Hårt tak per körning. Nås det sparas resultatet och körningen avslutas. |
+| `MAX_ANROP = 150` | Hårt tak per körning. Nås det sparas resultatet och körningen avslutas. |
 | Rotation | Nästa körning fortsätter på nästa artist. Alla täcks över några körningar. |
 | Sammanslagning | Delkörningar raderar aldrig tidigare fynd. Gammalt läses in, nytt läggs till, allt äldre än 30 dagar rensas. |
 | `MAX_VANTAN = 30` | Ber Spotify oss vänta längre än 30 s avbryts körningen istället för att hamra på kvoten. |
