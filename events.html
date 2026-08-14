@@ -257,21 +257,17 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .callout.warn b{color:var(--uptempo)}
 
 /* Kolofon — signaturrad längst ner. Sätts som en teknisk uppgift, inte som
-   en hälsning: namn till vänster, ort till höger, tunn linje över. */
+   en hälsning: bara namnet, med en tunn linje över. */
 .colophon{
-  display:flex;align-items:baseline;justify-content:space-between;gap:16px;
   margin-top:28px;padding-top:16px;border-top:1px solid var(--line);
 }
 .colophon .by{
+  display:inline-block;
   font-family:var(--display);font-weight:900;text-transform:uppercase;
   font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);
   transition:color .25s ease;
 }
 .colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
-.colophon .loc{
-  font-family:var(--data);font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:#4E4467;white-space:nowrap;
-}
 
 .status{margin-top:14px;font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175}
 .status.varning{color:var(--uptempo)}
@@ -576,7 +572,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 
         <div class="callout tip">
           <b>Har du ett riktigt insidertips?</b>
-          Vet du var den snabba passagen mellan RED och BLACK går, eller vilken ingång som alltid är tom? <a href="mailto:hej@example.se">Skicka in det</a> så läggs det upp här med ditt namn.
+          Vet du var den snabba passagen mellan RED och BLACK går, eller vilken ingång som alltid är tom? <a href="mailto:hardlisthelp@gmail.com">Skicka in det</a> så läggs det upp här med ditt namn.
         </div>
       </article>
 
@@ -599,7 +595,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <li>Eftersom ingen dryck får tas in på området, <strong>budgetera för barpriser</strong> alla dagarna.</li>
           <li>Campingen är en semesterpark, inte en åker. Högre komfort, men också fler regler.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ INTENTS ============ -->
@@ -621,7 +617,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <li>Butik finns på campingen, så du behöver inte överpacka dryck.</li>
           <li>Ungefär en sixpack öl eller två flaskor vin per person är gränsen på campingen.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ DOMINATOR ============ -->
@@ -642,7 +638,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <li>Drar den mest hängivna publiken i hela scenen. Stämningen är därefter.</li>
           <li>Kolla arrangörens sida för årets camping- och dryckesregler — jag har inte verifierat dem.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ REBIRTH ============ -->
@@ -662,7 +658,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <li>Att den ligger tidigt gör den till en bra "test-festival" innan du bokar de stora.</li>
           <li>Camping- och dryckesregler har jag inte kunnat verifiera. Läs arrangörens do's &amp; don'ts.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ REVERZE ============ -->
@@ -683,7 +679,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <li>Två arenor betyder att du behöver <strong>bestämma i förväg</strong> vilken du prioriterar — det är inte gjort på två minuter att byta.</li>
           <li>Inomhus i februari betyder garderob. Räkna med kö både in och ut.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ SUPREMACY ============ -->
@@ -703,7 +699,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <li>Classics-upplagorna säljer ut snabbt — bevaka biljettsläppet.</li>
           <li>Exakt datum och arena varierar. <strong>Verifiera hos arrangören</strong>, jag har inte bekräftat årets uppgifter.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ MASTERS OF HARDCORE ============ -->
@@ -724,7 +720,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <li>Endagsevent inomhus gör det till den billigaste vägen in i hardcore-scenen — ingen camping, ingen helgbiljett.</li>
           <li>Går normalt i april, men 2026-upplagan låg i mars. <strong>Kolla datumet varje år.</strong></li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ HARMONY OF HARDCORE ============ -->
@@ -744,7 +740,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <li>Ligger i maj, vilket gör den till en av de första utomhusdagarna på säsongen.</li>
           <li>Endagsevent, så du hinner inte allt. Planera.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ ONE VISION ============ -->
@@ -765,7 +761,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <li>Bästa första camping-festivalen innan du satsar på en resa till Nederländerna.</li>
           <li>Kolla arrangörens sida för årets datum och regler.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <div class="callout" style="margin-top:34px">
@@ -781,7 +777,6 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
     Datum, regler och stagenamn ändras varje år. Kolla alltid arrangörens egen sida.
     <div class="colophon">
       <span class="by">Jonathan H</span>
-      <span class="loc">Motala · SE</span>
     </div>
   </div>
 </footer>
