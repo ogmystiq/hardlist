@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Festivalguider — HARDLIST</title>
-<meta name="description" content="Djupguider till Defqon.1, Qlimax, Decibel, Dominator, Intents, Rebirth och de andra stora hardstyle-eventen.">
+<meta name="description" content="Djupguider till Defqon.1, Decibel, Intents, Dominator, Rebirth, Reverze, Supremacy, Masters of Hardcore och de andra stora hard dance-eventen.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -21,6 +21,7 @@
   --raw:#FF2E63;
   --uptempo:#FFB020;
   --hardcore:#8B5CFF;
+  --techno:#9BA8BE;   /* industrial / hard techno — medvetet metallisk, ligger utanför de fyra */
 
   --display:'Big Shoulders Display',system-ui,sans-serif;
   --body:'Space Grotesk',system-ui,sans-serif;
@@ -164,6 +165,17 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .ev .ticket:hover{background:var(--bone);color:var(--ink)}
 .ev .tba{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.12em}
 
+.watch{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:6px}
+.witem{background:var(--ink);padding:13px 15px}
+.witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
+.witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
+.watch-head{
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:34px 0 4px;display:flex;align-items:center;gap:12px;
+}
+.watch-head::after{content:'';flex:1;height:1px;background:var(--line)}
+.watch-note{font-size:13px;color:var(--muted);margin-bottom:14px;max-width:60ch}
+
 .empty{border:1px dashed var(--line);padding:28px;text-align:center;color:var(--muted);font-size:14px}
 .empty b{display:block;color:var(--bone);font-family:var(--display);font-size:22px;text-transform:uppercase;margin-bottom:6px}
 
@@ -201,15 +213,35 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .gcard .bpm{font-family:var(--data);font-size:10px;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:8px}
 .gcard p{font-size:13px;color:#CFC5E0;margin:0}
 
-.tracks{list-style:none;counter-reset:t}
+.tracks{list-style:none;counter-reset:t;max-width:none}
 .tracks li{
-  counter-increment:t;display:grid;grid-template-columns:32px 1fr;gap:12px;
-  padding:11px 0;border-top:1px solid var(--line);align-items:baseline;
+  counter-increment:t;
+  display:grid;grid-template-columns:34px 1fr;column-gap:14px;
+  padding:14px 0;border-top:1px solid var(--line);margin-bottom:0;
+}
+/* Måste nolla position/width/height/background — annars ärvs de från
+   .prose li::before och lägger numret ovanpå texten. */
+.tracks li::before{
+  content:counter(t,decimal-leading-zero);
+  position:static;width:auto;height:auto;background:none;
+  grid-column:1;grid-row:1;padding-top:4px;
+  font-family:var(--data);font-size:11px;color:var(--muted);
 }
 .tracks li:last-child{border-bottom:1px solid var(--line)}
-.tracks li::before{content:counter(t,decimal-leading-zero);font-family:var(--data);font-size:11px;color:var(--muted)}
-.tracks b{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:18px;letter-spacing:.01em}
-.tracks span{color:var(--muted);font-size:13px;display:block}
+.tracks b{
+  grid-column:2;grid-row:1;
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:19px;line-height:1.1;letter-spacing:.01em;color:var(--bone);
+}
+.tracks i{
+  grid-column:2;grid-row:2;font-style:normal;
+  font-family:var(--data);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--c,var(--muted));margin-top:5px;
+}
+.tracks span{grid-column:2;grid-row:3;color:var(--muted);font-size:13px;margin-top:4px}
+
+.callout.warn{border-left-color:var(--uptempo);background:#1D1206}
+.callout.warn b{color:var(--uptempo)}
 
 footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:11px;letter-spacing:.06em;line-height:1.8}
 
@@ -223,6 +255,8 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   .top .wrap{height:52px}
   .logo{font-size:22px}
   .rule{grid-template-columns:1fr;gap:2px}
+  .tracks li{grid-template-columns:26px 1fr;column-gap:10px}
+  .tracks b{font-size:17px}
   .term{grid-template-columns:1fr;gap:2px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -303,7 +337,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
     <div class="wrap">
       <p class="eyebrow">Festivalguider</p>
       <h1>Välj festival.<br><em>Få hela bilden.</em></h1>
-      <p class="lede">Stages, timing, transport och kostnad för de stora eventen. Tryck på ett namn.</p>
+      <p class="lede">Stages, timing, profil och kostnad för de stora eventen. Tryck på ett namn.</p>
     </div>
   </div>
 
@@ -311,12 +345,14 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
     <div class="wrap">
       <div class="picker" id="picker" role="tablist" aria-label="Välj festival">
         <button class="fbtn" data-f="defqon"    role="tab" aria-selected="true">Defqon.1</button>
-        <button class="fbtn" data-f="qlimax"    role="tab" aria-selected="false">Qlimax</button>
         <button class="fbtn" data-f="decibel"   role="tab" aria-selected="false">Decibel</button>
-        <button class="fbtn" data-f="dominator" role="tab" aria-selected="false">Dominator</button>
         <button class="fbtn" data-f="intents"   role="tab" aria-selected="false">Intents</button>
+        <button class="fbtn" data-f="dominator" role="tab" aria-selected="false">Dominator</button>
         <button class="fbtn" data-f="rebirth"   role="tab" aria-selected="false">Rebirth</button>
         <button class="fbtn" data-f="reverze"   role="tab" aria-selected="false">Reverze</button>
+        <button class="fbtn" data-f="supremacy" role="tab" aria-selected="false">Supremacy</button>
+        <button class="fbtn" data-f="moh"       role="tab" aria-selected="false">Masters of Hardcore</button>
+        <button class="fbtn" data-f="hoh"       role="tab" aria-selected="false">Harmony of Hardcore</button>
         <button class="fbtn" data-f="onevision" role="tab" aria-selected="false">One Vision</button>
       </div>
 
@@ -324,30 +360,36 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
       <article class="panel" id="defqon" role="tabpanel">
         <header class="phead">
           <h2>Defqon.1</h2>
-          <span class="place">Biddinghuizen, NL · slutet av juni · 4 dagar</span>
+          <span class="place">Walibi Holland, Biddinghuizen, NL · slutet av juni · 4 dagar</span>
         </header>
 
+        <div class="callout warn">
+          <b>2026-upplagan ställdes in</b>
+          Defqon.1 2026 ("Sacred Oath") öppnade 25 juni men avbröts efter första dagen. KNMI utfärdade Nederländernas första kod röd för extrem värme någonsin, med temperaturer mot 40 grader, och Q-dance stängde grindarna 26 juni i samråd med myndigheterna. Alla biljetter återbetalades. Räkna med att värmeplanering blir en permanent del av festivalen framåt.
+        </div>
+
         <dl class="facts">
-          <div><dt>Storlek</dt><dd>Världens största hardstyle-event. Runt en kvarts miljon besökare över helgen.</dd></div>
-          <div><dt>Camping</dt><dd>Ja, incheckning från torsdag morgon. Utcheckning måndag.</dd></div>
-          <div><dt>Ålder</dt><dd>18+, original-leg krävs.</dd></div>
+          <div><dt>Storlek</dt><dd>Världens största hard dance-festival. Rekordåret 2023 hade 250 000 besökare från 110 länder över fyra dagar. Över 350 artister bokade 2026.</dd></div>
+          <div><dt>Camping</dt><dd>Ja — "Wasted Lands". Incheckning från torsdag morgon, utcheckning måndag.</dd></div>
+          <div><dt>Ålder</dt><dd>18+, original-leg krävs. Kopia godkänns inte.</dd></div>
+          <div><dt>Pris</dt><dd>Helgbiljetten låg på 339,95 euro 2026, mot 95 euro 2013. Det är en ökning på runt 258 procent i tretton år.</dd></div>
           <div><dt>Avstånd</dt><dd>Cirka 75 km från Amsterdam, 90 km från Schiphol.</dd></div>
         </dl>
 
         <h3>Stagesen</h3>
-        <p>Namnen roterar något mellan åren, men tre är konstanta och avgör hur du planerar helgen.</p>
+        <p>Namnen roterar delvis mellan åren, men strukturen är densamma. Tre är konstanta.</p>
         <ul class="stages">
           <li><b style="--c:var(--raw)">RED</b><span>Mainstage, utomhus. Hardstyle och euphoric, de största namnen. Här ligger Opening Ceremony och Endshow.</span></li>
-          <li><b style="--c:var(--euphoric)">BLUE</b><span>Inomhus. Hardstyle och raw, ofta den tyngre och mer experimentella änden. Öppnar festivalen på torsdag med The Gathering.</span></li>
-          <li><b style="--c:var(--hardcore)">BLACK</b><span>Inomhus. Hardcore, frenchcore och uptempo. Ligger djupare in på området än RED — räkna med 5–8 minuters promenad mellan dem, mer när det är fullt.</span></li>
-          <li><b style="--c:var(--uptempo)">UV / YELLOW</b><span>Utomhus. Uptempo, frenchcore och hardcore. Här hamnar du om du inte gillar melodier.</span></li>
-          <li><b style="--c:var(--muted)">Roterande</b><span>MAGENTA, INDIGO, GREEN, PINK och GOLD byter roll mellan åren. GOLD är klassiker- och legendsscenen.</span></li>
+          <li><b style="--c:var(--euphoric)">BLUE</b><span>Inomhus. Hardstyle och raw, ofta det tyngre och mer experimentella. Öppnar helgen på torsdag med The Gathering.</span></li>
+          <li><b style="--c:var(--hardcore)">BLACK</b><span>Inomhus. Hardcore, frenchcore och uptempo. Ligger djupare in på området än RED — räkna med 5–8 minuters promenad, mer när det är fullt.</span></li>
+          <li><b style="--c:var(--uptempo)">INDIGO</b><span>Tillsammans med BLACK den djupaste raw-bokningen på hela europeiska kalendern.</span></li>
+          <li><b style="--c:var(--muted)">Roterande</b><span>MAGENTA, GREEN, PINK, UV och GOLD byter roll mellan åren. GOLD är klassiker- och legendsscenen.</span></li>
         </ul>
 
         <h3>Dagarna</h3>
         <ul>
-          <li><strong>Torsdag</strong> — The Gathering. Bara några scener öppnar, sen kväll. Lugnaste dagen, bäst för att lära känna området innan det blir fullt.</li>
-          <li><strong>Fredag</strong> — full festivaldag numera, i princip likvärdig med lördag.</li>
+          <li><strong>Torsdag</strong> — The Gathering. Bara några scener öppnar, sen kväll. Lugnaste dagen och bäst för att lära känna området innan det blir fullt.</li>
+          <li><strong>Fredag</strong> — full festivaldag, i praktiken likvärdig med lördag.</li>
           <li><strong>Lördag</strong> — toppdagen. Power Hour och The Spotlight. Allt är fullt, överallt.</li>
           <li><strong>Söndag</strong> — Legends Day, avslutas med Endshow på RED.</li>
         </ul>
@@ -360,12 +402,12 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
         <p>Det här funkar däremot varje år, på varje stor festival:</p>
         <ul>
           <li><strong>Lämna två eller tre låtar innan setet tar slut</strong> om du ska vidare till en annan scen. Annars går du i samma folkström som tiotusen andra och tappar tjugo minuter.</li>
-          <li><strong>Gå längs kanten, aldrig genom mitten.</strong> Ytterkanten av ett fält rör sig flera gånger snabbare än mitten.</li>
+          <li><strong>Gå längs kanten, aldrig genom mitten.</strong> Ytterkanten av ett fält rör sig flera gånger snabbare.</li>
           <li><strong>De bakre hörnen töms först.</strong> Står du där när ett set slutar är du ute innan trycket byggs upp.</li>
-          <li><strong>Efter Endshow går hela festivalen ut samtidigt.</strong> Antingen är du bland de första, eller så sätter du dig ner i en halvtimme och går när det lugnat sig. Mellanläget är det sämsta.</li>
-          <li><strong>Toaletterna längst från scenerna har alltid kortast kö.</strong> Samma sak med barer.</li>
+          <li><strong>Efter Endshow går hela festivalen ut samtidigt.</strong> Antingen är du bland de första, eller så sätter du dig ner en halvtimme. Mellanläget är sämst.</li>
+          <li><strong>Toaletterna längst från scenerna har alltid kortast kö.</strong> Samma med barerna.</li>
           <li><strong>Ladda armbandet hemifrån.</strong> Top-up-köerna är värst precis vid öppning.</li>
-          <li><strong>Bestäm en fast mötesplats</strong> — en matvagn eller ett stagenamn, aldrig "vid scenen". Mobilnätet dör när området fylls.</li>
+          <li><strong>Bestäm en fast mötesplats</strong> — en matvagn eller ett stagenamn, aldrig "vid scenen".</li>
         </ul>
 
         <div class="callout tip">
@@ -374,44 +416,46 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
         </div>
       </article>
 
-      <!-- ============ QLIMAX ============ -->
-      <article class="panel" id="qlimax" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>Qlimax</h2>
-          <span class="place">Arnhem, NL · Gelredome · november · en kväll</span>
-        </header>
-        <dl class="facts">
-          <div><dt>Format</dt><dd>Inomhus i en fotbollsarena. En scen, ett tema, ett genomkomponerat show-koncept från början till slut.</dd></div>
-          <div><dt>Camping</dt><dd>Nej. Boka hotell i Arnhem eller Nijmegen, och boka tidigt.</dd></div>
-          <div><dt>Passar</dt><dd>Den som vill ha produktion och känsla snarare än att välja mellan scener.</dd></div>
-        </dl>
-        <h3>Vad du behöver veta</h3>
-        <ul>
-          <li>Det är <strong>en enda scen</strong>. Ingen planering behövs — du kommer, du står, du stannar. Motsatsen till Defqon.</li>
-          <li>Showen är byggd som en berättelse. Kommer du sent missar du uppbyggnaden, inte bara några låtar.</li>
-          <li>Inomhus i november betyder <strong>garderob</strong>. Räkna med kö både in och ut.</li>
-          <li>Arnhem är litet. Hotell tar slut månader i förväg och priserna tredubblas den helgen.</li>
-        </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
-      </article>
-
       <!-- ============ DECIBEL ============ -->
       <article class="panel" id="decibel" role="tabpanel" hidden>
         <header class="phead">
           <h2>Decibel Outdoor</h2>
-          <span class="place">Beekse Bergen, NL · augusti · 3 dagar</span>
+          <span class="place">Beekse Bergen, Hilvarenbeek, NL · mitten av augusti</span>
         </header>
         <dl class="facts">
-          <div><dt>Bredd</dt><dd>Över 30 scener. Hardstyle, rawstyle, hardcore, uptempo, frenchcore och hard techno — varje scen har sin egen identitet.</dd></div>
+          <div><dt>Bredd</dt><dd>Störst spännvidd av alla. Över 30 scener som täcker mainstream hardstyle, raw, hardcore, uptempo, frenchcore och hard techno — varje gren får sin egen scen.</dd></div>
           <div><dt>Camping</dt><dd>Ja, på ett semesterområde. Riktiga faciliteter, duschar och matvagnar.</dd></div>
-          <div><dt>Alkohol</dt><dd>1,5 liter per person på campingen. Ingen dryck alls får bäras in på festivalområdet.</dd></div>
+          <div><dt>Alkohol</dt><dd>1,5 liter per person på campingen, under 15 procent. Alkoholfritt obegränsat.</dd></div>
+          <div><dt>Viktigt</dt><dd>Ingen dryck alls får bäras in på festivalområdet, inte ens alkoholfri.</dd></div>
         </dl>
         <h3>Vad du behöver veta</h3>
         <ul>
-          <li>Med 30+ scener kan du <strong>inte se allt</strong>. Välj tre scener per dag och acceptera resten.</li>
-          <li>Campingen är en semesterpark, inte en åker — högre komfort, men också fler regler.</li>
-          <li>Eftersom ingen dryck får tas in på området <strong>budgetera för barpriser</strong> alla tre dagarna.</li>
-          <li>Bra förstagångsfestival om du inte vet vilken subgenre du gillar — du kan prova allt på en helg.</li>
+          <li>Med 30+ scener kan du <strong>inte se allt</strong>. Välj tre scener per dag och släpp resten.</li>
+          <li>Bästa festivalen om du inte vet vilken gren du gillar — du kan prova hela spektrumet på en helg.</li>
+          <li>Eftersom ingen dryck får tas in på området, <strong>budgetera för barpriser</strong> alla dagarna.</li>
+          <li>Campingen är en semesterpark, inte en åker. Högre komfort, men också fler regler.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ INTENTS ============ -->
+      <article class="panel" id="intents" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Intents Festival</h2>
+          <span class="place">Oisterwijk, NL · början av juni · 3 dagar</span>
+        </header>
+        <dl class="facts">
+          <div><dt>2026</dt><dd>5–7 juni under temat "Rise of Titans". Anthem av Vertile och The Saints.</dd></div>
+          <div><dt>Profil</dt><dd>Bredare än de rena hardstyle-festivalerna. Hardstyle, hardcore och uptempo över flera scener. Alpha-scenen är hemvist för den hårdare publiken.</dd></div>
+          <div><dt>Camping</dt><dd>IntentsCity. Egen mat och dryck tillåten på campingen, inte på festivalområdet.</dd></div>
+          <div><dt>Tältregel</dt><dd>Tältet får vara för högst en person mer än ni är. Sover ni fyra får ni ha ett femmannatält.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li>Du får <strong>gå ut och in från campingen</strong> under angivna tider — bra om du vill sova ordentligt en stund.</li>
+          <li>Ett badhus har öppet dygnet runt. Ovanligt, och värt mycket på dag tre.</li>
+          <li>Butik finns på campingen, så du behöver inte överpacka dryck.</li>
+          <li>Ungefär en sixpack öl eller två flaskor vin per person är gränsen på campingen.</li>
         </ul>
         <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
       </article>
@@ -420,38 +464,19 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
       <article class="panel" id="dominator" role="tabpanel" hidden>
         <header class="phead">
           <h2>Dominator</h2>
-          <span class="place">Eersel, NL · juli</span>
+          <span class="place">E3 Strand, Eersel, NL · juli</span>
         </header>
         <dl class="facts">
-          <div><dt>Profil</dt><dd>Rent hardcore-fokus. Ingen euphoric hardstyle att tala om.</dd></div>
-          <div><dt>Passar</dt><dd>Den som redan vet att hardcore och uptempo är hens grej.</dd></div>
+          <div><dt>2026</dt><dd>17–18 juli under temat "Fatal Fortune". 10 scener, över 200 artister, med fullt program även på fredagen.</dd></div>
+          <div><dt>Profil</dt><dd>Världens största renodlade hardcore-festival. Hela programmet ligger i den hårdare änden — ingen euphoric hardstyle att tala om.</dd></div>
+          <div><dt>Camping</dt><dd>Ja, sedan återkomsten 2022. Även förfest.</dd></div>
         </dl>
         <h3>Vad du behöver veta</h3>
         <ul>
           <li>Det här är <strong>inte en nybörjarfestival</strong>. Publiken kan sina låtar och tempot ligger högt hela dagen.</li>
           <li>Öronproppar är obligatoriskt, inte valfritt.</li>
-          <li>Kolla arrangörens sida för aktuella camping- och dryckesregler — jag har inte verifierat årets.</li>
-        </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
-      </article>
-
-      <!-- ============ INTENTS ============ -->
-      <article class="panel" id="intents" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>Intents</h2>
-          <span class="place">Oisterwijk, NL · juni · 3 dagar</span>
-        </header>
-        <dl class="facts">
-          <div><dt>Profil</dt><dd>Bredare än de rena hardstyle-festivalerna. Flera stilar sida vid sida.</dd></div>
-          <div><dt>Camping</dt><dd>IntentsCity. Egen mat och dryck tillåten på campingen, inte på festivalområdet.</dd></div>
-          <div><dt>Tältregel</dt><dd>Tältet får vara för högst en person mer än ni är.</dd></div>
-        </dl>
-        <h3>Vad du behöver veta</h3>
-        <ul>
-          <li>Du får <strong>gå ut och in från campingen</strong> under angivna tider — bra om du vill sova ordentligt en stund.</li>
-          <li>Ett badhus har öppet dygnet runt. Ovanligt och värt mycket på dag tre.</li>
-          <li>Det finns en butik på campingen, så du behöver inte överpacka dryck.</li>
-          <li>Parkering P6 ligger närmast, cirka tio minuters promenad till campingingången.</li>
+          <li>Drar den mest hängivna publiken i hela scenen. Stämningen är därefter.</li>
+          <li>Kolla arrangörens sida för årets camping- och dryckesregler — jag har inte verifierat dem.</li>
         </ul>
         <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
       </article>
@@ -459,17 +484,18 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
       <!-- ============ REBIRTH ============ -->
       <article class="panel" id="rebirth" role="tabpanel" hidden>
         <header class="phead">
-          <h2>Rebirth</h2>
-          <span class="place">Haaksbergen, NL · april</span>
+          <h2>REBiRTH Festival</h2>
+          <span class="place">Haaksbergen, NL · april, kring påsk</span>
         </header>
         <dl class="facts">
-          <div><dt>Profil</dt><dd>Tung raw- och hardcoreprofil.</dd></div>
+          <div><dt>Roll</dt><dd>Öppnar den nederländska utomhussäsongen. Här hör du vad som kommer dominera resten av året.</dd></div>
+          <div><dt>Profil</dt><dd>Kompakt, raw-lutande och kompromisslös. Mindre än Defqon och Decibel, hårdare i snittet.</dd></div>
           <div><dt>Väder</dt><dd>April i Nederländerna. Kallaste campingen bland de stora.</dd></div>
         </dl>
         <h3>Vad du behöver veta</h3>
         <ul>
-          <li><strong>Packa som för svensk vår</strong>, inte som för sommarfestival. Sovsäck som tål nollgradigt, inte en sommarsäck.</li>
-          <li>Första stora eventet på säsongen — här hör du vad som kommer dominera resten av året.</li>
+          <li><strong>Packa som för svensk vår</strong>, inte sommarfestival. Sovsäck som tål nollgradigt, inte en sommarsäck.</li>
+          <li>Att den ligger tidigt gör den till en bra "test-festival" innan du bokar de stora.</li>
           <li>Camping- och dryckesregler har jag inte kunnat verifiera. Läs arrangörens do's &amp; don'ts.</li>
         </ul>
         <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
@@ -482,14 +508,77 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
           <span class="place">Antwerpen, BE · februari · inomhus</span>
         </header>
         <dl class="facts">
-          <div><dt>Format</dt><dd>Inomhusevent med starkt showkoncept och eget tema varje år.</dd></div>
-          <div><dt>Camping</dt><dd>Nej.</dd></div>
+          <div><dt>Nästa</dt><dd>26–27 februari 2027.</dd></div>
+          <div><dt>Format</dt><dd>Inomhus över två arenor, AFAS Dome och Lotto Arena. Starkt showkoncept med eget tema varje år.</dd></div>
+          <div><dt>Roll</dt><dd>Öppnar hela hard dance-säsongen i Europa. Först på kalendern varje år.</dd></div>
+          <div><dt>Camping</dt><dd>Nej. Hotell i Antwerpen.</dd></div>
         </dl>
         <h3>Vad du behöver veta</h3>
         <ul>
-          <li>Ligger tidigt på året och fungerar som <strong>säsongsöppning</strong> för många.</li>
-          <li>Antwerpen är enkelt att ta sig till med tåg från Amsterdam eller Bryssel.</li>
-          <li>Kolla aktuella tider och regler hos arrangören — jag har inte verifierat årets.</li>
+          <li>Antwerpen är enkelt att nå med tåg från Amsterdam eller Bryssel.</li>
+          <li>Två arenor betyder att du behöver <strong>bestämma i förväg</strong> vilken du prioriterar — det är inte gjort på två minuter att byta.</li>
+          <li>Inomhus i februari betyder garderob. Räkna med kö både in och ut.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ SUPREMACY ============ -->
+      <article class="panel" id="supremacy" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Supremacy</h2>
+          <span class="place">Nederländerna · inomhus · hösten</span>
+        </header>
+        <dl class="facts">
+          <div><dt>Profil</dt><dd>Rawstyle-flaggskeppet. Om Defqon är bredast och Dominator hårdast är Supremacy det event som helt ägnar sig åt raw.</dd></div>
+          <div><dt>Specialupplagor</dt><dd>Kör återkommande "Return to the Classics", som sålt ut helt.</dd></div>
+          <div><dt>Camping</dt><dd>Nej, inomhusevent.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li>Är raw din grej är det här eventet du inte ska missa. Är den inte det, hoppa över.</li>
+          <li>Classics-upplagorna säljer ut snabbt — bevaka biljettsläppet.</li>
+          <li>Exakt datum och arena varierar. <strong>Verifiera hos arrangören</strong>, jag har inte bekräftat årets uppgifter.</li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ MASTERS OF HARDCORE ============ -->
+      <article class="panel" id="moh" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Masters of Hardcore</h2>
+          <span class="place">Brabanthallen, 's-Hertogenbosch, NL · vår · inomhus</span>
+        </header>
+        <dl class="facts">
+          <div><dt>2026</dt><dd>28 mars. Endagsevent.</dd></div>
+          <div><dt>Profil</dt><dd>Världens största hardcore-festival. Early hardcore, mainstream hardcore, uptempo och exklusiva liveakter.</dd></div>
+          <div><dt>2026-lineup</dt><dd>Bland de bekräftade huvudnamnen: Miss K8, Nosferatu, Tha Playah, Paul Elstak och Angerfist.</dd></div>
+          <div><dt>Camping</dt><dd>Nej. Inomhus, en dag.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li>Har en egen skivlabel med samma namn och en publik med extremt stark lojalitet. Det märks på plats.</li>
+          <li>Endagsevent inomhus gör det till den billigaste vägen in i hardcore-scenen — ingen camping, ingen helgbiljett.</li>
+          <li>Går normalt i april, men 2026-upplagan låg i mars. <strong>Kolla datumet varje år.</strong></li>
+        </ul>
+        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
+      </article>
+
+      <!-- ============ HARMONY OF HARDCORE ============ -->
+      <article class="panel" id="hoh" role="tabpanel" hidden>
+        <header class="phead">
+          <h2>Harmony of Hardcore</h2>
+          <span class="place">De Roost, Erp, NL · maj</span>
+        </header>
+        <dl class="facts">
+          <div><dt>2026</dt><dd>Lördag 23 maj under temat "The Awakening". Anthem av N-Vitral presents BOMBSQUAD och Nolz.</dd></div>
+          <div><dt>Profil</dt><dd>Hardcore och frenchcore utomhus. 2026 hade Sefa, Angerfist, Miss K8 och N-Vitral BOMBSQUAD på mainstage, plus 13 sidoscener.</dd></div>
+          <div><dt>Camping</dt><dd>Kolla arrangören — jag har inte verifierat.</dd></div>
+        </dl>
+        <h3>Vad du behöver veta</h3>
+        <ul>
+          <li>Många sidoscener i förhållande till storleken — bra om du vill upptäcka nytt istället för att stå vid mainstage hela dagen.</li>
+          <li>Ligger i maj, vilket gör den till en av de första utomhusdagarna på säsongen.</li>
+          <li>Endagsevent, så du hinner inte allt. Planera.</li>
         </ul>
         <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
       </article>
@@ -503,16 +592,22 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
         <dl class="facts">
           <div><dt>Profil</dt><dd>Sveriges hardstyle-festival med camping.</dd></div>
           <div><dt>Fördelen</dt><dd>Du kan köra dit. Ingen flygvikt, ingen valuta, ingen språkbarriär.</dd></div>
+          <div><dt>Alkohol</dt><dd>Svenska regler, som är stramare än de nederländska. Utgå inte från Defqon-gränserna.</dd></div>
         </dl>
         <h3>Vad du behöver veta</h3>
         <ul>
-          <li><strong>Svenska alkoholregler gäller</strong> och de är stramare än de nederländska. Utgå inte från Defqon-gränserna.</li>
           <li>Eftersom du kör: ta med ordentligt tält, kylbox och för mycket mat. Det kostar dig ingenting extra.</li>
           <li>Minst av festivalerna i listan — kortare köer, och du hittar tillbaka till tältet.</li>
-          <li>Bra första camping-festival innan du satsar på en resa till Nederländerna.</li>
+          <li>Bästa första camping-festivalen innan du satsar på en resa till Nederländerna.</li>
+          <li>Kolla arrangörens sida för årets datum och regler.</li>
         </ul>
         <div class="callout tip"><b>Tips önskas</b><a href="mailto:hej@example.se">Skicka in</a> om du varit där.</div>
       </article>
+
+      <div class="callout" style="margin-top:34px">
+        <b>Fler som är värda att känna till</b>
+        <strong>Q-BASE</strong> i september har en av de djupaste raw-bokningarna på kalendern. <strong>HARDFEST</strong> är ett nyare namn som bokar raw och uptempo och drar en publik som vill ha snabbast möjliga kickar. <strong>Emporium</strong> och <strong>Ground Zero</strong> hör också till de etablerade. Och en varning: <strong>Qlimax, Qapital, The Qontinent</strong> och alla <strong>X-Qlusive</strong>-event är nedlagda av Q-dance — hittar du gamla guider som listar dem är de föråldrade.
+      </div>
     </div>
   </section>
 </main>
@@ -530,7 +625,6 @@ document.getElementById('picker').addEventListener('click', e => {
   if (!b) return;
   document.querySelectorAll('.fbtn').forEach(x => x.setAttribute('aria-selected', String(x === b)));
   document.querySelectorAll('.panel').forEach(p => { p.hidden = (p.id !== b.dataset.f); });
-  document.getElementById(b.dataset.f).scrollIntoView({block:'nearest'});
 });
 </script>
 </body>
