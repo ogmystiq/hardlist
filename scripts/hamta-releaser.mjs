@@ -145,8 +145,10 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
               istället för att ligga och hamra på kvoten.
    PAUS       paus mellan anrop.
 ------------------------------------------------------------------------ */
-const MAX_ANROP    = 100;   /* varje artist kostar 1 anrop när ID:t är cachat,
-                               2 första gången. Växer listan växer kvotbehovet. */
+const MAX_ANROP    = 150;   /* varje artist kostar 1 anrop när ID:t är cachat,
+                               2 första gången. Med 80 artister och full cache
+                               är ett helt varv 80 anrop. Växer listan växer
+                               kvotbehovet. */
 const MAX_VANTAN   = 180;   /* längsta enskilda väntan vi accepterar, sekunder */
 const TIDSBUDGET   = 8 * 60;/* hela körningen, sekunder. Under jobbets timeout. */
 const PAUS         = 300;
