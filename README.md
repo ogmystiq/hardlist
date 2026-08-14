@@ -53,9 +53,9 @@ Varje körning tar upp till `MAX_ANROP` anrop och fortsätter där förra slutad
 
 | Artister | Anrop per varv (cachat) | Varv tar |
 |---|---|---|
-| 154 | 154 | ~1 dygn |
+| 205 (nu) | 205 | 2 dygn |
 | 300 | 300 | 2 dygn |
-| 500 | 500 | 3–4 dygn |
+| 500 | 500 | 3 dygn |
 
 Eftersom sajten bara visar sju dagar bakåt hinner varje artist kollas minst två
 gånger inom fönstret även vid 500 namn. Ingenting missas.
@@ -71,7 +71,7 @@ Skriptet har fyra spärrar:
 
 | Spärr | Vad den gör |
 |---|---|
-| `MAX_ANROP = 150` | Hårt tak per körning. Nås det sparas resultatet och körningen avslutas. |
+| `MAX_ANROP = 170` | Hårt tak per körning. Nås det sparas resultatet och körningen avslutas. |
 | Rotation | Nästa körning fortsätter på nästa artist. Alla täcks över några körningar. |
 | Sammanslagning | Delkörningar raderar aldrig tidigare fynd. Gammalt läses in, nytt läggs till, allt äldre än 30 dagar rensas. |
 | `MAX_VANTAN = 30` | Ber Spotify oss vänta längre än 30 s avbryts körningen istället för att hamra på kvoten. |
