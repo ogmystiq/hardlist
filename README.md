@@ -53,9 +53,9 @@ Varje körning tar upp till `MAX_ANROP` anrop och fortsätter där förra slutad
 
 | Artister | Anrop per varv (cachat) | Varv tar |
 |---|---|---|
-| 205 (nu) | 205 | 2 dygn |
-| 300 | 300 | 2 dygn |
+| 333 (nu) | 333 | 2 dygn |
 | 500 | 500 | 3 dygn |
+| 700 | 700 | 5 dygn |
 
 Eftersom sajten bara visar sju dagar bakåt hinner varje artist kollas minst två
 gånger inom fönstret även vid 500 namn. Ingenting missas.
