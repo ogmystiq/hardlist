@@ -573,6 +573,9 @@ function relevant(dateStr) {
   const d = new Date(dateStr.length === 7 ? dateStr + '-01' : dateStr);
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - DAGAR_BAKAT);
+  /* Nollställ klockslaget. Annars beror fönstret på vilken tid workflowen
+     råkar köra, och en låt som är exakt DAGAR_BAKAT dagar gammal faller ur. */
+  cutoff.setHours(0, 0, 0, 0);
   return d >= cutoff;
 }
 
