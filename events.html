@@ -79,32 +79,28 @@ h1{
 h1 em{font-style:normal;color:var(--raw)}
 .lede{color:var(--muted);max-width:46ch;font-size:15px}
 
-/* ---------- bpm-linjal ---------- */
-.ruler{margin-top:42px;position:relative;height:208px;display:flex;align-items:flex-end;padding-bottom:26px}
-.ruler-line{position:relative;width:100%;height:1px;background:var(--line)}
-.tick{position:absolute;top:0;width:1px;height:6px;background:var(--line)}
-.tick b{
-  position:absolute;top:9px;left:50%;transform:translateX(-50%);
-  font-family:var(--data);font-size:10px;color:var(--muted);font-weight:400;
+/* ---------- veckans fördelning ---------- */
+.mix{margin-top:40px}
+.mix-bar{display:flex;height:52px;width:100%;overflow:hidden;border:1px solid var(--line)}
+.mix-seg{
+  background:var(--c);position:relative;min-width:3px;
+  display:flex;align-items:center;justify-content:center;
+  animation:grow .6s cubic-bezier(.2,.8,.2,1) backwards;
 }
-.dot{
-  position:absolute;bottom:0;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;
-  animation:rise .5s cubic-bezier(.2,.8,.2,1) backwards;
+.mix-seg b{
+  font-family:var(--display);font-weight:900;font-size:22px;line-height:1;
+  color:var(--ink);mix-blend-mode:normal;
 }
-.dot i{display:block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
-.dot u{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--c));text-decoration:none;opacity:.5}
-.dot em{
-  font-family:var(--data);font-style:normal;font-size:9px;color:var(--muted);
-  white-space:nowrap;margin-bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);
-  max-height:110px;overflow:hidden;
+@keyframes grow{from{flex-basis:0;opacity:0}to{opacity:1}}
+.mix-key{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}
+.mix-key span{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);
 }
-@keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1}}
-.ruler-legend{
-  display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;
-  font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+.mix-key b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.mix-empty{
+  border:1px dashed var(--line);padding:22px;text-align:center;
+  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
 }
-.ruler-legend b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
 
 /* ---------- sektioner ---------- */
 section{padding:52px 0;border-bottom:1px solid var(--line)}
@@ -264,6 +260,29 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   html{scroll-behavior:auto}
 }
 
+/* ---------- kartan ---------- */
+.mapwrap{
+  border:1px solid var(--line);background:var(--ink);
+  margin-top:20px;overflow:hidden;
+}
+.mapwrap svg{display:block;width:100%;height:auto}
+.mapwrap .lbl{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;fill:var(--muted);
+}
+.mapwrap .lbl.dark{fill:var(--ink)}
+.mapwrap .big{
+  font-family:var(--display);font-weight:900;font-size:28px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .mid{
+  font-family:var(--display);font-weight:700;font-size:19px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .dist text{
+  font-family:var(--data);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+}
+
 /* ---------- festivalväljare ---------- */
 .picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
 .fbtn{
@@ -341,8 +360,115 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
     </div>
   </div>
 
+  <section id="omradet">
+    <div class="wrap">
+      <div class="sec-head"><h2>Så ser ett festivalområde ut</h2></div>
+      <p class="lede" style="margin-bottom:6px">Schematisk bild, inte en karta över en specifik festival. Men proportionerna stämmer: de stora nederländska festivalerna är byggda ungefär så här, och avstånden är verkliga.</p>
+
+      <div class="mapwrap">
+        <svg viewBox="0 0 900 620" role="img" aria-label="Schematisk karta över ett typiskt hard dance-festivalområde">
+          <defs>
+            <pattern id="tree" width="16" height="16" patternUnits="userSpaceOnUse">
+              <circle cx="8" cy="8" r="2" fill="var(--line)"/>
+            </pattern>
+          </defs>
+
+          <rect width="900" height="620" fill="var(--ink)"/>
+          <rect x="0" y="0" width="900" height="620" fill="url(#tree)" opacity=".5"/>
+
+          <!-- vägar -->
+          <path d="M150 560 L150 120 L760 120" stroke="var(--line)" stroke-width="14" fill="none"/>
+          <path d="M150 330 L620 330" stroke="var(--line)" stroke-width="10" fill="none"/>
+          <path d="M420 560 L420 120" stroke="var(--line)" stroke-width="10" fill="none"/>
+
+          <!-- CAMPING -->
+          <g>
+            <rect x="40" y="60" width="160" height="90" fill="none" stroke="var(--muted)" stroke-dasharray="4 4"/>
+            <rect x="40" y="170" width="160" height="90" fill="none" stroke="var(--muted)" stroke-dasharray="4 4"/>
+            <rect x="40" y="280" width="160" height="90" fill="none" stroke="var(--muted)" stroke-dasharray="4 4"/>
+            <text x="120" y="110" class="lbl" text-anchor="middle">CAMPING 1</text>
+            <text x="120" y="220" class="lbl" text-anchor="middle">CAMPING 2</text>
+            <text x="120" y="330" class="lbl" text-anchor="middle">CAMPING 3</text>
+          </g>
+
+          <!-- PARKERING -->
+          <rect x="40" y="430" width="230" height="130" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="155" y="500" class="lbl" text-anchor="middle">PARKERING</text>
+
+          <!-- ENTRÉ -->
+          <rect x="300" y="300" width="90" height="60" fill="var(--bone)"/>
+          <text x="345" y="336" class="lbl dark" text-anchor="middle">ENTRÉ</text>
+
+          <!-- MAINSTAGE -->
+          <rect x="620" y="70" width="240" height="200" fill="var(--raw)" opacity=".22" stroke="var(--raw)" stroke-width="2"/>
+          <rect x="700" y="82" width="80" height="26" fill="var(--raw)"/>
+          <text x="740" y="180" class="big" text-anchor="middle" fill="var(--raw)">MAINSTAGE</text>
+          <text x="740" y="205" class="lbl" text-anchor="middle">utomhus · störst</text>
+
+          <!-- INOMHUSHALLAR -->
+          <rect x="450" y="70" width="140" height="100" fill="var(--euphoric)" opacity=".18" stroke="var(--euphoric)" stroke-width="2"/>
+          <text x="520" y="118" class="mid" text-anchor="middle" fill="var(--euphoric)">HALL A</text>
+          <text x="520" y="138" class="lbl" text-anchor="middle">inomhus</text>
+
+          <rect x="450" y="195" width="140" height="100" fill="var(--hardcore)" opacity=".18" stroke="var(--hardcore)" stroke-width="2"/>
+          <text x="520" y="243" class="mid" text-anchor="middle" fill="var(--hardcore)">HALL B</text>
+          <text x="520" y="263" class="lbl" text-anchor="middle">hardcore · uptempo</text>
+
+          <!-- MINDRE SCENER -->
+          <rect x="640" y="330" width="110" height="80" fill="var(--uptempo)" opacity=".18" stroke="var(--uptempo)" stroke-width="2"/>
+          <text x="695" y="375" class="mid" text-anchor="middle" fill="var(--uptempo)">UV</text>
+
+          <rect x="780" y="330" width="80" height="80" fill="var(--techno)" opacity=".18" stroke="var(--techno)" stroke-width="2"/>
+          <text x="820" y="375" class="mid" text-anchor="middle" fill="var(--techno)">TECHNO</text>
+
+          <!-- MATGATA -->
+          <rect x="450" y="360" width="150" height="46" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="525" y="388" class="lbl" text-anchor="middle">MAT &amp; MARKNAD</text>
+
+          <!-- SJUKVÅRD -->
+          <circle cx="410" cy="230" r="16" fill="none" stroke="var(--bone)" stroke-width="2"/>
+          <path d="M403 230 h14 M410 223 v14" stroke="var(--bone)" stroke-width="2"/>
+          <text x="410" y="266" class="lbl" text-anchor="middle">SJUKVÅRD</text>
+
+          <!-- AVSTÅNDSMARKERINGAR -->
+          <g class="dist">
+            <path d="M155 430 L155 375" stroke="var(--uptempo)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="168" y="405" fill="var(--uptempo)">15–20 min med vagn</text>
+
+            <path d="M205 330 L295 330" stroke="var(--uptempo)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="215" y="320" fill="var(--uptempo)">10 min</text>
+
+            <path d="M595 120 L615 120" stroke="var(--uptempo)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="500" y="60" fill="var(--uptempo)">5–8 min mellan scener, mer när det är fullt</text>
+
+            <path d="M740 275 L740 325" stroke="var(--uptempo)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          </g>
+
+          <!-- GENVÄG BAKOM MAINSTAGE -->
+          <path d="M860 90 L878 90 L878 300 L760 300" stroke="var(--euphoric)" stroke-width="3" fill="none" stroke-dasharray="7 5"/>
+          <text x="700" y="300" class="lbl" text-anchor="end" fill="var(--euphoric)">GENVÄG BAKOM MAINSTAGE →</text>
+        </svg>
+      </div>
+
+      <div class="callout warn" style="margin-top:22px">
+        <b>Räkna med att gå — mycket</b>
+        Det här är den enskilt vanligaste överraskningen för förstagångsbesökare. Från parkeringen till tältplatsen är det ofta 15–20 minuter, med allt du äger på en vagn. Från campingen till entrén ytterligare tio. Väl inne är det 5–8 minuter mellan scenerna, och betydligt mer när femtiotusen personer rör sig samtidigt. Över en helg landar många på 15–25 kilometer. Skorna du väljer spelar större roll än jackan.
+      </div>
+
+      <div class="callout tip">
+        <b>Tips från besökare</b>
+        Snabbaste vägen ut från mainstage är oftast <strong>bakåt, bakom scenen</strong>, istället för tillbaka samma väg du kom. Publikströmmen går mot huvudingången, medan ytorna bakom scenen är byggda för transport och står nästan tomma. Kolla den officiella kartan för året så du vet var utgången bakom scenen ligger — den finns inte alltid utmarkerad på plats.
+      </div>
+    </div>
+  </section>
+
   <section>
     <div class="wrap">
+      <div class="callout warn" style="margin-bottom:28px">
+        <b>Läs det här innan du packar</b>
+        Reglerna nedan är hämtade från arrangörernas egna sidor, men de <strong>ändras varje år</strong> — alkoholgränser, tillåtna högtalare, gasol, tältstorlekar och tider. Använd dem som en bild av vad som brukar gälla, inte som facit. Kolla alltid arrangörens egen do's &amp; don'ts innan du lastar bilen. Det är den enda källan som räknas i grinden.
+      </div>
+
       <div class="picker" id="picker" role="tablist" aria-label="Välj festival">
         <button class="fbtn" data-f="defqon"    role="tab" aria-selected="true">Defqon.1</button>
         <button class="fbtn" data-f="decibel"   role="tab" aria-selected="false">Decibel</button>
@@ -396,8 +522,8 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 
         <h3>Att röra sig på området</h3>
         <div class="callout">
-          <b>Ärligt om rutter</b>
-          Jag kan inte ge dig "snabbaste vägen ut från mainstage" — det beror på var utgångarna ligger just det året, och det ändras. Q-dance släpper en <strong>officiell interaktiv karta</strong> inför varje edition. Ladda ner den i mobilen innan du åker, medan du har nät.
+          <b>Snabbaste vägen ut från RED</b>
+          Enligt besökare är det oftast <strong>bakåt, bakom scenen</strong> — inte tillbaka samma väg. Publiken strömmar mot huvudingången medan transportytorna bakom mainstage står nästan tomma. Exakt var utgången ligger flyttas mellan åren, så ladda ner Q-dance <strong>officiella interaktiva karta</strong> i mobilen innan du åker, medan du har nät.
         </div>
         <p>Det här funkar däremot varje år, på varje stor festival:</p>
         <ul>
