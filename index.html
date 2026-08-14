@@ -79,32 +79,28 @@ h1{
 h1 em{font-style:normal;color:var(--raw)}
 .lede{color:var(--muted);max-width:46ch;font-size:15px}
 
-/* ---------- bpm-linjal ---------- */
-.ruler{margin-top:42px;position:relative;height:208px;display:flex;align-items:flex-end;padding-bottom:26px}
-.ruler-line{position:relative;width:100%;height:1px;background:var(--line)}
-.tick{position:absolute;top:0;width:1px;height:6px;background:var(--line)}
-.tick b{
-  position:absolute;top:9px;left:50%;transform:translateX(-50%);
-  font-family:var(--data);font-size:10px;color:var(--muted);font-weight:400;
+/* ---------- veckans fördelning ---------- */
+.mix{margin-top:40px}
+.mix-bar{display:flex;height:52px;width:100%;overflow:hidden;border:1px solid var(--line)}
+.mix-seg{
+  background:var(--c);position:relative;min-width:3px;
+  display:flex;align-items:center;justify-content:center;
+  animation:grow .6s cubic-bezier(.2,.8,.2,1) backwards;
 }
-.dot{
-  position:absolute;bottom:0;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;
-  animation:rise .5s cubic-bezier(.2,.8,.2,1) backwards;
+.mix-seg b{
+  font-family:var(--display);font-weight:900;font-size:22px;line-height:1;
+  color:var(--ink);mix-blend-mode:normal;
 }
-.dot i{display:block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
-.dot u{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--c));text-decoration:none;opacity:.5}
-.dot em{
-  font-family:var(--data);font-style:normal;font-size:9px;color:var(--muted);
-  white-space:nowrap;margin-bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);
-  max-height:110px;overflow:hidden;
+@keyframes grow{from{flex-basis:0;opacity:0}to{opacity:1}}
+.mix-key{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}
+.mix-key span{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);
 }
-@keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1}}
-.ruler-legend{
-  display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;
-  font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+.mix-key b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.mix-empty{
+  border:1px dashed var(--line);padding:22px;text-align:center;
+  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
 }
-.ruler-legend b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
 
 /* ---------- sektioner ---------- */
 section{padding:52px 0;border-bottom:1px solid var(--line)}
@@ -264,6 +260,29 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   html{scroll-behavior:auto}
 }
 
+/* ---------- kartan ---------- */
+.mapwrap{
+  border:1px solid var(--line);background:var(--ink);
+  margin-top:20px;overflow:hidden;
+}
+.mapwrap svg{display:block;width:100%;height:auto}
+.mapwrap .lbl{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;fill:var(--muted);
+}
+.mapwrap .lbl.dark{fill:var(--ink)}
+.mapwrap .big{
+  font-family:var(--display);font-weight:900;font-size:28px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .mid{
+  font-family:var(--display);font-weight:700;font-size:19px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .dist text{
+  font-family:var(--data);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+}
+
 /* ---------- festivalväljare ---------- */
 .picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
 .fbtn{
@@ -339,16 +358,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
       <h1>Vad som släpps.<br><em>Och när.</em></h1>
       <p class="lede">Varje ny release inom hardstyle, raw, uptempo och hardcore — i datumordning. Kommande först, sen allt som släppts den senaste veckan. Inget äldre.</p>
 
-      <div class="ruler" id="ruler" aria-label="Senaste releaser plottade på BPM-skala">
-        <div class="ruler-line" id="rulerLine"></div>
-      </div>
-      <div class="ruler-legend">
-        <span><b style="background:var(--euphoric)"></b>Euphoric</span>
-        <span><b style="background:var(--raw)"></b>Raw</span>
-        <span><b style="background:var(--uptempo)"></b>Uptempo</span>
-        <span><b style="background:var(--hardcore)"></b>Hardcore</span>
-        <span><b style="background:var(--techno)"></b>Hard techno</span>
-      </div>
+      <div class="mix" id="mix" aria-label="Genrefördelning bland veckans releaser"></div>
     </div>
   </div>
 
@@ -400,7 +410,6 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 const GENRES = ['euphoric','raw','uptempo','hardcore','techno'];
 /* Hur många dagar bakåt som visas. Måste matcha DAGAR_BAKAT i skriptet. */
 const DAGAR_VISAS = 7;
-const BPM_MIN = 140, BPM_MAX = 220;
 const MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
 
 /* Visas tills scriptet skrivit data/releases.json */
@@ -566,9 +575,6 @@ const SEED_EVENTS = [
   ];
 
 const color = g => 'var(--' + (GENRES.includes(g) ? g : 'raw') + ')';
-const pct = b => Math.max(2, Math.min(98,
-  ((Math.max(BPM_MIN, Math.min(BPM_MAX, b)) - BPM_MIN) / (BPM_MAX - BPM_MIN)) * 100));
-
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -612,39 +618,45 @@ async function load(){
   } catch(e) { events = SEED_EVENTS; }
 
   document.getElementById('dataBadge').hidden = !seeded;
-  drawRuler(); drawReleases(); drawEvents();
+  drawMix(); drawReleases(); drawEvents();
 }
 
-function drawRuler(){
-  const ruler = document.getElementById('ruler');
-  const line  = document.getElementById('rulerLine');
-  ruler.querySelectorAll('.tick,.dot').forEach(n => n.remove());
+const GENRE_NAMN = {
+  euphoric:'Euphoric', raw:'Raw', uptempo:'Uptempo',
+  hardcore:'Hardcore', techno:'Hard techno'
+};
 
-  [140,160,180,200,220].forEach(v => {
-    const t = document.createElement('span');
-    t.className = 'tick';
-    t.style.left = pct(v) + '%';
-    t.innerHTML = '<b>' + v + '</b>';
-    line.appendChild(t);
+/* Visar hur veckans släpp fördelar sig mellan grenarna. Bygger på genre, som
+   är känd — till skillnad från BPM, som Spotify slutat lämna ut och som därför
+   bara var en gissning per genre. */
+function drawMix(){
+  const box = document.getElementById('mix');
+  const grans = new Date(today()); grans.setDate(grans.getDate() - DAGAR_VISAS);
+  const inom = releases.filter(r => parseDate(r.date) >= grans);
+
+  if (!inom.length){
+    box.innerHTML = '<div class="mix-empty">Inga sl\u00e4pp den h\u00e4r veckan</div>';
+    return;
+  }
+
+  const antal = {};
+  inom.forEach(r => {
+    const g = GENRES.includes(r.genre) ? r.genre : 'raw';
+    antal[g] = (antal[g] || 0) + 1;
   });
 
-  const narrow = window.innerWidth < 640;
-  const base = narrow ? 74 : 110, step = narrow ? 18 : 26;
+  const ordning = GENRES.filter(g => antal[g]);
+  const total = inom.length;
 
-  [...releases].filter(r => r.bpm)
-    .sort((a,b) => a.date < b.date ? 1 : -1)
-    .slice(0, 14)
-    .forEach((r, i) => {
-      const d = document.createElement('span');
-      d.className = 'dot';
-      d.style.setProperty('--c', color(r.genre));
-      d.style.left = pct(r.bpm) + '%';
-      d.style.height = (base + (i % 3) * step) + 'px';
-      d.style.animationDelay = (i * 45) + 'ms';
-      d.title = r.artist + ' — ' + r.title + ' · ' + r.bpm + ' BPM';
-      d.innerHTML = '<em>' + esc(r.artist) + '</em><u></u><i></i>';
-      ruler.appendChild(d);
-    });
+  box.innerHTML =
+    '<div class="mix-bar">' + ordning.map((g, i) =>
+      '<div class="mix-seg" style="--c:' + color(g) + ';flex:' + antal[g] +
+      ';animation-delay:' + (i * 70) + 'ms" title="' + GENRE_NAMN[g] + ': ' + antal[g] + '">' +
+      (antal[g] / total > 0.07 ? '<b>' + antal[g] + '</b>' : '') + '</div>'
+    ).join('') + '</div>' +
+    '<div class="mix-key">' + ordning.map(g =>
+      '<span><b style="background:' + color(g) + '"></b>' + GENRE_NAMN[g] + ' ' + antal[g] + '</span>'
+    ).join('') + '</div>';
 }
 
 function relCard(r, soon){
@@ -653,7 +665,7 @@ function relCard(r, soon){
     '<div class="meta"><div class="artist">' + esc(r.artist) + '</div>' +
     '<div class="title">' + esc(r.title) + '</div></div>' +
     '<div class="right"><span class="when">' + whenLabel(r.date) + '</span>' +
-    '<span class="genre">' + esc(r.genre) + (r.bpm ? ' · ' + r.bpm : '') + '</span>' +
+    '<span class="genre">' + (GENRE_NAMN[r.genre] || esc(r.genre)) + '</span>' +
     (r.url ? '<a class="play" href="' + esc(r.url) + '" target="_blank" rel="noopener">Lyssna &rarr;</a>' : '') +
     '</div></article>';
 }
