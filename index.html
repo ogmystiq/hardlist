@@ -21,6 +21,7 @@
   --raw:#FF2E63;
   --uptempo:#FFB020;
   --hardcore:#8B5CFF;
+  --techno:#9BA8BE;   /* industrial / hard techno — medvetet metallisk, ligger utanför de fyra */
 
   --display:'Big Shoulders Display',system-ui,sans-serif;
   --body:'Space Grotesk',system-ui,sans-serif;
@@ -164,6 +165,17 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .ev .ticket:hover{background:var(--bone);color:var(--ink)}
 .ev .tba{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.12em}
 
+.watch{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:6px}
+.witem{background:var(--ink);padding:13px 15px}
+.witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
+.witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
+.watch-head{
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:34px 0 4px;display:flex;align-items:center;gap:12px;
+}
+.watch-head::after{content:'';flex:1;height:1px;background:var(--line)}
+.watch-note{font-size:13px;color:var(--muted);margin-bottom:14px;max-width:60ch}
+
 .empty{border:1px dashed var(--line);padding:28px;text-align:center;color:var(--muted);font-size:14px}
 .empty b{display:block;color:var(--bone);font-family:var(--display);font-size:22px;text-transform:uppercase;margin-bottom:6px}
 
@@ -201,15 +213,35 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .gcard .bpm{font-family:var(--data);font-size:10px;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:8px}
 .gcard p{font-size:13px;color:#CFC5E0;margin:0}
 
-.tracks{list-style:none;counter-reset:t}
+.tracks{list-style:none;counter-reset:t;max-width:none}
 .tracks li{
-  counter-increment:t;display:grid;grid-template-columns:32px 1fr;gap:12px;
-  padding:11px 0;border-top:1px solid var(--line);align-items:baseline;
+  counter-increment:t;
+  display:grid;grid-template-columns:34px 1fr;column-gap:14px;
+  padding:14px 0;border-top:1px solid var(--line);margin-bottom:0;
+}
+/* Måste nolla position/width/height/background — annars ärvs de från
+   .prose li::before och lägger numret ovanpå texten. */
+.tracks li::before{
+  content:counter(t,decimal-leading-zero);
+  position:static;width:auto;height:auto;background:none;
+  grid-column:1;grid-row:1;padding-top:4px;
+  font-family:var(--data);font-size:11px;color:var(--muted);
 }
 .tracks li:last-child{border-bottom:1px solid var(--line)}
-.tracks li::before{content:counter(t,decimal-leading-zero);font-family:var(--data);font-size:11px;color:var(--muted)}
-.tracks b{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:18px;letter-spacing:.01em}
-.tracks span{color:var(--muted);font-size:13px;display:block}
+.tracks b{
+  grid-column:2;grid-row:1;
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:19px;line-height:1.1;letter-spacing:.01em;color:var(--bone);
+}
+.tracks i{
+  grid-column:2;grid-row:2;font-style:normal;
+  font-family:var(--data);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--c,var(--muted));margin-top:5px;
+}
+.tracks span{grid-column:2;grid-row:3;color:var(--muted);font-size:13px;margin-top:4px}
+
+.callout.warn{border-left-color:var(--uptempo);background:#1D1206}
+.callout.warn b{color:var(--uptempo)}
 
 footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:11px;letter-spacing:.06em;line-height:1.8}
 
@@ -223,6 +255,8 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   .top .wrap{height:52px}
   .logo{font-size:22px}
   .rule{grid-template-columns:1fr;gap:2px}
+  .tracks li{grid-template-columns:26px 1fr;column-gap:10px}
+  .tracks b{font-size:17px}
   .term{grid-template-columns:1fr;gap:2px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -313,6 +347,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
         <span><b style="background:var(--raw)"></b>Raw</span>
         <span><b style="background:var(--uptempo)"></b>Uptempo</span>
         <span><b style="background:var(--hardcore)"></b>Hardcore</span>
+        <span><b style="background:var(--techno)"></b>Hard techno</span>
       </div>
     </div>
   </div>
@@ -329,6 +364,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
         <button class="chip" data-g="raw" aria-pressed="false">Raw</button>
         <button class="chip" data-g="uptempo" aria-pressed="false">Uptempo</button>
         <button class="chip" data-g="hardcore" aria-pressed="false">Hardcore</button>
+        <button class="chip" data-g="techno" aria-pressed="false">Hard techno</button>
       </div>
       <p class="filter-note">Sorteras alltid efter datum. Filtret ändrar bara vad som visas.</p>
       <div id="relList"></div>
@@ -338,10 +374,17 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   <section id="events">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Rave i Norden</h2>
+        <h2>Kalender</h2>
         <span class="count" id="evCount"></span>
       </div>
+      <div class="filters" id="evFilters">
+        <button class="chip" data-r="norden" aria-pressed="true">Norden</button>
+        <button class="chip" data-r="europa" aria-pressed="false">Europa</button>
+        <button class="chip" data-r="all" aria-pressed="false">Alla</button>
+      </div>
+      <p class="filter-note">Bara bekräftade datum. Passerade event försvinner automatiskt.</p>
       <div id="evList"></div>
+      <div id="evWatch"></div>
     </div>
   </section>
 </main>
@@ -354,7 +397,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 </footer>
 
 <script>
-const GENRES = ['euphoric','raw','uptempo','hardcore'];
+const GENRES = ['euphoric','raw','uptempo','hardcore','techno'];
 const BPM_MIN = 140, BPM_MAX = 220;
 const MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
 
@@ -370,6 +413,155 @@ const SEED = (() => {
     {artist:'Vieze Asbak',     title:'Exempellåt', bpm:205, genre:'uptempo',  date:day(-14), url:''}
   ];
 })();
+
+/* Reservkopia av data/events.json. Används bara när filen inte kan laddas —
+   t.ex. när du öppnar index.html direkt från disk, där webbläsaren blockerar
+   fetch mot lokala filer. På en riktig webbserver vinner alltid JSON-filen.
+   Ändrar du data/events.json: uppdatera gärna den här också, annars visar
+   den lokala förhandsgranskningen gammal data. */
+const SEED_EVENTS = [
+    {
+      "name": "Decibel Outdoor",
+      "date": "2026-08-28",
+      "region": "europa",
+      "city": "Hilvarenbeek, NL",
+      "venue": "Beekse Bergen",
+      "lineup": "28–30 augusti. 30+ scener över hela hard dance-spektrumet.",
+      "url": ""
+    },
+    {
+      "name": "Sana Duri — The New Beginning",
+      "date": "2026-09-12",
+      "region": "norden",
+      "city": "Uppsala, SE",
+      "venue": "Studenternas IP",
+      "lineup": "Project One · Brennan Heart · Showtek · Rebelion vs Vertile · Rooler vs Warface · Radical Redemption · Sound Rush · The Pitcher · The Saints · Villain · D-Charged · Dimitri K & The Dark Horror · 4444 · Four of a Kind. Kl 11–23.30, ca 10 000 besökare.",
+      "url": "https://sanaduri.se/"
+    },
+    {
+      "name": "Holy Priest",
+      "date": "2026-09-12",
+      "region": "norden",
+      "city": "Stockholm, SE",
+      "venue": "Berns",
+      "lineup": "Hard techno, kl 23.00. Samma kväll som Sana Duri — funkar som afterparty om du tar dig ner från Uppsala.",
+      "url": ""
+    },
+    {
+      "name": "Monday Bar Halloween Cruise",
+      "date": "2026-11-06",
+      "region": "norden",
+      "city": "Stockholm, SE",
+      "venue": "Kryssning",
+      "lineup": "6–7 november. Egen black floor för de hårdare stilarna.",
+      "url": "https://www.mondaybar.com/"
+    },
+    {
+      "name": "Reverze",
+      "date": "2027-02-26",
+      "region": "europa",
+      "city": "Antwerpen, BE",
+      "venue": "AFAS Dome + Lotto Arena",
+      "lineup": "26–27 februari. Säsongsöppnaren.",
+      "url": ""
+    },
+    {
+      "name": "Lumaniac",
+      "region": "norden",
+      "city": "Kristianstad, SE",
+      "season": "normalt i mars"
+    },
+    {
+      "name": "Hardstyle DNA",
+      "region": "norden",
+      "city": "Oslo, NO",
+      "season": "normalt i maj"
+    },
+    {
+      "name": "Soundvault Festival",
+      "region": "norden",
+      "city": "Helsingfors, FI",
+      "season": "normalt i maj"
+    },
+    {
+      "name": "Hardstyle Reaction",
+      "region": "norden",
+      "city": "Linköping, SE",
+      "season": "normalt i maj"
+    },
+    {
+      "name": "Swedish Rave Society",
+      "region": "norden",
+      "city": "Örebro, SE",
+      "season": "normalt i maj"
+    },
+    {
+      "name": "Monday Bar Summer Cruise",
+      "region": "norden",
+      "city": "Stockholm–Tallinn",
+      "season": "normalt i juni"
+    },
+    {
+      "name": "One Vision Festival",
+      "region": "norden",
+      "city": "Kristianstad, SE",
+      "season": "normalt i augusti"
+    },
+    {
+      "name": "Ascend",
+      "region": "norden",
+      "city": "Norrköping, SE",
+      "season": "datum ej bekräftat"
+    },
+    {
+      "name": "Masters of Hardcore",
+      "region": "europa",
+      "city": "'s-Hertogenbosch, NL",
+      "season": "normalt i mars eller april"
+    },
+    {
+      "name": "REBiRTH Festival",
+      "region": "europa",
+      "city": "Haaksbergen, NL",
+      "season": "normalt i april"
+    },
+    {
+      "name": "Harmony of Hardcore",
+      "region": "europa",
+      "city": "Erp, NL",
+      "season": "normalt i maj"
+    },
+    {
+      "name": "Intents Festival",
+      "region": "europa",
+      "city": "Oisterwijk, NL",
+      "season": "normalt i juni"
+    },
+    {
+      "name": "Defqon.1",
+      "region": "europa",
+      "city": "Biddinghuizen, NL",
+      "season": "normalt i slutet av juni"
+    },
+    {
+      "name": "Dominator",
+      "region": "europa",
+      "city": "Eersel, NL",
+      "season": "normalt i juli"
+    },
+    {
+      "name": "Q-BASE",
+      "region": "europa",
+      "city": "Nederländerna",
+      "season": "normalt i september"
+    },
+    {
+      "name": "Supremacy",
+      "region": "europa",
+      "city": "Nederländerna",
+      "season": "normalt på hösten"
+    }
+  ];
 
 const color = g => 'var(--' + (GENRES.includes(g) ? g : 'raw') + ')';
 const pct = b => Math.max(2, Math.min(98,
@@ -391,7 +583,7 @@ function whenLabel(dateStr){
   return d.getDate() + ' ' + MONTHS[d.getMonth()];
 }
 
-let releases = [], events = [], filter = 'all';
+let releases = [], events = [], filter = 'all', evFilter = 'norden';
 
 async function load(){
   let seeded = false;
@@ -404,8 +596,8 @@ async function load(){
   try {
     const r = await fetch('data/events.json', {cache:'no-store'});
     events = await r.json();
-    if (!Array.isArray(events)) events = [];
-  } catch(e) { events = []; }
+    if (!Array.isArray(events) || !events.length) throw 0;
+  } catch(e) { events = SEED_EVENTS; }
 
   document.getElementById('dataBadge').hidden = !seeded;
   drawRuler(); drawReleases(); drawEvents();
@@ -482,40 +674,65 @@ function drawReleases(){
 }
 
 function drawEvents(){
-  const list = document.getElementById('evList');
+  const list  = document.getElementById('evList');
+  const watch = document.getElementById('evWatch');
   const t = today();
-  const items = events
-    .filter(e => !e.date || new Date(e.date) >= t)
-    .sort((a,b) => (a.date || '9999') < (b.date || '9999') ? -1 : 1);
 
-  document.getElementById('evCount').textContent = items.length + ' kommande';
+  const iRegion = events.filter(e => evFilter === 'all' || e.region === evFilter);
+
+  /* Kalendern visar bara event med bekräftat datum som inte passerat. */
+  const items = iRegion
+    .filter(e => e.date && new Date(e.date) >= t)
+    .sort((a,b) => a.date < b.date ? -1 : 1);
+
+  /* Återkommande event utan släppt datum hamnar i bevakningslistan. */
+  const kommande = iRegion.filter(e => !e.date);
+
+  document.getElementById('evCount').textContent = items.length + ' bekräftade';
+
+  watch.innerHTML = kommande.length
+    ? '<p class="watch-head">Bevaka</p>' +
+      '<p class="watch-note">Återkommande event vars nästa datum inte annonserats än. ' +
+      'De flyttar upp i kalendern så fort datumet släpps.</p>' +
+      '<div class="watch">' + kommande.map(e =>
+        '<div class="witem"><b>' + esc(e.name) + '</b>' +
+        '<span>' + esc(e.city || '') + (e.season ? ' · ' + esc(e.season) : '') + '</span></div>'
+      ).join('') + '</div>'
+    : '';
 
   if (!items.length){
-    list.innerHTML = '<div class="empty"><b>Inga event inlagda</b>Lägg till dem i data/events.json.</div>';
+    list.innerHTML = '<div class="empty"><b>Inga bekräftade datum</b>' +
+      (kommande.length ? 'Se bevakningslistan nedan.' : 'Lägg till event i data/events.json.') + '</div>';
     return;
   }
 
   list.innerHTML = items.map(e => {
-    const d = e.date ? new Date(e.date) : null;
+    const d = new Date(e.date);
     return '<article class="ev">' +
-      '<div class="date">' + (d
-        ? '<b>' + d.getDate() + '</b>' + MONTHS[d.getMonth()] + ' ' + d.getFullYear()
-        : '<b>?</b>datum') + '</div>' +
+      '<div class="date"><b>' + d.getDate() + '</b>' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() + '</div>' +
       '<div><div class="name">' + esc(e.name) + '</div>' +
       '<div class="where">' + esc(e.city || '') + (e.venue ? ' · ' + esc(e.venue) : '') + '</div>' +
       (e.lineup ? '<div class="lineup">' + esc(e.lineup) + '</div>' : '') + '</div>' +
       (e.url
         ? '<a class="ticket" href="' + esc(e.url) + '" target="_blank" rel="noopener">Biljetter</a>'
-        : '<span class="tba">Ej släppt</span>') +
+        : '<span class="tba">Biljettlänk saknas</span>') +
       '</article>';
   }).join('');
 }
+
+document.getElementById('evFilters').addEventListener('click', e => {
+  const b = e.target.closest('.chip');
+  if (!b) return;
+  evFilter = b.dataset.r;
+  document.querySelectorAll('#evFilters .chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+  drawEvents();
+});
 
 document.getElementById('filters').addEventListener('click', e => {
   const b = e.target.closest('.chip');
   if (!b) return;
   filter = b.dataset.g;
-  document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+  document.querySelectorAll('#filters .chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
   drawReleases();
 });
 
