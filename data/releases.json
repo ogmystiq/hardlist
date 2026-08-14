@@ -1,11 +1,11 @@
 [
   {
-    "artist": "requiem for you",
-    "title": "Drawing Lines",
-    "genre": "raw",
-    "bpm": 155,
+    "artist": "Outsiders × Frontliner × Diandra Faye",
+    "title": "Rebels In The Frontline",
+    "genre": "euphoric",
+    "bpm": 150,
     "date": "2026-08-14",
-    "url": "https://open.spotify.com/album/7kA6iJ1igdfno0yXFhJIzQ"
+    "url": "https://open.spotify.com/album/1qA89hPlhB7I9rVtKIxXtA"
   },
   {
     "artist": "Steve Aoki × Sub Zero Project",
@@ -16,28 +16,12 @@
     "url": "https://open.spotify.com/album/1qmYbQQl4KVIO3omsJZWUf"
   },
   {
-    "artist": "Outsiders × Frontliner × Diandra Faye",
-    "title": "Rebels In The Frontline",
-    "genre": "euphoric",
-    "bpm": 150,
+    "artist": "requiem for you",
+    "title": "Drawing Lines",
+    "genre": "raw",
+    "bpm": 155,
     "date": "2026-08-14",
-    "url": "https://open.spotify.com/album/1qA89hPlhB7I9rVtKIxXtA"
-  },
-  {
-    "artist": "Panic × Adaro",
-    "title": "This is Ecstasy",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-07",
-    "url": "https://open.spotify.com/album/5M8ftbtpyWAEBySLAP1XZT"
-  },
-  {
-    "artist": "D-Sturb",
-    "title": "Good Old Days",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-07",
-    "url": "https://open.spotify.com/album/4yBDQ3F928ttYAeJ72jany"
+    "url": "https://open.spotify.com/album/7kA6iJ1igdfno0yXFhJIzQ"
   },
   {
     "artist": "Toneshifterz × Dimatik × Weaver",
@@ -48,12 +32,20 @@
     "url": "https://open.spotify.com/album/2qlGOXbjj96axfL3hGEHwS"
   },
   {
-    "artist": "Digital Punk × Crypsis",
-    "title": "Buried Alive",
+    "artist": "D-Sturb",
+    "title": "Good Old Days",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-08-06",
-    "url": "https://open.spotify.com/album/3ZDjxUzDztilxzvhPpAmgf"
+    "date": "2026-08-07",
+    "url": "https://open.spotify.com/album/4yBDQ3F928ttYAeJ72jany"
+  },
+  {
+    "artist": "Panic × Adaro",
+    "title": "This is Ecstasy",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-08-07",
+    "url": "https://open.spotify.com/album/5M8ftbtpyWAEBySLAP1XZT"
   },
   {
     "artist": "Da Tweekaz",
@@ -64,12 +56,12 @@
     "url": "https://open.spotify.com/album/1gEUGLLv9TZicXVny5zdRR"
   },
   {
-    "artist": "Code Black × Hixxy",
-    "title": "Wanting To Get High",
-    "genre": "euphoric",
-    "bpm": 150,
-    "date": "2026-07-31",
-    "url": "https://open.spotify.com/album/5oBHCWjKbK8mqh0NL6h079"
+    "artist": "Digital Punk × Crypsis",
+    "title": "Buried Alive",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-08-06",
+    "url": "https://open.spotify.com/album/3ZDjxUzDztilxzvhPpAmgf"
   },
   {
     "artist": "Devin Wild × Chapter V",
@@ -78,6 +70,14 @@
     "bpm": 150,
     "date": "2026-07-31",
     "url": "https://open.spotify.com/album/2kmYpcH6ZcUQqxOLXWn0cE"
+  },
+  {
+    "artist": "Code Black × Hixxy",
+    "title": "Wanting To Get High",
+    "genre": "euphoric",
+    "bpm": 150,
+    "date": "2026-07-31",
+    "url": "https://open.spotify.com/album/5oBHCWjKbK8mqh0NL6h079"
   },
   {
     "artist": "Sound Rush × Wildstylez",
@@ -104,12 +104,12 @@
     "url": "https://open.spotify.com/album/26BRh5b9Bkj1vURnF6ZUPG"
   },
   {
-    "artist": "Radical Redemption × Regain",
-    "title": "The Indoor Main",
-    "genre": "raw",
-    "bpm": 155,
+    "artist": "Bass Modulators",
+    "title": "Sacred Flame",
+    "genre": "euphoric",
+    "bpm": 150,
     "date": "2026-07-17",
-    "url": "https://open.spotify.com/album/6d38NlRP8eXSNLj1ps4XXe"
+    "url": "https://open.spotify.com/album/7C7T3HwCZ5HAu9Mas1M25G"
   },
   {
     "artist": "Rebelion × The Saints × Sarah Anglionin",
@@ -120,12 +120,12 @@
     "url": "https://open.spotify.com/album/54jYZZtZmfmkSD39VUBvdr"
   },
   {
-    "artist": "Bass Modulators",
-    "title": "Sacred Flame",
-    "genre": "euphoric",
-    "bpm": 150,
+    "artist": "Radical Redemption × Regain",
+    "title": "The Indoor Main",
+    "genre": "raw",
+    "bpm": 155,
     "date": "2026-07-17",
-    "url": "https://open.spotify.com/album/7C7T3HwCZ5HAu9Mas1M25G"
+    "url": "https://open.spotify.com/album/6d38NlRP8eXSNLj1ps4XXe"
   },
   {
     "artist": "Zany × Adaro",
