@@ -388,7 +388,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 <main>
   <div class="hero">
     <div class="wrap">
-      <p class="eyebrow">Uppdaterad varje fredag <span class="badge" id="dataBadge" hidden>exempeldata</span></p>
+      <p class="eyebrow"><span id="heroStatus">Uppdateras dagligen</span> <span class="badge" id="dataBadge" hidden>exempeldata</span></p>
       <h1>Vad som släpps.<br><em>Och när.</em></h1>
       <p class="lede">Varje ny release inom hardstyle, raw, uptempo och hardcore — i datumordning. Kommande först, sen allt som släppts den senaste veckan. Inget äldre.</p>
 
@@ -678,27 +678,51 @@ const GENRE_NAMN = {
 const TL_BAK = DAGAR_VISAS;   // dagar bakåt
 const TL_FRAM = 14;           // dagar framåt
 
-/* Hälsostämpel i sidfoten. Slutar workflowen fungera står det kvar ett gammalt
-   datum här, istället för att sajten ser helt normal ut med inaktuell data. */
+/* Hälsostämpel. Visas både i toppen och i sidfoten, och säger alltid något —
+   en tom rad hade sett ut som att funktionen saknades. Tre lägen:
+     exempeldata     skriptet har aldrig kört skarpt
+     inväntar        releaser finns men ingen statusfil än
+     uppdaterad      normalläge, orange om det gått över två dygn */
 async function drawStatus(seeded){
-  const box = document.getElementById('status');
+  const fot  = document.getElementById('status');
+  const topp = document.getElementById('heroStatus');
+
+  const satt = (toppText, fotText, varning) => {
+    topp.textContent = toppText;
+    fot.innerHTML = fotText;
+    fot.className = 'status' + (varning ? ' varning' : '');
+  };
+
   if (seeded){
-    box.innerHTML = 'Visar exempeldata — skriptet har inte kört skarpt än.';
-    box.className = 'status varning';
+    satt('Exempeldata',
+         'Sajten visar exempeldata. Skriptet har inte kört skarpt än.', true);
     return;
   }
+
+  let st = null;
   try {
     const r = await fetch('data/status.json', {cache:'no-store'});
-    const st = await r.json();
-    const d = new Date(st.uppdaterad);
-    const timmar = Math.round((Date.now() - d) / 3600000);
-    const nar = timmar < 1 ? 'nyss'
-              : timmar < 24 ? 'för ' + timmar + ' timmar sedan'
-              : 'för ' + Math.round(timmar / 24) + ' dygn sedan';
-    box.innerHTML = 'Senast uppdaterad ' + nar + ' · ' +
-      st.cachade + '/' + st.artister + ' artister genomsökta';
-    box.className = 'status' + (timmar > 48 ? ' varning' : '');
-  } catch(e){ box.innerHTML = ''; }
+    if (r.ok) st = await r.json();
+  } catch(e){}
+
+  if (!st || !st.uppdaterad){
+    satt('Uppdateras dagligen',
+         'Releaserna är hämtade, men statusfilen skapas först vid nästa körning.', false);
+    return;
+  }
+
+  const d = new Date(st.uppdaterad);
+  const timmar = Math.floor((Date.now() - d) / 3600000);
+  const nar = timmar < 1  ? 'för mindre än en timme sedan'
+            : timmar < 24 ? 'för ' + timmar + (timmar === 1 ? ' timme sedan' : ' timmar sedan')
+            : 'för ' + Math.round(timmar / 24) + ' dygn sedan';
+
+  const gammalt = timmar > 48;
+  satt('Uppdaterad ' + nar,
+       'Senast uppdaterad ' + nar + ' · ' + st.cachade + ' av ' + st.artister +
+       ' artister genomsökta · ' + st.releaser + ' releaser i listan' +
+       (gammalt ? ' — något har slutat fungera, kolla Actions på GitHub' : ''),
+       gammalt);
 }
 
 function drawTimeline(){
