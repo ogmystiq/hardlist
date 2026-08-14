@@ -1,166 +1,222 @@
 # HARDLIST
 
-Sajt för hardstyle-, raw-, uptempo- och hardcore-releaser plus rave i Norden.
-Öppna `index.html` i webbläsaren så funkar allt direkt — CSS:en ligger inbakad
-i varje sida, inga externa filer behövs.
+Sajt för hardstyle-, raw-, uptempo- och hardcore-releaser plus hard dance-kalender.
+Öppna vilken HTML-fil som helst i webbläsaren — CSS:en ligger inbakad i varje sida,
+inga sidofiler behövs.
 
 ```
-index.html      releaser (kommande / nyss släppt / tidigare) + kalender
-events.html     festivalguider med väljare
-guider.html     packlista och campingregler
-nyborjare.html  subgenrer, artister, klassiker, slang
+index.html      releaser (kommande / nyss släppt / tidigare) + kalender med Norden-filter
+events.html     festivalguider med knappväljare, 10 event
+guider.html     packlista, campingregler per festival, värmeavsnitt
+nyborjare.html  historik, subgenrer, artister, klassiker, slang
 style.css       referenskopia — sidorna använder sin inbakade kopia
-data/releases.json   skrivs av skriptet
-data/events.json     fyller du i själv
+data/releases.json    skrivs av skriptet
+data/artist-ids.json  cache, skrivs av skriptet
+data/events.json      fyller du i själv
 scripts/hamta-releaser.mjs      hämtar från Spotify
 .github/workflows/releaser.yml  kör skriptet varje fredag
 ```
 
-Releaserna sorteras **alltid efter datum**, aldrig efter genre:
-
-| Grupp | Vad som hamnar där |
-|---|---|
-| Kommande | Releasedatum i framtiden. Visas som "Imorgon", "Om 1 vecka". |
-| Nyss släppt | De senaste 7 dagarna. |
-| Tidigare | Äldre än 7 dagar, upp till 30. |
-
-Genrefiltret ändrar bara vad som visas, aldrig ordningen.
-
-**Ändrar du CSS** gör du det i `<style>`-blocket högst upp i en sida och
-kopierar till de andra tre. `style.css` finns kvar som referenskopia.
+**Ändrar du CSS** gör du det i `<style>`-blocket högst upp i en sida och kopierar
+till de andra tre. `style.css` finns kvar som referens.
 
 ---
 
-## Vad du behöver göra
+## Releaser sorteras alltid efter datum
+
+| Grupp | Innehåll |
+|---|---|
+| Kommande | Releasedatum i framtiden. Visas som "Imorgon", "Om 1 vecka". |
+| Nyss släppt | De senaste 7 dagarna. |
+| Tidigare | 8–30 dagar gamla. |
+
+Genrefiltret ändrar bara vad som visas, aldrig ordningen.
+
+---
+
+## Kvotskydd — läs det här
+
+Spotifys Development Mode har en **daglig kvot per utvecklarkonto**. Bränner du
+den är du utelåst i ungefär ett dygn. Skriptet har därför fyra spärrar:
+
+| Spärr | Vad den gör |
+|---|---|
+| `MAX_ANROP = 100` | Hårt tak per körning. Nås det sparas resultatet och körningen avslutas. |
+| Rotation | Nästa körning fortsätter på nästa artist. Alla täcks över några körningar. |
+| Sammanslagning | Delkörningar raderar aldrig tidigare fynd. Gammalt läses in, nytt läggs till, allt äldre än 30 dagar rensas. |
+| `MAX_VANTAN = 30` | Ber Spotify oss vänta längre än 30 s avbryts körningen istället för att hamra på kvoten. |
+
+Plus `timeout-minutes: 12` i workflowen, så inget jobb kan hänga.
+
+**Artist-ID:n cachas** i `data/artist-ids.json`. Första körningen kostar 2 anrop
+per artist, därefter 1. Med 80 artister betyder det två körningar första gången
+och sedan en. Lägger du till artister växer kvotbehovet linjärt.
+
+---
+
+## Setup
 
 ### 0. Krav: Spotify Premium
 
 Sedan mars 2026 måste kontot som äger appen ha ett **aktivt Premium-abonnemang**.
-Har du bara gratisversionen slutar API:et fungera. Löper Premium ut slutar sajten
-uppdateras, och börjar igen när du förnyar. Det finns ingen väg runt det.
+Utan det slutar API:et fungera.
 
 ### 1. Spotify-nycklar
 
-developer.spotify.com → logga in med ditt vanliga Spotify → Dashboard →
-Create app. Namn och beskrivning: vad som helst.
+developer.spotify.com → Dashboard → Create app.
 
-Redirect URI: skriv `http://127.0.0.1:8888` och tryck Add.
-`http://localhost` går **inte** längre — Spotify slutade acceptera det 2025 och
-dashboarden svarar "This redirect URI is not secure". Portnumret måste vara med;
-bara `http://127.0.0.1` godkänns inte heller. Vilket portnummer spelar ingen roll.
+Redirect URI: `http://127.0.0.1:8888` och tryck Add.
+`http://localhost` godkänns **inte** längre — Spotify tog bort okrypterade
+HTTP-URI:er utom loopback-adresser, och portnumret måste vara med.
+Fältet används aldrig av den här sajten; skriptet kör client credentials-flödet.
 
-Fältet är obligatoriskt men används aldrig av den här sajten — skriptet kör
-client credentials-flödet, som inte har någon redirect alls.
+Kryssa i "Web API", spara, kopiera Client ID och Client Secret.
 
-Kryssa i "Web API" och spara. Kopiera Client ID och Client Secret.
+**Skicka aldrig din Client Secret till någon.** Den läggs i GitHub:
+Settings → Secrets and variables → Actions → New repository secret.
+Två stycken, exakt dessa namn: `SPOTIFY_ID` och `SPOTIFY_SECRET`.
 
-Själva utvecklarkontot är gratis, men se kravet ovan om Premium.
-Du kan ha upp till 25 appar per konto, och de delar samma API-kvot.
+Sätt även Settings → Actions → General → Workflow permissions till
+**Read and write permissions**.
 
-**Skicka aldrig din Client Secret till någon — inte till mig heller.**
-Den läggs direkt i GitHub: Settings → Secrets and variables → Actions →
-New repository secret. Två stycken: `SPOTIFY_ID` och `SPOTIFY_SECRET`.
+### 2. Kör
 
-Vill du testa lokalt först:
+Actions → "Hämta releaser" → Run workflow. Kör en andra gång efter några
+minuter så att resten av artistlistan hämtas.
 
-```bash
-SPOTIFY_ID=xxx SPOTIFY_SECRET=yyy node scripts/hamta-releaser.mjs
-```
+### 3. Publicera
 
-### 2. Artistlistan
+Settings → Pages → Deploy from a branch → `main` / root.
 
-Ligger överst i `scripts/hamta-releaser.mjs`. 74 namn är redan inlagda och
-täcker scenens stora artister över alla fyra subgenrer. Lägg till fler när nya
-slår igenom och sätt genre (`euphoric` / `raw` / `uptempo` / `hardcore`).
+### 4. Events
 
-### 3. Events
-
-Det finns ingen API som samlar nordiska hardstyle-event. `data/events.json`
-fyller du i för hand:
+Ingen API samlar hard dance-event. `data/events.json` fyller du i för hand:
 
 ```json
 {
   "name": "Sana Duri",
   "date": "2026-09-12",
-  "city": "Uppsala",
+  "region": "norden",
+  "city": "Uppsala, SE",
   "venue": "Studenternas IP",
   "lineup": "Project One m.fl.",
   "url": "https://biljettlank"
 }
 ```
 
-`date: null` betyder att datumet inte är släppt än — eventet visas ändå.
-Passerade event försvinner automatiskt.
+`region` är `norden` eller `europa` och styr filtret. Norden är förvalt — det är
+sajtens poäng.
+
+**Kalendern visar bara event med bekräftat, ej passerat datum.** Utelämnar du
+`date` hamnar eventet istället i bevakningslistan under kalendern, med ett
+`season`-fält istället:
+
+```json
+{ "name": "Hardstyle DNA", "region": "norden", "city": "Oslo, NO", "season": "normalt i maj" }
+```
+
+Så fort datumet släpps lägger du till `date` och eventet flyttar upp i kalendern
+av sig självt.
+
+**Viktigt:** `index.html` har en inbäddad reservkopia av eventlistan (`SEED_EVENTS`
+i skriptblocket). Den används bara när `data/events.json` inte kan laddas — vilket
+händer när du öppnar filen direkt från disk, eftersom webbläsaren blockerar `fetch`
+mot lokala filer. På GitHub Pages vinner alltid JSON-filen. Uppdaterar du
+`data/events.json` bör du klistra in samma lista i `SEED_EVENTS`, annars visar den
+lokala förhandsgranskningen gammal data.
+
+**21 event ligger inne** — 5 med bekräftat datum, 16 under bevakning.
+
+Bästa källan för svenska event är communityt **hardstylesverige.com/pages/events**
+— de listar allt och tar emot tips. Kolla den några gånger per år.
 
 ---
 
 ## Om kommande releaser
 
-Skriptet tar med allt som har ett framtida releasedatum på Spotify. Men Spotify
-listar bara en låt i förväg om artisten har en **pre-save igång**. Släpp som
-bara annonserats på Instagram syns inte.
+Skriptet tar med allt med framtida releasedatum. Men Spotify listar bara en låt i
+förväg om artisten har en **pre-save igång**. Släpp som bara annonserats på
+Instagram syns inte. Praktiskt ger det 1–2 veckors framförhållning på de stora
+namnen, mindre på små artister. Beatport har bättre pre-order-data men ingen
+öppen API.
 
-Praktiskt betyder det:
+---
 
-- Ungefär en till två veckors framförhållning på de artister som kör pre-saves.
-- Stora namn och stora labels gör det nästan alltid. Mindre artister sällan.
-- Vill du ha mer täckning är enda vägen att lägga till rader för hand i
-  `data/releases.json` — men skriptet skriver över filen varje fredag, så det
-  försvinner. Behöver du permanenta manuella rader får sajten läsa två filer.
-  Säg till så bygger jag det.
-
-Beatport har bättre pre-order-data men ingen öppen API — den kräver
-partnergodkännande.
-
-## Om Spotifys regeländringar 2026
-
-Spotify stramade åt utvecklarplattformen i februari och mars 2026. Kontrollerat
-mot deras migreringsguide — de två endpoints sajten använder finns kvar:
+## Spotifys regeländringar 2026
 
 | Endpoint | Status |
 |---|---|
 | `GET /search?type=artist` | Finns kvar. Max `limit` sänkt från 50 till 10 — skriptet använder 1. |
-| `GET /artists/{id}/albums` | Oförändrad. |
+| `GET /artists/{id}/albums` | Finns kvar. Max `limit` sänkt till 10 (default 5). Skriptet använder 10. |
 
-Det som togs bort och som sajten alltså **inte** får bygga på i framtiden:
+Borttaget i februari 2026 och får alltså inte användas framåt:
 `/browse/new-releases`, `/artists/{id}/top-tracks`, batch-hämtning av flera
 artister eller album i ett anrop, samt fälten `label` och `popularity`.
 
-Sedan juli 2026 räknas API-kvoten per utvecklarkonto istället för per app, och
-429-svar innehåller ett `reason`-fält. Skriptet skiljer nu på rate limit (väntar
-och försöker igen, max fem gånger) och slut kvot (avbryter direkt med
-förklaring, eftersom fler försök ändå inte hjälper).
+Sedan juli 2026 räknas kvoten per utvecklarkonto istället för per app, och
+429-svar innehåller ett `reason`-fält.
 
 ---
 
-## Guiderna
+## Nordiska event i kalendern
 
-`events.html`, `guider.html` och `nyborjare.html` är vanlig HTML. Skriv rakt i
-filerna.
+Hämtade från Hardstyle Sveriges egen eventlista, arrangörernas sidor och
+biljettleverantörer:
 
-Verifierat mot arrangörernas egna sidor: Defqon.1, Decibel Outdoor, Intents.
-Inte verifierat, står uttryckligen i texten: Rebirth, Reverze, Dominator,
-One Vision.
+**I kalendern med bekräftat datum:**
 
-Rutter och genvägar inne på områdena är **inte** påhittade — de står inte med.
-Q-dance släpper en officiell interaktiv karta inför varje Defqon.1, och
-sidan hänvisar dit istället. Insidertipsen får komma från besökare.
+| Event | Ort | Datum |
+|---|---|---|
+| Sana Duri — The New Beginning | Studenternas IP, Uppsala | 12 sep 2026, kl 11–23.30 |
+| Holy Priest | Berns, Stockholm | 12 sep 2026, kl 23 |
+| Monday Bar Halloween Cruise | Stockholm | 6–7 nov 2026 |
 
-**Regler och stagenamn ändras varje år.** Gå igenom guiderna en gång per säsong.
+**Under bevakning** — årliga, nästa datum ej annonserat: Lumaniac (Kristianstad,
+mars), Hardstyle Reaction (Platens Bar, Linköping, maj), Swedish Rave Society
+(Hamnplan 1, Örebro, maj), Monday Bar Summer Cruise (Stockholm–Tallinn, juni),
+One Vision Festival (Kristianstad, augusti), Hardstyle DNA (Bjerke Travbane,
+Oslo, maj), Soundvault Festival (Suvilahti, Helsingfors, maj) och Ascend
+(Norrköping).
+
+Sana Duri 2026 är Nordens största hardstyle-satsning hittills: Shuffle Group och
+All Things Live räknar med runt 10 000 besökare, och lineupen har Project One,
+Brennan Heart, Showtek, Rebelion vs Vertile, Rooler vs Warface och Radical
+Redemption bland andra.
+
+## Faktakontroll av guiderna
+
+**Verifierat mot arrangör eller etablerad källa:**
+
+- Defqon.1: Walibi Holland i Biddinghuizen, slutet av juni, fyra dagar.
+  2026-upplagan ("Sacred Oath") ställdes in efter första dagen efter
+  Nederländernas första kod röd för värme någonsin. Helgbiljett 339,95 euro 2026.
+- Decibel Outdoor: Beekse Bergen, Hilvarenbeek, mitten av augusti, 30+ scener.
+- Intents 2026: 5–7 juni, Oisterwijk, "Rise of Titans".
+- Dominator 2026: 17–18 juli, Eersel, "Fatal Fortune", 10 scener.
+- Masters of Hardcore 2026: 28 mars, Brabanthallen, 's-Hertogenbosch.
+- Harmony of Hardcore 2026: 23 maj, De Roost i Erp, "The Awakening".
+- Reverze: Antwerpen, AFAS Dome + Lotto Arena. Nästa 26–27 februari 2027.
+- Alkohol- och campingregler: Defqon.1, Decibel, Intents.
+- Hardstyles historia, subgenredefinitioner, klassikerlistan.
+
+**Står uttryckligen som overifierat på sidan:**
+Rebirth, Supremacy, One Vision, Q-BASE, samt camping- och dryckesregler för
+Dominator och Harmony of Hardcore.
+
+**Nedlagt — finns inte kvar:** Qlimax (sista upplagan november 2024), Qapital,
+The Qontinent och alla X-Qlusive-event. Sidan varnar för gamla guider som
+fortfarande listar dem.
+
+**Rutter inne på områdena finns medvetet inte med.** Q-dance släpper en officiell
+interaktiv karta inför varje edition, och sidan hänvisar dit. Insidertips ska
+komma från besökare via kontaktlänken.
+
+Regler, datum och stagenamn ändras varje år. Gå igenom guiderna en gång per säsong.
 
 ---
 
-## Lägga upp den
-
-1. Skapa ett repo på GitHub, ladda upp allt.
-2. Lägg in `SPOTIFY_ID` och `SPOTIFY_SECRET` som repository secrets.
-3. Settings → Pages → Source: `main` / root.
-4. Actions → "Hämta releaser" → Run workflow (första gången manuellt).
-
-Sen uppdateras releaserna själv varje fredag morgon. Domän är valfritt —
-`.se` kostar runt 100 kr/år.
-
-## Byta namn
+## Byta namn och mailadress
 
 "HARDLIST" står i `<title>`, `.logo` och footern på alla fyra sidor.
+Platshållaradressen `hej@example.se` finns i footern och i alla tipsa-länkar.
 Sök och ersätt.
