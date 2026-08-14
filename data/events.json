@@ -1,26 +1,65 @@
 [
   {
-    "name": "Sana Duri",
+    "name": "Decibel Outdoor",
+    "date": "2026-08-28",
+    "region": "europa",
+    "city": "Hilvarenbeek, NL",
+    "venue": "Beekse Bergen",
+    "lineup": "28–30 augusti. 30+ scener över hela hard dance-spektrumet.",
+    "url": ""
+  },
+  {
+    "name": "Sana Duri — The New Beginning",
     "date": "2026-09-12",
-    "city": "Uppsala",
+    "region": "norden",
+    "city": "Uppsala, SE",
     "venue": "Studenternas IP",
-    "lineup": "Project One (Headhunterz + Wildstylez) m.fl.",
+    "lineup": "Project One · Brennan Heart · Showtek · Rebelion vs Vertile · Rooler vs Warface · Radical Redemption · Sound Rush · The Pitcher · The Saints · Villain · D-Charged · Dimitri K & The Dark Horror · 4444 · Four of a Kind. Kl 11–23.30, ca 10 000 besökare.",
+    "url": "https://sanaduri.se/"
+  },
+  {
+    "name": "Holy Priest",
+    "date": "2026-09-12",
+    "region": "norden",
+    "city": "Stockholm, SE",
+    "venue": "Berns",
+    "lineup": "Hard techno, kl 23.00. Samma kväll som Sana Duri — funkar som afterparty om du tar dig ner från Uppsala.",
     "url": ""
   },
   {
-    "name": "Ascend",
-    "date": null,
-    "city": "Norrköping",
-    "venue": "",
-    "lineup": "",
-    "url": ""
+    "name": "Monday Bar Halloween Cruise",
+    "date": "2026-11-06",
+    "region": "norden",
+    "city": "Stockholm, SE",
+    "venue": "Kryssning",
+    "lineup": "6–7 november. Egen black floor för de hårdare stilarna.",
+    "url": "https://www.mondaybar.com/"
   },
   {
-    "name": "Defqon.1",
-    "date": null,
-    "city": "Biddinghuizen, NL",
-    "venue": "Evenemententerrein Walibi",
-    "lineup": "",
+    "name": "Reverze",
+    "date": "2027-02-26",
+    "region": "europa",
+    "city": "Antwerpen, BE",
+    "venue": "AFAS Dome + Lotto Arena",
+    "lineup": "26–27 februari. Säsongsöppnaren.",
     "url": ""
-  }
+  },
+
+  { "name": "Lumaniac",             "region": "norden", "city": "Kristianstad, SE",       "season": "normalt i mars" },
+  { "name": "Hardstyle DNA",        "region": "norden", "city": "Oslo, NO",               "season": "normalt i maj" },
+  { "name": "Soundvault Festival",  "region": "norden", "city": "Helsingfors, FI",        "season": "normalt i maj" },
+  { "name": "Hardstyle Reaction",   "region": "norden", "city": "Linköping, SE",          "season": "normalt i maj" },
+  { "name": "Swedish Rave Society", "region": "norden", "city": "Örebro, SE",             "season": "normalt i maj" },
+  { "name": "Monday Bar Summer Cruise", "region": "norden", "city": "Stockholm–Tallinn",  "season": "normalt i juni" },
+  { "name": "One Vision Festival",  "region": "norden", "city": "Kristianstad, SE",       "season": "normalt i augusti" },
+  { "name": "Ascend",               "region": "norden", "city": "Norrköping, SE",         "season": "datum ej bekräftat" },
+
+  { "name": "Masters of Hardcore",  "region": "europa", "city": "'s-Hertogenbosch, NL",   "season": "normalt i mars eller april" },
+  { "name": "REBiRTH Festival",     "region": "europa", "city": "Haaksbergen, NL",        "season": "normalt i april" },
+  { "name": "Harmony of Hardcore",  "region": "europa", "city": "Erp, NL",                "season": "normalt i maj" },
+  { "name": "Intents Festival",     "region": "europa", "city": "Oisterwijk, NL",         "season": "normalt i juni" },
+  { "name": "Defqon.1",             "region": "europa", "city": "Biddinghuizen, NL",      "season": "normalt i slutet av juni" },
+  { "name": "Dominator",            "region": "europa", "city": "Eersel, NL",             "season": "normalt i juli" },
+  { "name": "Q-BASE",               "region": "europa", "city": "Nederländerna",          "season": "normalt i september" },
+  { "name": "Supremacy",            "region": "europa", "city": "Nederländerna",          "season": "normalt på hösten" }
 ]
