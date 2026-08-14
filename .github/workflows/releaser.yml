@@ -11,7 +11,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 12          # hänger den längre är något fel — avbryt
+    timeout-minutes: 15          # skriptet har egen 8-minutersbudget under detta
     steps:
       - uses: actions/checkout@v4
 
