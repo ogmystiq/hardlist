@@ -29,6 +29,6 @@ jobs:
         run: |
           git config user.name "hardlist-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add data/releases.json data/artist-ids.json data/status.json
+          git add data/
           git diff --staged --quiet || git commit -m "Nya releaser $(date +%F)"
           git push
