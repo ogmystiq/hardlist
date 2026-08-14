@@ -256,6 +256,9 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .callout.warn{border-left-color:var(--uptempo);background:#1D1206}
 .callout.warn b{color:var(--uptempo)}
 
+.status{margin-top:14px;font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175}
+.status.varning{color:var(--uptempo)}
+
 footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:11px;letter-spacing:.06em;line-height:1.8}
 
 @media (max-width:640px){
@@ -430,6 +433,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   <div class="wrap">
     HARDLIST — byggd i Motala.<br>
     Saknas ett event eller en artist? <a href="mailto:hej@example.se">Tipsa här.</a>
+    <div id="status" class="status"></div>
   </div>
 </footer>
 
@@ -645,6 +649,7 @@ async function load(){
   } catch(e) { events = SEED_EVENTS; }
 
   document.getElementById('dataBadge').hidden = !seeded;
+  drawStatus(seeded);
   drawTimeline(); drawReleases(); drawEvents();
 }
 
@@ -657,6 +662,29 @@ const GENRE_NAMN = {
    en axel byggd på gissningar staplar bara alla prickar på samma punkt. */
 const TL_BAK = DAGAR_VISAS;   // dagar bakåt
 const TL_FRAM = 14;           // dagar framåt
+
+/* Hälsostämpel i sidfoten. Slutar workflowen fungera står det kvar ett gammalt
+   datum här, istället för att sajten ser helt normal ut med inaktuell data. */
+async function drawStatus(seeded){
+  const box = document.getElementById('status');
+  if (seeded){
+    box.innerHTML = 'Visar exempeldata — skriptet har inte kört skarpt än.';
+    box.className = 'status varning';
+    return;
+  }
+  try {
+    const r = await fetch('data/status.json', {cache:'no-store'});
+    const st = await r.json();
+    const d = new Date(st.uppdaterad);
+    const timmar = Math.round((Date.now() - d) / 3600000);
+    const nar = timmar < 1 ? 'nyss'
+              : timmar < 24 ? 'för ' + timmar + ' timmar sedan'
+              : 'för ' + Math.round(timmar / 24) + ' dygn sedan';
+    box.innerHTML = 'Senast uppdaterad ' + nar + ' · ' +
+      st.cachade + '/' + st.artister + ' artister genomsökta';
+    box.className = 'status' + (timmar > 48 ? ' varning' : '');
+  } catch(e){ box.innerHTML = ''; }
+}
 
 function drawTimeline(){
   const tl   = document.getElementById('tl');
