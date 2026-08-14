@@ -122,12 +122,12 @@ const ARTISTS = [
   { name: 'Nolz',                   genre: 'uptempo' }
 ];
 
-/* Hur många dagar bakåt som hämtas. Sajten delar sen upp i:
+/* Hur många dagar bakåt som hämtas och behålls. Sajten visar två grupper:
      Kommande     — releasedatum i framtiden
-     Nyss släppt  — de senaste 7 dagarna
-     Tidigare     — resten upp till DAGAR_BAKAT
-   Sätt till 7 om du bara vill ha kommande + nyss släppt. */
-const DAGAR_BAKAT = 30;
+     Nyss släppt  — de senaste DAGAR_BAKAT dagarna
+   Allt äldre rensas automatiskt ur data/releases.json vid varje körning.
+   Höj till 14 eller 30 om du vill ha en längre svans. */
+const DAGAR_BAKAT = 7;
 
 /* Uppskattad BPM per genre. Spotify slutade ge ut BPM till nya appar
    i november 2024, så den här siffran är en gissning per genre.
