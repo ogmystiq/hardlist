@@ -119,7 +119,91 @@ const ARTISTS = [
   { name: 'The Purge',              genre: 'raw' },
   { name: 'Jay Reeve',              genre: 'raw' },
   { name: 'Primeshock',             genre: 'euphoric' },
-  { name: 'Nolz',                   genre: 'uptempo' }
+  { name: 'Nolz',                   genre: 'uptempo' },
+
+  /* --- fler euphoric --- */
+  { name: 'Showtek',                    genre: 'euphoric' },
+  { name: 'Technoboy',                  genre: 'euphoric' },
+  { name: 'Tuneboy',                    genre: 'euphoric' },
+  { name: 'DJ Isaac',                   genre: 'euphoric' },
+  { name: 'The Prophet',                genre: 'euphoric' },
+  { name: 'Zany',                       genre: 'euphoric' },
+  { name: 'Deepack',                    genre: 'euphoric' },
+  { name: 'Donkey Rollers',             genre: 'euphoric' },
+  { name: 'Pavo',                       genre: 'euphoric' },
+  { name: 'Builder',                    genre: 'euphoric' },
+  { name: 'Alpha²',                     genre: 'euphoric' },
+  { name: 'Max Enforcer',               genre: 'euphoric' },
+  { name: 'JDX',                        genre: 'euphoric' },
+  { name: 'Aftershock',                 genre: 'euphoric' },
+  { name: 'Ecstatic',                   genre: 'euphoric' },
+  { name: 'Galactixx',                  genre: 'euphoric' },
+  { name: 'Level One',                  genre: 'euphoric' },
+  { name: 'Rebourne',                   genre: 'euphoric' },
+  { name: 'Bass Chaserz',               genre: 'euphoric' },
+  { name: 'Envine',                     genre: 'euphoric' },
+  { name: 'Dailucia',                   genre: 'euphoric' },
+  { name: 'The Pitcher',                genre: 'euphoric' },
+  { name: 'Ummet Ozcan',                genre: 'euphoric' },
+  { name: 'Bioweapon',                  genre: 'euphoric' },
+
+  /* --- fler raw --- */
+  { name: 'Titan',                      genre: 'raw' },
+  { name: 'Chapter V',                  genre: 'raw' },
+  { name: 'Nightcraft',                 genre: 'raw' },
+  { name: 'Outsiders',                  genre: 'raw' },
+  { name: 'Scarra',                     genre: 'raw' },
+  { name: 'Imperatorz',                 genre: 'raw' },
+  { name: 'Deetox',                     genre: 'raw' },
+  { name: 'Gunz for Hire',              genre: 'raw' },
+  { name: 'Minus Militia',              genre: 'raw' },
+  { name: 'Chain Reaction',             genre: 'raw' },
+  { name: 'Sogma',                      genre: 'raw' },
+  { name: 'Cryex',                      genre: 'raw' },
+  { name: 'So Juice',                   genre: 'raw' },
+  { name: 'Exproz',                     genre: 'raw' },
+  { name: 'Kronos',                     genre: 'raw' },
+  { name: 'The Saints',                 genre: 'raw' },
+  { name: 'Villain',                    genre: 'raw' },
+  { name: 'D-Charged',                  genre: 'raw' },
+  { name: 'Dimitri K',                  genre: 'raw' },
+  { name: 'Sovereign',                  genre: 'raw' },
+  { name: 'Hyperspace',                 genre: 'raw' },
+
+  /* --- fler uptempo --- */
+  { name: 'Ncrypta',                    genre: 'uptempo' },
+  { name: 'BOMBSQUAD',                  genre: 'uptempo' },
+  { name: 'MC Nolz',                    genre: 'uptempo' },
+
+  /* --- fler hardcore --- */
+  { name: 'Broken Minds',               genre: 'hardcore' },
+  { name: 'Meccano Twins',              genre: 'hardcore' },
+  { name: 'Art of Fighters',            genre: 'hardcore' },
+  { name: 'Tommyknocker',               genre: 'hardcore' },
+  { name: 'Amnesys',                    genre: 'hardcore' },
+  { name: 'Unexist',                    genre: 'hardcore' },
+  { name: 'Re-Style',                   genre: 'hardcore' },
+  { name: 'Hellsystem',                 genre: 'hardcore' },
+  { name: 'DJ Promo',                   genre: 'hardcore' },
+  { name: 'Ophidian',                   genre: 'hardcore' },
+  { name: 'Catscan',                    genre: 'hardcore' },
+  { name: 'Rudeboy',                    genre: 'hardcore' },
+  { name: 'D-Fence',                    genre: 'hardcore' },
+  { name: 'Andy The Core',              genre: 'hardcore' },
+  { name: 'Radium',                     genre: 'hardcore' },
+  { name: 'The Melodyst',               genre: 'hardcore' },
+  { name: 'The Sickest Squad',          genre: 'hardcore' },
+  { name: 'Akira',                      genre: 'hardcore' },
+  { name: 'Alienn',                     genre: 'hardcore' },
+  { name: 'Drokz',                      genre: 'hardcore' },
+  { name: 'Deathmachine',               genre: 'hardcore' },
+
+  /* --- fler techno --- */
+  { name: 'Lil Texas',                  genre: 'techno' },
+  { name: 'Rebekah',                    genre: 'techno' },
+  { name: 'Nico Moreno',                genre: 'techno' },
+  { name: 'Sara Landry',                genre: 'techno' },
+  { name: 'Hi-Lo',                      genre: 'techno' }
 ];
 
 /* Hur många dagar bakåt som hämtas och behålls. Sajten visar två grupper:
@@ -141,7 +225,9 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
    MAX_ANROP  hårt tak på antal API-anrop per körning. Nås det sparar
               skriptet det den hunnit och slutar. Artisterna roteras mellan
               körningar så alla kommer med över tid.
-              OBS: dagskvoten går sönder runt 200 anrop. Kör en gång per dygn.
+              OBS: dagskvoten går sönder runt 200 anrop. Workflowen kör därför
+              DAGLIGEN med rotation istället för en gång i veckan — då hinner
+              hela listan betas av på några dygn, väl inom sjudagarsfönstret.
    MAX_VANTAN ber Spotify oss vänta längre än så avbryts körningen direkt
               istället för att ligga och hamra på kvoten.
    PAUS       paus mellan anrop.
@@ -149,7 +235,7 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
 /* Uppmätt i praktiken: dagskvoten i Development Mode tar slut runt 200 anrop.
    Taket ligger därför med marginal under det. Kör HÖGST EN GÅNG PER DYGN tills
    artist-cachen är komplett — då kostar ett helt varv bara 80 anrop. */
-const MAX_ANROP    = 120;
+const MAX_ANROP    = 150;
 const MAX_VANTAN   = 180;   /* längsta enskilda väntan vi accepterar, sekunder */
 const TIDSBUDGET   = 8 * 60;/* hela körningen, sekunder. Under jobbets timeout. */
 const PAUS         = 300;
@@ -265,12 +351,22 @@ async function api(path, token, forsok = 0) {
   return res.json();
 }
 
+const normalisera = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
+
 async function hittaId(name, token) {
   if (state.ids[name]) return state.ids[name];
   const data = await api(`/search?q=${encodeURIComponent(name)}&type=artist&limit=1`, token);
-  const id = data.artists?.items?.[0]?.id ?? null;
-  if (id) state.ids[name] = id;
-  return id;
+  const traff = data.artists?.items?.[0];
+  if (!traff) return null;
+
+  /* Spotify returnerar alltid närmaste träff. Stavar du fel i ARTISTS får du
+     alltså en helt annan artist, tyst. Flagga när namnen inte matchar. */
+  if (normalisera(traff.name) !== normalisera(name)) {
+    console.log(`  ⚠ "${name}" matchade "${traff.name}" — kontrollera stavningen`);
+  }
+
+  state.ids[name] = traff.id;
+  return traff.id;
 }
 
 function relevant(dateStr) {
