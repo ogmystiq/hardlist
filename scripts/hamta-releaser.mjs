@@ -24,7 +24,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 /* 1. SCENEN — inte en smaklista. Målet är att täcka alla stora namn   */
 /*    så att sajten funkar för alla som kollar efter nya releaser.     */
 /*    Genren styr färg och uppskattad BPM.                             */
-/*    Giltiga: euphoric | raw | uptempo | hardcore                     */
+/*    Giltiga: euphoric | raw | uptempo | hardcore | techno            */
 /* ------------------------------------------------------------------ */
 const ARTISTS = [
   /* --- euphoric / melodic hardstyle --- */
@@ -83,7 +83,6 @@ const ARTISTS = [
 
   /* --- uptempo --- */
   { name: 'Yoshiko',                genre: 'uptempo' },
-  { name: 'Vieze Asbak',            genre: 'uptempo' },
   { name: 'Sickmode',               genre: 'uptempo' },
   { name: 'Bloodlust',              genre: 'uptempo' },
   { name: 'Kill The Bass',          genre: 'uptempo' },
@@ -107,7 +106,20 @@ const ARTISTS = [
   { name: 'Destructive Tendencies', genre: 'hardcore' },
   { name: 'Sefa',                   genre: 'hardcore' },
   { name: 'Billx',                  genre: 'hardcore' },
-  { name: 'Evil Activities',        genre: 'hardcore' }
+  { name: 'Evil Activities',        genre: 'hardcore' },
+  { name: 'Paul Elstak',            genre: 'hardcore' },
+
+  /* --- hard techno / industrial ---
+     Egen värld, inte en gren av hardstyle. Ligger med för att artisterna
+     spelar samma festivaler och publiken överlappar. */
+  { name: 'Vieze Asbak',            genre: 'techno' },
+
+  /* --- saknades tidigare --- */
+  { name: 'KELTEK',                 genre: 'euphoric' },
+  { name: 'The Purge',              genre: 'raw' },
+  { name: 'Jay Reeve',              genre: 'raw' },
+  { name: 'Primeshock',             genre: 'euphoric' },
+  { name: 'Nolz',                   genre: 'uptempo' }
 ];
 
 /* Hur många dagar bakåt som hämtas. Sajten delar sen upp i:
@@ -120,7 +132,7 @@ const DAGAR_BAKAT = 30;
 /* Uppskattad BPM per genre. Spotify slutade ge ut BPM till nya appar
    i november 2024, så den här siffran är en gissning per genre.
    Vill du ha exakt BPM: skriv in den i OVERRIDE nedan. */
-const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190 };
+const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, techno: 150 };
 
 /* --- Kvotskydd ---------------------------------------------------------
    Development Mode har en daglig kvot per utvecklarkonto. Går den sönder är
@@ -133,7 +145,8 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190 };
               istället för att ligga och hamra på kvoten.
    PAUS       paus mellan anrop.
 ------------------------------------------------------------------------ */
-const MAX_ANROP  = 100;
+const MAX_ANROP  = 100;   /* varje artist kostar 1 anrop när ID:t är cachat,
+                             2 första gången. Växer listan växer kvotbehovet. */
 const MAX_VANTAN = 30;
 const PAUS       = 300;
 
