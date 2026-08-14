@@ -79,32 +79,45 @@ h1{
 h1 em{font-style:normal;color:var(--raw)}
 .lede{color:var(--muted);max-width:46ch;font-size:15px}
 
-/* ---------- bpm-linjal ---------- */
-.ruler{margin-top:42px;position:relative;height:208px;display:flex;align-items:flex-end;padding-bottom:26px}
-.ruler-line{position:relative;width:100%;height:1px;background:var(--line)}
-.tick{position:absolute;top:0;width:1px;height:6px;background:var(--line)}
-.tick b{
-  position:absolute;top:9px;left:50%;transform:translateX(-50%);
-  font-family:var(--data);font-size:10px;color:var(--muted);font-weight:400;
+/* ---------- tidslinjen ---------- */
+.tl{margin-top:40px;position:relative;height:216px;display:flex;align-items:flex-end;padding:0 6px 30px}
+.tl-line{position:relative;width:100%;height:1px;background:var(--line)}
+.tl-tick{position:absolute;top:0;width:1px;height:6px;background:var(--line)}
+.tl-tick b{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  font-family:var(--data);font-size:10px;color:var(--muted);font-weight:400;white-space:nowrap;
 }
-.dot{
+.tl-tick.start b{left:0;transform:none}
+.tl-tick.slut b{left:auto;right:0;transform:none}
+.tl-now{position:absolute;bottom:0;width:1px;background:var(--bone);opacity:.28}
+.tl-now b{
+  position:absolute;top:-2px;left:50%;transform:translateX(-50%);
+  background:var(--ink);padding:0 6px;
+  font-family:var(--data);font-size:10px;letter-spacing:.14em;color:var(--bone);opacity:.8;font-weight:400;
+}
+.tl-dot{
   position:absolute;bottom:0;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;
-  animation:rise .5s cubic-bezier(.2,.8,.2,1) backwards;
+  animation:rise .55s cubic-bezier(.2,.8,.2,1) backwards;
 }
-.dot i{display:block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
-.dot u{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--c));text-decoration:none;opacity:.5}
-.dot em{
+.tl-dot i{display:block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
+.tl-dot u{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--c));text-decoration:none;opacity:.55}
+.tl-dot em{
   font-family:var(--data);font-style:normal;font-size:9px;color:var(--muted);
   white-space:nowrap;margin-bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);
-  max-height:110px;overflow:hidden;
+  max-height:118px;overflow:hidden;
 }
+.tl-dot.soon i{background:none;border:2px solid var(--c);box-shadow:0 0 12px var(--c)}
 @keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1}}
-.ruler-legend{
-  display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;
+.tl-key{
+  display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;
   font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
 }
-.ruler-legend b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.tl-key b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.tl-empty{
+  border:1px dashed var(--line);padding:26px;text-align:center;
+  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+}
 
 /* ---------- sektioner ---------- */
 section{padding:52px 0;border-bottom:1px solid var(--line)}
@@ -243,10 +256,31 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .callout.warn{border-left-color:var(--uptempo);background:#1D1206}
 .callout.warn b{color:var(--uptempo)}
 
+/* Kolofon — signaturrad längst ner. Sätts som en teknisk uppgift, inte som
+   en hälsning: namn till vänster, ort till höger, tunn linje över. */
+.colophon{
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  margin-top:28px;padding-top:16px;border-top:1px solid var(--line);
+}
+.colophon .by{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);
+  transition:color .25s ease;
+}
+.colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
+.colophon .loc{
+  font-family:var(--data);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#4E4467;white-space:nowrap;
+}
+
+.status{margin-top:14px;font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175}
+.status.varning{color:var(--uptempo)}
+
 footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:11px;letter-spacing:.06em;line-height:1.8}
 
 @media (max-width:640px){
-  .ruler{height:158px}
+  .tl{height:168px}
+  .tl-dot em{max-height:84px;font-size:8px}
   .dot em{max-height:76px;font-size:8px}
   .rel .artist{font-size:17px}
   .ev{grid-template-columns:52px 1fr;gap:12px}
@@ -262,6 +296,29 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
+}
+
+/* ---------- kartan ---------- */
+.mapwrap{
+  border:1px solid var(--line);background:var(--ink);
+  margin-top:20px;overflow:hidden;
+}
+.mapwrap svg{display:block;width:100%;height:auto}
+.mapwrap .lbl{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;fill:var(--muted);
+}
+.mapwrap .lbl.dark{fill:var(--ink)}
+.mapwrap .big{
+  font-family:var(--display);font-weight:900;font-size:28px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .mid{
+  font-family:var(--display);font-weight:700;font-size:19px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .dist text{
+  font-family:var(--data);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
 }
 
 /* ---------- festivalväljare ---------- */
@@ -502,8 +559,11 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 
 <footer>
   <div class="wrap">
-    HARDLIST — byggd i Motala.<br>
     Regler ändras varje år. Kolla alltid arrangörens egen sida innan du åker.
+    <div class="colophon">
+      <span class="by">Jonathan H</span>
+      <span class="loc">Motala · SE</span>
+    </div>
   </div>
 </footer>
 
