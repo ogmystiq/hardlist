@@ -257,21 +257,17 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .callout.warn b{color:var(--uptempo)}
 
 /* Kolofon — signaturrad längst ner. Sätts som en teknisk uppgift, inte som
-   en hälsning: namn till vänster, ort till höger, tunn linje över. */
+   en hälsning: bara namnet, med en tunn linje över. */
 .colophon{
-  display:flex;align-items:baseline;justify-content:space-between;gap:16px;
   margin-top:28px;padding-top:16px;border-top:1px solid var(--line);
 }
 .colophon .by{
+  display:inline-block;
   font-family:var(--display);font-weight:900;text-transform:uppercase;
   font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);
   transition:color .25s ease;
 }
 .colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
-.colophon .loc{
-  font-family:var(--data);font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:#4E4467;white-space:nowrap;
-}
 
 .status{margin-top:14px;font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175}
 .status.varning{color:var(--uptempo)}
@@ -567,10 +563,9 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 
 <footer>
   <div class="wrap">
-    Saknas något i ordlistan? <a href="mailto:hej@example.se">Tipsa här.</a>
+    Saknas något i ordlistan? <a href="mailto:hardlisthelp@gmail.com">Tipsa här.</a>
     <div class="colophon">
       <span class="by">Jonathan H</span>
-      <span class="loc">Motala · SE</span>
     </div>
   </div>
 </footer>
