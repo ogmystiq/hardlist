@@ -453,8 +453,9 @@ if (!ID || !SECRET) {
   process.exit(1);
 }
 
-const STATE_FIL = resolve(ROOT, 'data/artist-ids.json');
-const REL_FIL   = resolve(ROOT, 'data/releases.json');
+const STATE_FIL  = resolve(ROOT, 'data/artist-ids.json');
+const REL_FIL    = resolve(ROOT, 'data/releases.json');
+const STATUS_FIL = resolve(ROOT, 'data/status.json');
 
 let state = { ids: {}, nextIndex: 0 };
 let anrop = 0;
@@ -636,6 +637,17 @@ async function run() {
   const out = [...alla.values()].sort((a, b) => (a.date < b.date ? 1 : -1));
   await skrivJson(REL_FIL, out);
   await skrivJson(STATE_FIL, state);
+
+  /* Hälsostämpel. Sajten visar den i sidfoten, så en workflow som tyst slutat
+     fungera syns direkt istället för att sajten bara ser normal ut. */
+  await skrivJson(STATUS_FIL, {
+    uppdaterad: new Date().toISOString(),
+    artister: ARTISTS.length,
+    cachade: Object.keys(state.ids).length,
+    releaser: out.length,
+    anrop,
+    avbrott: stopp ? stopp.message : null
+  });
 
   console.log(
     `\n${klara}/${ARTISTS.length} artister denna körning, ${anrop} API-anrop, ` +
