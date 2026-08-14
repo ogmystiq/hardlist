@@ -141,14 +141,15 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
    MAX_ANROP  hårt tak på antal API-anrop per körning. Nås det sparar
               skriptet det den hunnit och slutar. Artisterna roteras mellan
               körningar så alla kommer med över tid.
+              OBS: dagskvoten går sönder runt 200 anrop. Kör en gång per dygn.
    MAX_VANTAN ber Spotify oss vänta längre än så avbryts körningen direkt
               istället för att ligga och hamra på kvoten.
    PAUS       paus mellan anrop.
 ------------------------------------------------------------------------ */
-const MAX_ANROP    = 150;   /* varje artist kostar 1 anrop när ID:t är cachat,
-                               2 första gången. Med 80 artister och full cache
-                               är ett helt varv 80 anrop. Växer listan växer
-                               kvotbehovet. */
+/* Uppmätt i praktiken: dagskvoten i Development Mode tar slut runt 200 anrop.
+   Taket ligger därför med marginal under det. Kör HÖGST EN GÅNG PER DYGN tills
+   artist-cachen är komplett — då kostar ett helt varv bara 80 anrop. */
+const MAX_ANROP    = 120;
 const MAX_VANTAN   = 180;   /* längsta enskilda väntan vi accepterar, sekunder */
 const TIDSBUDGET   = 8 * 60;/* hela körningen, sekunder. Under jobbets timeout. */
 const PAUS         = 300;
@@ -221,12 +222,14 @@ async function api(path, token, forsok = 0) {
        QUOTA_EXCEEDED  dagskvoten är slut. Väntan mäts i timmar och fler
                        försök gör bara saken värre. Avbryt.
        Vanlig 429      kortvarig rate limit, ofta 1-3 minuter. Vänta ut den. */
-    if (reason === 'QUOTA_EXCEEDED') {
+    /* Spotify sätter inte alltid reason-fältet, så väntetiden får avgöra.
+       Över en timme är det alltid dygnskvoten, aldrig en tillfällig broms. */
+    if (reason === 'QUOTA_EXCEEDED' || wait > 3600) {
       const tim = (wait / 3600).toFixed(1);
       throw new Stopp(
         `KVOTEN ÄR SLUT för dygnet. Spotify ber oss vänta ${wait}s (${tim}h). ` +
-        'Kvoten delas av alla dina Development Mode-appar och nollställs av sig ' +
-        'själv. Kör igen efter det, eller sänk MAX_ANROP.'
+        'Kör INTE igen förrän dess — varje försök är bortkastat. Kvoten delas av ' +
+        'alla dina Development Mode-appar och nollställs av sig själv.'
       );
     }
 
