@@ -574,14 +574,24 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
 
 const today = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
 
+/* new Date('2026-08-14') tolkas som UTC-midnatt. I svensk tid ligger det två
+   timmar fram, så dagens släpp hamnade felaktigt under "Kommande". Vi bygger
+   datumet lokalt istället. */
+function parseDate(s){
+  const [y, m, d] = String(s).split('-').map(Number);
+  return new Date(y, (m || 1) - 1, d || 1);
+}
+
+/* Räknas om vid varje sidladdning, så "Idag" blir "Igår" av sig självt. */
 function whenLabel(dateStr){
-  const d = new Date(dateStr); d.setHours(0,0,0,0);
+  const d = parseDate(dateStr);
   const days = Math.round((d - today()) / 86400000);
-  if (days === 0)  return 'Idag';
-  if (days === 1)  return 'Imorgon';
-  if (days > 1  && days <= 13) return 'Om ' + days + ' dagar';
-  if (days > 13) return 'Om ' + Math.round(days/7) + ' veckor';
-  if (days === -1) return 'Igår';
+  if (days === 0)   return 'Idag';
+  if (days === 1)   return 'Imorgon';
+  if (days <= 13 && days > 1) return 'Om ' + days + ' dagar';
+  if (days > 13)    return 'Om ' + Math.round(days / 7) + ' veckor';
+  if (days === -1)  return 'Igår';
+  if (days >= -13)  return Math.abs(days) + ' dagar sedan';
   return d.getDate() + ' ' + MONTHS[d.getMonth()];
 }
 
@@ -652,7 +662,7 @@ function drawReleases(){
   const list = document.getElementById('relList');
   const grans = new Date(today()); grans.setDate(grans.getDate() - DAGAR_VISAS);
   const items = (filter === 'all' ? releases : releases.filter(r => r.genre === filter))
-    .filter(r => new Date(r.date) >= grans);
+    .filter(r => parseDate(r.date) >= grans);
   document.getElementById('relCount').textContent = items.length + ' spår';
 
   if (!releases.length){
@@ -668,8 +678,8 @@ function drawReleases(){
   const newest  = (a,b) => a.date < b.date ? 1 : -1;   // nyast först
   const soonest = (a,b) => a.date < b.date ? -1 : 1;   // närmast i tiden först
 
-  const kommande = items.filter(r => new Date(r.date) > t).sort(soonest);
-  const nyss     = items.filter(r => { const d = new Date(r.date); return d <= t && d >= week; }).sort(newest);
+  const kommande = items.filter(r => parseDate(r.date) > t).sort(soonest);
+  const nyss     = items.filter(r => { const d = parseDate(r.date); return d <= t && d >= week; }).sort(newest);
 
   let html = '';
   if (kommande.length) html += '<p class="group-label">Kommande</p>' + kommande.map(r => relCard(r, true)).join('');
@@ -687,7 +697,7 @@ function drawEvents(){
 
   /* Kalendern visar bara event med bekräftat datum som inte passerat. */
   const items = iRegion
-    .filter(e => e.date && new Date(e.date) >= t)
+    .filter(e => e.date && parseDate(e.date) >= t)
     .sort((a,b) => a.date < b.date ? -1 : 1);
 
   /* Återkommande event utan släppt datum hamnar i bevakningslistan. */
@@ -712,7 +722,7 @@ function drawEvents(){
   }
 
   list.innerHTML = items.map(e => {
-    const d = new Date(e.date);
+    const d = parseDate(e.date);
     return '<article class="ev">' +
       '<div class="date"><b>' + d.getDate() + '</b>' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() + '</div>' +
       '<div><div class="name">' + esc(e.name) + '</div>' +
