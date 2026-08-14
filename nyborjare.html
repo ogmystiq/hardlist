@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nybörjarguide — HARDLIST</title>
-<meta name="description" content="Hardstyle för nybörjare: subgenrer, artister du måste kunna, klassiska låtar och all slang.">
+<meta name="description" content="Hardstyle för nybörjare: var stilen kommer ifrån, vad subgenrerna heter, artisterna som gäller, klassikerna alla kan och all slang.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -21,6 +21,7 @@
   --raw:#FF2E63;
   --uptempo:#FFB020;
   --hardcore:#8B5CFF;
+  --techno:#9BA8BE;   /* industrial / hard techno — medvetet metallisk, ligger utanför de fyra */
 
   --display:'Big Shoulders Display',system-ui,sans-serif;
   --body:'Space Grotesk',system-ui,sans-serif;
@@ -164,6 +165,17 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .ev .ticket:hover{background:var(--bone);color:var(--ink)}
 .ev .tba{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.12em}
 
+.watch{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:6px}
+.witem{background:var(--ink);padding:13px 15px}
+.witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
+.witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
+.watch-head{
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:34px 0 4px;display:flex;align-items:center;gap:12px;
+}
+.watch-head::after{content:'';flex:1;height:1px;background:var(--line)}
+.watch-note{font-size:13px;color:var(--muted);margin-bottom:14px;max-width:60ch}
+
 .empty{border:1px dashed var(--line);padding:28px;text-align:center;color:var(--muted);font-size:14px}
 .empty b{display:block;color:var(--bone);font-family:var(--display);font-size:22px;text-transform:uppercase;margin-bottom:6px}
 
@@ -201,15 +213,35 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .gcard .bpm{font-family:var(--data);font-size:10px;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:8px}
 .gcard p{font-size:13px;color:#CFC5E0;margin:0}
 
-.tracks{list-style:none;counter-reset:t}
+.tracks{list-style:none;counter-reset:t;max-width:none}
 .tracks li{
-  counter-increment:t;display:grid;grid-template-columns:32px 1fr;gap:12px;
-  padding:11px 0;border-top:1px solid var(--line);align-items:baseline;
+  counter-increment:t;
+  display:grid;grid-template-columns:34px 1fr;column-gap:14px;
+  padding:14px 0;border-top:1px solid var(--line);margin-bottom:0;
+}
+/* Måste nolla position/width/height/background — annars ärvs de från
+   .prose li::before och lägger numret ovanpå texten. */
+.tracks li::before{
+  content:counter(t,decimal-leading-zero);
+  position:static;width:auto;height:auto;background:none;
+  grid-column:1;grid-row:1;padding-top:4px;
+  font-family:var(--data);font-size:11px;color:var(--muted);
 }
 .tracks li:last-child{border-bottom:1px solid var(--line)}
-.tracks li::before{content:counter(t,decimal-leading-zero);font-family:var(--data);font-size:11px;color:var(--muted)}
-.tracks b{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:18px;letter-spacing:.01em}
-.tracks span{color:var(--muted);font-size:13px;display:block}
+.tracks b{
+  grid-column:2;grid-row:1;
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:19px;line-height:1.1;letter-spacing:.01em;color:var(--bone);
+}
+.tracks i{
+  grid-column:2;grid-row:2;font-style:normal;
+  font-family:var(--data);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--c,var(--muted));margin-top:5px;
+}
+.tracks span{grid-column:2;grid-row:3;color:var(--muted);font-size:13px;margin-top:4px}
+
+.callout.warn{border-left-color:var(--uptempo);background:#1D1206}
+.callout.warn b{color:var(--uptempo)}
 
 footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:11px;letter-spacing:.06em;line-height:1.8}
 
@@ -223,6 +255,8 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   .top .wrap{height:52px}
   .logo{font-size:22px}
   .rule{grid-template-columns:1fr;gap:2px}
+  .tracks li{grid-template-columns:26px 1fr;column-gap:10px}
+  .tracks b{font-size:17px}
   .term{grid-template-columns:1fr;gap:2px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -303,40 +337,60 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
     <div class="wrap">
       <p class="eyebrow">Nybörjare</p>
       <h1>Från noll<br><em>till första ravet.</em></h1>
-      <p class="lede">Vad de olika stilarna heter, vilka artister som spelar överallt, låtarna hela publiken kan — och all slang så du fattar vad folk säger.</p>
+      <p class="lede">Var stilen kommer ifrån, vad de olika grenarna heter, vilka artister som spelar överallt, låtarna hela fältet kan — och all slang så du fattar vad folk säger.</p>
     </div>
   </div>
 
   <section>
+    <div class="wrap prose">
+      <h2>Varifrån det kommer</h2>
+      <p>Hardstyle uppstod i Nederländerna kring år 2000, i glappet mellan hardcore techno och trance. Producenter som The Prophet, Luna, Zany och DJ Isaac spelade i Rotterdam och Eindhoven och började <strong>sakta ner den 160+ BPM snabba hardcore-kicken till 140–150</strong>, och lade trance-liknande synthar ovanpå. Det blev en egen sak.</p>
+      <p>Q-dance varumärkesskyddade ordet "hardstyle" den 4 juli 2002 och körde första Defqon.1 året därpå. Sedan dess har de i praktiken styrt scenens utveckling.</p>
+      <p>Hardcore är äldre och har en helt annan historia. Den föddes i Rotterdam 1991–92 som ett medvetet hårdare och aggressivare svar på husmusiken i Amsterdam. Paul Elstak, DJ Dano, DJ Rob och Euromasters var först — Euromasters spår "Rotterdam Hardcore" från 1992 satte namn på hela grejen. Hardcore kallas också <strong>gabber</strong>, vilket är nederländsk slang för kompis.</p>
+      <p>Runt 2010 delade hardstylen upp sig. Melodierna blev viktigare för många, och det blev <strong>euphoric</strong>. Samtidigt ville en stor del av publiken åt motsatt håll, mörkare och hårdare, och då växte <strong>raw</strong> fram. Den uppdelningen håller fortfarande.</p>
+    </div>
+  </section>
+
+  <section>
     <div class="wrap">
       <h2>Stilarna</h2>
-      <p class="lede" style="margin:12px 0 24px">Allt inom hårdare stilar delas upp efter tempo. Vet du BPM vet du ungefär vad du får.</p>
+      <p class="lede" style="margin:12px 0 24px">De hårdare stilarna sorteras efter tempo. Vet du BPM vet du ungefär vad du får.</p>
 
       <div class="genres">
         <article class="gcard" style="--c:var(--euphoric)">
           <h3>Euphoric</h3>
-          <span class="bpm">150 BPM</span>
-          <p>Melodiskt, ljusa synthar, ofta sång. Den "snälla" hardstylen och den lättaste ingången. Kännetecknas av reverse bass — den studsande basgången mellan kickarna.</p>
+          <span class="bpm">≈150 BPM</span>
+          <p>Melodisk hardstyle med ljusa synthar, ofta riktig sång och tydliga refränger. Kicken pitchas kraftigt så att den bär melodin. Det här är den lättaste ingången — låtarna är byggda som poplåtar med hårda trummor. Här hittar du också <em>reverse bass</em>, se nedan.</p>
         </article>
         <article class="gcard" style="--c:var(--raw)">
-          <h3>Raw</h3>
+          <h3>Raw / rawstyle</h3>
           <span class="bpm">150–160 BPM</span>
-          <p>Mörkare, hårdare kick, screeches istället för melodier. Ingen sång, mer aggression. Den största stilen på festival idag.</p>
+          <p>Mörkare och hårdare. Melodin är nedtonad eller helt borta och ersatt av <em>screeches</em> — gnisslande, dissonanta ljud. Lånar från mainstream hardcore, gabber och den tidiga hardstylen. Störst på festival idag, och den gren som växt mest sedan 2010.</p>
         </article>
         <article class="gcard" style="--c:var(--uptempo)">
           <h3>Uptempo</h3>
           <span class="bpm">190–210 BPM</span>
-          <p>Snabbt, distade kickar, ren energi. Har vuxit snabbast de senaste åren. Egna stages på de flesta festivaler.</p>
+          <p>Snabbt och distat, ren energi utan omvägar. Ligger tempomässigt närmare hardcore än hardstyle men har växt fram ur raw-scenen. Har egna stages på i princip alla stora festivaler nu.</p>
+        </article>
+        <article class="gcard" style="--c:var(--techno)">
+          <h3>Hard techno</h3>
+          <span class="bpm">140–160 BPM</span>
+          <p>Inte en gren av hardstyle utan en egen värld — industrial techno med hårda, distade kickar. Har vuxit in i hard dance-scenen de senaste åren och har egna stages på bland annat Decibel. Snabbare och tyngre än vanlig techno, men bygger på repetition istället för drop.</p>
         </article>
         <article class="gcard" style="--c:var(--hardcore)">
-          <h3>Hardcore</h3>
+          <h3>Hardcore / gabber</h3>
           <span class="bpm">180–200 BPM</span>
-          <p>Gabber-arvet. Äldst av alla, rå och kompromisslös. Frenchcore är den franska grenen, ännu snabbare och mer rullande.</p>
+          <p>Äldst av alla, från Rotterdam 1991. Rå, snabb och kompromisslös, med egna label och egen festivalkrets. <strong>Frenchcore</strong> är den franska grenen — ännu snabbare och mer rullande. <strong>Terror</strong> är den extrema änden.</p>
         </article>
       </div>
 
       <div class="callout">
-        <b>Enklaste testet</b>
+        <b>Reverse bass — det som gör hardstyle till hardstyle</b>
+        Kicken slår på ettan. Direkt efter, på offbeaten, kommer en distad bas i samma taktslag. Det ger den där studsande, "framåtlutande" känslan som ingen annan genre har. Hör du det är det hardstyle, inte hardcore.
+      </div>
+
+      <div class="callout">
+        <b>Enklaste testet på plats</b>
         Kan du nynna melodin är det euphoric. Låter det som en motorsåg är det raw. Går det för snabbt för att gå i takt är det uptempo eller hardcore.
       </div>
     </div>
@@ -350,50 +404,67 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
       <h4>Euphoric</h4>
       <ul>
         <li><strong>Headhunterz</strong> och <strong>Wildstylez</strong> — de två största namnen i stilens historia. Tillsammans är de Project One.</li>
-        <li><strong>Brennan Heart</strong>, <strong>Sound Rush</strong>, <strong>Devin Wild</strong>, <strong>Refuzion</strong>, <strong>Da Tweekaz</strong>.</li>
-        <li><strong>D-Block &amp; S-te-Fan</strong>, <strong>Coone</strong>, <strong>Atmozfears</strong>.</li>
+        <li><strong>Brennan Heart</strong> — pionjär för den sångbara hardstylen och den som drog in en ny publik. Driver labeln I AM HARDSTYLE.</li>
+        <li><strong>Da Tweekaz</strong>, <strong>Sound Rush</strong>, <strong>Devin Wild</strong>, <strong>Refuzion</strong>, <strong>Coone</strong>.</li>
+        <li><strong>D-Block &amp; S-te-Fan</strong>, <strong>Atmozfears</strong>, <strong>Noisecontrollers</strong>, <strong>Showtek</strong> (numera i andra genrer, men grundpelare).</li>
       </ul>
 
       <h4>Raw</h4>
       <ul>
         <li><strong>Rebelion</strong>, <strong>Sub Zero Project</strong>, <strong>Warface</strong>, <strong>D-Sturb</strong>, <strong>Act of Rage</strong>.</li>
-        <li><strong>Ran-D</strong>, <strong>Radical Redemption</strong>, <strong>Rooler</strong>, <strong>Malice</strong>, <strong>Frequencerz</strong>.</li>
+        <li><strong>Ran-D</strong>, <strong>B-Front</strong>, <strong>Radical Redemption</strong>, <strong>Adaro</strong>, <strong>Frequencerz</strong>.</li>
+        <li><strong>Rooler</strong>, <strong>Malice</strong>, <strong>Sickmode</strong>, <strong>Rejecta</strong>, <strong>Vertile</strong>, <strong>Killshot</strong>.</li>
       </ul>
 
       <h4>Uptempo</h4>
       <ul>
-        <li><strong>Yoshiko</strong>, <strong>Vieze Asbak</strong>, <strong>Kill The Bass</strong>, <strong>Bloodlust</strong>.</li>
+        <li><strong>Yoshiko</strong>, <strong>Kill The Bass</strong>, <strong>Bloodlust</strong>, <strong>Deadly Guns</strong>, <strong>Nolz</strong>, <strong>Tha Watcher</strong>.</li>
       </ul>
 
       <h4>Hardcore och frenchcore</h4>
       <ul>
-        <li><strong>Angerfist</strong> — den mest kända hardcore-artisten som finns.</li>
-        <li><strong>Dr. Peacock</strong>, <strong>Partyraiser</strong>, <strong>N-Vitral</strong>, <strong>Miss K8</strong>.</li>
+        <li><strong>Angerfist</strong> — det mest kända hardcore-namnet som finns.</li>
+        <li><strong>Miss K8</strong>, <strong>Nosferatu</strong>, <strong>Tha Playah</strong>, <strong>N-Vitral</strong>, <strong>Partyraiser</strong>.</li>
+        <li><strong>Paul Elstak</strong> — en av grundarna från 1991, spelar fortfarande.</li>
+        <li><strong>Dr. Peacock</strong>, <strong>Sefa</strong>, <strong>Billx</strong> för frenchcore.</li>
+      </ul>
+
+      <h4>Utanför facken</h4>
+      <ul>
+        <li><strong>Vieze Asbak</strong> hör du överallt men han är inte hardstyle. Grunden är <strong>industrial techno</strong>, med inslag av hardcore och uptempo och massor av internetkultur ovanpå. Han och Pestcore-kollektivet kallar det <em>memetechno</em>, ibland "troll &amp; bass". Egen scen, egen publik, samma festivaler.</li>
+        <li>Övrig <strong>hard techno</strong> hör du allt oftare på hard dance-festivaler. Det är den snabbast växande grannen till scenen.</li>
       </ul>
 
       <div class="callout">
-        <b>Snabbaste vägen in</b>
-        Kolla årets anthem för Defqon.1, Decibel och Qlimax. Varje festival släpper en officiell låt varje år, alla kan dem, och de fångar exakt var scenen står just nu.
+        <b>Börja här om du bara har tio minuter</b>
+        Lyssna på årets anthem för Defqon.1 och Decibel. Varje festival släpper en officiell låt varje år, hela publiken kan den, och den fångar exakt var scenen står just nu. Sen tar du klassikerlistan nedan.
       </div>
     </div>
   </section>
 
   <section>
     <div class="wrap prose">
-      <h2>Låtarna alla kan</h2>
-      <p>Kommer de här på en festival sjunger eller skriker hela fältet med. Lär dig dem innan du åker.</p>
+      <h2>Klassikerna</h2>
+      <p>Gamla låtar som hela fältet fortfarande sjunger eller skriker med i. De flesta av dem ligger högt på Hardstyle Top 100, listan scenen själv röstar fram. Lär dig dem innan du åker.</p>
       <ol class="tracks">
-        <li><b>Headhunterz — Dragonborn</b><span>Euphoric. Låten som definierade en hel era.</span></li>
-        <li><b>Wildstylez — Year of Summer</b><span>Euphoric med sång. Den alla kan texten till.</span></li>
-        <li><b>Project One — Rate Reducer</b><span>Headhunterz och Wildstylez ihop. Kult.</span></li>
-        <li><b>Brennan Heart — Imaginary</b><span>Klassisk melodisk hardstyle.</span></li>
-        <li><b>Ran-D — Zombie</b><span>Raw. Hörs på varje festival, år efter år.</span></li>
-        <li><b>Sub Zero Project — The Contagion</b><span>Modern raw i sin renaste form.</span></li>
-        <li><b>Da Tweekaz — Frozen</b><span>Bootleg-kulturen i ett nötskal. Alla vet vad som kommer.</span></li>
-        <li><b>Angerfist — Raise Your Fist</b><span>Hardcore. Namnet säger vad du ska göra.</span></li>
-        <li><b>Dr. Peacock — Trip to Poland</b><span>Frenchcore. Landet spelar mindre roll än känslan.</span></li>
-        <li><b>Vieze Asbak — KISS ME AGAIN</b><span>Uptempo. Den nya generationens allsång.</span></li>
+        <li><b>Headhunterz, Wildstylez &amp; Noisecontrollers — Tonight</b><i>2009 · euphoric</i><span>Har legat först på Hardstyle Top 100. Släppt 2009 och spelad sönder sedan dess, utan att någon tröttnat.</span></li>
+        <li><b>B-Front &amp; Frontliner — Magic</b><i>raw</i><span>Bevis på att raw också kan bli allsång.</span></li>
+        <li><b>Showtek — FTS</b><i>tidig hardstyle</i><span>Från när stilen fortfarande var ung. Rakt, grovt och odödligt.</span></li>
+        <li><b>Brennan Heart ft. Jonathan Mendelsohn — Imaginary</b><i>euphoric</i><span>Den melodiska hardstylen i sin renaste form.</span></li>
+        <li><b>Headhunterz — Scrap Attack</b><i>Defqon.1 2009 anthem</i><span>Ett av de mest älskade festival-anthemen någonsin.</span></li>
+        <li><b>Brennan Heart &amp; Wildstylez — Lose My Mind</b><i>2012 · euphoric</i><span>Refrängen alla kan utantill. Över åtta miljoner visningar på YouTube redan tidigt, ovanligt för hardstyle.</span></li>
+        <li><b>Wasted Penguinz — Melancholia</b><i>euphoric</i><span>Svenskarnas bidrag till kanonen.</span></li>
+        <li><b>Atmozfears ft. David Spekter — Release</b><i>euphoric</i><span>Sång och kick i perfekt balans.</span></li>
+        <li><b>D-Block &amp; S-te-Fan — Music Made Addict</b><i>hardstyle</i><span>Titeln beskriver ungefär vad som händer med folk.</span></li>
+        <li><b>Headhunterz — The Sacrifice</b><i>hardstyle</i><span>En av de mest ikoniska låtarna som gjorts i genren.</span></li>
+        <li><b>Showtek — Colours of the Harder Styles</b><i>Defqon.1 2006 anthem</i><span>Äldst i listan. Melodin känner varenda hard dance-fan igen.</span></li>
+        <li><b>Headhunterz — Dragonborn</b><i>euphoric</i><span>Definierade en hel era av stilen.</span></li>
+        <li><b>Ran-D — Living For The Moment</b><i>raw</i><span>Ran-D:s mest spelade, år efter år.</span></li>
+        <li><b>Brennan Heart &amp; Coone ft. Max P — Fight For Something</b><i>2019 · 150 BPM</i><span>Nyare men redan klassiker. Släppt på I AM HARDSTYLE i november 2019.</span></li>
       </ol>
+
+      <h3>Hardcore-kanonen</h3>
+      <p>Hardcore har en egen historia och egna klassiker. Vill du förstå var allt började är <strong>Euromasters — Rotterdam Hardcore</strong> från 1992 startpunkten. Den satte namn på genren. Därifrån går vägen via <strong>Paul Elstak</strong>, <strong>Neophyte</strong> och <strong>Angerfist</strong> fram till dagens uptempo.</p>
     </div>
   </section>
 
@@ -401,23 +472,25 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
     <div class="wrap">
       <h2>Slangen</h2>
       <dl class="terms">
-        <div class="term"><dt>Kick</dt><dd>Bastrumman. Hela stilen bygger på den — hur den är formad avgör vilken subgenre du lyssnar på.</dd></div>
+        <div class="term"><dt>Kick</dt><dd>Bastrumman. Hela stilen bygger på den, och hur den är formad avgör vilken subgenre du lyssnar på.</dd></div>
+        <div class="term"><dt>Reverse bass</dt><dd>Den distade basen på offbeaten, i samma taktslag som kicken. Hardstyles signatur.</dd></div>
+        <div class="term"><dt>Screech</dt><dd>Det gnisslande, dissonanta ljudet i raw. Ersätter melodin.</dd></div>
         <div class="term"><dt>Drop</dt><dd>När kicken kommer in efter uppbyggnaden. Det är det du väntar på.</dd></div>
-        <div class="term"><dt>Reverse bass</dt><dd>Den studsande basgången mellan kickarna. Euphoric-signaturen.</dd></div>
-        <div class="term"><dt>Screech</dt><dd>Det gnisslande, skärande ljudet i raw. Ersätter melodin.</dd></div>
         <div class="term"><dt>Kickroll</dt><dd>När kicken hackas upp i snabb följd, ofta precis före droppet.</dd></div>
         <div class="term"><dt>Anthem</dt><dd>Festivalens officiella låt för året. Spelas alltid, alla kan den.</dd></div>
-        <div class="term"><dt>Endshow</dt><dd>Avslutningen på sista dagen. Fyrverkerier, pyro och den låt alla väntat på.</dd></div>
+        <div class="term"><dt>Endshow</dt><dd>Avslutningen på sista dagen. Pyro, fyrverkerier och den låt alla väntat på.</dd></div>
         <div class="term"><dt>Track ID</dt><dd>Att fråga vad en okänd låt heter. "ID?" i kommentarsfältet betyder exakt det.</dd></div>
         <div class="term"><dt>Edit / bootleg</dt><dd>Inofficiell remix. Ofta bara spelad live, aldrig släppt.</dd></div>
-        <div class="term"><dt>Hakken</dt><dd>Den nederländska dansstilen — snabba fotsteg på stället. Gabber-arvet.</dd></div>
+        <div class="term"><dt>Hakken</dt><dd>Den nederländska dansstilen — snabba fotsteg på stället. Kommer från gabber-scenen.</dd></div>
         <div class="term"><dt>Shuffle</dt><dd>Den andra stora dansstilen. Glidande, mer i hela kroppen.</dd></div>
         <div class="term"><dt>Gabber</dt><dd>Både musiken och publiken. Nederländska för kompis.</dd></div>
-        <div class="term"><dt>Q-dance</dt><dd>Arrangören bakom Defqon.1 och Qlimax. Största namnet i branschen.</dd></div>
-        <div class="term"><dt>Warriors</dt><dd>Vad Defqon.1 kallar sin publik.</dd></div>
+        <div class="term"><dt>Q-dance</dt><dd>Arrangören bakom Defqon.1. Varumärkesskyddade ordet hardstyle 2002.</dd></div>
+        <div class="term"><dt>Warriors</dt><dd>Vad Defqon.1 kallar sin publik. "Forever One Tribe" är deras devis.</dd></div>
+        <div class="term"><dt>Holy Grounds</dt><dd>Defqon.1:s namn på festivalområdet.</dd></div>
+        <div class="term"><dt>Wasted Lands</dt><dd>Campingen på Defqon.1.</dd></div>
         <div class="term"><dt>Power Hour</dt><dd>Defqon.1-tradition på lördagen. Allt annat stannar.</dd></div>
         <div class="term"><dt>Totem</dt><dd>Flaggan eller skylten gänget höjer så ni hittar varandra i folkhavet.</dd></div>
-        <div class="term"><dt>Wasted Lands</dt><dd>Campingen på Defqon.1.</dd></div>
+        <div class="term"><dt>Terror</dt><dd>Den extrema änden av hardcore. Snabbare och hårdare än allt annat.</dd></div>
       </dl>
     </div>
   </section>
@@ -426,8 +499,8 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
     <div class="wrap prose">
       <h2>Fyra saker till första gången</h2>
       <ul>
-        <li><strong>Öronproppar.</strong> Om du bara tar med en sak, ta med det här. Ljudnivån ligger långt över vad hörseln klarar en hel helg.</li>
-        <li><strong>Drick vatten.</strong> Det finns påfyllningsstationer överallt och de är gratis. De flesta som hamnar hos sjukvården är uttorkade, inget annat.</li>
+        <li><strong>Öronproppar.</strong> Om du bara tar med en sak, ta med det här. Ljudnivån ligger långt över vad hörseln klarar en hel helg, och den kommer inte tillbaka.</li>
+        <li><strong>Drick vatten.</strong> Påfyllningsstationerna är gratis. De flesta som hamnar hos sjukvården är uttorkade, inget annat. Defqon.1 fick ställas in helt 2026 på grund av värme — ta det på allvar.</li>
         <li><strong>Bestäm en mötesplats</strong> innan ni går in. Mobilnätet dör när tiotusen personer står på samma åker.</li>
         <li><strong>Lämna aldrig någon ensam</strong> som mår dåligt. Ta med dem till sjukvårdstältet — de får hjälp, inte problem.</li>
       </ul>
