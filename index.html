@@ -447,7 +447,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
         <button class="chip" data-g="hardcore" aria-pressed="false">Hardcore</button>
         <button class="chip" data-g="techno" aria-pressed="false">Hard techno</button>
       </div>
-      <p class="filter-note">Sorteras alltid efter datum. Filtret ändrar bara vad som visas.</p>
+      <p class="filter-note">Kommande släpp och de senaste 7 dagarna, i datumordning. Tryck på en rubrik för att fälla ut.</p>
       <input class="sok" id="sok" type="search" autocomplete="off"
              placeholder="Sök artist eller låt" aria-label="Sök bland releaserna">
       <div id="relList"></div>
@@ -859,41 +859,32 @@ function drawReleases(){
   const newest  = (a,b) => a.date < b.date ? 1 : -1;
   const soonest = (a,b) => a.date < b.date ? -1 : 1;
 
-  let html = '';
+  /* Allt blir fällbara sektioner — även Kommande, så den ingår i samma logik.
+     Bara den översta sektionen som faktiskt har låtar öppnas. Finns inga
+     kommande släpp blir den senaste dagen den öppna istället. */
+  const sektioner = [];
 
-  /* Kommande är alltid få — visas utan gruppering. */
   const kommande = items.filter(r => parseDate(r.date) > t).sort(soonest);
-  if (kommande.length){
-    html += '<p class="group-label">Kommande</p>' + kommande.map(r => relCard(r, true)).join('');
-  }
+  if (kommande.length) sektioner.push({ id:'kommande', rubrik:'Kommande', rader:kommande, soon:true });
 
-  /* Nyss släppt grupperas per dag. Med 333 artister blir listan annars
-     hundra rader lång och omöjlig att skanna. */
   const nyss = items.filter(r => parseDate(r.date) <= t).sort(newest);
-  if (nyss.length){
-    html += '<p class="group-label">Nyss släppt <span>senaste ' + DAGAR_VISAS + ' dagarna</span></p>';
+  const perDag = new Map();
+  nyss.forEach(r => {
+    if (!perDag.has(r.date)) perDag.set(r.date, []);
+    perDag.get(r.date).push(r);
+  });
+  [...perDag.keys()].sort((a,b) => a < b ? 1 : -1).forEach(datum =>
+    sektioner.push({ id:datum, rubrik:whenLabel(datum), rader:perDag.get(datum), soon:false }));
 
-    const perDag = new Map();
-    nyss.forEach(r => {
-      if (!perDag.has(r.date)) perDag.set(r.date, []);
-      perDag.get(r.date).push(r);
-    });
-
-    [...perDag.keys()].sort((a,b) => a < b ? 1 : -1).forEach((datum, i) => {
-      const rader = perDag.get(datum);
-      /* De två senaste dagarna är öppna. Söker man öppnas allt. */
-      const oppen = q ? true : (oppnaDagar.has(datum) || (i < 2 && !stangdaDagar.has(datum)));
-      html +=
-        '<button class="day" data-d="' + datum + '" aria-expanded="' + oppen + '">' +
-          '<span>' + whenLabel(datum) + '</span>' +
-          '<span class="antal">' + rader.length + '</span>' +
-          '<span class="linje"></span><span class="pil"></span>' +
-        '</button>' +
-        (oppen ? rader.map(r => relCard(r, false)).join('') : '');
-    });
-  }
-
-  list.innerHTML = html;
+  list.innerHTML = sektioner.map((s, i) => {
+    const oppen = q ? true : (oppnaDagar.has(s.id) || (i === 0 && !stangdaDagar.has(s.id)));
+    return '<button class="day" data-d="' + s.id + '" aria-expanded="' + oppen + '">' +
+             '<span>' + s.rubrik + '</span>' +
+             '<span class="antal">' + s.rader.length + '</span>' +
+             '<span class="linje"></span><span class="pil"></span>' +
+           '</button>' +
+           (oppen ? s.rader.map(r => relCard(r, s.soon)).join('') : '');
+  }).join('');
 }
 
 function drawEvents(){
