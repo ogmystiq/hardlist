@@ -99,7 +99,7 @@ const ARTISTS = [
   { name: 'N-Vitral',               genre: 'hardcore' },
   { name: 'Miss K8',                genre: 'hardcore' },
   { name: 'Neophyte',               genre: 'hardcore' },
-  { name: 'Mad Dog',                genre: 'hardcore' },
+  { name: 'DJ Mad Dog',                genre: 'hardcore' },
   { name: 'Nosferatu',              genre: 'hardcore' },
   { name: 'Tha Playah',             genre: 'hardcore' },
   { name: 'Furyan',                 genre: 'hardcore' },
@@ -457,7 +457,11 @@ const STATE_FIL  = resolve(ROOT, 'data/artist-ids.json');
 const REL_FIL    = resolve(ROOT, 'data/releases.json');
 const STATUS_FIL = resolve(ROOT, 'data/status.json');
 
-let state = { ids: {}, nextIndex: 0 };
+/* Höjs när cachen måste kastas. Version 1 sparade felmatchade artist-ID:n
+   (Killshot → Eminem, Malice → GACKT). Version 2 kräver exakt namnmatchning. */
+const CACHE_VERSION = 2;
+
+let state = { version: CACHE_VERSION, ids: {}, nextIndex: 0 };
 let anrop = 0;
 const T0 = Date.now();
 const forbrukat = () => Math.round((Date.now() - T0) / 1000);
@@ -552,20 +556,31 @@ async function api(path, token, forsok = 0) {
 
 const normalisera = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
 
-async function hittaId(name, token) {
+/* Spotify rankar sökträffar efter popularitet, inte efter hur väl namnet
+   stämmer. "Killshot" gav Eminem, "Malice" gav GACKT, "Yoshiko" gav Yoshiko Sai.
+   Därför: hämta tio träffar och kräv EXAKT namnmatchning. Hittas ingen sådan
+   hoppas artisten över helt — bättre att sakna en artist än att fylla flödet
+   med låtar från fel person. */
+async function hittaId(post, token) {
+  const { name, id, sok } = post;
+  if (id) return id;                       // manuellt fastnaglat Spotify-ID
   if (state.ids[name]) return state.ids[name];
-  const data = await api(`/search?q=${encodeURIComponent(name)}&type=artist&limit=1`, token);
-  const traff = data.artists?.items?.[0];
-  if (!traff) return null;
 
-  /* Spotify returnerar alltid närmaste träff. Stavar du fel i ARTISTS får du
-     alltså en helt annan artist, tyst. Flagga när namnen inte matchar. */
-  if (normalisera(traff.name) !== normalisera(name)) {
-    console.log(`  ⚠ "${name}" matchade "${traff.name}" — kontrollera stavningen`);
+  const fraga = sok || name;
+  const data = await api(
+    `/search?q=${encodeURIComponent(fraga)}&type=artist&limit=10`, token);
+  const traffar = data.artists?.items || [];
+  if (!traffar.length) return null;
+
+  const exakt = traffar.find(a => normalisera(a.name) === normalisera(name));
+  if (!exakt) {
+    console.log(`  ⚠ HOPPAR ÖVER "${name}" — ingen exakt träff. ` +
+                `Närmast: ${traffar.slice(0, 3).map(a => a.name).join(', ')}`);
+    return null;
   }
 
-  state.ids[name] = traff.id;
-  return traff.id;
+  state.ids[name] = exakt.id;
+  return exakt.id;
 }
 
 function relevant(dateStr) {
@@ -582,10 +597,19 @@ function relevant(dateStr) {
 const nyckel = r => `${r.artist} – ${r.title}`.toLowerCase();
 
 async function run() {
-  state = await lasJson(STATE_FIL, { ids: {}, nextIndex: 0 });
+  let forgiftad = false;
+  state = await lasJson(STATE_FIL, { version: CACHE_VERSION, ids: {}, nextIndex: 0 });
+
+  if (state.version !== CACHE_VERSION) {
+    console.log(`Cachen är från version ${state.version || 1}, nollställer. ` +
+                'Gamla felmatchningar rensas bort.');
+    state = { version: CACHE_VERSION, ids: {}, nextIndex: 0 };
+    forgiftad = true;
+  }
 
   /* Tidigare fynd behålls. Delkörningar får aldrig radera det som redan finns. */
-  const tidigare = await lasJson(REL_FIL, []);
+  const tidigare = forgiftad ? [] : await lasJson(REL_FIL, []);
+  if (forgiftad) console.log('Tidigare releaser kastas också — de kan komma från fel artister.');
   const alla = new Map(
     (Array.isArray(tidigare) ? tidigare : [])
       .filter(r => relevant(r.date))
@@ -601,7 +625,7 @@ async function run() {
     const { name, genre } = ARTISTS[i];
 
     try {
-      const id = await hittaId(name, token);
+      const id = await hittaId(ARTISTS[i], token);
       if (!id) { console.log(`✗ hittade inte ${name}`); klara++; continue; }
 
       const sida = await api(
