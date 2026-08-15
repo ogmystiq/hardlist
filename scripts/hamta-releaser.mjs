@@ -556,6 +556,9 @@ async function api(path, token, forsok = 0) {
 
 const normalisera = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
 
+/* Genretaggar som betyder att artisten hör hemma i den här scenen. */
+const HARD_GENRER = /hardstyle|hardcore|gabber|uptempo|frenchcore|hard techno|rawstyle|jumpstyle|terror|hard dance|hardtechno/i;
+
 /* Spotify rankar sökträffar efter popularitet, inte efter hur väl namnet
    stämmer. "Killshot" gav Eminem, "Malice" gav GACKT, "Yoshiko" gav Yoshiko Sai.
    Därför: hämta tio träffar och kräv EXAKT namnmatchning. Hittas ingen sådan
@@ -572,15 +575,29 @@ async function hittaId(post, token) {
   const traffar = data.artists?.items || [];
   if (!traffar.length) return null;
 
-  const exakt = traffar.find(a => normalisera(a.name) === normalisera(name));
-  if (!exakt) {
+  const exakta = traffar.filter(a => normalisera(a.name) === normalisera(name));
+  if (!exakta.length) {
     console.log(`  ⚠ HOPPAR ÖVER "${name}" — ingen exakt träff. ` +
                 `Närmast: ${traffar.slice(0, 3).map(a => a.name).join(', ')}`);
     return null;
   }
 
-  state.ids[name] = exakt.id;
-  return exakt.id;
+  /* Flera artister kan heta exakt likadant. "The Purge" finns både som
+     rawstyle-akt och som annat. Spotify taggar artister med genrer, så
+     föredra den som ligger i rätt scen. Saknas gerentaggar helt faller vi
+     tillbaka på den populäraste, som är den Spotify listar först. */
+  const traff = exakta.find(a =>
+    (a.genres || []).some(g => HARD_GENRER.test(g))) || exakta[0];
+
+  if (exakta.length > 1) {
+    const valdGenre = (traff.genres || []).find(g => HARD_GENRER.test(g));
+    console.log(`  ${valdGenre ? '·' : '⚠'} "${name}" finns i ${exakta.length} exemplar` +
+                (valdGenre ? ` — valde den taggad "${valdGenre}"`
+                           : ' — ingen är taggad hard dance, tog den populäraste. Kontrollera.'));
+  }
+
+  state.ids[name] = traff.id;
+  return traff.id;
 }
 
 function relevant(dateStr) {
