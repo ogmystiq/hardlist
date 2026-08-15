@@ -134,6 +134,34 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .group-label::after{content:'';flex:1;height:1px;background:var(--line)}
 .group-label span{color:#5C5175;letter-spacing:.1em}
 
+/* dagrubrik som går att fälla ihop */
+.day{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:12px;padding:0;margin:26px 0 10px;
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);transition:color .15s;
+}
+.day:first-of-type{margin-top:0}
+.day:hover{color:var(--bone)}
+.day .linje{flex:1;height:1px;background:var(--line)}
+.day .antal{color:#5C5175;letter-spacing:.1em}
+.day .pil{
+  display:inline-block;width:9px;height:9px;border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;transform:rotate(-45deg);margin-left:2px;
+  transition:transform .2s;flex:none;
+}
+.day[aria-expanded="true"] .pil{transform:rotate(45deg)}
+
+/* sökfält */
+.sok{
+  display:block;width:100%;max-width:280px;margin-bottom:18px;
+  background:var(--surface);border:1px solid var(--line);color:var(--bone);
+  font-family:var(--data);font-size:12px;letter-spacing:.05em;
+  padding:9px 12px;border-radius:2px;
+}
+.sok::placeholder{color:#5C5175;text-transform:uppercase;letter-spacing:.1em;font-size:10px}
+.sok:focus{outline:none;border-color:var(--muted)}
+
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .chip{
   font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
@@ -148,13 +176,13 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .rel{
   display:grid;grid-template-columns:3px 1fr auto;gap:0 16px;align-items:center;
   background:var(--surface);border:1px solid var(--line);border-left:0;
-  padding:0 16px 0 0;margin-bottom:8px;
+  padding:0 16px 0 0;margin-bottom:6px;
 }
 .rel.soon{background:transparent;border-style:dashed}
 .rel:hover{background:var(--surface-2)}
 .rel .bar{background:var(--c);align-self:stretch}
 .rel .meta{min-width:0;padding:14px 0 14px 16px}
-.rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:20px;line-height:1}
+.rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1.05}
 .rel .title{font-size:14px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rel .right{padding:14px 0;text-align:right;font-family:var(--data);font-size:11px;color:var(--muted);white-space:nowrap}
 .rel .when{color:var(--bone);font-weight:700;font-size:12px;display:block}
@@ -420,6 +448,8 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
         <button class="chip" data-g="techno" aria-pressed="false">Hard techno</button>
       </div>
       <p class="filter-note">Sorteras alltid efter datum. Filtret ändrar bara vad som visas.</p>
+      <input class="sok" id="sok" type="search" autocomplete="off"
+             placeholder="Sök artist eller låt" aria-label="Sök bland releaserna">
       <div id="relList"></div>
     </div>
   </section>
@@ -648,6 +678,9 @@ function whenLabel(dateStr){
 }
 
 let releases = [], events = [], filter = 'all', evFilter = 'norden';
+let sok = '';
+const oppnaDagar  = new Set();   // dagar användaren fällt ut
+const stangdaDagar = new Set();  // dagar användaren fällt ihop
 
 async function load(){
   let seeded = false;
@@ -802,30 +835,64 @@ function relCard(r, soon){
 function drawReleases(){
   const list = document.getElementById('relList');
   const grans = new Date(today()); grans.setDate(grans.getDate() - DAGAR_VISAS);
-  const items = (filter === 'all' ? releases : releases.filter(r => r.genre === filter))
-    .filter(r => parseDate(r.date) >= grans);
-  document.getElementById('relCount').textContent = items.length + ' spår';
+  const q = sok.trim().toLowerCase();
+
+  const items = releases
+    .filter(r => filter === 'all' || r.genre === filter)
+    .filter(r => parseDate(r.date) >= grans)
+    .filter(r => !q || (r.artist + ' ' + r.title).toLowerCase().includes(q));
+
+  document.getElementById('relCount').textContent =
+    items.length + (q ? ' träffar' : ' spår');
 
   if (!releases.length){
     list.innerHTML = '<div class="empty"><b>Inget här än</b>Kör skriptet i /scripts så fylls listan på.</div>';
     return;
   }
+  if (!items.length){
+    list.innerHTML = '<div class="empty"><b>Inga träffar</b>' +
+      (q ? 'Prova ett annat sökord.' : 'Inget släppt i den här grenen den senaste veckan.') + '</div>';
+    return;
+  }
 
   const t = today();
-  /* Allt äldre än en vecka visas inte. Skriptet rensar det ur filen också,
-     men sidan filtrerar för säkerhets skull om filen är gammal. */
-  const week = new Date(t); week.setDate(week.getDate() - DAGAR_VISAS);
-
-  const newest  = (a,b) => a.date < b.date ? 1 : -1;   // nyast först
-  const soonest = (a,b) => a.date < b.date ? -1 : 1;   // närmast i tiden först
-
-  const kommande = items.filter(r => parseDate(r.date) > t).sort(soonest);
-  const nyss     = items.filter(r => { const d = parseDate(r.date); return d <= t && d >= week; }).sort(newest);
+  const newest  = (a,b) => a.date < b.date ? 1 : -1;
+  const soonest = (a,b) => a.date < b.date ? -1 : 1;
 
   let html = '';
-  if (kommande.length) html += '<p class="group-label">Kommande</p>' + kommande.map(r => relCard(r, true)).join('');
-  if (nyss.length)     html += '<p class="group-label">Nyss släppt <span>senaste ' + DAGAR_VISAS + ' dagarna</span></p>' + nyss.map(r => relCard(r, false)).join('');
-  if (!html) html = '<div class="empty"><b>Inget nytt den här veckan</b>Kommer tillbaka så fort någon släpper något.</div>';
+
+  /* Kommande är alltid få — visas utan gruppering. */
+  const kommande = items.filter(r => parseDate(r.date) > t).sort(soonest);
+  if (kommande.length){
+    html += '<p class="group-label">Kommande</p>' + kommande.map(r => relCard(r, true)).join('');
+  }
+
+  /* Nyss släppt grupperas per dag. Med 333 artister blir listan annars
+     hundra rader lång och omöjlig att skanna. */
+  const nyss = items.filter(r => parseDate(r.date) <= t).sort(newest);
+  if (nyss.length){
+    html += '<p class="group-label">Nyss släppt <span>senaste ' + DAGAR_VISAS + ' dagarna</span></p>';
+
+    const perDag = new Map();
+    nyss.forEach(r => {
+      if (!perDag.has(r.date)) perDag.set(r.date, []);
+      perDag.get(r.date).push(r);
+    });
+
+    [...perDag.keys()].sort((a,b) => a < b ? 1 : -1).forEach((datum, i) => {
+      const rader = perDag.get(datum);
+      /* De två senaste dagarna är öppna. Söker man öppnas allt. */
+      const oppen = q ? true : (oppnaDagar.has(datum) || (i < 2 && !stangdaDagar.has(datum)));
+      html +=
+        '<button class="day" data-d="' + datum + '" aria-expanded="' + oppen + '">' +
+          '<span>' + whenLabel(datum) + '</span>' +
+          '<span class="antal">' + rader.length + '</span>' +
+          '<span class="linje"></span><span class="pil"></span>' +
+        '</button>' +
+        (oppen ? rader.map(r => relCard(r, false)).join('') : '');
+    });
+  }
+
   list.innerHTML = html;
 }
 
@@ -875,6 +942,20 @@ function drawEvents(){
       '</article>';
   }).join('');
 }
+
+document.getElementById('sok').addEventListener('input', e => {
+  sok = e.target.value;
+  drawReleases();
+});
+
+document.getElementById('relList').addEventListener('click', e => {
+  const b = e.target.closest('.day');
+  if (!b) return;
+  const d = b.dataset.d;
+  if (b.getAttribute('aria-expanded') === 'true'){ oppnaDagar.delete(d); stangdaDagar.add(d); }
+  else { oppnaDagar.add(d); stangdaDagar.delete(d); }
+  drawReleases();
+});
 
 document.getElementById('evFilters').addEventListener('click', e => {
   const b = e.target.closest('.chip');
