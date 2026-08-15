@@ -24,7 +24,9 @@ const ROOT   = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DOMAN  = 'https://hardlist.se';
 
 const EVENTS  = resolve(ROOT, 'data/events.json');
+const QUIZ    = resolve(ROOT, 'data/quiz.json');
 const INDEX   = resolve(ROOT, 'index.html');
+const QUIZSIDA= resolve(ROOT, 'quiz.html');
 const SITEMAP = resolve(ROOT, 'sitemap.xml');
 
 /* Byter ut allt mellan två markörer. Saknas markörerna avbryter vi hellre
@@ -103,6 +105,14 @@ async function run() {
 
   await writeFile(INDEX, html, 'utf8');
 
+  /* Samma sak för quizet: frågorna finns i data/quiz.json och speglas in i
+     quiz.html som reservkopia. */
+  const quiz = JSON.parse(await readFile(QUIZ, 'utf8'));
+  let qhtml = await readFile(QUIZSIDA, 'utf8');
+  qhtml = ersatt(qhtml, '/* SEED_QUIZ:START */', '/* SEED_QUIZ:END */',
+    'const SEED_QUIZ = ' + JSON.stringify(quiz.fragor) + ';', 'quiz.html');
+  await writeFile(QUIZSIDA, qhtml, 'utf8');
+
   /* Sitemapens lastmod ska spegla att sajten faktiskt uppdaterats. */
   const idag = new Date().toISOString().slice(0, 10);
   let sm = await readFile(SITEMAP, 'utf8');
@@ -111,7 +121,8 @@ async function run() {
 
   console.log(
     `Metadata byggd: ${events.length} event i SEED_EVENTS, ` +
-    `${daterade.length} med datum i strukturerad data. Sitemap satt till ${idag}.`
+    `${daterade.length} med datum i strukturerad data, ` +
+    `${quiz.fragor.length} quizfrågor. Sitemap satt till ${idag}.`
   );
 }
 
