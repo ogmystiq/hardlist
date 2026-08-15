@@ -102,8 +102,8 @@
   {
     "name": "REBiRTH Festival",
     "region": "europa",
-    "city": "Haaksbergen, NL",
-    "season": "normalt i april"
+    "city": "Helvoirt, NL",
+    "season": "normalt i april, tre dagar"
   },
   {
     "name": "Harmony of Hardcore",
@@ -134,15 +134,13 @@
     "season": "normalt i juli"
   },
   {
-    "name": "Q-BASE",
+    "name": "Supremacy — State of Distortion",
+    "date": "2026-09-26",
     "region": "europa",
-    "city": "Nederländerna",
-    "season": "normalt i september"
-  },
-  {
-    "name": "Supremacy",
-    "region": "europa",
-    "city": "Nederländerna",
-    "season": "normalt på hösten"
+    "city": "'s-Hertogenbosch, NL",
+    "venue": "Brabanthallen",
+    "lineup": "Tolfte upplagan, arrangerad av Art of Dance. Rawstyle-flaggskeppet. Nästan hela programmet består av liveshows på en enda scen, vilket skiljer det från de flesta festivaler i genren. Medlemsbiljetterna tog slut på ett dygn.",
+    "url": "https://www.supremacy.nl/",
+    "urlText": "Biljetter"
   }
 ]
