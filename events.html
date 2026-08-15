@@ -3,8 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Festivalguider — HARDLIST</title>
-<meta name="description" content="Djupguider till Defqon.1, Decibel, Intents, Dominator, Rebirth, Reverze, Supremacy, Masters of Hardcore och de andra stora hard dance-eventen.">
+<title>Festivalguider — Defqon.1, Decibel, Dominator | HARDLIST</title>
+<meta name="description" content="Djupguider till de stora hard dance-festivalerna: stages, timing, avstånd och regler. Defqon.1, Decibel, Intents, Dominator, Rebirth och Supremacy.">
+<meta name="keywords" content="defqon 1 guide, decibel outdoor, dominator festival, intents, rebirth festival, hardstyle festival">
+<link rel="canonical" href="https://hardlist.se/events.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0A0612">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HARDLIST">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:url" content="https://hardlist.se/events.html">
+<meta property="og:title" content="Festivalguider — Defqon.1, Decibel, Dominator | HARDLIST">
+<meta property="og:description" content="Djupguider till de stora hard dance-festivalerna: stages, timing, avstånd och regler. Defqon.1, Decibel, Intents, Dominator, Rebirth och Supremacy.">
+<meta property="og:image" content="https://hardlist.se/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="HARDLIST — releaser och rave i Norden">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Festivalguider — Defqon.1, Decibel, Dominator | HARDLIST">
+<meta name="twitter:description" content="Djupguider till de stora hard dance-festivalerna: stages, timing, avstånd och regler. Defqon.1, Decibel, Intents, Dominator, Rebirth och Supremacy.">
+<meta name="twitter:image" content="https://hardlist.se/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -134,6 +160,34 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .group-label::after{content:'';flex:1;height:1px;background:var(--line)}
 .group-label span{color:#5C5175;letter-spacing:.1em}
 
+/* dagrubrik som går att fälla ihop */
+.day{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:12px;padding:0;margin:26px 0 10px;
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);transition:color .15s;
+}
+.day:first-of-type{margin-top:0}
+.day:hover{color:var(--bone)}
+.day .linje{flex:1;height:1px;background:var(--line)}
+.day .antal{color:#5C5175;letter-spacing:.1em}
+.day .pil{
+  display:inline-block;width:9px;height:9px;border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;transform:rotate(-45deg);margin-left:2px;
+  transition:transform .2s;flex:none;
+}
+.day[aria-expanded="true"] .pil{transform:rotate(45deg)}
+
+/* sökfält */
+.sok{
+  display:block;width:100%;max-width:280px;margin-bottom:18px;
+  background:var(--surface);border:1px solid var(--line);color:var(--bone);
+  font-family:var(--data);font-size:12px;letter-spacing:.05em;
+  padding:9px 12px;border-radius:2px;
+}
+.sok::placeholder{color:#5C5175;text-transform:uppercase;letter-spacing:.1em;font-size:10px}
+.sok:focus{outline:none;border-color:var(--muted)}
+
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .chip{
   font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
@@ -148,13 +202,13 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .rel{
   display:grid;grid-template-columns:3px 1fr auto;gap:0 16px;align-items:center;
   background:var(--surface);border:1px solid var(--line);border-left:0;
-  padding:0 16px 0 0;margin-bottom:8px;
+  padding:0 16px 0 0;margin-bottom:6px;
 }
 .rel.soon{background:transparent;border-style:dashed}
 .rel:hover{background:var(--surface-2)}
 .rel .bar{background:var(--c);align-self:stretch}
 .rel .meta{min-width:0;padding:14px 0 14px 16px}
-.rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:20px;line-height:1}
+.rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1.05}
 .rel .title{font-size:14px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rel .right{padding:14px 0;text-align:right;font-family:var(--data);font-size:11px;color:var(--muted);white-space:nowrap}
 .rel .when{color:var(--bone);font-weight:700;font-size:12px;display:block}
