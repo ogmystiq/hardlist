@@ -6,7 +6,7 @@
     "city": "Hilvarenbeek, NL",
     "venue": "Beekse Bergen",
     "lineup": "28–30 augusti. 30+ scener över hela hard dance-spektrumet.",
-    "url": ""
+    "url": "https://www.decibeloutdoor.com/tickets"
   },
   {
     "name": "Sana Duri — The New Beginning",
@@ -24,7 +24,7 @@
     "city": "Stockholm, SE",
     "venue": "Berns",
     "lineup": "Hard techno, kl 23.00. Samma kväll som Sana Duri — funkar som afterparty om du tar dig ner från Uppsala.",
-    "url": ""
+    "url": "https://www.ticketmaster.se/event/holy-priest-berns-biljetter/247223915"
   },
   {
     "name": "Monday Bar Halloween Cruise",
@@ -41,25 +41,104 @@
     "region": "europa",
     "city": "Antwerpen, BE",
     "venue": "AFAS Dome + Lotto Arena",
-    "lineup": "26–27 februari. Säsongsöppnaren.",
-    "url": ""
+    "lineup": "26–27 februari, AFAS Dome + Lotto Arena. Säsongsöppnaren. Biljetterna är inte släppta än — förhandsanmälan ger första tillgång.",
+    "url": "https://www.reverze.be/pre-registration",
+    "urlText": "Förhandsanmälan"
   },
-
-  { "name": "Lumaniac",             "region": "norden", "city": "Kristianstad, SE",       "season": "normalt i mars" },
-  { "name": "Hardstyle DNA",        "region": "norden", "city": "Oslo, NO",               "season": "normalt i maj" },
-  { "name": "Soundvault Festival",  "region": "norden", "city": "Helsingfors, FI",        "season": "normalt i maj" },
-  { "name": "Hardstyle Reaction",   "region": "norden", "city": "Linköping, SE",          "season": "normalt i maj" },
-  { "name": "Swedish Rave Society", "region": "norden", "city": "Örebro, SE",             "season": "normalt i maj" },
-  { "name": "Monday Bar Summer Cruise", "region": "norden", "city": "Stockholm–Tallinn",  "season": "normalt i juni" },
-  { "name": "One Vision Festival",  "region": "norden", "city": "Kristianstad, SE",       "season": "normalt i augusti" },
-  { "name": "Ascend",               "region": "norden", "city": "Norrköping, SE",         "season": "datum ej bekräftat" },
-
-  { "name": "Masters of Hardcore",  "region": "europa", "city": "'s-Hertogenbosch, NL",   "season": "normalt i mars eller april" },
-  { "name": "REBiRTH Festival",     "region": "europa", "city": "Haaksbergen, NL",        "season": "normalt i april" },
-  { "name": "Harmony of Hardcore",  "region": "europa", "city": "Erp, NL",                "season": "normalt i maj" },
-  { "name": "Intents Festival",     "region": "europa", "city": "Oisterwijk, NL",         "season": "normalt i juni" },
-  { "name": "Defqon.1",             "region": "europa", "city": "Biddinghuizen, NL",      "season": "normalt i slutet av juni" },
-  { "name": "Dominator",            "region": "europa", "city": "Eersel, NL",             "season": "normalt i juli" },
-  { "name": "Q-BASE",               "region": "europa", "city": "Nederländerna",          "season": "normalt i september" },
-  { "name": "Supremacy",            "region": "europa", "city": "Nederländerna",          "season": "normalt på hösten" }
+  {
+    "name": "Lumaniac",
+    "region": "norden",
+    "city": "Kristianstad, SE",
+    "season": "normalt i mars"
+  },
+  {
+    "name": "Hardstyle DNA",
+    "region": "norden",
+    "city": "Oslo, NO",
+    "season": "normalt i maj"
+  },
+  {
+    "name": "Soundvault Festival",
+    "region": "norden",
+    "city": "Helsingfors, FI",
+    "season": "normalt i maj"
+  },
+  {
+    "name": "Hardstyle Reaction",
+    "region": "norden",
+    "city": "Linköping, SE",
+    "season": "normalt i maj"
+  },
+  {
+    "name": "Swedish Rave Society",
+    "region": "norden",
+    "city": "Örebro, SE",
+    "season": "normalt i maj"
+  },
+  {
+    "name": "Monday Bar Summer Cruise",
+    "region": "norden",
+    "city": "Stockholm–Tallinn",
+    "season": "normalt i juni"
+  },
+  {
+    "name": "One Vision Festival",
+    "region": "norden",
+    "city": "Kristianstad, SE",
+    "season": "normalt i augusti"
+  },
+  {
+    "name": "Ascend",
+    "region": "norden",
+    "city": "Norrköping, SE",
+    "season": "datum ej bekräftat"
+  },
+  {
+    "name": "Masters of Hardcore",
+    "region": "europa",
+    "city": "'s-Hertogenbosch, NL",
+    "season": "normalt i mars eller april"
+  },
+  {
+    "name": "REBiRTH Festival",
+    "region": "europa",
+    "city": "Haaksbergen, NL",
+    "season": "normalt i april"
+  },
+  {
+    "name": "Harmony of Hardcore",
+    "region": "europa",
+    "city": "Erp, NL",
+    "season": "normalt i maj"
+  },
+  {
+    "name": "Intents Festival",
+    "region": "europa",
+    "city": "Oisterwijk, NL",
+    "season": "normalt i juni"
+  },
+  {
+    "name": "Defqon.1",
+    "region": "europa",
+    "city": "Biddinghuizen, NL",
+    "season": "normalt i slutet av juni"
+  },
+  {
+    "name": "Dominator",
+    "region": "europa",
+    "city": "Eersel, NL",
+    "season": "normalt i juli"
+  },
+  {
+    "name": "Q-BASE",
+    "region": "europa",
+    "city": "Nederländerna",
+    "season": "normalt i september"
+  },
+  {
+    "name": "Supremacy",
+    "region": "europa",
+    "city": "Nederländerna",
+    "season": "normalt på hösten"
+  }
 ]
