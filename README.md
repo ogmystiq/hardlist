@@ -14,6 +14,7 @@ data/releases.json    skrivs av skriptet
 data/artist-ids.json  cache, skrivs av skriptet
 data/events.json      fyller du i själv
 scripts/hamta-releaser.mjs      hämtar från Spotify
+scripts/bygg-metadata.mjs       bygger SEED_EVENTS + JSON-LD ur events.json
 .github/workflows/releaser.yml  kör skriptet varje fredag
 ```
 
@@ -148,12 +149,22 @@ sajtens poäng.
 Så fort datumet släpps lägger du till `date` och eventet flyttar upp i kalendern
 av sig självt.
 
-**Viktigt:** `index.html` har en inbäddad reservkopia av eventlistan (`SEED_EVENTS`
-i skriptblocket). Den används bara när `data/events.json` inte kan laddas — vilket
-händer när du öppnar filen direkt från disk, eftersom webbläsaren blockerar `fetch`
-mot lokala filer. På GitHub Pages vinner alltid JSON-filen. Uppdaterar du
-`data/events.json` bör du klistra in samma lista i `SEED_EVENTS`, annars visar den
-lokala förhandsgranskningen gammal data.
+**Du redigerar bara `data/events.json`.** Två kopior härleds ur den automatiskt:
+
+| Kopia | Vad den gör |
+|---|---|
+| `SEED_EVENTS` i `index.html` | Reservdata när sidan öppnas direkt från disk, där webbläsaren blockerar `fetch` mot lokala filer. På servern vinner alltid JSON-filen. |
+| JSON-LD i `index.html` | Strukturerad data för Google. Ger rika sökresultat med datum och plats. Bara event med bekräftat `date` tas med. |
+
+`scripts/bygg-metadata.mjs` skriver båda utifrån JSON-filen och uppdaterar
+sitemapens datum. Workflowen kör det varje natt, så du behöver inte göra något.
+
+Vill du se ändringen direkt istället för att vänta till nästa natt kan du köra
+`node scripts/bygg-metadata.mjs` lokalt, eller trycka Run workflow i Actions.
+
+Skriptet skriver bara mellan markörerna `<!-- EVENTS-LD:START/END -->` och
+`/* SEED_EVENTS:START/END */` i `index.html`. Tar du bort dem avbryter det med
+ett felmeddelande istället för att skriva sönder filen.
 
 **21 event ligger inne** — 5 med bekräftat datum, 16 under bevakning.
 
@@ -248,5 +259,5 @@ Regler, datum och stagenamn ändras varje år. Gå igenom guiderna en gång per 
 ## Byta namn och mailadress
 
 "HARDLIST" står i `<title>`, `.logo` och footern på alla fyra sidor.
-Platshållaradressen `hej@example.se` finns i footern och i alla tipsa-länkar.
+Platshållaradressen `hardlisthelp@gmail.com` finns i footern och i alla tipsa-länkar.
 Sök och ersätt.
