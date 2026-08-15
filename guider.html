@@ -335,35 +335,38 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 
 /* ---------- sidfoten ---------- */
 footer{
-  padding:56px 0 64px;border-top:1px solid var(--line);
+  padding:38px 0 40px;border-top:1px solid var(--line);
   background:linear-gradient(180deg,transparent,rgba(255,46,99,.035));
   color:var(--muted);font-size:14px;line-height:1.6;
 }
-.foot-topp{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:32px}
+.foot-topp{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px;padding-bottom:22px;align-items:start}
 .foot-om .mark{
-  font-family:var(--display);font-weight:900;font-size:30px;line-height:1;
-  text-transform:uppercase;letter-spacing:.02em;color:var(--bone);margin-bottom:12px;
+  font-family:var(--display);font-weight:900;font-size:32px;line-height:1;
+  text-transform:uppercase;letter-spacing:.02em;color:var(--bone);
 }
 .foot-om .mark span{color:var(--raw)}
-.foot-om p{max-width:36ch;margin:0;color:var(--muted)}
+.foot-om p{
+  margin:14px 0 0;max-width:30ch;font-size:13px;line-height:1.65;color:var(--muted);
+}
+.foot-om p b{color:#B9AECD;font-weight:400}
 .foot-kol h4{
   font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:#5C5175;margin:0 0 12px;font-weight:400;
+  color:#5C5175;margin:0 0 9px;font-weight:400;
 }
 .foot-kol a{
-  display:block;color:var(--muted);text-decoration:none;padding:5px 0;
+  display:block;color:var(--muted);text-decoration:none;padding:3px 0;font-size:13px;
   transition:color .18s ease,transform .18s ease;
 }
 .foot-kol a:hover,.foot-kol a:focus-visible{color:var(--bone);transform:translateX(3px)}
 
 .status{
-  padding:15px 0;border-top:1px solid var(--line);
+  padding:12px 0;border-top:1px solid var(--line);
   font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175;
 }
 .status.varning{color:var(--uptempo)}
 
 /* Ärligt förtroende: inga påhittade emblem, bara sånt som faktiskt stämmer. */
-.foot-loften{display:flex;gap:24px;flex-wrap:wrap;padding:15px 0;border-top:1px solid var(--line)}
+.foot-loften{display:flex;gap:22px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--line)}
 .foot-loften span{
   font-family:var(--data);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
   color:#5C5175;display:flex;align-items:center;gap:8px;
@@ -375,7 +378,7 @@ footer{
 
 .colophon{
   display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;
-  margin-top:0;padding-top:18px;border-top:1px solid var(--line);
+  margin-top:0;padding-top:14px;border-top:1px solid var(--line);
 }
 .colophon .by{
   display:inline-block;font-family:var(--display);font-weight:900;text-transform:uppercase;
@@ -395,7 +398,8 @@ footer{
   .top .wrap{height:52px}
   .logo{font-size:22px}
   .rule{grid-template-columns:1fr;gap:2px}
-  .foot-topp{grid-template-columns:1fr;gap:28px}
+  .foot-topp{grid-template-columns:1fr 1fr;gap:24px}
+  .foot-om{grid-column:1 / -1}
   .foot-loften{gap:14px}
   .tracks li{grid-template-columns:26px 1fr;column-gap:10px}
   .tracks b{font-size:17px}
@@ -676,7 +680,7 @@ footer{
     <div class="foot-topp">
       <div class="foot-om">
         <div class="mark">Hard<span>list</span></div>
-        <p>Alla nya släpp inom hardstyle, raw, uptempo, hardcore och hard techno — i datumordning. Plus varje rave i Norden. Uppdateras automatiskt varje dygn.</p>
+        <p>Releaser och rave i Norden.<br><b>Uppdateras automatiskt varje dygn.</b></p>
       </div>
       <nav class="foot-kol">
         <h4>Sajten</h4>
