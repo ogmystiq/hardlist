@@ -537,7 +537,8 @@ footer{
               }
             },
             "image": "https://hardlist.se/og-image.png",
-            "description": "28–30 augusti. 30+ scener över hela hard dance-spektrumet."
+            "description": "28–30 augusti. 30+ scener över hela hard dance-spektrumet.",
+            "url": "https://www.decibeloutdoor.com/tickets"
           }
         },
         {
@@ -582,7 +583,8 @@ footer{
               }
             },
             "image": "https://hardlist.se/og-image.png",
-            "description": "Hard techno, kl 23.00. Samma kväll som Sana Duri — funkar som afterparty om du tar dig ner från Uppsala."
+            "description": "Hard techno, kl 23.00. Samma kväll som Sana Duri — funkar som afterparty om du tar dig ner från Uppsala.",
+            "url": "https://www.ticketmaster.se/event/holy-priest-berns-biljetter/247223915"
           }
         },
         {
@@ -627,7 +629,8 @@ footer{
               }
             },
             "image": "https://hardlist.se/og-image.png",
-            "description": "26–27 februari. Säsongsöppnaren."
+            "description": "26–27 februari, AFAS Dome + Lotto Arena. Säsongsöppnaren. Biljetterna är inte släppta än — förhandsanmälan ger första tillgång.",
+            "url": "https://www.reverze.be/pre-registration"
           }
         }
       ]
@@ -782,7 +785,7 @@ const SEED_EVENTS = [
       "city": "Hilvarenbeek, NL",
       "venue": "Beekse Bergen",
       "lineup": "28–30 augusti. 30+ scener över hela hard dance-spektrumet.",
-      "url": ""
+      "url": "https://www.decibeloutdoor.com/tickets"
     },
     {
       "name": "Sana Duri — The New Beginning",
@@ -800,7 +803,7 @@ const SEED_EVENTS = [
       "city": "Stockholm, SE",
       "venue": "Berns",
       "lineup": "Hard techno, kl 23.00. Samma kväll som Sana Duri — funkar som afterparty om du tar dig ner från Uppsala.",
-      "url": ""
+      "url": "https://www.ticketmaster.se/event/holy-priest-berns-biljetter/247223915"
     },
     {
       "name": "Monday Bar Halloween Cruise",
@@ -817,8 +820,9 @@ const SEED_EVENTS = [
       "region": "europa",
       "city": "Antwerpen, BE",
       "venue": "AFAS Dome + Lotto Arena",
-      "lineup": "26–27 februari. Säsongsöppnaren.",
-      "url": ""
+      "lineup": "26–27 februari, AFAS Dome + Lotto Arena. Säsongsöppnaren. Biljetterna är inte släppta än — förhandsanmälan ger första tillgång.",
+      "url": "https://www.reverze.be/pre-registration",
+      "urlText": "Förhandsanmälan"
     },
     {
       "name": "Lumaniac",
@@ -1197,7 +1201,8 @@ function drawEvents(){
       '<div class="where">' + esc(e.city || '') + (e.venue ? ' · ' + esc(e.venue) : '') + '</div>' +
       (e.lineup ? '<div class="lineup">' + esc(e.lineup) + '</div>' : '') + '</div>' +
       (e.url
-        ? '<a class="ticket" href="' + esc(e.url) + '" target="_blank" rel="noopener">Biljetter</a>'
+        ? '<a class="ticket" href="' + esc(e.url) + '" target="_blank" rel="noopener">' +
+          esc(e.urlText || 'Biljetter') + '</a>'
         : '<span class="tba">Biljettlänk saknas</span>') +
       '</article>';
   }).join('');
