@@ -423,6 +423,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   .stages li{grid-template-columns:1fr;gap:4px}
 }
 </style>
+<!-- EVENTS-LD:START -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -566,6 +567,7 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   ]
 }
 </script>
+<!-- EVENTS-LD:END -->
 </head>
 <body>
 
@@ -675,6 +677,7 @@ const SEED = (() => {
    fetch mot lokala filer. På en riktig webbserver vinner alltid JSON-filen.
    Ändrar du data/events.json: uppdatera gärna den här också, annars visar
    den lokala förhandsgranskningen gammal data. */
+/* SEED_EVENTS:START */
 const SEED_EVENTS = [
     {
       "name": "Decibel Outdoor",
@@ -818,6 +821,7 @@ const SEED_EVENTS = [
       "season": "normalt på hösten"
     }
   ];
+/* SEED_EVENTS:END */
 
 const color = g => 'var(--' + (GENRES.includes(g) ? g : 'raw') + ')';
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
