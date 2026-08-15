@@ -205,7 +205,8 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
   padding:0 16px 0 0;margin-bottom:6px;
 }
 .rel.soon{background:transparent;border-style:dashed}
-.rel:hover{background:var(--surface-2)}
+.rel{transition:background .18s ease,border-color .18s ease,transform .18s ease}
+.rel:hover{background:var(--surface-2);border-color:#3A2757;transform:translateX(2px)}
 .rel .bar{background:var(--c);align-self:stretch}
 .rel .meta{min-width:0;padding:14px 0 14px 16px}
 .rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1.05}
@@ -220,6 +221,8 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 /* events */
 .ev{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
 .ev:last-child{border-bottom:1px solid var(--line)}
+.ev{transition:background .18s ease}
+.ev:hover{background:rgba(255,255,255,.015)}
 .ev .date{font-family:var(--data);font-size:11px;color:var(--muted);line-height:1.3}
 .ev .date b{display:block;font-family:var(--display);font-size:30px;color:var(--bone);font-weight:900;line-height:.9}
 .ev .name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:22px;line-height:1}
@@ -233,7 +236,8 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .ev .tba{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.12em}
 
 .watch{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:6px}
-.witem{background:var(--ink);padding:13px 15px}
+.witem{background:var(--ink);padding:13px 15px;transition:background .18s ease}
+.witem:hover{background:var(--surface)}
 .witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
 .witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
 .watch-head{
@@ -270,12 +274,18 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .terms{display:grid;gap:0}
 .term{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
 .term:last-child{border-bottom:1px solid var(--line)}
+.term{transition:background .18s ease}
+.term:hover{background:rgba(255,255,255,.015)}
 .term dt{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1}
 .term dd{color:#CFC5E0;font-size:14px}
 
 /* subgenre-kort */
 .genres{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:8px}
-.gcard{border:1px solid var(--line);border-top:3px solid var(--c);background:var(--surface);padding:16px}
+.gcard{
+  border:1px solid var(--line);border-top:3px solid var(--c);background:var(--surface);
+  padding:16px;transition:transform .2s ease,background .2s ease;
+}
+.gcard:hover{transform:translateY(-2px);background:var(--surface-2)}
 .gcard h3{margin:0 0 4px;font-size:22px;color:var(--c)}
 .gcard .bpm{font-family:var(--data);font-size:10px;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:8px}
 .gcard p{font-size:13px;color:#CFC5E0;margin:0}
@@ -323,10 +333,56 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 }
 .colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
 
-.status{margin-top:14px;font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175}
+/* ---------- sidfoten ---------- */
+footer{
+  padding:56px 0 64px;border-top:1px solid var(--line);
+  background:linear-gradient(180deg,transparent,rgba(255,46,99,.035));
+  color:var(--muted);font-size:14px;line-height:1.6;
+}
+.foot-topp{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:32px}
+.foot-om .mark{
+  font-family:var(--display);font-weight:900;font-size:30px;line-height:1;
+  text-transform:uppercase;letter-spacing:.02em;color:var(--bone);margin-bottom:12px;
+}
+.foot-om .mark span{color:var(--raw)}
+.foot-om p{max-width:36ch;margin:0;color:var(--muted)}
+.foot-kol h4{
+  font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:#5C5175;margin:0 0 12px;font-weight:400;
+}
+.foot-kol a{
+  display:block;color:var(--muted);text-decoration:none;padding:5px 0;
+  transition:color .18s ease,transform .18s ease;
+}
+.foot-kol a:hover,.foot-kol a:focus-visible{color:var(--bone);transform:translateX(3px)}
+
+.status{
+  padding:15px 0;border-top:1px solid var(--line);
+  font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175;
+}
 .status.varning{color:var(--uptempo)}
 
-footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:11px;letter-spacing:.06em;line-height:1.8}
+/* Ärligt förtroende: inga påhittade emblem, bara sånt som faktiskt stämmer. */
+.foot-loften{display:flex;gap:24px;flex-wrap:wrap;padding:15px 0;border-top:1px solid var(--line)}
+.foot-loften span{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+  color:#5C5175;display:flex;align-items:center;gap:8px;
+}
+.foot-loften span::before{
+  content:'';width:5px;height:5px;border-radius:50%;background:var(--euphoric);
+  box-shadow:0 0 6px var(--euphoric);flex:none;
+}
+
+.colophon{
+  display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  margin-top:0;padding-top:18px;border-top:1px solid var(--line);
+}
+.colophon .by{
+  display:inline-block;font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);transition:color .25s ease;
+}
+.colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
+.colophon .ar{font-family:var(--data);font-size:10px;letter-spacing:.14em;color:#463C5E}
 
 @media (max-width:640px){
   .tl{height:168px}
@@ -339,11 +395,18 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   .top .wrap{height:52px}
   .logo{font-size:22px}
   .rule{grid-template-columns:1fr;gap:2px}
+  .foot-topp{grid-template-columns:1fr;gap:28px}
+  .foot-loften{gap:14px}
   .tracks li{grid-template-columns:26px 1fr;column-gap:10px}
   .tracks b{font-size:17px}
   .term{grid-template-columns:1fr;gap:2px}
 }
+/* Sektioner tonar in när de kommer i vy. Rent kosmetiskt — utan JS visas allt. */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.reveal.inne{opacity:1;transform:none}
+
 @media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important}
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
 }
@@ -379,7 +442,8 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   background:var(--surface);border:1px solid var(--line);color:var(--muted);
   padding:12px 16px;cursor:pointer;transition:.15s;
 }
-.fbtn:hover{color:var(--bone);border-color:var(--muted)}
+.fbtn{transition:color .18s,border-color .18s,background .18s,transform .18s}
+.fbtn:hover{color:var(--bone);border-color:var(--muted);transform:translateY(-1px)}
 .fbtn[aria-selected="true"]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
 
 .panel{animation:fade .25s ease}
@@ -609,13 +673,60 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
 
 <footer>
   <div class="wrap">
-    Regler ändras varje år. Kolla alltid arrangörens egen sida innan du åker.<br>
-    Vet du något som saknas? <a href="mailto:hardlisthelp@gmail.com">Tipsa här.</a>
+    <div class="foot-topp">
+      <div class="foot-om">
+        <div class="mark">Hard<span>list</span></div>
+        <p>Alla nya släpp inom hardstyle, raw, uptempo, hardcore och hard techno — i datumordning. Plus varje rave i Norden. Uppdateras automatiskt varje dygn.</p>
+      </div>
+      <nav class="foot-kol">
+        <h4>Sajten</h4>
+        <a href="index.html#releaser">Releaser</a>
+        <a href="index.html#events">Kalender</a>
+        <a href="events.html">Festivalguider</a>
+        <a href="guider.html">Camping</a>
+        <a href="nyborjare.html">Nybörjarguide</a>
+      </nav>
+      <div class="foot-kol">
+        <h4>Bidra</h4>
+        <a href="mailto:hardlisthelp@gmail.com">Tipsa om ett event</a>
+        <a href="mailto:hardlisthelp@gmail.com">Saknad artist</a>
+        <a href="mailto:hardlisthelp@gmail.com">Insidertips</a>
+        <a href="mailto:hardlisthelp@gmail.com">Rätta ett fel</a>
+      </div>
+    </div>
+    <div class="foot-loften">
+      <span>Inga annonser</span>
+      <span>Inga cookies</span>
+      <span>Ingen spårning</span>
+      <span>Gratis, alltid</span>
+    </div>
+
     <div class="colophon">
       <span class="by">Jonathan H</span>
+      <span class="ar">2026</span>
     </div>
   </div>
 </footer>
 
+
+<script>
+/* Tonar in sektioner när de kommer i vy. Utan JS eller med reducerad rörelse
+   visas allt direkt — inget innehåll döljs permanent. */
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const mal = document.querySelectorAll('main section, main .hero > .wrap > *');
+  mal.forEach(function(el, i){ if (i > 0) el.classList.add('reveal'); });
+
+  const obs = new IntersectionObserver(function(poster){
+    poster.forEach(function(p){
+      if (p.isIntersecting){ p.target.classList.add('inne'); obs.unobserve(p.target); }
+    });
+  }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
+
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+})();
+</script>
 </body>
 </html>
