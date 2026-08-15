@@ -138,6 +138,22 @@ Ingen API samlar hard dance-event. `data/events.json` fyller du i för hand:
 `region` är `norden` eller `europa` och styr filtret. Norden är förvalt — det är
 sajtens poäng.
 
+**Leta alltid upp biljettlänken** när du lägger in ett event. Prioriteringen är:
+
+1. Arrangörens egen biljettsida (`decibeloutdoor.com/tickets`)
+2. Officiell biljettleverantör (Ticketmaster, Tickster, Paylogic)
+3. Arrangörens startsida
+
+Är biljetterna inte släppta än, länka till förhandsanmälan och sätt `urlText`
+så knappen säger rätt sak istället för att lova något som inte finns:
+
+```json
+{ "url": "https://www.reverze.be/pre-registration", "urlText": "Förhandsanmälan" }
+```
+
+Utelämnas `urlText` står det Biljetter. Utelämnas `url` helt visas
+"Biljettlänk saknas", vilket är sämre än att inte ha eventet alls.
+
 **Kalendern visar bara event med bekräftat, ej passerat datum.** Utelämnar du
 `date` hamnar eventet istället i bevakningslistan under kalendern, med ett
 `season`-fält istället:
