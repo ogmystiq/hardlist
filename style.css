@@ -68,32 +68,45 @@ h1{
 h1 em{font-style:normal;color:var(--raw)}
 .lede{color:var(--muted);max-width:46ch;font-size:15px}
 
-/* ---------- bpm-linjal ---------- */
-.ruler{margin-top:42px;position:relative;height:208px;display:flex;align-items:flex-end;padding-bottom:26px}
-.ruler-line{position:relative;width:100%;height:1px;background:var(--line)}
-.tick{position:absolute;top:0;width:1px;height:6px;background:var(--line)}
-.tick b{
-  position:absolute;top:9px;left:50%;transform:translateX(-50%);
-  font-family:var(--data);font-size:10px;color:var(--muted);font-weight:400;
+/* ---------- tidslinjen ---------- */
+.tl{margin-top:40px;position:relative;height:216px;display:flex;align-items:flex-end;padding:0 6px 30px}
+.tl-line{position:relative;width:100%;height:1px;background:var(--line)}
+.tl-tick{position:absolute;top:0;width:1px;height:6px;background:var(--line)}
+.tl-tick b{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  font-family:var(--data);font-size:10px;color:var(--muted);font-weight:400;white-space:nowrap;
 }
-.dot{
+.tl-tick.start b{left:0;transform:none}
+.tl-tick.slut b{left:auto;right:0;transform:none}
+.tl-now{position:absolute;bottom:0;width:1px;background:var(--bone);opacity:.28}
+.tl-now b{
+  position:absolute;top:-2px;left:50%;transform:translateX(-50%);
+  background:var(--ink);padding:0 6px;
+  font-family:var(--data);font-size:10px;letter-spacing:.14em;color:var(--bone);opacity:.8;font-weight:400;
+}
+.tl-dot{
   position:absolute;bottom:0;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;
-  animation:rise .5s cubic-bezier(.2,.8,.2,1) backwards;
+  animation:rise .55s cubic-bezier(.2,.8,.2,1) backwards;
 }
-.dot i{display:block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
-.dot u{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--c));text-decoration:none;opacity:.5}
-.dot em{
+.tl-dot i{display:block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
+.tl-dot u{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--c));text-decoration:none;opacity:.55}
+.tl-dot em{
   font-family:var(--data);font-style:normal;font-size:9px;color:var(--muted);
   white-space:nowrap;margin-bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);
-  max-height:110px;overflow:hidden;
+  max-height:118px;overflow:hidden;
 }
+.tl-dot.soon i{background:none;border:2px solid var(--c);box-shadow:0 0 12px var(--c)}
 @keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1}}
-.ruler-legend{
-  display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;
+.tl-key{
+  display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;
   font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
 }
-.ruler-legend b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.tl-key b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.tl-empty{
+  border:1px dashed var(--line);padding:26px;text-align:center;
+  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+}
 
 /* ---------- sektioner ---------- */
 section{padding:52px 0;border-bottom:1px solid var(--line)}
@@ -110,6 +123,34 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .group-label::after{content:'';flex:1;height:1px;background:var(--line)}
 .group-label span{color:#5C5175;letter-spacing:.1em}
 
+/* dagrubrik som går att fälla ihop */
+.day{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:12px;padding:0;margin:26px 0 10px;
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);transition:color .15s;
+}
+.day:first-of-type{margin-top:0}
+.day:hover{color:var(--bone)}
+.day .linje{flex:1;height:1px;background:var(--line)}
+.day .antal{color:#5C5175;letter-spacing:.1em}
+.day .pil{
+  display:inline-block;width:9px;height:9px;border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;transform:rotate(-45deg);margin-left:2px;
+  transition:transform .2s;flex:none;
+}
+.day[aria-expanded="true"] .pil{transform:rotate(45deg)}
+
+/* sökfält */
+.sok{
+  display:block;width:100%;max-width:280px;margin-bottom:18px;
+  background:var(--surface);border:1px solid var(--line);color:var(--bone);
+  font-family:var(--data);font-size:12px;letter-spacing:.05em;
+  padding:9px 12px;border-radius:2px;
+}
+.sok::placeholder{color:#5C5175;text-transform:uppercase;letter-spacing:.1em;font-size:10px}
+.sok:focus{outline:none;border-color:var(--muted)}
+
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .chip{
   font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
@@ -124,13 +165,14 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .rel{
   display:grid;grid-template-columns:3px 1fr auto;gap:0 16px;align-items:center;
   background:var(--surface);border:1px solid var(--line);border-left:0;
-  padding:0 16px 0 0;margin-bottom:8px;
+  padding:0 16px 0 0;margin-bottom:6px;
 }
 .rel.soon{background:transparent;border-style:dashed}
-.rel:hover{background:var(--surface-2)}
+.rel{transition:background .18s ease,border-color .18s ease,transform .18s ease}
+.rel:hover{background:var(--surface-2);border-color:#3A2757;transform:translateX(2px)}
 .rel .bar{background:var(--c);align-self:stretch}
 .rel .meta{min-width:0;padding:14px 0 14px 16px}
-.rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:20px;line-height:1}
+.rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1.05}
 .rel .title{font-size:14px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rel .right{padding:14px 0;text-align:right;font-family:var(--data);font-size:11px;color:var(--muted);white-space:nowrap}
 .rel .when{color:var(--bone);font-weight:700;font-size:12px;display:block}
@@ -142,6 +184,8 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 /* events */
 .ev{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
 .ev:last-child{border-bottom:1px solid var(--line)}
+.ev{transition:background .18s ease}
+.ev:hover{background:rgba(255,255,255,.015)}
 .ev .date{font-family:var(--data);font-size:11px;color:var(--muted);line-height:1.3}
 .ev .date b{display:block;font-family:var(--display);font-size:30px;color:var(--bone);font-weight:900;line-height:.9}
 .ev .name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:22px;line-height:1}
@@ -155,7 +199,8 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .ev .tba{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.12em}
 
 .watch{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:6px}
-.witem{background:var(--ink);padding:13px 15px}
+.witem{background:var(--ink);padding:13px 15px;transition:background .18s ease}
+.witem:hover{background:var(--surface)}
 .witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
 .witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
 .watch-head{
@@ -192,12 +237,18 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .terms{display:grid;gap:0}
 .term{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
 .term:last-child{border-bottom:1px solid var(--line)}
+.term{transition:background .18s ease}
+.term:hover{background:rgba(255,255,255,.015)}
 .term dt{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1}
 .term dd{color:#CFC5E0;font-size:14px}
 
 /* subgenre-kort */
 .genres{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:8px}
-.gcard{border:1px solid var(--line);border-top:3px solid var(--c);background:var(--surface);padding:16px}
+.gcard{
+  border:1px solid var(--line);border-top:3px solid var(--c);background:var(--surface);
+  padding:16px;transition:transform .2s ease,background .2s ease;
+}
+.gcard:hover{transform:translateY(-2px);background:var(--surface-2)}
 .gcard h3{margin:0 0 4px;font-size:22px;color:var(--c)}
 .gcard .bpm{font-family:var(--data);font-size:10px;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:8px}
 .gcard p{font-size:13px;color:#CFC5E0;margin:0}
@@ -232,10 +283,73 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .callout.warn{border-left-color:var(--uptempo);background:#1D1206}
 .callout.warn b{color:var(--uptempo)}
 
-footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:11px;letter-spacing:.06em;line-height:1.8}
+/* Kolofon — signaturrad längst ner. Sätts som en teknisk uppgift, inte som
+   en hälsning: bara namnet, med en tunn linje över. */
+.colophon{
+  margin-top:28px;padding-top:16px;border-top:1px solid var(--line);
+}
+.colophon .by{
+  display:inline-block;
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);
+  transition:color .25s ease;
+}
+.colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
+
+/* ---------- sidfoten ---------- */
+footer{
+  padding:56px 0 64px;border-top:1px solid var(--line);
+  background:linear-gradient(180deg,transparent,rgba(255,46,99,.035));
+  color:var(--muted);font-size:14px;line-height:1.6;
+}
+.foot-topp{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:32px}
+.foot-om .mark{
+  font-family:var(--display);font-weight:900;font-size:30px;line-height:1;
+  text-transform:uppercase;letter-spacing:.02em;color:var(--bone);margin-bottom:12px;
+}
+.foot-om .mark span{color:var(--raw)}
+.foot-om p{max-width:36ch;margin:0;color:var(--muted)}
+.foot-kol h4{
+  font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:#5C5175;margin:0 0 12px;font-weight:400;
+}
+.foot-kol a{
+  display:block;color:var(--muted);text-decoration:none;padding:5px 0;
+  transition:color .18s ease,transform .18s ease;
+}
+.foot-kol a:hover,.foot-kol a:focus-visible{color:var(--bone);transform:translateX(3px)}
+
+.status{
+  padding:15px 0;border-top:1px solid var(--line);
+  font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175;
+}
+.status.varning{color:var(--uptempo)}
+
+/* Ärligt förtroende: inga påhittade emblem, bara sånt som faktiskt stämmer. */
+.foot-loften{display:flex;gap:24px;flex-wrap:wrap;padding:15px 0;border-top:1px solid var(--line)}
+.foot-loften span{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+  color:#5C5175;display:flex;align-items:center;gap:8px;
+}
+.foot-loften span::before{
+  content:'';width:5px;height:5px;border-radius:50%;background:var(--euphoric);
+  box-shadow:0 0 6px var(--euphoric);flex:none;
+}
+
+.colophon{
+  display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  margin-top:0;padding-top:18px;border-top:1px solid var(--line);
+}
+.colophon .by{
+  display:inline-block;font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);transition:color .25s ease;
+}
+.colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
+.colophon .ar{font-family:var(--data);font-size:10px;letter-spacing:.14em;color:#463C5E}
 
 @media (max-width:640px){
-  .ruler{height:158px}
+  .tl{height:168px}
+  .tl-dot em{max-height:84px;font-size:8px}
   .dot em{max-height:76px;font-size:8px}
   .rel .artist{font-size:17px}
   .ev{grid-template-columns:52px 1fr;gap:12px}
@@ -244,13 +358,43 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   .top .wrap{height:52px}
   .logo{font-size:22px}
   .rule{grid-template-columns:1fr;gap:2px}
+  .foot-topp{grid-template-columns:1fr;gap:28px}
+  .foot-loften{gap:14px}
   .tracks li{grid-template-columns:26px 1fr;column-gap:10px}
   .tracks b{font-size:17px}
   .term{grid-template-columns:1fr;gap:2px}
 }
+/* Sektioner tonar in när de kommer i vy. Rent kosmetiskt — utan JS visas allt. */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.reveal.inne{opacity:1;transform:none}
+
 @media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important}
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
+}
+
+/* ---------- kartan ---------- */
+.mapwrap{
+  border:1px solid var(--line);background:var(--ink);
+  margin-top:20px;overflow:hidden;
+}
+.mapwrap svg{display:block;width:100%;height:auto}
+.mapwrap .lbl{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;fill:var(--muted);
+}
+.mapwrap .lbl.dark{fill:var(--ink)}
+.mapwrap .big{
+  font-family:var(--display);font-weight:900;font-size:28px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .mid{
+  font-family:var(--display);font-weight:700;font-size:19px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .dist text{
+  font-family:var(--data);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
 }
 
 /* ---------- festivalväljare ---------- */
@@ -261,7 +405,8 @@ footer{padding:36px 0 56px;color:var(--muted);font-family:var(--data);font-size:
   background:var(--surface);border:1px solid var(--line);color:var(--muted);
   padding:12px 16px;cursor:pointer;transition:.15s;
 }
-.fbtn:hover{color:var(--bone);border-color:var(--muted)}
+.fbtn{transition:color .18s,border-color .18s,background .18s,transform .18s}
+.fbtn:hover{color:var(--bone);border-color:var(--muted);transform:translateY(-1px)}
 .fbtn[aria-selected="true"]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
 
 .panel{animation:fade .25s ease}
