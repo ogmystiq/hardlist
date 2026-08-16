@@ -125,7 +125,10 @@ h1 em{font-style:normal;color:var(--raw)}
 .tl-dot em{
   font-family:var(--data);font-style:normal;font-size:9px;color:var(--muted);
   white-space:nowrap;margin-bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);
-  max-height:118px;overflow:hidden;
+  max-height:104px;overflow:hidden;
+  /* Toning i stället för hårt klipp när namnet ändå är för långt. */
+  -webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent);
+  mask-image:linear-gradient(to bottom,#000 82%,transparent);
 }
 .tl-dot.soon i{background:none;border:2px solid var(--c);box-shadow:0 0 12px var(--c)}
 @keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1}}

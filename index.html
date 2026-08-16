@@ -148,7 +148,10 @@ h1 em{font-style:normal;color:var(--raw)}
 .tl-dot em{
   font-family:var(--data);font-style:normal;font-size:9px;color:var(--muted);
   white-space:nowrap;margin-bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);
-  max-height:118px;overflow:hidden;
+  max-height:104px;overflow:hidden;
+  /* Toning i stället för hårt klipp när namnet ändå är för långt. */
+  -webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent);
+  mask-image:linear-gradient(to bottom,#000 82%,transparent);
 }
 .tl-dot.soon i{background:none;border:2px solid var(--c);box-shadow:0 0 12px var(--c)}
 @keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1}}
@@ -1473,15 +1476,18 @@ function drawTimeline(){
     const grupp = perDag[n];
     grupp.forEach((r, k) => {
       /* Utan namn kan prickarna ligga tätare utan att bli oläsliga. */
-      const spridning = (k - (grupp.length - 1) / 2) * (smal ? 2.6 : 1.9);
+      const spridning = (k - (grupp.length - 1) / 2) * (smal ? 2.6 : 3.1);
       const d = document.createElement('span');
       d.className = 'tl-dot' + (Number(n) > 0 ? ' soon' : '');
       d.style.setProperty('--c', color(r.genre));
       d.style.left = Math.max(4, Math.min(96, pct(Number(n)) + spridning)) + '%';
-      d.style.height = (bas + (k % 3) * steg) + 'px';
+      d.style.height = (bas + (k % 4) * steg) + 'px';
       d.style.animationDelay = (i++ * 45) + 'ms';
       d.title = r.artist + ' \u2014 ' + r.title + ' \u00b7 ' + whenLabel(r.date);
-      d.innerHTML = '<em>' + esc(r.artist) + '</em><u></u><i></i>';
+      /* Bara första artisten i etiketten. "Dr. Peacock × DJ Mutante" blir en
+         oläslig remsa lodrätt — hela namnet står ändå i listan nedanför. */
+      const kort = r.artist.split(' × ')[0];
+      d.innerHTML = '<em>' + esc(kort) + '</em><u></u><i></i>';
       tl.appendChild(d);
     });
   });
