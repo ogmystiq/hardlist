@@ -579,16 +579,28 @@ async function hittaId(post, token) {
   if (id) return id;                       // manuellt fastnaglat Spotify-ID
   if (state.ids[name]) return state.ids[name];
 
-  const fraga = sok || name;
-  const data = await api(
-    `/search?q=${encodeURIComponent(fraga)}&type=artist&limit=10`, token);
-  const traffar = data.artists?.items || [];
-  if (!traffar.length) return null;
+  async function sok10(q){
+    const d = await api(`/search?q=${encodeURIComponent(q)}&type=artist&limit=10`, token);
+    return d.artists?.items || [];
+  }
+  const exaktaAv = lista => lista.filter(a => normalisera(a.name) === normalisera(name));
 
-  const exakta = traffar.filter(a => normalisera(a.name) === normalisera(name));
+  let traffar = await sok10(sok || name);
+  let exakta = exaktaAv(traffar);
+
+  /* Enordsnamn som Requiem och Pavo drunknar bland Mozart och Pavarotti.
+     Då — och bara då — görs ett andra försök med genreordet tillagt. Det
+     kostar ett extra anrop, men bara för de artister som faktiskt missar. */
+  if (!exakta.length && !sok) {
+    traffar = await sok10(name + ' hardstyle');
+    exakta = exaktaAv(traffar);
+    if (exakta.length) console.log(`  · "${name}" hittades först på andra försöket`);
+  }
+
   if (!exakta.length) {
     console.log(`  ⚠ HOPPAR ÖVER "${name}" — ingen exakt träff. ` +
-                `Närmast: ${traffar.slice(0, 3).map(a => a.name).join(', ')}`);
+                `Närmast: ${traffar.slice(0, 3).map(a => a.name).join(', ')}. ` +
+                'Sätt sok eller id på artisten i listan om den finns på Spotify.');
     return null;
   }
 
