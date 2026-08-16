@@ -1120,6 +1120,71 @@
       "r": 0,
       "fk": "Dr. Peacock är ett av frenchcorens största namn.",
       "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/29/88/79/29887949-1cd6-eadf-96b9-cc05de50af8f/mzaf_17031228165385301345.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Sub Zero Project",
+        "Rebelion",
+        "Warface",
+        "D-Sturb"
+      ],
+      "r": 0,
+      "fk": "Sub Zero Project, kända för sitt experimentella ljud.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/43/81/c1/4381c128-8635-80d9-4088-88ef00484752/mzaf_5611000195895557692.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Rebelion",
+        "Vertile",
+        "Act of Rage",
+        "Malice"
+      ],
+      "r": 0,
+      "fk": "Rebelion, ett av raw-scenens tyngsta namn.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c6/fb/6d/c6fb6dd7-87ba-2f06-2a00-dd0b3c97c530/mzaf_10373962613702522488.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Year of Summer",
+        "Lose My Mind",
+        "No Time to Waste",
+        "Tonight"
+      ],
+      "r": 0,
+      "fk": "Wildstylez ft. Niels Geusebroek — Year of Summer. Euphoric med sång.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cb/8a/6f/cb8a6f27-3880-e195-c933-066560cd07cd/mzaf_6223225882721563132.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Miss K8",
+        "Korsakoff",
+        "Nosferatu",
+        "Tha Playah"
+      ],
+      "r": 0,
+      "fk": "Miss K8, ett av de största namnen inom mainstream hardcore.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/13/48/7e/13487ee7-622b-0569-6d0b-000097b859d5/mzaf_10259508152741182427.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Paul Elstak",
+        "Neophyte",
+        "DJ Isaac",
+        "Partyraiser"
+      ],
+      "r": 0,
+      "fk": "Paul Elstak, en av hardcorens grundare från Rotterdam 1991.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6b/df/e1/6bdfe12f-7c6c-dce1-8ab2-d61f467f9f8b/mzaf_13600165165187069152.plus.aac.p.m4a"
     }
   ]
 }

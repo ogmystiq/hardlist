@@ -1,8 +1,8 @@
 {
-  "uppdaterad": "2026-08-16T10:30:27.170Z",
+  "uppdaterad": "2026-08-16T11:07:32.821Z",
   "artister": 333,
-  "cachade": 17,
-  "releaser": 1,
-  "anrop": 3,
-  "avbrott": "RATE LIMIT på 1905s, längre än taket 180s. Inte kvoten — bara en tillfällig broms. Vänta några minuter och kör igen."
+  "cachade": 101,
+  "releaser": 10,
+  "anrop": 170,
+  "avbrott": "Anropstaket (170) nått."
 }
