@@ -525,6 +525,25 @@ footer{
   position:absolute;left:0;top:0;bottom:0;width:0;background:var(--raw);
   box-shadow:0 0 8px var(--raw);
 }
+.q-volym{display:flex;align-items:center;gap:10px;margin-top:9px}
+.q-volym svg{width:15px;height:15px;fill:var(--muted);flex:none}
+.q-volym input[type=range]{
+  -webkit-appearance:none;appearance:none;flex:1;max-width:150px;
+  height:3px;background:var(--line);border-radius:2px;outline:none;cursor:pointer;
+}
+.q-volym input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:15px;height:15px;border-radius:50%;
+  background:var(--bone);cursor:pointer;border:0;
+}
+.q-volym input[type=range]::-moz-range-thumb{
+  width:15px;height:15px;border-radius:50%;background:var(--bone);cursor:pointer;border:0;
+}
+.q-volym input[type=range]:focus-visible{outline:2px solid var(--raw);outline-offset:4px}
+@media (max-width:640px){
+  .q-volym input[type=range]{max-width:none;height:5px}
+  .q-volym input[type=range]::-webkit-slider-thumb{width:19px;height:19px}
+}
+
 .q-tid{
   font-family:var(--data);font-size:10px;color:#463C5E;margin-top:7px;letter-spacing:.06em;
 }
