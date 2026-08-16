@@ -691,6 +691,526 @@
       ],
       "r": 0,
       "fk": "D-Block & S-te-Fan — Music Made Addict."
+    },
+    {
+      "typ": "musik",
+      "sok": "The Prophet Emergency Call",
+      "f": "Vilket Defqon-anthem är det här?",
+      "s": [
+        "2005",
+        "2009",
+        "2013",
+        "2018"
+      ],
+      "r": 0,
+      "fk": "The Prophet — Emergency Call, Defqon.1 2005."
+    },
+    {
+      "typ": "musik",
+      "sok": "Showtek The Colours Of The Harder Styles",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Showtek",
+        "The Prophet",
+        "Zatox",
+        "Technoboy"
+      ],
+      "r": 0,
+      "fk": "Showtek — The Colours of the Harder Styles, Defqon.1 2006."
+    },
+    {
+      "typ": "musik",
+      "sok": "Brennan Heart Get Wasted",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Brennan Heart",
+        "Coone",
+        "Wildstylez",
+        "Frontliner"
+      ],
+      "r": 0,
+      "fk": "Brennan Heart — Get Wasted, Defqon.1 2007."
+    },
+    {
+      "typ": "musik",
+      "sok": "Headhunterz Scrap Attack",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Scrap Attack",
+        "Dragonborn",
+        "The Sacrifice",
+        "Rock Civilization"
+      ],
+      "r": 0,
+      "fk": "Headhunterz — Scrap Attack, Defqon.1 2009. Ett av de mest älskade anthemen någonsin."
+    },
+    {
+      "typ": "musik",
+      "sok": "Wildstylez No Time To Waste",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Wildstylez",
+        "Headhunterz",
+        "Noisecontrollers",
+        "Frontliner"
+      ],
+      "r": 0,
+      "fk": "Wildstylez — No Time to Waste, Defqon.1 2010."
+    },
+    {
+      "typ": "musik",
+      "sok": "Noisecontrollers Unite",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Unite",
+        "Destination",
+        "Solar",
+        "So High"
+      ],
+      "r": 0,
+      "fk": "Noisecontrollers — Unite, Defqon.1 2011."
+    },
+    {
+      "typ": "musik",
+      "sok": "Headhunterz Wildstylez Noisecontrollers World Of Madness",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "World of Madness",
+        "Tonight",
+        "Maximum Force",
+        "Unite"
+      ],
+      "r": 0,
+      "fk": "Headhunterz, Wildstylez & Noisecontrollers — World of Madness, Defqon.1 2012."
+    },
+    {
+      "typ": "musik",
+      "sok": "Frontliner Weekend Warriors",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Frontliner",
+        "B-Front",
+        "Frequencerz",
+        "Adaro"
+      ],
+      "r": 0,
+      "fk": "Frontliner — Weekend Warriors, Defqon.1 2013."
+    },
+    {
+      "typ": "musik",
+      "sok": "Coone Survival Of The Fittest",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Coone",
+        "Da Tweekaz",
+        "Brennan Heart",
+        "Sound Rush"
+      ],
+      "r": 0,
+      "fk": "Coone — Survival of the Fittest, Defqon.1 2014."
+    },
+    {
+      "typ": "musik",
+      "sok": "Ran-D Skits Vicious No Guts No Glory",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "No Guts No Glory",
+        "Zombie",
+        "United",
+        "Living For The Moment"
+      ],
+      "r": 0,
+      "fk": "Ran-D & Skits Vicious — No Guts No Glory, Defqon.1 2015."
+    },
+    {
+      "typ": "musik",
+      "sok": "Bass Modulators Dragonblood",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Bass Modulators",
+        "Noisecontrollers",
+        "Audiotricz",
+        "Toneshifterz"
+      ],
+      "r": 0,
+      "fk": "Bass Modulators — Dragonblood, Defqon.1 2016."
+    },
+    {
+      "typ": "musik",
+      "sok": "Frequencerz Victory Forever",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Frequencerz",
+        "Adaro",
+        "Radical Redemption",
+        "Digital Punk"
+      ],
+      "r": 0,
+      "fk": "Frequencerz — Victory Forever, Defqon.1 2017."
+    },
+    {
+      "typ": "musik",
+      "sok": "Project One Maximum Force",
+      "f": "Vilka ligger bakom den här låten?",
+      "s": [
+        "Project One",
+        "Gunz for Hire",
+        "Sub Zero Project",
+        "D-Block & S-te-Fan"
+      ],
+      "r": 0,
+      "fk": "Project One — Maximum Force, Defqon.1 2018. Project One är Headhunterz och Wildstylez ihop."
+    },
+    {
+      "typ": "musik",
+      "sok": "D-Block S-te-Fan Primal Energy",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "D-Block & S-te-Fan",
+        "Sub Zero Project",
+        "Rebelion",
+        "Warface"
+      ],
+      "r": 0,
+      "fk": "D-Block & S-te-Fan — Primal Energy. Skulle varit Defqon.1 2020, men fick vänta till 2022."
+    },
+    {
+      "typ": "musik",
+      "sok": "Sound Rush Power Of The Tribe",
+      "f": "Vilket Defqon-anthem är det här?",
+      "s": [
+        "2024",
+        "2019",
+        "2016",
+        "2012"
+      ],
+      "r": 0,
+      "fk": "Sound Rush — Power of the Tribe, Defqon.1 2024."
+    },
+    {
+      "typ": "musik",
+      "sok": "Vertile Where Legends Rise",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Vertile",
+        "D-Sturb",
+        "Rebelion",
+        "Sub Zero Project"
+      ],
+      "r": 0,
+      "fk": "Vertile — Where Legends Rise, Defqon.1 2025."
+    },
+    {
+      "typ": "musik",
+      "sok": "D-Sturb Sacred Oath",
+      "f": "Vilket anthem är det här?",
+      "s": [
+        "Defqon.1 2026",
+        "Decibel 2024",
+        "Defqon.1 2023",
+        "Reverze 2026"
+      ],
+      "r": 0,
+      "fk": "D-Sturb — Sacred Oath, Defqon.1 2026. Året festivalen fick ställas in efter första dagen."
+    },
+    {
+      "typ": "musik",
+      "sok": "Zatox D.E.C.I.B.E.L.",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Zatox",
+        "Technoboy",
+        "Tuneboy",
+        "Isaac"
+      ],
+      "r": 0,
+      "fk": "Zatox — D.E.C.I.B.E.L., Decibel Outdoor 2012."
+    },
+    {
+      "typ": "musik",
+      "sok": "Ran-D United hardstyle",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "United",
+        "Zombie",
+        "Magic",
+        "Destination"
+      ],
+      "r": 0,
+      "fk": "Ran-D — United, Decibel Outdoor 2016."
+    },
+    {
+      "typ": "musik",
+      "sok": "Noisecontrollers Bass Modulators Destination",
+      "f": "Vilka gör den här låten ihop?",
+      "s": [
+        "Noisecontrollers & Bass Modulators",
+        "Headhunterz & Wildstylez",
+        "Ran-D & Adaro",
+        "Coone & Da Tweekaz"
+      ],
+      "r": 0,
+      "fk": "Noisecontrollers & Bass Modulators — Destination, Decibel Outdoor 2017."
+    },
+    {
+      "typ": "musik",
+      "sok": "Brennan Heart Fuelled By Fanatics",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Fuelled by Fanatics",
+        "Imaginary",
+        "Lose My Mind",
+        "Just As Easy"
+      ],
+      "r": 0,
+      "fk": "Brennan Heart — Fuelled by Fanatics, Decibel Outdoor 2018. Det mest streamade Decibel-anthemet."
+    },
+    {
+      "typ": "musik",
+      "sok": "D-Sturb ATILAX Break Free",
+      "f": "Vilket anthem är det här?",
+      "s": [
+        "Decibel Outdoor 2022",
+        "Defqon.1 2022",
+        "Dominator 2022",
+        "Rebirth 2022"
+      ],
+      "r": 0,
+      "fk": "D-Sturb & ATILAX — Break Free, Decibel Outdoor 2022. Första året efter pandemin."
+    },
+    {
+      "typ": "musik",
+      "sok": "Act of Rage Raging City",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Act of Rage",
+        "Warface",
+        "D-Sturb",
+        "Rooler"
+      ],
+      "r": 0,
+      "fk": "Act of Rage — Raging City, Decibel Outdoor 2023."
+    },
+    {
+      "typ": "musik",
+      "sok": "Ran-D Unresolved Cosmic Frequency",
+      "f": "Vilka gör den här låten ihop?",
+      "s": [
+        "Ran-D & Unresolved",
+        "B-Front & Frontliner",
+        "Rebelion & Vertile",
+        "Rooler & Warface"
+      ],
+      "r": 0,
+      "fk": "Ran-D & Unresolved — Cosmic Frequency, Decibel Outdoor 2025."
+    },
+    {
+      "typ": "musik",
+      "sok": "Headhunterz Wildstylez Noisecontrollers Tonight",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Tonight",
+        "World of Madness",
+        "Unite",
+        "Dragonborn"
+      ],
+      "r": 0,
+      "fk": "Tonight, från 2009. Har legat först på Hardstyle Top 100."
+    },
+    {
+      "typ": "musik",
+      "sok": "B-Front Frontliner Magic hardstyle",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Magic",
+        "United",
+        "Tonight",
+        "Release"
+      ],
+      "r": 0,
+      "fk": "B-Front & Frontliner — Magic. Bevis på att raw också kan bli allsång."
+    },
+    {
+      "typ": "musik",
+      "sok": "Brennan Heart Jonathan Mendelsohn Imaginary",
+      "f": "Vem sjunger på den här låten?",
+      "s": [
+        "Jonathan Mendelsohn",
+        "David Spekter",
+        "Max P",
+        "Diandra Faye"
+      ],
+      "r": 0,
+      "fk": "Brennan Heart ft. Jonathan Mendelsohn — Imaginary."
+    },
+    {
+      "typ": "musik",
+      "sok": "Brennan Heart Wildstylez Lose My Mind",
+      "f": "Vilka gör den här låten ihop?",
+      "s": [
+        "Brennan Heart & Wildstylez",
+        "Headhunterz & Wildstylez",
+        "Coone & Brennan Heart",
+        "Da Tweekaz & Coone"
+      ],
+      "r": 0,
+      "fk": "Brennan Heart & Wildstylez — Lose My Mind, 2012. Refrängen alla kan utantill."
+    },
+    {
+      "typ": "musik",
+      "sok": "Atmozfears David Spekter Release",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Release",
+        "Tonight",
+        "Melancholia",
+        "Imaginary"
+      ],
+      "r": 0,
+      "fk": "Atmozfears ft. David Spekter — Release."
+    },
+    {
+      "typ": "musik",
+      "sok": "Headhunterz The Sacrifice",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Headhunterz",
+        "Wildstylez",
+        "Brennan Heart",
+        "Noisecontrollers"
+      ],
+      "r": 0,
+      "fk": "Headhunterz — The Sacrifice. En av de mest ikoniska låtarna i genren."
+    },
+    {
+      "typ": "musik",
+      "sok": "Ran-D Living For The Moment",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Ran-D",
+        "B-Front",
+        "Adaro",
+        "Warface"
+      ],
+      "r": 0,
+      "fk": "Ran-D — Living For The Moment, hans mest spelade år efter år."
+    },
+    {
+      "typ": "musik",
+      "sok": "Euromasters Rotterdam Hardcore",
+      "f": "Vad är den här låten känd för?",
+      "s": [
+        "Att den gav hardcore-genren dess namn",
+        "Att den var Defqons första anthem",
+        "Att den uppfann reverse bass",
+        "Att den är den snabbaste låten som gjorts"
+      ],
+      "r": 0,
+      "fk": "Euromasters — Rotterdam Hardcore, 1992. Spåret som satte namn på hela stilen."
+    },
+    {
+      "typ": "musik",
+      "sok": "Angerfist hardcore Incoming",
+      "f": "Vilken gren tillhör den här låten?",
+      "s": [
+        "Hardcore",
+        "Euphoric hardstyle",
+        "Raw hardstyle",
+        "Hard techno"
+      ],
+      "r": 0,
+      "fk": "Angerfist gör mainstream hardcore, runt 180–200 BPM."
+    },
+    {
+      "typ": "musik",
+      "sok": "Dr Peacock frenchcore Trip To",
+      "f": "Vilken gren tillhör den här låten?",
+      "s": [
+        "Frenchcore",
+        "Uptempo",
+        "Euphoric hardstyle",
+        "Terror"
+      ],
+      "r": 0,
+      "fk": "Dr. Peacock är ett av frenchcorens största namn."
+    },
+    {
+      "typ": "musik",
+      "sok": "Sub Zero Project The Contagion",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Sub Zero Project",
+        "Rebelion",
+        "Warface",
+        "D-Sturb"
+      ],
+      "r": 0,
+      "fk": "Sub Zero Project, kända för sitt experimentella ljud."
+    },
+    {
+      "typ": "musik",
+      "sok": "Rebelion Do You Believe",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Rebelion",
+        "Vertile",
+        "Act of Rage",
+        "Malice"
+      ],
+      "r": 0,
+      "fk": "Rebelion, ett av raw-scenens tyngsta namn."
+    },
+    {
+      "typ": "musik",
+      "sok": "Wildstylez Year Of Summer",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Year of Summer",
+        "Lose My Mind",
+        "No Time to Waste",
+        "Tonight"
+      ],
+      "r": 0,
+      "fk": "Wildstylez ft. Niels Geusebroek — Year of Summer. Euphoric med sång."
+    },
+    {
+      "typ": "musik",
+      "sok": "Miss K8 hardcore Raise Hell",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Miss K8",
+        "Korsakoff",
+        "Nosferatu",
+        "Tha Playah"
+      ],
+      "r": 0,
+      "fk": "Miss K8, ett av de största namnen inom mainstream hardcore."
+    },
+    {
+      "typ": "musik",
+      "sok": "Paul Elstak Rainbow In The Sky",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Paul Elstak",
+        "Neophyte",
+        "DJ Isaac",
+        "Partyraiser"
+      ],
+      "r": 0,
+      "fk": "Paul Elstak, en av hardcorens grundare från Rotterdam 1991."
+    },
+    {
+      "typ": "musik",
+      "sok": "Sefa Ik Wil Dansen frenchcore",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Sefa",
+        "Billx",
+        "Dr. Peacock",
+        "Radium"
+      ],
+      "r": 0,
+      "fk": "Sefa, en av frenchcorens största idag."
     }
   ]
 }
