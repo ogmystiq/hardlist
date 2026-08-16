@@ -1000,7 +1000,7 @@ function spelare(){
       '<p class="q-tid" id="qTid">30 sekunder · spela så många gånger du vill</p>' +
       '<div class="q-volym">' +
         '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 2 3.5 5H1v6h2.5L7 14zM10 5.5a3.5 3.5 0 0 1 0 5v-1.4a2.1 2.1 0 0 0 0-2.2zM12 3a6.5 6.5 0 0 1 0 10v-1.5a5 5 0 0 0 0-7z"/></svg>' +
-        '<input type="range" id="qVol" min="0" max="100" step="1" value="60" aria-label="Volym">' +
+        '<input type="range" id="qVol" min="0" max="100" step="1" value="40" aria-label="Volym">' +
       '</div>' +
     '</div></div>';
 }
@@ -1012,22 +1012,60 @@ function kopplaSpelare(url){
   const knapp = document.getElementById('qPlay');
   const bar   = document.getElementById('qBar');
   const tid   = document.getElementById('qTid');
+  const reglage = document.getElementById('qVol');
   if (!knapp) return;
 
-  const ljud = new Audio(url);
+  let vol = 40;
+  try { const v = localStorage.getItem(NYCKEL + '_vol'); if (v !== null) vol = +v; } catch(e){}
+  if (reglage) reglage.value = vol;
+
+  let ljud = new Audio(url);
   ljud.preload = 'none';
 
-  /* Förhandslyssningarna är mastrade högt — full volym är obehagligt i lurar.
-     60 procent som utgångsläge, och valet minns till nästa gång. */
-  const reglage = document.getElementById('qVol');
-  let sparadVol = 60;
-  try { const v = localStorage.getItem(NYCKEL + '_vol'); if (v !== null) sparadVol = +v; } catch(e){}
-  if (reglage) reglage.value = sparadVol;
-  ljud.volume = Math.min(1, Math.max(0, sparadVol / 100));
+  /* Safari på iOS ignorerar audio.volume helt — nivån styrs bara av telefonens
+     knappar. Testa om egenskapen biter innan vi litar på den. */
+  ljud.volume = 0.5;
+  const volymBiter = Math.abs(ljud.volume - 0.5) < 0.01;
+
+  let gain = null;
+
+  function satt(v){
+    const n = Math.min(1, Math.max(0, v / 100));
+    /* Kvadrerat ger en jämnare upplevd skala — örat hör inte linjärt. */
+    const niva = n * n;
+    if (gain) gain.gain.value = niva;
+    else ljud.volume = niva;
+  }
+
+  if (volymBiter){
+    satt(vol);
+  } else {
+    /* Web Audio kringgår iOS-spärren. Kräver CORS på ljudfilen; går det inte
+       backar vi till vanlig uppspelning och döljer reglaget i stället för att
+       lämna en kontroll som inte gör något. */
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) throw 0;
+      ljud.crossOrigin = 'anonymous';
+      const ctx = new AC();
+      const kalla = ctx.createMediaElementSource(ljud);
+      gain = ctx.createGain();
+      kalla.connect(gain); gain.connect(ctx.destination);
+      satt(vol);
+      knapp.addEventListener('click', () => { if (ctx.state === 'suspended') ctx.resume(); });
+    } catch(e){
+      gain = null;
+      ljud = new Audio(url);
+      ljud.preload = 'none';
+      if (reglage) reglage.closest('.q-volym').innerHTML =
+        '<span style="font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#5C5175">' +
+        'Volym styrs med knapparna på telefonen</span>';
+    }
+  }
 
   if (reglage){
     reglage.addEventListener('input', function(){
-      ljud.volume = this.value / 100;
+      satt(+this.value);
       try { localStorage.setItem(NYCKEL + '_vol', this.value); } catch(e){}
     });
   }
@@ -1040,6 +1078,17 @@ function kopplaSpelare(url){
     } else {
       ljud.pause();
     }
+  });
+
+  /* Ligger CORS i vägen ger Web Audio tystnad. Backa till vanlig uppspelning. */
+  ljud.addEventListener('error', function(){
+    if (!gain) return;
+    gain = null;
+    const b = new Audio(url); b.preload = 'none';
+    ljud = b;
+    if (reglage) reglage.closest('.q-volym').innerHTML =
+      '<span style="font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#5C5175">' +
+      'Volym styrs med knapparna på telefonen</span>';
   });
 
   ljud.addEventListener('play',  function(){ knapp.innerHTML = IKON_PAUS; knapp.setAttribute('aria-label','Pausa'); });
