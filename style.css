@@ -453,6 +453,33 @@ footer{
   font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
   color:#5C5175;margin-bottom:14px;
 }
+.q-spelare{
+  display:flex;align-items:center;gap:16px;
+  border:1px solid var(--line);background:var(--ink);padding:16px 18px;margin-bottom:22px;
+}
+.q-play{
+  flex:none;width:48px;height:48px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--raw);background:rgba(255,46,99,.1);color:var(--raw);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .18s,transform .18s;
+}
+.q-play:hover{background:rgba(255,46,99,.2);transform:scale(1.04)}
+.q-play svg{width:16px;height:16px;fill:currentColor}
+.q-spelare .info{flex:1;min-width:0}
+.q-spelare .etikett{
+  font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:#5C5175;margin-bottom:9px;
+}
+.q-bar{height:3px;background:var(--line);position:relative;overflow:hidden}
+.q-bar i{
+  position:absolute;left:0;top:0;bottom:0;width:0;background:var(--raw);
+  box-shadow:0 0 8px var(--raw);
+}
+.q-tid{
+  font-family:var(--data);font-size:10px;color:#463C5E;margin-top:7px;letter-spacing:.06em;
+}
+@media (max-width:640px){ .q-spelare{padding:13px 14px;gap:12px} }
+
 .q-fraga{
   font-family:var(--display);font-weight:900;text-transform:uppercase;
   font-size:clamp(24px,4.4vw,34px);line-height:1.02;color:var(--bone);margin-bottom:24px;

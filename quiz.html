@@ -242,26 +242,20 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
 .witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
 .prenumerera{
-  border:1px solid var(--line);background:var(--surface);padding:20px;margin-top:24px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px;
 }
-.prenumerera h4{
-  font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:#5C5175;margin:0 0 8px;font-weight:400;
-}
-.prenumerera p{font-size:14px;color:var(--muted);margin:0 0 16px;max-width:64ch;line-height:1.6}
-.pren-rad{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.pren-rad a,.pren-rad button{
+.prenumerera a,.prenumerera button{
   display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
-  border:1px solid var(--line);background:var(--ink);color:var(--bone);
+  border:1px solid var(--line);background:none;color:var(--bone);
   padding:11px 17px;border-radius:2px;
   font-family:var(--data);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
   transition:border-color .18s,transform .18s,color .18s;
 }
-.pren-rad a:hover,.pren-rad button:hover{border-color:var(--muted);transform:translateY(-1px)}
-.pren-rad button.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
-.pren-hjalp{
-  font-family:var(--data);font-size:10px;letter-spacing:.06em;color:#463C5E;
-  margin:14px 0 0;line-height:1.9;
+.prenumerera a:hover,.prenumerera button:hover{border-color:var(--muted);transform:translateY(-1px)}
+.prenumerera button.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
+.prenumerera em{
+  font-style:normal;font-family:var(--data);font-size:10px;letter-spacing:.07em;
+  color:#5C5175;max-width:34ch;line-height:1.7;
 }
 
 .watch-head{
@@ -497,6 +491,33 @@ footer{
   font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
   color:#5C5175;margin-bottom:14px;
 }
+.q-spelare{
+  display:flex;align-items:center;gap:16px;
+  border:1px solid var(--line);background:var(--ink);padding:16px 18px;margin-bottom:22px;
+}
+.q-play{
+  flex:none;width:48px;height:48px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--raw);background:rgba(255,46,99,.1);color:var(--raw);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .18s,transform .18s;
+}
+.q-play:hover{background:rgba(255,46,99,.2);transform:scale(1.04)}
+.q-play svg{width:16px;height:16px;fill:currentColor}
+.q-spelare .info{flex:1;min-width:0}
+.q-spelare .etikett{
+  font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:#5C5175;margin-bottom:9px;
+}
+.q-bar{height:3px;background:var(--line);position:relative;overflow:hidden}
+.q-bar i{
+  position:absolute;left:0;top:0;bottom:0;width:0;background:var(--raw);
+  box-shadow:0 0 8px var(--raw);
+}
+.q-tid{
+  font-family:var(--data);font-size:10px;color:#463C5E;margin-top:7px;letter-spacing:.06em;
+}
+@media (max-width:640px){ .q-spelare{padding:13px 14px;gap:12px} }
+
 .q-fraga{
   font-family:var(--display);font-weight:900;text-transform:uppercase;
   font-size:clamp(24px,4.4vw,34px);line-height:1.02;color:var(--bone);margin-bottom:24px;
@@ -788,7 +809,9 @@ function ritaFraga(){
   const svarat = state.svar[nyckel];
 
   kort.innerHTML =
-    '<p class="q-datum">' + d.getDate() + ' ' + MANADER[d.getMonth()] + ' ' + d.getFullYear() + '</p>' +
+    '<p class="q-datum">' + d.getDate() + ' ' + MANADER[d.getMonth()] + ' ' + d.getFullYear() +
+      (q.ljud ? ' · Lyssningsfråga' : '') + '</p>' +
+    (q.ljud ? spelare() : '') +
     '<h2 class="q-fraga">' + esc(q.f) + '</h2>' +
     '<div class="q-alt" id="qAlt">' +
       alt.map((a, i) =>
@@ -807,6 +830,55 @@ function ritaFraga(){
     });
   }
   if (svarat) kopplaDela(svarat.ratt);
+  if (q.ljud) kopplaSpelare(q.ljud);
+}
+
+/* Ljudet är Apples officiella 30-sekunders förhandslyssning. Artist och titel
+   syns aldrig — varken i spelaren eller i adressen. */
+function spelare(){
+  return '<div class="q-spelare">' +
+    '<button class="q-play" id="qPlay" aria-label="Spela upp">' +
+      '<svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z"/></svg></button>' +
+    '<div class="info">' +
+      '<p class="etikett">Lyssna och svara</p>' +
+      '<div class="q-bar"><i id="qBar"></i></div>' +
+      '<p class="q-tid" id="qTid">30 sekunder · spela så många gånger du vill</p>' +
+    '</div></div>';
+}
+
+const IKON_PLAY  = '<svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z"/></svg>';
+const IKON_PAUS  = '<svg viewBox="0 0 16 16"><path d="M3 1.5h4v13H3zM9 1.5h4v13H9z"/></svg>';
+
+function kopplaSpelare(url){
+  const knapp = document.getElementById('qPlay');
+  const bar   = document.getElementById('qBar');
+  const tid   = document.getElementById('qTid');
+  if (!knapp) return;
+
+  const ljud = new Audio(url);
+  ljud.preload = 'none';
+
+  knapp.addEventListener('click', function(){
+    if (ljud.paused){
+      ljud.play().catch(function(){
+        tid.textContent = 'Kunde inte spela upp ljudet just nu.';
+      });
+    } else {
+      ljud.pause();
+    }
+  });
+
+  ljud.addEventListener('play',  function(){ knapp.innerHTML = IKON_PAUS; knapp.setAttribute('aria-label','Pausa'); });
+  ljud.addEventListener('pause', function(){ knapp.innerHTML = IKON_PLAY; knapp.setAttribute('aria-label','Spela upp'); });
+  ljud.addEventListener('ended', function(){
+    knapp.innerHTML = IKON_PLAY; bar.style.width = '0';
+    tid.textContent = '30 sekunder · spela så många gånger du vill';
+  });
+  ljud.addEventListener('timeupdate', function(){
+    if (!ljud.duration) return;
+    bar.style.width = (ljud.currentTime / ljud.duration * 100) + '%';
+    tid.textContent = Math.floor(ljud.currentTime) + ' av ' + Math.floor(ljud.duration) + ' sekunder';
+  });
 }
 
 function svarRuta(ratt, forklaring, plus){
@@ -880,7 +952,7 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
 async function start(){
   ritaTopp();
   try {
-    const r = await fetch('data/quiz.json', {cache:'no-store'});
+    const r = await fetch('data/quiz-live.json', {cache:'no-store'});
     const data = await r.json();
     fragor = data.fragor;
     if (!Array.isArray(fragor) || !fragor.length) throw 0;

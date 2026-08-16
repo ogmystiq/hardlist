@@ -20,6 +20,8 @@ scripts/hamta-releaser.mjs      hämtar från Spotify
 scripts/bygg-metadata.mjs       bygger allt härlett: SEED-kopior, JSON-LD,
                                 kalender.ics, releaser.xml, sitemap-datum
 data/quiz.json                  quizfrågor — lägg till fler här
+data/quiz-live.json             genereras — klientversionen utan facit
+data/ljud.json                  genereras — cache av ljudadresser
 data/anthems.json               anthem-arkivet
 kalender.ics                    genereras — prenumererbar kalender
 releaser.xml                    genereras — RSS på releaserna
@@ -248,6 +250,39 @@ All Things Live räknar med runt 10 000 besökare, och lineupen har Project One,
 Brennan Heart, Showtek, Rebelion vs Vertile, Rooler vs Warface och Radical
 Redemption bland andra.
 
+## Musikfrågor i quizet
+
+En fråga kan spela upp 30 sekunder musik istället för att ställa en textfråga.
+Lägg till den så här i `data/quiz.json`:
+
+```json
+{
+  "typ": "musik",
+  "sok": "Headhunterz Dragonborn",
+  "f": "Vilken låt är det här?",
+  "s": ["Dragonborn", "Scrap Attack", "The Sacrifice", "Rock Civilization"],
+  "r": 0,
+  "fk": "Headhunterz — Dragonborn."
+}
+```
+
+`sok` är söksträngen mot **Apples iTunes Search API**, som är gratis, kräver
+ingen inloggning och lämnar ut 30-sekunders förhandslyssningar lagligt. Skriptet
+slår upp den, sparar adressen i `data/ljud.json` och slår aldrig upp samma sträng
+igen.
+
+**Spotify går inte att använda för det här.** Fältet `preview_url` slutade
+fungera för nya appar i november 2024 och returnerar alltid null. Det finns
+lösningar som skrapar Spotifys embed-spelare, men de bryter mot villkoren.
+
+**Söksträngen skickas aldrig till webbläsaren.** Den skulle avslöja svaret.
+Byggskriptet skriver en separat `data/quiz-live.json` där `sok` är borttagen och
+ersatt av den färdiga ljudadressen. Adressen innehåller inget låtnamn.
+
+Hittas ingen förhandslyssning **utelämnas frågan helt** istället för att visas
+med en trasig spelare. Loggen skriver ut vilka som misslyckades — testa då en
+enklare söksträng, gärna bara artist och låttitel.
+
 ## Filer som genereras automatiskt
 
 `scripts/bygg-metadata.mjs` skriver dessa vid varje körning. **Redigera dem aldrig
@@ -257,6 +292,8 @@ för hand** — ändringarna skrivs över nästa natt.
 |---|---|---|
 | `kalender.ics` | `data/events.json` | Prenumererbar kalender. Folk lägger in den en gång i Google eller Apple Kalender och får nya event automatiskt. Bara event med bekräftat datum. |
 | `releaser.xml` | `data/releases.json` | RSS-flöde med de 50 senaste släppen. |
+| `data/quiz-live.json` | `data/quiz.json` | Quizet som webbläsaren läser, utan söksträngar. |
+| `data/ljud.json` | iTunes Search API | Cache av ljudadresser. Slås bara upp en gång per låt. |
 | `SEED_EVENTS` / `SEED_QUIZ` / `SEED_ANTHEMS` | respektive JSON | Reservdata när sidan öppnas utan server. |
 | JSON-LD i `index.html` | `data/events.json` | Strukturerad data för Google. |
 
