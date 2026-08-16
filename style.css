@@ -544,6 +544,11 @@ footer{
   .q-volym input[type=range]::-webkit-slider-thumb{width:19px;height:19px}
 }
 
+.q-volnivå{
+  font-family:var(--data);font-size:10px;letter-spacing:.06em;color:#5C5175;
+  min-width:38px;text-align:right;flex:none;
+}
+
 .q-tid{
   font-family:var(--data);font-size:10px;color:#463C5E;margin-top:7px;letter-spacing:.06em;
 }
