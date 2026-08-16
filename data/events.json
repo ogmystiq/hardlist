@@ -6,7 +6,8 @@
     "city": "Hilvarenbeek, NL",
     "venue": "Beekse Bergen",
     "lineup": "28–30 augusti. 30+ scener över hela hard dance-spektrumet.",
-    "url": "https://www.decibeloutdoor.com/tickets"
+    "url": "https://www.decibeloutdoor.com/tickets",
+    "dateEnd": "2026-08-30"
   },
   {
     "name": "Sana Duri — The New Beginning",
@@ -33,7 +34,8 @@
     "city": "Stockholm, SE",
     "venue": "Kryssning",
     "lineup": "6–7 november. Egen black floor för de hårdare stilarna.",
-    "url": "https://www.mondaybar.com/"
+    "url": "https://www.mondaybar.com/",
+    "dateEnd": "2026-11-07"
   },
   {
     "name": "Reverze",
@@ -43,7 +45,8 @@
     "venue": "AFAS Dome + Lotto Arena",
     "lineup": "26–27 februari, AFAS Dome + Lotto Arena. Säsongsöppnaren. Biljetterna är inte släppta än — förhandsanmälan ger första tillgång.",
     "url": "https://www.reverze.be/pre-registration",
-    "urlText": "Förhandsanmälan"
+    "urlText": "Förhandsanmälan",
+    "dateEnd": "2027-02-27"
   },
   {
     "name": "Lumaniac",
@@ -125,7 +128,8 @@
     "venue": "Walibi Holland",
     "lineup": "24–27 juni, fyra dagar på Holy Grounds. Efter att 2026 ställdes in fick alla biljettinnehavare välja mellan återbetalning och att behålla biljetten till 2027 — valet stängde i juli. Många behöll, så en stor del av platserna är redan tagna innan försäljningen öppnar. Släpp väntas under hösten, medlemmar först.",
     "url": "https://www.defqon1.com/",
-    "urlText": "Biljettinfo"
+    "urlText": "Biljettinfo",
+    "dateEnd": "2027-06-27"
   },
   {
     "name": "Dominator",
@@ -168,7 +172,8 @@
     "city": "Antwerpen, BE",
     "venue": "AFAS Dome",
     "lineup": "11–12 december. Hardcore-varumärket som startade 1992 och byggde hela gabberkulturen. Hela scenen samlas, från early till terror.",
-    "url": "https://www.thunderdome.com/"
+    "url": "https://www.thunderdome.com/",
+    "dateEnd": "2026-12-12"
   },
   {
     "name": "Ground Zero Festival",
