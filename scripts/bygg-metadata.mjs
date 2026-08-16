@@ -170,7 +170,7 @@ async function run() {
 
   /* Tak på hur många nya uppslag en körning gör. Cachen är permanent, så
      resten hämtas nästa natt — hela banken är klar efter ett par dygn. */
-  const MAX_UPPSLAG = 25;
+  const MAX_UPPSLAG = 50;   // 50 × 3,2 s ≈ 2,7 min, ryms i jobbet
   let nya = 0, hoppade = 0;
   for (const q of quiz.fragor){
     if (q.typ !== 'musik' || !q.sok) continue;
@@ -181,7 +181,28 @@ async function run() {
     q.ljud = await hittaLjud(q.sok);
   }
   if (hoppade) console.log(`  ${hoppade} låtar kvar att slå upp — tas nästa körning.`);
-  await skrivJson(LJUD, ljudCache);
+  /* Skriv aldrig över en större cache med en mindre. Utan den här spärren
+     raderades 22 fungerande ljudadresser när bygget kördes utan nätverk. */
+  let gammalCache = {};
+  try { gammalCache = JSON.parse(await readFile(LJUD, 'utf8')); } catch(e){}
+  const sammanslagen = { ...gammalCache };
+  for (const [k, v] of Object.entries(ljudCache)) if (v) sammanslagen[k] = v;
+
+  const foreAntal = Object.keys(gammalCache).filter(k => gammalCache[k]).length;
+  const efterAntal = Object.keys(sammanslagen).filter(k => sammanslagen[k]).length;
+  if (efterAntal >= foreAntal) {
+    await skrivJson(LJUD, sammanslagen);
+    ljudCache = sammanslagen;
+  } else {
+    console.log(`  Behåller befintlig ljudcache (${foreAntal} poster) — ` +
+                'den här körningen hittade färre.');
+    ljudCache = gammalCache;
+  }
+
+  /* Fyll på frågorna från den sammanslagna cachen. */
+  for (const q of quiz.fragor){
+    if (q.typ === 'musik' && q.sok && !q.ljud) q.ljud = ljudCache[q.sok] || null;
+  }
 
   /* Klientversionen: sok bort, frågor utan ljud filtreras ut. */
   const tillKlient = quiz.fragor
