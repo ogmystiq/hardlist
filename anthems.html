@@ -448,6 +448,15 @@ footer{
   display:block;font-family:var(--data);font-size:11px;letter-spacing:.07em;
   color:var(--muted);margin-top:5px;
 }
+.anthem-huvud{
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:0 0 6px;
+}
+.anthem-huvud h2{margin:0}
+.anthem-ort{
+  font-family:var(--data);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#5C5175;
+}
+.anthem-intro{color:var(--muted);font-size:15px;line-height:1.65;max-width:68ch;margin:0 0 26px}
+
 .anthem-not{
   font-size:13px;color:var(--muted);margin:14px 0 0;max-width:62ch;
 }
@@ -641,20 +650,18 @@ footer{
   </div>
 
   <section>
-    <div class="wrap prose" style="max-width:none">
-      <h2>Defqon.1</h2>
-      <p>Att få göra Defqon-anthemet räknas som ett av de största uppdragen en artist kan få i scenen. Låten sätter tonen för hela året och spelas på Opening Ceremony, i Power Hour och i Endshow.</p>
-      <ol class="anthems" id="lista"></ol>
-      <p class="anthem-not" id="not"></p>
+    <div class="wrap">
+      <div class="picker" id="valjare" role="tablist" aria-label="Välj festival"></div>
+      <div id="arkiv"></div>
 
       <div class="callout" style="margin-top:32px">
         <b>Snabbaste sättet att fatta hur stilen förändrats</b>
-        Lyssna på tre av dem i ordning — 2006, 2015 och 2026. Du hör hela resan från tidig hardstyle via euphoric till dagens hårdare ljud på en kvart.
+        Lyssna på tre Defqon-anthems i ordning — 2006, 2015 och 2026. Du hör hela resan från tidig hardstyle via euphoric till dagens hårdare ljud på en kvart.
       </div>
 
       <div class="callout tip">
-        <b>Fler festivaler på väg</b>
-        Decibel, Dominator, Intents och Reverze har egna anthemtraditioner. Jag lägger in dem allt eftersom jag kan verifiera varje år mot en ordentlig källa — hellre en komplett lista än fyra halva.
+        <b>Hjälp till att fylla luckorna</b>
+        Dominator, Intents, Rebirth och Reverze har egna anthemtraditioner som inte ligger inne än, och Decibels lista har hål. Jag lägger bara in år jag kan verifiera mot en ordentlig källa — hellre rätt än fullständigt.
         <a href="mailto:hardlisthelp@gmail.com">Sitter du på uppgifterna?</a>
       </div>
     </div>
@@ -704,20 +711,48 @@ footer{
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-function rita(data){
-  const d = data.defqon;
-  document.getElementById('lista').innerHTML = d.ar.map(function(rad){
-    return '<li><span class="ar">' + esc(rad[0]) + '</span>' +
-           '<div><b>' + esc(rad[1]) + '</b><span>' + esc(rad[2]) + '</span></div></li>';
+let arkiv = {}, valdFest = null;
+
+function ritaValjare(){
+  document.getElementById('valjare').innerHTML = Object.keys(arkiv).map(function(k){
+    return '<button class="fbtn" data-f="' + k + '" role="tab" aria-selected="' +
+           (k === valdFest) + '">' + esc(arkiv[k].namn) + '</button>';
   }).join('');
-  document.getElementById('not').textContent = d.not || '';
+}
+
+function ritaArkiv(){
+  const d = arkiv[valdFest];
+  if (!d) return;
+  document.getElementById('arkiv').innerHTML =
+    '<div class="anthem-huvud"><h2>' + esc(d.namn) + '</h2>' +
+      (d.ort ? '<span class="anthem-ort">' + esc(d.ort) + '</span>' : '') + '</div>' +
+    (d.intro ? '<p class="anthem-intro">' + esc(d.intro) + '</p>' : '') +
+    '<ol class="anthems">' + d.ar.map(function(rad){
+      return '<li><span class="ar">' + esc(rad[0]) + '</span>' +
+             '<div><b>' + esc(rad[1]) + '</b><span>' + esc(rad[2]) + '</span></div></li>';
+    }).join('') + '</ol>' +
+    (d.not ? '<p class="anthem-not">' + esc(d.not) + '</p>' : '');
+}
+
+function rita(data){
+  arkiv = data;
+  valdFest = valdFest && arkiv[valdFest] ? valdFest : Object.keys(arkiv)[0];
+  ritaValjare();
+  ritaArkiv();
+  document.getElementById('valjare').addEventListener('click', function(e){
+    const b = e.target.closest('.fbtn');
+    if (!b || b.dataset.f === valdFest) return;
+    valdFest = b.dataset.f;
+    ritaValjare();
+    ritaArkiv();
+  });
 }
 
 async function start(){
   try {
     const r = await fetch('data/anthems.json', {cache:'no-store'});
     const data = await r.json();
-    if (!data || !data.defqon) throw 0;
+    if (!data || !Object.keys(data).length) throw 0;
     rita(data);
   } catch(e){
     rita(SEED_ANTHEMS);
@@ -727,7 +762,7 @@ async function start(){
 <script>
 /* Reservkopia av data/anthems.json. Byggs om av scripts/bygg-metadata.mjs. */
 /* SEED_ANTHEMS:START */
-const SEED_ANTHEMS = {"defqon":{"namn":"Defqon.1","not":"2003, 2004 och 2021–2022 saknade egen anthem eller återanvände föregående års.","ar":[["2026","Sacred Oath","D-Sturb"],["2025","Where Legends Rise","Vertile"],["2024","Power of the Tribe","Sound Rush"],["2023","Path of the Warrior","Sub Zero Project"],["2020","Primal Energy","D-Block & S-te-Fan"],["2019","One Tribe","Phuture Noize, KELTEK & Sefa"],["2018","Maximum Force","Project One"],["2017","Victory Forever","Frequencerz"],["2016","Dragonblood","Bass Modulators"],["2015","No Guts No Glory","Ran-D & Skits Vicious"],["2014","Survival of the Fittest","Coone"],["2013","Weekend Warriors","Frontliner"],["2012","World of Madness","Headhunterz, Wildstylez & Noisecontrollers"],["2011","Unite","Noisecontrollers"],["2010","No Time to Waste","Wildstylez"],["2009","Scrap Attack","Headhunterz"],["2008","Biological Insanity","Luna & Deepack"],["2007","Get Wasted","Brennan Heart"],["2006","The Colours of the Harder Styles","Showtek"],["2005","Emergency Call","The Prophet"]]}};
+const SEED_ANTHEMS = {"defqon":{"namn":"Defqon.1","ort":"Biddinghuizen, NL · sedan 2003","intro":"Att få göra Defqon-anthemet räknas som ett av de största uppdragen en artist kan få i scenen. Låten sätter tonen för hela året och spelas på Opening Ceremony, i Power Hour och i Endshow.","not":"2003, 2004 och 2021 saknade egen anthem, och Primal Energy återanvändes 2020–2022 eftersom festivalen ställdes in under pandemin.","ar":[["2026","Sacred Oath","D-Sturb"],["2025","Where Legends Rise","Vertile"],["2024","Power of the Tribe","Sound Rush"],["2023","Path of the Warrior","Sub Zero Project"],["2020","Primal Energy","D-Block & S-te-Fan"],["2019","One Tribe","Phuture Noize, KELTEK & Sefa"],["2018","Maximum Force","Project One"],["2017","Victory Forever","Frequencerz"],["2016","Dragonblood","Bass Modulators"],["2015","No Guts No Glory","Ran-D & Skits Vicious"],["2014","Survival of the Fittest","Coone"],["2013","Weekend Warriors","Frontliner"],["2012","World of Madness","Headhunterz, Wildstylez & Noisecontrollers"],["2011","Unite","Noisecontrollers"],["2010","No Time to Waste","Wildstylez"],["2009","Scrap Attack","Headhunterz"],["2008","Biological Insanity","Luna & Deepack"],["2007","Get Wasted","Brennan Heart"],["2006","The Colours of the Harder Styles","Showtek"],["2005","Emergency Call","The Prophet"]]},"decibel":{"namn":"Decibel Outdoor","ort":"Hilvarenbeek, NL · The Loudest City on Earth","intro":"Decibel bokar bredare än de flesta, och det syns på anthemen. Här har allt från euphoric till rå raw fått bära året.","not":"Ofullständig lista. Åren 2013–2015, 2019–2021 och titeln på 2026 års anthem saknas — hittar du dem, hör av dig så läggs de in.","ar":[["2025","Cosmic Frequency","Ran-D & Unresolved"],["2024","Echoes of Existence","Rejecta & LXCPR"],["2023","Raging City","Act of Rage"],["2022","Break Free","D-Sturb & ATILAX"],["2018","Fuelled by Fanatics","Brennan Heart"],["2017","Destination","Noisecontrollers & Bass Modulators"],["2016","United","Ran-D"],["2012","D.E.C.I.B.E.L.","Zatox"]]}};
 /* SEED_ANTHEMS:END */
 start();
 </script>
