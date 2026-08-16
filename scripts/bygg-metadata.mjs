@@ -29,6 +29,7 @@ const RELEASER= resolve(ROOT, 'data/releases.json');
 const INDEX   = resolve(ROOT, 'index.html');
 const QUIZSIDA= resolve(ROOT, 'quiz.html');
 const ANTHEMS = resolve(ROOT, 'data/anthems.json');
+const LJUD    = resolve(ROOT, 'data/ljud.json');
 const ANTSIDA = resolve(ROOT, 'anthems.html');
 const SITEMAP = resolve(ROOT, 'sitemap.xml');
 const ICS     = resolve(ROOT, 'kalender.ics');
@@ -71,6 +72,10 @@ function eventLd(e) {
   return ld;
 }
 
+async function skrivJson(fil, data){
+  await writeFile(fil, JSON.stringify(data, null, 2) + '\n', 'utf8');
+}
+
 async function run() {
   const events = JSON.parse(await readFile(EVENTS, 'utf8'));
   if (!Array.isArray(events)) throw new Error('data/events.json är inte en lista.');
@@ -110,13 +115,57 @@ async function run() {
 
   await writeFile(INDEX, html, 'utf8');
 
-  /* Samma sak för quizet: frågorna finns i data/quiz.json och speglas in i
-     quiz.html som reservkopia. */
+  /* --- Quizet, inklusive ljud till musikfrågorna ---
+
+     Spotifys 30-sekunders preview_url slutade fungera för nya appar i november
+     2024 och returnerar alltid null. Apples iTunes Search API är gratis, kräver
+     ingen inloggning och lämnar ut samma sorts förhandslyssning lagligt.
+
+     Söksträngen ("sok") skickas ALDRIG till webbläsaren — den skulle avslöja
+     svaret. Bara den färdiga ljudadressen följer med. */
   const quiz = JSON.parse(await readFile(QUIZ, 'utf8'));
+
+  let ljudCache = {};
+  try { ljudCache = JSON.parse(await readFile(LJUD, 'utf8')); } catch(e){}
+
+  async function hittaLjud(sok){
+    if (ljudCache[sok] !== undefined) return ljudCache[sok];
+    try {
+      const url = 'https://itunes.apple.com/search?media=music&entity=song&limit=1&term=' +
+                  encodeURIComponent(sok);
+      const r = await fetch(url, { headers: { 'User-Agent': 'HARDLIST/1.0' } });
+      if (!r.ok) throw new Error('status ' + r.status);
+      const data = await r.json();
+      const traff = data.results?.[0];
+      ljudCache[sok] = traff?.previewUrl || null;
+      if (!ljudCache[sok]) console.log(`  ⚠ ingen förhandslyssning för "${sok}"`);
+      /* iTunes tål ungefär 20 anrop per minut. Vi ligger med god marginal. */
+      await new Promise(r2 => setTimeout(r2, 3500));
+    } catch(e){
+      console.log(`  ⚠ kunde inte slå upp "${sok}": ${e.message}`);
+      return ljudCache[sok] ?? null;   // behåll gammalt värde vid tillfälligt fel
+    }
+    return ljudCache[sok];
+  }
+
+  let nya = 0;
+  for (const q of quiz.fragor){
+    if (q.typ !== 'musik' || !q.sok) continue;
+    if (ljudCache[q.sok] === undefined) nya++;
+    q.ljud = await hittaLjud(q.sok);
+  }
+  await skrivJson(LJUD, ljudCache);
+
+  /* Klientversionen: sok bort, frågor utan ljud filtreras ut. */
+  const tillKlient = quiz.fragor
+    .filter(q => q.typ !== 'musik' || q.ljud)
+    .map(q => { const { sok, ...rest } = q; return rest; });
+
   let qhtml = await readFile(QUIZSIDA, 'utf8');
   qhtml = ersatt(qhtml, '/* SEED_QUIZ:START */', '/* SEED_QUIZ:END */',
-    'const SEED_QUIZ = ' + JSON.stringify(quiz.fragor) + ';', 'quiz.html');
+    'const SEED_QUIZ = ' + JSON.stringify(tillKlient) + ';', 'quiz.html');
   await writeFile(QUIZSIDA, qhtml, 'utf8');
+  await skrivJson(resolve(ROOT, 'data/quiz-live.json'), { version: quiz.version, fragor: tillKlient });
 
   /* Anthem-arkivet speglas in på samma sätt. */
   const anthems = JSON.parse(await readFile(ANTHEMS, 'utf8'));
@@ -217,7 +266,8 @@ async function run() {
   console.log(
     `Metadata byggd: ${events.length} event i SEED_EVENTS, ` +
     `${daterade.length} med datum i strukturerad data, ` +
-    `${quiz.fragor.length} quizfrågor, ${daterade.length} event i kalender.ics, ` +
+    `${tillKlient.length} quizfrågor varav ${tillKlient.filter(q => q.ljud).length} med ljud` +
+    `${nya ? ` (${nya} nya uppslag)` : ''}, ${daterade.length} event i kalender.ics, ` +
     `RSS med senaste releaser, ` +
     `${Object.values(anthems).reduce((n,f)=>n+f.ar.length,0)} anthems över ` +
     `${Object.keys(anthems).length} festivaler. Sitemap satt till ${idag}.`
