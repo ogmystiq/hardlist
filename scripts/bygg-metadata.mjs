@@ -94,6 +94,11 @@ async function run() {
         description: 'Nya hardstyle-, raw-, uptempo-, hardcore- och hard techno-releaser i datumordning, plus varje rave i Norden.',
         publisher: { '@id': DOMAN + '/#person' } },
       { '@type': 'Person', '@id': DOMAN + '/#person', name: 'Jonathan H' },
+      /* Talar om för Google vad sajten heter och vilken logga som hör till. */
+      { '@type': 'Organization', '@id': DOMAN + '/#org', name: 'HARDLIST',
+        url: DOMAN + '/', logo: DOMAN + '/icon-512.png',
+        description: 'Nya hardstyle-släpp och alla rave i Norden, uppdaterat dagligen.',
+        founder: { '@id': DOMAN + '/#person' } },
       { '@type': 'ItemList', name: 'Kommande hard dance-event i Norden',
         itemListOrder: 'https://schema.org/ItemListOrderAscending',
         numberOfItems: daterade.length,
