@@ -204,17 +204,26 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
 .witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
 .prenumerera{
-  display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center;
+  border:1px solid var(--line);background:var(--surface);padding:20px;margin-top:24px;
 }
-.prenumerera a{
-  display:inline-flex;align-items:center;gap:9px;text-decoration:none;
-  border:1px solid var(--line);color:var(--bone);padding:10px 16px;border-radius:2px;
+.prenumerera h4{
+  font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:#5C5175;margin:0 0 8px;font-weight:400;
+}
+.prenumerera p{font-size:14px;color:var(--muted);margin:0 0 16px;max-width:64ch;line-height:1.6}
+.pren-rad{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pren-rad a,.pren-rad button{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
+  border:1px solid var(--line);background:var(--ink);color:var(--bone);
+  padding:11px 17px;border-radius:2px;
   font-family:var(--data);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
-  transition:border-color .18s,transform .18s;
+  transition:border-color .18s,transform .18s,color .18s;
 }
-.prenumerera a:hover{border-color:var(--muted);transform:translateY(-1px)}
-.prenumerera span{
-  font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#5C5175;
+.pren-rad a:hover,.pren-rad button:hover{border-color:var(--muted);transform:translateY(-1px)}
+.pren-rad button.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
+.pren-hjalp{
+  font-family:var(--data);font-size:10px;letter-spacing:.06em;color:#463C5E;
+  margin:14px 0 0;line-height:1.9;
 }
 
 .watch-head{
