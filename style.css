@@ -528,6 +528,17 @@ footer{
   font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   color:#5C5175;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
 }
+.q-fredag{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  border-left:2px solid var(--uptempo);background:#150F06;
+  padding:13px 16px;margin:14px 0 0;
+  font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.7;
+}
+.q-fredag:empty{display:none}
+.q-fredag b{
+  color:var(--uptempo);letter-spacing:.14em;text-transform:uppercase;font-weight:400;flex:none;
+}
+
 .q-integritet{
   font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#463C5E;
   margin-top:26px;line-height:1.8;

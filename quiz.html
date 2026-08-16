@@ -566,6 +566,17 @@ footer{
   font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   color:#5C5175;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
 }
+.q-fredag{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  border-left:2px solid var(--uptempo);background:#150F06;
+  padding:13px 16px;margin:14px 0 0;
+  font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.7;
+}
+.q-fredag:empty{display:none}
+.q-fredag b{
+  color:var(--uptempo);letter-spacing:.14em;text-transform:uppercase;font-weight:400;flex:none;
+}
+
 .q-integritet{
   font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#463C5E;
   margin-top:26px;line-height:1.8;
@@ -676,7 +687,7 @@ footer{
     <div class="wrap">
       <p class="eyebrow">En fråga om dagen</p>
       <h1>Hur bra kan du<br><em>egentligen scenen?</em></h1>
-      <p class="lede">Samma fråga för alla, ny varje dygn. Poängen sparas i din webbläsare och kan bara öka.</p>
+      <p class="lede">Samma fråga för alla, ny varje dygn. På fredagar spelas musik istället — lyssna och gissa. Poängen sparas i din webbläsare och kan bara öka.</p>
     </div>
   </div>
 
@@ -686,6 +697,7 @@ footer{
       <div class="q-kort" id="qKort">
         <p class="q-datum">Laddar…</p>
       </div>
+      <p class="q-fredag" id="qFredag"></p>
       <p class="q-integritet">
         Poängen lagras med localStorage i din egen webbläsare och skickas aldrig någonstans.
         Ingen inloggning, ingen server, ingen spårning. Byter du enhet börjar räkningen om.
@@ -794,23 +806,39 @@ function ritaTopp(){
     '<div class="q-ruta rang"><b>' + rang(state.poang) + '</b><span>Nivå</span></div>';
 }
 
+const FREDAG = 5;   // låtquiz-dagen
+
+/* Musikfrågorna ligger i en egen pott och kommer bara på fredagar. Saknas ljud
+   — t.ex. om iTunes inte svarade vid bygget — faller vi tillbaka på textfrågor
+   istället för att visa en tom spelare. */
+function dagensFraga(){
+  const d = midnatt();
+  const dag = dagNr();
+  const musik = fragor.filter(q => q.ljud);
+  const text  = fragor.filter(q => !q.ljud);
+
+  if (d.getDay() === FREDAG && musik.length){
+    /* Ökar med exakt ett mellan två fredagar. */
+    const i = Math.floor(dag / 7);
+    const ordning = blanda(musik.map((_, k) => k), 20260202);
+    return musik[ordning[((i % musik.length) + musik.length) % musik.length]];
+  }
+  const ordning = blanda(text.map((_, k) => k), 20260101);
+  return text[ordning[((dag % text.length) + text.length) % text.length]];
+}
+
 function ritaFraga(){
   const kort = document.getElementById('qKort');
-  const dag = dagNr();
   const nyckel = datumNyckel(midnatt());
+  const q = dagensFraga();
 
-  /* Frågorna permuteras en gång med fast frö, sen cyklas de. Då kommer de
-     inte i filordning, och listan räcker i lika många dagar som den är lång. */
-  const ordning = blanda(fragor.map((_, i) => i), 20260101);
-  const q = fragor[ordning[((dag % fragor.length) + fragor.length) % fragor.length]];
-
-  const alt = blanda(q.s.map((text, i) => ({text, ratt: i === q.r})), dag * 7919);
+  const alt = blanda(q.s.map((text, i) => ({text, ratt: i === q.r})), dagNr() * 7919);
   const d = midnatt();
   const svarat = state.svar[nyckel];
 
   kort.innerHTML =
     '<p class="q-datum">' + d.getDate() + ' ' + MANADER[d.getMonth()] + ' ' + d.getFullYear() +
-      (q.ljud ? ' · Lyssningsfråga' : '') + '</p>' +
+      (q.ljud ? ' · Låtquiz' : '') + '</p>' +
     (q.ljud ? spelare() : '') +
     '<h2 class="q-fraga">' + esc(q.f) + '</h2>' +
     '<div class="q-alt" id="qAlt">' +
@@ -831,6 +859,24 @@ function ritaFraga(){
   }
   if (svarat) kopplaDela(svarat.ratt);
   if (q.ljud) kopplaSpelare(q.ljud);
+
+  ritaFredagsnot();
+}
+
+/* Liten rad under kortet som talar om när nästa låtquiz kommer. */
+function ritaFredagsnot(){
+  const box = document.getElementById('qFredag');
+  if (!box) return;
+  if (!fragor.some(q => q.ljud)){ box.textContent = ''; return; }
+
+  const idag = midnatt().getDay();
+  if (idag === FREDAG){
+    box.innerHTML = '<b>Låtquiz</b> Idag är det fredag — lyssna på klippet och gissa.';
+    return;
+  }
+  const kvar = (FREDAG - idag + 7) % 7;
+  box.innerHTML = '<b>Låtquiz varje fredag</b> Då spelas 30 sekunder musik istället för en textfråga. ' +
+    (kvar === 1 ? 'Nästa är imorgon.' : 'Nästa om ' + kvar + ' dagar.');
 }
 
 /* Ljudet är Apples officiella 30-sekunders förhandslyssning. Artist och titel

@@ -266,6 +266,10 @@ Lägg till den så här i `data/quiz.json`:
 }
 ```
 
+**Musikfrågor visas bara på fredagar.** Det är den globala släppdagen för ny
+musik, så det följer sajtens egen rytm. Övriga dagar kommer textfrågor. Finns
+inga ljudfrågor tillgängliga faller fredagen tillbaka på en textfråga.
+
 `sok` är söksträngen mot **Apples iTunes Search API**, som är gratis, kräver
 ingen inloggning och lämnar ut 30-sekunders förhandslyssningar lagligt. Skriptet
 slår upp den, sparar adressen i `data/ljud.json` och slår aldrig upp samma sträng
