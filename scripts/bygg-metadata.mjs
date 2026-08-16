@@ -218,7 +218,9 @@ async function run() {
     `Metadata byggd: ${events.length} event i SEED_EVENTS, ` +
     `${daterade.length} med datum i strukturerad data, ` +
     `${quiz.fragor.length} quizfrågor, ${daterade.length} event i kalender.ics, ` +
-    `RSS med senaste releaser, ${anthems.defqon.ar.length} anthems. Sitemap satt till ${idag}.`
+    `RSS med senaste releaser, ` +
+    `${Object.values(anthems).reduce((n,f)=>n+f.ar.length,0)} anthems över ` +
+    `${Object.keys(anthems).length} festivaler. Sitemap satt till ${idag}.`
   );
 }
 
