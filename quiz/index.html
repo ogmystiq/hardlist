@@ -863,6 +863,11 @@ function ritaTopp(){
 
 const FREDAG = 5;   // låtquiz-dagen
 
+/* Extra låtquiz-dagar, utöver fredagarna. Till för att testa ljudet utan att
+   vänta på veckans slut. Datum som passerat gör ingenting, så raden kan lämnas
+   kvar eller tömmas till []. */
+const EXTRA_LATDAGAR = ['2026-08-17'];
+
 /* Musikfrågorna ligger i en egen pott och kommer bara på fredagar. Saknas ljud
    — t.ex. om iTunes inte svarade vid bygget — faller vi tillbaka på textfrågor
    istället för att visa en tom spelare. */
@@ -872,7 +877,9 @@ function dagensFraga(){
   const musik = fragor.filter(q => q.ljud);
   const text  = fragor.filter(q => !q.ljud);
 
-  if (d.getDay() === FREDAG && musik.length){
+  const arLatdag = d.getDay() === FREDAG || EXTRA_LATDAGAR.includes(datumNyckel(d));
+
+  if (arLatdag && musik.length){
     /* Ökar med exakt ett mellan två fredagar. */
     const i = Math.floor(dag / 7);
     const ordning = blanda(musik.map((_, k) => k), 20260202);
@@ -925,13 +932,17 @@ function ritaFredagsnot(){
   const box = document.getElementById('qFredag');
   if (!box) return;
 
-  const idag = midnatt().getDay();
+  const d = midnatt();
+  const idag = d.getDay();
   const harLjud = fragor.some(q => q.ljud);
+  const extra = EXTRA_LATDAGAR.includes(datumNyckel(d));
 
-  if (idag === FREDAG){
+  if (idag === FREDAG || extra){
     box.innerHTML = harLjud
-      ? '<b>Låtquiz</b> Idag är det fredag — lyssna på klippet och gissa.'
-      : '';
+      ? '<b>Låtquiz</b> ' + (idag === FREDAG
+          ? 'Idag är det fredag — lyssna på klippet och gissa.'
+          : 'Extrainsatt idag — lyssna på klippet och gissa.')
+      : '<b>Låtquiz</b> Ljudet kunde inte hämtas idag, så det blev en textfråga.';
     return;
   }
   const kvar = (FREDAG - idag + 7) % 7;
