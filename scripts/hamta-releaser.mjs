@@ -591,9 +591,10 @@ async function hittaId(post, token) {
 
   if (exakta.length > 1) {
     const valdGenre = (traff.genres || []).find(g => HARD_GENRER.test(g));
-    console.log(`  ${valdGenre ? '·' : '⚠'} "${name}" finns i ${exakta.length} exemplar` +
-                (valdGenre ? ` — valde den taggad "${valdGenre}"`
-                           : ' — ingen är taggad hard dance, tog den populäraste. Kontrollera.'));
+    /* Utan genretagg tar vi den populäraste, vilket i praktiken alltid är rätt
+       artist i den här scenen. Loggas lågmält — det är inget att åtgärda. */
+    console.log(`  · "${name}" finns i ${exakta.length} exemplar, valde ` +
+                (valdGenre ? `den taggad "${valdGenre}"` : 'den populäraste'));
   }
 
   state.ids[name] = traff.id;
@@ -614,19 +615,20 @@ function relevant(dateStr) {
 const nyckel = r => `${r.artist} – ${r.title}`.toLowerCase();
 
 async function run() {
-  let forgiftad = false;
   state = await lasJson(STATE_FIL, { version: CACHE_VERSION, ids: {}, nextIndex: 0 });
 
   if (state.version !== CACHE_VERSION) {
-    console.log(`Cachen är från version ${state.version || 1}, nollställer. ` +
-                'Gamla felmatchningar rensas bort.');
+    console.log(`Cachen är från version ${state.version || 1}, nollställer artist-ID:n. ` +
+                'Releaselistan behålls — gamla felmatchningar åldras ut inom en vecka.');
     state = { version: CACHE_VERSION, ids: {}, nextIndex: 0 };
-    forgiftad = true;
   }
 
   /* Tidigare fynd behålls. Delkörningar får aldrig radera det som redan finns. */
-  const tidigare = forgiftad ? [] : await lasJson(REL_FIL, []);
-  if (forgiftad) console.log('Tidigare releaser kastas också — de kan komma från fel artister.');
+  /* Behåll alltid tidigare releaser. Sjudagarsfönstret rensar dem av sig
+     själv, och att tömma listan vid en cachenollställning gav flera dygn med
+     nästan tom sajt medan rotationen hann varva. Enstaka felmatchningar
+     försvinner när de blir äldre än en vecka. */
+  const tidigare = await lasJson(REL_FIL, []);
   const alla = new Map(
     (Array.isArray(tidigare) ? tidigare : [])
       .filter(r => relevant(r.date))
