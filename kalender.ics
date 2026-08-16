@@ -1,0 +1,135 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HARDLIST//Kalender//SV
+X-WR-CALNAME:HARDLIST — rave i Norden & Europa
+X-WR-CALDESC:Bekräftade hard dance-event. Uppdateras automatiskt.
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+BEGIN:VEVENT
+UID:2026-08-28-decibel-outdoor@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20260828
+DTEND;VALUE=DATE:20260831
+SUMMARY:Decibel Outdoor
+LOCATION:Beekse Bergen\, Hilvarenbeek\, NL
+DESCRIPTION:28–30 augusti. 30+ scener över hela hard dance-spektrumet.
+ \nhttps://www.decibeloutdoor.com/tickets
+URL:https://www.decibeloutdoor.com/tickets
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-12-sana-duri-the-new-beginning@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20260912
+DTEND;VALUE=DATE:20260913
+SUMMARY:Sana Duri — The New Beginning
+LOCATION:Studenternas IP\, Uppsala\, SE
+DESCRIPTION:Project One · Brennan Heart · Showtek · Rebelion vs Vertil
+ e · Rooler vs Warface · Radical Redemption · Sound Rush · The Pitcher
+  · The Saints · Villain · D-Charged · Dimitri K & The Dark Horror · 
+ 4444 · Four of a Kind. Kl 11–23.30\, ca 10 000 besökare.\nhttps://san
+ aduri.se/
+URL:https://sanaduri.se/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-12-holy-priest@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20260912
+DTEND;VALUE=DATE:20260913
+SUMMARY:Holy Priest
+LOCATION:Berns\, Stockholm\, SE
+DESCRIPTION:Hard techno\, kl 23.00. Samma kväll som Sana Duri — funkar
+  som afterparty om du tar dig ner från Uppsala.\nhttps://www.ticketmaste
+ r.se/event/holy-priest-berns-biljetter/247223915
+URL:https://www.ticketmaster.se/event/holy-priest-berns-biljetter/2472239
+ 15
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-26-supremacy-state-of-distortion@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20260926
+DTEND;VALUE=DATE:20260927
+SUMMARY:Supremacy — State of Distortion
+LOCATION:Brabanthallen\, 's-Hertogenbosch\, NL
+DESCRIPTION:Tolfte upplagan\, arrangerad av Art of Dance. Rawstyle-flaggs
+ keppet. Nästan hela programmet består av liveshows på en enda scen\, v
+ ilket skiljer det från de flesta festivaler i genren. Medlemsbiljetterna
+  tog slut på ett dygn.\nhttps://www.supremacy.nl/
+URL:https://www.supremacy.nl/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-03-syndicate@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20261003
+DTEND;VALUE=DATE:20261004
+SUMMARY:Syndicate
+LOCATION:Westfalenhallen\, Dortmund\, DE
+DESCRIPTION:3 oktober\, 20:00–06:00 på tyska enhetsdagen. Tysklands st
+ örsta inomhusevent för de hårdare stilarna sedan 2006. Fyra floors —
+  mainstage\, hardstyle\, uptempo och early hardcore — med 40+ artister 
+ och upp till 20 000 besökare. 2026 med Angerfist\, Miss K8\, DJ Mad Dog\
+ , Korsakoff\, Paul Elstak och Dr. Peacock. Åldersgräns 16 år\, till sk
+ illnad från nästan allt annat i genren.\nhttps://www.syndicate-festival
+ .de/en
+URL:https://www.syndicate-festival.de/en
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-06-monday-bar-halloween-cruise@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261108
+SUMMARY:Monday Bar Halloween Cruise
+LOCATION:Kryssning\, Stockholm\, SE
+DESCRIPTION:6–7 november. Egen black floor för de hårdare stilarna.\n
+ https://www.mondaybar.com/
+URL:https://www.mondaybar.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-14-rebellion-indoor-break-the-system@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:REBELLiON Indoor — Break The System
+LOCATION:Nederländerna
+DESCRIPTION:Raw och uptempo inomhus. Rebelions eget event\, tema Break Th
+ e System.\nhttps://www.jointherebellion.nl/en/
+URL:https://www.jointherebellion.nl/en/
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-11-thunderdome@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261213
+SUMMARY:Thunderdome
+LOCATION:AFAS Dome\, Antwerpen\, BE
+DESCRIPTION:11–12 december. Hardcore-varumärket som startade 1992 och 
+ byggde hela gabberkulturen. Hela scenen samlas\, från early till terror.
+ \nhttps://www.thunderdome.com/
+URL:https://www.thunderdome.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-02-26-reverze@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20270226
+DTEND;VALUE=DATE:20270228
+SUMMARY:Reverze
+LOCATION:AFAS Dome + Lotto Arena\, Antwerpen\, BE
+DESCRIPTION:26–27 februari\, AFAS Dome + Lotto Arena. Säsongsöppnaren
+ . Biljetterna är inte släppta än — förhandsanmälan ger första til
+ lgång.\nhttps://www.reverze.be/pre-registration
+URL:https://www.reverze.be/pre-registration
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-06-24-defqon-1@hardlist.se
+DTSTAMP:20260816T011338Z
+DTSTART;VALUE=DATE:20270624
+DTEND;VALUE=DATE:20270628
+SUMMARY:Defqon.1
+LOCATION:Walibi Holland\, Biddinghuizen\, NL
+DESCRIPTION:24–27 juni\, fyra dagar på Holy Grounds. Efter att 2026 st
+ älldes in fick alla biljettinnehavare välja mellan återbetalning och a
+ tt behålla biljetten till 2027 — valet stängde i juli. Många behöll
+ \, så en stor del av platserna är redan tagna innan försäljningen öp
+ pnar. Släpp väntas under hösten\, medlemmar först.\nhttps://www.defqo
+ n1.com/
+URL:https://www.defqon1.com/
+END:VEVENT
+END:VCALENDAR
