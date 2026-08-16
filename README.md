@@ -5,7 +5,10 @@ Sajt för hardstyle-, raw-, uptempo- och hardcore-releaser plus hard dance-kalen
 inga sidofiler behövs.
 
 ```
-index.html      releaser (kommande / nyss släppt / tidigare) + kalender med Norden-filter
+index.html      releaser + kalender med Norden-filter
+quiz.html       dagens fråga, poäng sparas lokalt i webbläsaren
+anthems.html    varje Defqon-anthem år för år
+404.html        egen felsida
 events.html     festivalguider med knappväljare, 10 event
 guider.html     packlista, campingregler per festival, värmeavsnitt
 nyborjare.html  historik, subgenrer, artister, klassiker, slang
@@ -14,7 +17,12 @@ data/releases.json    skrivs av skriptet
 data/artist-ids.json  cache, skrivs av skriptet
 data/events.json      fyller du i själv
 scripts/hamta-releaser.mjs      hämtar från Spotify
-scripts/bygg-metadata.mjs       bygger SEED_EVENTS + JSON-LD ur events.json
+scripts/bygg-metadata.mjs       bygger allt härlett: SEED-kopior, JSON-LD,
+                                kalender.ics, releaser.xml, sitemap-datum
+data/quiz.json                  quizfrågor — lägg till fler här
+data/anthems.json               anthem-arkivet
+kalender.ics                    genereras — prenumererbar kalender
+releaser.xml                    genereras — RSS på releaserna
 .github/workflows/releaser.yml  kör skriptet varje fredag
 ```
 
@@ -239,6 +247,21 @@ Sana Duri 2026 är Nordens största hardstyle-satsning hittills: Shuffle Group o
 All Things Live räknar med runt 10 000 besökare, och lineupen har Project One,
 Brennan Heart, Showtek, Rebelion vs Vertile, Rooler vs Warface och Radical
 Redemption bland andra.
+
+## Filer som genereras automatiskt
+
+`scripts/bygg-metadata.mjs` skriver dessa vid varje körning. **Redigera dem aldrig
+för hand** — ändringarna skrivs över nästa natt.
+
+| Fil | Källa | Vad den gör |
+|---|---|---|
+| `kalender.ics` | `data/events.json` | Prenumererbar kalender. Folk lägger in den en gång i Google eller Apple Kalender och får nya event automatiskt. Bara event med bekräftat datum. |
+| `releaser.xml` | `data/releases.json` | RSS-flöde med de 50 senaste släppen. |
+| `SEED_EVENTS` / `SEED_QUIZ` / `SEED_ANTHEMS` | respektive JSON | Reservdata när sidan öppnas utan server. |
+| JSON-LD i `index.html` | `data/events.json` | Strukturerad data för Google. |
+
+Flerdagarsevent: sätt `dateEnd` till sista dagen i `data/events.json`, så blir
+kalenderposten rätt lång. Saknas fältet räknas eventet som endags.
 
 ## Faktakontroll av guiderna
 

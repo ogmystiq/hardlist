@@ -240,6 +240,20 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .witem:hover{background:var(--surface)}
 .witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
 .witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
+.prenumerera{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center;
+}
+.prenumerera a{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+  border:1px solid var(--line);color:var(--bone);padding:10px 16px;border-radius:2px;
+  font-family:var(--data);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
+  transition:border-color .18s,transform .18s;
+}
+.prenumerera a:hover{border-color:var(--muted);transform:translateY(-1px)}
+.prenumerera span{
+  font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#5C5175;
+}
+
 .watch-head{
   font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--muted);margin:34px 0 4px;display:flex;align-items:center;gap:12px;
@@ -415,6 +429,34 @@ footer{
   html{scroll-behavior:auto}
 }
 
+/* ---------- anthem-arkivet ---------- */
+.anthems{list-style:none;margin:0;padding:0;counter-reset:none}
+.anthems li{
+  display:grid;grid-template-columns:64px 1fr;column-gap:18px;align-items:baseline;
+  padding:15px 0;border-top:1px solid var(--line);transition:background .18s ease;
+}
+.anthems li:last-child{border-bottom:1px solid var(--line)}
+.anthems li:hover{background:rgba(255,255,255,.015)}
+.anthems .ar{
+  font-family:var(--data);font-size:15px;color:var(--raw);letter-spacing:.02em;
+}
+.anthems b{
+  display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:20px;line-height:1.08;letter-spacing:.01em;color:var(--bone);
+}
+.anthems span{
+  display:block;font-family:var(--data);font-size:11px;letter-spacing:.07em;
+  color:var(--muted);margin-top:5px;
+}
+.anthem-not{
+  font-size:13px;color:var(--muted);margin:14px 0 0;max-width:62ch;
+}
+@media (max-width:640px){
+  .anthems li{grid-template-columns:50px 1fr;column-gap:12px}
+  .anthems b{font-size:17px}
+  .anthems .ar{font-size:13px}
+}
+
 /* ---------- quiz ---------- */
 .q-topp{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;
@@ -470,6 +512,16 @@ footer{
 .q-plus{
   font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--uptempo);
 }
+.q-dela{
+  display:inline-flex;align-items:center;gap:10px;margin-top:16px;
+  background:none;border:1px solid var(--line);color:var(--bone);cursor:pointer;
+  font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 18px;border-radius:2px;
+  transition:border-color .18s,transform .18s;
+}
+.q-dela:hover{border-color:var(--muted);transform:translateY(-1px)}
+.q-dela.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
+
 .q-nasta{
   font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   color:#5C5175;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
@@ -573,6 +625,7 @@ footer{
       <a href="events.html" aria-current="page">Festivaler</a>
       <a href="guider.html">Camping</a>
       <a href="nyborjare.html">Nybörjare</a>
+      <a href="anthems.html">Anthems</a>
       <a href="quiz.html">Quiz</a>
     </nav>
   </div>
@@ -989,6 +1042,7 @@ footer{
         <a href="events.html">Festivalguider</a>
         <a href="guider.html">Camping</a>
         <a href="nyborjare.html">Nybörjarguide</a>
+        <a href="anthems.html">Anthem-arkivet</a>
         <a href="quiz.html">Dagens fråga</a>
       </nav>
       <div class="foot-kol">

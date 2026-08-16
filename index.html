@@ -240,6 +240,20 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .witem:hover{background:var(--surface)}
 .witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
 .witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
+.prenumerera{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center;
+}
+.prenumerera a{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+  border:1px solid var(--line);color:var(--bone);padding:10px 16px;border-radius:2px;
+  font-family:var(--data);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
+  transition:border-color .18s,transform .18s;
+}
+.prenumerera a:hover{border-color:var(--muted);transform:translateY(-1px)}
+.prenumerera span{
+  font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#5C5175;
+}
+
 .watch-head{
   font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--muted);margin:34px 0 4px;display:flex;align-items:center;gap:12px;
@@ -415,6 +429,34 @@ footer{
   html{scroll-behavior:auto}
 }
 
+/* ---------- anthem-arkivet ---------- */
+.anthems{list-style:none;margin:0;padding:0;counter-reset:none}
+.anthems li{
+  display:grid;grid-template-columns:64px 1fr;column-gap:18px;align-items:baseline;
+  padding:15px 0;border-top:1px solid var(--line);transition:background .18s ease;
+}
+.anthems li:last-child{border-bottom:1px solid var(--line)}
+.anthems li:hover{background:rgba(255,255,255,.015)}
+.anthems .ar{
+  font-family:var(--data);font-size:15px;color:var(--raw);letter-spacing:.02em;
+}
+.anthems b{
+  display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:20px;line-height:1.08;letter-spacing:.01em;color:var(--bone);
+}
+.anthems span{
+  display:block;font-family:var(--data);font-size:11px;letter-spacing:.07em;
+  color:var(--muted);margin-top:5px;
+}
+.anthem-not{
+  font-size:13px;color:var(--muted);margin:14px 0 0;max-width:62ch;
+}
+@media (max-width:640px){
+  .anthems li{grid-template-columns:50px 1fr;column-gap:12px}
+  .anthems b{font-size:17px}
+  .anthems .ar{font-size:13px}
+}
+
 /* ---------- quiz ---------- */
 .q-topp{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;
@@ -470,6 +512,16 @@ footer{
 .q-plus{
   font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--uptempo);
 }
+.q-dela{
+  display:inline-flex;align-items:center;gap:10px;margin-top:16px;
+  background:none;border:1px solid var(--line);color:var(--bone);cursor:pointer;
+  font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 18px;border-radius:2px;
+  transition:border-color .18s,transform .18s;
+}
+.q-dela:hover{border-color:var(--muted);transform:translateY(-1px)}
+.q-dela.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
+
 .q-nasta{
   font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   color:#5C5175;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
@@ -836,6 +888,7 @@ footer{
       <a href="events.html">Festivaler</a>
       <a href="guider.html">Camping</a>
       <a href="nyborjare.html">Nybörjare</a>
+      <a href="anthems.html">Anthems</a>
       <a href="quiz.html">Quiz</a>
     </nav>
   </div>
@@ -895,6 +948,11 @@ footer{
       </div>
       <p class="filter-note">Bara bekräftade datum. Passerade event försvinner automatiskt.</p>
       <div id="evList"></div>
+      <div class="prenumerera">
+        <a href="kalender.ics" download>Lägg i din kalender</a>
+        <a href="releaser.xml">RSS på releaserna</a>
+        <span>Kalendern uppdateras hos dig automatiskt när nya datum läggs in här.</span>
+      </div>
       <div id="evWatch"></div>
     </div>
   </section>
@@ -914,6 +972,7 @@ footer{
         <a href="events.html">Festivalguider</a>
         <a href="guider.html">Camping</a>
         <a href="nyborjare.html">Nybörjarguide</a>
+        <a href="anthems.html">Anthem-arkivet</a>
         <a href="quiz.html">Dagens fråga</a>
       </nav>
       <div class="foot-kol">
@@ -972,7 +1031,8 @@ const SEED_EVENTS = [
       "city": "Hilvarenbeek, NL",
       "venue": "Beekse Bergen",
       "lineup": "28–30 augusti. 30+ scener över hela hard dance-spektrumet.",
-      "url": "https://www.decibeloutdoor.com/tickets"
+      "url": "https://www.decibeloutdoor.com/tickets",
+      "dateEnd": "2026-08-30"
     },
     {
       "name": "Sana Duri — The New Beginning",
@@ -999,7 +1059,8 @@ const SEED_EVENTS = [
       "city": "Stockholm, SE",
       "venue": "Kryssning",
       "lineup": "6–7 november. Egen black floor för de hårdare stilarna.",
-      "url": "https://www.mondaybar.com/"
+      "url": "https://www.mondaybar.com/",
+      "dateEnd": "2026-11-07"
     },
     {
       "name": "Reverze",
@@ -1009,7 +1070,8 @@ const SEED_EVENTS = [
       "venue": "AFAS Dome + Lotto Arena",
       "lineup": "26–27 februari, AFAS Dome + Lotto Arena. Säsongsöppnaren. Biljetterna är inte släppta än — förhandsanmälan ger första tillgång.",
       "url": "https://www.reverze.be/pre-registration",
-      "urlText": "Förhandsanmälan"
+      "urlText": "Förhandsanmälan",
+      "dateEnd": "2027-02-27"
     },
     {
       "name": "Lumaniac",
@@ -1091,7 +1153,8 @@ const SEED_EVENTS = [
       "venue": "Walibi Holland",
       "lineup": "24–27 juni, fyra dagar på Holy Grounds. Efter att 2026 ställdes in fick alla biljettinnehavare välja mellan återbetalning och att behålla biljetten till 2027 — valet stängde i juli. Många behöll, så en stor del av platserna är redan tagna innan försäljningen öppnar. Släpp väntas under hösten, medlemmar först.",
       "url": "https://www.defqon1.com/",
-      "urlText": "Biljettinfo"
+      "urlText": "Biljettinfo",
+      "dateEnd": "2027-06-27"
     },
     {
       "name": "Dominator",
@@ -1134,7 +1197,8 @@ const SEED_EVENTS = [
       "city": "Antwerpen, BE",
       "venue": "AFAS Dome",
       "lineup": "11–12 december. Hardcore-varumärket som startade 1992 och byggde hela gabberkulturen. Hela scenen samlas, från early till terror.",
-      "url": "https://www.thunderdome.com/"
+      "url": "https://www.thunderdome.com/",
+      "dateEnd": "2026-12-12"
     },
     {
       "name": "Ground Zero Festival",
