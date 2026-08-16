@@ -931,8 +931,10 @@ function ritaFraga(){
   const alt = blanda(q.s.map((text, i) => ({text, ratt: i === q.r})), dagNr() * 7919);
   const d = midnatt();
   const sparat = state.svar[nyckel];
-  /* Gammalt svar utan avtryck godtas — annars skulle alla tappa sin historik. */
-  const svarat = sparat && (!sparat.av || sparat.av === avtryck(q)) ? sparat : null;
+  /* Kortet visas som besvarat bara om avtrycket stämmer med frågan som faktiskt
+     ställs. Svar från innan avtrycken infördes saknar fältet och räknas som
+     obesvarade — men de ligger kvar i state.svar, så sviten bryts inte. */
+  const svarat = sparat && sparat.av === avtryck(q) ? sparat : null;
 
   kort.innerHTML =
     '<p class="q-datum">' + d.getDate() + ' ' + MANADER[d.getMonth()] + ' ' + d.getFullYear() +
