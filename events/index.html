@@ -59,7 +59,8 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{overflow-x:hidden}
 body{
   background:var(--ink);color:var(--bone);
   font-family:var(--body);font-size:16px;line-height:1.55;
@@ -81,7 +82,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--uptempo);outline-of
   letter-spacing:.02em;line-height:1;text-transform:uppercase;text-decoration:none;
 }
 .logo span{color:var(--raw)}
-.topnav{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.topnav{
+  display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+  -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;
+}
+.topnav a{scroll-snap-align:start}
+/* Toningen visar att det finns fler lankar at hoger. Utan den tror man att
+   menyn slutar vid skarmkanten. */
+.topnav-hylsa{position:relative;min-width:0;flex:1}
+.topnav-hylsa::after{
+  content:'';position:absolute;right:0;top:0;bottom:0;width:34px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--ink));opacity:0;transition:opacity .2s;
+}
+.topnav-hylsa.mer::after{opacity:1}
 .topnav::-webkit-scrollbar{display:none}
 .topnav a{
   font-family:var(--data);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
@@ -406,8 +419,22 @@ footer{
 .colophon .ar{font-family:var(--data);font-size:10px;letter-spacing:.14em;color:#463C5E}
 
 @media (max-width:640px){
-  .tl{height:168px}
-  .tl-dot em{max-height:84px;font-size:8px}
+  /* Apples och Googles riktlinjer sager minst 44 px hojd pa det man ska trycka. */
+  .chip,.fbtn,.pren-rad a,.pren-rad button,.prenumerera a,.prenumerera button,
+  .q-dela,.day{min-height:44px}
+  .chip,.fbtn{display:inline-flex;align-items:center;padding:0 14px}
+  .q-alt button{padding:16px;font-size:16px}
+  .topnav a{padding:6px 0}
+  .foot-kol a{padding:8px 0}
+
+  /* 16 px hindrar iOS fran att zooma in nar faltet far fokus. */
+  .sok{font-size:16px;padding:12px 14px;max-width:none}
+
+  .tl{height:172px;padding:0 2px 30px}
+  .tl-dot em{max-height:88px;font-size:8px;letter-spacing:-.02em}
+  .tl-dot i{width:8px;height:8px}
+  .tl-tick b{font-size:9px}
+  .tl-key{gap:10px;font-size:9px}
   .dot em{max-height:76px;font-size:8px}
   .rel .artist{font-size:17px}
   .ev{grid-template-columns:52px 1fr;gap:12px}
@@ -594,6 +621,11 @@ footer{
   margin-top:20px;overflow:hidden;
 }
 .mapwrap svg{display:block;width:100%;height:auto}
+@media (max-width:760px){
+  /* Nedskalad till 360 px blir texten fyra pixlar hog. Battre att kunna svepa. */
+  .mapwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .mapwrap svg{min-width:700px}
+}
 .mapwrap .lbl{
   font-family:var(--data);font-size:10px;letter-spacing:.11em;
   text-transform:uppercase;fill:var(--muted);
@@ -1145,6 +1177,25 @@ document.getElementById('picker').addEventListener('click', e => {
   }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
 
   document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+})();
+</script>
+
+<script>
+/* Visar toningen i högerkanten bara när det finns mer meny att svepa till. */
+(function(){
+  const nav = document.querySelector('.topnav');
+  if (!nav) return;
+  const hylsa = document.createElement('div');
+  hylsa.className = 'topnav-hylsa';
+  nav.parentNode.insertBefore(hylsa, nav);
+  hylsa.appendChild(nav);
+  function kolla(){
+    const mer = nav.scrollWidth - nav.clientWidth - nav.scrollLeft > 8;
+    hylsa.classList.toggle('mer', mer);
+  }
+  nav.addEventListener('scroll', kolla, {passive:true});
+  window.addEventListener('resize', kolla);
+  kolla();
 })();
 </script>
 </body>
