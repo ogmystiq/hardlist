@@ -644,6 +644,19 @@
       "typ": "musik",
       "f": "Vem gör den här låten?",
       "s": [
+        "Da Tweekaz",
+        "Coone",
+        "Sound Rush",
+        "Devin Wild"
+      ],
+      "r": 0,
+      "fk": "Da Tweekaz, norska duon som blivit ett av scenens största liveakter.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/f8/fc/3f/f8fc3fc6-a950-d348-3daa-2e2965f72ed0/mzaf_378475611440602312.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
         "Ran-D",
         "B-Front",
         "Adaro",
@@ -652,6 +665,19 @@
       "r": 0,
       "fk": "Ran-D, en av raw-scenens tyngsta namn.",
       "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e4/df/d7/e4dfd735-e3e5-2c63-e51b-fb8a9f58ec18/mzaf_5575877658562440755.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilken gren tillhör den här låten?",
+      "s": [
+        "Frenchcore",
+        "Euphoric hardstyle",
+        "Uptempo",
+        "Hard techno"
+      ],
+      "r": 0,
+      "fk": "Sefa gör frenchcore — den franska grenen, snabbare och mer rullande än hardcore.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c4/f8/6f/c4f86f46-6b31-678b-fbbe-354ef425aa38/mzaf_174263886470995684.plus.aac.p.m4a"
     },
     {
       "typ": "musik",
@@ -847,6 +873,253 @@
       "r": 0,
       "fk": "Sound Rush — Power of the Tribe, Defqon.1 2024.",
       "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f2/c6/46/f2c6469a-1c9c-1b33-fe4b-41dd720c29fd/mzaf_8000386369462550899.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Vertile",
+        "D-Sturb",
+        "Rebelion",
+        "Sub Zero Project"
+      ],
+      "r": 0,
+      "fk": "Vertile — Where Legends Rise, Defqon.1 2025.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b8/08/ed/b808ed0b-b88f-f009-8126-085f3e480006/mzaf_1137606069606301781.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilket anthem är det här?",
+      "s": [
+        "Defqon.1 2026",
+        "Decibel 2024",
+        "Defqon.1 2023",
+        "Reverze 2026"
+      ],
+      "r": 0,
+      "fk": "D-Sturb — Sacred Oath, Defqon.1 2026. Året festivalen fick ställas in efter första dagen.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/bb/b7/d2/bbb7d23d-386a-2879-9f61-ee018dbe460c/mzaf_7096337293514345403.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Zatox",
+        "Technoboy",
+        "Tuneboy",
+        "Isaac"
+      ],
+      "r": 0,
+      "fk": "Zatox — D.E.C.I.B.E.L., Decibel Outdoor 2012.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/84/02/d8/8402d828-4cd5-1286-3ee7-6b49efad884d/mzaf_3172060177572493832.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "United",
+        "Zombie",
+        "Magic",
+        "Destination"
+      ],
+      "r": 0,
+      "fk": "Ran-D — United, Decibel Outdoor 2016.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/8e/8b/02/8e8b02be-bf0f-92ea-df3e-e94896f09186/mzaf_14153128822143960109.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilka gör den här låten ihop?",
+      "s": [
+        "Noisecontrollers & Bass Modulators",
+        "Headhunterz & Wildstylez",
+        "Ran-D & Adaro",
+        "Coone & Da Tweekaz"
+      ],
+      "r": 0,
+      "fk": "Noisecontrollers & Bass Modulators — Destination, Decibel Outdoor 2017.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3a/15/3d/3a153d2b-da53-9c9a-1602-576f87a6d743/mzaf_3451011219052073757.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Fuelled by Fanatics",
+        "Imaginary",
+        "Lose My Mind",
+        "Just As Easy"
+      ],
+      "r": 0,
+      "fk": "Brennan Heart — Fuelled by Fanatics, Decibel Outdoor 2018. Det mest streamade Decibel-anthemet.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/80/0c/8b/800c8b05-8bb1-7265-74e4-037900978989/mzaf_6521222424895682028.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilket anthem är det här?",
+      "s": [
+        "Decibel Outdoor 2022",
+        "Defqon.1 2022",
+        "Dominator 2022",
+        "Rebirth 2022"
+      ],
+      "r": 0,
+      "fk": "D-Sturb & ATILAX — Break Free, Decibel Outdoor 2022. Första året efter pandemin.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/c0/df/d6/c0dfd65b-87e5-7fd2-e8b3-c36e06b90617/mzaf_17936127209637445160.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Act of Rage",
+        "Warface",
+        "D-Sturb",
+        "Rooler"
+      ],
+      "r": 0,
+      "fk": "Act of Rage — Raging City, Decibel Outdoor 2023.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/a2/09/47/a2094760-624a-dee8-7d61-348d08d08bed/mzaf_6578923244314769345.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilka gör den här låten ihop?",
+      "s": [
+        "Ran-D & Unresolved",
+        "B-Front & Frontliner",
+        "Rebelion & Vertile",
+        "Rooler & Warface"
+      ],
+      "r": 0,
+      "fk": "Ran-D & Unresolved — Cosmic Frequency, Decibel Outdoor 2025.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/08/59/bd/0859bdf9-5404-78d2-aef0-d7a5fca10de4/mzaf_13078108599773551966.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Tonight",
+        "World of Madness",
+        "Unite",
+        "Dragonborn"
+      ],
+      "r": 0,
+      "fk": "Tonight, från 2009. Har legat först på Hardstyle Top 100.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ff/f6/90/fff69056-17e3-940f-7452-c2e33f6300fa/mzaf_8024900371779490697.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Magic",
+        "United",
+        "Tonight",
+        "Release"
+      ],
+      "r": 0,
+      "fk": "B-Front & Frontliner — Magic. Bevis på att raw också kan bli allsång.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/b1/63/c3/b163c3d5-4d1d-9c3f-52c9-16b57f0cf6dc/mzaf_10458325693701658609.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem sjunger på den här låten?",
+      "s": [
+        "Jonathan Mendelsohn",
+        "David Spekter",
+        "Max P",
+        "Diandra Faye"
+      ],
+      "r": 0,
+      "fk": "Brennan Heart ft. Jonathan Mendelsohn — Imaginary.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ae/90/d9/ae90d96e-0413-72df-360b-b05c8fde79bd/mzaf_9752443484035937425.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilka gör den här låten ihop?",
+      "s": [
+        "Brennan Heart & Wildstylez",
+        "Headhunterz & Wildstylez",
+        "Coone & Brennan Heart",
+        "Da Tweekaz & Coone"
+      ],
+      "r": 0,
+      "fk": "Brennan Heart & Wildstylez — Lose My Mind, 2012. Refrängen alla kan utantill.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/b9/79/8f/b9798fb1-a394-760b-a8bd-fd7767aa3e0f/mzaf_14521020704978089550.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilken låt är det här?",
+      "s": [
+        "Release",
+        "Tonight",
+        "Melancholia",
+        "Imaginary"
+      ],
+      "r": 0,
+      "fk": "Atmozfears ft. David Spekter — Release.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/e7/eb/de/e7ebde38-9b16-5895-8818-18a287f3af3c/mzaf_14293618816154771701.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Headhunterz",
+        "Wildstylez",
+        "Brennan Heart",
+        "Noisecontrollers"
+      ],
+      "r": 0,
+      "fk": "Headhunterz — The Sacrifice. En av de mest ikoniska låtarna i genren.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/ec/ef/77/ecef774e-9f09-bfa8-841a-7393a7d354d2/mzaf_7947198502168193351.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Ran-D",
+        "B-Front",
+        "Adaro",
+        "Warface"
+      ],
+      "r": 0,
+      "fk": "Ran-D — Living For The Moment, hans mest spelade år efter år.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/3f/14/9f/3f149f1d-1cb0-485e-e9d9-49c3bdd7f530/mzaf_9927392750084672618.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vad är den här låten känd för?",
+      "s": [
+        "Att den gav hardcore-genren dess namn",
+        "Att den var Defqons första anthem",
+        "Att den uppfann reverse bass",
+        "Att den är den snabbaste låten som gjorts"
+      ],
+      "r": 0,
+      "fk": "Euromasters — Rotterdam Hardcore, 1992. Spåret som satte namn på hela stilen.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f9/eb/bd/f9ebbd0d-e09b-51e4-1018-a7154d69631c/mzaf_16618353664654988353.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilken gren tillhör den här låten?",
+      "s": [
+        "Hardcore",
+        "Euphoric hardstyle",
+        "Raw hardstyle",
+        "Hard techno"
+      ],
+      "r": 0,
+      "fk": "Angerfist gör mainstream hardcore, runt 180–200 BPM.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/bf/7f/ed/bf7fedca-5c5b-2675-7de0-76b00b31e56f/mzaf_43787029149169152.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
+      "f": "Vilken gren tillhör den här låten?",
+      "s": [
+        "Frenchcore",
+        "Uptempo",
+        "Euphoric hardstyle",
+        "Terror"
+      ],
+      "r": 0,
+      "fk": "Dr. Peacock är ett av frenchcorens största namn.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/29/88/79/29887949-1cd6-eadf-96b9-cc05de50af8f/mzaf_17031228165385301345.plus.aac.p.m4a"
     }
   ]
 }
