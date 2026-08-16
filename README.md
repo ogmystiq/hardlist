@@ -250,6 +250,18 @@ All Things Live räknar med runt 10 000 besökare, och lineupen har Project One,
 Brennan Heart, Showtek, Rebelion vs Vertile, Rooler vs Warface och Radical
 Redemption bland andra.
 
+## Om CACHE_VERSION
+
+Höjs den i `scripts/hamta-releaser.mjs` kastas alla cachade artist-ID:n och
+byggs upp igen. Det kostar dubbelt så många anrop per artist, alltså **ungefär
+fyra dygn** innan hela listan är genomsökt igen.
+
+**Releaselistan rörs inte.** Den behålls och rensas som vanligt av
+sjudagarsfönstret. En tidigare version tömde den, vilket gav flera dygn med
+nästan tom sajt — gör inte om det.
+
+Höj bara versionen när matchningslogiken faktiskt ändrats.
+
 ## Musikfrågor i quizet
 
 En fråga kan spela upp 30 sekunder musik istället för att ställa en textfråga.
