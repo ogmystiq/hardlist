@@ -7,7 +7,8 @@
     "venue": "Beekse Bergen",
     "lineup": "28–30 augusti. 30+ scener över hela hard dance-spektrumet.",
     "url": "https://www.decibeloutdoor.com/tickets",
-    "dateEnd": "2026-08-30"
+    "dateEnd": "2026-08-30",
+    "arrangor": "B2S"
   },
   {
     "name": "Sana Duri — The New Beginning",
@@ -16,7 +17,26 @@
     "city": "Uppsala, SE",
     "venue": "Studenternas IP",
     "lineup": "Project One · Brennan Heart · Showtek · Rebelion vs Vertile · Rooler vs Warface · Radical Redemption · Sound Rush · The Pitcher · The Saints · Villain · D-Charged · Dimitri K & The Dark Horror · 4444 · Four of a Kind. Kl 11–23.30, ca 10 000 besökare.",
-    "url": "https://sanaduri.se/"
+    "url": "https://sanaduri.se/",
+    "arrangor": "Shuffle Group",
+    "artister": [
+      "Project One",
+      "Brennan Heart",
+      "Showtek",
+      "Rebelion",
+      "Vertile",
+      "Rooler",
+      "Warface",
+      "Radical Redemption",
+      "Sound Rush",
+      "The Pitcher",
+      "The Saints",
+      "Villain",
+      "D-Charged",
+      "Dimitri K",
+      "4444",
+      "Four of a Kind"
+    ]
   },
   {
     "name": "Holy Priest",
@@ -25,7 +45,10 @@
     "city": "Stockholm, SE",
     "venue": "Berns",
     "lineup": "Hard techno, kl 23.00. Samma kväll som Sana Duri — funkar som afterparty om du tar dig ner från Uppsala.",
-    "url": "https://www.ticketmaster.se/event/holy-priest-berns-biljetter/247223915"
+    "url": "https://www.ticketmaster.se/event/holy-priest-berns-biljetter/247223915",
+    "artister": [
+      "Holy Priest"
+    ]
   },
   {
     "name": "Monday Bar Halloween Cruise",
@@ -35,7 +58,8 @@
     "venue": "Kryssning",
     "lineup": "6–7 november. Egen black floor för de hårdare stilarna.",
     "url": "https://www.mondaybar.com/",
-    "dateEnd": "2026-11-07"
+    "dateEnd": "2026-11-07",
+    "arrangor": "Monday Bar"
   },
   {
     "name": "Reverze",
@@ -46,7 +70,8 @@
     "lineup": "26–27 februari, AFAS Dome + Lotto Arena. Säsongsöppnaren. Biljetterna är inte släppta än — förhandsanmälan ger första tillgång.",
     "url": "https://www.reverze.be/pre-registration",
     "urlText": "Förhandsanmälan",
-    "dateEnd": "2027-02-27"
+    "dateEnd": "2027-02-27",
+    "arrangor": "Bass Events"
   },
   {
     "name": "Lumaniac",
@@ -129,7 +154,8 @@
     "lineup": "24–27 juni, fyra dagar på Holy Grounds. Efter att 2026 ställdes in fick alla biljettinnehavare välja mellan återbetalning och att behålla biljetten till 2027 — valet stängde i juli. Många behöll, så en stor del av platserna är redan tagna innan försäljningen öppnar. Släpp väntas under hösten, medlemmar först.",
     "url": "https://www.defqon1.com/",
     "urlText": "Biljettinfo",
-    "dateEnd": "2027-06-27"
+    "dateEnd": "2027-06-27",
+    "arrangor": "Q-dance"
   },
   {
     "name": "Dominator",
@@ -145,7 +171,8 @@
     "venue": "Brabanthallen",
     "lineup": "Tolfte upplagan, arrangerad av Art of Dance. Rawstyle-flaggskeppet. Nästan hela programmet består av liveshows på en enda scen, vilket skiljer det från de flesta festivaler i genren. Medlemsbiljetterna tog slut på ett dygn.",
     "url": "https://www.supremacy.nl/",
-    "urlText": "Biljetter"
+    "urlText": "Biljetter",
+    "arrangor": "Art of Dance"
   },
   {
     "name": "Syndicate",
@@ -154,7 +181,15 @@
     "city": "Dortmund, DE",
     "venue": "Westfalenhallen",
     "lineup": "3 oktober, 20:00–06:00 på tyska enhetsdagen. Tysklands största inomhusevent för de hårdare stilarna sedan 2006. Fyra floors — mainstage, hardstyle, uptempo och early hardcore — med 40+ artister och upp till 20 000 besökare. 2026 med Angerfist, Miss K8, DJ Mad Dog, Korsakoff, Paul Elstak och Dr. Peacock. Åldersgräns 16 år, till skillnad från nästan allt annat i genren.",
-    "url": "https://www.syndicate-festival.de/en"
+    "url": "https://www.syndicate-festival.de/en",
+    "artister": [
+      "Angerfist",
+      "Miss K8",
+      "DJ Mad Dog",
+      "Korsakoff",
+      "Paul Elstak",
+      "Dr. Peacock"
+    ]
   },
   {
     "name": "REBELLiON Indoor — Break The System",
@@ -173,7 +208,8 @@
     "venue": "AFAS Dome",
     "lineup": "11–12 december. Hardcore-varumärket som startade 1992 och byggde hela gabberkulturen. Hela scenen samlas, från early till terror.",
     "url": "https://www.thunderdome.com/",
-    "dateEnd": "2026-12-12"
+    "dateEnd": "2026-12-12",
+    "arrangor": "ID&T"
   },
   {
     "name": "Ground Zero Festival",

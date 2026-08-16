@@ -69,6 +69,14 @@ function eventLd(e) {
     description: (e.lineup || '').slice(0, 300) || ('Hard dance-event i ' + stad)
   };
   if (e.url) ld.url = e.url;
+
+  /* Valfria fält som Google efterfrågar. Fylls bara i när uppgiften finns —
+     hellre ett saknat fält än ett påhittat. */
+  if (e.dateEnd) ld.endDate = e.dateEnd;
+  if (e.arrangor) ld.organizer = { '@type': 'Organization', name: e.arrangor };
+  if (Array.isArray(e.artister) && e.artister.length) {
+    ld.performer = e.artister.map(a => ({ '@type': 'MusicGroup', name: a }));
+  }
   return ld;
 }
 
