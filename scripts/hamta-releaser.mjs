@@ -466,6 +466,13 @@ let anrop = 0;
 const T0 = Date.now();
 const forbrukat = () => Math.round((Date.now() - T0) / 1000);
 
+/* Rå sekundsiffra säger ingenting. 1905 låter lite, men är en halvtimme. */
+function lasbarTid(sek){
+  if (sek < 90) return `${sek} sekunder`;
+  if (sek < 5400) return `${Math.round(sek / 60)} minuter`;
+  return `${(sek / 3600).toFixed(1)} timmar`;
+}
+
 async function lasJson(fil, fallback) {
   try { return JSON.parse(await readFile(fil, 'utf8')); } catch { return fallback; }
 }
@@ -514,24 +521,27 @@ async function api(path, token, forsok = 0) {
     /* Spotify sätter inte alltid reason-fältet, så väntetiden får avgöra.
        Över en timme är det alltid dygnskvoten, aldrig en tillfällig broms. */
     if (reason === 'QUOTA_EXCEEDED' || wait > 3600) {
-      const tim = (wait / 3600).toFixed(1);
       throw new Stopp(
-        `KVOTEN ÄR SLUT för dygnet. Spotify ber oss vänta ${wait}s (${tim}h). ` +
+        `KVOTEN ÄR SLUT för dygnet. Spotify ber oss vänta ${lasbarTid(wait)}. ` +
         'Kör INTE igen förrän dess — varje försök är bortkastat. Kvoten delas av ' +
         'alla dina Development Mode-appar och nollställs av sig själv.'
       );
     }
 
     if (wait > MAX_VANTAN) {
+      const langBroms = wait > 600;
       throw new Stopp(
-        `RATE LIMIT på ${wait}s, längre än taket ${MAX_VANTAN}s. Inte kvoten — ` +
-        'bara en tillfällig broms. Vänta några minuter och kör igen.'
+        `BROMSAD av Spotify i ${lasbarTid(wait)}, längre än taket ${MAX_VANTAN}s. ` +
+        (langBroms
+          ? 'Så lång broms betyder i praktiken att dygnskvoten är förbrukad. ' +
+            'Kör INTE manuellt igen idag — låt morgondagens schemalagda körning ta vid.'
+          : 'Tillfälligt. Vänta ut den och kör igen.')
       );
     }
     if (forbrukat() + wait > TIDSBUDGET) {
       throw new Stopp(
-        `RATE LIMIT på ${wait}s ryms inte i tidsbudgeten. Sparar och avslutar. ` +
-        'Kör igen om en stund — den fortsätter där den slutade.'
+        `Bromsen på ${lasbarTid(wait)} ryms inte i tidsbudgeten. Sparar och avslutar. ` +
+        'Nästa körning fortsätter där den slutade.'
       );
     }
     if (forsok >= 3) throw new Error(`${path} → 429, gav upp efter 4 försök`);
