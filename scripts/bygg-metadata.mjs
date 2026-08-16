@@ -139,8 +139,8 @@ async function run() {
       const traff = data.results?.[0];
       ljudCache[sok] = traff?.previewUrl || null;
       if (!ljudCache[sok]) console.log(`  ⚠ ingen förhandslyssning för "${sok}"`);
-      /* iTunes tål ungefär 20 anrop per minut. Vi ligger med god marginal. */
-      await new Promise(r2 => setTimeout(r2, 3500));
+      /* iTunes tål ungefär 20 anrop per minut. 3,2 s ger drygt 18. */
+      await new Promise(r2 => setTimeout(r2, 3200));
     } catch(e){
       console.log(`  ⚠ kunde inte slå upp "${sok}": ${e.message}`);
       return ljudCache[sok] ?? null;   // behåll gammalt värde vid tillfälligt fel
@@ -148,12 +148,19 @@ async function run() {
     return ljudCache[sok];
   }
 
-  let nya = 0;
+  /* Tak på hur många nya uppslag en körning gör. Cachen är permanent, så
+     resten hämtas nästa natt — hela banken är klar efter ett par dygn. */
+  const MAX_UPPSLAG = 25;
+  let nya = 0, hoppade = 0;
   for (const q of quiz.fragor){
     if (q.typ !== 'musik' || !q.sok) continue;
-    if (ljudCache[q.sok] === undefined) nya++;
+    if (ljudCache[q.sok] === undefined){
+      if (nya >= MAX_UPPSLAG){ hoppade++; continue; }
+      nya++;
+    }
     q.ljud = await hittaLjud(q.sok);
   }
+  if (hoppade) console.log(`  ${hoppade} låtar kvar att slå upp — tas nästa körning.`);
   await skrivJson(LJUD, ljudCache);
 
   /* Klientversionen: sok bort, frågor utan ljud filtreras ut. */
