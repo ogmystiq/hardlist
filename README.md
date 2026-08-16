@@ -262,6 +262,26 @@ nästan tom sajt — gör inte om det.
 
 Höj bara versionen när matchningslogiken faktiskt ändrats.
 
+## Hur rätt artist väljs
+
+Tre spärrar, i den här ordningen:
+
+1. **Exakt namnmatchning.** Spotify rankar sökträffar efter popularitet, inte
+   efter hur väl namnet stämmer — en sökning på Killshot gav Eminem. Bara
+   artister vars namn stämmer tecken för tecken godtas.
+2. **Genretagg.** Finns flera med exakt samma namn väljs den som är taggad
+   hardstyle, hardcore, uptempo, frenchcore eller hard techno.
+3. **Följartröskel.** `MIN_FOLJARE = 2000`. Utan den plockades en okänd artist
+   som råkade heta exakt "Kill The Bass" upp, med 180 följare, och hennes låtar
+   hamnade i flödet.
+
+Missar första sökningen görs ett andra försök med ordet hardstyle tillagt. Det
+löser enordsnamn som Requiem och Pavo, som annars drunknar bland Mozart och
+Pavarotti.
+
+Hittas ingen godkänd artist hoppas den över och loggas med `⚠ HOPPAR ÖVER`.
+Det är den enda raden i loggen som kräver åtgärd.
+
 ## Musikfrågor i quizet
 
 En fråga kan spela upp 30 sekunder musik istället för att ställa en textfråga.
