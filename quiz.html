@@ -863,20 +863,25 @@ function ritaFraga(){
   ritaFredagsnot();
 }
 
-/* Liten rad under kortet som talar om när nästa låtquiz kommer. */
+/* Rad under kortet som talar om när nästa låtquiz kommer. Visas alla dagar
+   utom en fredag där ljudet av någon anledning inte gick att hämta — då vore
+   det ett löfte sajten inte håller. */
 function ritaFredagsnot(){
   const box = document.getElementById('qFredag');
   if (!box) return;
-  if (!fragor.some(q => q.ljud)){ box.textContent = ''; return; }
 
   const idag = midnatt().getDay();
+  const harLjud = fragor.some(q => q.ljud);
+
   if (idag === FREDAG){
-    box.innerHTML = '<b>Låtquiz</b> Idag är det fredag — lyssna på klippet och gissa.';
+    box.innerHTML = harLjud
+      ? '<b>Låtquiz</b> Idag är det fredag — lyssna på klippet och gissa.'
+      : '';
     return;
   }
   const kvar = (FREDAG - idag + 7) % 7;
-  box.innerHTML = '<b>Låtquiz varje fredag</b> Då spelas 30 sekunder musik istället för en textfråga. ' +
-    (kvar === 1 ? 'Nästa är imorgon.' : 'Nästa om ' + kvar + ' dagar.');
+  box.innerHTML = '<b>Låtquiz varje fredag</b> Då spelas 30 sekunder musik istället för ' +
+    'en textfråga. ' + (kvar === 1 ? 'Nästa är imorgon.' : 'Nästa om ' + kvar + ' dagar.');
 }
 
 /* Ljudet är Apples officiella 30-sekunders förhandslyssning. Artist och titel
