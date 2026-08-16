@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hardstyle för nybörjare — stilar och klassiker | HARDLIST</title>
+<meta name="description" content="Vad skiljer euphoric från raw? Vad betyder reverse bass? Hardstyles historia, artisterna som gäller, klassikerna alla kan och all slang förklarad.">
+<meta name="keywords" content="vad är hardstyle, hardstyle subgenrer, euphoric raw skillnad, hardstyle klassiker, gabber">
+<link rel="canonical" href="https://hardlist.se/nyborjare/">
+<link rel="alternate" type="application/rss+xml" title="HARDLIST — nya releaser" href="https://hardlist.se/releaser.xml">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0A0612">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HARDLIST">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:url" content="https://hardlist.se/nyborjare/">
+<meta property="og:title" content="Hardstyle för nybörjare — stilar och klassiker | HARDLIST">
+<meta property="og:description" content="Vad skiljer euphoric från raw? Vad betyder reverse bass? Hardstyles historia, artisterna som gäller, klassikerna alla kan och all slang förklarad.">
+<meta property="og:image" content="https://hardlist.se/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="HARDLIST — releaser och rave i Norden">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hardstyle för nybörjare — stilar och klassiker | HARDLIST">
+<meta name="twitter:description" content="Vad skiljer euphoric från raw? Vad betyder reverse bass? Hardstyles historia, artisterna som gäller, klassikerna alla kan och all slang förklarad.">
+<meta name="twitter:image" content="https://hardlist.se/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0612;
+  --surface:#140B23;
+  --surface-2:#1B0F2E;
+  --line:#2A1B42;
+  --bone:#F0EAF8;
+  --muted:#8E82A8;
+
+  --euphoric:#35D6E8;
+  --raw:#FF2E63;
+  --uptempo:#FFB020;
+  --hardcore:#8B5CFF;
+  --techno:#9BA8BE;   /* industrial / hard techno — medvetet metallisk, ligger utanför de fyra */
+
+  --display:'Big Shoulders Display',system-ui,sans-serif;
+  --body:'Space Grotesk',system-ui,sans-serif;
+  --data:'JetBrains Mono',ui-monospace,monospace;
+
+  --bpm-min:140;
+  --bpm-max:220;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--bone);
+  font-family:var(--body);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{width:100%;max-width:940px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--uptempo);outline-offset:3px}
+
+/* ---------- header ---------- */
+.top{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,6,18,.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.logo{
+  font-family:var(--display);font-weight:900;font-size:26px;
+  letter-spacing:.02em;line-height:1;text-transform:uppercase;text-decoration:none;
+}
+.logo span{color:var(--raw)}
+.topnav{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{
+  font-family:var(--data);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:4px 0;white-space:nowrap;
+}
+.topnav a:hover,.topnav a:focus-visible,.topnav a[aria-current]{color:var(--bone)}
+
+/* ---------- hero ---------- */
+.hero{padding:52px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{
+  font-family:var(--data);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.badge{
+  border:1px solid var(--line);border-radius:2px;padding:2px 6px;
+  color:var(--uptempo);font-size:10px;letter-spacing:.1em;
+}
+h1{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(38px,9.5vw,80px);line-height:.86;letter-spacing:-.01em;margin-bottom:14px;
+}
+h1 em{font-style:normal;color:var(--raw)}
+.lede{color:var(--muted);max-width:46ch;font-size:15px}
+
+/* ---------- tidslinjen ---------- */
+.tl{margin-top:40px;position:relative;height:216px;display:flex;align-items:flex-end;padding:0 6px 30px}
+.tl-line{position:relative;width:100%;height:1px;background:var(--line)}
+.tl-tick{position:absolute;top:0;width:1px;height:6px;background:var(--line)}
+.tl-tick b{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  font-family:var(--data);font-size:10px;color:var(--muted);font-weight:400;white-space:nowrap;
+}
+.tl-tick.start b{left:0;transform:none}
+.tl-tick.slut b{left:auto;right:0;transform:none}
+.tl-now{position:absolute;bottom:0;width:1px;background:var(--bone);opacity:.28}
+.tl-now b{
+  position:absolute;top:-2px;left:50%;transform:translateX(-50%);
+  background:var(--ink);padding:0 6px;
+  font-family:var(--data);font-size:10px;letter-spacing:.14em;color:var(--bone);opacity:.8;font-weight:400;
+}
+.tl-dot{
+  position:absolute;bottom:0;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;
+  animation:rise .55s cubic-bezier(.2,.8,.2,1) backwards;
+}
+.tl-dot i{display:block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
+.tl-dot u{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--c));text-decoration:none;opacity:.55}
+.tl-dot em{
+  font-family:var(--data);font-style:normal;font-size:9px;color:var(--muted);
+  white-space:nowrap;margin-bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);
+  max-height:118px;overflow:hidden;
+}
+.tl-dot.soon i{background:none;border:2px solid var(--c);box-shadow:0 0 12px var(--c)}
+@keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1}}
+.tl-key{
+  display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;
+  font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+}
+.tl-key b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.tl-empty{
+  border:1px dashed var(--line);padding:26px;text-align:center;
+  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+}
+
+/* ---------- sektioner ---------- */
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(28px,6vw,44px);line-height:.9}
+h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:26px;line-height:1;margin:34px 0 12px}
+h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:24px 0 8px;font-weight:400}
+.count{font-family:var(--data);font-size:11px;color:var(--muted);letter-spacing:.12em}
+.group-label{
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:28px 0 12px;display:flex;align-items:center;gap:12px;
+}
+.group-label:first-child{margin-top:0}
+.group-label::after{content:'';flex:1;height:1px;background:var(--line)}
+.group-label span{color:#5C5175;letter-spacing:.1em}
+
+/* dagrubrik som går att fälla ihop */
+.day{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:12px;padding:0;margin:26px 0 10px;
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);transition:color .15s;
+}
+.day:first-of-type{margin-top:0}
+.day:hover{color:var(--bone)}
+.day .linje{flex:1;height:1px;background:var(--line)}
+.day .antal{color:#5C5175;letter-spacing:.1em}
+.day .pil{
+  display:inline-block;width:9px;height:9px;border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;transform:rotate(-45deg);margin-left:2px;
+  transition:transform .2s;flex:none;
+}
+.day[aria-expanded="true"] .pil{transform:rotate(45deg)}
+
+/* sökfält */
+.sok{
+  display:block;width:100%;max-width:280px;margin-bottom:18px;
+  background:var(--surface);border:1px solid var(--line);color:var(--bone);
+  font-family:var(--data);font-size:12px;letter-spacing:.05em;
+  padding:9px 12px;border-radius:2px;
+}
+.sok::placeholder{color:#5C5175;text-transform:uppercase;letter-spacing:.1em;font-size:10px}
+.sok:focus{outline:none;border-color:var(--muted)}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.chip{
+  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  background:none;border:1px solid var(--line);color:var(--muted);
+  padding:7px 12px;border-radius:2px;cursor:pointer;transition:.15s;
+}
+.chip:hover{color:var(--bone);border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.filter-note{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.08em;margin-bottom:22px}
+
+/* releaser */
+.rel{
+  display:grid;grid-template-columns:3px 1fr auto;gap:0 16px;align-items:center;
+  background:var(--surface);border:1px solid var(--line);border-left:0;
+  padding:0 16px 0 0;margin-bottom:6px;
+}
+.rel.soon{background:transparent;border-style:dashed}
+.rel{transition:background .18s ease,border-color .18s ease,transform .18s ease}
+.rel:hover{background:var(--surface-2);border-color:#3A2757;transform:translateX(2px)}
+.rel .bar{background:var(--c);align-self:stretch}
+.rel .meta{min-width:0;padding:14px 0 14px 16px}
+.rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1.05}
+.rel .title{font-size:14px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rel .right{padding:14px 0;text-align:right;font-family:var(--data);font-size:11px;color:var(--muted);white-space:nowrap}
+.rel .when{color:var(--bone);font-weight:700;font-size:12px;display:block}
+.rel.soon .when{color:var(--c)}
+.rel .genre{font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-top:3px;display:block;color:var(--c)}
+.rel .play{font-size:10px;letter-spacing:.1em;display:block;margin-top:4px;text-decoration:none}
+.rel .play:hover{color:var(--bone)}
+
+/* events */
+.ev{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
+.ev:last-child{border-bottom:1px solid var(--line)}
+.ev{transition:background .18s ease}
+.ev:hover{background:rgba(255,255,255,.015)}
+.ev .date{font-family:var(--data);font-size:11px;color:var(--muted);line-height:1.3}
+.ev .date b{display:block;font-family:var(--display);font-size:30px;color:var(--bone);font-weight:900;line-height:.9}
+.ev .name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:22px;line-height:1}
+.ev .where{font-size:13px;color:var(--muted);margin-top:3px}
+.ev .lineup{font-size:12px;color:var(--muted);margin-top:5px;opacity:.75}
+.ev .ticket{
+  font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--line);padding:8px 12px;text-decoration:none;white-space:nowrap;
+}
+.ev .ticket:hover{background:var(--bone);color:var(--ink)}
+.ev .tba{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.12em}
+
+.watch{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:6px}
+.witem{background:var(--ink);padding:13px 15px;transition:background .18s ease}
+.witem:hover{background:var(--surface)}
+.witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
+.witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
+.prenumerera{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px;
+}
+.prenumerera a,.prenumerera button{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
+  border:1px solid var(--line);background:none;color:var(--bone);
+  padding:11px 17px;border-radius:2px;
+  font-family:var(--data);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
+  transition:border-color .18s,transform .18s,color .18s;
+}
+.prenumerera a:hover,.prenumerera button:hover{border-color:var(--muted);transform:translateY(-1px)}
+.prenumerera button.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
+.prenumerera em{
+  font-style:normal;font-family:var(--data);font-size:10px;letter-spacing:.07em;
+  color:#5C5175;max-width:34ch;line-height:1.7;
+}
+
+.watch-head{
+  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:34px 0 4px;display:flex;align-items:center;gap:12px;
+}
+.watch-head::after{content:'';flex:1;height:1px;background:var(--line)}
+.watch-note{font-size:13px;color:var(--muted);margin-bottom:14px;max-width:60ch}
+
+.empty{border:1px dashed var(--line);padding:28px;text-align:center;color:var(--muted);font-size:14px}
+.empty b{display:block;color:var(--bone);font-family:var(--display);font-size:22px;text-transform:uppercase;margin-bottom:6px}
+
+/* ---------- text/guider ---------- */
+.prose{max-width:66ch}
+.prose p{margin-bottom:14px;color:#CFC5E0}
+.prose ul{margin:0 0 16px 0;list-style:none}
+.prose li{padding-left:18px;position:relative;margin-bottom:7px;color:#CFC5E0;font-size:15px}
+.prose li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:1px;background:var(--muted)}
+.prose strong{color:var(--bone)}
+
+.callout{border-left:2px solid var(--uptempo);background:var(--surface);padding:14px 18px;margin:18px 0;font-size:14px;color:#CFC5E0}
+.callout b{color:var(--uptempo);font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:5px}
+
+.fest{border:1px solid var(--line);background:var(--surface);padding:22px;margin-bottom:14px}
+.fest header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.fest h3{margin:0;font-size:28px}
+.fest .place{font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.rules{display:grid;gap:10px}
+.rule{display:grid;grid-template-columns:110px 1fr;gap:14px;font-size:14px;align-items:start}
+.rule dt{font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.rule dd{color:#CFC5E0}
+
+/* ordlista */
+.terms{display:grid;gap:0}
+.term{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+.term:last-child{border-bottom:1px solid var(--line)}
+.term{transition:background .18s ease}
+.term:hover{background:rgba(255,255,255,.015)}
+.term dt{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1}
+.term dd{color:#CFC5E0;font-size:14px}
+
+/* subgenre-kort */
+.genres{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:8px}
+.gcard{
+  border:1px solid var(--line);border-top:3px solid var(--c);background:var(--surface);
+  padding:16px;transition:transform .2s ease,background .2s ease;
+}
+.gcard:hover{transform:translateY(-2px);background:var(--surface-2)}
+.gcard h3{margin:0 0 4px;font-size:22px;color:var(--c)}
+.gcard .bpm{font-family:var(--data);font-size:10px;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:8px}
+.gcard p{font-size:13px;color:#CFC5E0;margin:0}
+
+.tracks{list-style:none;counter-reset:t;max-width:none}
+.tracks li{
+  counter-increment:t;
+  display:grid;grid-template-columns:34px 1fr;column-gap:14px;
+  padding:14px 0;border-top:1px solid var(--line);margin-bottom:0;
+}
+/* Måste nolla position/width/height/background — annars ärvs de från
+   .prose li::before och lägger numret ovanpå texten. */
+.tracks li::before{
+  content:counter(t,decimal-leading-zero);
+  position:static;width:auto;height:auto;background:none;
+  grid-column:1;grid-row:1;padding-top:4px;
+  font-family:var(--data);font-size:11px;color:var(--muted);
+}
+.tracks li:last-child{border-bottom:1px solid var(--line)}
+.tracks b{
+  grid-column:2;grid-row:1;
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:19px;line-height:1.1;letter-spacing:.01em;color:var(--bone);
+}
+.tracks i{
+  grid-column:2;grid-row:2;font-style:normal;
+  font-family:var(--data);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--c,var(--muted));margin-top:5px;
+}
+.tracks span{grid-column:2;grid-row:3;color:var(--muted);font-size:13px;margin-top:4px}
+
+.callout.warn{border-left-color:var(--uptempo);background:#1D1206}
+.callout.warn b{color:var(--uptempo)}
+
+/* Kolofon — signaturrad längst ner. Sätts som en teknisk uppgift, inte som
+   en hälsning: bara namnet, med en tunn linje över. */
+.colophon{
+  margin-top:28px;padding-top:16px;border-top:1px solid var(--line);
+}
+.colophon .by{
+  display:inline-block;
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);
+  transition:color .25s ease;
+}
+.colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
+
+/* ---------- sidfoten ---------- */
+footer{
+  padding:38px 0 40px;border-top:1px solid var(--line);
+  background:linear-gradient(180deg,transparent,rgba(255,46,99,.035));
+  color:var(--muted);font-size:14px;line-height:1.6;
+}
+.foot-topp{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px;padding-bottom:22px;align-items:start}
+.foot-om .mark{
+  font-family:var(--display);font-weight:900;font-size:32px;line-height:1;
+  text-transform:uppercase;letter-spacing:.02em;color:var(--bone);
+}
+.foot-om .mark span{color:var(--raw)}
+.foot-om p{
+  margin:14px 0 0;max-width:30ch;font-size:13px;line-height:1.65;color:var(--muted);
+}
+.foot-om p b{color:#B9AECD;font-weight:400}
+.foot-kol h4{
+  font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:#5C5175;margin:0 0 9px;font-weight:400;
+}
+.foot-kol a{
+  display:block;color:var(--muted);text-decoration:none;padding:3px 0;font-size:13px;
+  transition:color .18s ease,transform .18s ease;
+}
+.foot-kol a:hover,.foot-kol a:focus-visible{color:var(--bone);transform:translateX(3px)}
+
+.status{
+  padding:12px 0;border-top:1px solid var(--line);
+  font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175;
+}
+.status.varning{color:var(--uptempo)}
+
+/* Ärligt förtroende: inga påhittade emblem, bara sånt som faktiskt stämmer. */
+.foot-loften{display:flex;gap:22px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--line)}
+.foot-loften span{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+  color:#5C5175;display:flex;align-items:center;gap:8px;
+}
+.foot-loften span::before{
+  content:'';width:5px;height:5px;border-radius:50%;background:var(--euphoric);
+  box-shadow:0 0 6px var(--euphoric);flex:none;
+}
+
+.colophon{
+  display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  margin-top:0;padding-top:14px;border-top:1px solid var(--line);
+}
+.colophon .by{
+  display:inline-block;font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);transition:color .25s ease;
+}
+.colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
+.colophon .ar{font-family:var(--data);font-size:10px;letter-spacing:.14em;color:#463C5E}
+
+@media (max-width:640px){
+  .tl{height:168px}
+  .tl-dot em{max-height:84px;font-size:8px}
+  .dot em{max-height:76px;font-size:8px}
+  .rel .artist{font-size:17px}
+  .ev{grid-template-columns:52px 1fr;gap:12px}
+  .ev .ticket,.ev .tba{grid-column:2;justify-self:start;margin-top:8px}
+  .topnav{gap:12px}
+  .top .wrap{height:52px}
+  .logo{font-size:22px}
+  .rule{grid-template-columns:1fr;gap:2px}
+  .foot-topp{grid-template-columns:1fr 1fr;gap:24px}
+  .foot-om{grid-column:1 / -1}
+  .foot-loften{gap:14px}
+  .tracks li{grid-template-columns:26px 1fr;column-gap:10px}
+  .tracks b{font-size:17px}
+  .term{grid-template-columns:1fr;gap:2px}
+}
+/* Sektioner tonar in när de kommer i vy. Rent kosmetiskt — utan JS visas allt. */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.reveal.inne{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important}
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- anthem-arkivet ---------- */
+.anthems{list-style:none;margin:0;padding:0;counter-reset:none}
+.anthems li{
+  display:grid;grid-template-columns:64px 1fr;column-gap:18px;align-items:baseline;
+  padding:15px 0;border-top:1px solid var(--line);transition:background .18s ease;
+}
+.anthems li:last-child{border-bottom:1px solid var(--line)}
+.anthems li:hover{background:rgba(255,255,255,.015)}
+.anthems .ar{
+  font-family:var(--data);font-size:15px;color:var(--raw);letter-spacing:.02em;
+}
+.anthems b{
+  display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:20px;line-height:1.08;letter-spacing:.01em;color:var(--bone);
+}
+.anthems span{
+  display:block;font-family:var(--data);font-size:11px;letter-spacing:.07em;
+  color:var(--muted);margin-top:5px;
+}
+.anthem-huvud{
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:0 0 6px;
+}
+.anthem-huvud h2{margin:0}
+.anthem-ort{
+  font-family:var(--data);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#5C5175;
+}
+.anthem-intro{color:var(--muted);font-size:15px;line-height:1.65;max-width:68ch;margin:0 0 26px}
+
+.anthem-not{
+  font-size:13px;color:var(--muted);margin:14px 0 0;max-width:62ch;
+}
+@media (max-width:640px){
+  .anthems li{grid-template-columns:50px 1fr;column-gap:12px}
+  .anthems b{font-size:17px}
+  .anthems .ar{font-size:13px}
+}
+
+/* ---------- quiz ---------- */
+.q-topp{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-bottom:34px;
+}
+.q-ruta{background:var(--surface);padding:16px 18px}
+.q-ruta b{
+  display:block;font-family:var(--display);font-weight:900;font-size:32px;line-height:1;
+  color:var(--bone);letter-spacing:.01em;
+}
+.q-ruta span{
+  display:block;font-family:var(--data);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:#5C5175;margin-top:7px;
+}
+.q-ruta.rang b{font-size:23px;color:var(--raw)}
+
+.q-kort{border:1px solid var(--line);background:var(--surface);padding:26px}
+.q-datum{
+  font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:#5C5175;margin-bottom:14px;
+}
+.q-spelare{
+  display:flex;align-items:center;gap:16px;
+  border:1px solid var(--line);background:var(--ink);padding:16px 18px;margin-bottom:22px;
+}
+.q-play{
+  flex:none;width:48px;height:48px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--raw);background:rgba(255,46,99,.1);color:var(--raw);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .18s,transform .18s;
+}
+.q-play:hover{background:rgba(255,46,99,.2);transform:scale(1.04)}
+.q-play svg{width:16px;height:16px;fill:currentColor}
+.q-spelare .info{flex:1;min-width:0}
+.q-spelare .etikett{
+  font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:#5C5175;margin-bottom:9px;
+}
+.q-bar{height:3px;background:var(--line);position:relative;overflow:hidden}
+.q-bar i{
+  position:absolute;left:0;top:0;bottom:0;width:0;background:var(--raw);
+  box-shadow:0 0 8px var(--raw);
+}
+.q-tid{
+  font-family:var(--data);font-size:10px;color:#463C5E;margin-top:7px;letter-spacing:.06em;
+}
+@media (max-width:640px){ .q-spelare{padding:13px 14px;gap:12px} }
+
+.q-fraga{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(24px,4.4vw,34px);line-height:1.02;color:var(--bone);margin-bottom:24px;
+}
+.q-alt{display:grid;gap:8px}
+.q-alt button{
+  display:flex;align-items:center;gap:14px;text-align:left;width:100%;
+  background:var(--ink);border:1px solid var(--line);color:var(--bone);
+  font-family:var(--body);font-size:15px;padding:14px 16px;border-radius:2px;cursor:pointer;
+  transition:border-color .18s,background .18s,transform .18s;
+}
+.q-alt button:hover:not(:disabled){border-color:var(--muted);transform:translateX(2px)}
+.q-alt button:disabled{cursor:default}
+.q-alt button i{
+  font-style:normal;font-family:var(--data);font-size:11px;color:#5C5175;
+  border:1px solid var(--line);width:24px;height:24px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.q-alt button.ratt{border-color:var(--euphoric);background:rgba(53,214,232,.08)}
+.q-alt button.ratt i{border-color:var(--euphoric);color:var(--euphoric)}
+.q-alt button.fel{border-color:var(--raw);background:rgba(255,46,99,.07)}
+.q-alt button.fel i{border-color:var(--raw);color:var(--raw)}
+
+.q-svar{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);animation:fade .3s ease}
+.q-utfall{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:26px;
+  line-height:1;margin-bottom:10px;
+}
+.q-utfall.ja{color:var(--euphoric)}
+.q-utfall.nej{color:var(--raw)}
+.q-svar p{color:#CFC5E0;font-size:15px;margin:0 0 14px;max-width:60ch}
+.q-plus{
+  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--uptempo);
+}
+.q-dela{
+  display:inline-flex;align-items:center;gap:10px;margin-top:16px;
+  background:none;border:1px solid var(--line);color:var(--bone);cursor:pointer;
+  font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 18px;border-radius:2px;
+  transition:border-color .18s,transform .18s;
+}
+.q-dela:hover{border-color:var(--muted);transform:translateY(-1px)}
+.q-dela.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
+
+.q-nasta{
+  font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:#5C5175;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+}
+.q-fredag{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  border-left:2px solid var(--uptempo);background:#150F06;
+  padding:13px 16px;margin:14px 0 0;
+  font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.7;
+}
+.q-fredag:empty{display:none}
+.q-fredag b{
+  color:var(--uptempo);letter-spacing:.14em;text-transform:uppercase;font-weight:400;flex:none;
+}
+
+.q-integritet{
+  font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#463C5E;
+  margin-top:26px;line-height:1.8;
+}
+
+@media (max-width:640px){
+  .q-kort{padding:20px}
+  .q-ruta{padding:13px 14px}
+  .q-ruta b{font-size:26px}
+}
+
+/* ---------- kartan ---------- */
+.mapwrap{
+  border:1px solid var(--line);background:var(--ink);
+  margin-top:20px;overflow:hidden;
+}
+.mapwrap svg{display:block;width:100%;height:auto}
+.mapwrap .lbl{
+  font-family:var(--data);font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;fill:var(--muted);
+}
+.mapwrap .lbl.dark{fill:var(--ink)}
+.mapwrap .big{
+  font-family:var(--display);font-weight:900;font-size:28px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .mid{
+  font-family:var(--display);font-weight:700;font-size:19px;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mapwrap .dist text{
+  font-family:var(--data);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+}
+
+/* ---------- festivalväljare ---------- */
+.picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.fbtn{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:19px;line-height:1;letter-spacing:.02em;
+  background:var(--surface);border:1px solid var(--line);color:var(--muted);
+  padding:12px 16px;cursor:pointer;transition:.15s;
+}
+.fbtn{transition:color .18s,border-color .18s,background .18s,transform .18s}
+.fbtn:hover{color:var(--bone);border-color:var(--muted);transform:translateY(-1px)}
+.fbtn[aria-selected="true"]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+
+.panel{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.phead{margin-bottom:22px}
+.phead h2{margin-bottom:6px}
+.phead .place{font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.panel h3{margin:30px 0 10px}
+.panel p{color:#CFC5E0;margin-bottom:14px;max-width:66ch}
+.panel ul{list-style:none;max-width:66ch;margin-bottom:8px}
+.panel li{padding-left:18px;position:relative;margin-bottom:8px;color:#CFC5E0;font-size:15px}
+.panel li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:1px;background:var(--muted)}
+.panel strong{color:var(--bone)}
+
+.facts{display:grid;gap:0;margin-bottom:6px}
+.facts>div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
+.facts>div:last-child{border-bottom:1px solid var(--line)}
+.facts dt{font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.facts dd{color:#CFC5E0;font-size:14px}
+
+.stages{list-style:none;max-width:none!important}
+.stages li{
+  display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:baseline;
+  padding:12px 0;border-top:1px solid var(--line);padding-left:0!important;
+}
+.stages li::before{display:none}
+.stages li:last-child{border-bottom:1px solid var(--line)}
+.stages b{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:22px;line-height:1;color:var(--c);letter-spacing:.02em;
+}
+.stages span{color:#CFC5E0;font-size:14px}
+
+.callout.tip{border-left-color:var(--raw)}
+.callout.tip b{color:var(--raw)}
+.callout a{color:var(--bone)}
+
+@media (max-width:640px){
+  .fbtn{font-size:16px;padding:10px 13px}
+  .facts>div{grid-template-columns:1fr;gap:2px}
+  .stages li{grid-template-columns:1fr;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/">Hard<span>list</span></a>
+    <nav class="topnav">
+      <a href="/#releaser">Releaser</a>
+      <a href="/#events">Kalender</a>
+      <a href="/events/">Festivaler</a>
+      <a href="/guider/">Camping</a>
+      <a href="/nyborjare/" aria-current="page">Nybörjare</a>
+      <a href="/anthems/">Anthems</a>
+      <a href="/quiz/">Quiz</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Nybörjare</p>
+      <h1>Från noll<br><em>till första ravet.</em></h1>
+      <p class="lede">Var stilen kommer ifrån, vad de olika grenarna heter, vilka artister som spelar överallt, låtarna hela fältet kan — och all slang så du fattar vad folk säger.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap prose">
+      <h2>Varifrån det kommer</h2>
+      <p>Hardstyle uppstod i Nederländerna kring år 2000, i glappet mellan hardcore techno och trance. Producenter som The Prophet, Luna, Zany och DJ Isaac spelade i Rotterdam och Eindhoven och började <strong>sakta ner den 160+ BPM snabba hardcore-kicken till 140–150</strong>, och lade trance-liknande synthar ovanpå. Det blev en egen sak.</p>
+      <p>Q-dance varumärkesskyddade ordet "hardstyle" den 4 juli 2002 och körde första Defqon.1 året därpå. Sedan dess har de i praktiken styrt scenens utveckling.</p>
+      <p>Hardcore är äldre och har en helt annan historia. Den föddes i Rotterdam 1991–92 som ett medvetet hårdare och aggressivare svar på husmusiken i Amsterdam. Paul Elstak, DJ Dano, DJ Rob och Euromasters var först — Euromasters spår "Rotterdam Hardcore" från 1992 satte namn på hela grejen. Hardcore kallas också <strong>gabber</strong>, vilket är nederländsk slang för kompis.</p>
+      <p>Runt 2010 delade hardstylen upp sig. Melodierna blev viktigare för många, och det blev <strong>euphoric</strong>. Samtidigt ville en stor del av publiken åt motsatt håll, mörkare och hårdare, och då växte <strong>raw</strong> fram. Den uppdelningen håller fortfarande.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Stilarna</h2>
+      <p class="lede" style="margin:12px 0 24px">De hårdare stilarna sorteras efter tempo. Vet du BPM vet du ungefär vad du får.</p>
+
+      <div class="genres">
+        <article class="gcard" style="--c:var(--euphoric)">
+          <h3>Euphoric</h3>
+          <span class="bpm">≈150 BPM</span>
+          <p>Melodisk hardstyle med ljusa synthar, ofta riktig sång och tydliga refränger. Kicken pitchas kraftigt så att den bär melodin. Det här är den lättaste ingången — låtarna är byggda som poplåtar med hårda trummor. Här hittar du också <em>reverse bass</em>, se nedan.</p>
+        </article>
+        <article class="gcard" style="--c:var(--raw)">
+          <h3>Raw / rawstyle</h3>
+          <span class="bpm">150–160 BPM</span>
+          <p>Mörkare och hårdare. Melodin är nedtonad eller helt borta och ersatt av <em>screeches</em> — gnisslande, dissonanta ljud. Lånar från mainstream hardcore, gabber och den tidiga hardstylen. Störst på festival idag, och den gren som växt mest sedan 2010.</p>
+        </article>
+        <article class="gcard" style="--c:var(--uptempo)">
+          <h3>Uptempo</h3>
+          <span class="bpm">190–210 BPM</span>
+          <p>Snabbt och distat, ren energi utan omvägar. Ligger tempomässigt närmare hardcore än hardstyle men har växt fram ur raw-scenen. Har egna stages på i princip alla stora festivaler nu.</p>
+        </article>
+        <article class="gcard" style="--c:var(--techno)">
+          <h3>Hard techno</h3>
+          <span class="bpm">140–160 BPM</span>
+          <p>Inte en gren av hardstyle utan en egen värld — industrial techno med hårda, distade kickar. Har vuxit in i hard dance-scenen de senaste åren och har egna stages på bland annat Decibel. Snabbare och tyngre än vanlig techno, men bygger på repetition istället för drop.</p>
+        </article>
+        <article class="gcard" style="--c:var(--hardcore)">
+          <h3>Hardcore / gabber</h3>
+          <span class="bpm">180–200 BPM</span>
+          <p>Äldst av alla, från Rotterdam 1991. Rå, snabb och kompromisslös, med egna label och egen festivalkrets. <strong>Frenchcore</strong> är den franska grenen — ännu snabbare och mer rullande. <strong>Terror</strong> är den extrema änden.</p>
+        </article>
+      </div>
+
+      <div class="callout">
+        <b>Reverse bass — det som gör hardstyle till hardstyle</b>
+        Kicken slår på ettan. Direkt efter, på offbeaten, kommer en distad bas i samma taktslag. Det ger den där studsande, "framåtlutande" känslan som ingen annan genre har. Hör du det är det hardstyle, inte hardcore.
+      </div>
+
+      <div class="callout">
+        <b>Enklaste testet på plats</b>
+        Kan du nynna melodin är det euphoric. Låter det som en motorsåg är det raw. Går det för snabbt för att gå i takt är det uptempo eller hardcore.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap prose">
+      <h2>Artisterna</h2>
+      <p>De här namnen står på nästan varje affisch. Kan du dem hänger du med i vilket samtal som helst.</p>
+
+      <h4>Euphoric</h4>
+      <ul>
+        <li><strong>Headhunterz</strong> och <strong>Wildstylez</strong> — de två största namnen i stilens historia. Tillsammans är de Project One.</li>
+        <li><strong>Brennan Heart</strong> — pionjär för den sångbara hardstylen och den som drog in en ny publik. Driver labeln I AM HARDSTYLE.</li>
+        <li><strong>Da Tweekaz</strong>, <strong>Sound Rush</strong>, <strong>Devin Wild</strong>, <strong>Refuzion</strong>, <strong>Coone</strong>.</li>
+        <li><strong>D-Block &amp; S-te-Fan</strong>, <strong>Atmozfears</strong>, <strong>Noisecontrollers</strong>, <strong>Showtek</strong> (numera i andra genrer, men grundpelare).</li>
+      </ul>
+
+      <h4>Raw</h4>
+      <ul>
+        <li><strong>Rebelion</strong>, <strong>Sub Zero Project</strong>, <strong>Warface</strong>, <strong>D-Sturb</strong>, <strong>Act of Rage</strong>.</li>
+        <li><strong>Ran-D</strong>, <strong>B-Front</strong>, <strong>Radical Redemption</strong>, <strong>Adaro</strong>, <strong>Frequencerz</strong>.</li>
+        <li><strong>Rooler</strong>, <strong>Malice</strong>, <strong>Sickmode</strong>, <strong>Rejecta</strong>, <strong>Vertile</strong>, <strong>Killshot</strong>.</li>
+      </ul>
+
+      <h4>Uptempo</h4>
+      <ul>
+        <li><strong>Yoshiko</strong>, <strong>Kill The Bass</strong>, <strong>Bloodlust</strong>, <strong>Deadly Guns</strong>, <strong>Nolz</strong>, <strong>Tha Watcher</strong>.</li>
+      </ul>
+
+      <h4>Hardcore och frenchcore</h4>
+      <ul>
+        <li><strong>Angerfist</strong> — det mest kända hardcore-namnet som finns.</li>
+        <li><strong>Miss K8</strong>, <strong>Nosferatu</strong>, <strong>Tha Playah</strong>, <strong>N-Vitral</strong>, <strong>Partyraiser</strong>.</li>
+        <li><strong>Paul Elstak</strong> — en av grundarna från 1991, spelar fortfarande.</li>
+        <li><strong>Dr. Peacock</strong>, <strong>Sefa</strong>, <strong>Billx</strong> för frenchcore.</li>
+      </ul>
+
+
+      <div class="callout">
+        <b>Börja här om du bara har tio minuter</b>
+        Lyssna på årets anthem för Defqon.1 och Decibel. Varje festival släpper en officiell låt varje år, hela publiken kan den, och den fångar exakt var scenen står just nu. Sen tar du klassikerlistan nedan.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap prose">
+      <h2>Klassikerna</h2>
+      <p>Gamla låtar som hela fältet fortfarande sjunger eller skriker med i. De flesta av dem ligger högt på Hardstyle Top 100, listan scenen själv röstar fram. Lär dig dem innan du åker.</p>
+      <ol class="tracks">
+        <li><b>Headhunterz, Wildstylez &amp; Noisecontrollers — Tonight</b><i>2009 · euphoric</i><span>Har legat först på Hardstyle Top 100. Släppt 2009 och spelad sönder sedan dess, utan att någon tröttnat.</span></li>
+        <li><b>B-Front &amp; Frontliner — Magic</b><i>raw</i><span>Bevis på att raw också kan bli allsång.</span></li>
+        <li><b>Showtek — FTS</b><i>tidig hardstyle</i><span>Från när stilen fortfarande var ung. Rakt, grovt och odödligt.</span></li>
+        <li><b>Brennan Heart ft. Jonathan Mendelsohn — Imaginary</b><i>euphoric</i><span>Den melodiska hardstylen i sin renaste form.</span></li>
+        <li><b>Headhunterz — Scrap Attack</b><i>Defqon.1 2009 anthem</i><span>Ett av de mest älskade festival-anthemen någonsin.</span></li>
+        <li><b>Brennan Heart &amp; Wildstylez — Lose My Mind</b><i>2012 · euphoric</i><span>Refrängen alla kan utantill. Över åtta miljoner visningar på YouTube redan tidigt, ovanligt för hardstyle.</span></li>
+        <li><b>Wasted Penguinz — Melancholia</b><i>euphoric</i><span>Svenskarnas bidrag till kanonen.</span></li>
+        <li><b>Atmozfears ft. David Spekter — Release</b><i>euphoric</i><span>Sång och kick i perfekt balans.</span></li>
+        <li><b>D-Block &amp; S-te-Fan — Music Made Addict</b><i>hardstyle</i><span>Titeln beskriver ungefär vad som händer med folk.</span></li>
+        <li><b>Headhunterz — The Sacrifice</b><i>hardstyle</i><span>En av de mest ikoniska låtarna som gjorts i genren.</span></li>
+        <li><b>Showtek — Colours of the Harder Styles</b><i>Defqon.1 2006 anthem</i><span>Äldst i listan. Melodin känner varenda hard dance-fan igen.</span></li>
+        <li><b>Headhunterz — Dragonborn</b><i>euphoric</i><span>Definierade en hel era av stilen.</span></li>
+        <li><b>Ran-D — Living For The Moment</b><i>raw</i><span>Ran-D:s mest spelade, år efter år.</span></li>
+        <li><b>Brennan Heart &amp; Coone ft. Max P — Fight For Something</b><i>2019 · 150 BPM</i><span>Nyare men redan klassiker. Släppt på I AM HARDSTYLE i november 2019.</span></li>
+      </ol>
+
+      <h3>Hardcore-kanonen</h3>
+      <p>Hardcore har en egen historia och egna klassiker. Vill du förstå var allt började är <strong>Euromasters — Rotterdam Hardcore</strong> från 1992 startpunkten. Den satte namn på genren. Därifrån går vägen via <strong>Paul Elstak</strong>, <strong>Neophyte</strong> och <strong>Angerfist</strong> fram till dagens uptempo.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Slangen</h2>
+      <dl class="terms">
+        <div class="term"><dt>Kick</dt><dd>Bastrumman. Hela stilen bygger på den, och hur den är formad avgör vilken subgenre du lyssnar på.</dd></div>
+        <div class="term"><dt>Reverse bass</dt><dd>Den distade basen på offbeaten, i samma taktslag som kicken. Hardstyles signatur.</dd></div>
+        <div class="term"><dt>Screech</dt><dd>Det gnisslande, dissonanta ljudet i raw. Ersätter melodin.</dd></div>
+        <div class="term"><dt>Drop</dt><dd>När kicken kommer in efter uppbyggnaden. Det är det du väntar på.</dd></div>
+        <div class="term"><dt>Kickroll</dt><dd>När kicken hackas upp i snabb följd, ofta precis före droppet.</dd></div>
+        <div class="term"><dt>Anthem</dt><dd>Festivalens officiella låt för året. Spelas alltid, alla kan den.</dd></div>
+        <div class="term"><dt>Endshow</dt><dd>Avslutningen på sista dagen. Pyro, fyrverkerier och den låt alla väntat på.</dd></div>
+        <div class="term"><dt>Track ID</dt><dd>Att fråga vad en okänd låt heter. "ID?" i kommentarsfältet betyder exakt det.</dd></div>
+        <div class="term"><dt>Edit / bootleg</dt><dd>Inofficiell remix. Ofta bara spelad live, aldrig släppt.</dd></div>
+        <div class="term"><dt>Hakken</dt><dd>Den nederländska dansstilen — snabba fotsteg på stället. Kommer från gabber-scenen.</dd></div>
+        <div class="term"><dt>Shuffle</dt><dd>Den andra stora dansstilen. Glidande, mer i hela kroppen.</dd></div>
+        <div class="term"><dt>Gabber</dt><dd>Både musiken och publiken. Nederländska för kompis.</dd></div>
+        <div class="term"><dt>Q-dance</dt><dd>Arrangören bakom Defqon.1. Varumärkesskyddade ordet hardstyle 2002.</dd></div>
+        <div class="term"><dt>Warriors</dt><dd>Vad Defqon.1 kallar sin publik. "Forever One Tribe" är deras devis.</dd></div>
+        <div class="term"><dt>Holy Grounds</dt><dd>Defqon.1:s namn på festivalområdet.</dd></div>
+        <div class="term"><dt>Wasted Lands</dt><dd>Campingen på Defqon.1.</dd></div>
+        <div class="term"><dt>Power Hour</dt><dd>Defqon.1-tradition på lördagen. Allt annat stannar.</dd></div>
+        <div class="term"><dt>Totem</dt><dd>Flaggan eller skylten gänget höjer så ni hittar varandra i folkhavet.</dd></div>
+        <div class="term"><dt>Terror</dt><dd>Den extrema änden av hardcore. Snabbare och hårdare än allt annat.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap prose">
+      <h2>Fyra saker till första gången</h2>
+      <ul>
+        <li><strong>Öronproppar.</strong> Om du bara tar med en sak, ta med det här. Ljudnivån ligger långt över vad hörseln klarar en hel helg, och den kommer inte tillbaka.</li>
+        <li><strong>Drick vatten.</strong> Påfyllningsstationerna är gratis. De flesta som hamnar hos sjukvården är uttorkade, inget annat. Defqon.1 fick ställas in helt 2026 på grund av värme — ta det på allvar.</li>
+        <li><strong>Bestäm en mötesplats</strong> innan ni går in. Mobilnätet dör när tiotusen personer står på samma åker.</li>
+        <li><strong>Lämna aldrig någon ensam</strong> som mår dåligt. Ta med dem till sjukvårdstältet — de får hjälp, inte problem.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-topp">
+      <div class="foot-om">
+        <div class="mark">Hard<span>list</span></div>
+        <p>Releaser och rave i Norden.<br><b>Uppdateras automatiskt varje dygn.</b></p>
+      </div>
+      <nav class="foot-kol">
+        <h4>Sajten</h4>
+        <a href="/#releaser">Releaser</a>
+        <a href="/#events">Kalender</a>
+        <a href="/events/">Festivalguider</a>
+        <a href="/guider/">Camping</a>
+        <a href="/nyborjare/">Nybörjarguide</a>
+        <a href="/anthems/">Anthem-arkivet</a>
+        <a href="/quiz/">Dagens fråga</a>
+      </nav>
+      <div class="foot-kol">
+        <h4>Bidra</h4>
+        <a href="mailto:hardlisthelp@gmail.com">Tipsa om ett event</a>
+        <a href="mailto:hardlisthelp@gmail.com">Saknad artist</a>
+        <a href="mailto:hardlisthelp@gmail.com">Insidertips</a>
+        <a href="mailto:hardlisthelp@gmail.com">Rätta ett fel</a>
+        <a href="/releaser.xml">RSS-flöde</a>
+      </div>
+    </div>
+    <div class="foot-loften">
+      <span>Inga annonser</span>
+      <span>Inga cookies</span>
+      <span>Ingen spårning</span>
+      <span>Gratis, alltid</span>
+    </div>
+
+    <div class="colophon">
+      <span class="by">Jonathan H</span>
+      <span class="ar">2026</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+/* Tonar in sektioner när de kommer i vy. Utan JS eller med reducerad rörelse
+   visas allt direkt — inget innehåll döljs permanent. */
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const mal = document.querySelectorAll('main section, main .hero > .wrap > *');
+  mal.forEach(function(el, i){ if (i > 0) el.classList.add('reveal'); });
+
+  const obs = new IntersectionObserver(function(poster){
+    poster.forEach(function(p){
+      if (p.isIntersecting){ p.target.classList.add('inne'); obs.unobserve(p.target); }
+    });
+  }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
+
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+})();
+</script>
+</body>
+</html>
