@@ -51,12 +51,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--uptempo);outline-of
 .topnav a{scroll-snap-align:start}
 /* Toningen visar att det finns fler lankar at hoger. Utan den tror man att
    menyn slutar vid skarmkanten. */
-.topnav-hylsa{position:relative;min-width:0;flex:1}
+/* Hylsan finns för mobilens svepning. På desktop ska den inte ta plats —
+   annars trycks menyn in mot loggan istället för ut mot högerkanten. */
+.topnav-hylsa{position:relative;min-width:0}
 .topnav-hylsa::after{
   content:'';position:absolute;right:0;top:0;bottom:0;width:34px;pointer-events:none;
   background:linear-gradient(90deg,transparent,var(--ink));opacity:0;transition:opacity .2s;
 }
 .topnav-hylsa.mer::after{opacity:1}
+@media (max-width:640px){ .topnav-hylsa{flex:1} }
 .topnav::-webkit-scrollbar{display:none}
 .topnav a{
   font-family:var(--data);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
