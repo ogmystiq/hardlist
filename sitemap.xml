@@ -7,33 +7,33 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hardlist.se/events.html</loc>
+    <loc>https://hardlist.se/events/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hardlist.se/guider.html</loc>
+    <loc>https://hardlist.se/guider/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hardlist.se/nyborjare.html</loc>
+    <loc>https://hardlist.se/nyborjare/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hardlist.se/quiz.html</loc>
+    <loc>https://hardlist.se/anthems/</loc>
     <lastmod>2026-08-16</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hardlist.se/anthems.html</loc>
+    <loc>https://hardlist.se/quiz/</loc>
     <lastmod>2026-08-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
 </urlset>
