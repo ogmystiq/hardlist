@@ -1,7 +1,9 @@
 {
   "defqon": {
     "namn": "Defqon.1",
-    "not": "2003, 2004 och 2021–2022 saknade egen anthem eller återanvände föregående års.",
+    "ort": "Biddinghuizen, NL · sedan 2003",
+    "intro": "Att få göra Defqon-anthemet räknas som ett av de största uppdragen en artist kan få i scenen. Låten sätter tonen för hela året och spelas på Opening Ceremony, i Power Hour och i Endshow.",
+    "not": "2003, 2004 och 2021 saknade egen anthem, och Primal Energy återanvändes 2020–2022 eftersom festivalen ställdes in under pandemin.",
     "ar": [
       [
         "2026",
@@ -102,6 +104,54 @@
         "2005",
         "Emergency Call",
         "The Prophet"
+      ]
+    ]
+  },
+  "decibel": {
+    "namn": "Decibel Outdoor",
+    "ort": "Hilvarenbeek, NL · The Loudest City on Earth",
+    "intro": "Decibel bokar bredare än de flesta, och det syns på anthemen. Här har allt från euphoric till rå raw fått bära året.",
+    "not": "Ofullständig lista. Åren 2013–2015, 2019–2021 och titeln på 2026 års anthem saknas — hittar du dem, hör av dig så läggs de in.",
+    "ar": [
+      [
+        "2025",
+        "Cosmic Frequency",
+        "Ran-D & Unresolved"
+      ],
+      [
+        "2024",
+        "Echoes of Existence",
+        "Rejecta & LXCPR"
+      ],
+      [
+        "2023",
+        "Raging City",
+        "Act of Rage"
+      ],
+      [
+        "2022",
+        "Break Free",
+        "D-Sturb & ATILAX"
+      ],
+      [
+        "2018",
+        "Fuelled by Fanatics",
+        "Brennan Heart"
+      ],
+      [
+        "2017",
+        "Destination",
+        "Noisecontrollers & Bass Modulators"
+      ],
+      [
+        "2016",
+        "United",
+        "Ran-D"
+      ],
+      [
+        "2012",
+        "D.E.C.I.B.E.L.",
+        "Zatox"
       ]
     ]
   }
