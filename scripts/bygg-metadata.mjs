@@ -129,7 +129,9 @@ async function run() {
   try { ljudCache = JSON.parse(await readFile(LJUD, 'utf8')); } catch(e){}
 
   async function hittaLjud(sok){
-    if (ljudCache[sok] !== undefined) return ljudCache[sok];
+    /* Träffar cachas för alltid. Missar cachas INTE — då kan man rätta
+     söksträngen i data/quiz.json och få ett nytt försök nästa körning. */
+  if (ljudCache[sok]) return ljudCache[sok];
     try {
       const url = 'https://itunes.apple.com/search?media=music&entity=song&limit=1&term=' +
                   encodeURIComponent(sok);
@@ -137,8 +139,13 @@ async function run() {
       if (!r.ok) throw new Error('status ' + r.status);
       const data = await r.json();
       const traff = data.results?.[0];
-      ljudCache[sok] = traff?.previewUrl || null;
-      if (!ljudCache[sok]) console.log(`  ⚠ ingen förhandslyssning för "${sok}"`);
+      if (traff?.previewUrl){
+        ljudCache[sok] = traff.previewUrl;
+      } else {
+        console.log(`  ⚠ ingen förhandslyssning för "${sok}" — förenkla söksträngen ` +
+                    'till bara artist och titel i data/quiz.json');
+        return null;
+      }
       /* iTunes tål ungefär 20 anrop per minut. 3,2 s ger drygt 18. */
       await new Promise(r2 => setTimeout(r2, 3200));
     } catch(e){
@@ -154,7 +161,7 @@ async function run() {
   let nya = 0, hoppade = 0;
   for (const q of quiz.fragor){
     if (q.typ !== 'musik' || !q.sok) continue;
-    if (ljudCache[q.sok] === undefined){
+    if (!ljudCache[q.sok]){
       if (nya >= MAX_UPPSLAG){ hoppade++; continue; }
       nya++;
     }
