@@ -168,6 +168,16 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .sok:focus{outline:none;border-color:var(--muted)}
 
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+@media (max-width:640px){
+  /* En svepbar rad tar 44 px istället för tre staplade rader. */
+  .filters{
+    flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+    -webkit-overflow-scrolling:touch;padding-bottom:2px;
+    margin-left:-20px;margin-right:-20px;padding-left:20px;padding-right:20px;
+  }
+  .filters::-webkit-scrollbar{display:none}
+  .filters .chip{flex:none;white-space:nowrap}
+}
 .chip{
   font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
   background:none;border:1px solid var(--line);color:var(--muted);
@@ -387,7 +397,8 @@ footer{
   /* Apples och Googles riktlinjer sager minst 44 px hojd pa det man ska trycka. */
   .chip,.fbtn,.pren-rad a,.pren-rad button,.prenumerera a,.prenumerera button,
   .q-dela,.day{min-height:44px}
-  .chip,.fbtn{display:inline-flex;align-items:center;padding:0 14px}
+  .chip{display:inline-flex;align-items:center;padding:0 15px;min-height:40px}
+  .fbtn{display:inline-flex;align-items:center;padding:0 14px}
   .q-alt button{padding:16px;font-size:16px}
   .topnav a{padding:6px 0}
   .foot-kol a{padding:8px 0}
@@ -395,11 +406,17 @@ footer{
   /* 16 px hindrar iOS fran att zooma in nar faltet far fokus. */
   .sok{font-size:16px;padding:12px 14px;max-width:none}
 
-  .tl{height:172px;padding:0 2px 30px}
-  .tl-dot em{max-height:88px;font-size:8px;letter-spacing:-.02em}
-  .tl-dot i{width:8px;height:8px}
+  /* Artistnamnen får inte plats lodrätt på en telefon — flera släpp samma dag
+     blir en oläslig fläck. Prickarna räcker: de visar när det släppts något.
+     Namnen står ändå i listan strax nedanför. */
+  .tl{height:118px;padding:0 2px 30px}
+  .tl-dot em{display:none}
+  .tl-dot i{width:9px;height:9px}
+  .tl-dot{height:auto!important}
+  .tl-dot u{min-height:34px}
   .tl-tick b{font-size:9px}
   .tl-key{gap:10px;font-size:9px}
+  .tl-now b{font-size:9px}
   .dot em{max-height:76px;font-size:8px}
   .rel .artist{font-size:17px}
   .ev{grid-template-columns:52px 1fr;gap:12px}
