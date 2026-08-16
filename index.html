@@ -242,26 +242,20 @@ h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:up
 .witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
 .witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
 .prenumerera{
-  border:1px solid var(--line);background:var(--surface);padding:20px;margin-top:24px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px;
 }
-.prenumerera h4{
-  font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:#5C5175;margin:0 0 8px;font-weight:400;
-}
-.prenumerera p{font-size:14px;color:var(--muted);margin:0 0 16px;max-width:64ch;line-height:1.6}
-.pren-rad{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.pren-rad a,.pren-rad button{
+.prenumerera a,.prenumerera button{
   display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
-  border:1px solid var(--line);background:var(--ink);color:var(--bone);
+  border:1px solid var(--line);background:none;color:var(--bone);
   padding:11px 17px;border-radius:2px;
   font-family:var(--data);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
   transition:border-color .18s,transform .18s,color .18s;
 }
-.pren-rad a:hover,.pren-rad button:hover{border-color:var(--muted);transform:translateY(-1px)}
-.pren-rad button.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
-.pren-hjalp{
-  font-family:var(--data);font-size:10px;letter-spacing:.06em;color:#463C5E;
-  margin:14px 0 0;line-height:1.9;
+.prenumerera a:hover,.prenumerera button:hover{border-color:var(--muted);transform:translateY(-1px)}
+.prenumerera button.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
+.prenumerera em{
+  font-style:normal;font-family:var(--data);font-size:10px;letter-spacing:.07em;
+  color:#5C5175;max-width:34ch;line-height:1.7;
 }
 
 .watch-head{
@@ -968,16 +962,9 @@ footer{
       <p class="filter-note">Bara bekräftade datum. Passerade event försvinner automatiskt.</p>
       <div id="evList"></div>
       <div class="prenumerera">
-        <h4>Prenumerera på kalendern</h4>
-        <p>Lägg in HARDLIST i din vanliga kalender en gång, så dyker nya event upp automatiskt när de bekräftas. Du behöver inte gå in här igen.</p>
-        <div class="pren-rad">
-          <a href="webcal://hardlist.se/kalender.ics">Lägg till direkt</a>
-          <button id="kopieraKal">Kopiera adressen</button>
-        </div>
-        <p class="pren-hjalp">
-          iPhone, Mac och Outlook: tryck Lägg till direkt.<br>
-          Google Kalender: kopiera adressen, gå till Andra kalendrar, plustecknet, Från URL.
-        </p>
+        <a href="webcal://hardlist.se/kalender.ics">Lägg till i kalendern</a>
+        <button id="kopieraKal">Kopiera för Google</button>
+        <em>Nya event dyker upp automatiskt när de bekräftas.</em>
       </div>
 
       <div id="evWatch"></div>
