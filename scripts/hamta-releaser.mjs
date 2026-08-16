@@ -434,6 +434,10 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
    Taket ligger därför med marginal under det. Kör HÖGST EN GÅNG PER DYGN tills
    artist-cachen är komplett — då kostar ett helt varv bara 80 anrop. */
 const MAX_ANROP    = 170;
+/* Minsta antal följare för att en namnträff ska godtas. Varje etablerad akt i
+   den här scenen har tiotusentals. Utan tröskeln plockade skriptet upp en
+   okänd artist som råkade heta exakt "Kill The Bass" och la in hennes låtar. */
+const MIN_FOLJARE  = 2000;
 const MAX_VANTAN   = 180;   /* längsta enskilda väntan vi accepterar, sekunder */
 const TIDSBUDGET   = 8 * 60;/* hela körningen, sekunder. Under jobbets timeout. */
 const PAUS         = 300;
@@ -457,9 +461,12 @@ const STATE_FIL  = resolve(ROOT, 'data/artist-ids.json');
 const REL_FIL    = resolve(ROOT, 'data/releases.json');
 const STATUS_FIL = resolve(ROOT, 'data/status.json');
 
-/* Höjs när cachen måste kastas. Version 1 sparade felmatchade artist-ID:n
-   (Killshot → Eminem, Malice → GACKT). Version 2 kräver exakt namnmatchning. */
-const CACHE_VERSION = 2;
+/* Höjs när cachen måste kastas.
+   1 → sparade felmatchningar (Killshot → Eminem, Malice → GACKT)
+   2 → krävde exakt namnmatchning, men godtog vem som helst med rätt namn
+   3 → kräver dessutom MIN_FOLJARE, efter att en okänd "Kill The Bass" med
+       180 följare kommit in i flödet */
+const CACHE_VERSION = 3;
 
 let state = { version: CACHE_VERSION, ids: {}, nextIndex: 0 };
 let anrop = 0;
@@ -604,19 +611,27 @@ async function hittaId(post, token) {
     return null;
   }
 
-  /* Flera artister kan heta exakt likadant. "The Purge" finns både som
-     rawstyle-akt och som annat. Spotify taggar artister med genrer, så
-     föredra den som ligger i rätt scen. Saknas gerentaggar helt faller vi
-     tillbaka på den populäraste, som är den Spotify listar först. */
-  const traff = exakta.find(a =>
-    (a.genres || []).some(g => HARD_GENRER.test(g))) || exakta[0];
+  const foljare = a => a.followers?.total ?? 0;
+
+  /* Flera artister kan heta exakt likadant. Prioritera i tur och ordning:
+     rätt genretagg, sen flest följare. Spotifys egen ranking duger inte —
+     den gav en artist med några hundra följare företräde. */
+  const rankade = [...exakta].sort((a, b) => foljare(b) - foljare(a));
+  const traff = rankade.find(a => (a.genres || []).some(g => HARD_GENRER.test(g)))
+                || rankade[0];
+
+  if (foljare(traff) < MIN_FOLJARE) {
+    console.log(`  ⚠ HOPPAR ÖVER "${name}" — namnet stämmer men artisten har bara ` +
+                `${foljare(traff)} följare. Troligen fel person, eller så finns ` +
+                'akten inte på Spotify under det namnet.');
+    return null;
+  }
 
   if (exakta.length > 1) {
     const valdGenre = (traff.genres || []).find(g => HARD_GENRER.test(g));
-    /* Utan genretagg tar vi den populäraste, vilket i praktiken alltid är rätt
-       artist i den här scenen. Loggas lågmält — det är inget att åtgärda. */
     console.log(`  · "${name}" finns i ${exakta.length} exemplar, valde ` +
-                (valdGenre ? `den taggad "${valdGenre}"` : 'den populäraste'));
+                (valdGenre ? `den taggad "${valdGenre}"`
+                           : `den med flest följare (${foljare(traff).toLocaleString('sv')})`));
   }
 
   state.ids[name] = traff.id;
