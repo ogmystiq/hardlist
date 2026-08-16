@@ -27,10 +27,10 @@ const EVENTS  = resolve(ROOT, 'data/events.json');
 const QUIZ    = resolve(ROOT, 'data/quiz.json');
 const RELEASER= resolve(ROOT, 'data/releases.json');
 const INDEX   = resolve(ROOT, 'index.html');
-const QUIZSIDA= resolve(ROOT, 'quiz.html');
+const QUIZSIDA= resolve(ROOT, 'quiz/index.html');
 const ANTHEMS = resolve(ROOT, 'data/anthems.json');
 const LJUD    = resolve(ROOT, 'data/ljud.json');
-const ANTSIDA = resolve(ROOT, 'anthems.html');
+const ANTSIDA = resolve(ROOT, 'anthems/index.html');
 const SITEMAP = resolve(ROOT, 'sitemap.xml');
 const ICS     = resolve(ROOT, 'kalender.ics');
 const RSS     = resolve(ROOT, 'releaser.xml');
@@ -170,7 +170,7 @@ async function run() {
 
   let qhtml = await readFile(QUIZSIDA, 'utf8');
   qhtml = ersatt(qhtml, '/* SEED_QUIZ:START */', '/* SEED_QUIZ:END */',
-    'const SEED_QUIZ = ' + JSON.stringify(tillKlient) + ';', 'quiz.html');
+    'const SEED_QUIZ = ' + JSON.stringify(tillKlient) + ';', 'quiz/index.html');
   await writeFile(QUIZSIDA, qhtml, 'utf8');
   await skrivJson(resolve(ROOT, 'data/quiz-live.json'), { version: quiz.version, fragor: tillKlient });
 
@@ -178,7 +178,7 @@ async function run() {
   const anthems = JSON.parse(await readFile(ANTHEMS, 'utf8'));
   let ahtml = await readFile(ANTSIDA, 'utf8');
   ahtml = ersatt(ahtml, '/* SEED_ANTHEMS:START */', '/* SEED_ANTHEMS:END */',
-    'const SEED_ANTHEMS = ' + JSON.stringify(anthems) + ';', 'anthems.html');
+    'const SEED_ANTHEMS = ' + JSON.stringify(anthems) + ';', 'anthems/index.html');
   await writeFile(ANTSIDA, ahtml, 'utf8');
 
   /* --- kalender.ics: prenumererbar kalender ur samma eventdata ---
