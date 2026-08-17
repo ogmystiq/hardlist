@@ -325,6 +325,23 @@ Hittas ingen förhandslyssning **utelämnas frågan helt** istället för att vi
 med en trasig spelare. Loggen skriver ut vilka som misslyckades — testa då en
 enklare söksträng, gärna bara artist och låttitel.
 
+## Ladda aldrig upp de genererade filerna
+
+Dessa skapas av GitHub Actions och ligger med flit **inte** i zip-filerna:
+
+```
+data/releases.json     data/artist-ids.json     data/ljud.json
+data/quiz-live.json    kalender.ics             releaser.xml
+```
+
+Laddar du upp en tom version raderas serverns riktiga innehåll. Det har hänt två
+gånger: en gång försvann 22 ljudadresser till quizet, en gång tömdes hela
+releaselistan. Skripten har numera spärrar mot att skriva över större data med
+mindre, men den säkraste regeln är att inte röra filerna alls.
+
+**Du redigerar bara tre filer för hand:** `data/events.json`, `data/quiz.json`
+och `data/anthems.json`.
+
 ## Filer som genereras automatiskt
 
 `scripts/bygg-metadata.mjs` skriver dessa vid varje körning. **Redigera dem aldrig
