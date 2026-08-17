@@ -634,7 +634,8 @@ async function hittaId(post, token) {
     const valdGenre = (traff.genres || []).find(g => HARD_GENRER.test(g));
     console.log(`  · "${name}" finns i ${exakta.length} exemplar, valde ` +
                 (valdGenre ? `den taggad "${valdGenre}"`
-                           : `den med flest följare (${foljare(traff).toLocaleString('sv')})`));
+                 : kanRakna ? `den med flest följare (${foljare(traff).toLocaleString('sv')})`
+                 : 'den Spotify rankar först'));
   }
 
   state.ids[name] = traff.id;
