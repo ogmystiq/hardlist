@@ -209,10 +209,26 @@ async function run() {
     .filter(q => q.typ !== 'musik' || q.ljud)
     .map(q => { const { sok, ...rest } = q; return rest; });
 
+  /* Skriv aldrig över en reservkopia som har mer ljud än den nya. Utan den här
+     spärren tömdes SEED_QUIZ varje gång bygget kördes utan nätverk. */
   let qhtml = await readFile(QUIZSIDA, 'utf8');
-  qhtml = ersatt(qhtml, '/* SEED_QUIZ:START */', '/* SEED_QUIZ:END */',
-    'const SEED_QUIZ = ' + JSON.stringify(tillKlient) + ';', 'quiz/index.html');
-  await writeFile(QUIZSIDA, qhtml, 'utf8');
+  const nyttLjud = tillKlient.filter(q => q.ljud).length;
+  let gammaltLjud = 0;
+  try {
+    const i = qhtml.indexOf('const SEED_QUIZ = ');
+    const j = qhtml.indexOf('/* SEED_QUIZ:END */');
+    const bit = qhtml.slice(i + 18, qhtml.lastIndexOf(';', j));
+    gammaltLjud = JSON.parse(bit).filter(q => q.ljud).length;
+  } catch(e){}
+
+  if (nyttLjud >= gammaltLjud) {
+    qhtml = ersatt(qhtml, '/* SEED_QUIZ:START */', '/* SEED_QUIZ:END */',
+      'const SEED_QUIZ = ' + JSON.stringify(tillKlient) + ';', 'quiz/index.html');
+    await writeFile(QUIZSIDA, qhtml, 'utf8');
+  } else {
+    console.log(`  Behåller reservfrågorna i quiz/index.html (${gammaltLjud} med ljud) — ` +
+                `den här körningen fick ihop ${nyttLjud}.`);
+  }
   await skrivJson(resolve(ROOT, 'data/quiz-live.json'), { version: quiz.version, fragor: tillKlient });
 
   /* Anthem-arkivet speglas in på samma sätt. */
