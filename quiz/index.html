@@ -1024,14 +1024,6 @@ const IKON_PAUS  = '<svg viewBox="0 0 16 16"><path d="M3 1.5h4v13H3zM9 1.5h4v13H
    gamla kunde ligga kvar och låta. Håll bara en i taget. */
 let aktivSpelare = null;
 
-/* Förhandslyssningarna är mastrade helt olika. Ett nytt hardstyle-släpp är
-   brickväggskomprimerat och skriker, ett äldre spår kan ligga långt under. Ett
-   fast reglage kan därför aldrig passa båda.
-
-   Lösningen är en kompressor i signalkedjan: den dämpar det som sticker upp och
-   låter det svaga passera, varefter en fast förstärkning lyfter allt till samma
-   nivå. Det är så musikspelare gör. Kräver Web Audio, som också är enda vägen
-   att styra volymen på iOS. Går det inte backar vi till vanlig uppspelning. */
 function kopplaSpelare(url){
   if (aktivSpelare){ try { aktivSpelare.pause(); } catch(e){} aktivSpelare = null; }
 
@@ -1042,99 +1034,70 @@ function kopplaSpelare(url){
   const nivåtext = document.getElementById('qVolText');
   if (!knapp) return;
 
-  let vol = 45;
+  let vol = 50;
   try { const v = localStorage.getItem(NYCKEL + '_vol'); if (v !== null) vol = +v; } catch(e){}
-  if (reglage) reglage.value = vol;
 
-  let ljud = new Audio(url);
+  const ljud = new Audio(url);
   ljud.preload = 'none';
-  let gain = null, ctx = null;
 
-  const MAKEUP = 1.8;   // lyfter det komprimerade tillbaka till hörbar nivå
+  /* Safari på iOS ignorerar audio.volume — nivån styrs bara av telefonens
+     knappar. Testa om egenskapen biter i stället för att gissa på webbläsare. */
+  ljud.volume = 0.5;
+  const volymBiter = Math.abs(ljud.volume - 0.5) < 0.01;
 
   function satt(v){
     const n = Math.min(1, Math.max(0, v / 100));
-    const niva = n * n;                       // kvadrerat — örat hör inte linjärt
-    if (gain) gain.gain.value = niva * MAKEUP;
-    else ljud.volume = niva;
+    /* Upphöjt till 1,6 följer hur örat uppfattar volym. Kvadrerat blev för
+       brant — halva reglaget lät nästan tyst. */
+    ljud.volume = Math.pow(n, 1.6);
     if (nivåtext) nivåtext.textContent = v + '%';
   }
 
-  function tillPlain(medNotis){
-    gain = null; ctx = null;
-    ljud = new Audio(url);
-    ljud.preload = 'none';
-    kopplaHandelser();
-    satt(reglage ? +reglage.value : vol);
-    if (medNotis && reglage){
-      const rad = reglage.closest('.q-volym');
-      if (rad) rad.innerHTML = '<span class="q-volnivå" style="text-align:left;min-width:0">' +
-        'Volym styrs med knapparna på enheten</span>';
+  if (volymBiter){
+    if (reglage) reglage.value = vol;
+    satt(vol);
+    if (reglage){
+      reglage.addEventListener('input', function(){
+        satt(+this.value);
+        try { localStorage.setItem(NYCKEL + '_vol', this.value); } catch(e){}
+      });
     }
-  }
-
-  function kopplaHandelser(){
-    ljud.addEventListener('play',  () => { knapp.innerHTML = IKON_PAUS; knapp.setAttribute('aria-label','Pausa'); });
-    ljud.addEventListener('pause', () => { knapp.innerHTML = IKON_PLAY; knapp.setAttribute('aria-label','Spela upp'); });
-    ljud.addEventListener('ended', () => {
-      knapp.innerHTML = IKON_PLAY; bar.style.width = '0';
-      tid.textContent = '30 sekunder · spela så många gånger du vill';
-    });
-    ljud.addEventListener('timeupdate', () => {
-      if (!ljud.duration) return;
-      bar.style.width = (ljud.currentTime / ljud.duration * 100) + '%';
-      tid.textContent = Math.floor(ljud.currentTime) + ' av ' + Math.floor(ljud.duration) + ' sekunder';
-    });
-  }
-
-  /* Med crossOrigin misslyckas hämtningen helt om Apple inte tillåter CORS,
-     i stället för att spela tyst. Felet fångas nedan. */
-  try {
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) throw 0;
-    ljud.crossOrigin = 'anonymous';
-    ctx = new AC();
-    const kalla = ctx.createMediaElementSource(ljud);
-    const komp = ctx.createDynamicsCompressor();
-    komp.threshold.value = -30;
-    komp.knee.value = 24;
-    komp.ratio.value = 14;
-    komp.attack.value = 0.003;
-    komp.release.value = 0.2;
-    gain = ctx.createGain();
-    kalla.connect(komp); komp.connect(gain); gain.connect(ctx.destination);
-  } catch(e){
-    gain = null; ctx = null;
-    ljud = new Audio(url);
-    ljud.preload = 'none';
-    ljud.volume = 0.5;
-    /* iOS ignorerar volume helt — då finns inget vi kan styra. */
-    if (Math.abs(ljud.volume - 0.5) > 0.01){ tillPlain(true); }
-  }
-
-  ljud.addEventListener('error', function(){
-    if (gain) tillPlain(false);   // CORS i vägen — kör utan Web Audio
-  });
-
-  kopplaHandelser();
-  satt(vol);
-
-  if (reglage){
-    reglage.addEventListener('input', function(){
-      satt(+this.value);
-      try { localStorage.setItem(NYCKEL + '_vol', this.value); } catch(e){}
-    });
+  } else {
+    /* Tidigare skickade jag ljudet genom Web Audio för att komma runt spärren.
+       Det kräver att Apple tillåter korsande förfrågningar på filen, och gör de
+       inte det laddas ingenting — resultatet blev tyst i stället för dämpat.
+       Hellre hörbart ljud med hårdvaruknappar än en tystnad man inte förstår. */
+    const ruta = reglage && reglage.closest('.q-volym');
+    if (ruta) ruta.innerHTML =
+      '<span style="font-family:var(--data);font-size:10px;letter-spacing:.08em;' +
+      'color:#5C5175">Volym styrs med knapparna på telefonen</span>';
   }
 
   knapp.addEventListener('click', function(){
-    if (ctx && ctx.state === 'suspended') ctx.resume();
     if (ljud.paused){
-      satt(reglage ? +reglage.value : vol);
+      if (volymBiter) satt(reglage ? +reglage.value : vol);
       aktivSpelare = ljud;
-      ljud.play().catch(() => { tid.textContent = 'Kunde inte spela upp ljudet just nu.'; });
+      ljud.play().catch(function(){
+        tid.textContent = 'Kunde inte spela upp ljudet just nu.';
+      });
     } else {
       ljud.pause();
     }
+  });
+
+  ljud.addEventListener('error', function(){
+    tid.textContent = 'Ljudfilen kunde inte laddas.';
+  });
+  ljud.addEventListener('play',  function(){ knapp.innerHTML = IKON_PAUS; knapp.setAttribute('aria-label','Pausa'); });
+  ljud.addEventListener('pause', function(){ knapp.innerHTML = IKON_PLAY; knapp.setAttribute('aria-label','Spela upp'); });
+  ljud.addEventListener('ended', function(){
+    knapp.innerHTML = IKON_PLAY; bar.style.width = '0';
+    tid.textContent = '30 sekunder · spela så många gånger du vill';
+  });
+  ljud.addEventListener('timeupdate', function(){
+    if (!ljud.duration) return;
+    bar.style.width = (ljud.currentTime / ljud.duration * 100) + '%';
+    tid.textContent = Math.floor(ljud.currentTime) + ' av ' + Math.floor(ljud.duration) + ' sekunder';
   });
 }
 
