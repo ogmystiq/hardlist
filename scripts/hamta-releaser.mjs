@@ -85,7 +85,6 @@ const ARTISTS = [
   { name: 'Yoshiko',                genre: 'uptempo' },
   { name: 'Sickmode',               genre: 'uptempo' },
   { name: 'Bloodlust',              genre: 'uptempo' },
-  { name: 'Kill The Bass',          genre: 'uptempo' },
   { name: 'Deadly Guns',            genre: 'uptempo' },
   { name: 'Tha Watcher',            genre: 'uptempo' },
   { name: 'Hyrule War',             genre: 'uptempo' },
@@ -434,9 +433,9 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
    Taket ligger därför med marginal under det. Kör HÖGST EN GÅNG PER DYGN tills
    artist-cachen är komplett — då kostar ett helt varv bara 80 anrop. */
 const MAX_ANROP    = 170;
-/* Minsta antal följare för att en namnträff ska godtas. Varje etablerad akt i
-   den här scenen har tiotusentals. Utan tröskeln plockade skriptet upp en
-   okänd artist som råkade heta exakt "Kill The Bass" och la in hennes låtar. */
+/* Minsta antal följare för att en namnträff ska godtas — men bara när Spotify
+   faktiskt lämnar ut siffran. Sedan de tog bort fältet ur söksvaret ligger
+   kontrollen vilande. Den vaknar av sig själv om fältet återkommer. */
 const MIN_FOLJARE  = 2000;
 const MAX_VANTAN   = 180;   /* längsta enskilda väntan vi accepterar, sekunder */
 const TIDSBUDGET   = 8 * 60;/* hela körningen, sekunder. Under jobbets timeout. */
@@ -611,16 +610,20 @@ async function hittaId(post, token) {
     return null;
   }
 
+  /* Spotify slutade lämna ut followers i söksvaret, samma väg som popularity
+     tog i februari 2026. Fältet får därför bara användas när det faktiskt
+     finns — annars avvisas varje artist i listan. */
+  const harFoljare = a => typeof a.followers?.total === 'number';
   const foljare = a => a.followers?.total ?? 0;
+  const kanRakna = exakta.some(harFoljare);
 
-  /* Flera artister kan heta exakt likadant. Prioritera i tur och ordning:
-     rätt genretagg, sen flest följare. Spotifys egen ranking duger inte —
-     den gav en artist med några hundra följare företräde. */
-  const rankade = [...exakta].sort((a, b) => foljare(b) - foljare(a));
+  const rankade = kanRakna
+    ? [...exakta].sort((a, b) => foljare(b) - foljare(a))
+    : exakta;                      // utan siffror: behåll Spotifys egen ordning
   const traff = rankade.find(a => (a.genres || []).some(g => HARD_GENRER.test(g)))
                 || rankade[0];
 
-  if (foljare(traff) < MIN_FOLJARE) {
+  if (kanRakna && foljare(traff) < MIN_FOLJARE) {
     console.log(`  ⚠ HOPPAR ÖVER "${name}" — namnet stämmer men artisten har bara ` +
                 `${foljare(traff)} följare. Troligen fel person, eller så finns ` +
                 'akten inte på Spotify under det namnet.');
