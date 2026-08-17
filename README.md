@@ -271,9 +271,15 @@ Tre spärrar, i den här ordningen:
    artister vars namn stämmer tecken för tecken godtas.
 2. **Genretagg.** Finns flera med exakt samma namn väljs den som är taggad
    hardstyle, hardcore, uptempo, frenchcore eller hard techno.
-3. **Följartröskel.** `MIN_FOLJARE = 2000`. Utan den plockades en okänd artist
-   som råkade heta exakt "Kill The Bass" upp, med 180 följare, och hennes låtar
-   hamnade i flödet.
+3. **Följartröskel.** `MIN_FOLJARE = 2000`, men **vilande**. Spotify slutade
+   lämna ut `followers` i söksvaret, samma väg som `popularity` tog i februari
+   2026. Kontrollen körs bara när fältet finns, annars avvisades varje artist i
+   listan. Den vaknar av sig själv om Spotify återinför fältet.
+
+**Konsekvens:** två artister med exakt samma namn går inte längre att skilja
+automatiskt. Spotifys egen ordning används, vilket nästan alltid ger rätt akt.
+Dyker en fel artist upp i flödet: naglafast rätt Spotify-ID med `id`-fältet på
+raden i artistlistan, eller ta bort namnet om akten inte finns där.
 
 Missar första sökningen görs ett andra försök med ordet hardstyle tillagt. Det
 löser enordsnamn som Requiem och Pavo, som annars drunknar bland Mozart och
