@@ -1,8 +1,8 @@
 {
-  "uppdaterad": "2026-08-17T06:06:15.688Z",
-  "artister": 333,
-  "cachade": 0,
+  "uppdaterad": "2026-08-17T10:17:41.127Z",
+  "artister": 332,
+  "cachade": 17,
   "releaser": 8,
-  "anrop": 170,
-  "avbrott": "Anropstaket (170) nått."
+  "anrop": 34,
+  "avbrott": "BROMSAD av Spotify i 49 minuter, längre än taket 180s. Så lång broms betyder i praktiken att dygnskvoten är förbrukad. Kör INTE manuellt igen idag — låt morgondagens schemalagda körning ta vid."
 }

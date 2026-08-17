@@ -1,27 +1,11 @@
 [
   {
-    "artist": "The Purge × Yosuf",
-    "title": "Vivir Mi Vida",
-    "genre": "raw",
-    "bpm": 155,
+    "artist": "Outsiders × Frontliner × Diandra Faye",
+    "title": "Rebels In The Frontline",
+    "genre": "euphoric",
+    "bpm": 150,
     "date": "2026-08-14",
-    "url": "https://open.spotify.com/album/4on1Cti5DxhPx2Z8XVRsyD"
-  },
-  {
-    "artist": "Dr. Peacock × DJ Mutante",
-    "title": "Party Accommodant 2K26",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-14",
-    "url": "https://open.spotify.com/album/488DoxcWXfa4o72jpunSvH"
-  },
-  {
-    "artist": "Dr Donk × VDV × Tempo",
-    "title": "He Comin!",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-08-14",
-    "url": "https://open.spotify.com/album/23FQfTzVWu467VbJZaT30g"
+    "url": "https://open.spotify.com/album/1qA89hPlhB7I9rVtKIxXtA"
   },
   {
     "artist": "Steve Aoki × Sub Zero Project",
@@ -32,20 +16,36 @@
     "url": "https://open.spotify.com/album/1qmYbQQl4KVIO3omsJZWUf"
   },
   {
-    "artist": "Outsiders × Frontliner × Diandra Faye",
-    "title": "Rebels In The Frontline",
-    "genre": "euphoric",
-    "bpm": 150,
+    "artist": "Dr Donk × VDV × Tempo",
+    "title": "He Comin!",
+    "genre": "uptempo",
+    "bpm": 200,
     "date": "2026-08-14",
-    "url": "https://open.spotify.com/album/1qA89hPlhB7I9rVtKIxXtA"
+    "url": "https://open.spotify.com/album/23FQfTzVWu467VbJZaT30g"
   },
   {
-    "artist": "Zany",
-    "title": "DRV U CRZY",
-    "genre": "euphoric",
-    "bpm": 150,
+    "artist": "Dr. Peacock × DJ Mutante",
+    "title": "Party Accommodant 2K26",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-08-14",
+    "url": "https://open.spotify.com/album/488DoxcWXfa4o72jpunSvH"
+  },
+  {
+    "artist": "The Purge × Yosuf",
+    "title": "Vivir Mi Vida",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-08-14",
+    "url": "https://open.spotify.com/album/4on1Cti5DxhPx2Z8XVRsyD"
+  },
+  {
+    "artist": "Sickmode",
+    "title": "OGSHIII (20 min with 2019 folder eeeeeasyyyy)",
+    "genre": "uptempo",
+    "bpm": 200,
     "date": "2026-08-13",
-    "url": "https://open.spotify.com/album/680BaztU4TDG6Zutu7zPQT"
+    "url": "https://open.spotify.com/album/06J6go0ncl0ZJwJ57CpNLi"
   },
   {
     "artist": "Deadly Guns × The Dark Horror",
@@ -56,11 +56,11 @@
     "url": "https://open.spotify.com/album/5YapmARyiE2P19E1F5Lp69"
   },
   {
-    "artist": "Sickmode",
-    "title": "OGSHIII (20 min with 2019 folder eeeeeasyyyy)",
-    "genre": "uptempo",
-    "bpm": 200,
+    "artist": "Zany",
+    "title": "DRV U CRZY",
+    "genre": "euphoric",
+    "bpm": 150,
     "date": "2026-08-13",
-    "url": "https://open.spotify.com/album/06J6go0ncl0ZJwJ57CpNLi"
+    "url": "https://open.spotify.com/album/680BaztU4TDG6Zutu7zPQT"
   }
 ]
