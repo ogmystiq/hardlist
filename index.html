@@ -438,7 +438,7 @@ footer{
   /* Apples och Googles riktlinjer sager minst 44 px hojd pa det man ska trycka. */
   .chip,.fbtn,.pren-rad a,.pren-rad button,.prenumerera a,.prenumerera button,
   .q-dela,.day{min-height:44px}
-  .chip{display:inline-flex;align-items:center;padding:0 15px;min-height:40px}
+  .chip{display:inline-flex;align-items:center;padding:0 15px}
   .fbtn{display:inline-flex;align-items:center;padding:0 14px}
   .q-alt button{padding:16px;font-size:16px}
   .topnav a{padding:6px 0}
@@ -1539,7 +1539,7 @@ async function load(){
     const r = await fetch('/data/events.json', {cache:'no-store'});
     events = await r.json();
     if (!Array.isArray(events) || !events.length) throw 0;
-  } catch(e) { events = SEED_EVENTS; }
+  } catch(e) { events = SEED_EVENTS; seeded = true; }
 
   document.getElementById('dataBadge').hidden = !seeded;
   drawStatus(seeded);
@@ -1803,6 +1803,10 @@ document.getElementById('sok').addEventListener('input', e => {
 document.getElementById('relList').addEventListener('click', e => {
   const b = e.target.closest('.day');
   if (!b) return;
+  /* Under sökning tvingas alla sektioner öppna (se drawReleases), så
+     aria-expanded speglar inte det riktiga fäll-tillståndet där — ett klick
+     ska inte spara ett falskt "stängd" som slår igenom när sökningen rensas. */
+  if (sok.trim()) return;
   const d = b.dataset.d;
   if (b.getAttribute('aria-expanded') === 'true'){ oppnaDagar.delete(d); stangdaDagar.add(d); }
   else { oppnaDagar.add(d); stangdaDagar.delete(d); }

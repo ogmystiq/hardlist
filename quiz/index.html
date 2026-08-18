@@ -438,7 +438,7 @@ footer{
   /* Apples och Googles riktlinjer sager minst 44 px hojd pa det man ska trycka. */
   .chip,.fbtn,.pren-rad a,.pren-rad button,.prenumerera a,.prenumerera button,
   .q-dela,.day{min-height:44px}
-  .chip{display:inline-flex;align-items:center;padding:0 15px;min-height:40px}
+  .chip{display:inline-flex;align-items:center;padding:0 15px}
   .fbtn{display:inline-flex;align-items:center;padding:0 14px}
   .q-alt button{padding:16px;font-size:16px}
   .topnav a{padding:6px 0}
@@ -855,7 +855,15 @@ function blanda(lista, fro){
   return a;
 }
 
-const midnatt = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+/* "Samma fråga för alla" håller bara om alla räknar dagen likadant. Browserns
+   lokala klocka ger fel svar för besökare utanför Norden nära dygnsskiftet,
+   så vi läser kalenderdatumet i svensk tid istället och bygger en lokal
+   midnatt-Date av det — resten av koden kan då räkna med den som vanligt. */
+const midnatt = () => {
+  const [y, m, d] = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Stockholm' })
+    .format(new Date()).split('-').map(Number);
+  return new Date(y, m - 1, d);
+};
 const dagNr = () => Math.round((midnatt() - new Date(2026,0,1)) / 86400000);
 const datumNyckel = d => { const x = new Date(d);
   return x.getFullYear() + '-' + String(x.getMonth()+1).padStart(2,'0') + '-' + String(x.getDate()).padStart(2,'0'); };
@@ -864,7 +872,7 @@ const datumNyckel = d => { const x = new Date(d);
    extrainsatt låtdag läggs in — ska dagen räknas som obesvarad igen i stället
    för att visa svaret på en fråga som inte längre ställs. */
 function avtryck(q){
-  const s = q.f + '|' + q.s.join(',');
+  const s = q.f + '|' + q.s.join(',') + '|' + q.r;
   let h = 0;
   for (let i = 0; i < s.length; i++) h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
   return h.toString(36);
@@ -924,14 +932,23 @@ function dagensFraga(){
     const ordning = blanda(pott.map((_, k) => k), 20260202);
     return pott[ordning[((i % pott.length) + pott.length) % pott.length]];
   }
-  const ordning = blanda(text.map((_, k) => k), 20260101);
-  return text[ordning[((dag % text.length) + text.length) % text.length]];
+  if (text.length){
+    const ordning = blanda(text.map((_, k) => k), 20260101);
+    return text[ordning[((dag % text.length) + text.length) % text.length]];
+  }
+  /* Textpotten kan i teorin vara tom (trasig quiz-live.json) — hellre en
+     musikfråga fel dag än ett kraschat quiz-kort. */
+  return musik.length ? musik[((dag % musik.length) + musik.length) % musik.length] : null;
 }
 
 function ritaFraga(){
   const kort = document.getElementById('qKort');
   const nyckel = datumNyckel(midnatt());
   const q = dagensFraga();
+  if (!q){
+    kort.innerHTML = '<p class="q-datum">Ingen fråga hittades. Ladda om sidan om en stund.</p>';
+    return;
+  }
 
   const alt = blanda(q.s.map((text, i) => ({text, ratt: i === q.r})), dagNr() * 7919);
   const d = midnatt();

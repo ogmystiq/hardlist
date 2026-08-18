@@ -49,10 +49,17 @@ function ersatt(text, start, slut, nytt, filnamn) {
   return text.slice(0, i + start.length) + '\n' + nytt + '\n' + text.slice(j);
 }
 
+/* city utan komma är antingen ett rent landnamn (inget ortsnamn angivet) eller
+   en svensk ort — bara det förstnämnda ska ge ett annat land än SE. */
+const LANDNAMN = {
+  Nederländerna:'NL', Belgien:'BE', Tyskland:'DE',
+  Norge:'NO', Finland:'FI', Danmark:'DK'
+};
+
 function eventLd(e) {
   const delar = e.city.split(',').map(s => s.trim());
   const stad  = delar[0];
-  const land  = delar.length > 1 ? delar[delar.length - 1] : 'SE';
+  const land  = delar.length > 1 ? delar[delar.length - 1] : (LANDNAMN[delar[0]] || 'SE');
 
   const ld = {
     '@type': 'MusicEvent',
