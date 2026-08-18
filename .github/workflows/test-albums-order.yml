@@ -1,0 +1,75 @@
+name: TEST – sorteringsordning /artists/albums
+
+# Engångstest. Gör EXAKT ett anrop mot /artists/{id}/albums för Angerfist
+# (stort backkatalog, redan cachat Spotify-ID — kräver ingen sökning) och
+# skriver ut release_date för alla tio träffarna i den ordning Spotify
+# returnerar dem. Svarar på om /albums är sorterad nyast-först eller inte,
+# innan vi bestämmer om hamta-releaser.mjs ska bläddra fler sidor.
+#
+# Ta bort den här filen när svaret är avläst — den hör inte till den
+# självgående driften.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Ett anrop mot /artists/{id}/albums
+        env:
+          SPOTIFY_ID: ${{ secrets.SPOTIFY_ID }}
+          SPOTIFY_SECRET: ${{ secrets.SPOTIFY_SECRET }}
+        run: |
+          node -e '
+          const ID = process.env.SPOTIFY_ID, SECRET = process.env.SPOTIFY_SECRET;
+          const ANGERFIST = "4sQNUQjOYj9rV2sdfJ8laS"; // redan cachat i data/artist-ids.json
+
+          async function main(){
+            const tokenRes = await fetch("https://accounts.spotify.com/api/token", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                Authorization: "Basic " + Buffer.from(`${ID}:${SECRET}`).toString("base64")
+              },
+              body: "grant_type=client_credentials"
+            });
+            if (!tokenRes.ok) throw new Error("Token misslyckades: " + tokenRes.status);
+            const { access_token } = await tokenRes.json();
+
+            const res = await fetch(
+              "https://api.spotify.com/v1/artists/" + ANGERFIST +
+              "/albums?include_groups=single,album&market=SE&limit=10",
+              { headers: { Authorization: "Bearer " + access_token } }
+            );
+            if (!res.ok) throw new Error("Albums-anropet misslyckades: " + res.status + " " + await res.text());
+            const data = await res.json();
+
+            const rader = (data.items || []).map((a, i) =>
+              `${i + 1}. ${a.release_date}  (${a.album_type})  ${a.name}`
+            );
+
+            const resultat =
+              "Ordning som Spotify returnerade (limit=10, include_groups=single,album):\n" +
+              rader.join("\n") + "\n\n" +
+              "Sorterad nyast-först: " +
+              (rader.every((_, i) => i === 0 || data.items[i].release_date <= data.items[i-1].release_date)
+                ? "JA" : "NEJ — se ordningen ovan");
+
+            console.log(resultat);
+            const fs = require("fs");
+            if (process.env.GITHUB_STEP_SUMMARY) {
+              fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, "```\n" + resultat + "\n```\n");
+            }
+          }
+
+          main().catch(err => { console.error(err.message || err); process.exit(1); });
+          '

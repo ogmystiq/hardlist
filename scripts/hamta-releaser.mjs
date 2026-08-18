@@ -9,9 +9,14 @@
  * börjar fungera igen när du förnyar.
  *
  * Endpoints som används (båda finns kvar efter februari 2026-migreringen):
- *   GET /search?type=artist        max limit är numera 10, vi använder 1
- *   GET /artists/{id}/albums       max limit är numera 10 (var 50) — vi
- *                                  bläddrar två sidor för att täcka 20 album
+ *   GET /search?type=artist        max limit är numera 10 — vi hämtar alla tio
+ *                                  träffarna för att kunna kräva exakt namnmatch
+ *   GET /artists/{id}/albums       max limit är numera 10 (var 50). Vi hämtar
+ *                                  bara EN sida (de 10 senaste enligt Spotifys
+ *                                  egen sortering, inte garanterat datumordning).
+ *                                  Sidbläddring till 20 fanns en kort stund
+ *                                  13 aug men togs bort för att hålla nere
+ *                                  anropskostnaden per artist i rotationen.
  */
 
 import { writeFile, readFile, mkdir } from 'node:fs/promises';
