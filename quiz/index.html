@@ -953,10 +953,10 @@ function ritaFraga(){
   const alt = blanda(q.s.map((text, i) => ({text, ratt: i === q.r})), dagNr() * 7919);
   const d = midnatt();
   const sparat = state.svar[nyckel];
-  /* Kortet visas som besvarat bara om avtrycket stämmer med frågan som faktiskt
-     ställs. Svar från innan avtrycken infördes saknar fältet och räknas som
-     obesvarade — men de ligger kvar i state.svar, så sviten bryts inte. */
-  const svarat = sparat && sparat.av === avtryck(q) ? sparat : null;
+  /* Nyckeln räcker för att räkna dagen som besvarad — avtrycket jämförs inte
+     längre här. Gör den det, visas kortet som obesvarat fast svara() ändå
+     vägrar ge nya poäng, och man riskerar att nollställa en sparad svit. */
+  const svarat = sparat || null;
 
   kort.innerHTML =
     '<p class="q-datum">' + d.getDate() + ' ' + MANADER[d.getMonth()] + ' ' + d.getFullYear() +
@@ -1158,6 +1158,10 @@ function kopplaDela(ratt){
 }
 
 function svara(ratt, index, q, nyckel){
+  /* Spärr mot dubbelsvar: finns nyckeln redan är dagen besvarad, oavsett vad
+     klicket nu skickar in. Ingen poäng, ingen svitändring, inget skriv. */
+  if (state.svar[nyckel]) return;
+
   /* Svit: bruten om gårdagen missades. Poängen sjunker aldrig. */
   const igar = new Date(midnatt()); igar.setDate(igar.getDate() - 1);
   const fortsatter = !!state.svar[datumNyckel(igar)];
