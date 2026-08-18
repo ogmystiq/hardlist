@@ -11,12 +11,18 @@
  * Endpoints som används (båda finns kvar efter februari 2026-migreringen):
  *   GET /search?type=artist        max limit är numera 10 — vi hämtar alla tio
  *                                  träffarna för att kunna kräva exakt namnmatch
- *   GET /artists/{id}/albums       max limit är numera 10 (var 50). Vi hämtar
- *                                  bara EN sida (de 10 senaste enligt Spotifys
- *                                  egen sortering, inte garanterat datumordning).
- *                                  Sidbläddring till 20 fanns en kort stund
- *                                  13 aug men togs bort för att hålla nere
- *                                  anropskostnaden per artist i rotationen.
+ *   GET /artists/{id}/albums       max limit är numera 10 (var 50), och svaret
+ *                                  är grupperat per typ, INTE datumsorterat
+ *                                  totalt — testat 18 aug: en artist med sju
+ *                                  album fick alla sju album först, sen tre
+ *                                  singlar. En artist med tio eller fler album
+ *                                  skulle alltså aldrig visa en enda singel,
+ *                                  hur ny den än är, om single och album
+ *                                  frågades i samma anrop.
+ *
+ *                                  Därför två separata frågor med varsin
+ *                                  include_groups, se huvudrotationen och
+ *                                  albumrotationen nedan.
  */
 
 import { writeFile, readFile, mkdir } from 'node:fs/promises';
@@ -414,6 +420,13 @@ const ARTISTS = [
    Höj till 14 eller 30 om du vill ha en längre svans. */
 const DAGAR_BAKAT = 7;
 
+/* Albumrotationen (se nedan) varvar hela artistlistan mycket långsammare än
+   singelrotationen — några veckor i stället för ett par dygn. Ett fönster på
+   sju dagar skulle hinna åldra ut ett album innan turen ens kommit till
+   artisten igen. Fönstret måste därför vara minst lika långt som varvet.
+   ALBUM_ANROP_PER_KORNING nedan styr varvtakten — höjs den kan detta sänkas. */
+const DAGAR_BAKAT_ALBUM = 30;
+
 /* Uppskattad BPM per genre. Spotify slutade ge ut BPM till nya appar
    i november 2024, så den här siffran är en gissning per genre.
    Vill du ha exakt BPM: skriv in den i OVERRIDE nedan. */
@@ -423,13 +436,15 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
    Development Mode har en daglig kvot per utvecklarkonto. Går den sönder är
    du utelåst i ett dygn. Därför tre spärrar:
 
-   MAX_ANROP  hårt tak på antal API-anrop per körning. Nås det sparar
-              skriptet det den hunnit och slutar. Artisterna roteras mellan
-              körningar så alla kommer med över tid.
+   MAX_ANROP  hårt yttertak på antal API-anrop per körning, delat mellan
+              singel- och albumrotationen. Nås det sparar skriptet det den
+              hunnit och slutar. Artisterna roteras mellan körningar så alla
+              kommer med över tid.
               OBS: dagskvoten går sönder runt 200 anrop. Workflowen kör därför
-              DAGLIGEN med rotation istället för en gång i veckan. Ett helt varv
-              tar ceil(antal artister / MAX_ANROP) dygn — med 333 artister alltså
-              två dygn, väl inom sjudagarsfönstret sajten visar.
+              DAGLIGEN med rotation istället för en gång i veckan. Ett helt
+              singelvarv tar ceil(antal artister / (MAX_ANROP -
+              ALBUM_ANROP_PER_KORNING)) dygn — med 333 artister och nuvarande
+              tak alltså tre dygn, väl inom sjudagarsfönstret sajten visar.
    MAX_VANTAN ber Spotify oss vänta längre än så avbryts körningen direkt
               istället för att ligga och hamra på kvoten.
    PAUS       paus mellan anrop.
@@ -438,6 +453,12 @@ const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, te
    Taket ligger därför med marginal under det. Kör HÖGST EN GÅNG PER DYGN tills
    artist-cachen är komplett — då kostar ett helt varv bara 80 anrop. */
 const MAX_ANROP    = 170;
+/* Fast liten andel av MAX_ANROP som går till albumrotationen (se run()).
+   Resten (MAX_ANROP - ALBUM_ANROP_PER_KORNING) är singelrotationens eget
+   tak, så den håller sin varvtakt oavsett hur albumrotationen går. Ett helt
+   albumvarv över 333 artister tar ceil(333 / ALBUM_ANROP_PER_KORNING) ≈ 17
+   körningar — några veckor vid daglig körning, därav DAGAR_BAKAT_ALBUM. */
+const ALBUM_ANROP_PER_KORNING = 20;
 /* Minsta antal följare för att en namnträff ska godtas — men bara när Spotify
    faktiskt lämnar ut siffran. Sedan de tog bort fältet ur söksvaret ligger
    kontrollen vilande. Den vaknar av sig själv om fältet återkommer. */
@@ -647,45 +668,85 @@ async function hittaId(post, token) {
   return traff.id;
 }
 
-function relevant(dateStr) {
+function relevant(dateStr, dagarBakat = DAGAR_BAKAT) {
   if (!dateStr || dateStr.length < 7) return false;
   const d = new Date(dateStr.length === 7 ? dateStr + '-01' : dateStr);
   const cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - DAGAR_BAKAT);
+  cutoff.setDate(cutoff.getDate() - dagarBakat);
   /* Nollställ klockslaget. Annars beror fönstret på vilken tid workflowen
-     råkar köra, och en låt som är exakt DAGAR_BAKAT dagar gammal faller ur. */
+     råkar köra, och en release som är exakt dagarBakat dagar gammal faller ur. */
   cutoff.setHours(0, 0, 0, 0);
   return d >= cutoff;
 }
 
 const nyckel = r => `${r.artist} – ${r.title}`.toLowerCase();
 
+/* Ett sparat fynd vet sitt eget fönster via typ — annars skulle ett album
+   (30 dagars fönster) hinna åldras bort med sjudagarsfiltret innan
+   albumrotationen kommer tillbaka till artisten. Äldre poster utan typ-fält
+   (från innan den här ändringen) får det snävare 7-dagarsfönstret, samma
+   som de redan hade. */
+const fonster = r => r.typ === 'album' ? DAGAR_BAKAT_ALBUM : DAGAR_BAKAT;
+
+/* Delad av bägge rotationerna: bygger releaseposter ur ett /albums-svar och
+   lägger de relevanta i alla-kartan. typ ('single'/'album') avgör både
+   vilket fönster som gäller nu och vilket fönster posten ska bedömas mot
+   nästa körning, via fonster() ovan. */
+function samlaIn(items, name, genre, typ, dagarBakat, alla) {
+  let nya = 0;
+  for (const a of items) {
+    if (!relevant(a.release_date, dagarBakat)) continue;
+    const artist = (a.artists || []).map(x => x.name).join(' × ') || name;
+    const rel = {
+      artist,
+      title: a.name,
+      genre,
+      bpm: OVERRIDE[`${artist} – ${a.name}`] ?? BPM_PER_GENRE[genre] ?? 150,
+      date: a.release_date.length === 7 ? a.release_date + '-01' : a.release_date,
+      url: a.external_urls?.spotify || '',
+      typ
+    };
+    if (!alla.has(nyckel(rel))) { alla.set(nyckel(rel), rel); nya++; }
+  }
+  return nya;
+}
+
 async function run() {
-  state = await lasJson(STATE_FIL, { version: CACHE_VERSION, ids: {}, nextIndex: 0 });
+  state = await lasJson(STATE_FIL, { version: CACHE_VERSION, ids: {}, nextIndex: 0, albumIndex: 0 });
 
   if (state.version !== CACHE_VERSION) {
     console.log(`Cachen är från version ${state.version || 1}, nollställer artist-ID:n. ` +
                 'Releaselistan behålls — gamla felmatchningar åldras ut inom en vecka.');
-    state = { version: CACHE_VERSION, ids: {}, nextIndex: 0 };
+    state = { version: CACHE_VERSION, ids: {}, nextIndex: 0, albumIndex: 0 };
   }
+  /* Äldre state-filer (från innan albumrotationen fanns) saknar fältet —
+     utan den här raden blir det undefined och (start2 % ARTISTS.length) NaN. */
+  if (typeof state.albumIndex !== 'number') state.albumIndex = 0;
 
   /* Tidigare fynd behålls. Delkörningar får aldrig radera det som redan finns. */
-  /* Behåll alltid tidigare releaser. Sjudagarsfönstret rensar dem av sig
-     själv, och att tömma listan vid en cachenollställning gav flera dygn med
-     nästan tom sajt medan rotationen hann varva. Enstaka felmatchningar
-     försvinner när de blir äldre än en vecka. */
+  /* Behåll alltid tidigare releaser. Respektive fönster (se fonster() ovan)
+     rensar dem av sig själv, och att tömma listan vid en cachenollställning
+     gav flera dygn med nästan tom sajt medan rotationen hann varva. Enstaka
+     felmatchningar försvinner när de blir äldre än sitt fönster. */
   const tidigare = await lasJson(REL_FIL, []);
   const alla = new Map(
     (Array.isArray(tidigare) ? tidigare : [])
-      .filter(r => relevant(r.date))
+      .filter(r => relevant(r.date, fonster(r)))
       .map(r => [nyckel(r), r])
   );
 
   const token = await getToken();
+
+  /* --- Singelrotation — huvudspåret, ett anrop per artist -----------------
+     Eget tak strax under MAX_ANROP så albumrotationen alltid har sin andel
+     kvar. Varvtakten över hela ARTISTS är densamma som innan albumrotationen
+     fanns, bara taket är lite lägre. */
+  const HUVUD_TAK = MAX_ANROP - ALBUM_ANROP_PER_KORNING;
   const start = state.nextIndex % ARTISTS.length;
   let klara = 0, stopp = null;
 
   for (let n = 0; n < ARTISTS.length; n++) {
+    if (anrop >= HUVUD_TAK) break;   // lämnar plats åt albumrotationen nedan
     const i = (start + n) % ARTISTS.length;
     const { name, genre } = ARTISTS[i];
 
@@ -694,24 +755,10 @@ async function run() {
       if (!id) { console.log(`✗ hittade inte ${name}`); klara++; continue; }
 
       const sida = await api(
-        `/artists/${id}/albums?include_groups=single,album&market=SE&limit=10`,
+        `/artists/${id}/albums?include_groups=single&market=SE&limit=10`,
         token
       );
-
-      let nya = 0;
-      for (const a of sida.items || []) {
-        if (!relevant(a.release_date)) continue;
-        const artist = (a.artists || []).map(x => x.name).join(' × ') || name;
-        const rel = {
-          artist,
-          title: a.name,
-          genre,
-          bpm: OVERRIDE[`${artist} – ${a.name}`] ?? BPM_PER_GENRE[genre] ?? 150,
-          date: a.release_date.length === 7 ? a.release_date + '-01' : a.release_date,
-          url: a.external_urls?.spotify || ''
-        };
-        if (!alla.has(nyckel(rel))) { alla.set(nyckel(rel), rel); nya++; }
-      }
+      const nya = samlaIn(sida.items || [], name, genre, 'single', DAGAR_BAKAT, alla);
       if (nya) console.log(`✓ ${name}: ${nya}`);
       klara++;
 
@@ -726,6 +773,47 @@ async function run() {
 
   state.nextIndex = (start + klara) % ARTISTS.length;
 
+  /* --- Albumrotation — långsamt sidospår, egen positionspekare ------------
+     Bara artister som redan har ett cachat Spotify-ID kollas, så ett
+     albumanrop aldrig drar med sig en extra sökning. Artister utan cache
+     hittas ändå förr eller senare av singelrotationen ovan, som söker vid
+     behov. Hoppar skriptet över quotan (stopp satt) provas albumrotationen
+     inte alls den körningen — den skulle ändå bara slå i samma vägg direkt. */
+  let albumKlara = 0, albumTraffar = 0;
+  if (!stopp) {
+    const start2 = state.albumIndex % ARTISTS.length;
+    let n2 = 0, albumAnrop = 0;
+
+    while (n2 < ARTISTS.length && albumAnrop < ALBUM_ANROP_PER_KORNING &&
+           anrop < MAX_ANROP && forbrukat() < TIDSBUDGET) {
+      const i = (start2 + n2) % ARTISTS.length;
+      const { name, genre } = ARTISTS[i];
+      n2++;
+
+      const id = state.ids[name];
+      if (!id) continue;   // ännu ej cachad — huvudrotationen tar den förr eller senare
+
+      try {
+        const sida = await api(
+          `/artists/${id}/albums?include_groups=album&market=SE&limit=10`,
+          token
+        );
+        albumAnrop++;
+        const nya = samlaIn(sida.items || [], name, genre, 'album', DAGAR_BAKAT_ALBUM, alla);
+        albumTraffar += nya;
+        if (nya) console.log(`✓ (album) ${name}: ${nya}`);
+        albumKlara++;
+      } catch (err) {
+        if (err instanceof Stopp) { stopp = err; break; }
+        console.log(`✗ (album) ${name}: ${err.message}`);
+      }
+
+      await new Promise(r => setTimeout(r, PAUS));
+    }
+
+    state.albumIndex = (start2 + n2) % ARTISTS.length;
+  }
+
   const out = [...alla.values()].sort((a, b) => (a.date < b.date ? 1 : -1));
   await skrivJson(REL_FIL, out);
   await skrivJson(STATE_FIL, state);
@@ -738,16 +826,20 @@ async function run() {
     cachade: Object.keys(state.ids).length,
     releaser: out.length,
     anrop,
+    albumAnrop: albumKlara,
+    albumIndex: state.albumIndex,
     avbrott: stopp ? stopp.message : null
   });
 
   console.log(
-    `\n${klara}/${ARTISTS.length} artister denna körning, ${anrop} API-anrop, ` +
+    `\n${klara}/${ARTISTS.length} artister denna körning (singlar), ` +
+    `${albumKlara} albumkollade (${albumTraffar} nya), ${anrop} API-anrop, ` +
     `${forbrukat()}s.\n${out.length} releaser totalt i data/releases.json.`
   );
   if (klara < ARTISTS.length) {
-    console.log(`Nästa körning fortsätter från artist ${state.nextIndex + 1}.`);
+    console.log(`Nästa körning fortsätter singelrotationen från artist ${state.nextIndex + 1}.`);
   }
+  console.log(`Albumrotationen fortsätter från artist ${state.albumIndex + 1}.`);
   if (stopp) console.log('\n' + stopp.message);
 }
 

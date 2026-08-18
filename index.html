@@ -1250,8 +1250,13 @@ footer{
 
 <script>
 const GENRES = ['euphoric','raw','uptempo','hardcore','techno'];
-/* Hur många dagar bakåt som visas. Måste matcha DAGAR_BAKAT i skriptet. */
+/* Hur många dagar bakåt som visas. Måste matcha respektive fönster i
+   skriptet: DAGAR_BAKAT (singlar) och DAGAR_BAKAT_ALBUM (album). En release
+   vet sitt eget fönster via typ-fältet, se gransFor() nedan — annars skulle
+   ett album falla ur listan efter en vecka trots att skriptet behåller det
+   i 30 dagar. */
 const DAGAR_VISAS = 7;
+const DAGAR_VISAS_ALBUM = 30;
 const MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
 
 /* Visas tills scriptet skrivit data/releases.json */
@@ -1682,14 +1687,22 @@ function relCard(r, soon){
     '</div></article>';
 }
 
+/* Album har ett längre fönster än singlar (se DAGAR_VISAS_ALBUM ovan) —
+   utan egen gräns per post skulle ett album försvinna ur listan efter en
+   vecka trots att skriptet behåller det i 30 dagar. */
+const gransFor = r => {
+  const g = new Date(today());
+  g.setDate(g.getDate() - (r.typ === 'album' ? DAGAR_VISAS_ALBUM : DAGAR_VISAS));
+  return g;
+};
+
 function drawReleases(){
   const list = document.getElementById('relList');
-  const grans = new Date(today()); grans.setDate(grans.getDate() - DAGAR_VISAS);
   const q = sok.trim().toLowerCase();
 
   const items = releases
     .filter(r => filter === 'all' || r.genre === filter)
-    .filter(r => parseDate(r.date) >= grans)
+    .filter(r => parseDate(r.date) >= gransFor(r))
     .filter(r => !q || (r.artist + ' ' + r.title).toLowerCase().includes(q));
 
   document.getElementById('relCount').textContent =
