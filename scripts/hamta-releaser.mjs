@@ -72,19 +72,17 @@ const ARTISTS = [
   { name: 'Ran-D',                  genre: 'raw' },
   { name: 'Adaro',                  genre: 'raw' },
   { name: 'Rooler',                 genre: 'raw' },
-  { name: 'Malice',                 genre: 'raw' },
   { name: 'Frequencerz',            genre: 'raw' },
   { name: 'B-Front',                genre: 'raw' },
   { name: 'Phuture Noize',          genre: 'raw' },
   { name: 'Digital Punk',           genre: 'raw' },
   { name: 'Delete',                 genre: 'raw' },
-  { name: 'Deluzion',               genre: 'raw' },
+  { name: 'Deluzion',               genre: 'raw', id: '3r40SMXcvhhDUE1xhU8MSB' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'E-Force',                genre: 'raw' },
   { name: 'Killshot',               genre: 'raw' },
   { name: 'Rejecta',                genre: 'raw' },
   { name: 'Riot Shift',             genre: 'raw' },
   { name: 'Unresolved',             genre: 'raw' },
-  { name: 'Restrained',             genre: 'raw' },
   { name: 'Crypsis',                genre: 'raw' },
   { name: 'Regain',                 genre: 'raw' },
   { name: 'Aversion',               genre: 'raw' },
@@ -110,7 +108,7 @@ const ARTISTS = [
   { name: 'Miss K8',                genre: 'hardcore' },
   { name: 'Neophyte',               genre: 'hardcore' },
   { name: 'DJ Mad Dog',                genre: 'hardcore' },
-  { name: 'Nosferatu',              genre: 'hardcore' },
+  { name: 'Nosferatu',              genre: 'hardcore', id: '0S6b11xqvO6XOWZSukSjiY' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Tha Playah',             genre: 'hardcore' },
   { name: 'Furyan',                 genre: 'hardcore' },
   { name: 'Destructive Tendencies', genre: 'hardcore' },
@@ -145,7 +143,7 @@ const ARTISTS = [
   { name: 'Alpha²',                     genre: 'euphoric' },
   { name: 'Max Enforcer',               genre: 'euphoric' },
   { name: 'JDX',                        genre: 'euphoric' },
-  { name: 'Aftershock',                 genre: 'euphoric' },
+  { name: 'Aftershock',                 genre: 'euphoric', id: '6KlY7jizsLWQcXR1F2Sn9j' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Ecstatic',                   genre: 'euphoric' },
   { name: 'Galactixx',                  genre: 'euphoric' },
   { name: 'Level One',                  genre: 'euphoric' },
@@ -167,18 +165,17 @@ const ARTISTS = [
   { name: 'Deetox',                     genre: 'raw' },
   { name: 'Gunz for Hire',              genre: 'raw' },
   { name: 'Minus Militia',              genre: 'raw' },
-  { name: 'Chain Reaction',             genre: 'raw' },
+  { name: 'Chain Reaction',             genre: 'raw', id: '2voeq1SXqaRk45wpKHJhgz' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Sogma',                      genre: 'raw' },
   { name: 'Cryex',                      genre: 'raw' },
   { name: 'So Juice',                   genre: 'raw' },
   { name: 'Exproz',                     genre: 'raw' },
-  { name: 'Kronos',                     genre: 'raw' },
+  { name: 'Kronos',                     genre: 'raw', id: '2B3mYtzGes0f92Yfn4mVQD' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'The Saints',                 genre: 'raw' },
-  { name: 'Villain',                    genre: 'raw' },
+  { name: 'Villain',                    genre: 'raw', id: '7iajTuviby3038TmfrpvZ3' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'D-Charged',                  genre: 'raw' },
   { name: 'Dimitri K',                  genre: 'raw' },
-  { name: 'Sovereign',                  genre: 'raw' },
-  { name: 'Hyperspace',                 genre: 'raw' },
+  { name: 'Sovereign King',             genre: 'raw', id: '4Ub0mdQEa3RhAfwWgVXp46' }, // döpt om från "Sovereign" + pinnat — det kortare namnet gav fel artist
 
   /* --- fler uptempo --- */
   { name: 'Ncrypta',                    genre: 'uptempo' },
@@ -197,14 +194,11 @@ const ARTISTS = [
   { name: 'DJ Promo',                   genre: 'hardcore' },
   { name: 'Ophidian',                   genre: 'hardcore' },
   { name: 'Catscan',                    genre: 'hardcore' },
-  { name: 'Rudeboy',                    genre: 'hardcore' },
   { name: 'D-Fence',                    genre: 'hardcore' },
   { name: 'Andy The Core',              genre: 'hardcore' },
-  { name: 'Radium',                     genre: 'hardcore' },
+  { name: 'Radium',                     genre: 'hardcore', id: '5YG7cC1VX7Nh7AjUOf6PcG' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'The Melodyst',               genre: 'hardcore' },
   { name: 'The Sickest Squad',          genre: 'hardcore' },
-  { name: 'Akira',                      genre: 'hardcore' },
-  { name: 'Alienn',                     genre: 'hardcore' },
   { name: 'Drokz',                      genre: 'hardcore' },
   { name: 'Deathmachine',               genre: 'hardcore' },
 
@@ -226,36 +220,34 @@ const ARTISTS = [
   { name: 'Lady Faith',                  genre: 'euphoric' },
   { name: 'High Resistance',             genre: 'euphoric' },
   { name: 'Betavoice',                   genre: 'euphoric' },
-  { name: 'Retrospect',                  genre: 'euphoric' },
-  { name: 'Crystal Lake',                genre: 'euphoric' },
-  { name: 'Emphasis',                    genre: 'euphoric' },
+  { name: 'Retrospect',                  genre: 'euphoric', id: '3SpBPLBqsJo9sW5KQUXm8q' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Crystal Lake',                genre: 'euphoric', id: '1VfMvNSQzxakpBBo9yzudk' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Emphasis',                    genre: 'euphoric', id: '6Eo58FM6qYycr3oP9BIeca' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Audiofreq',                   genre: 'euphoric' },
   { name: 'Dr. Rude',                    genre: 'euphoric' },
-  { name: 'Fenix',                       genre: 'euphoric' },
+  { name: 'Fenix',                       genre: 'euphoric', id: '7kBTFueiOHgnbxQB4IedXI' }, // pinnat — automatisk sökning hittade fel artist
 
   /* --- raw, omgång 2 --- */
   { name: 'ANDY SVGE',                   genre: 'raw' },
   { name: 'ERABREAK',                    genre: 'raw' },
   { name: 'Thyron',                      genre: 'raw' },
   { name: 'Wolv',                        genre: 'raw' },
-  { name: 'Disarray',                    genre: 'raw' },
+  { name: 'Disarray',                    genre: 'raw', id: '717HuchTIxNX4TLjDPclE3' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Michael Phase',               genre: 'raw' },
   { name: 'Crossfight',                  genre: 'raw' },
   { name: 'Sledgehammers',               genre: 'raw' },
   { name: 'Sasha F',                     genre: 'raw' },
   { name: 'Avoc',                        genre: 'raw' },
-  { name: 'Retaliation',                 genre: 'raw' },
+  { name: 'Retaliation',                 genre: 'raw', id: '33WbKYUz0YIPwtO0HKTJX7' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'JNXD',                        genre: 'raw' },
   { name: 'Inflame',                     genre: 'raw' },
-  { name: 'Mirage',                      genre: 'raw' },
-  { name: 'Brutalizer',                  genre: 'raw' },
+  { name: 'Brutalizer',                  genre: 'raw', id: '6416cEVN24ELoGBIrpTsUe' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Flux Overload',               genre: 'raw' },
   { name: 'Miss M',                      genre: 'raw' },
   { name: "D'Ort",                       genre: 'raw' },
   { name: 'Doris',                       genre: 'raw' },
 
   /* --- uptempo, omgång 2 --- */
-  { name: 'JOSHA',                       genre: 'uptempo' },
   { name: 'Cybergore',                   genre: 'uptempo' },
 
   /* --- hardcore, omgång 2 --- */
@@ -266,27 +258,24 @@ const ARTISTS = [
   /* --- techno, omgång 2 --- */
   { name: 'Fantasm',                     genre: 'techno' },
   { name: 'Holy Priest',                 genre: 'techno' },
-  { name: 'Kruelty',                     genre: 'techno' },
+  { name: 'Kruelty',                     genre: 'techno', id: '30sKm4Zacgq8mC0l7vNmuD' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Winson',                      genre: 'techno' },
   { name: 'Novah',                       genre: 'techno' },
   { name: 'Nicolas Julian',              genre: 'techno' },
-  { name: 'New Beat Order',              genre: 'techno' },
   { name: 'ZAPRAVKA',                    genre: 'techno' },
   { name: 'Samuel Moriero',              genre: 'techno' },
   { name: 'Jowi',                        genre: 'techno' },
-  { name: 'JAZZY',                       genre: 'techno' },
+  { name: 'JAZZY',                       genre: 'techno', id: '0xGI8ZVWgiCWicV1lD1Hrk' }, // pinnat — automatisk sökning hittade fel artist
 
   /* --- euphoric, omgång 3 --- */
   { name: 'TAC Team',                      genre: 'euphoric' },
   { name: 'Wildfyre',                      genre: 'euphoric' },
   { name: 'Xense',                         genre: 'euphoric' },
   { name: 'Zero Days',                     genre: 'euphoric' },
-  { name: 'Aztech',                        genre: 'euphoric' },
+  { name: 'Aztech',                        genre: 'euphoric', id: '5BwHAtNpcEoDlIQqaBCBvc' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Crisis Era',                    genre: 'euphoric' },
   { name: 'Firelite',                      genre: 'euphoric' },
-  { name: 'Final Form',                    genre: 'euphoric' },
-  { name: 'Focuz',                         genre: 'euphoric' },
-  { name: 'The Vision',                    genre: 'euphoric' },
+  { name: 'The Vision',                    genre: 'euphoric', id: '1DV44qE0qBvaYO1q1cXT0f' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Digital Madness',               genre: 'euphoric' },
   { name: 'Clockartz',                     genre: 'euphoric' },
   { name: 'Adrenalize',                    genre: 'euphoric' },
@@ -294,12 +283,11 @@ const ARTISTS = [
   { name: 'MERYLL',                        genre: 'euphoric' },
   { name: 'Drean',                         genre: 'euphoric' },
   { name: 'Serzo',                         genre: 'euphoric' },
-  { name: 'Caelum',                        genre: 'euphoric' },
+  { name: 'Caelum',                        genre: 'euphoric', id: '4rurguPt7zC7a60LfcPDUM' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Boray',                         genre: 'euphoric' },
   { name: 'Max Alexander',                 genre: 'euphoric' },
-  { name: 'LePrince',                      genre: 'euphoric' },
-  { name: 'Snowflake',                     genre: 'euphoric' },
-  { name: 'Alee',                          genre: 'euphoric' },
+  { name: 'Snowflake',                     genre: 'euphoric', id: '1rPM4GwuDLiRsMX0rfNNg5' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Alee',                          genre: 'euphoric', id: '07E7avQ9K8W8Gr6BCx8aU9' }, // pinnat — verifierat via hardstyle.com
   { name: 'Neon Future',                   genre: 'euphoric' },
   { name: 'Bright Visions',                genre: 'euphoric' },
   { name: 'B-Freqz',                       genre: 'euphoric' },
@@ -315,28 +303,25 @@ const ARTISTS = [
   { name: 'The Straikerz',                 genre: 'raw' },
   { name: 'Adjuzt',                        genre: 'raw' },
   { name: 'Dual Damage',                   genre: 'raw' },
-  { name: 'Vexxed',                        genre: 'raw' },
+  { name: 'Vexxed',                        genre: 'raw', id: '49QBXRxNfA7BBLMqRIB8jY' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'DEEZL',                         genre: 'raw' },
   { name: 'GLDY LX',                       genre: 'raw' },
   { name: 'Mish',                          genre: 'raw' },
-  { name: 'Omnya',                         genre: 'raw' },
   { name: 'Infliction',                    genre: 'raw' },
   { name: 'Levenkhan',                     genre: 'raw' },
   { name: 'Tharken',                       genre: 'raw' },
   { name: 'Satirized',                     genre: 'raw' },
   { name: 'The Dope Doctor',               genre: 'raw' },
-  { name: 'Vasto',                         genre: 'raw' },
-  { name: 'Livid',                         genre: 'raw' },
-  { name: 'Kenai',                         genre: 'raw' },
+  { name: 'Vasto',                         genre: 'raw', id: '35l9BKzdhvLy5HOC50NECa' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Livid',                         genre: 'raw', id: '3GvnEADrxf9LST8avbLuMe' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Kenai',                         genre: 'raw', id: '4bdnTbi7xnUA1rwBgSO3d7' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Karbyde',                       genre: 'raw' },
   { name: 'T-Junction',                    genre: 'raw' },
   { name: 'Unfused',                       genre: 'raw' },
   { name: 'Sakyra',                        genre: 'raw' },
   { name: 'Trespassed',                    genre: 'raw' },
   { name: 'Major Conspiracy',              genre: 'raw' },
-  { name: 'Akimbo',                        genre: 'raw' },
   { name: 'Code Crime',                    genre: 'raw' },
-  { name: 'Epidemic',                      genre: 'raw' },
   { name: 'Decim8',                        genre: 'raw' },
   { name: 'Re-Mind',                       genre: 'raw' },
   { name: 'Invictuz',                      genre: 'raw' },
@@ -346,7 +331,7 @@ const ARTISTS = [
   { name: 'Anklebreaker',                  genre: 'raw' },
   { name: 'Bass Prototype',                genre: 'raw' },
   { name: 'Invector',                      genre: 'raw' },
-  { name: 'AlexSo',                        genre: 'raw' },
+  { name: 'AlexSo',                        genre: 'raw', id: '1zMyfwOOmRRq0yjIxpN3kN' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Vazooka',                       genre: 'raw' },
   { name: 'Jonjo',                         genre: 'raw' },
   { name: 'Rab-Beat',                      genre: 'raw' },
@@ -357,9 +342,8 @@ const ARTISTS = [
   { name: 'MasterOfTime',                  genre: 'raw' },
   { name: 'Tigaiko',                       genre: 'raw' },
   { name: 'Minoz',                         genre: 'raw' },
-  { name: 'Murdock',                       genre: 'raw' },
-  { name: 'TWSTD',                         genre: 'raw' },
-  { name: 'Outbreak',                      genre: 'raw' },
+  { name: 'TWSTD',                         genre: 'raw', id: '2AXbtYVmNaN2RMv4Z0T24f' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Outbreak',                      genre: 'raw', id: '5tlPrdBVJtoK1uWzzFs4M1' }, // pinnat — automatisk sökning hittade fel artist, lågt lyssnarantal på nya ID:t, dubbelkolla manuellt
   { name: 'Stormerz',                      genre: 'raw' },
   { name: 'Danny Scandal',                 genre: 'raw' },
   { name: 'Barber',                        genre: 'raw' },
@@ -598,8 +582,17 @@ async function api(path, token, forsok = 0) {
 
 const normalisera = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
 
-/* Genretaggar som betyder att artisten hör hemma i den här scenen. */
+/* Genretaggar som betyder att artisten hör hemma i den här scenen.
+   OBS: "hardcore" ensamt är en fälla — Spotify taggar även hardcore-PUNK,
+   post-hardcore, metalcore och deathcore-band med genrer som innehåller
+   ordet "hardcore" (t.ex. "post-hardcore", "melodic hardcore"), trots att de
+   inte har något med elektronisk hardcore att göra. Det här slank igenom
+   Livid (powerviolence), Akimbo och Outbreak (hardcore-punk/metalcore) —
+   se CACHE_VERSION-historiken. HARDCORE_UNDANTAG nedan filtrerar bort de
+   punk/metal-varianterna innan HARD_GENRER får nappa på ordet i dem. */
 const HARD_GENRER = /hardstyle|hardcore|gabber|uptempo|frenchcore|hard techno|rawstyle|jumpstyle|terror|hard dance|hardtechno/i;
+const HARDCORE_UNDANTAG = /hardcore punk|post[- ]?hardcore|melodic hardcore|christian hardcore|metalcore|deathcore|beatdown|youth crew|screamo/i;
+const arHardGenre = g => HARD_GENRER.test(g) && !HARDCORE_UNDANTAG.test(g);
 
 /* Spotify rankar sökträffar efter popularitet, inte efter hur väl namnet
    stämmer. "Killshot" gav Eminem, "Malice" gav GACKT, "Yoshiko" gav Yoshiko Sai.
@@ -646,7 +639,7 @@ async function hittaId(post, token) {
   const rankade = kanRakna
     ? [...exakta].sort((a, b) => foljare(b) - foljare(a))
     : exakta;                      // utan siffror: behåll Spotifys egen ordning
-  const traff = rankade.find(a => (a.genres || []).some(g => HARD_GENRER.test(g)))
+  const traff = rankade.find(a => (a.genres || []).some(arHardGenre))
                 || rankade[0];
 
   if (kanRakna && foljare(traff) < MIN_FOLJARE) {
@@ -657,7 +650,7 @@ async function hittaId(post, token) {
   }
 
   if (exakta.length > 1) {
-    const valdGenre = (traff.genres || []).find(g => HARD_GENRER.test(g));
+    const valdGenre = (traff.genres || []).find(arHardGenre);
     console.log(`  · "${name}" finns i ${exakta.length} exemplar, valde ` +
                 (valdGenre ? `den taggad "${valdGenre}"`
                  : kanRakna ? `den med flest följare (${foljare(traff).toLocaleString('sv')})`
