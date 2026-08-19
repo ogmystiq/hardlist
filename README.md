@@ -38,14 +38,16 @@ till de andra tre. `style.css` finns kvar som referens.
 | Grupp | Innehåll |
 |---|---|
 | Kommande | Releasedatum i framtiden. Visas som "Imorgon", "Om 1 vecka". |
-| Nyss släppt | De senaste 7 dagarna. |
+| Nyss släppt | Singlar: de senaste 7 dagarna. Album: de senaste 30 dagarna. |
 
-**Inget äldre än en vecka visas.** Skriptet rensar bort det ur
-`data/releases.json` vid varje körning, och sidan filtrerar dessutom bort det
-vid rendering ifall filen skulle vara gammal.
+**Singlar äldre än en vecka och album äldre än en månad visas inte.**
+Skriptet rensar bort dem ur `data/releases.json` vid varje körning (olika
+fönster per typ, se `DAGAR_BAKAT`/`DAGAR_BAKAT_ALBUM`), och sidan filtrerar
+dessutom bort dem vid rendering ifall filen skulle vara gammal.
 
-Vill du ha en längre svans ändrar du på **två** ställen, och de måste matcha:
-`DAGAR_BAKAT` i `scripts/hamta-releaser.mjs` och `DAGAR_VISAS` i `index.html`.
+Vill du ha en längre svans ändrar du fyra ställen, parvis matchade:
+`DAGAR_BAKAT` (`scripts/hamta-releaser.mjs`) mot `DAGAR_VISAS` (`index.html`)
+för singlar, och `DAGAR_BAKAT_ALBUM` mot `DAGAR_VISAS_ALBUM` för album.
 
 Genrefiltret ändrar bara vad som visas, aldrig ordningen.
 
@@ -62,17 +64,18 @@ den är du utelåst i ungefär ett dygn.
 Därför kör workflowen **dagligen med rotation** istället för en gång i veckan.
 Varje körning tar upp till `MAX_ANROP` anrop och fortsätter där förra slutade:
 
-| Artister | Anrop per varv (cachat) | Varv tar |
-|---|---|---|
-| 333 (nu) | 333 | 2 dygn |
-| 500 | 500 | 3 dygn |
-| 700 | 700 | 5 dygn |
+| Rotation | Anrop/körning (cachat) | Artister (nu) | Varv tar |
+|---|---|---|---|
+| Singel | 150 | 332 | 3 körningar (≈3 dygn) |
+| Album | 20 | 332 | 17 körningar (≈3 veckor) |
 
-Eftersom sajten bara visar sju dagar bakåt hinner varje artist kollas minst två
-gånger inom fönstret även vid 500 namn. Ingenting missas.
+Singelrotationen är snabb nog att kolla varje artist minst en gång inom
+sjudagarsfönstret. Albumrotationen är långsammare med flit (se ovan) — varje
+artist kollas ungefär en gång per 30-dagarsfönster, inte två.
 
-Uppbyggnaden av cachen kostar dubbelt (sökning + albumanrop), så första veckan
-efter att du lagt till många namn går åt till att beta av listan.
+Uppbyggnaden av cachen kostar dubbelt (sökning + singelanrop), så första
+veckan efter att du lagt till många namn går åt till att beta av listan.
+Albumrotationen är en helt separat, långsammare kostnad ovanpå detta.
 
 **Extended Quota Mode är inte ett alternativ.** Sedan maj 2025 tar Spotify bara
 emot ansökningar från organisationer, med krav på registrerat företag och
@@ -84,8 +87,8 @@ Skriptet har fyra spärrar:
 |---|---|
 | `MAX_ANROP = 170` | Hårt tak per körning. Nås det sparas resultatet och körningen avslutas. |
 | Rotation | Nästa körning fortsätter på nästa artist. Alla täcks över några körningar. |
-| Sammanslagning | Delkörningar raderar aldrig tidigare fynd. Gammalt läses in, nytt läggs till, allt äldre än 30 dagar rensas. |
-| `MAX_VANTAN = 30` | Ber Spotify oss vänta längre än 30 s avbryts körningen istället för att hamra på kvoten. |
+| Sammanslagning | Delkörningar raderar aldrig tidigare fynd. Gammalt läses in, nytt läggs till — singlar äldre än 7 dagar och album äldre än 30 dagar rensas. |
+| `MAX_VANTAN = 180` | Ber Spotify oss vänta längre än 180 s avbryts körningen istället för att hamra på kvoten. |
 
 Plus `timeout-minutes: 12` i workflowen, så inget jobb kan hänga.
 

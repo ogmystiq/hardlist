@@ -1147,7 +1147,7 @@ footer{
     <div class="wrap">
       <p class="eyebrow"><span id="heroStatus">Uppdateras dagligen</span> <span class="badge" id="dataBadge" hidden>exempeldata</span></p>
       <h1>Vad som släpps.<br><em>Och när.</em></h1>
-      <p class="lede">Varje ny release inom hardstyle, raw, uptempo och hardcore — i datumordning. Kommande först, sen allt som släppts den senaste veckan. Inget äldre.</p>
+      <p class="lede">Varje ny release inom hardstyle, raw, uptempo och hardcore — i datumordning. Kommande först, sen det senaste som släppts.</p>
 
       <div class="tl" id="tl" aria-label="Releaser på en tidslinje">
         <div class="tl-line" id="tlLine"></div>
@@ -1176,7 +1176,7 @@ footer{
         <button class="chip" data-g="hardcore" aria-pressed="false">Hardcore</button>
         <button class="chip" data-g="techno" aria-pressed="false">Hard techno</button>
       </div>
-      <p class="filter-note">Kommande släpp och de senaste 7 dagarna, i datumordning. Tryck på en rubrik för att fälla ut.</p>
+      <p class="filter-note">Kommande släpp och det senaste som släppts, i datumordning. Tryck på en rubrik för att fälla ut.</p>
       <input class="sok" id="sok" type="search" autocomplete="off"
              placeholder="Sök artist eller låt" aria-label="Sök bland releaserna">
       <div id="relList"></div>
@@ -1714,7 +1714,7 @@ function drawReleases(){
   }
   if (!items.length){
     list.innerHTML = '<div class="empty"><b>Inga träffar</b>' +
-      (q ? 'Prova ett annat sökord.' : 'Inget släppt i den här grenen den senaste veckan.') + '</div>';
+      (q ? 'Prova ett annat sökord.' : 'Inget släppt i den här grenen på sistone.') + '</div>';
     return;
   }
 
