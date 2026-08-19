@@ -16,6 +16,7 @@ style.css       referenskopia — sidorna använder sin inbakade kopia
 data/releases.json    skrivs av skriptet
 data/artist-ids.json  cache, skrivs av skriptet
 data/events.json      fyller du i själv
+data/kommande.json    fyller du i själv — handskrivna förhandssläpp, se nedan
 scripts/hamta-releaser.mjs      hämtar från Spotify
 scripts/bygg-metadata.mjs       bygger allt härlett: SEED-kopior, JSON-LD,
                                 kalender.ics, releaser.xml, sitemap-datum
@@ -50,6 +51,17 @@ Vill du ha en längre svans ändrar du fyra ställen, parvis matchade:
 för singlar, och `DAGAR_BAKAT_ALBUM` mot `DAGAR_VISAS_ALBUM` för album.
 
 Genrefiltret ändrar bara vad som visas, aldrig ordningen.
+
+**"Kommande" finns i två separata, orelaterade versioner.** Den i tabellen
+ovan är `relevant()`s inbyggda golv utan tak i `scripts/hamta-releaser.mjs`
+— ett Spotify-släpp med framtida `release_date` filtreras aldrig bort. I
+praktiken har det aldrig hänt (kollat hela git-historiken 19 aug 2026),
+eftersom Spotify inte lämnar ut osläppt material via API:et.
+
+Den andra är den fristående sektionen "Kommande släpp" på startsidan, som
+läser `data/kommande.json` — en fil du fyller i för hand med bekräftade
+förhandssläpp/pre-save-länkar du själv känner till. De två delar ingen kod
+och ingen data. Sektionen är helt dold när filen saknas eller är tom.
 
 ---
 

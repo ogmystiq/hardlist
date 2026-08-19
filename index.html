@@ -1147,7 +1147,7 @@ footer{
     <div class="wrap">
       <p class="eyebrow"><span id="heroStatus">Uppdateras dagligen</span> <span class="badge" id="dataBadge" hidden>exempeldata</span></p>
       <h1>Vad som släpps.<br><em>Och när.</em></h1>
-      <p class="lede">Varje ny release inom hardstyle, raw, uptempo och hardcore — i datumordning. Kommande först, sen det senaste som släppts.</p>
+      <p class="lede">Varje ny release inom hardstyle, raw, uptempo och hardcore — i datumordning, senaste överst.</p>
 
       <div class="tl" id="tl" aria-label="Releaser på en tidslinje">
         <div class="tl-line" id="tlLine"></div>
@@ -1161,6 +1161,16 @@ footer{
       </div>
     </div>
   </div>
+
+  <section id="kommande" hidden>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Kommande släpp</h2>
+      </div>
+      <p class="filter-note">Bekräftade förhandssläpp — spara dem innan de går live.</p>
+      <div id="komList"></div>
+    </div>
+  </section>
 
   <section id="releaser">
     <div class="wrap">
@@ -1176,7 +1186,7 @@ footer{
         <button class="chip" data-g="hardcore" aria-pressed="false">Hardcore</button>
         <button class="chip" data-g="techno" aria-pressed="false">Hard techno</button>
       </div>
-      <p class="filter-note">Kommande släpp och det senaste som släppts, i datumordning. Tryck på en rubrik för att fälla ut.</p>
+      <p class="filter-note">Det senaste som släppts, i datumordning. Tryck på en rubrik för att fälla ut.</p>
       <input class="sok" id="sok" type="search" autocomplete="off"
              placeholder="Sök artist eller låt" aria-label="Sök bland releaserna">
       <div id="relList"></div>
@@ -1527,7 +1537,7 @@ function whenLabel(dateStr){
   return d.getDate() + ' ' + MONTHS[d.getMonth()];
 }
 
-let releases = [], events = [], filter = 'all', evFilter = 'norden';
+let releases = [], events = [], kommande = [], filter = 'all', evFilter = 'norden';
 let sok = '';
 const oppnaDagar  = new Set();   // dagar användaren fällt ut
 const stangdaDagar = new Set();  // dagar användaren fällt ihop
@@ -1546,9 +1556,18 @@ async function load(){
     if (!Array.isArray(events) || !events.length) throw 0;
   } catch(e) { events = SEED_EVENTS; seeded = true; }
 
+  /* Handskriven, ingen SEED. En saknad eller tom fil är normalläget (inget
+     kommande just nu) — inte ett trasigt bygge, så den ska aldrig räknas som
+     "seeded" eller visa exempeldata-badgen. */
+  try {
+    const r = await fetch('/data/kommande.json', {cache:'no-store'});
+    const k = await r.json();
+    kommande = Array.isArray(k) ? k : [];
+  } catch(e) { kommande = []; }
+
   document.getElementById('dataBadge').hidden = !seeded;
   drawStatus(seeded);
-  drawTimeline(); drawReleases(); drawEvents();
+  drawTimeline(); drawKommande(); drawReleases(); drawEvents();
 }
 
 const GENRE_NAMN = {
@@ -1676,15 +1695,39 @@ function drawTimeline(){
   });
 }
 
-function relCard(r, soon){
+function relCard(r, soon, lankText){
   return '<article class="rel' + (soon ? ' soon' : '') + '" style="--c:' + color(r.genre) + '">' +
     '<span class="bar"></span>' +
     '<div class="meta"><div class="artist">' + esc(r.artist) + '</div>' +
     '<div class="title">' + esc(r.title) + '</div></div>' +
     '<div class="right"><span class="when">' + whenLabel(r.date) + '</span>' +
     '<span class="genre">' + (GENRE_NAMN[r.genre] || esc(r.genre)) + '</span>' +
-    (r.url ? '<a class="play" href="' + esc(r.url) + '" target="_blank" rel="noopener">Lyssna &rarr;</a>' : '') +
+    (r.url ? '<a class="play" href="' + esc(r.url) + '" target="_blank" rel="noopener">' +
+      (lankText || 'Lyssna &rarr;') + '</a>' : '') +
     '</div></article>';
+}
+
+/* Handskrivna förhandssläpp ur data/kommande.json. Passerat datum ignoreras
+   automatiskt (samma jämförelse som Kommande-hinken i drawReleases() nedan),
+   och sektionen döljs helt om inget är kvar — hellre osynlig än en tom
+   rubrik som lovar något som inte finns. */
+function drawKommande(){
+  const sektion = document.getElementById('kommande');
+  const list = document.getElementById('komList');
+  const t = today();
+
+  const items = kommande
+    .filter(r => r && r.datum && parseDate(r.datum) > t)
+    .sort((a, b) => a.datum < b.datum ? -1 : 1);
+
+  sektion.hidden = !items.length;
+  if (!items.length) { list.innerHTML = ''; return; }
+
+  list.innerHTML = items.map(r => relCard(
+    { artist: r.artist, title: r.titel, date: r.datum, url: r.lank, genre: r.genre },
+    true,
+    'Förhandsspara &rarr;'
+  )).join('');
 }
 
 /* Album har ett längre fönster än singlar (se DAGAR_VISAS_ALBUM ovan) —

@@ -57,13 +57,19 @@ Kontrollera alltid att klammerparenteserna balanserar efteråt.
 
 ## Filer du får redigera för hand
 
-Exakt tre:
+Exakt fyra:
 
 ```
 data/events.json     kalender och bevakningslista
 data/quiz.json       quizfrågor
 data/anthems.json    anthem-arkivet
+data/kommande.json   kommande släpp, pre-save-länkar
 ```
+
+`data/kommande.json` går inte att bygga automatiskt. Spotify har ingen
+endpoint för osläppt material — allt skriptet kan hämta är redan utgivet.
+Försök inte ersätta filen med ett script eller en workflow; den är och
+förblir handskriven.
 
 ## Filer du ALDRIG får skriva eller ladda upp
 
