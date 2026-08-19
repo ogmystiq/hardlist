@@ -1,10 +1,10 @@
 {
-  "uppdaterad": "2026-08-19T06:01:20.724Z",
+  "uppdaterad": "2026-08-19T12:11:33.717Z",
   "artister": 332,
-  "cachade": 216,
-  "releaser": 11,
-  "anrop": 36,
-  "albumAnrop": 0,
-  "albumIndex": 0,
-  "avbrott": "KVOTEN ÄR SLUT för dygnet. Spotify ber oss vänta 5.2 timmar. Kör INTE igen förrän dess — varje försök är bortkastat. Kvoten delas av alla dina Development Mode-appar och nollställs av sig själv."
+  "cachade": 289,
+  "releaser": 15,
+  "anrop": 170,
+  "albumAnrop": 18,
+  "albumIndex": 18,
+  "avbrott": null
 }
