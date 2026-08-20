@@ -1511,8 +1511,12 @@ const SEED_EVENTS = [
 /* SEED_EVENTS:END */
 
 /* Genrekoden hardstyle delar fortfarande CSS-variabeln --euphoric — namnet på
-   variabeln ändras inte, bara etiketten som visas. */
-const color = g => 'var(--' + (g === 'hardstyle' ? 'euphoric' : GENRES.includes(g) ? g : 'raw') + ')';
+   variabeln ändras inte, bara etiketten som visas. Äldre sparade poster i
+   data/releases.json har genre "euphoric" kvar tills de åldras ut, så den
+   koden alias:as till hardstyle här — annars tappar korten rätt färg,
+   etikett och filterträff så fort taggen inte längre finns i GENRES. */
+const normGenre = g => g === 'euphoric' ? 'hardstyle' : g;
+const color = g => { g = normGenre(g); return 'var(--' + (g === 'hardstyle' ? 'euphoric' : GENRES.includes(g) ? g : 'raw') + ')'; };
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -1703,7 +1707,7 @@ function relCard(r, soon, lankText){
     '<div class="meta"><div class="artist">' + esc(r.artist) + '</div>' +
     '<div class="title">' + esc(r.title) + '</div></div>' +
     '<div class="right"><span class="when">' + whenLabel(r.date) + '</span>' +
-    '<span class="genre">' + (GENRE_NAMN[r.genre] || esc(r.genre)) + '</span>' +
+    '<span class="genre">' + (GENRE_NAMN[normGenre(r.genre)] || esc(r.genre)) + '</span>' +
     (r.url ? '<a class="play" href="' + esc(r.url) + '" target="_blank" rel="noopener">' +
       (lankText || 'Lyssna &rarr;') + '</a>' : '') +
     '</div></article>';
@@ -1746,7 +1750,7 @@ function drawReleases(){
   const q = sok.trim().toLowerCase();
 
   const items = releases
-    .filter(r => filter === 'all' || r.genre === filter)
+    .filter(r => filter === 'all' || normGenre(r.genre) === filter)
     .filter(r => parseDate(r.date) >= gransFor(r))
     .filter(r => !q || (r.artist + ' ' + r.title).toLowerCase().includes(q));
 
