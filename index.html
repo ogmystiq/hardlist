@@ -1153,7 +1153,7 @@ footer{
         <div class="tl-line" id="tlLine"></div>
       </div>
       <div class="tl-key">
-        <span><b style="background:var(--euphoric)"></b>Euphoric</span>
+        <span><b style="background:var(--euphoric)"></b>Hardstyle</span>
         <span><b style="background:var(--raw)"></b>Raw</span>
         <span><b style="background:var(--uptempo)"></b>Uptempo</span>
         <span><b style="background:var(--hardcore)"></b>Hardcore</span>
@@ -1180,7 +1180,7 @@ footer{
       </div>
       <div class="filters" id="filters">
         <button class="chip" data-g="all" aria-pressed="true">Alla</button>
-        <button class="chip" data-g="euphoric" aria-pressed="false">Euphoric</button>
+        <button class="chip" data-g="hardstyle" aria-pressed="false">Hardstyle</button>
         <button class="chip" data-g="raw" aria-pressed="false">Raw</button>
         <button class="chip" data-g="uptempo" aria-pressed="false">Uptempo</button>
         <button class="chip" data-g="hardcore" aria-pressed="false">Hardcore</button>
@@ -1259,7 +1259,7 @@ footer{
 </footer>
 
 <script>
-const GENRES = ['euphoric','raw','uptempo','hardcore','techno'];
+const GENRES = ['hardstyle','raw','uptempo','hardcore','techno'];
 /* Hur många dagar bakåt som visas. Måste matcha respektive fönster i
    skriptet: DAGAR_BAKAT (singlar) och DAGAR_BAKAT_ALBUM (album). En release
    vet sitt eget fönster via typ-fältet, se gransFor() nedan — annars skulle
@@ -1275,7 +1275,7 @@ const SEED = (() => {
   return [
     {artist:'Rebelion',        title:'Exempellåt', bpm:155, genre:'raw',      date:day(9),   url:''},
     {artist:'Yoshiko',         title:'Exempellåt', bpm:200, genre:'uptempo',  date:day(1),   url:''},
-    {artist:'Sound Rush',      title:'Exempellåt', bpm:150, genre:'euphoric', date:day(-1),  url:''},
+    {artist:'Sound Rush',      title:'Exempellåt', bpm:150, genre:'hardstyle', date:day(-1),  url:''},
     {artist:'Angerfist',       title:'Exempellåt', bpm:190, genre:'hardcore', date:day(-4),  url:''},
     {artist:'Sub Zero Project',title:'Exempellåt', bpm:152, genre:'raw',      date:day(-6),  url:''},
     {artist:'Vieze Asbak',     title:'Exempellåt', bpm:150, genre:'techno',   date:day(-6),  url:''}
@@ -1510,7 +1510,9 @@ const SEED_EVENTS = [
   ];
 /* SEED_EVENTS:END */
 
-const color = g => 'var(--' + (GENRES.includes(g) ? g : 'raw') + ')';
+/* Genrekoden hardstyle delar fortfarande CSS-variabeln --euphoric — namnet på
+   variabeln ändras inte, bara etiketten som visas. */
+const color = g => 'var(--' + (g === 'hardstyle' ? 'euphoric' : GENRES.includes(g) ? g : 'raw') + ')';
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -1571,7 +1573,7 @@ async function load(){
 }
 
 const GENRE_NAMN = {
-  euphoric:'Euphoric', raw:'Raw', uptempo:'Uptempo',
+  hardstyle:'Hardstyle', raw:'Raw', uptempo:'Uptempo',
   hardcore:'Hardcore', techno:'Hard techno'
 };
 

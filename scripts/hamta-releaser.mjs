@@ -39,28 +39,28 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 /* ------------------------------------------------------------------ */
 const ARTISTS = [
   /* --- euphoric / melodic hardstyle --- */
-  { name: 'Headhunterz',            genre: 'euphoric' },
-  { name: 'Wildstylez',             genre: 'euphoric' },
-  { name: 'Brennan Heart',          genre: 'euphoric' },
-  { name: 'Da Tweekaz',             genre: 'euphoric' },
-  { name: 'Coone',                  genre: 'euphoric' },
-  { name: 'Atmozfears',             genre: 'euphoric' },
-  { name: 'D-Block & S-te-Fan',     genre: 'euphoric' },
-  { name: 'Sound Rush',             genre: 'euphoric' },
-  { name: 'Devin Wild',             genre: 'euphoric' },
-  { name: 'Refuzion',               genre: 'euphoric' },
-  { name: 'Audiotricz',             genre: 'euphoric' },
-  { name: 'Code Black',             genre: 'euphoric' },
-  { name: 'Noisecontrollers',       genre: 'euphoric' },
-  { name: 'Frontliner',             genre: 'euphoric' },
-  { name: 'Bass Modulators',        genre: 'euphoric' },
-  { name: 'Wasted Penguinz',        genre: 'euphoric' },
-  { name: 'Sub Sonik',              genre: 'euphoric' },
-  { name: 'Hard Driver',            genre: 'euphoric' },
-  { name: 'Sephyx',                 genre: 'euphoric' },
-  { name: 'Toneshifterz',           genre: 'euphoric' },
-  { name: 'Psyko Punkz',            genre: 'euphoric' },
-  { name: 'Zatox',                  genre: 'euphoric' },
+  { name: 'Headhunterz',            genre: 'hardstyle' },
+  { name: 'Wildstylez',             genre: 'hardstyle' },
+  { name: 'Brennan Heart',          genre: 'hardstyle' },
+  { name: 'Da Tweekaz',             genre: 'hardstyle' },
+  { name: 'Coone',                  genre: 'hardstyle' },
+  { name: 'Atmozfears',             genre: 'hardstyle' },
+  { name: 'D-Block & S-te-Fan',     genre: 'hardstyle' },
+  { name: 'Sound Rush',             genre: 'hardstyle' },
+  { name: 'Devin Wild',             genre: 'hardstyle' },
+  { name: 'Refuzion',               genre: 'hardstyle' },
+  { name: 'Audiotricz',             genre: 'hardstyle' },
+  { name: 'Code Black',             genre: 'hardstyle' },
+  { name: 'Noisecontrollers',       genre: 'hardstyle' },
+  { name: 'Frontliner',             genre: 'hardstyle' },
+  { name: 'Bass Modulators',        genre: 'hardstyle' },
+  { name: 'Wasted Penguinz',        genre: 'hardstyle' },
+  { name: 'Sub Sonik',              genre: 'hardstyle' },
+  { name: 'Hard Driver',            genre: 'hardstyle' },
+  { name: 'Sephyx',                 genre: 'hardstyle' },
+  { name: 'Toneshifterz',           genre: 'hardstyle' },
+  { name: 'Psyko Punkz',            genre: 'hardstyle' },
+  { name: 'Zatox',                  genre: 'hardstyle' },
 
   /* --- raw / rawstyle --- */
   { name: 'Rebelion',               genre: 'raw' },
@@ -123,37 +123,37 @@ const ARTISTS = [
   { name: 'Vieze Asbak',            genre: 'techno' },
 
   /* --- saknades tidigare --- */
-  { name: 'KELTEK',                 genre: 'euphoric' },
+  { name: 'KELTEK',                 genre: 'hardstyle' },
   { name: 'The Purge',              genre: 'raw' },
   { name: 'Jay Reeve',              genre: 'raw' },
-  { name: 'Primeshock',             genre: 'euphoric' },
+  { name: 'Primeshock',             genre: 'hardstyle' },
   { name: 'Nolz',                   genre: 'uptempo' },
 
   /* --- fler euphoric --- */
-  { name: 'Showtek',                    genre: 'euphoric' },
-  { name: 'Technoboy',                  genre: 'euphoric' },
-  { name: 'Tuneboy',                    genre: 'euphoric' },
-  { name: 'DJ Isaac',                   genre: 'euphoric' },
-  { name: 'The Prophet',                genre: 'euphoric' },
-  { name: 'Zany',                       genre: 'euphoric' },
-  { name: 'Deepack',                    genre: 'euphoric' },
-  { name: 'Donkey Rollers',             genre: 'euphoric' },
-  { name: 'Pavo',                       genre: 'euphoric' },
-  { name: 'Builder',                    genre: 'euphoric' },
-  { name: 'Alpha²',                     genre: 'euphoric' },
-  { name: 'Max Enforcer',               genre: 'euphoric' },
-  { name: 'JDX',                        genre: 'euphoric' },
-  { name: 'Aftershock',                 genre: 'euphoric', id: '6KlY7jizsLWQcXR1F2Sn9j' }, // pinnat — automatisk sökning hittade fel artist
-  { name: 'Ecstatic',                   genre: 'euphoric' },
-  { name: 'Galactixx',                  genre: 'euphoric' },
-  { name: 'Level One',                  genre: 'euphoric' },
-  { name: 'Rebourne',                   genre: 'euphoric' },
-  { name: 'Bass Chaserz',               genre: 'euphoric' },
-  { name: 'Envine',                     genre: 'euphoric' },
-  { name: 'Dailucia',                   genre: 'euphoric' },
-  { name: 'The Pitcher',                genre: 'euphoric' },
-  { name: 'Ummet Ozcan',                genre: 'euphoric' },
-  { name: 'Bioweapon',                  genre: 'euphoric' },
+  { name: 'Showtek',                    genre: 'hardstyle' },
+  { name: 'Technoboy',                  genre: 'hardstyle' },
+  { name: 'Tuneboy',                    genre: 'hardstyle' },
+  { name: 'DJ Isaac',                   genre: 'hardstyle' },
+  { name: 'The Prophet',                genre: 'hardstyle' },
+  { name: 'Zany',                       genre: 'hardstyle' },
+  { name: 'Deepack',                    genre: 'hardstyle' },
+  { name: 'Donkey Rollers',             genre: 'hardstyle' },
+  { name: 'Pavo',                       genre: 'hardstyle' },
+  { name: 'Builder',                    genre: 'hardstyle' },
+  { name: 'Alpha²',                     genre: 'hardstyle' },
+  { name: 'Max Enforcer',               genre: 'hardstyle' },
+  { name: 'JDX',                        genre: 'hardstyle' },
+  { name: 'Aftershock',                 genre: 'hardstyle', id: '6KlY7jizsLWQcXR1F2Sn9j' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Ecstatic',                   genre: 'hardstyle' },
+  { name: 'Galactixx',                  genre: 'hardstyle' },
+  { name: 'Level One',                  genre: 'hardstyle' },
+  { name: 'Rebourne',                   genre: 'hardstyle' },
+  { name: 'Bass Chaserz',               genre: 'hardstyle' },
+  { name: 'Envine',                     genre: 'hardstyle' },
+  { name: 'Dailucia',                   genre: 'hardstyle' },
+  { name: 'The Pitcher',                genre: 'hardstyle' },
+  { name: 'Ummet Ozcan',                genre: 'hardstyle' },
+  { name: 'Bioweapon',                  genre: 'hardstyle' },
 
   /* --- fler raw --- */
   { name: 'Titan',                      genre: 'raw' },
@@ -210,22 +210,22 @@ const ARTISTS = [
   { name: 'Hi-Lo',                      genre: 'techno' },
 
   /* --- euphoric, omgång 2 --- */
-  { name: 'Scope DJ',                    genre: 'euphoric' },
-  { name: 'A-lusion',                    genre: 'euphoric' },
-  { name: 'DJ Duro',                     genre: 'euphoric' },
-  { name: 'Hardheadz',                   genre: 'euphoric' },
-  { name: 'Demi Kanon',                  genre: 'euphoric' },
-  { name: 'A-RIZE',                      genre: 'euphoric' },
-  { name: 'Ghost Stories',               genre: 'euphoric' },
-  { name: 'Lady Faith',                  genre: 'euphoric' },
-  { name: 'High Resistance',             genre: 'euphoric' },
-  { name: 'Betavoice',                   genre: 'euphoric' },
-  { name: 'Retrospect',                  genre: 'euphoric', id: '3SpBPLBqsJo9sW5KQUXm8q' }, // pinnat — automatisk sökning hittade fel artist
-  { name: 'Crystal Lake',                genre: 'euphoric', id: '1VfMvNSQzxakpBBo9yzudk' }, // pinnat — automatisk sökning hittade fel artist
-  { name: 'Emphasis',                    genre: 'euphoric', id: '6Eo58FM6qYycr3oP9BIeca' }, // pinnat — automatisk sökning hittade fel artist
-  { name: 'Audiofreq',                   genre: 'euphoric' },
-  { name: 'Dr. Rude',                    genre: 'euphoric' },
-  { name: 'Fenix',                       genre: 'euphoric', id: '7kBTFueiOHgnbxQB4IedXI' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Scope DJ',                    genre: 'hardstyle' },
+  { name: 'A-lusion',                    genre: 'hardstyle' },
+  { name: 'DJ Duro',                     genre: 'hardstyle' },
+  { name: 'Hardheadz',                   genre: 'hardstyle' },
+  { name: 'Demi Kanon',                  genre: 'hardstyle' },
+  { name: 'A-RIZE',                      genre: 'hardstyle' },
+  { name: 'Ghost Stories',               genre: 'hardstyle' },
+  { name: 'Lady Faith',                  genre: 'hardstyle' },
+  { name: 'High Resistance',             genre: 'hardstyle' },
+  { name: 'Betavoice',                   genre: 'hardstyle' },
+  { name: 'Retrospect',                  genre: 'hardstyle', id: '3SpBPLBqsJo9sW5KQUXm8q' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Crystal Lake',                genre: 'hardstyle', id: '1VfMvNSQzxakpBBo9yzudk' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Emphasis',                    genre: 'hardstyle', id: '6Eo58FM6qYycr3oP9BIeca' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Audiofreq',                   genre: 'hardstyle' },
+  { name: 'Dr. Rude',                    genre: 'hardstyle' },
+  { name: 'Fenix',                       genre: 'hardstyle', id: '7kBTFueiOHgnbxQB4IedXI' }, // pinnat — automatisk sökning hittade fel artist
 
   /* --- raw, omgång 2 --- */
   { name: 'ANDY SVGE',                   genre: 'raw' },
@@ -268,35 +268,35 @@ const ARTISTS = [
   { name: 'JAZZY',                       genre: 'techno', id: '0xGI8ZVWgiCWicV1lD1Hrk' }, // pinnat — automatisk sökning hittade fel artist
 
   /* --- euphoric, omgång 3 --- */
-  { name: 'TAC Team',                      genre: 'euphoric' },
-  { name: 'Wildfyre',                      genre: 'euphoric' },
-  { name: 'Xense',                         genre: 'euphoric' },
-  { name: 'Zero Days',                     genre: 'euphoric' },
-  { name: 'Aztech',                        genre: 'euphoric', id: '5BwHAtNpcEoDlIQqaBCBvc' }, // pinnat — automatisk sökning hittade fel artist
-  { name: 'Crisis Era',                    genre: 'euphoric' },
-  { name: 'Firelite',                      genre: 'euphoric' },
-  { name: 'The Vision',                    genre: 'euphoric', id: '1DV44qE0qBvaYO1q1cXT0f' }, // pinnat — automatisk sökning hittade fel artist
-  { name: 'Digital Madness',               genre: 'euphoric' },
-  { name: 'Clockartz',                     genre: 'euphoric' },
-  { name: 'Adrenalize',                    genre: 'euphoric' },
-  { name: 'Degos & Re-Done',               genre: 'euphoric' },
-  { name: 'MERYLL',                        genre: 'euphoric' },
-  { name: 'Drean',                         genre: 'euphoric' },
-  { name: 'Serzo',                         genre: 'euphoric' },
-  { name: 'Caelum',                        genre: 'euphoric', id: '4rurguPt7zC7a60LfcPDUM' }, // pinnat — automatisk sökning hittade fel artist
-  { name: 'Boray',                         genre: 'euphoric' },
-  { name: 'Max Alexander',                 genre: 'euphoric' },
-  { name: 'Snowflake',                     genre: 'euphoric', id: '1rPM4GwuDLiRsMX0rfNNg5' }, // pinnat — automatisk sökning hittade fel artist
-  { name: 'Alee',                          genre: 'euphoric', id: '07E7avQ9K8W8Gr6BCx8aU9' }, // pinnat — verifierat via hardstyle.com
-  { name: 'Neon Future',                   genre: 'euphoric' },
-  { name: 'Bright Visions',                genre: 'euphoric' },
-  { name: 'B-Freqz',                       genre: 'euphoric' },
-  { name: 'NeoBallisticz',                 genre: 'euphoric' },
-  { name: 'Hypnose',                       genre: 'euphoric' },
-  { name: 'Distinction',                   genre: 'euphoric' },
-  { name: 'Mark Vayne',                    genre: 'euphoric' },
-  { name: 'Phyric',                        genre: 'euphoric' },
-  { name: 'TNT',                           genre: 'euphoric' },
+  { name: 'TAC Team',                      genre: 'hardstyle' },
+  { name: 'Wildfyre',                      genre: 'hardstyle' },
+  { name: 'Xense',                         genre: 'hardstyle' },
+  { name: 'Zero Days',                     genre: 'hardstyle' },
+  { name: 'Aztech',                        genre: 'hardstyle', id: '5BwHAtNpcEoDlIQqaBCBvc' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Crisis Era',                    genre: 'hardstyle' },
+  { name: 'Firelite',                      genre: 'hardstyle' },
+  { name: 'The Vision',                    genre: 'hardstyle', id: '1DV44qE0qBvaYO1q1cXT0f' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Digital Madness',               genre: 'hardstyle' },
+  { name: 'Clockartz',                     genre: 'hardstyle' },
+  { name: 'Adrenalize',                    genre: 'hardstyle' },
+  { name: 'Degos & Re-Done',               genre: 'hardstyle' },
+  { name: 'MERYLL',                        genre: 'hardstyle' },
+  { name: 'Drean',                         genre: 'hardstyle' },
+  { name: 'Serzo',                         genre: 'hardstyle' },
+  { name: 'Caelum',                        genre: 'hardstyle', id: '4rurguPt7zC7a60LfcPDUM' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Boray',                         genre: 'hardstyle' },
+  { name: 'Max Alexander',                 genre: 'hardstyle' },
+  { name: 'Snowflake',                     genre: 'hardstyle', id: '1rPM4GwuDLiRsMX0rfNNg5' }, // pinnat — automatisk sökning hittade fel artist
+  { name: 'Alee',                          genre: 'hardstyle', id: '07E7avQ9K8W8Gr6BCx8aU9' }, // pinnat — verifierat via hardstyle.com
+  { name: 'Neon Future',                   genre: 'hardstyle' },
+  { name: 'Bright Visions',                genre: 'hardstyle' },
+  { name: 'B-Freqz',                       genre: 'hardstyle' },
+  { name: 'NeoBallisticz',                 genre: 'hardstyle' },
+  { name: 'Hypnose',                       genre: 'hardstyle' },
+  { name: 'Distinction',                   genre: 'hardstyle' },
+  { name: 'Mark Vayne',                    genre: 'hardstyle' },
+  { name: 'Phyric',                        genre: 'hardstyle' },
+  { name: 'TNT',                           genre: 'hardstyle' },
 
   /* --- raw, omgång 3 --- */
   { name: 'Toza',                          genre: 'raw' },
@@ -414,7 +414,7 @@ const DAGAR_BAKAT_ALBUM = 30;
 /* Uppskattad BPM per genre. Spotify slutade ge ut BPM till nya appar
    i november 2024, så den här siffran är en gissning per genre.
    Vill du ha exakt BPM: skriv in den i OVERRIDE nedan. */
-const BPM_PER_GENRE = { euphoric: 150, raw: 155, uptempo: 200, hardcore: 190, techno: 150 };
+const BPM_PER_GENRE = { hardstyle: 150, raw: 155, uptempo: 200, hardcore: 190, techno: 150 };
 
 /* --- Kvotskydd ---------------------------------------------------------
    Development Mode har en daglig kvot per utvecklarkonto. Går den sönder är
