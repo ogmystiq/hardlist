@@ -1584,7 +1584,9 @@ const GENRE_NAMN = {
 /* Tidslinje. Axeln är dagar, inte BPM — BPM lämnar Spotify inte ut längre, och
    en axel byggd på gissningar staplar bara alla prickar på samma punkt. */
 const TL_BAK = DAGAR_VISAS;   // dagar bakåt
-const TL_FRAM = 14;           // dagar framåt
+/* Högergränsen (TL_FRAM) är inte längre fast — den räknas fram i
+   drawTimeline() ur det senaste släppdatumet, annars gapar axeln tom när
+   inget ligger så långt fram. */
 
 /* Hälsostämpel. Visas både i toppen och i sidfoten, och säger alltid något —
    en tom rad hade sett ut som att funktionen saknades. Tre lägen:
@@ -1640,6 +1642,10 @@ function drawTimeline(){
 
   const t = today();
   const dagar = d => Math.round((parseDate(d) - t) / 86400000);
+
+  const sistaDag = releases.reduce((m, r) => Math.max(m, dagar(r.date)), 0);
+  const TL_FRAM = sistaDag > 0 ? sistaDag + 1 : 0;
+
   /* Insatt från kanterna så prickar och etiketter inte kapas. */
   const pct = n => 4 + ((n + TL_BAK) / (TL_BAK + TL_FRAM)) * 92;
 
@@ -1653,8 +1659,10 @@ function drawTimeline(){
   }
 
   /* Skala. Korta etiketter — långa kapades i ytterkanterna. */
-  [[-TL_BAK, '\u2212' + TL_BAK + ' d', 'start'], [-3, '\u22123 d', ''],
-   [7, '+1 v', ''], [14, '+2 v', 'slut']].forEach(([n, txt, kant]) => {
+  const taggar = [[-TL_BAK, '\u2212' + TL_BAK + ' d', 'start'], [-3, '\u22123 d', '']];
+  if (7  <= TL_FRAM) taggar.push([7,  '+1 v', 14 <= TL_FRAM ? '' : 'slut']);
+  if (14 <= TL_FRAM) taggar.push([14, '+2 v', 'slut']);
+  taggar.forEach(([n, txt, kant]) => {
     const tick = document.createElement('span');
     tick.className = 'tl-tick' + (kant ? ' ' + kant : '');
     tick.style.left = pct(n) + '%';
