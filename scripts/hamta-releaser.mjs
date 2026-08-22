@@ -447,8 +447,8 @@ const ALBUM_ANROP_PER_KORNING = 20;
    faktiskt lämnar ut siffran. Sedan de tog bort fältet ur söksvaret ligger
    kontrollen vilande. Den vaknar av sig själv om fältet återkommer. */
 const MIN_FOLJARE  = 2000;
-const MAX_VANTAN   = 180;   /* längsta enskilda väntan vi accepterar, sekunder */
-const TIDSBUDGET   = 8 * 60;/* hela körningen, sekunder. Under jobbets timeout. */
+const MAX_VANTAN   = 600;   /* längsta enskilda väntan vi accepterar, sekunder */
+const TIDSBUDGET   = 780;   /* hela körningen, sekunder. 120s marginal under jobbets timeout-minutes (15 min = 900s). */
 const PAUS         = 300;
 
 /* Manuell BPM för enskilda spår: "Artist – Titel": BPM */

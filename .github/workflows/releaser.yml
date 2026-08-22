@@ -2,7 +2,7 @@ name: Hämta releaser
 
 on:
   schedule:
-    - cron: '0 5 * * *'   # varje dag 05:00 UTC — listan roteras över flera dygn
+    - cron: '7 5 * * *'   # varje dag 05:07 UTC — listan roteras över flera dygn
   workflow_dispatch:       # + knapp för att köra manuellt
 
 permissions:
