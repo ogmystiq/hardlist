@@ -6,7 +6,7 @@ X-WR-CALDESC:Bekräftade hard dance-event. Uppdateras automatiskt.
 REFRESH-INTERVAL;VALUE=DURATION:P1D
 BEGIN:VEVENT
 UID:2026-08-28-decibel-outdoor@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20260828
 DTEND;VALUE=DATE:20260831
 SUMMARY:Decibel Outdoor
@@ -17,7 +17,7 @@ URL:https://www.decibeloutdoor.com/tickets
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-09-12-sana-duri-the-new-beginning@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20260912
 DTEND;VALUE=DATE:20260913
 SUMMARY:Sana Duri — The New Beginning
@@ -30,8 +30,21 @@ DESCRIPTION:Project One · Brennan Heart · Showtek · Rebelion vs Vertil
 URL:https://sanaduri.se/
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-09-12-sana-duri-after-party@hardlist.se
+DTSTAMP:20260822T055823Z
+DTSTART;VALUE=DATE:20260912
+DTEND;VALUE=DATE:20260913
+SUMMARY:Sana Duri After Party
+LOCATION:Birger Jarl\, Uppsala\, SE
+DESCRIPTION:Officiell efterfest till Sana Duri\, samma kväll. Kl 23–03
+ . Åldersgräns 18 år.\nhttps://www.tickster.com/se/sv/events/85raw24db3
+ vftn8/2026-09-12/sana-duri-after-party-birger-jarl
+URL:https://www.tickster.com/se/sv/events/85raw24db3vftn8/2026-09-12/sana
+ -duri-after-party-birger-jarl
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-09-12-holy-priest@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20260912
 DTEND;VALUE=DATE:20260913
 SUMMARY:Holy Priest
@@ -44,7 +57,7 @@ URL:https://www.ticketmaster.se/event/holy-priest-berns-biljetter/2472239
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-09-26-supremacy-state-of-distortion@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20260926
 DTEND;VALUE=DATE:20260927
 SUMMARY:Supremacy — State of Distortion
@@ -57,7 +70,7 @@ URL:https://www.supremacy.nl/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-10-03-syndicate@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20261003
 DTEND;VALUE=DATE:20261004
 SUMMARY:Syndicate
@@ -73,7 +86,7 @@ URL:https://www.syndicate-festival.de/en
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-11-06-monday-bar-halloween-cruise@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20261106
 DTEND;VALUE=DATE:20261108
 SUMMARY:Monday Bar Halloween Cruise
@@ -84,7 +97,7 @@ URL:https://www.mondaybar.com/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-11-14-rebellion-indoor-break-the-system@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20261114
 DTEND;VALUE=DATE:20261115
 SUMMARY:REBELLiON Indoor — Break The System
@@ -95,7 +108,7 @@ URL:https://www.jointherebellion.nl/en/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-11-thunderdome@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20261211
 DTEND;VALUE=DATE:20261213
 SUMMARY:Thunderdome
@@ -107,7 +120,7 @@ URL:https://www.thunderdome.com/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-02-26-reverze@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20270226
 DTEND;VALUE=DATE:20270228
 SUMMARY:Reverze
@@ -119,7 +132,7 @@ URL:https://www.reverze.be/pre-registration
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-06-24-defqon-1@hardlist.se
-DTSTAMP:20260821T060430Z
+DTSTAMP:20260822T055823Z
 DTSTART;VALUE=DATE:20270624
 DTEND;VALUE=DATE:20270628
 SUMMARY:Defqon.1
