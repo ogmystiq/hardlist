@@ -1,65 +1,11 @@
 [
   {
-    "artist": "Resilience × ERABREAK × Nathalie Blue",
-    "title": "BLOW",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/7EJg830wAVRcwV9xiS7ooO",
-    "typ": "single"
-  },
-  {
-    "artist": "Hans Glock × Ruthless × Dr Rude × Papi Mikey Dinero",
-    "title": "COCO",
+    "artist": "KELTEK",
+    "title": "Spaceman",
     "genre": "hardstyle",
     "bpm": 150,
     "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/3S0geRnQJwqUUF8dmwnz1A",
-    "typ": "single"
-  },
-  {
-    "artist": "High Resistance × KTLA",
-    "title": "KISS THE FLUTE",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/4bUmNRYZ39EiWANno9WsXb",
-    "typ": "single"
-  },
-  {
-    "artist": "The Sickest Squad × GOTALIEN",
-    "title": "Carillon",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/4G4apS8pLJMqxLJTB36tZe",
-    "typ": "single"
-  },
-  {
-    "artist": "Restrained × Hellsystem",
-    "title": "Hat Trick",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/39ccV0mzHZFflPxBD5jl0n",
-    "typ": "single"
-  },
-  {
-    "artist": "Dimitri K × Sickddellz",
-    "title": "Love The Way You Lie",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/5oJIJpryAfPfyyc52olHAv",
-    "typ": "single"
-  },
-  {
-    "artist": "Aftershock × Roberto Rosso × The Uprising × Shadow Legacy",
-    "title": "You Say",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/5VIlrqMHyurkTbLFzSWRlz",
+    "url": "https://open.spotify.com/album/1xE57F1uYD1UckBqMUwHSY",
     "typ": "single"
   },
   {
@@ -72,57 +18,66 @@
     "typ": "single"
   },
   {
-    "artist": "KELTEK",
-    "title": "Spaceman",
+    "artist": "Aftershock × Roberto Rosso × The Uprising × Shadow Legacy",
+    "title": "You Say",
     "genre": "hardstyle",
     "bpm": 150,
     "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/1xE57F1uYD1UckBqMUwHSY",
+    "url": "https://open.spotify.com/album/5VIlrqMHyurkTbLFzSWRlz",
     "typ": "single"
   },
   {
-    "artist": "Thyron",
-    "title": "stardust skies",
+    "artist": "Dimitri K × Sickddellz",
+    "title": "Love The Way You Lie",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/3IiOTZa2SURvqLjRayQqwl",
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/5oJIJpryAfPfyyc52olHAv",
     "typ": "single"
   },
   {
-    "artist": "Digital Punk × ANDY SVGE × RAVEWALKER",
-    "title": "Heart Of A Raver",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/71z2qobZA8aixHjws1LzYl",
-    "typ": "single"
-  },
-  {
-    "artist": "Lil Texas × ALBINO",
-    "title": "Gabber Cowboy",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/5QCFyNrp0fUNVXOu3M3IQI",
-    "typ": "single"
-  },
-  {
-    "artist": "Andy the Core",
-    "title": "ODE I",
+    "artist": "Restrained × Hellsystem",
+    "title": "Hat Trick",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/5gpiutfekmZtrmtPZY6kob",
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/39ccV0mzHZFflPxBD5jl0n",
     "typ": "single"
   },
   {
-    "artist": "Kronos",
-    "title": "IO&TE (YOU&ME)",
+    "artist": "The Sickest Squad × GOTALIEN",
+    "title": "Carillon",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/4G4apS8pLJMqxLJTB36tZe",
+    "typ": "single"
+  },
+  {
+    "artist": "High Resistance × KTLA",
+    "title": "KISS THE FLUTE",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/4bUmNRYZ39EiWANno9WsXb",
+    "typ": "single"
+  },
+  {
+    "artist": "Hans Glock × Ruthless × Dr Rude × Papi Mikey Dinero",
+    "title": "COCO",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/3S0geRnQJwqUUF8dmwnz1A",
+    "typ": "single"
+  },
+  {
+    "artist": "Resilience × ERABREAK × Nathalie Blue",
+    "title": "BLOW",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/73h9PsWVufTn6c7c9XL4xE",
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/7EJg830wAVRcwV9xiS7ooO",
     "typ": "single"
   },
   {
@@ -135,246 +90,57 @@
     "typ": "single"
   },
   {
+    "artist": "Kronos",
+    "title": "IO&TE (YOU&ME)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-08-27",
+    "url": "https://open.spotify.com/album/73h9PsWVufTn6c7c9XL4xE",
+    "typ": "single"
+  },
+  {
+    "artist": "Andy the Core",
+    "title": "ODE I",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-08-27",
+    "url": "https://open.spotify.com/album/5gpiutfekmZtrmtPZY6kob",
+    "typ": "single"
+  },
+  {
+    "artist": "Lil Texas × ALBINO",
+    "title": "Gabber Cowboy",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-08-27",
+    "url": "https://open.spotify.com/album/5QCFyNrp0fUNVXOu3M3IQI",
+    "typ": "single"
+  },
+  {
+    "artist": "Digital Punk × ANDY SVGE × RAVEWALKER",
+    "title": "Heart Of A Raver",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-08-27",
+    "url": "https://open.spotify.com/album/71z2qobZA8aixHjws1LzYl",
+    "typ": "single"
+  },
+  {
+    "artist": "Thyron",
+    "title": "stardust skies",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-08-27",
+    "url": "https://open.spotify.com/album/3IiOTZa2SURvqLjRayQqwl",
+    "typ": "single"
+  },
+  {
     "artist": "Maxtreme",
     "title": "Impossible Dream",
     "genre": "uptempo",
     "bpm": 200,
     "date": "2026-08-25",
     "url": "https://open.spotify.com/album/2xPmGW18PWgS4Uc5EC03jS",
-    "typ": "single"
-  },
-  {
-    "artist": "D-Fence × 333CXT",
-    "title": "MTFCKING LOUD (333CXT Remix)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/5LwOJ55fWTglmn96Um2Z7D",
-    "typ": "single"
-  },
-  {
-    "artist": "Dj Promo",
-    "title": "Street",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/5PL7yGc2Ja8Gp5DgSLUNcS",
-    "typ": "single"
-  },
-  {
-    "artist": "HBz × LUNAX × D-Charged × Kickbait",
-    "title": "RADIOACTIVE",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/5WHdv3vvo49xuNQsqZmknG",
-    "typ": "single"
-  },
-  {
-    "artist": "Level One × Scarra",
-    "title": "Run Away",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/3Zj6MvycqRhT2LwE7Au3GD",
-    "typ": "single"
-  },
-  {
-    "artist": "Showtek",
-    "title": "Something To Believe In",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/114BJdz5GPMZsDuUaZShtx",
-    "typ": "single"
-  },
-  {
-    "artist": "Hysta × Nolz",
-    "title": "Rise of the Pack (Official Syndicate 2026 Anthem)",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/4G9DrCFYkRXZoJ2uU6gEjN",
-    "typ": "single"
-  },
-  {
-    "artist": "Jay Reeve × Sogma × Max Alexander",
-    "title": "Outro",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/5msSxh4iUntJp93zZKhpbO",
-    "typ": "single"
-  },
-  {
-    "artist": "Vieze Asbak × Rocket Rese",
-    "title": "4 MY HOMIE",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/52vOBHrySeWFmZs9Mb92EA",
-    "typ": "single"
-  },
-  {
-    "artist": "Sound Enhancers × Furyan",
-    "title": "Ill Behaviour (Furyan REFIX)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/7dIfHxs2hb5xkWTqLOX0SI",
-    "typ": "single"
-  },
-  {
-    "artist": "Hyrule War × Nosferatu",
-    "title": "Infernal",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/37kb2J0VvyRXILlWDUIv9W",
-    "typ": "single"
-  },
-  {
-    "artist": "Never Surrender × Rave & Plunder × Brutaal",
-    "title": "Costa del Plundero",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/21POFKCrwehzn59Ep4a8eg",
-    "typ": "single"
-  },
-  {
-    "artist": "Forsaken Two × Regain × Nightcraft",
-    "title": "Remember Our Name",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/3ScN70tFKhvX8TalOdzcdw",
-    "typ": "single"
-  },
-  {
-    "artist": "Ran-D × Adaro",
-    "title": "Home",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/2PUFgFwhvwFrBqJuK8KYv8",
-    "typ": "single"
-  },
-  {
-    "artist": "Warface × BMBERJCK",
-    "title": "Fuck You, Pay Me! (BMBERJCK Remix)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/2hK3FXFBcaWdP5fWD7bauR",
-    "typ": "single"
-  },
-  {
-    "artist": "Rebelion × Mutilator",
-    "title": "Don't FK With Us",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/2nSaa2WsDAByjA172tYBB6",
-    "typ": "single"
-  },
-  {
-    "artist": "Bass Modulators × DÂVINØ",
-    "title": "Another World",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/5CzjQY5idrposGUTwXVQED",
-    "typ": "single"
-  },
-  {
-    "artist": "Sound Rush",
-    "title": "Stand Together (Sana Duri 2026 OST)",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/1nEITZjfk5jK1fsJoBK6m6",
-    "typ": "single"
-  },
-  {
-    "artist": "D-Block & S-te-Fan × Phuture Noize",
-    "title": "Arcadia",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/2JXAsLoPlEknX2ejuNERZK",
-    "typ": "single"
-  },
-  {
-    "artist": "ItaloBrothers × Da Tweekaz",
-    "title": "Sun Goes Down",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/2Pr8eX5rbZPInRApwyxY5n",
-    "typ": "single"
-  },
-  {
-    "artist": "Project One × Headhunterz × Wildstylez",
-    "title": "Move With The One",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/3r2qyOLYjPvP0hHz3qeDsD",
-    "typ": "single"
-  },
-  {
-    "artist": "WINSON",
-    "title": "ALL THESE GIRLS",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/15tQzx2Gjz8cljXdkKQyl3",
-    "typ": "single"
-  },
-  {
-    "artist": "ZAPRAVKA",
-    "title": "MA JET",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/625uO0WQ2mGBgLSchiO2vq",
-    "typ": "single"
-  },
-  {
-    "artist": "Vasto",
-    "title": "DEMISE 4.0",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/3eosyFUpebhIU4wVEol9pQ",
-    "typ": "single"
-  },
-  {
-    "artist": "UNRAVELD × Bass Prototype",
-    "title": "Mutated",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/2Qvw0d2zYGqBP8a787tgTL",
-    "typ": "single"
-  },
-  {
-    "artist": "Unproven × Barber",
-    "title": "MF Fastlane",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/5Fjqz5PqoHV10BmWSfWqYJ",
-    "typ": "single"
-  },
-  {
-    "artist": "PEYGAN × EQUAL2",
-    "title": "MYSTERY BAG",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-08-21",
-    "url": "https://open.spotify.com/album/7l2G4ttl1x046J4ijA4Jpw",
     "typ": "single"
   }
 ]
