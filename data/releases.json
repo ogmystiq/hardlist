@@ -1,74 +1,29 @@
 [
   {
-    "artist": "KELTEK",
-    "title": "Spaceman",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/1xE57F1uYD1UckBqMUwHSY",
-    "typ": "single"
-  },
-  {
-    "artist": "Primeshock",
-    "title": "Funked Up",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/5IgxCQWvJ8Wclxbvj9f5Co",
-    "typ": "single"
-  },
-  {
-    "artist": "Aftershock × Roberto Rosso × The Uprising × Shadow Legacy",
-    "title": "You Say",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/5VIlrqMHyurkTbLFzSWRlz",
-    "typ": "single"
-  },
-  {
-    "artist": "Dimitri K × Sickddellz",
-    "title": "Love The Way You Lie",
+    "artist": "DEEZL × DIKKE BAAP",
+    "title": "CULT",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/5oJIJpryAfPfyyc52olHAv",
+    "url": "https://open.spotify.com/album/03m7IkqKZTPNA1H3ioIxQB",
     "typ": "single"
   },
   {
-    "artist": "Restrained × Hellsystem",
-    "title": "Hat Trick",
+    "artist": "Pinotello × EZG",
+    "title": "Niet Zo Mauwen",
     "genre": "hardcore",
     "bpm": 190,
     "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/39ccV0mzHZFflPxBD5jl0n",
+    "url": "https://open.spotify.com/album/1YLFXQhWbKIpFfzd3uEg88",
     "typ": "single"
   },
   {
-    "artist": "The Sickest Squad × GOTALIEN",
-    "title": "Carillon",
-    "genre": "hardcore",
-    "bpm": 190,
+    "artist": "Toxin × Nova × D'ort",
+    "title": "A Summer To Love",
+    "genre": "raw",
+    "bpm": 155,
     "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/4G4apS8pLJMqxLJTB36tZe",
-    "typ": "single"
-  },
-  {
-    "artist": "High Resistance × KTLA",
-    "title": "KISS THE FLUTE",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/4bUmNRYZ39EiWANno9WsXb",
-    "typ": "single"
-  },
-  {
-    "artist": "Hans Glock × Ruthless × Dr Rude × Papi Mikey Dinero",
-    "title": "COCO",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/3S0geRnQJwqUUF8dmwnz1A",
+    "url": "https://open.spotify.com/album/1WkZk2ZlprVS8UoOzM0CtM",
     "typ": "single"
   },
   {
@@ -81,39 +36,93 @@
     "typ": "single"
   },
   {
-    "artist": "Geck-O × Ecstatic",
-    "title": "Soul Train (Ecstatic Remix)",
+    "artist": "Hans Glock × Ruthless × Dr Rude × Papi Mikey Dinero",
+    "title": "COCO",
     "genre": "hardstyle",
     "bpm": 150,
-    "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/75VTD9uQtQXg08mMfhJalD",
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/3S0geRnQJwqUUF8dmwnz1A",
     "typ": "single"
   },
   {
-    "artist": "Kronos",
-    "title": "IO&TE (YOU&ME)",
+    "artist": "High Resistance × KTLA",
+    "title": "KISS THE FLUTE",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/4bUmNRYZ39EiWANno9WsXb",
+    "typ": "single"
+  },
+  {
+    "artist": "The Sickest Squad × GOTALIEN",
+    "title": "Carillon",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/4G4apS8pLJMqxLJTB36tZe",
+    "typ": "single"
+  },
+  {
+    "artist": "Restrained × Hellsystem",
+    "title": "Hat Trick",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/39ccV0mzHZFflPxBD5jl0n",
+    "typ": "single"
+  },
+  {
+    "artist": "Dimitri K × Sickddellz",
+    "title": "Love The Way You Lie",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/5oJIJpryAfPfyyc52olHAv",
+    "typ": "single"
+  },
+  {
+    "artist": "Aftershock × Roberto Rosso × The Uprising × Shadow Legacy",
+    "title": "You Say",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/5VIlrqMHyurkTbLFzSWRlz",
+    "typ": "single"
+  },
+  {
+    "artist": "Primeshock",
+    "title": "Funked Up",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/5IgxCQWvJ8Wclxbvj9f5Co",
+    "typ": "single"
+  },
+  {
+    "artist": "KELTEK",
+    "title": "Spaceman",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-08-28",
+    "url": "https://open.spotify.com/album/1xE57F1uYD1UckBqMUwHSY",
+    "typ": "single"
+  },
+  {
+    "artist": "Lekkerfaces × TOZA × Teal",
+    "title": "REAL INSANITY",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/73h9PsWVufTn6c7c9XL4xE",
+    "url": "https://open.spotify.com/album/5nIISowNfohSL9nqz5L0gV",
     "typ": "single"
   },
   {
-    "artist": "Andy the Core",
-    "title": "ODE I",
-    "genre": "hardcore",
-    "bpm": 190,
+    "artist": "Thyron",
+    "title": "stardust skies",
+    "genre": "raw",
+    "bpm": 155,
     "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/5gpiutfekmZtrmtPZY6kob",
-    "typ": "single"
-  },
-  {
-    "artist": "Lil Texas × ALBINO",
-    "title": "Gabber Cowboy",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/5QCFyNrp0fUNVXOu3M3IQI",
+    "url": "https://open.spotify.com/album/3IiOTZa2SURvqLjRayQqwl",
     "typ": "single"
   },
   {
@@ -126,12 +135,48 @@
     "typ": "single"
   },
   {
-    "artist": "Thyron",
-    "title": "stardust skies",
+    "artist": "Lil Texas × ALBINO",
+    "title": "Gabber Cowboy",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-08-27",
+    "url": "https://open.spotify.com/album/5QCFyNrp0fUNVXOu3M3IQI",
+    "typ": "single"
+  },
+  {
+    "artist": "Andy the Core",
+    "title": "ODE I",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-08-27",
+    "url": "https://open.spotify.com/album/5gpiutfekmZtrmtPZY6kob",
+    "typ": "single"
+  },
+  {
+    "artist": "Kronos",
+    "title": "IO&TE (YOU&ME)",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-08-27",
-    "url": "https://open.spotify.com/album/3IiOTZa2SURvqLjRayQqwl",
+    "url": "https://open.spotify.com/album/73h9PsWVufTn6c7c9XL4xE",
+    "typ": "single"
+  },
+  {
+    "artist": "Geck-O × Ecstatic",
+    "title": "Soul Train (Ecstatic Remix)",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-08-27",
+    "url": "https://open.spotify.com/album/75VTD9uQtQXg08mMfhJalD",
+    "typ": "single"
+  },
+  {
+    "artist": "Majr × Michael Phase",
+    "title": "LIKE I DO",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-08-26",
+    "url": "https://open.spotify.com/album/52HYoZrJHresNVSFtbSqNs",
     "typ": "single"
   },
   {
