@@ -1,10 +1,10 @@
 {
-  "uppdaterad": "2026-09-03T05:40:52.603Z",
+  "uppdaterad": "2026-09-04T05:16:51.222Z",
   "artister": 316,
   "cachade": 331,
-  "releaser": 32,
-  "anrop": 101,
+  "releaser": 21,
+  "anrop": 1,
   "albumAnrop": 0,
   "albumIndex": 18,
-  "avbrott": "KVOTEN ÄR SLUT för dygnet. Spotify ber oss vänta 24.0 timmar. Kör INTE igen förrän dess — varje försök är bortkastat. Kvoten delas av alla dina Development Mode-appar och nollställs av sig själv."
+  "avbrott": "BROMSAD av Spotify i 23 minuter, längre än taket 600s. Så lång broms betyder i praktiken att dygnskvoten är förbrukad. Kör INTE manuellt igen idag — låt morgondagens schemalagda körning ta vid."
 }
