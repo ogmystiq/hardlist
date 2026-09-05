@@ -1,29 +1,92 @@
 [
   {
-    "artist": "Anderex × Exproz × Kruelty",
-    "title": "In Control (Kruelty Remix)",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-09-03",
-    "url": "https://open.spotify.com/album/03Y83k4J838OBrXrxD6GQk",
+    "artist": "Gunz For Hire",
+    "title": "Born To Be Wild",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/3qjDGn51BVWdh7ohi6b6LX",
     "typ": "single"
   },
   {
-    "artist": "Unproven × MC Robs",
-    "title": "SYMBIOSIS",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-09-03",
-    "url": "https://open.spotify.com/album/63jmZ8UquWH3P9dyJpTVfy",
+    "artist": "Infliction × Chapter V",
+    "title": "Party Started EP",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/7zLG6oI4xAlpIyh4c9Y3TO",
     "typ": "single"
   },
   {
-    "artist": "Anime × CODA",
-    "title": "DEMONS",
+    "artist": "Infliction × Spitfire × Chapter V",
+    "title": "Kick Your Ass (Chapter V Remix)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/4jZWxtZvMuJJ0Uzimo06Gs",
+    "typ": "single"
+  },
+  {
+    "artist": "Chapter V × Vasto × Infliction",
+    "title": "Bad Guys (Infliction Remix)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/6OIZHKzOnS3tbZ6HZvmMC1",
+    "typ": "single"
+  },
+  {
+    "artist": "Envine × Faizar",
+    "title": "Groove Up",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/2GxhbXoABdm6m9mLjNRFzF",
+    "typ": "single"
+  },
+  {
+    "artist": "DJ Isaac",
+    "title": "Nobody Listens To Techno '26",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/7bixkFGNKaHFeZMTU38Q4B",
+    "typ": "single"
+  },
+  {
+    "artist": "Adjuzt × Nolz",
+    "title": "State of Distortion (Official Supremacy 2026 Anthem)",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/5JOGdLUBCISFTexbGJ6nKj",
+    "typ": "single"
+  },
+  {
+    "artist": "New Kids × Paul Elstak × Satirized × Aalst",
+    "title": "Turbo (Satirized & Aalst Turbo Saté Remix)",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/5dE0ilPDZfTdJ8eXk7tRpq",
+    "typ": "single"
+  },
+  {
+    "artist": "Dj Promo",
+    "title": "JUMPSTYLE",
     "genre": "hardcore",
     "bpm": 190,
     "date": "2026-09-03",
-    "url": "https://open.spotify.com/album/4ns4ZAhcPeODpIwwowZEds",
+    "url": "https://open.spotify.com/album/0RB8N6cFuCpOel6wz4K39h",
+    "typ": "single"
+  },
+  {
+    "artist": "Infliction × Chapter V",
+    "title": "Party Started",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-03",
+    "url": "https://open.spotify.com/album/4koE2YE5odOEt3JheWKqFm",
     "typ": "single"
   },
   {
@@ -36,156 +99,39 @@
     "typ": "single"
   },
   {
-    "artist": "The Dark Horror × Soulblast",
-    "title": "I DON'T CARE",
+    "artist": "Anime × CODA",
+    "title": "DEMONS",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/7niMNEKNf48EFDBMTcS4Xm",
+    "date": "2026-09-03",
+    "url": "https://open.spotify.com/album/4ns4ZAhcPeODpIwwowZEds",
     "typ": "single"
   },
   {
-    "artist": "UNSYN × TerrorClown",
-    "title": "Front Row",
+    "artist": "Unproven × MC Robs",
+    "title": "SYMBIOSIS",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-09-03",
+    "url": "https://open.spotify.com/album/63jmZ8UquWH3P9dyJpTVfy",
+    "typ": "single"
+  },
+  {
+    "artist": "Anderex × Exproz × Kruelty",
+    "title": "In Control (Kruelty Remix)",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-09-03",
+    "url": "https://open.spotify.com/album/03Y83k4J838OBrXrxD6GQk",
+    "typ": "single"
+  },
+  {
+    "artist": "Dj Promo",
+    "title": "SACANAGEM",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/6dVdaBCoIw0WhGmcrWaUz7",
-    "typ": "single"
-  },
-  {
-    "artist": "LunaKorpz × Omnya",
-    "title": "FIYAH!",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/12DD5AEmzcQwjxed64xgCy",
-    "typ": "single"
-  },
-  {
-    "artist": "KELTEK",
-    "title": "Spaceman",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/1xE57F1uYD1UckBqMUwHSY",
-    "typ": "single"
-  },
-  {
-    "artist": "Primeshock",
-    "title": "Funked Up",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/5IgxCQWvJ8Wclxbvj9f5Co",
-    "typ": "single"
-  },
-  {
-    "artist": "Aftershock × Roberto Rosso × The Uprising × Shadow Legacy",
-    "title": "You Say",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/5VIlrqMHyurkTbLFzSWRlz",
-    "typ": "single"
-  },
-  {
-    "artist": "Dimitri K × Sickddellz",
-    "title": "Love The Way You Lie",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/5oJIJpryAfPfyyc52olHAv",
-    "typ": "single"
-  },
-  {
-    "artist": "Restrained × Hellsystem",
-    "title": "Hat Trick",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/39ccV0mzHZFflPxBD5jl0n",
-    "typ": "single"
-  },
-  {
-    "artist": "The Sickest Squad × GOTALIEN",
-    "title": "Carillon",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/4G4apS8pLJMqxLJTB36tZe",
-    "typ": "single"
-  },
-  {
-    "artist": "High Resistance × KTLA",
-    "title": "KISS THE FLUTE",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/4bUmNRYZ39EiWANno9WsXb",
-    "typ": "single"
-  },
-  {
-    "artist": "Hans Glock × Ruthless × Dr Rude × Papi Mikey Dinero",
-    "title": "COCO",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/3S0geRnQJwqUUF8dmwnz1A",
-    "typ": "single"
-  },
-  {
-    "artist": "Resilience × ERABREAK × Nathalie Blue",
-    "title": "BLOW",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/7EJg830wAVRcwV9xiS7ooO",
-    "typ": "single"
-  },
-  {
-    "artist": "Toxin × Nova × D'ort",
-    "title": "A Summer To Love",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/1WkZk2ZlprVS8UoOzM0CtM",
-    "typ": "single"
-  },
-  {
-    "artist": "Pinotello × EZG",
-    "title": "Niet Zo Mauwen",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/1YLFXQhWbKIpFfzd3uEg88",
-    "typ": "single"
-  },
-  {
-    "artist": "DEEZL × DIKKE BAAP",
-    "title": "CULT",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/03m7IkqKZTPNA1H3ioIxQB",
-    "typ": "single"
-  },
-  {
-    "artist": "Dr. Peacock × Mr. Ivex × 5k1nny",
-    "title": "Children of the Stars",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/7w6Gb2LSJBPkeKA4Afo4qj",
-    "typ": "single"
-  },
-  {
-    "artist": "Bulletproof × Partyraiser × Rosbeek",
-    "title": "It's A Battle Everyday (Rosbeek Remix)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-08-28",
-    "url": "https://open.spotify.com/album/4Smawwz5HOKySY0Q6nUB6e",
+    "date": "2026-09-02",
+    "url": "https://open.spotify.com/album/3pkxuPxQf4erSljmz139kd",
     "typ": "single"
   }
 ]

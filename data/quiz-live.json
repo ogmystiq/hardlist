@@ -837,6 +837,19 @@
     },
     {
       "typ": "musik",
+      "f": "Vem gör den här låten?",
+      "s": [
+        "Frequencerz",
+        "Adaro",
+        "Radical Redemption",
+        "Digital Punk"
+      ],
+      "r": 0,
+      "fk": "Frequencerz — Victory Forever, Defqon.1 2017.",
+      "ljud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/14/bf/f6/14bff648-b7e4-338d-3fbf-25ebc959e736/mzaf_5836977379642861268.plus.aac.p.m4a"
+    },
+    {
+      "typ": "musik",
       "f": "Vilka ligger bakom den här låten?",
       "s": [
         "Project One",
