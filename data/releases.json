@@ -1,65 +1,29 @@
 [
   {
-    "artist": "Gunz For Hire",
-    "title": "Born To Be Wild",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-04",
-    "url": "https://open.spotify.com/album/3qjDGn51BVWdh7ohi6b6LX",
-    "typ": "single"
-  },
-  {
-    "artist": "Infliction × Chapter V",
-    "title": "Party Started EP",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-04",
-    "url": "https://open.spotify.com/album/7zLG6oI4xAlpIyh4c9Y3TO",
-    "typ": "single"
-  },
-  {
-    "artist": "Infliction × Spitfire × Chapter V",
-    "title": "Kick Your Ass (Chapter V Remix)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-04",
-    "url": "https://open.spotify.com/album/4jZWxtZvMuJJ0Uzimo06Gs",
-    "typ": "single"
-  },
-  {
-    "artist": "Chapter V × Vasto × Infliction",
-    "title": "Bad Guys (Infliction Remix)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-04",
-    "url": "https://open.spotify.com/album/6OIZHKzOnS3tbZ6HZvmMC1",
-    "typ": "single"
-  },
-  {
-    "artist": "Envine × Faizar",
-    "title": "Groove Up",
+    "artist": "The Vision × DJS RECORDS",
+    "title": "Over & Over",
     "genre": "hardstyle",
     "bpm": 150,
     "date": "2026-09-04",
-    "url": "https://open.spotify.com/album/2GxhbXoABdm6m9mLjNRFzF",
+    "url": "https://open.spotify.com/album/0ywJebDNf7J1CTI6hqFhgj",
     "typ": "single"
   },
   {
-    "artist": "DJ Isaac",
-    "title": "Nobody Listens To Techno '26",
-    "genre": "hardstyle",
+    "artist": "Stinger × Sasha F",
+    "title": "Into Terror",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/3OGKwQ6gmH4cT7c64oQkl6",
+    "typ": "single"
+  },
+  {
+    "artist": "Sara Landry",
+    "title": "Interesting",
+    "genre": "techno",
     "bpm": 150,
     "date": "2026-09-04",
-    "url": "https://open.spotify.com/album/7bixkFGNKaHFeZMTU38Q4B",
-    "typ": "single"
-  },
-  {
-    "artist": "Adjuzt × Nolz",
-    "title": "State of Distortion (Official Supremacy 2026 Anthem)",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-09-04",
-    "url": "https://open.spotify.com/album/5JOGdLUBCISFTexbGJ6nKj",
+    "url": "https://open.spotify.com/album/01btNDT5aKR5bXoySkh18j",
     "typ": "single"
   },
   {
@@ -72,39 +36,93 @@
     "typ": "single"
   },
   {
-    "artist": "Dj Promo",
-    "title": "JUMPSTYLE",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-03",
-    "url": "https://open.spotify.com/album/0RB8N6cFuCpOel6wz4K39h",
+    "artist": "Adjuzt × Nolz",
+    "title": "State of Distortion (Official Supremacy 2026 Anthem)",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/5JOGdLUBCISFTexbGJ6nKj",
+    "typ": "single"
+  },
+  {
+    "artist": "DJ Isaac",
+    "title": "Nobody Listens To Techno '26",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/7bixkFGNKaHFeZMTU38Q4B",
+    "typ": "single"
+  },
+  {
+    "artist": "Envine × Faizar",
+    "title": "Groove Up",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/2GxhbXoABdm6m9mLjNRFzF",
+    "typ": "single"
+  },
+  {
+    "artist": "Chapter V × Vasto × Infliction",
+    "title": "Bad Guys (Infliction Remix)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/6OIZHKzOnS3tbZ6HZvmMC1",
+    "typ": "single"
+  },
+  {
+    "artist": "Infliction × Spitfire × Chapter V",
+    "title": "Kick Your Ass (Chapter V Remix)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/4jZWxtZvMuJJ0Uzimo06Gs",
     "typ": "single"
   },
   {
     "artist": "Infliction × Chapter V",
-    "title": "Party Started",
+    "title": "Party Started EP",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-09-03",
-    "url": "https://open.spotify.com/album/4koE2YE5odOEt3JheWKqFm",
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/7zLG6oI4xAlpIyh4c9Y3TO",
     "typ": "single"
   },
   {
-    "artist": "Warface",
-    "title": "D13MENSION",
+    "artist": "Gunz For Hire",
+    "title": "Born To Be Wild",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-09-03",
-    "url": "https://open.spotify.com/album/36ch95F2O1NqYke8C9DvN2",
+    "date": "2026-09-04",
+    "url": "https://open.spotify.com/album/3qjDGn51BVWdh7ohi6b6LX",
     "typ": "single"
   },
   {
-    "artist": "Anime × CODA",
-    "title": "DEMONS",
-    "genre": "hardcore",
-    "bpm": 190,
+    "artist": "Vexxed",
+    "title": "Monster",
+    "genre": "raw",
+    "bpm": 155,
     "date": "2026-09-03",
-    "url": "https://open.spotify.com/album/4ns4ZAhcPeODpIwwowZEds",
+    "url": "https://open.spotify.com/album/561GGkZGbGBBx7kxnqzY6n",
+    "typ": "single"
+  },
+  {
+    "artist": "Digital Madness",
+    "title": "Feel Your Love",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-09-03",
+    "url": "https://open.spotify.com/album/2GVSQnyWwOXSPXvz9VxOr3",
+    "typ": "single"
+  },
+  {
+    "artist": "Anderex × Exproz × Kruelty",
+    "title": "In Control (Kruelty Remix)",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-09-03",
+    "url": "https://open.spotify.com/album/03Y83k4J838OBrXrxD6GQk",
     "typ": "single"
   },
   {
@@ -117,12 +135,39 @@
     "typ": "single"
   },
   {
-    "artist": "Anderex × Exproz × Kruelty",
-    "title": "In Control (Kruelty Remix)",
-    "genre": "uptempo",
-    "bpm": 200,
+    "artist": "Anime × CODA",
+    "title": "DEMONS",
+    "genre": "hardcore",
+    "bpm": 190,
     "date": "2026-09-03",
-    "url": "https://open.spotify.com/album/03Y83k4J838OBrXrxD6GQk",
+    "url": "https://open.spotify.com/album/4ns4ZAhcPeODpIwwowZEds",
+    "typ": "single"
+  },
+  {
+    "artist": "Warface",
+    "title": "D13MENSION",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-03",
+    "url": "https://open.spotify.com/album/36ch95F2O1NqYke8C9DvN2",
+    "typ": "single"
+  },
+  {
+    "artist": "Infliction × Chapter V",
+    "title": "Party Started",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-03",
+    "url": "https://open.spotify.com/album/4koE2YE5odOEt3JheWKqFm",
+    "typ": "single"
+  },
+  {
+    "artist": "Dj Promo",
+    "title": "JUMPSTYLE",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-09-03",
+    "url": "https://open.spotify.com/album/0RB8N6cFuCpOel6wz4K39h",
     "typ": "single"
   },
   {
