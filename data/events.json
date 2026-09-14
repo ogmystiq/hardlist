@@ -11,42 +11,15 @@
     "arrangor": "B2S"
   },
   {
-    "name": "Sana Duri — The New Beginning",
-    "date": "2026-09-12",
+    "name": "Sana Duri",
+    "date": "2027-01-30",
     "region": "norden",
-    "city": "Uppsala, SE",
-    "venue": "Studenternas IP",
-    "lineup": "Project One · Brennan Heart · Showtek · Rebelion vs Vertile · Rooler vs Warface · Radical Redemption · Sound Rush · The Pitcher · The Saints · Villain · D-Charged · Dimitri K & The Dark Horror · 4444 · Four of a Kind. Kl 11–23.30, ca 10 000 besökare.",
+    "city": "Mölndal, SE",
+    "venue": "Åby Arena",
+    "lineup": "Lineup är inte släppt ännu.",
     "url": "https://sanaduri.se/",
-    "arrangor": "Shuffle Group",
-    "artister": [
-      "Project One",
-      "Brennan Heart",
-      "Showtek",
-      "Rebelion",
-      "Vertile",
-      "Rooler",
-      "Warface",
-      "Radical Redemption",
-      "Sound Rush",
-      "The Pitcher",
-      "The Saints",
-      "Villain",
-      "D-Charged",
-      "Dimitri K",
-      "4444",
-      "Four of a Kind"
-    ]
-  },
-  {
-    "name": "Sana Duri After Party",
-    "date": "2026-09-12",
-    "region": "norden",
-    "city": "Uppsala, SE",
-    "venue": "Birger Jarl",
-    "lineup": "Officiell efterfest till Sana Duri, samma kväll. Kl 23–03. Åldersgräns 18 år.",
-    "url": "https://www.tickster.com/se/sv/events/85raw24db3vftn8/2026-09-12/sana-duri-after-party-birger-jarl",
-    "arrangor": "Level Entertainment"
+    "urlText": "Biljetter ej släppta",
+    "arrangor": "Shuffle Group"
   },
   {
     "name": "Holy Priest",
@@ -65,7 +38,7 @@
     "date": "2026-11-06",
     "region": "norden",
     "city": "Stockholm, SE",
-    "venue": "Kryssning",
+    "venue": "Birka Gotland",
     "lineup": "6–7 november. Egen black floor för de hårdare stilarna.",
     "url": "https://www.mondaybar.com/",
     "dateEnd": "2026-11-07",
@@ -109,9 +82,9 @@
   },
   {
     "name": "Swedish Rave Society",
+    "date": "2026-10-03",
     "region": "norden",
-    "city": "Örebro, SE",
-    "season": "normalt i maj"
+    "city": "Örebro, SE"
   },
   {
     "name": "Monday Bar Summer Cruise",
@@ -244,5 +217,24 @@
     "city": "Karlstad, SE",
     "venue": "",
     "url": "https://www.dapevent.se/nektra"
+  },
+  {
+    "name": "Timetwister",
+    "date": "2026-10-17",
+    "region": "norden",
+    "city": "Göteborg, SE",
+    "venue": "Valand",
+    "lineup": "Hard trance, hardstyle, rawstyle, techno och hardcore. Arrangeras av Nonstop Events, ett samarbete mellan flera svenska arrangörer.",
+    "url": "https://www.tickster.com/se/sv/events/m2627u9wlmnzwup/2026-10-17/timetwister-17-oktober",
+    "arrangor": "Nonstop Events"
+  },
+  {
+    "name": "Zaandam",
+    "date": "2027-02-06",
+    "region": "norden",
+    "city": "Gävle, SE",
+    "venue": "Centralteatern",
+    "lineup": "Hardstyle, rawstyle och uptempo i Gävle. Uppkallad efter den nederländska orten där den första hardstylefesten hölls år 2000.",
+    "urlText": "Biljetter ej släppta"
   }
 ]
