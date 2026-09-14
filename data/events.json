@@ -226,5 +226,23 @@
     "region": "europa",
     "city": "Bussloo, NL",
     "season": "världens enda nattfestival i genren"
+  },
+  {
+    "name": "Deztination",
+    "date": "2026-11-21",
+    "region": "norden",
+    "city": "Stockholm, SE",
+    "venue": "",
+    "lineup": "Upplagan heter Wolf City. Lokal och lineup är inte släppta ännu.",
+    "url": "https://deztination.se/",
+    "urlText": "Mer info"
+  },
+  {
+    "name": "Nektra",
+    "date": "2027-02-13",
+    "region": "norden",
+    "city": "Karlstad, SE",
+    "venue": "",
+    "url": "https://www.dapevent.se/nektra"
   }
 ]
