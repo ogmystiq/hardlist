@@ -11,23 +11,12 @@
     "arrangor": "B2S"
   },
   {
-    "name": "Sana Duri",
-    "date": "2027-01-30",
-    "region": "norden",
-    "city": "Mölndal, SE",
-    "venue": "Åby Arena",
-    "lineup": "Lineup är inte släppt ännu.",
-    "url": "https://sanaduri.se/",
-    "urlText": "Biljetter ej släppta",
-    "arrangor": "Shuffle Group"
-  },
-  {
     "name": "Holy Priest",
     "date": "2026-09-12",
     "region": "norden",
     "city": "Stockholm, SE",
     "venue": "Berns",
-    "lineup": "Hard techno, kl 23.00. Samma kväll som Sana Duri — funkar som afterparty om du tar dig ner från Uppsala.",
+    "lineup": "Hard techno, kl 23.00.",
     "url": "https://www.ticketmaster.se/event/holy-priest-berns-biljetter/247223915",
     "artister": [
       "Holy Priest"
