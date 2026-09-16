@@ -1,191 +1,11 @@
 [
   {
-    "artist": "F. Noize × Deviation",
-    "title": "Cold As Ice (Deviation Remix)",
+    "artist": "Sihk × Drokz",
+    "title": "Terrorcore Addict",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/4LHPK8RSXGv3mfrawcnxXz",
-    "typ": "single"
-  },
-  {
-    "artist": "Sakyra × Korsakoff",
-    "title": "The Storm",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/4CB4olzADZO4FIyZPU2hVL",
-    "typ": "single"
-  },
-  {
-    "artist": "HOLY PRIEST × Vieze Asbak",
-    "title": "TECHNO",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/2HYlP1GIpdRQEDBIAvG23Y",
-    "typ": "single"
-  },
-  {
-    "artist": "Paul Elstak × DJ Panda",
-    "title": "Luv U More (DJ Panda Remix)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/4Ca3PYbDssKaZFIbtzYbwT",
-    "typ": "single"
-  },
-  {
-    "artist": "Dr Donk",
-    "title": "Wink Wonk",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/7hFCSKim5k2C8gRrnLLiyv",
-    "typ": "single"
-  },
-  {
-    "artist": "Deadly Guns",
-    "title": "Let You Go",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/55grqWLVREV5VoPPDC4hM6",
-    "typ": "single"
-  },
-  {
-    "artist": "Yoshiko × Toxic Machinery",
-    "title": "Hurt (Toxic Machinery Remix)",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/682JDcxRGeEIFtuoe11RsB",
-    "typ": "single"
-  },
-  {
-    "artist": "Adaro × Ricardo Moreno",
-    "title": "Lost On You",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/7r3bFKQHhMgcJz0pc5s4AO",
-    "typ": "single"
-  },
-  {
-    "artist": "Ran-D",
-    "title": "Level Up (Knockout Outdoor 2026 Anthem)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/5bLCsoXUSy20tMUcrWLOHF",
-    "typ": "single"
-  },
-  {
-    "artist": "4444 OF A KIND × D-Block & S-te-Fan × Sub Zero Project",
-    "title": "4 THE RAVE",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/6zLPI1PfpbkCxddmxqEwQL",
-    "typ": "single"
-  },
-  {
-    "artist": "Zatox × Regain",
-    "title": "On The Beat",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/2D5Io7Mt92vEXi3DkOdq86",
-    "typ": "single"
-  },
-  {
-    "artist": "Frontliner",
-    "title": "Running Running Running",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/3gUktgnUna8eNVGf3OQiEV",
-    "typ": "single"
-  },
-  {
-    "artist": "Cryex × MC Flo",
-    "title": "LIMINAL",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/2FGhxMM0VVhhja5SxcWj52",
-    "typ": "single"
-  },
-  {
-    "artist": "Hellsystem",
-    "title": "Ready to Fight",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/0wGWJiVGlzYiY3fuqhHP8Q",
-    "typ": "single"
-  },
-  {
-    "artist": "Lil Texas × Gezellige Uptempo",
-    "title": "Self Aware",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/2EwgNCNJ9rGKH41bGhhApq",
-    "typ": "single"
-  },
-  {
-    "artist": "HI-LO",
-    "title": "MEGALITHIC",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/4B7MfYHszhubd7ueqdHqlV",
-    "typ": "single"
-  },
-  {
-    "artist": "Dr Rude × Ruthless × Dr Ruthless",
-    "title": "Get Wild",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/4L89GO7xJAbqZ1DEJw09sR",
-    "typ": "single"
-  },
-  {
-    "artist": "Miss M × DJS RECORDS",
-    "title": "Pills",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/2Fkq9Zq6iyiCqA1cD9xCkJ",
-    "typ": "single"
-  },
-  {
-    "artist": "Pinotello × MC Robs",
-    "title": "The Crystal Core (Official TITANIUM Festival 2026 Anthem)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/6CHWJkwnN1MiuvoHbSQAZh",
-    "typ": "single"
-  },
-  {
-    "artist": "ZAPRAVKA",
-    "title": "MASH EM VIP",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/2khhH7RUCWafxROCByeDWO",
-    "typ": "single"
-  },
-  {
-    "artist": "Samuel Moriero × Vortek's",
-    "title": "Rhythm Is My Key",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-09-11",
-    "url": "https://open.spotify.com/album/62LfdzsLsc2wF7CT3evGtB",
+    "date": "2026-09-16",
+    "url": "https://open.spotify.com/album/5G2YgDkVhqvP6ndKiUq0Fv",
     "typ": "single"
   },
   {
@@ -198,30 +18,192 @@
     "typ": "single"
   },
   {
-    "artist": "The Purge × PHOROS × Staarz",
-    "title": "HIGH OFF YOU",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-10",
-    "url": "https://open.spotify.com/album/6ODMQ23OvORwmh9yiSIOCC",
+    "artist": "Samuel Moriero × Vortek's",
+    "title": "Rhythm Is My Key",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/62LfdzsLsc2wF7CT3evGtB",
     "typ": "single"
   },
   {
-    "artist": "Dual Damage × Rebelion",
-    "title": "Wickedest Bassline",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-10",
-    "url": "https://open.spotify.com/album/51w0GoizraGjPooLZRhIOd",
+    "artist": "ZAPRAVKA",
+    "title": "MASH EM VIP",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/2khhH7RUCWafxROCByeDWO",
     "typ": "single"
   },
   {
-    "artist": "Lekkerfaces × Mind Compressor",
-    "title": "FA TI CO but it's 2026",
+    "artist": "Pinotello × MC Robs",
+    "title": "The Crystal Core (Official TITANIUM Festival 2026 Anthem)",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/6CHWJkwnN1MiuvoHbSQAZh",
+    "typ": "single"
+  },
+  {
+    "artist": "Miss M × DJS RECORDS",
+    "title": "Pills",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/2Fkq9Zq6iyiCqA1cD9xCkJ",
+    "typ": "single"
+  },
+  {
+    "artist": "Dr Rude × Ruthless × Dr Ruthless",
+    "title": "Get Wild",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/4L89GO7xJAbqZ1DEJw09sR",
+    "typ": "single"
+  },
+  {
+    "artist": "HI-LO",
+    "title": "MEGALITHIC",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/4B7MfYHszhubd7ueqdHqlV",
+    "typ": "single"
+  },
+  {
+    "artist": "Lil Texas × Gezellige Uptempo",
+    "title": "Self Aware",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/2EwgNCNJ9rGKH41bGhhApq",
+    "typ": "single"
+  },
+  {
+    "artist": "Hellsystem",
+    "title": "Ready to Fight",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/0wGWJiVGlzYiY3fuqhHP8Q",
+    "typ": "single"
+  },
+  {
+    "artist": "Cryex × MC Flo",
+    "title": "LIMINAL",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/2FGhxMM0VVhhja5SxcWj52",
+    "typ": "single"
+  },
+  {
+    "artist": "Frontliner",
+    "title": "Running Running Running",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/3gUktgnUna8eNVGf3OQiEV",
+    "typ": "single"
+  },
+  {
+    "artist": "Zatox × Regain",
+    "title": "On The Beat",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/2D5Io7Mt92vEXi3DkOdq86",
+    "typ": "single"
+  },
+  {
+    "artist": "4444 OF A KIND × D-Block & S-te-Fan × Sub Zero Project",
+    "title": "4 THE RAVE",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/6zLPI1PfpbkCxddmxqEwQL",
+    "typ": "single"
+  },
+  {
+    "artist": "Ran-D",
+    "title": "Level Up (Knockout Outdoor 2026 Anthem)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/5bLCsoXUSy20tMUcrWLOHF",
+    "typ": "single"
+  },
+  {
+    "artist": "Adaro × Ricardo Moreno",
+    "title": "Lost On You",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/7r3bFKQHhMgcJz0pc5s4AO",
+    "typ": "single"
+  },
+  {
+    "artist": "Yoshiko × Toxic Machinery",
+    "title": "Hurt (Toxic Machinery Remix)",
     "genre": "uptempo",
     "bpm": 200,
-    "date": "2026-09-10",
-    "url": "https://open.spotify.com/album/0wrQu9dYUNJYNrcGLBXoSa",
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/682JDcxRGeEIFtuoe11RsB",
+    "typ": "single"
+  },
+  {
+    "artist": "Deadly Guns",
+    "title": "Let You Go",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/55grqWLVREV5VoPPDC4hM6",
+    "typ": "single"
+  },
+  {
+    "artist": "Dr Donk",
+    "title": "Wink Wonk",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/7hFCSKim5k2C8gRrnLLiyv",
+    "typ": "single"
+  },
+  {
+    "artist": "Paul Elstak × DJ Panda",
+    "title": "Luv U More (DJ Panda Remix)",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/4Ca3PYbDssKaZFIbtzYbwT",
+    "typ": "single"
+  },
+  {
+    "artist": "HOLY PRIEST × Vieze Asbak",
+    "title": "TECHNO",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/2HYlP1GIpdRQEDBIAvG23Y",
+    "typ": "single"
+  },
+  {
+    "artist": "Sakyra × Korsakoff",
+    "title": "The Storm",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/4CB4olzADZO4FIyZPU2hVL",
+    "typ": "single"
+  },
+  {
+    "artist": "F. Noize × Deviation",
+    "title": "Cold As Ice (Deviation Remix)",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-09-11",
+    "url": "https://open.spotify.com/album/4LHPK8RSXGv3mfrawcnxXz",
     "typ": "single"
   },
   {
@@ -234,12 +216,30 @@
     "typ": "single"
   },
   {
-    "artist": "Maxtreme",
-    "title": "Can't Hold Us",
+    "artist": "Lekkerfaces × Mind Compressor",
+    "title": "FA TI CO but it's 2026",
     "genre": "uptempo",
     "bpm": 200,
-    "date": "2026-09-08",
-    "url": "https://open.spotify.com/album/3EhRq3sNCaBgULJGn5scSk",
+    "date": "2026-09-10",
+    "url": "https://open.spotify.com/album/0wrQu9dYUNJYNrcGLBXoSa",
+    "typ": "single"
+  },
+  {
+    "artist": "Dual Damage × Rebelion",
+    "title": "Wickedest Bassline",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-10",
+    "url": "https://open.spotify.com/album/51w0GoizraGjPooLZRhIOd",
+    "typ": "single"
+  },
+  {
+    "artist": "The Purge × PHOROS × Staarz",
+    "title": "HIGH OFF YOU",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-09-10",
+    "url": "https://open.spotify.com/album/6ODMQ23OvORwmh9yiSIOCC",
     "typ": "single"
   }
 ]
