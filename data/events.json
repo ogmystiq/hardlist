@@ -228,5 +228,16 @@
     "venue": "Centralteatern",
     "lineup": "Hardstyle, rawstyle och uptempo i Gävle. Uppkallad efter den nederländska orten där den första hardstylefesten hölls år 2000.",
     "urlText": "Biljetter ej släppta"
+  },
+  {
+    "name": "Sana Duri",
+    "date": "2027-01-30",
+    "region": "norden",
+    "city": "Mölndal, SE",
+    "venue": "Åby Arena",
+    "lineup": "Biljetter släpps 25 september kl 12.00. Lineup är inte annonserad ännu.",
+    "url": "https://sanaduri.se/",
+    "urlText": "Biljettsläpp 25 september",
+    "arrangor": "Shuffle Group"
   }
 ]
