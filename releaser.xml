@@ -5,18 +5,67 @@
   <description>Nya släpp inom hardstyle, raw, uptempo, hardcore och hard techno.</description>
   <language>sv-SE</language>
   <item>
-    <title>Mish — Just The Way You Are</title>
-    <link>https://open.spotify.com/album/1uDbB7gK6vw2XlRYjYrVms</link>
-    <guid isPermaLink="false">Mish|Just The Way You Are|2026-09-17</guid>
-    <pubDate>Thu, 17 Sep 2026 08:00:00 GMT</pubDate>
-    <category>raw</category>
+    <title>D-Fence × Furyan — Concrete Break</title>
+    <link>https://open.spotify.com/album/0FP5xcqdxPwjeiukBcjS1R</link>
+    <guid isPermaLink="false">D-Fence × Furyan|Concrete Break|2026-09-18</guid>
+    <pubDate>Fri, 18 Sep 2026 08:00:00 GMT</pubDate>
+    <category>hardcore</category>
   </item>
   <item>
-    <title>The Dope Doctor — Guillotine</title>
-    <link>https://open.spotify.com/album/6MbI9VIfNMEISdsL9Ty3Tk</link>
-    <guid isPermaLink="false">The Dope Doctor|Guillotine|2026-09-17</guid>
+    <title>Gezellige Uptempo × Partyraiser — Stinky Noise</title>
+    <link>https://open.spotify.com/album/5PP71imuSdolfWFtM4dPof</link>
+    <guid isPermaLink="false">Gezellige Uptempo × Partyraiser|Stinky Noise|2026-09-18</guid>
+    <pubDate>Fri, 18 Sep 2026 08:00:00 GMT</pubDate>
+    <category>hardcore</category>
+  </item>
+  <item>
+    <title>Angerfist × T78 — Psycho Killa</title>
+    <link>https://open.spotify.com/album/6MXTeayaBHcXtTJ7UphFNR</link>
+    <guid isPermaLink="false">Angerfist × T78|Psycho Killa|2026-09-18</guid>
+    <pubDate>Fri, 18 Sep 2026 08:00:00 GMT</pubDate>
+    <category>hardcore</category>
+  </item>
+  <item>
+    <title>Hard Driver × Digital Punk — MONSTERS</title>
+    <link>https://open.spotify.com/album/1auAaOjrJVOmlrRwxdAreH</link>
+    <guid isPermaLink="false">Hard Driver × Digital Punk|MONSTERS|2026-09-18</guid>
+    <pubDate>Fri, 18 Sep 2026 08:00:00 GMT</pubDate>
+    <category>hardstyle</category>
+  </item>
+  <item>
+    <title>Da Tweekaz — The Nights</title>
+    <link>https://open.spotify.com/album/7JOKU2nuecI6SHOHqFnILA</link>
+    <guid isPermaLink="false">Da Tweekaz|The Nights|2026-09-18</guid>
+    <pubDate>Fri, 18 Sep 2026 08:00:00 GMT</pubDate>
+    <category>hardstyle</category>
+  </item>
+  <item>
+    <title>Kili × Revealer × Nolz — Off The Grid (Official Classified Outdoor Uptempo Anthem 2026)</title>
+    <link>https://open.spotify.com/album/6rg6rZQAiYe49Iqijl6OW8</link>
+    <guid isPermaLink="false">Kili × Revealer × Nolz|Off The Grid (Official Classified Outdoor Uptempo Anthem 2026)|2026-09-17</guid>
     <pubDate>Thu, 17 Sep 2026 08:00:00 GMT</pubDate>
-    <category>raw</category>
+    <category>uptempo</category>
+  </item>
+  <item>
+    <title>Bloodlust × Omnya — PARADISE DENIED</title>
+    <link>https://open.spotify.com/album/1B8TZYjob9W7WlC4kYV4k6</link>
+    <guid isPermaLink="false">Bloodlust × Omnya|PARADISE DENIED|2026-09-17</guid>
+    <pubDate>Thu, 17 Sep 2026 08:00:00 GMT</pubDate>
+    <category>uptempo</category>
+  </item>
+  <item>
+    <title>Yoshiko × JAZZY × Jowi — TERROR</title>
+    <link>https://open.spotify.com/album/0TNVVieTefq9IGJjMUYkqt</link>
+    <guid isPermaLink="false">Yoshiko × JAZZY × Jowi|TERROR|2026-09-17</guid>
+    <pubDate>Thu, 17 Sep 2026 08:00:00 GMT</pubDate>
+    <category>uptempo</category>
+  </item>
+  <item>
+    <title>Audiotricz × Ecstatic × Max Alexander — One Symphony (Melodic Madness 2026 Anthem)</title>
+    <link>https://open.spotify.com/album/1VRM8SLcXzb9Oxf39zzTaz</link>
+    <guid isPermaLink="false">Audiotricz × Ecstatic × Max Alexander|One Symphony (Melodic Madness 2026 Anthem)|2026-09-17</guid>
+    <pubDate>Thu, 17 Sep 2026 08:00:00 GMT</pubDate>
+    <category>hardstyle</category>
   </item>
   <item>
     <title>Unproven — Altered DNA</title>
@@ -26,164 +75,24 @@
     <category>uptempo</category>
   </item>
   <item>
+    <title>The Dope Doctor — Guillotine</title>
+    <link>https://open.spotify.com/album/6MbI9VIfNMEISdsL9Ty3Tk</link>
+    <guid isPermaLink="false">The Dope Doctor|Guillotine|2026-09-17</guid>
+    <pubDate>Thu, 17 Sep 2026 08:00:00 GMT</pubDate>
+    <category>raw</category>
+  </item>
+  <item>
+    <title>Mish — Just The Way You Are</title>
+    <link>https://open.spotify.com/album/1uDbB7gK6vw2XlRYjYrVms</link>
+    <guid isPermaLink="false">Mish|Just The Way You Are|2026-09-17</guid>
+    <pubDate>Thu, 17 Sep 2026 08:00:00 GMT</pubDate>
+    <category>raw</category>
+  </item>
+  <item>
     <title>Sihk × Drokz — Terrorcore Addict</title>
     <link>https://open.spotify.com/album/5G2YgDkVhqvP6ndKiUq0Fv</link>
     <guid isPermaLink="false">Sihk × Drokz|Terrorcore Addict|2026-09-16</guid>
     <pubDate>Wed, 16 Sep 2026 08:00:00 GMT</pubDate>
-    <category>hardcore</category>
-  </item>
-  <item>
-    <title>Coone × LOVIXX × STOSLIV — Don't tell your dreams (hard version)</title>
-    <link>https://open.spotify.com/album/47oyePZVw8dGzZgHgEeLBx</link>
-    <guid isPermaLink="false">Coone × LOVIXX × STOSLIV|Don't tell your dreams (hard version)|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>hardstyle</category>
-  </item>
-  <item>
-    <title>Samuel Moriero × Vortek's — Rhythm Is My Key</title>
-    <link>https://open.spotify.com/album/62LfdzsLsc2wF7CT3evGtB</link>
-    <guid isPermaLink="false">Samuel Moriero × Vortek's|Rhythm Is My Key|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>techno</category>
-  </item>
-  <item>
-    <title>ZAPRAVKA — MASH EM VIP</title>
-    <link>https://open.spotify.com/album/2khhH7RUCWafxROCByeDWO</link>
-    <guid isPermaLink="false">ZAPRAVKA|MASH EM VIP|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>techno</category>
-  </item>
-  <item>
-    <title>Pinotello × MC Robs — The Crystal Core (Official TITANIUM Festival 2026 Anthem)</title>
-    <link>https://open.spotify.com/album/6CHWJkwnN1MiuvoHbSQAZh</link>
-    <guid isPermaLink="false">Pinotello × MC Robs|The Crystal Core (Official TITANIUM Festival 2026 Anthem)|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>hardcore</category>
-  </item>
-  <item>
-    <title>Miss M × DJS RECORDS — Pills</title>
-    <link>https://open.spotify.com/album/2Fkq9Zq6iyiCqA1cD9xCkJ</link>
-    <guid isPermaLink="false">Miss M × DJS RECORDS|Pills|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>raw</category>
-  </item>
-  <item>
-    <title>Dr Rude × Ruthless × Dr Ruthless — Get Wild</title>
-    <link>https://open.spotify.com/album/4L89GO7xJAbqZ1DEJw09sR</link>
-    <guid isPermaLink="false">Dr Rude × Ruthless × Dr Ruthless|Get Wild|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>hardstyle</category>
-  </item>
-  <item>
-    <title>HI-LO — MEGALITHIC</title>
-    <link>https://open.spotify.com/album/4B7MfYHszhubd7ueqdHqlV</link>
-    <guid isPermaLink="false">HI-LO|MEGALITHIC|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>techno</category>
-  </item>
-  <item>
-    <title>Lil Texas × Gezellige Uptempo — Self Aware</title>
-    <link>https://open.spotify.com/album/2EwgNCNJ9rGKH41bGhhApq</link>
-    <guid isPermaLink="false">Lil Texas × Gezellige Uptempo|Self Aware|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>techno</category>
-  </item>
-  <item>
-    <title>Hellsystem — Ready to Fight</title>
-    <link>https://open.spotify.com/album/0wGWJiVGlzYiY3fuqhHP8Q</link>
-    <guid isPermaLink="false">Hellsystem|Ready to Fight|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>hardcore</category>
-  </item>
-  <item>
-    <title>Cryex × MC Flo — LIMINAL</title>
-    <link>https://open.spotify.com/album/2FGhxMM0VVhhja5SxcWj52</link>
-    <guid isPermaLink="false">Cryex × MC Flo|LIMINAL|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>raw</category>
-  </item>
-  <item>
-    <title>Frontliner — Running Running Running</title>
-    <link>https://open.spotify.com/album/3gUktgnUna8eNVGf3OQiEV</link>
-    <guid isPermaLink="false">Frontliner|Running Running Running|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>hardstyle</category>
-  </item>
-  <item>
-    <title>Zatox × Regain — On The Beat</title>
-    <link>https://open.spotify.com/album/2D5Io7Mt92vEXi3DkOdq86</link>
-    <guid isPermaLink="false">Zatox × Regain|On The Beat|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>hardstyle</category>
-  </item>
-  <item>
-    <title>4444 OF A KIND × D-Block &amp; S-te-Fan × Sub Zero Project — 4 THE RAVE</title>
-    <link>https://open.spotify.com/album/6zLPI1PfpbkCxddmxqEwQL</link>
-    <guid isPermaLink="false">4444 OF A KIND × D-Block &amp; S-te-Fan × Sub Zero Project|4 THE RAVE|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>raw</category>
-  </item>
-  <item>
-    <title>Ran-D — Level Up (Knockout Outdoor 2026 Anthem)</title>
-    <link>https://open.spotify.com/album/5bLCsoXUSy20tMUcrWLOHF</link>
-    <guid isPermaLink="false">Ran-D|Level Up (Knockout Outdoor 2026 Anthem)|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>raw</category>
-  </item>
-  <item>
-    <title>Adaro × Ricardo Moreno — Lost On You</title>
-    <link>https://open.spotify.com/album/7r3bFKQHhMgcJz0pc5s4AO</link>
-    <guid isPermaLink="false">Adaro × Ricardo Moreno|Lost On You|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>raw</category>
-  </item>
-  <item>
-    <title>Yoshiko × Toxic Machinery — Hurt (Toxic Machinery Remix)</title>
-    <link>https://open.spotify.com/album/682JDcxRGeEIFtuoe11RsB</link>
-    <guid isPermaLink="false">Yoshiko × Toxic Machinery|Hurt (Toxic Machinery Remix)|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>uptempo</category>
-  </item>
-  <item>
-    <title>Deadly Guns — Let You Go</title>
-    <link>https://open.spotify.com/album/55grqWLVREV5VoPPDC4hM6</link>
-    <guid isPermaLink="false">Deadly Guns|Let You Go|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>uptempo</category>
-  </item>
-  <item>
-    <title>Dr Donk — Wink Wonk</title>
-    <link>https://open.spotify.com/album/7hFCSKim5k2C8gRrnLLiyv</link>
-    <guid isPermaLink="false">Dr Donk|Wink Wonk|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>uptempo</category>
-  </item>
-  <item>
-    <title>Paul Elstak × DJ Panda — Luv U More (DJ Panda Remix)</title>
-    <link>https://open.spotify.com/album/4Ca3PYbDssKaZFIbtzYbwT</link>
-    <guid isPermaLink="false">Paul Elstak × DJ Panda|Luv U More (DJ Panda Remix)|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>hardcore</category>
-  </item>
-  <item>
-    <title>HOLY PRIEST × Vieze Asbak — TECHNO</title>
-    <link>https://open.spotify.com/album/2HYlP1GIpdRQEDBIAvG23Y</link>
-    <guid isPermaLink="false">HOLY PRIEST × Vieze Asbak|TECHNO|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>techno</category>
-  </item>
-  <item>
-    <title>Sakyra × Korsakoff — The Storm</title>
-    <link>https://open.spotify.com/album/4CB4olzADZO4FIyZPU2hVL</link>
-    <guid isPermaLink="false">Sakyra × Korsakoff|The Storm|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
-    <category>raw</category>
-  </item>
-  <item>
-    <title>F. Noize × Deviation — Cold As Ice (Deviation Remix)</title>
-    <link>https://open.spotify.com/album/4LHPK8RSXGv3mfrawcnxXz</link>
-    <guid isPermaLink="false">F. Noize × Deviation|Cold As Ice (Deviation Remix)|2026-09-11</guid>
-    <pubDate>Fri, 11 Sep 2026 08:00:00 GMT</pubDate>
     <category>hardcore</category>
   </item>
 </channel></rss>
