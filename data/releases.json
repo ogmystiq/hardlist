@@ -1,11 +1,92 @@
 [
   {
-    "artist": "Anderex",
-    "title": "Reload",
+    "artist": "Drokz",
+    "title": "DROKZ46",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/1qCjpD0kOrNTpg1Pr49sjN",
+    "typ": "single"
+  },
+  {
+    "artist": "Unexist",
+    "title": "UNDERGROUND",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/6GF81v5xu4FkWTakmT0KS6",
+    "typ": "single"
+  },
+  {
+    "artist": "Gunz For Hire × Max Alexander",
+    "title": "Dream On",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/6OM4XfvWH66YrPIobPYlpH",
+    "typ": "single"
+  },
+  {
+    "artist": "Bass Chaserz × De Sfeermakers",
+    "title": "Ik Meen Het (Hardstyle Remix)",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/4y0mr7ubcc3T4bUClGyO5N",
+    "typ": "single"
+  },
+  {
+    "artist": "Showtek",
+    "title": "Runaway (feat. Francis Waves)",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/0tH67xdL2JIlPS6mnU1if5",
+    "typ": "single"
+  },
+  {
+    "artist": "Minus Militia × Radical Redemption × Nolz",
+    "title": "Recover The Archive (Hard Bass 2026 Anthem)",
     "genre": "uptempo",
     "bpm": 200,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/7yOeocY6jDT3KOvbcqo84F",
+    "typ": "single"
+  },
+  {
+    "artist": "The Purge × Dimatik × Und3rsound",
+    "title": "ONE NIGHT",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/2Ajy0i8kJ5q8ALeLmSBMyT",
+    "typ": "single"
+  },
+  {
+    "artist": "Dr Donk × TMPR",
+    "title": "Step Up",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/1Ys96E5xqKHMS6v03nBg7H",
+    "typ": "single"
+  },
+  {
+    "artist": "Hyrule War × Discipl!ne",
+    "title": "Built For War",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/0NA3d3LQbs7n7zBMAvomQJ",
+    "typ": "single"
+  },
+  {
+    "artist": "TNT × Ruffneck × Technoboy × Tuneboy",
+    "title": "MINDCONTROLLER 2K26",
+    "genre": "hardstyle",
+    "bpm": 150,
     "date": "2026-10-01",
-    "url": "https://open.spotify.com/album/73mygAvTaI6PMEkgssj4ze",
+    "url": "https://open.spotify.com/album/6bCW8FMSTndSVRbR46FOww",
     "typ": "single"
   },
   {
@@ -18,219 +99,30 @@
     "typ": "single"
   },
   {
-    "artist": "Dr Rude",
-    "title": "Brokko Maken (ALL STARS REMIX)",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/0sQpjOVWq6la32TdEeZbki",
-    "typ": "single"
-  },
-  {
-    "artist": "LNY TNZ × Outsiders",
-    "title": "Magic Key",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/1fRDbBtJoR11bq9UTGEML2",
-    "typ": "single"
-  },
-  {
-    "artist": "DIKKE BAAP × Chapter V",
-    "title": "DESTROY IT",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/2bXyyQIWVIHtW2WjFeYqBE",
-    "typ": "single"
-  },
-  {
-    "artist": "Ummet Ozcan",
-    "title": "Simulation",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/2V5WIohG89Meo7ROayvKjL",
-    "typ": "single"
-  },
-  {
-    "artist": "Bass Chaserz",
-    "title": "Brokko Maken (ALL STARS REMIX)",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/3ELGNwYw3VyOvakSNnubfB",
-    "typ": "single"
-  },
-  {
-    "artist": "Aftershock × Shadow Legacy",
-    "title": "Let Go",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/1xij8tPUMBV3GMgMsw7xm8",
-    "typ": "single"
-  },
-  {
-    "artist": "Dr. Peacock × DJ Furax",
-    "title": "Big Orgus 2K26",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/1lyW2q7LYzvohTKtAxRxMZ",
-    "typ": "single"
-  },
-  {
-    "artist": "Pinotello",
-    "title": "Brand New (Live Edit)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/56VzYne7sFwlna4Cl7pBFL",
-    "typ": "single"
-  },
-  {
-    "artist": "Digital Madness",
-    "title": "Holdin' On",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/4uN7CdtCOdHbE4dMrnH42s",
-    "typ": "single"
-  },
-  {
-    "artist": "D-Charged × Serzo",
-    "title": "See The Sun Again",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/2cierKpsRrkba5D7zX1GC9",
-    "typ": "single"
-  },
-  {
-    "artist": "GLDY LX × Lowriderz",
-    "title": "Hit It Hard",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/5JVCm2BNzbA3cwJ1oIouZ0",
-    "typ": "single"
-  },
-  {
-    "artist": "Vasto",
-    "title": "WHEN IT HITS",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/12G1M5kax6C8Qebst0VSvK",
-    "typ": "single"
-  },
-  {
-    "artist": "Vazooka",
-    "title": "Mechanical Warfare, Phase I: Mobilization",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/77vH7wBJXO50zoZbo59rOm",
-    "typ": "single"
-  },
-  {
-    "artist": "BAQ",
-    "title": "Conquest of Paradise",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/3aQICCSYSMPKAoYikaAdyJ",
-    "typ": "single"
-  },
-  {
-    "artist": "Barber",
-    "title": "Razor Riot",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/1Q1VSkevRgLYgcX2rjf0In",
-    "typ": "single"
-  },
-  {
-    "artist": "EQUAL2",
-    "title": "BOMBSTRAPPED",
+    "artist": "Anderex",
+    "title": "Reload",
     "genre": "uptempo",
     "bpm": 200,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/24R8CWOK7XwAdt9VAACvH3",
+    "date": "2026-10-01",
+    "url": "https://open.spotify.com/album/73mygAvTaI6PMEkgssj4ze",
     "typ": "single"
   },
   {
-    "artist": "F. Noize × Be Stronger",
-    "title": "Where Are U Now",
+    "artist": "Andy the Core × Purple Mash × Dirty Workz",
+    "title": "I GOT",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/4Ue3lcvqw2c3Z8IYz0NikX",
+    "date": "2026-09-30",
+    "url": "https://open.spotify.com/album/7e2pSFxsy72QsxidCUV3Gw",
     "typ": "single"
   },
   {
-    "artist": "Korsakoff × The Viper",
-    "title": "Midnight Blue",
+    "artist": "Alpine Universe × Billx",
+    "title": "The Top of the Mountain (Billx Rave Edit)",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/0GyquOv8MtnFGFKphmb15w",
-    "typ": "single"
-  },
-  {
-    "artist": "Spitnoise × Bössels × Tha Watcher × MC Flo",
-    "title": "The Need For Speed (Official Snakepit 2026 Anthem)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/5LN3AitY23Cad4nVioINDx",
-    "typ": "single"
-  },
-  {
-    "artist": "TerrorClown",
-    "title": "I Am Death",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/70NQO6JL0A2jqxAc0UhydV",
-    "typ": "single"
-  },
-  {
-    "artist": "The Darkraver",
-    "title": "Brokko Maken (ALL STARS REMIX)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/29C5lUYTzH40h9KXF6WP2l",
-    "typ": "single"
-  },
-  {
-    "artist": "Radical Redemption × Marshals of Mayhem",
-    "title": "IMPERIUM I",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/6bm1WO9itsHF2Na1VGoQMS",
-    "typ": "single"
-  },
-  {
-    "artist": "E-Force",
-    "title": "Violence Of Agony",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/02SUZjXaEPwxbaksKjkXRe",
-    "typ": "single"
-  },
-  {
-    "artist": "Fraw",
-    "title": "BIG BANG",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/7jEBcmAubq0xMDbmhFlFAb",
+    "date": "2026-09-30",
+    "url": "https://open.spotify.com/album/1k0y1hQ5FpuRfRe7AKOVpE",
     "typ": "single"
   }
 ]
