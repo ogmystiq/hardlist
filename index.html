@@ -1226,6 +1226,9 @@ footer{
 </footer>
 
 <script>
+/* Samma brytpunkt som CSS:en använder för mobil. Står överst så den finns
+   innan något ritas. */
+const TL_SMAL = window.matchMedia('(max-width:640px)');
 const GENRES = ['hardstyle','raw','uptempo','hardcore','techno'];
 /* Hur många dagar bakåt som visas. Måste matcha respektive fönster i
    skriptet: DAGAR_BAKAT (singlar) och DAGAR_BAKAT_ALBUM (album). En release
@@ -1661,7 +1664,7 @@ function drawTimeline(){
   const perDag = {};
   inom.forEach(r => { const n = dagar(r.date); (perDag[n] = perDag[n] || []).push(r); });
 
-  const smal = window.innerWidth < 640;
+  const smal = TL_SMAL.matches;
   /* På mobil döljs namnen, så stängerna behöver inte vara höga. */
   const bas  = smal ? 40 : 112;
   const steg = smal ? 14 : 28;
@@ -1683,9 +1686,49 @@ function drawTimeline(){
          oläslig remsa lodrätt — hela namnet står ändå i listan nedanför. */
       const kort = r.artist.split(' × ')[0];
       d.innerHTML = '<em>' + esc(kort) + '</em><u></u><i></i>';
+      d.dataset.dag = r.date;
       tl.appendChild(d);
     });
   });
+
+  glesaEtiketter();
+}
+
+/* Prickarna står alltid kvar, bara namnen gallras. Nyaste släppet ritas först
+   och vinner varje krock — det är det som är intressant. Mäts i pixlar efter
+   utritning, eftersom namnens längd och skärmens bredd avgör vad som krockar. */
+function glesaEtiketter(){
+  const namn = [...document.querySelectorAll('#tl .tl-dot em')];
+  namn.forEach(e => { e.style.visibility = ''; });
+  /* Under brytpunkten döljer CSS:en alla namn, då finns inget att mäta. */
+  if (TL_SMAL.matches) return;
+
+  const nyastForst = namn
+    .map(e => ({ e, dag: parseDate(e.parentNode.dataset.dag) }))
+    .sort((a, b) => b.dag - a.dag);
+
+  const ritade = [];
+  const luft = 2;
+  nyastForst.forEach(({ e }) => {
+    const r = e.getBoundingClientRect();
+    const krock = ritade.some(o =>
+      r.left < o.right + luft && r.right > o.left - luft &&
+      r.top < o.bottom + luft && r.bottom > o.top - luft);
+    /* visibility i stället för display, så stängerna behåller sin höjd. */
+    if (krock) e.style.visibility = 'hidden';
+    else ritade.push(r);
+  });
+}
+
+{
+  let vantar;
+  window.addEventListener('resize', () => {
+    clearTimeout(vantar);
+    vantar = setTimeout(glesaEtiketter, 150);
+  });
+  /* Mätt med reservtypsnittet blir namnen olika långa mot det riktiga, så
+     gallringen görs om när typsnitten är på plats. */
+  if (document.fonts) document.fonts.ready.then(glesaEtiketter);
 }
 
 function relCard(r, soon, lankText){
