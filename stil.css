@@ -211,9 +211,11 @@ a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
 .g-hardcore{--g:var(--hardcore)}
 .g-techno{--g:var(--techno)}
 
-/* Releaserad. Mobil: omslag, titel och artister, genre och datum till höger.
-   Dator: en tabell med titel, genre, släppt och en lyssna-knapp vid hovring.
-   Samma markup i båda, så att listan bara behöver ritas på ett sätt. */
+/* Releaserad. Mobil: omslag, titel och artister, genre till höger. Dator:
+   titel, genre och en lyssna-knapp som syns vid hovring. Samma markup i
+   båda, så att listan bara behöver ritas på ett sätt.
+   .med-datum på listan lägger till datumet, där raderna inte står under en
+   dagrubrik: kommande släpp och startsidans lista. */
 .rader{display:flex;flex-direction:column}
 .rad-huvud{display:none}
 .rad{
@@ -222,7 +224,7 @@ a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
   transition:background .15s;
 }
 a.rad:hover{background:var(--yta)}
-.rad-vanster{grid-row:span 2;display:flex;align-items:center;gap:14px;min-width:0}
+.rad-vanster{display:flex;align-items:center;gap:14px;min-width:0}
 .omslag{
   flex:none;width:52px;height:52px;border-radius:10px;background:var(--g);color:var(--natt);
   display:flex;align-items:flex-end;padding:0 0 4px 7px;
@@ -233,16 +235,25 @@ a.rad:hover{background:var(--yta)}
 .rad-titel{font-weight:650;font-size:16px}
 .rad-under{font-size:14px;color:var(--text-2)}
 .rad-typ{margin-left:8px;padding:2px 8px;border-radius:999px;background:var(--yta-2);font-size:12px;font-weight:600;color:var(--text-2);vertical-align:2px}
-.rad-genre{align-self:end;justify-self:end;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--g)}
+.rad-genre{justify-self:end;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--g)}
 .rad-genre .prick{display:none}
-.rad-datum{align-self:start;justify-self:end;font-size:13px;color:var(--text-3)}
+.rad-datum{display:none}
 .rad-spela{display:none}
 
+.med-datum .rad-vanster{grid-row:span 2}
+.med-datum .rad-genre{align-self:end}
+.med-datum .rad-datum{display:block;align-self:start;justify-self:end;font-size:13px;color:var(--text-3)}
+
+/* Sökfältet är en label med ikon och fält. Fokusringen sitter på hela
+   pillret, eftersom fältet självt saknar egen kant. */
 .sok{
-  width:100%;min-height:48px;padding:0 20px;border:0;border-radius:999px;
-  background:var(--yta);color:var(--text);font-size:16px;
+  display:flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;
+  border-radius:999px;background:var(--yta);color:var(--text-3);
 }
-.sok::placeholder{color:var(--text-3)}
+.sok svg{flex:none;width:18px;height:18px}
+.sok input{flex:1;min-width:0;height:46px;border:0;background:none;color:var(--text);font-size:16px;outline:none}
+.sok input::placeholder{color:var(--text-3)}
+.sok:focus-within{outline:2px solid var(--hardstyle);outline-offset:2px}
 
 /* Rad som går att svepa i sidled på mobil, utan synlig rullist. */
 .rull{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--marginal));padding:2px var(--marginal)}
@@ -305,16 +316,16 @@ a.rad:hover{background:var(--yta)}
   .delad-sida{flex:1 1 240px;display:flex;flex-direction:column;gap:16px}
   .delad-sida > .kort{flex:1}
 
-  .rad-huvud,.rad{grid-template-columns:minmax(0,1fr) 130px 90px 48px;column-gap:16px}
-  .rad-huvud{
+  .rad{grid-template-columns:minmax(0,1fr) 170px 48px;column-gap:16px;margin:0;padding:8px 12px;min-height:72px}
+  .rad-genre{justify-self:start;font-size:15px;font-weight:400;color:#D9D1E6}
+  .rad-genre .prick{display:block}
+  .med-datum .rad-huvud,.med-datum .rad{grid-template-columns:minmax(0,1fr) 130px 90px 48px;column-gap:16px}
+  .med-datum .rad-huvud{
     display:grid;padding:0 12px 10px;border-bottom:1px solid var(--yta-2);margin-bottom:4px;
     font-size:14px;color:var(--text-3);
   }
-  .rad{margin:0;padding:8px 12px;min-height:72px}
-  .rad-vanster{grid-row:auto}
-  .rad-genre,.rad-datum{align-self:center;justify-self:start;font-size:15px}
-  .rad-genre{font-weight:400;color:#D9D1E6}
-  .rad-genre .prick{display:block}
+  .med-datum .rad-vanster{grid-row:auto}
+  .med-datum .rad-genre,.med-datum .rad-datum{align-self:center;justify-self:start;font-size:15px}
   .rad-spela{
     display:flex;width:44px;height:44px;border-radius:50%;
     background:var(--text);color:var(--natt);align-items:center;justify-content:center;
