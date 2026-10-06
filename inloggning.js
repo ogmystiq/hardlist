@@ -143,14 +143,20 @@
     const a = knapp();
     if (!a) return;
     a.href = '/konto/';
-    a.classList.remove('inloggad');
+    a.classList.remove('inloggad', 'med-bild');
+    // Nya designen har bild och namn i egna delar, gamla sidor bara text.
+    // Båda måste fungera tills alla sidor är ombyggda.
+    const namnDel = a.querySelector('.konto-namn');
+    const bildDel = a.querySelector('.konto-bild');
+    const text = !lage ? 'Logga in' : (lage.namn || 'Välj namn');
+    if (namnDel) namnDel.textContent = text; else a.textContent = text;
+    if (bildDel) bildDel.textContent = lage && lage.namn ? lage.namn.charAt(0).toUpperCase() : '';
     if (!lage){
-      a.textContent = 'Logga in';
       a.removeAttribute('title');
       return;
     }
     a.classList.add('inloggad');
-    a.textContent = lage.namn || 'Välj namn';
+    if (bildDel && lage.namn) a.classList.add('med-bild');
     a.title = lage.namn ? 'Ditt konto' : 'Välj visningsnamn';
   }
 

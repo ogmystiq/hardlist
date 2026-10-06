@@ -1,0 +1,260 @@
+/* HARDLIST — gemensam stil för alla sidor.
+
+   Laddas som /stil.css?v=ÅÅÅÅ-MM-DD. Ändra datumet i alla sidor varje gång
+   filen ändras: GitHub Pages låter webbläsare spara den i tio minuter, och
+   under den tiden kan någon annars få ny markup med gammal stil.
+
+   Det som bara en sida använder ligger i den sidans eget <style>-block.
+   Referensen för allt här är hardlist-design.md. */
+
+:root{
+  --natt:#100C17;
+  --yta:#1A1424;
+  --yta-2:#251D31;
+  --yta-hover:#211A2C;
+  --text:#F6F2FB;
+  --text-2:#B9AFC9;
+  --text-3:#8E84A0;
+  --rosa:#FF3B6B;
+
+  /* Färg betyder alltid genre, aldrig dekoration. */
+  --hardstyle:#3DDCF0;
+  --raw:#FF3B6B;
+  --uptempo:#FFB224;
+  --hardcore:#A47BFF;
+  --techno:#A9A9BC;
+
+  --ratt:var(--hardstyle);
+  --fel:var(--rosa);
+
+  --marginal:20px;
+  --bredd:1240px;
+  --meny-hojd:72px;
+}
+
+/* ---------- Grund ---------- */
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--natt);
+  color:var(--text);
+  font-family:'Archivo',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+/* iOS zoomar in på fält under 16 px och zoomar aldrig ut igen. */
+input,select,textarea{font-size:16px}
+button{cursor:pointer}
+img,svg{display:block;max-width:100%}
+p{margin:0}
+:focus-visible{outline:2px solid var(--hardstyle);outline-offset:2px}
+
+h1,h2,h3{margin:0;font-stretch:62%;font-weight:900;line-height:.95;letter-spacing:-.01em}
+h1{font-size:46px}
+h2{font-size:28px;font-weight:800;line-height:1}
+h3{font-size:22px;font-weight:800;line-height:1}
+
+.dold{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+.hoppa{
+  position:absolute;left:var(--marginal);top:-100px;z-index:20;
+  padding:12px 20px;border-radius:999px;background:var(--text);color:var(--natt);font-weight:700;
+}
+.hoppa:focus{top:12px}
+
+/* ---------- Ram: topp, meny, sidfot ---------- */
+
+.topp{
+  max-width:var(--bredd);margin:0 auto;
+  padding:14px var(--marginal) 6px;
+  display:flex;align-items:center;gap:28px;
+}
+.logga{
+  display:inline-flex;align-items:center;min-height:44px;
+  font-stretch:62%;font-weight:900;font-size:27px;line-height:1;letter-spacing:-.01em;
+  color:var(--text);
+}
+.logga span{color:var(--rosa)}
+
+.meny{display:flex;gap:4px}
+.meny a{
+  display:inline-flex;align-items:center;min-height:44px;padding:0 16px;
+  border-radius:999px;color:var(--text-2);font-weight:650;font-size:15px;
+  transition:background .15s,color .15s;
+}
+.meny a:hover{background:var(--yta);color:var(--text)}
+.meny a[aria-current="page"]{background:var(--yta);color:var(--text)}
+.meny svg{display:none;width:24px;height:24px}
+
+/* Kontoknappen fylls av inloggning.js: initialen i bilden, namnet bredvid.
+   Utloggad är bilden tom och bara texten "Logga in" syns. */
+.konto{
+  margin-left:auto;flex:none;
+  display:inline-flex;align-items:center;gap:10px;
+  min-height:44px;padding:0 18px;border-radius:999px;
+  background:var(--yta);font-weight:650;font-size:15px;
+  transition:background .15s;
+}
+.konto:hover{background:var(--yta-hover)}
+.konto[aria-busy="true"]{opacity:.6}
+.konto.med-bild{padding:4px 16px 4px 4px}
+.konto-bild{
+  display:flex;flex:none;width:36px;height:36px;border-radius:50%;
+  background:var(--hardcore);color:var(--natt);
+  align-items:center;justify-content:center;font-weight:800;font-size:16px;line-height:1;
+}
+.konto-bild:empty{display:none}
+
+.sida{max-width:var(--bredd);margin:0 auto;padding:12px var(--marginal) 0}
+
+.sidfot{margin-top:56px;border-top:1px solid var(--yta-2)}
+.sidfot-inre{
+  max-width:var(--bredd);margin:0 auto;
+  padding:28px var(--marginal) 24px;
+  display:flex;flex-direction:column;gap:24px;
+}
+.sidfot-topp{display:flex;flex-direction:column;gap:24px}
+.sidfot-om{display:flex;flex-direction:column;gap:8px}
+.sidfot-om .logga{align-self:flex-start;font-size:26px}
+.sidfot-om p{max-width:30ch;font-size:15px;line-height:1.45;color:var(--text-2)}
+.sidfot-grupper{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 16px}
+.sidfot nav{display:flex;flex-direction:column;min-width:0}
+.sidfot-rubrik{font-size:14px;font-weight:700;padding-bottom:2px}
+.sidfot nav a,.sidfot-post{
+  display:flex;align-items:center;min-height:44px;
+  font-size:15px;color:var(--text-2);overflow-wrap:anywhere;
+}
+.sidfot nav a:hover,.sidfot-post:hover{color:var(--text)}
+.sidfot-status{display:flex;flex-direction:column;gap:4px;font-size:13px;line-height:1.5;color:var(--text-3)}
+.sidfot-post{align-self:flex-start}
+/* Adressen står i Bidra på dator, men är för lång för två kolumner på
+   mobil och ligger där sist i statusraden i stället. */
+.sidfot nav .bara-dator{display:none}
+
+/* ---------- Komponenter ---------- */
+
+.knapp{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:0 24px;border:0;border-radius:999px;
+  background:var(--rosa);color:var(--natt);
+  font-weight:700;font-size:16px;line-height:1.2;text-align:center;
+  transition:transform .12s,filter .15s;
+}
+.knapp:hover{filter:brightness(1.08)}
+.knapp:active{transform:scale(.97)}
+.knapp-sek{background:var(--yta-2);color:var(--text)}
+
+.ruta{
+  position:relative;overflow:hidden;
+  background:var(--yta);border-radius:24px;padding:22px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.ruta > *{position:relative}
+/* Den stora siffran bakom texten i sidans viktigaste ruta. */
+.ruta > .ruta-siffra{
+  position:absolute;right:-10px;top:-26px;
+  font-stretch:62%;font-weight:900;font-size:168px;line-height:1;letter-spacing:-.04em;
+  color:#241C30;pointer-events:none;user-select:none;
+}
+a.ruta,a.kort{transition:background .15s}
+a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
+
+.kort{
+  background:var(--yta);border-radius:20px;padding:16px;
+  display:flex;flex-direction:column;gap:4px;min-height:96px;
+}
+.kort-titel{font-weight:700;font-size:16px}
+.kort-text{font-size:14px;line-height:1.35;color:var(--text-2)}
+
+.ingress{max-width:40ch;font-size:16px;line-height:1.45;color:var(--text-2)}
+
+.chip{
+  flex:none;display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 16px;border:0;border-radius:999px;
+  background:var(--yta);color:var(--text-2);font-size:15px;font-weight:600;
+  transition:background .18s,color .18s;
+}
+.chip[aria-pressed="true"]{background:var(--text);color:var(--natt)}
+.prick{flex:none;width:8px;height:8px;border-radius:50%;background:var(--g)}
+
+.g-hardstyle{--g:var(--hardstyle)}
+.g-raw{--g:var(--raw)}
+.g-uptempo{--g:var(--uptempo)}
+.g-hardcore{--g:var(--hardcore)}
+.g-techno{--g:var(--techno)}
+
+/* Länkar i löptext måste synas som länkar även utan färg. */
+.text a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--text-3)}
+.text a:hover{text-decoration-color:var(--text)}
+
+/* ---------- Mobil ---------- */
+
+@media (max-width:859px){
+  body{padding-bottom:calc(var(--meny-hojd) + env(safe-area-inset-bottom))}
+
+  .meny{
+    position:fixed;left:0;right:0;bottom:0;z-index:10;
+    display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;
+    padding:6px 6px calc(8px + env(safe-area-inset-bottom));
+    background:var(--natt);border-top:1px solid var(--yta-2);
+  }
+  .meny a{
+    flex-direction:column;justify-content:center;gap:4px;
+    min-height:56px;padding:0;border-radius:12px;
+    font-size:11px;font-weight:600;color:var(--text-3);
+  }
+  .meny a:hover,.meny a[aria-current="page"]{background:none;color:var(--text)}
+  .meny svg{display:block}
+
+  /* På mobil räcker den runda bilden, namnet läses bara upp. */
+  .konto.med-bild{padding:4px;background:none}
+  .konto.med-bild .konto-namn{
+    position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;
+  }
+}
+
+/* ---------- Dator ---------- */
+
+@media (min-width:860px){
+  :root{--marginal:32px}
+  .topp{padding-top:22px;padding-bottom:22px}
+  .logga{font-size:30px}
+
+  h1{font-size:72px;line-height:.9;letter-spacing:-.015em}
+  h2{font-size:40px}
+  h3{font-size:26px}
+
+  .ruta{border-radius:28px;padding:32px;gap:16px}
+  .ruta > .ruta-siffra{right:-18px;top:-44px;font-size:300px;letter-spacing:-.05em}
+  .kort{border-radius:24px;padding:22px}
+  .kort-titel{font-size:18px}
+  .kort-text{font-size:15px;line-height:1.4}
+  .ingress{font-size:17px;line-height:1.5}
+  .knapp{min-height:52px;padding:0 28px;font-size:17px}
+
+  .sidfot{margin-top:72px}
+  .sidfot-inre{padding:48px var(--marginal) 36px;gap:36px}
+  .sidfot-topp{flex-direction:row;flex-wrap:wrap;gap:28px 48px}
+  .sidfot-om{flex:2 1 280px}
+  .sidfot-om .logga{font-size:30px}
+  .sidfot-om p{max-width:32ch;font-size:16px;line-height:1.5}
+  .sidfot-grupper{display:contents}
+  .sidfot nav{flex:1 1 140px}
+  .sidfot-rubrik{font-size:15px;padding-bottom:4px}
+  .sidfot nav a{min-height:40px}
+  .sidfot nav .bara-dator{display:flex}
+  .sidfot-status{flex-direction:row;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-size:14px}
+  .sidfot-status .sidfot-post{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
