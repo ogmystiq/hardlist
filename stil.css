@@ -297,6 +297,20 @@ a.rad:hover{background:var(--yta)}
 .prosa h3{margin-top:12px;font-stretch:100%;font-size:19px;font-weight:700;line-height:1.3;letter-spacing:0;color:var(--text)}
 .prosa ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
 .prosa strong{color:var(--text)}
+.prosa > :first-child{margin-top:0}
+.prosa h4{margin:10px 0 -4px;font-size:17px;font-weight:700;line-height:1.3;color:var(--text)}
+.prosa ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
+/* Rubrikernas andra rad var kursiv i den gamla designen. Orden står kvar,
+   kursiven gör det inte. */
+h1 em{font-style:normal}
+
+/* Sektioner i guiderna, och faktarutor som står för sig själva. Inuti en
+   ruta används .not aldrig — högst en nivå yta. */
+.avsnitt{display:flex;flex-direction:column;gap:12px;margin-top:36px;scroll-margin-top:16px}
+.not{background:var(--yta);border-radius:20px;padding:16px 18px;font-size:15px;line-height:1.55;color:var(--text-2)}
+.not b:first-child{display:block;margin-bottom:4px;font-size:16px;color:var(--text)}
+.not strong{color:var(--text)}
+
 .etikett-chip{align-self:flex-start;padding:7px 12px;border-radius:999px;background:var(--yta-2);font-size:14px;color:var(--text-2)}
 
 /* Länkar i löptext måste synas som länkar även utan färg. */
@@ -351,6 +365,8 @@ a.rad:hover{background:var(--yta)}
   .ingress{font-size:17px;line-height:1.5}
   .sidhuvud{margin:12px 0 28px}
   .prosa{font-size:17px}
+  .avsnitt{margin-top:56px;gap:16px}
+  .not{padding:20px 24px}
   .prosa h2{margin-top:32px;font-size:32px}
   .prosa h3{font-size:21px}
 
