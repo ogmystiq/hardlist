@@ -317,6 +317,42 @@ h1 em{font-style:normal}
 .text a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--text-3)}
 .text a:hover{text-decoration-color:var(--text)}
 
+/* ---------- Spelen: quizet och låtspelet ---------- */
+
+.q-siffror{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.q-ruta{background:var(--yta);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.q-ruta span{font-size:13px;color:var(--text-3)}
+.q-ruta b{font-stretch:62%;font-weight:900;font-size:28px;line-height:1;overflow-wrap:anywhere}
+.q-ruta b.q-niva{font-size:22px;line-height:1.27}
+.q-datumrad{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.q-datum{font-size:15px;color:var(--text-3)}
+.q-chip{padding:4px 10px;border-radius:999px;background:var(--yta-2);font-size:13px}
+.bricka{
+  flex:none;display:flex;width:36px;height:36px;border-radius:50%;
+  align-items:center;justify-content:center;background:var(--yta-2);color:var(--text-2);
+  font-size:15px;font-weight:800;
+}
+.bricka svg{width:18px;height:18px}
+.q-utfall,.q-plus{font-stretch:62%;font-weight:900;font-size:34px;line-height:1}
+.q-utfall{display:inline-flex;align-items:center;gap:8px}
+.q-utfall svg{width:24px;height:24px}
+.q-utfall.ja,.q-plus{color:var(--ratt)}
+.q-utfall.nej{color:var(--fel)}
+.q-nasta{font-size:14px;color:var(--text-3)}
+.q-spelare{display:flex;align-items:center;gap:14px;background:var(--yta);border-radius:20px;padding:14px 16px}
+.q-play{flex:none;display:flex;width:52px;height:52px;border:0;border-radius:50%;background:var(--text);color:var(--natt);align-items:center;justify-content:center}
+.q-play svg{width:18px;height:18px;fill:currentColor}
+.q-spelare .info{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.q-spelare-rubrik{font-weight:700;font-size:15px}
+.q-bar{height:6px;border-radius:999px;background:var(--yta-2);overflow:hidden}
+.q-bar i{display:block;height:6px;width:0;border-radius:999px;background:var(--text)}
+.q-tid{font-size:13px;color:var(--text-3)}
+.q-volym{display:flex;align-items:center;gap:10px;min-height:44px}
+.q-volym svg{flex:none;width:16px;height:16px;fill:var(--text-2)}
+.q-volym input{flex:1;min-width:0;accent-color:var(--text);height:44px;font-size:16px}
+.q-volnivå{flex:none;width:40px;text-align:right;font-size:13px;color:var(--text-2)}
+.q-volym-not{font-size:13px;color:var(--text-3)}
+
 /* ---------- Mobil ---------- */
 
 @media (max-width:859px){
@@ -395,6 +431,9 @@ h1 em{font-style:normal}
   .rull{flex-wrap:wrap;overflow:visible;margin:0;padding:0}
   .knapp{min-height:52px;padding:0 28px;font-size:17px}
 
+  .q-siffror{gap:12px}
+  .q-ruta{padding:14px 18px}
+  .q-ruta b{font-size:32px}
   .sidfot{margin-top:72px}
   .sidfot-inre{padding:48px var(--marginal) 36px;gap:36px}
   .sidfot-topp{flex-direction:row;flex-wrap:wrap;gap:28px 48px}

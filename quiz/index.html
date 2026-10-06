@@ -40,11 +40,6 @@
 
 /* Poäng, svit och nivå. Nivån i vanlig textfärg, den har ingen genre. */
 .q-topp{display:flex;flex-direction:column;gap:8px}
-.q-siffror{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.q-ruta{background:var(--yta);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
-.q-ruta span{font-size:13px;color:var(--text-3)}
-.q-ruta b{font-stretch:62%;font-weight:900;font-size:28px;line-height:1;overflow-wrap:anywhere}
-.q-ruta b.q-niva{font-size:22px;line-height:1.27}
 .q-mer{font-size:14px;color:var(--text-3)}
 .q-uppmaning{gap:12px}
 .q-uppmaning p{font-size:15px;line-height:1.5;color:var(--text-2)}
@@ -52,9 +47,6 @@
 .q-uppmaning .knapp{align-self:flex-start}
 
 .q-kort{display:flex;flex-direction:column;gap:18px}
-.q-datumrad{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.q-datum{font-size:15px;color:var(--text-3)}
-.q-chip{padding:4px 10px;border-radius:999px;background:var(--yta-2);font-size:13px}
 .q-fraga{font-size:44px;line-height:.95;font-weight:900}
 .q-regel{font-size:16px;line-height:1.5;color:var(--text-2)}
 .q-regel b{color:var(--text)}
@@ -81,12 +73,6 @@
 .alt:hover:not(:disabled){background:var(--yta-2)}
 .alt:active:not(:disabled){transform:scale(.98)}
 .alt:disabled{cursor:default}
-.bricka{
-  flex:none;display:flex;width:36px;height:36px;border-radius:50%;
-  align-items:center;justify-content:center;background:var(--yta-2);color:var(--text-2);
-  font-size:15px;font-weight:800;
-}
-.bricka svg{width:18px;height:18px}
 .alt-text{flex:1;min-width:0}
 /* Rätt alltid cyan med bock, fel alltid rosa med kryss. Färgen står
    aldrig ensam. */
@@ -108,30 +94,11 @@
 @keyframes q-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .q-svar{padding:18px;gap:10px;border-radius:20px}
 .q-svar-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.q-utfall,.q-plus{font-stretch:62%;font-weight:900;font-size:34px;line-height:1}
-.q-utfall{display:inline-flex;align-items:center;gap:8px}
-.q-utfall svg{width:24px;height:24px}
-.q-utfall.ja,.q-plus{color:var(--ratt)}
-.q-utfall.nej{color:var(--fel)}
 .q-facit-text{font-size:16px;line-height:1.5;color:#D9D1E6}
-.q-nasta{font-size:14px;color:var(--text-3)}
 .q-knappar{display:flex;gap:10px}
 .q-knappar .knapp{flex:1;min-height:50px;padding:0 16px}
 
 /* Låtquiz: spelaren ovanför frågan. */
-.q-spelare{display:flex;align-items:center;gap:14px;background:var(--yta);border-radius:20px;padding:14px 16px}
-.q-play{flex:none;display:flex;width:52px;height:52px;border:0;border-radius:50%;background:var(--text);color:var(--natt);align-items:center;justify-content:center}
-.q-play svg{width:18px;height:18px;fill:currentColor}
-.q-spelare .info{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
-.q-spelare-rubrik{font-weight:700;font-size:15px}
-.q-bar{height:6px;border-radius:999px;background:var(--yta-2);overflow:hidden}
-.q-bar i{display:block;height:6px;width:0;border-radius:999px;background:var(--text)}
-.q-tid{font-size:13px;color:var(--text-3)}
-.q-volym{display:flex;align-items:center;gap:10px;min-height:44px}
-.q-volym svg{flex:none;width:16px;height:16px;fill:var(--text-2)}
-.q-volym input{flex:1;min-width:0;accent-color:var(--text);height:44px;font-size:16px}
-.q-volnivå{flex:none;width:40px;text-align:right;font-size:13px;color:var(--text-2)}
-.q-volym-not{font-size:13px;color:var(--text-3)}
 
 .q-fredag{font-size:14px;line-height:1.5;color:var(--text-2)}
 .q-fredag:empty{display:none}
@@ -167,9 +134,6 @@
   .q{padding-top:20px;gap:26px}
   .q-rubrik{font-size:52px}
   .q-fraga{font-size:56px}
-  .q-siffror{gap:12px}
-  .q-ruta{padding:14px 18px}
-  .q-ruta b{font-size:32px}
   .q-om h2{font-size:32px}
 }
 </style>
