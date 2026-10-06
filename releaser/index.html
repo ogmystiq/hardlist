@@ -58,6 +58,7 @@
 
 .kommande{display:flex;flex-direction:column;gap:8px;margin-top:28px}
 .verktyg{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.kalla{margin-top:16px}
 
 /* Dagrubriken ligger kvar överst medan man scrollar genom dagen. */
 .dag{display:flex;flex-direction:column}
@@ -155,6 +156,11 @@
     </label>
   </div>
 
+  <p class="kalla">
+    <svg class="spotify-ikon" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Spotify"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+    <span>Omslag och data från Spotify</span>
+  </p>
+
   <div class="dagar" id="dagar">
     <p class="tom">Hämtar releaserna.</p>
   </div>
@@ -249,12 +255,24 @@ function gransFor(r){
 
 /* Datumet ritas alltid. Det syns bara i listor med .med-datum, där raderna
    inte står under en dagrubrik. */
+/* Spotifys eget omslag när det finns, annars bokstavsrutan. Bara bilder från
+   Spotifys bildserver visas, samma krav som hämtningsskriptet ställer. */
+const SPOTIFY_BILD = 'https://i.scdn.co/image/';
+function omslag(r){
+  const initial = esc(artister(r.artist).charAt(0).toUpperCase());
+  if (typeof r.omslag === 'string' && r.omslag.startsWith(SPOTIFY_BILD)){
+    return '<img class="omslag-bild" src="' + esc(r.omslag) + '" alt="" width="52" height="52" ' +
+      'loading="lazy" decoding="async" referrerpolicy="no-referrer" data-initial="' + initial + '">';
+  }
+  return '<span class="omslag" aria-hidden="true">' + initial + '</span>';
+}
+
 function rad(r, datumText){
   const g = normGenre(r.genre);
   const titel = r.title || r.titel || '';
   const inre =
     '<span class="rad-vanster">' +
-      '<span class="omslag" aria-hidden="true">' + esc(artister(r.artist).charAt(0).toUpperCase()) + '</span>' +
+      omslag(r) +
       '<span class="rad-mitt">' +
         '<span class="rad-titel">' + esc(titel) +
           (r.typ === 'album' ? '<span class="rad-typ">Album</span>' : '') + '</span>' +
@@ -369,6 +387,18 @@ document.getElementById('filter').addEventListener('click', e => {
 });
 
 document.getElementById('sok').addEventListener('input', e => { sok = e.target.value; ritaLista(); });
+
+/* Går ett omslag inte att ladda tar bokstavsrutan över, hellre än en tom
+   ruta eller webbläsarens trasiga bild. */
+document.addEventListener('error', e => {
+  const bild = e.target;
+  if (!(bild instanceof HTMLImageElement) || !bild.classList.contains('omslag-bild')) return;
+  const ruta = document.createElement('span');
+  ruta.className = 'omslag';
+  ruta.setAttribute('aria-hidden', 'true');
+  ruta.textContent = bild.dataset.initial || '';
+  bild.replaceWith(ruta);
+}, true);
 
 ladda();
 </script>

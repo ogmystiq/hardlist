@@ -713,6 +713,25 @@ function relevant(dateStr, dagarBakat = DAGAR_BAKAT) {
 
 const nyckel = r => `${r.artist} – ${r.title}`.toLowerCase();
 
+/* Omslaget följer redan med i albumsvaret, så det kostar inga extra anrop.
+   300 px räcker gott till 52 px-rutorna även på skärmar med hög upplösning.
+   Bara Spotifys egen bildserver godkänns: sajten får visa Spotifys omslag,
+   inte vad som helst ett svar råkar peka på. Saknas fältet — det är inte
+   kontrollerat mot ett riktigt svar efter Spotifys ändringar 2026 — blir
+   det inget omslag, och sajten visar bokstavsrutan som förut. */
+function omslagUrl(a) {
+  const bilder = (Array.isArray(a.images) ? a.images : [])
+    .filter(b => typeof b?.url === 'string' && b.url.startsWith('https://i.scdn.co/image/'));
+  if (!bilder.length) return '';
+  const exakt = bilder.find(b => b.width === 300);
+  if (exakt) return exakt.url;
+  /* Ingen 300-version: den minsta som ändå är minst 300, annars den största.
+     "Närmast 300" valde 64 px framför 640, och det blir suddigt i mobilen. */
+  const bredd = b => Number(b.width) || 0;
+  const storre = bilder.filter(b => bredd(b) >= 300).sort((x, y) => bredd(x) - bredd(y));
+  return (storre[0] || bilder.slice().sort((x, y) => bredd(y) - bredd(x))[0]).url;
+}
+
 /* Ett sparat fynd vet sitt eget fönster via typ — annars skulle ett album
    (30 dagars fönster) hinna åldras bort med sjudagarsfiltret innan
    albumrotationen kommer tillbaka till artisten. Äldre poster utan typ-fält
@@ -738,7 +757,13 @@ function samlaIn(items, name, genre, typ, dagarBakat, alla) {
       url: a.external_urls?.spotify || '',
       typ
     };
-    if (!alla.has(nyckel(rel))) { alla.set(nyckel(rel), rel); nya++; }
+    const omslag = omslagUrl(a);
+    if (omslag) rel.omslag = omslag;
+    const fanns = alla.get(nyckel(rel));
+    if (!fanns) { alla.set(nyckel(rel), rel); nya++; }
+    /* Poster sparade före omslagen får sitt när skivan ses igen. Inget
+       annat i den sparade posten ändras. */
+    else if (omslag && !fanns.omslag) fanns.omslag = omslag;
   }
   return nya;
 }
@@ -1061,6 +1086,9 @@ Bekräftelsen skulle kosta mellan ${kandidater.length} och ${kandidater.length +
     artister: ARTISTS.length,
     cachade: Object.keys(state.ids).length,
     releaser: out.length,
+    /* Visar om Spotify skickar med omslagen. Står den på 0 när releaser
+       inte gör det har fältet försvunnit ur svaret. */
+    medOmslag: out.filter(r => r.omslag).length,
     anrop,
     albumAnrop: albumKlara,
     albumIndex: state.albumIndex,

@@ -230,6 +230,12 @@ a.rad:hover{background:var(--yta)}
   display:flex;align-items:flex-end;padding:0 0 4px 7px;
   font-stretch:62%;font-weight:900;font-size:34px;line-height:.8;
 }
+/* Spotifys omslag: aldrig beskuret och inget ovanpå, högst 4 px rundning.
+   Det är villkoren för att få visa dem. */
+.omslag-bild{
+  flex:none;display:block;width:52px;height:52px;border-radius:4px;
+  object-fit:contain;background:var(--yta-2);
+}
 .rad-mitt{min-width:0;display:flex;flex-direction:column;gap:3px}
 .rad-titel,.rad-under{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rad-titel{font-weight:650;font-size:16px}
@@ -243,6 +249,11 @@ a.rad:hover{background:var(--yta)}
 .med-datum .rad-vanster{grid-row:span 2}
 .med-datum .rad-genre{align-self:end}
 .med-datum .rad-datum{display:block;align-self:start;justify-self:end;font-size:13px;color:var(--text-3)}
+
+/* Källraden vid Spotifys innehåll. Ikonen hålls vit och oförändrad i form,
+   minst 21 px, som Spotifys riktlinjer kräver. */
+.kalla{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-2)}
+.spotify-ikon{flex:none;width:21px;height:21px;color:var(--text)}
 
 /* Sökfältet är en label med ikon och fält. Fokusringen sitter på hela
    pillret, eftersom fältet självt saknar egen kant. */
