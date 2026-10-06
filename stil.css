@@ -108,7 +108,8 @@ h3{font-size:22px;font-weight:800;line-height:1}
 .konto.med-bild{padding:4px 16px 4px 4px}
 .konto-bild{
   display:flex;flex:none;width:36px;height:36px;border-radius:50%;
-  background:var(--hardcore);color:var(--natt);
+  /* Neutral med flit: färg betyder bara genre, och kontot har ingen. */
+  background:var(--yta-2);color:var(--text);
   align-items:center;justify-content:center;font-weight:800;font-size:16px;line-height:1;
 }
 .konto-bild:empty{display:none}
@@ -174,7 +175,23 @@ a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
 .kort-titel{font-weight:700;font-size:16px}
 .kort-text{font-size:14px;line-height:1.35;color:var(--text-2)}
 
+.kort.med-ikon{gap:14px;min-height:132px;justify-content:space-between}
+.kort-ikon{
+  display:flex;flex:none;width:44px;height:44px;border-radius:50%;
+  background:var(--text);color:var(--natt);align-items:center;justify-content:center;
+}
+.kort-ikon svg{width:18px;height:18px}
+.kort-delar{display:flex;flex-direction:column;gap:3px}
+
 .ingress{max-width:40ch;font-size:16px;line-height:1.45;color:var(--text-2)}
+
+.sidhuvud{display:flex;flex-direction:column;gap:10px;margin:8px 0 20px}
+
+/* Huvudrutan med två mindre kort bredvid på dator och under på mobil,
+   som "Dagens fråga" på startsidan. */
+.delad{display:flex;flex-direction:column;gap:12px}
+.delad > .ruta .knapp{align-self:flex-start}
+.delad-sida{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 
 .chip{
   flex:none;display:inline-flex;align-items:center;gap:8px;
@@ -237,7 +254,16 @@ a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
   .kort{border-radius:24px;padding:22px}
   .kort-titel{font-size:18px}
   .kort-text{font-size:15px;line-height:1.4}
+  .kort.med-ikon{min-height:142px;gap:18px}
+  .kort-ikon{width:48px;height:48px}
+  .kort-ikon svg{width:20px;height:20px}
   .ingress{font-size:17px;line-height:1.5}
+  .sidhuvud{margin:12px 0 28px}
+
+  .delad{flex-direction:row;flex-wrap:wrap;gap:16px}
+  .delad > .ruta{flex:2 1 420px;min-height:300px;justify-content:flex-end}
+  .delad-sida{flex:1 1 240px;display:flex;flex-direction:column;gap:16px}
+  .delad-sida > .kort{flex:1}
   .knapp{min-height:52px;padding:0 28px;font-size:17px}
 
   .sidfot{margin-top:72px}
