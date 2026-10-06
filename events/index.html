@@ -2,1148 +2,225 @@
 <html lang="sv">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Festivalguider: Defqon.1, Decibel, Dominator — HARDLIST</title>
-<meta name="description" content="Stages, avstånd, regler och priser för de stora hard dance-festivalerna. Vad du behöver veta innan du bokar.">
-<meta name="keywords" content="defqon 1 guide, decibel outdoor, dominator festival, intents, rebirth, supremacy, hardstyle festival">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Event: kalender och festivalguider — HARDLIST</title>
+<meta name="description" content="Bekräftade hardstyle-rave i Norden och Europa, och guider till Defqon.1, Decibel, Dominator och fler: scener, avstånd, regler och priser.">
 <link rel="canonical" href="https://hardlist.se/events/">
 <link rel="alternate" type="application/rss+xml" title="HARDLIST — nya releaser" href="https://hardlist.se/releaser.xml">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0A0612">
+<meta name="theme-color" content="#100C17">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HARDLIST">
 <meta property="og:locale" content="sv_SE">
 <meta property="og:url" content="https://hardlist.se/events/">
-<meta property="og:title" content="Festivalguider: Defqon.1, Decibel, Dominator — HARDLIST">
-<meta property="og:description" content="Stages, avstånd, regler och priser för de stora hard dance-festivalerna. Vad du behöver veta innan du bokar.">
+<meta property="og:title" content="Event: kalender och festivalguider">
+<meta property="og:description" content="Bekräftade hardstyle-rave i Norden och Europa, och guider till Defqon.1, Decibel, Dominator och fler: scener, avstånd, regler och priser.">
 <meta property="og:image" content="https://hardlist.se/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="HARDLIST — releaser och rave i Norden">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Festivalguider: Defqon.1, Decibel, Dominator — HARDLIST">
-<meta name="twitter:description" content="Stages, avstånd, regler och priser för de stora hard dance-festivalerna. Vad du behöver veta innan du bokar.">
+<meta name="twitter:title" content="Event: kalender och festivalguider">
+<meta name="twitter:description" content="Bekräftade hardstyle-rave i Norden och Europa, och guider till Defqon.1, Decibel, Dominator och fler: scener, avstånd, regler och priser.">
 <meta name="twitter:image" content="https://hardlist.se/og-image.png">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/stil.css?v=2026-10-07">
 <style>
-:root{
-  --ink:#0A0612;
-  --surface:#140B23;
-  --surface-2:#1B0F2E;
-  --line:#2A1B42;
-  --bone:#F0EAF8;
-  --muted:#8E82A8;
-
-  --euphoric:#35D6E8;
-  --raw:#FF2E63;
-  --uptempo:#FFB020;
-  --hardcore:#8B5CFF;
-  --techno:#9BA8BE;   /* industrial / hard techno — medvetet metallisk, ligger utanför de fyra */
-
-  --display:'Big Shoulders Display',system-ui,sans-serif;
-  --body:'Space Grotesk',system-ui,sans-serif;
-  --data:'JetBrains Mono',ui-monospace,monospace;
-
-  --bpm-min:140;
-  --bpm-max:220;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{overflow-x:hidden}
-body{
-  background:var(--ink);color:var(--bone);
-  font-family:var(--body);font-size:16px;line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{width:100%;max-width:940px;margin:0 auto;padding:0 20px}
-a{color:inherit}
-a:focus-visible,button:focus-visible{outline:2px solid var(--uptempo);outline-offset:3px}
-
-/* ---------- header ---------- */
-.top{
-  position:sticky;top:0;z-index:50;
-  background:rgba(10,6,18,.9);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
-.logo{
-  font-family:var(--display);font-weight:900;font-size:26px;
-  letter-spacing:.02em;line-height:1;text-transform:uppercase;text-decoration:none;
-}
-.logo span{color:var(--raw)}
-.topnav{
-  display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
-  -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;
-}
-.topnav a{scroll-snap-align:start}
-/* Toningen visar att det finns fler lankar at hoger. Utan den tror man att
-   menyn slutar vid skarmkanten. */
-/* Hylsan finns för mobilens svepning. På desktop ska den inte ta plats —
-   annars trycks menyn in mot loggan istället för ut mot högerkanten. */
-.topnav-hylsa{position:relative;min-width:0}
-.topnav-hylsa::after{
-  content:'';position:absolute;right:0;top:0;bottom:0;width:34px;pointer-events:none;
-  background:linear-gradient(90deg,transparent,var(--ink));opacity:0;transition:opacity .2s;
-}
-.topnav-hylsa.mer::after{opacity:1}
-@media (max-width:640px){ .topnav-hylsa{flex:1} }
-.topnav::-webkit-scrollbar{display:none}
-.topnav a{
-  font-family:var(--data);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--muted);text-decoration:none;padding:4px 0;white-space:nowrap;
-}
-.topnav a:hover,.topnav a:focus-visible,.topnav a[aria-current]{color:var(--bone)}
-
-/* ---------- hero ---------- */
-.hero{padding:52px 0 40px;border-bottom:1px solid var(--line)}
-.eyebrow{
-  font-family:var(--data);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-}
-.badge{
-  border:1px solid var(--line);border-radius:2px;padding:2px 6px;
-  color:var(--uptempo);font-size:10px;letter-spacing:.1em;
-}
-h1{
-  font-family:var(--display);font-weight:900;text-transform:uppercase;
-  font-size:clamp(38px,9.5vw,80px);line-height:.86;letter-spacing:-.01em;margin-bottom:14px;
-}
-h1 em{font-style:normal;color:var(--raw)}
-.lede{color:var(--muted);max-width:46ch;font-size:15px}
-
-/* ---------- tidslinjen ---------- */
-.tl{margin-top:40px;position:relative;height:216px;display:flex;align-items:flex-end;padding:0 6px 30px}
-.tl-line{position:relative;width:100%;height:1px;background:var(--line)}
-.tl-tick{position:absolute;top:0;width:1px;height:6px;background:var(--line)}
-.tl-tick b{
-  position:absolute;top:10px;left:50%;transform:translateX(-50%);
-  font-family:var(--data);font-size:10px;color:var(--muted);font-weight:400;white-space:nowrap;
-}
-.tl-tick.start b{left:0;transform:none}
-.tl-tick.slut b{left:auto;right:0;transform:none}
-.tl-now{position:absolute;bottom:0;width:1px;background:var(--bone);opacity:.28}
-.tl-now b{
-  position:absolute;top:-2px;left:50%;transform:translateX(-50%);
-  background:var(--ink);padding:0 6px;
-  font-family:var(--data);font-size:10px;letter-spacing:.14em;color:var(--bone);opacity:.8;font-weight:400;
-}
-.tl-dot{
-  position:absolute;bottom:0;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;
-  animation:rise .55s cubic-bezier(.2,.8,.2,1) backwards;
-}
-.tl-dot i{display:block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
-.tl-dot u{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--c));text-decoration:none;opacity:.55}
-.tl-dot em{
-  font-family:var(--data);font-style:normal;font-size:9px;color:var(--muted);
-  white-space:nowrap;margin-bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);
-  max-height:104px;overflow:hidden;
-  /* Toning i stället för hårt klipp när namnet ändå är för långt. */
-  -webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent);
-  mask-image:linear-gradient(to bottom,#000 82%,transparent);
-}
-.tl-dot.soon i{background:none;border:2px solid var(--c);box-shadow:0 0 12px var(--c)}
-@keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1}}
-.tl-key{
-  display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;
-  font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-}
-.tl-key b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
-.tl-empty{
-  border:1px dashed var(--line);padding:26px;text-align:center;
-  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-}
-
-/* ---------- sektioner ---------- */
-section{padding:52px 0;border-bottom:1px solid var(--line)}
-.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
-h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(28px,6vw,44px);line-height:.9}
-h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:26px;line-height:1;margin:34px 0 12px}
-h4{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:24px 0 8px;font-weight:400}
-.count{font-family:var(--data);font-size:11px;color:var(--muted);letter-spacing:.12em}
-.group-label{
-  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--muted);margin:28px 0 12px;display:flex;align-items:center;gap:12px;
-}
-.group-label:first-child{margin-top:0}
-.group-label::after{content:'';flex:1;height:1px;background:var(--line)}
-.group-label span{color:#5C5175;letter-spacing:.1em}
-
-/* dagrubrik som går att fälla ihop */
-.day{
-  width:100%;background:none;border:0;cursor:pointer;text-align:left;
-  display:flex;align-items:center;gap:12px;padding:0;margin:26px 0 10px;
-  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--muted);transition:color .15s;
-}
-.day:first-of-type{margin-top:0}
-.day:hover{color:var(--bone)}
-.day .linje{flex:1;height:1px;background:var(--line)}
-.day .antal{color:#5C5175;letter-spacing:.1em}
-.day .pil{
-  display:inline-block;width:9px;height:9px;border-right:1px solid currentColor;
-  border-bottom:1px solid currentColor;transform:rotate(-45deg);margin-left:2px;
-  transition:transform .2s;flex:none;
-}
-.day[aria-expanded="true"] .pil{transform:rotate(45deg)}
-
-/* sökfält */
-.sok{
-  display:block;width:100%;max-width:280px;margin-bottom:18px;
-  background:var(--surface);border:1px solid var(--line);color:var(--bone);
-  font-family:var(--data);font-size:12px;letter-spacing:.05em;
-  padding:9px 12px;border-radius:2px;
-}
-.sok::placeholder{color:#5C5175;text-transform:uppercase;letter-spacing:.1em;font-size:10px}
-.sok:focus{outline:none;border-color:var(--muted)}
-
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-@media (max-width:640px){
-  /* En svepbar rad tar 44 px istället för tre staplade rader. */
-  .filters{
-    flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
-    -webkit-overflow-scrolling:touch;padding-bottom:2px;
-    margin-left:-20px;margin-right:-20px;padding-left:20px;padding-right:20px;
-  }
-  .filters::-webkit-scrollbar{display:none}
-  .filters .chip{flex:none;white-space:nowrap}
-}
-.chip{
-  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  background:none;border:1px solid var(--line);color:var(--muted);
-  padding:7px 12px;border-radius:2px;cursor:pointer;transition:.15s;
-}
-.chip:hover{color:var(--bone);border-color:var(--muted)}
-.chip[aria-pressed="true"]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
-.filter-note{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.08em;margin-bottom:22px}
-
-/* releaser */
-.rel{
-  display:grid;grid-template-columns:3px 1fr auto;gap:0 16px;align-items:center;
-  background:var(--surface);border:1px solid var(--line);border-left:0;
-  padding:0 16px 0 0;margin-bottom:6px;
-}
-.rel.soon{background:transparent;border-style:dashed}
-.rel{transition:background .18s ease,border-color .18s ease,transform .18s ease}
-.rel:hover{background:var(--surface-2);border-color:#3A2757;transform:translateX(2px)}
-.rel .bar{background:var(--c);align-self:stretch}
-.rel .meta{min-width:0;padding:14px 0 14px 16px}
-.rel .artist{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1.05}
-.rel .title{font-size:14px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.rel .right{padding:14px 0;text-align:right;font-family:var(--data);font-size:11px;color:var(--muted);white-space:nowrap}
-.rel .when{color:var(--bone);font-weight:700;font-size:12px;display:block}
-.rel.soon .when{color:var(--c)}
-.rel .genre{font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-top:3px;display:block;color:var(--c)}
-.rel .play{font-size:10px;letter-spacing:.1em;display:block;margin-top:4px;text-decoration:none}
-.rel .play:hover{color:var(--bone)}
-
-/* events */
-.ev{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
-.ev:last-child{border-bottom:1px solid var(--line)}
-.ev{transition:background .18s ease}
-.ev:hover{background:rgba(255,255,255,.015)}
-.ev .date{font-family:var(--data);font-size:11px;color:var(--muted);line-height:1.3}
-.ev .date b{display:block;font-family:var(--display);font-size:30px;color:var(--bone);font-weight:900;line-height:.9}
-.ev .name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:22px;line-height:1}
-.ev .where{font-size:13px;color:var(--muted);margin-top:3px}
-.ev .lineup{font-size:12px;color:var(--muted);margin-top:5px;opacity:.75}
-.ev .ticket{
-  font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  border:1px solid var(--line);padding:8px 12px;text-decoration:none;white-space:nowrap;
-}
-.ev .ticket:hover{background:var(--bone);color:var(--ink)}
-.ev .tba{font-family:var(--data);font-size:10px;color:var(--muted);letter-spacing:.12em}
-
-.watch{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:6px}
-.witem{background:var(--ink);padding:13px 15px;transition:background .18s ease}
-.witem:hover{background:var(--surface)}
-.witem b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;line-height:1.05;color:var(--bone)}
-.witem span{display:block;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:5px}
-.prenumerera{
-  display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px;
-}
-.prenumerera a,.prenumerera button{
-  display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
-  border:1px solid var(--line);background:none;color:var(--bone);
-  padding:11px 17px;border-radius:2px;
-  font-family:var(--data);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
-  transition:border-color .18s,transform .18s,color .18s;
-}
-.prenumerera a:hover,.prenumerera button:hover{border-color:var(--muted);transform:translateY(-1px)}
-.prenumerera button.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
-.prenumerera em{
-  font-style:normal;font-family:var(--data);font-size:10px;letter-spacing:.07em;
-  color:#5C5175;max-width:34ch;line-height:1.7;
-}
-
-.watch-head{
-  font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--muted);margin:34px 0 4px;display:flex;align-items:center;gap:12px;
-}
-.watch-head::after{content:'';flex:1;height:1px;background:var(--line)}
-.watch-note{font-size:13px;color:var(--muted);margin-bottom:14px;max-width:60ch}
-
-.empty{border:1px dashed var(--line);padding:28px;text-align:center;color:var(--muted);font-size:14px}
-.empty b{display:block;color:var(--bone);font-family:var(--display);font-size:22px;text-transform:uppercase;margin-bottom:6px}
-
-/* ---------- text/guider ---------- */
-.prose{max-width:66ch}
-.prose p{margin-bottom:14px;color:#CFC5E0}
-.prose ul{margin:0 0 16px 0;list-style:none}
-.prose li{padding-left:18px;position:relative;margin-bottom:7px;color:#CFC5E0;font-size:15px}
-.prose li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:1px;background:var(--muted)}
-.prose strong{color:var(--bone)}
-
-.callout{border-left:2px solid var(--uptempo);background:var(--surface);padding:14px 18px;margin:18px 0;font-size:14px;color:#CFC5E0}
-.callout b{color:var(--uptempo);font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:5px}
-
-.fest{border:1px solid var(--line);background:var(--surface);padding:22px;margin-bottom:14px}
-.fest header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.fest h3{margin:0;font-size:28px}
-.fest .place{font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.rules{display:grid;gap:10px}
-.rule{display:grid;grid-template-columns:110px 1fr;gap:14px;font-size:14px;align-items:start}
-.rule dt{font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
-.rule dd{color:#CFC5E0}
-
-/* ordlista */
-.terms{display:grid;gap:0}
-.term{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
-.term:last-child{border-bottom:1px solid var(--line)}
-.term{transition:background .18s ease}
-.term:hover{background:rgba(255,255,255,.015)}
-.term dt{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1}
-.term dd{color:#CFC5E0;font-size:14px}
-
-/* subgenre-kort */
-.genres{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:8px}
-.gcard{
-  border:1px solid var(--line);border-top:3px solid var(--c);background:var(--surface);
-  padding:16px;transition:transform .2s ease,background .2s ease;
-}
-.gcard:hover{transform:translateY(-2px);background:var(--surface-2)}
-.gcard h3{margin:0 0 4px;font-size:22px;color:var(--c)}
-.gcard .bpm{font-family:var(--data);font-size:10px;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:8px}
-.gcard p{font-size:13px;color:#CFC5E0;margin:0}
-
-.tracks{list-style:none;counter-reset:t;max-width:none}
-.tracks li{
-  counter-increment:t;
-  display:grid;grid-template-columns:34px 1fr;column-gap:14px;
-  padding:14px 0;border-top:1px solid var(--line);margin-bottom:0;
-}
-/* Måste nolla position/width/height/background — annars ärvs de från
-   .prose li::before och lägger numret ovanpå texten. */
-.tracks li::before{
-  content:counter(t,decimal-leading-zero);
-  position:static;width:auto;height:auto;background:none;
-  grid-column:1;grid-row:1;padding-top:4px;
-  font-family:var(--data);font-size:11px;color:var(--muted);
-}
-.tracks li:last-child{border-bottom:1px solid var(--line)}
-.tracks b{
-  grid-column:2;grid-row:1;
-  font-family:var(--display);font-weight:700;text-transform:uppercase;
-  font-size:19px;line-height:1.1;letter-spacing:.01em;color:var(--bone);
-}
-.tracks i{
-  grid-column:2;grid-row:2;font-style:normal;
-  font-family:var(--data);font-size:10px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--c,var(--muted));margin-top:5px;
-}
-.tracks span{grid-column:2;grid-row:3;color:var(--muted);font-size:13px;margin-top:4px}
-
-.callout.warn{border-left-color:var(--uptempo);background:#1D1206}
-.callout.warn b{color:var(--uptempo)}
-
-/* Kolofon — signaturrad längst ner. Sätts som en teknisk uppgift, inte som
-   en hälsning: bara namnet, med en tunn linje över. */
-.colophon{
-  margin-top:28px;padding-top:16px;border-top:1px solid var(--line);
-}
-.colophon .by{
-  display:inline-block;
-  font-family:var(--display);font-weight:900;text-transform:uppercase;
-  font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);
-  transition:color .25s ease;
-}
-.colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
-
-/* ---------- sidfoten ---------- */
-footer{
-  padding:38px 0 40px;border-top:1px solid var(--line);
-  background:linear-gradient(180deg,transparent,rgba(255,46,99,.035));
-  color:var(--muted);font-size:14px;line-height:1.6;
-}
-.foot-topp{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px;padding-bottom:22px;align-items:start}
-.foot-om .mark{
-  font-family:var(--display);font-weight:900;font-size:32px;line-height:1;
-  text-transform:uppercase;letter-spacing:.02em;color:var(--bone);
-}
-.foot-om .mark span{color:var(--raw)}
-.foot-om p{
-  margin:14px 0 0;max-width:30ch;font-size:13px;line-height:1.65;color:var(--muted);
-}
-.foot-om p b{color:#B9AECD;font-weight:400}
-.foot-kol h4{
-  font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:#5C5175;margin:0 0 9px;font-weight:400;
-}
-.foot-kol a{
-  display:block;color:var(--muted);text-decoration:none;padding:3px 0;font-size:13px;
-  transition:color .18s ease,transform .18s ease;
-}
-.foot-kol a:hover,.foot-kol a:focus-visible{color:var(--bone);transform:translateX(3px)}
-
-.status{
-  padding:12px 0;border-top:1px solid var(--line);
-  font-family:var(--data);font-size:10px;letter-spacing:.09em;color:#5C5175;
-}
-.status.varning{color:var(--uptempo)}
-
-/* Ärligt förtroende: inga påhittade emblem, bara sånt som faktiskt stämmer. */
-.foot-loften{display:flex;gap:22px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--line)}
-.foot-loften span{
-  font-family:var(--data);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
-  color:#5C5175;display:flex;align-items:center;gap:8px;
-}
-.foot-loften span::before{
-  content:'';width:5px;height:5px;border-radius:50%;background:var(--euphoric);
-  box-shadow:0 0 6px var(--euphoric);flex:none;
-}
-
-.colophon{
-  display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;
-  margin-top:0;padding-top:14px;border-top:1px solid var(--line);
-}
-.colophon .by{
-  display:inline-block;font-family:var(--display);font-weight:900;text-transform:uppercase;
-  font-size:18px;line-height:1;letter-spacing:.05em;color:var(--muted);transition:color .25s ease;
-}
-.colophon:hover .by,.colophon:focus-within .by{color:var(--raw)}
-.colophon .ar{font-family:var(--data);font-size:10px;letter-spacing:.14em;color:#463C5E}
-
-@media (max-width:640px){
-  /* Apples och Googles riktlinjer sager minst 44 px hojd pa det man ska trycka. */
-  .chip,.fbtn,.pren-rad a,.pren-rad button,.prenumerera a,.prenumerera button,
-  .q-dela,.day{min-height:44px}
-  .chip{display:inline-flex;align-items:center;padding:0 15px}
-  .fbtn{display:inline-flex;align-items:center;padding:0 14px}
-  .q-alt button{padding:16px;font-size:16px}
-  .topnav a{padding:6px 0}
-  .foot-kol a{padding:8px 0}
-
-  /* 16 px hindrar iOS fran att zooma in nar faltet far fokus. */
-  .sok{font-size:16px;padding:12px 14px;max-width:none}
-
-  /* Artistnamnen får inte plats lodrätt på en telefon — flera släpp samma dag
-     blir en oläslig fläck. Prickarna räcker: de visar när det släppts något.
-     Namnen står ändå i listan strax nedanför. */
-  .tl{height:118px;padding:0 2px 30px}
-  .tl-dot em{display:none}
-  .tl-dot i{width:9px;height:9px}
-  .tl-dot{height:auto!important}
-  .tl-dot u{min-height:34px}
-  .tl-tick b{font-size:9px}
-  .tl-key{gap:10px;font-size:9px}
-  .tl-now b{font-size:9px}
-  .dot em{max-height:76px;font-size:8px}
-  .rel .artist{font-size:17px}
-  .ev{grid-template-columns:52px 1fr;gap:12px}
-  .ev .ticket,.ev .tba{grid-column:2;justify-self:start;margin-top:8px}
-  .topnav{gap:12px}
-  .top .wrap{height:52px}
-  .logo{font-size:22px}
-  .rule{grid-template-columns:1fr;gap:2px}
-  .foot-topp{grid-template-columns:1fr 1fr;gap:24px}
-  .foot-om{grid-column:1 / -1}
-  .foot-loften{gap:14px}
-  .tracks li{grid-template-columns:26px 1fr;column-gap:10px}
-  .tracks b{font-size:17px}
-  .term{grid-template-columns:1fr;gap:2px}
-}
-/* Sektioner tonar in när de kommer i vy. Rent kosmetiskt — utan JS visas allt. */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
-.reveal.inne{opacity:1;transform:none}
-
-@media (prefers-reduced-motion:reduce){
-  .reveal{opacity:1!important;transform:none!important}
-  *{animation:none!important;transition:none!important}
-  html{scroll-behavior:auto}
-}
-
-/* ---------- anthem-arkivet ---------- */
-.anthems{list-style:none;margin:0;padding:0;counter-reset:none}
-.anthems li{
-  display:grid;grid-template-columns:64px 1fr;column-gap:18px;align-items:baseline;
-  padding:15px 0;border-top:1px solid var(--line);transition:background .18s ease;
-}
-.anthems li:last-child{border-bottom:1px solid var(--line)}
-.anthems li:hover{background:rgba(255,255,255,.015)}
-.anthems .ar{
-  font-family:var(--data);font-size:15px;color:var(--raw);letter-spacing:.02em;
-}
-.anthems b{
-  display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;
-  font-size:20px;line-height:1.08;letter-spacing:.01em;color:var(--bone);
-}
-.anthems span{
-  display:block;font-family:var(--data);font-size:11px;letter-spacing:.07em;
-  color:var(--muted);margin-top:5px;
-}
-.anthem-huvud{
-  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:0 0 6px;
-}
-.anthem-huvud h2{margin:0}
-.anthem-ort{
-  font-family:var(--data);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#5C5175;
-}
-.anthem-intro{color:var(--muted);font-size:15px;line-height:1.65;max-width:68ch;margin:0 0 26px}
-
-.anthem-not{
-  font-size:13px;color:var(--muted);margin:14px 0 0;max-width:62ch;
-}
-@media (max-width:640px){
-  .anthems li{grid-template-columns:50px 1fr;column-gap:12px}
-  .anthems b{font-size:17px}
-  .anthems .ar{font-size:13px}
-}
-
-/* ---------- quiz ---------- */
-.q-topp{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;
-  background:var(--line);border:1px solid var(--line);margin-bottom:34px;
-}
-.q-ruta{background:var(--surface);padding:16px 18px}
-.q-ruta b{
-  display:block;font-family:var(--display);font-weight:900;font-size:32px;line-height:1;
-  color:var(--bone);letter-spacing:.01em;
-}
-.q-ruta span{
-  display:block;font-family:var(--data);font-size:9px;letter-spacing:.14em;
-  text-transform:uppercase;color:#5C5175;margin-top:7px;
-}
-.q-ruta.rang b{font-size:23px;color:var(--raw)}
-
-.q-kort{border:1px solid var(--line);background:var(--surface);padding:26px}
-.q-datum{
-  font-family:var(--data);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:#5C5175;margin-bottom:14px;
-}
-.q-spelare{
-  display:flex;align-items:center;gap:16px;
-  border:1px solid var(--line);background:var(--ink);padding:16px 18px;margin-bottom:22px;
-}
-.q-play{
-  flex:none;width:48px;height:48px;border-radius:50%;cursor:pointer;
-  border:1px solid var(--raw);background:rgba(255,46,99,.1);color:var(--raw);
-  display:flex;align-items:center;justify-content:center;
-  transition:background .18s,transform .18s;
-}
-.q-play:hover{background:rgba(255,46,99,.2);transform:scale(1.04)}
-.q-play svg{width:16px;height:16px;fill:currentColor}
-.q-spelare .info{flex:1;min-width:0}
-.q-spelare .etikett{
-  font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:#5C5175;margin-bottom:9px;
-}
-.q-bar{height:3px;background:var(--line);position:relative;overflow:hidden}
-.q-bar i{
-  position:absolute;left:0;top:0;bottom:0;width:0;background:var(--raw);
-  box-shadow:0 0 8px var(--raw);
-}
-.q-volym{display:flex;align-items:center;gap:10px;margin-top:9px}
-.q-volym svg{width:15px;height:15px;fill:var(--muted);flex:none}
-.q-volym input[type=range]{
-  -webkit-appearance:none;appearance:none;flex:1;max-width:150px;
-  height:3px;background:var(--line);border-radius:2px;outline:none;cursor:pointer;
-}
-.q-volym input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;appearance:none;width:15px;height:15px;border-radius:50%;
-  background:var(--bone);cursor:pointer;border:0;
-}
-.q-volym input[type=range]::-moz-range-thumb{
-  width:15px;height:15px;border-radius:50%;background:var(--bone);cursor:pointer;border:0;
-}
-.q-volym input[type=range]:focus-visible{outline:2px solid var(--raw);outline-offset:4px}
-@media (max-width:640px){
-  .q-volym input[type=range]{max-width:none;height:5px}
-  .q-volym input[type=range]::-webkit-slider-thumb{width:19px;height:19px}
-}
-
-.q-volnivå{
-  font-family:var(--data);font-size:10px;letter-spacing:.06em;color:#5C5175;
-  min-width:38px;text-align:right;flex:none;
-}
-
-.q-tid{
-  font-family:var(--data);font-size:10px;color:#463C5E;margin-top:7px;letter-spacing:.06em;
-}
-@media (max-width:640px){ .q-spelare{padding:13px 14px;gap:12px} }
-
-.q-fraga{
-  font-family:var(--display);font-weight:900;text-transform:uppercase;
-  font-size:clamp(24px,4.4vw,34px);line-height:1.02;color:var(--bone);margin-bottom:24px;
-}
-.q-alt{display:grid;gap:8px}
-.q-alt button{
-  display:flex;align-items:center;gap:14px;text-align:left;width:100%;
-  background:var(--ink);border:1px solid var(--line);color:var(--bone);
-  font-family:var(--body);font-size:15px;padding:14px 16px;border-radius:2px;cursor:pointer;
-  transition:border-color .18s,background .18s,transform .18s;
-}
-.q-alt button:hover:not(:disabled){border-color:var(--muted);transform:translateX(2px)}
-.q-alt button:disabled{cursor:default}
-.q-alt button i{
-  font-style:normal;font-family:var(--data);font-size:11px;color:#5C5175;
-  border:1px solid var(--line);width:24px;height:24px;flex:none;
-  display:flex;align-items:center;justify-content:center;
-}
-.q-alt button.ratt{border-color:var(--euphoric);background:rgba(53,214,232,.08)}
-.q-alt button.ratt i{border-color:var(--euphoric);color:var(--euphoric)}
-.q-alt button.fel{border-color:var(--raw);background:rgba(255,46,99,.07)}
-.q-alt button.fel i{border-color:var(--raw);color:var(--raw)}
-
-.q-svar{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);animation:fade .3s ease}
-.q-utfall{
-  font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:26px;
-  line-height:1;margin-bottom:10px;
-}
-.q-utfall.ja{color:var(--euphoric)}
-.q-utfall.nej{color:var(--raw)}
-.q-svar p{color:#CFC5E0;font-size:15px;margin:0 0 14px;max-width:60ch}
-.q-plus{
-  font-family:var(--data);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--uptempo);
-}
-.q-dela{
-  display:inline-flex;align-items:center;gap:10px;margin-top:16px;
-  background:none;border:1px solid var(--line);color:var(--bone);cursor:pointer;
-  font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  padding:11px 18px;border-radius:2px;
-  transition:border-color .18s,transform .18s;
-}
-.q-dela:hover{border-color:var(--muted);transform:translateY(-1px)}
-.q-dela.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
-
-.q-nasta{
-  font-family:var(--data);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  color:#5C5175;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
-}
-.q-fredag{
-  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
-  border-left:2px solid var(--uptempo);background:#150F06;
-  padding:13px 16px;margin:14px 0 0;
-  font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.7;
-}
-.q-fredag:empty{display:none}
-.q-fredag b{
-  color:var(--uptempo);letter-spacing:.14em;text-transform:uppercase;font-weight:400;flex:none;
-}
-
-.q-integritet{
-  font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#463C5E;
-  margin-top:26px;line-height:1.8;
-}
-.q-integritet a{color:var(--muted)}
-
-/* Utloggad: inga poäng att visa, bara vägen till kontot. */
-.q-uppmaning{
-  display:flex;align-items:center;justify-content:space-between;gap:14px 20px;flex-wrap:wrap;
-  border:1px solid var(--line);border-left:2px solid var(--raw);background:var(--surface);
-  padding:16px 18px;margin-bottom:34px;
-}
-.q-uppmaning p{color:#CFC5E0;font-size:15px;margin:0;max-width:46ch}
-.q-uppmaning p b{color:var(--bone)}
-.q-uppmaning .l-knapp{text-align:center;padding:10px 18px;line-height:1.5}
-
-/* Inloggad: frågan visas först när man trycker, eftersom tiden räknas därifrån. */
-.q-regel{color:#CFC5E0;font-size:15px;margin:0 0 20px;max-width:60ch}
-.q-regel b{color:var(--bone)}
-.q-start{
-  display:inline-flex;align-items:center;justify-content:center;min-height:48px;
-  background:rgba(255,46,99,.08);border:1px solid var(--raw);color:var(--raw);cursor:pointer;
-  font-family:var(--data);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-  padding:0 22px;border-radius:2px;transition:background .18s,transform .18s;
-}
-.q-start:hover:not(:disabled){background:rgba(255,46,99,.16);transform:translateY(-1px)}
-.q-start:disabled{opacity:.6;cursor:default}
-
-.q-klocka{
-  position:relative;height:26px;margin:-8px 0 18px;
-  border:1px solid var(--line);background:var(--ink);overflow:hidden;
-}
-.q-klocka i{
-  position:absolute;left:0;top:0;bottom:0;width:100%;
-  background:rgba(53,214,232,.16);border-right:2px solid var(--euphoric);
-  transition:width .2s linear;
-}
-.q-klocka span{
-  position:relative;display:block;line-height:24px;padding:0 10px;
-  font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone);
-}
-.q-klocka.snart i{background:rgba(255,46,99,.18);border-right-color:var(--raw)}
-.q-felrad{font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--raw);margin:10px 0 0}
-.q-felrad:empty{display:none}
-
-/* ---------- topplistan ---------- */
-.q-lista{margin-top:34px;border:1px solid var(--line);background:var(--surface)}
-.q-lista-topp{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  padding:16px 18px;border-bottom:1px solid var(--line);
-}
-.q-lista-topp h2{
-  font-family:var(--display);font-weight:900;text-transform:uppercase;
-  font-size:24px;line-height:1;color:var(--bone);margin:0;
-}
-.q-flikar{display:flex;border:1px solid var(--line)}
-.q-flikar button{
-  min-height:44px;padding:0 14px;background:none;border:0;cursor:pointer;color:var(--muted);
-  font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-}
-.q-flikar button + button{border-left:1px solid var(--line)}
-.q-flikar button[aria-selected="true"]{background:var(--ink);color:var(--bone)}
-.q-rader{list-style:none;margin:0;padding:0}
-.q-rader li{
-  display:grid;grid-template-columns:34px minmax(0,1fr) auto 56px;align-items:center;gap:10px;
-  padding:11px 18px;border-bottom:1px solid var(--line);font-size:15px;color:var(--bone);
-}
-.q-rader li:last-child{border-bottom:0}
-.q-rader .plats{font-family:var(--data);font-size:11px;color:#5C5175}
-.q-rader .namn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.q-rader .rang{font-family:var(--data);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--raw)}
-.q-rader .poang{font-family:var(--display);font-weight:900;font-size:18px;text-align:right}
-.q-rader li.jag{background:rgba(53,214,232,.06)}
-.q-rader li.jag .namn{color:var(--euphoric)}
-.q-rader li.q-tom{display:block;color:var(--muted);font-size:14px}
-.q-jag{
-  font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.7;
-}
-.q-jag:not(:empty){border-top:1px solid var(--line);padding:13px 18px}
-.q-jag:has(.q-rader){padding:13px 0 0}
-.q-jag .l-knapp{display:flex;width:max-content;margin-top:10px}
-.q-jag-etikett{
-  display:block;padding:0 18px 6px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5C5175;
-}
-@media (max-width:640px){
-  .q-lista-topp{padding:14px}
-  .q-rader li{grid-template-columns:28px minmax(0,1fr) auto 48px;gap:8px;padding:11px 14px}
-  .q-jag:not(:empty){padding:12px 14px}
-  .q-jag:has(.q-rader){padding:12px 0 0}
-  .q-jag-etikett{padding:0 14px 6px}
-}
-
-@media (max-width:640px){
-  .q-kort{padding:20px}
-  .q-ruta{padding:13px 14px}
-  .q-ruta b{font-size:26px}
-}
-
-/* ---------- kartan ---------- */
-.mapwrap{
-  border:1px solid var(--line);background:var(--ink);
-  margin-top:20px;overflow:hidden;
-}
-.mapwrap svg{display:block;width:100%;height:auto}
-@media (max-width:760px){
-  /* Nedskalad till 360 px blir texten fyra pixlar hog. Battre att kunna svepa. */
-  .mapwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .mapwrap svg{min-width:700px}
-}
-.mapwrap .lbl{
-  font-family:var(--data);font-size:10px;letter-spacing:.11em;
-  text-transform:uppercase;fill:var(--muted);
-}
-.mapwrap .lbl.dark{fill:var(--ink)}
-.mapwrap .big{
-  font-family:var(--display);font-weight:900;font-size:28px;
-  letter-spacing:.02em;text-transform:uppercase;
-}
-.mapwrap .mid{
-  font-family:var(--display);font-weight:700;font-size:19px;
-  letter-spacing:.02em;text-transform:uppercase;
-}
-.mapwrap .dist text{
-  font-family:var(--data);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
-}
-
-/* ---------- festivalväljare ---------- */
-.picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
-.fbtn{
-  font-family:var(--display);font-weight:700;text-transform:uppercase;
-  font-size:19px;line-height:1;letter-spacing:.02em;
-  background:var(--surface);border:1px solid var(--line);color:var(--muted);
-  padding:12px 16px;cursor:pointer;transition:.15s;
-}
-.fbtn{transition:color .18s,border-color .18s,background .18s,transform .18s}
-.fbtn:hover{color:var(--bone);border-color:var(--muted);transform:translateY(-1px)}
-.fbtn[aria-selected="true"]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
-
-.panel{animation:fade .25s ease}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.phead{margin-bottom:22px}
-.phead h2{margin-bottom:6px}
-.phead .place{font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.panel h3{margin:30px 0 10px}
-.panel p{color:#CFC5E0;margin-bottom:14px;max-width:66ch}
-.panel ul{list-style:none;max-width:66ch;margin-bottom:8px}
-.panel li{padding-left:18px;position:relative;margin-bottom:8px;color:#CFC5E0;font-size:15px}
-.panel li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:1px;background:var(--muted)}
-.panel strong{color:var(--bone)}
-
-.facts{display:grid;gap:0;margin-bottom:6px}
-.facts>div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
-.facts>div:last-child{border-bottom:1px solid var(--line)}
-.facts dt{font-family:var(--data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
-.facts dd{color:#CFC5E0;font-size:14px}
-
-.stages{list-style:none;max-width:none!important}
-.stages li{
-  display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:baseline;
-  padding:12px 0;border-top:1px solid var(--line);padding-left:0!important;
-}
-.stages li::before{display:none}
-.stages li:last-child{border-bottom:1px solid var(--line)}
-.stages b{
-  font-family:var(--display);font-weight:900;text-transform:uppercase;
-  font-size:22px;line-height:1;color:var(--c);letter-spacing:.02em;
-}
-.stages span{color:#CFC5E0;font-size:14px}
-
-.callout.tip{border-left-color:var(--raw)}
-.callout.tip b{color:var(--raw)}
-.callout a{color:var(--bone)}
-
-@media (max-width:640px){
-  .fbtn{font-size:16px;padding:10px 13px}
-  .facts>div{grid-template-columns:1fr;gap:2px}
-  .stages li{grid-template-columns:1fr;gap:4px}
-}
-
-/* ---------- låtspelet ---------- */
-/* Klippstapeln är skalad mot 16 sekunder. Upplåst del syns ljusare, så man
-   ser hur mycket nästa överhopp ger innan man trycker. */
-.l-bar{height:6px;background:var(--line);position:relative;overflow:hidden}
-.l-bar .upplast{position:absolute;left:0;top:0;bottom:0;background:#3A2757;transition:width .3s ease}
-.l-bar .spelat{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--raw);box-shadow:0 0 8px var(--raw)}
-.l-bar .streck{position:absolute;top:0;bottom:0;width:1px;background:var(--ink)}
-
-.l-forsok{list-style:none;display:grid;gap:6px;margin:0 0 20px}
-.l-forsok li{
-  display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 14px;
-  border:1px solid var(--line);background:var(--ink);font-size:14px;color:#CFC5E0;line-height:1.3;
-}
-.l-forsok li i{flex:none;width:10px;height:10px;background:var(--line)}
-.l-forsok li.tom{background:none;border-style:dashed}
-.l-forsok li.fel i{background:var(--raw)}
-.l-forsok li.hopp{color:var(--muted)}
-.l-forsok li.hopp i{background:var(--muted)}
-.l-forsok li.ratt{border-color:var(--euphoric);color:var(--bone)}
-.l-forsok li.ratt i{background:var(--euphoric);box-shadow:0 0 8px var(--euphoric)}
-
-.l-etikett{
-  display:block;font-family:var(--data);font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;color:#5C5175;margin-bottom:8px;
-}
-.l-sok{
-  display:block;width:100%;min-height:48px;padding:12px 14px;border-radius:2px;
-  background:var(--ink);border:1px solid var(--line);color:var(--bone);
-  font-family:var(--body);font-size:16px;
-}
-.l-sok::placeholder{color:#5C5175}
-.l-sok:focus{outline:none;border-color:var(--muted)}
-.l-forslag{list-style:none;border:1px solid var(--line);border-top:0}
-.l-forslag:empty{display:none}
-.l-forslag button{
-  display:block;width:100%;min-height:44px;padding:10px 14px;text-align:left;cursor:pointer;
-  background:var(--surface-2);border:0;border-top:1px solid var(--line);color:#CFC5E0;
-  font-family:var(--body);font-size:15px;line-height:1.3;
-}
-.l-forslag li:first-child button{border-top:0}
-.l-forslag button b{color:var(--bone);font-weight:700}
-.l-forslag button:hover,.l-forslag button[aria-selected="true"]{background:var(--line);color:var(--bone)}
-
-.l-knappar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.l-knapp{
-  display:inline-flex;align-items:center;justify-content:center;min-height:44px;
-  background:none;border:1px solid var(--line);color:var(--bone);cursor:pointer;text-decoration:none;
-  font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  padding:0 18px;border-radius:2px;transition:border-color .18s,transform .18s,color .18s;
-}
-.l-knapp:hover{border-color:var(--muted);transform:translateY(-1px)}
-.l-knapp.skarp{border-color:var(--raw);color:var(--raw)}
-.l-knapp.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
-
-.l-facit{margin:0 0 20px}
-.l-facit b{
-  display:block;font-family:var(--display);font-weight:900;text-transform:uppercase;
-  font-size:clamp(26px,5vw,38px);line-height:.95;color:var(--bone);
-}
-.l-facit span{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:20px;color:var(--muted);margin-top:6px}
-
-.l-fordelning{display:grid;gap:4px;margin-top:24px;max-width:420px}
-.l-fordelning div{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:center}
-.l-fordelning em{font-style:normal;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted)}
-.l-fordelning span{
-  display:block;min-width:24px;padding:3px 7px;text-align:right;background:var(--surface-2);
-  font-family:var(--data);font-size:11px;color:var(--bone);
-}
-.l-fordelning .nu span{background:var(--raw)}
-
-.l-mot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:4px 0 14px}
-.l-mot div{background:var(--ink);padding:14px 16px}
-.l-mot b{display:block;font-family:var(--display);font-weight:900;font-size:40px;line-height:1;color:var(--bone)}
-.l-mot span{display:block;font-family:var(--data);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5C5175;margin-top:7px}
-.l-mot .ledare b{color:var(--raw)}
-
-.l-lista{list-style:none;margin:6px 0 0}
-.l-lista li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:baseline;padding:11px 0;border-top:1px solid var(--line);font-size:14px;color:#CFC5E0}
-.l-lista li:last-child{border-bottom:1px solid var(--line)}
-.l-lista b{font-family:var(--data);font-size:12px;color:var(--euphoric);font-weight:400}
-.l-lista .noll b{color:var(--raw)}
-
-/* ---------- konto ---------- */
-/* Auto-marginalen skjuter menyn mot högerkanten så att den hamnar intill
-   kontoknappen i stället för mitt i headern. */
-.top .wrap>.topnav,.top .topnav-hylsa{margin-left:auto}
-.konto-knapp{
-  flex:none;display:block;height:44px;line-height:42px;padding:0 14px;max-width:180px;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-  border:1px solid var(--line);border-radius:2px;text-decoration:none;
-  font-family:var(--data);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--bone);transition:border-color .18s,color .18s;
-}
-.konto-knapp:hover,.konto-knapp:focus-visible{border-color:var(--muted)}
-/* Visningsnamnet visas som det skrevs — versalerna är en del av namnet. */
-.konto-knapp.inloggad{text-transform:none;letter-spacing:.03em;color:var(--euphoric)}
-.konto-knapp[aria-busy="true"]{opacity:.6}
-
-.konto{max-width:560px}
-.konto-kort{border:1px solid var(--line);background:var(--surface);padding:26px;margin-bottom:14px}
-.konto-kort h2{font-size:clamp(24px,5vw,32px);margin-bottom:12px}
-.konto-kort p{color:#CFC5E0;font-size:15px;margin-bottom:14px;max-width:60ch}
-.konto-kort p:last-child{margin-bottom:0}
-.konto-kort a{color:var(--bone)}
-.konto-etikett{
-  display:block;font-family:var(--data);font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:#5C5175;margin-bottom:8px;
-}
-.konto-namn{
-  font-family:var(--display);font-weight:900;font-size:clamp(30px,7vw,44px);line-height:1;
-  color:var(--euphoric);overflow-wrap:anywhere;margin-bottom:8px;
-}
-.konto-meta{font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--muted);overflow-wrap:anywhere}
-.konto-falt{
-  display:block;width:100%;height:46px;padding:0 14px;border-radius:2px;
-  background:var(--ink);border:1px solid var(--line);color:var(--bone);
-  font-family:var(--data);font-size:16px;letter-spacing:.02em;
-}
-.konto-falt:focus{outline:none;border-color:var(--muted)}
-.konto-falt[aria-invalid="true"]{border-color:var(--raw)}
-.konto-hint{font-family:var(--data);font-size:10px;letter-spacing:.07em;color:#5C5175;margin-top:8px;line-height:1.7}
-.konto-rad{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.knapp{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  min-height:44px;padding:0 18px;border-radius:2px;cursor:pointer;text-decoration:none;
-  border:1px solid var(--line);background:none;color:var(--bone);
-  font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  transition:border-color .18s,transform .18s,background .18s;
-}
-.knapp:hover:not(:disabled){border-color:var(--muted);transform:translateY(-1px)}
-.knapp:disabled{opacity:.5;cursor:default}
-.knapp.fylld{background:var(--bone);color:var(--ink);border-color:var(--bone)}
-.knapp.fylld:hover:not(:disabled){background:#fff;border-color:#fff}
-.knapp.fara{border-color:var(--raw);color:var(--raw)}
-.knapp.fara.fylld{background:var(--raw);color:var(--ink)}
-.knapp svg{width:16px;height:16px;flex:none}
-.konto-besked{font-family:var(--data);font-size:11px;letter-spacing:.05em;line-height:1.6;margin-top:12px}
-.konto-besked:empty{display:none}
-.konto-besked.fel{color:var(--raw)}
-.konto-besked.ok{color:var(--euphoric)}
-.konto-kort.fara{border-color:#3A1525}
-.konto-bekrafta{border-left:2px solid var(--raw);background:#1A0810;padding:14px 16px;margin-top:14px}
-.konto-bekrafta p{font-size:14px}
-.konto-laddar{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-
-@media (max-width:640px){
-  .konto-knapp{max-width:112px;padding:0 10px;font-size:10px;letter-spacing:.1em}
-  .konto-kort{padding:20px}
-  .konto-rad .knapp{flex:1 1 auto}
+.sektion{display:flex;flex-direction:column;gap:12px;margin-top:36px;scroll-margin-top:16px}
+.sektionshuvud{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.antal{font-size:15px;color:var(--text-2)}
+.sektionstext{max-width:60ch;font-size:15px;line-height:1.5;color:var(--text-2)}
+.tom{padding:12px 0;color:var(--text-2)}
+
+/* Eventrad: datumblock, namn och plats, sen texten om eventet och länken. */
+.event-lista{display:flex;flex-direction:column;gap:8px}
+.event{
+  display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:16px;row-gap:12px;align-items:start;
+  padding:12px 16px 14px 12px;background:var(--yta);border-radius:16px;
+}
+.datum{
+  display:flex;flex-direction:column;align-items:center;padding:6px 0;
+  border-radius:12px;background:var(--yta-2);
+}
+.datum-dag{font-stretch:62%;font-weight:900;font-size:28px;line-height:1}
+.datum-man{font-size:12px;color:var(--text-2);white-space:nowrap}
+.event-mitt{min-width:0;display:flex;flex-direction:column;gap:3px;padding-top:2px}
+.event-namn{font-stretch:100%;font-weight:650;font-size:16px;line-height:1.3;letter-spacing:0}
+.event-plats{font-size:14px;color:var(--text-2)}
+.event-text{margin-top:4px;font-size:14px;line-height:1.45;color:var(--text-2)}
+.event-lank{grid-column:2;justify-self:start;min-height:44px;padding:0 18px;font-size:15px}
+.event-saknas{grid-column:2;font-size:14px;color:var(--text-3)}
+
+.prenumerera{margin-top:12px}
+.prenumerera h3{font-size:26px}
+.knapprad{display:flex;flex-wrap:wrap;gap:10px}
+.kopiera-svar{font-size:14px;color:var(--text-2);overflow-wrap:anywhere}
+
+.bevaka{display:flex;flex-direction:column;gap:8px;margin-top:20px}
+.bevaka h3{font-size:24px}
+.bevaka-lista{list-style:none;margin:4px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.bevaka-lista li{background:var(--yta);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.bevaka-namn{font-weight:650;font-size:15px}
+.bevaka-lista span{font-size:13px;line-height:1.4;color:var(--text-2)}
+
+/* Faktarutor i guiderna. Skiljs åt med ytor, inte ramar. */
+.not{
+  background:var(--yta);border-radius:20px;padding:16px 18px;
+  font-size:15px;line-height:1.55;color:var(--text-2);
+}
+.not b:first-child{display:block;margin-bottom:4px;font-size:16px;color:var(--text)}
+.not strong{color:var(--text)}
+.not a{color:var(--text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--text-3)}
+
+.flikar{margin-top:4px}
+.flikar .chip[aria-selected="true"]{background:var(--text);color:var(--natt)}
+
+.panel{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.panel-huvud{display:flex;flex-direction:column;gap:10px}
+.panel-huvud h3{font-size:34px}
+.panel-fakta{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.panel-fakta li{padding:7px 12px;border-radius:999px;background:var(--yta-2);font-size:14px}
+.panel h4{margin:10px 0 0;font-size:20px;font-weight:700;line-height:1.2}
+/* Vanliga punktlistor i guiderna. Faktachipsen och scenlistan är också
+   listor men har egen form, därför undantas de här. */
+.panel p,.panel ul{margin:0;font-size:16px;line-height:1.55;color:var(--text-2)}
+.panel ul:not(.panel-fakta):not(.stages){padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.panel ul strong,.panel p strong{color:var(--text)}
+.facts{margin:0;display:grid;gap:8px}
+.facts div{background:var(--yta);border-radius:16px;padding:12px 16px}
+.facts dt{font-size:14px;color:var(--text-3)}
+.facts dd{margin:2px 0 0;font-size:15px;line-height:1.5}
+.stages{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.stages li{display:flex;flex-direction:column;gap:2px;background:var(--yta);border-radius:16px;padding:12px 16px}
+.stages b{color:var(--text);font-weight:700}
+
+/* Kartan behåller sina proportioner. På smal skärm går den att svepa i
+   sidled i stället för att krympa till oläsliga etiketter. */
+.karta{overflow-x:auto;border-radius:20px;background:var(--yta)}
+.karta svg{display:block;width:100%;min-width:640px;height:auto}
+.k-text{font-family:'Archivo',system-ui,sans-serif;font-size:15px;font-weight:600;fill:#F6F2FB}
+.k-mork{fill:#100C17}
+.k-dov{font-weight:400;fill:#B9AFC9}
+.k-mellan{font-family:'Archivo',system-ui,sans-serif;font-stretch:62%;font-size:26px;font-weight:800;fill:#F6F2FB}
+.k-stor{font-family:'Archivo',system-ui,sans-serif;font-stretch:62%;font-size:44px;font-weight:900;fill:#F6F2FB}
+.k-avstand text{font-family:'Archivo',system-ui,sans-serif;font-size:14px;fill:#B9AFC9}
+
+.camping-kort{margin-top:36px}
+
+@media (min-width:860px){
+  .sektion{margin-top:56px;gap:16px}
+  .event{grid-template-columns:56px minmax(0,1fr) auto;align-items:center;padding:12px 16px 12px 12px;border-radius:18px}
+  .datum{padding:7px 0}
+  .datum-dag{font-size:30px}
+  .datum-man{font-size:13px}
+  .event-lank,.event-saknas{grid-column:3;justify-self:end}
+  .prenumerera h3{font-size:32px}
+  .panel-huvud h3{font-size:48px}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .not{padding:20px 24px}
+  .camping-kort{margin-top:56px;max-width:420px}
 }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="logo" href="/">Hard<span>list</span></a>
-    <nav class="topnav">
-      <a href="/#releaser">Releaser</a>
-      <a href="/#events">Kalender</a>
-      <a href="/events/" aria-current="page">Festivaler</a>
-      <a href="/guider/">Camping</a>
-      <a href="/nyborjare/">Nybörjare</a>
-      <a href="/anthems/">Anthems</a>
-      <a href="/quiz/">Quiz</a>
-    </nav>
-    <a class="konto-knapp" id="konto-knapp" href="/konto/">Logga in</a>
-  </div>
+<a class="hoppa" href="#innehall">Till innehållet</a>
+
+<header class="topp">
+  <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+  <nav class="meny" aria-label="Huvudmeny">
+    <a href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg>Hem</a>
+    <a href="/releaser/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Releaser</a>
+    <a href="/events/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Event</a>
+    <a href="/spel/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/></svg>Spel</a>
+    <a href="/scenen/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Scenen</a>
+  </nav>
+  <a class="konto" id="konto-knapp" href="/konto/"><span class="konto-bild" aria-hidden="true"></span><span class="konto-namn">Logga in</span></a>
 </header>
 
-<main>
-  <div class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Festivalguider</p>
-      <h1>Välj festival.<br><em>Få hela bilden.</em></h1>
-      <p class="lede">Stages, timing, profil och kostnad för de stora eventen. Tryck på ett namn.</p>
-    </div>
+<main class="sida" id="innehall">
+
+  <div class="sidhuvud">
+    <h1>Event</h1>
+    <p class="ingress">Bekräftade rave i Norden och Europa, och guider till de stora festivalerna.</p>
   </div>
 
-  <section id="omradet">
-    <div class="wrap">
-      <div class="sec-head"><h2>Så ser ett festivalområde ut</h2></div>
-      <p class="lede" style="margin-bottom:6px">Schematisk bild, inte en karta över en specifik festival. Men proportionerna stämmer: de stora nederländska festivalerna är byggda ungefär så här, och avstånden är verkliga.</p>
+  <section class="sektion" id="kalender" aria-labelledby="kalRubrik">
+    <div class="sektionshuvud">
+      <h2 id="kalRubrik">Kalendern</h2>
+      <span class="antal" id="evAntal"></span>
+    </div>
+    <div class="rull" id="evFilter" role="group" aria-label="Visa region">
+      <button class="chip" type="button" data-r="norden" aria-pressed="true">Norden</button>
+      <button class="chip" type="button" data-r="europa" aria-pressed="false">Europa</button>
+      <button class="chip" type="button" data-r="alla" aria-pressed="false">Alla</button>
+    </div>
+    <p class="sektionstext">Bara bekräftade datum. Passerade event försvinner av sig själva.</p>
+    <div class="event-lista" id="evLista">
+      <p class="tom">Hämtar kalendern.</p>
+    </div>
 
-      <div class="mapwrap">
-        <svg viewBox="0 0 900 620" role="img" aria-label="Schematisk karta över ett typiskt hard dance-festivalområde">
-          <defs>
-            <pattern id="tree" width="16" height="16" patternUnits="userSpaceOnUse">
-              <circle cx="8" cy="8" r="2" fill="var(--line)"/>
-            </pattern>
-          </defs>
-
-          <rect width="900" height="620" fill="var(--ink)"/>
-          <rect x="0" y="0" width="900" height="620" fill="url(#tree)" opacity=".5"/>
-
-          <!-- vägar -->
-          <path d="M150 560 L150 120 L760 120" stroke="var(--line)" stroke-width="14" fill="none"/>
-          <path d="M150 330 L620 330" stroke="var(--line)" stroke-width="10" fill="none"/>
-          <path d="M420 560 L420 120" stroke="var(--line)" stroke-width="10" fill="none"/>
-
-          <!-- CAMPING -->
-          <g>
-            <rect x="40" y="60" width="160" height="90" fill="none" stroke="var(--muted)" stroke-dasharray="4 4"/>
-            <rect x="40" y="170" width="160" height="90" fill="none" stroke="var(--muted)" stroke-dasharray="4 4"/>
-            <rect x="40" y="280" width="160" height="90" fill="none" stroke="var(--muted)" stroke-dasharray="4 4"/>
-            <text x="120" y="110" class="lbl" text-anchor="middle">CAMPING 1</text>
-            <text x="120" y="220" class="lbl" text-anchor="middle">CAMPING 2</text>
-            <text x="120" y="330" class="lbl" text-anchor="middle">CAMPING 3</text>
-          </g>
-
-          <!-- PARKERING -->
-          <rect x="40" y="430" width="230" height="130" fill="var(--surface)" stroke="var(--line)"/>
-          <text x="155" y="500" class="lbl" text-anchor="middle">PARKERING</text>
-
-          <!-- ENTRÉ -->
-          <rect x="300" y="300" width="90" height="60" fill="var(--bone)"/>
-          <text x="345" y="336" class="lbl dark" text-anchor="middle">ENTRÉ</text>
-
-          <!-- MAINSTAGE -->
-          <rect x="620" y="70" width="240" height="200" fill="var(--raw)" opacity=".22" stroke="var(--raw)" stroke-width="2"/>
-          <rect x="700" y="82" width="80" height="26" fill="var(--raw)"/>
-          <text x="740" y="180" class="big" text-anchor="middle" fill="var(--raw)">MAINSTAGE</text>
-          <text x="740" y="205" class="lbl" text-anchor="middle">utomhus · störst</text>
-
-          <!-- INOMHUSHALLAR -->
-          <rect x="450" y="70" width="140" height="100" fill="var(--euphoric)" opacity=".18" stroke="var(--euphoric)" stroke-width="2"/>
-          <text x="520" y="118" class="mid" text-anchor="middle" fill="var(--euphoric)">HALL A</text>
-          <text x="520" y="138" class="lbl" text-anchor="middle">inomhus</text>
-
-          <rect x="450" y="195" width="140" height="100" fill="var(--hardcore)" opacity=".18" stroke="var(--hardcore)" stroke-width="2"/>
-          <text x="520" y="243" class="mid" text-anchor="middle" fill="var(--hardcore)">HALL B</text>
-          <text x="520" y="263" class="lbl" text-anchor="middle">hardcore · uptempo</text>
-
-          <!-- MINDRE SCENER -->
-          <rect x="640" y="330" width="110" height="80" fill="var(--uptempo)" opacity=".18" stroke="var(--uptempo)" stroke-width="2"/>
-          <text x="695" y="375" class="mid" text-anchor="middle" fill="var(--uptempo)">UV</text>
-
-          <rect x="780" y="330" width="80" height="80" fill="var(--techno)" opacity=".18" stroke="var(--techno)" stroke-width="2"/>
-          <text x="820" y="375" class="mid" text-anchor="middle" fill="var(--techno)">TECHNO</text>
-
-          <!-- MATGATA -->
-          <rect x="450" y="360" width="150" height="46" fill="var(--surface-2)" stroke="var(--line)"/>
-          <text x="525" y="388" class="lbl" text-anchor="middle">MAT &amp; MARKNAD</text>
-
-          <!-- SJUKVÅRD -->
-          <circle cx="410" cy="230" r="16" fill="none" stroke="var(--bone)" stroke-width="2"/>
-          <path d="M403 230 h14 M410 223 v14" stroke="var(--bone)" stroke-width="2"/>
-          <text x="410" y="266" class="lbl" text-anchor="middle">SJUKVÅRD</text>
-
-          <!-- AVSTÅNDSMARKERINGAR -->
-          <g class="dist">
-            <path d="M155 430 L155 375" stroke="var(--uptempo)" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <text x="168" y="405" fill="var(--uptempo)">15–20 min med vagn</text>
-
-            <path d="M205 330 L295 330" stroke="var(--uptempo)" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <text x="215" y="320" fill="var(--uptempo)">10 min</text>
-
-            <path d="M595 120 L615 120" stroke="var(--uptempo)" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <text x="500" y="60" fill="var(--uptempo)">5–8 min mellan scener, mer när det är fullt</text>
-
-            <path d="M740 275 L740 325" stroke="var(--uptempo)" stroke-width="1.5" stroke-dasharray="3 3"/>
-          </g>
-
-          <!-- GENVÄG BAKOM MAINSTAGE -->
-          <path d="M860 90 L878 90 L878 300 L760 300" stroke="var(--euphoric)" stroke-width="3" fill="none" stroke-dasharray="7 5"/>
-          <text x="700" y="300" class="lbl" text-anchor="end" fill="var(--euphoric)">GENVÄG BAKOM MAINSTAGE →</text>
-        </svg>
+    <div class="ruta prenumerera">
+      <h3>Kalendern i mobilen</h3>
+      <p class="ingress">Prenumerera så dyker nya event upp i din egen kalender när de bekräftas.</p>
+      <div class="knapprad">
+        <a class="knapp" href="webcal://hardlist.se/kalender.ics">Lägg till i kalendern</a>
+        <button class="knapp knapp-sek" type="button" id="kopieraKal">Kopiera adressen</button>
       </div>
+      <p class="kopiera-svar" id="kopieraSvar" hidden></p>
+    </div>
 
-      <div class="callout warn" style="margin-top:22px">
-        <b>Räkna med att gå — mycket</b>
-        Det här är den enskilt vanligaste överraskningen för förstagångsbesökare. Från parkeringen till tältplatsen är det ofta 15–20 minuter, med allt du äger på en vagn. Från campingen till entrén ytterligare tio. Väl inne är det 5–8 minuter mellan scenerna, och betydligt mer när femtiotusen personer rör sig samtidigt. Över en helg landar många på 15–25 kilometer. Skorna du väljer spelar större roll än jackan.
-      </div>
-
-      <div class="callout tip">
-        <b>Tips från besökare</b>
-        Snabbaste vägen ut från mainstage är oftast <strong>bakåt, bakom scenen</strong>, istället för tillbaka samma väg du kom. Publikströmmen går mot huvudingången, medan ytorna bakom scenen är byggda för transport och står nästan tomma. Kolla den officiella kartan för året så du vet var utgången bakom scenen ligger — den finns inte alltid utmarkerad på plats.
-      </div>
+    <div class="bevaka" id="evBevaka" hidden>
+      <h3>Bevaka</h3>
+      <p class="sektionstext">Återkommande event vars nästa datum inte är annonserat än. De flyttar upp i kalendern så fort datumet släpps.</p>
+      <ul class="bevaka-lista" id="evBevakaLista"></ul>
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
-      <div class="callout warn" style="margin-bottom:28px">
+  <section class="sektion" id="festivaler" aria-labelledby="festRubrik">
+    <div class="sektionshuvud">
+      <h2 id="festRubrik">Festivalguider</h2>
+    </div>
+    <p class="sektionstext">Scener, timing, profil och kostnad för de stora eventen. Välj en festival.</p>
+    <div class="not">
         <b>Läs det här innan du packar</b>
         Reglerna nedan är hämtade från arrangörernas egna sidor, men de <strong>ändras varje år</strong> — alkoholgränser, tillåtna högtalare, gasol, tältstorlekar och tider. Använd dem som en bild av vad som brukar gälla, inte som facit. Kolla alltid arrangörens egen do's &amp; don'ts innan du lastar bilen. Det är den enda källan som räknas i grinden.
       </div>
-
-      <div class="picker" id="picker" role="tablist" aria-label="Välj festival">
-        <button class="fbtn" data-f="defqon"    role="tab" aria-selected="true">Defqon.1</button>
-        <button class="fbtn" data-f="decibel"   role="tab" aria-selected="false">Decibel</button>
-        <button class="fbtn" data-f="intents"   role="tab" aria-selected="false">Intents</button>
-        <button class="fbtn" data-f="dominator" role="tab" aria-selected="false">Dominator</button>
-        <button class="fbtn" data-f="rebirth"   role="tab" aria-selected="false">Rebirth</button>
-        <button class="fbtn" data-f="reverze"   role="tab" aria-selected="false">Reverze</button>
-        <button class="fbtn" data-f="supremacy" role="tab" aria-selected="false">Supremacy</button>
-        <button class="fbtn" data-f="moh"       role="tab" aria-selected="false">Masters of Hardcore</button>
-        <button class="fbtn" data-f="hoh"       role="tab" aria-selected="false">Harmony of Hardcore</button>
-        <button class="fbtn" data-f="onevision" role="tab" aria-selected="false">One Vision</button>
+    <div class="rull flikar" id="picker" role="tablist" aria-label="Välj festival">
+        <button class="chip" type="button" id="flik-defqon" data-f="defqon" role="tab" aria-controls="defqon" aria-selected="true">Defqon.1</button>
+        <button class="chip" type="button" id="flik-decibel" data-f="decibel" role="tab" aria-controls="decibel" aria-selected="false" tabindex="-1">Decibel</button>
+        <button class="chip" type="button" id="flik-intents" data-f="intents" role="tab" aria-controls="intents" aria-selected="false" tabindex="-1">Intents</button>
+        <button class="chip" type="button" id="flik-dominator" data-f="dominator" role="tab" aria-controls="dominator" aria-selected="false" tabindex="-1">Dominator</button>
+        <button class="chip" type="button" id="flik-rebirth" data-f="rebirth" role="tab" aria-controls="rebirth" aria-selected="false" tabindex="-1">Rebirth</button>
+        <button class="chip" type="button" id="flik-reverze" data-f="reverze" role="tab" aria-controls="reverze" aria-selected="false" tabindex="-1">Reverze</button>
+        <button class="chip" type="button" id="flik-supremacy" data-f="supremacy" role="tab" aria-controls="supremacy" aria-selected="false" tabindex="-1">Supremacy</button>
+        <button class="chip" type="button" id="flik-moh" data-f="moh" role="tab" aria-controls="moh" aria-selected="false" tabindex="-1">Masters of Hardcore</button>
+        <button class="chip" type="button" id="flik-hoh" data-f="hoh" role="tab" aria-controls="hoh" aria-selected="false" tabindex="-1">Harmony of Hardcore</button>
+        <button class="chip" type="button" id="flik-onevision" data-f="onevision" role="tab" aria-controls="onevision" aria-selected="false" tabindex="-1">One Vision</button>
       </div>
 
       <!-- ============ DEFQON.1 ============ -->
-      <article class="panel" id="defqon" role="tabpanel">
-        <header class="phead">
-          <h2>Defqon.1</h2>
-          <span class="place">Walibi Holland, Biddinghuizen, NL · 24–27 juni 2027 · 4 dagar</span>
+      <article class="panel" id="defqon" role="tabpanel" aria-labelledby="flik-defqon">
+        <header class="panel-huvud">
+          <h3>Defqon.1</h3>
+          <ul class="panel-fakta"><li>Walibi Holland, Biddinghuizen, NL</li><li>24–27 juni 2027</li><li>4 dagar</li></ul>
         </header>
 
-        <div class="callout warn">
+        <div class="not">
           <b>2026 ställdes in — och det påverkar 2027</b>
           Defqon.1 2026 ("Sacred Oath") öppnade 25 juni men avbröts efter första dagen. KNMI utfärdade Nederländernas första kod röd för extrem värme någonsin, med temperaturer mot 40 grader, och Q-dance stängde grindarna i samråd med myndigheterna. Räkna med att värmeplanering blir en permanent del av festivalen framåt.
         </div>
 
-        <div class="callout tip">
+        <div class="not">
           <b>Nästa upplaga: 24–27 juni 2027</b>
           Alla som hade biljett 2026 fick välja mellan full återbetalning och att behålla biljetten till 2027, till samma pris och skyddad mot höjningar. Valet stängde i slutet av juli 2026 och var slutgiltigt. <strong>Många behöll sina biljetter</strong>, vilket betyder att en stor del av platserna är tagna innan den öppna försäljningen ens börjar. Boende och resepaket kunde däremot inte flyttas över utan återbetalades.
           <br><br>
@@ -1158,17 +235,17 @@ footer{
           <div><dt>Avstånd</dt><dd>Cirka 75 km från Amsterdam, 90 km från Schiphol.</dd></div>
         </dl>
 
-        <h3>Stagesen</h3>
+        <h4>Stagesen</h4>
         <p>Namnen roterar delvis mellan åren, men strukturen är densamma. Tre är konstanta.</p>
         <ul class="stages">
-          <li><b style="--c:var(--raw)">RED</b><span>Mainstage, utomhus. Hardstyle och euphoric, de största namnen. Här ligger Opening Ceremony och Endshow.</span></li>
-          <li><b style="--c:var(--euphoric)">BLUE</b><span>Inomhus. Hardstyle och raw, ofta det tyngre och mer experimentella. Öppnar helgen på torsdag med The Gathering.</span></li>
-          <li><b style="--c:var(--hardcore)">BLACK</b><span>Inomhus. Hardcore, frenchcore och uptempo. Ligger djupare in på området än RED — räkna med 5–8 minuters promenad, mer när det är fullt.</span></li>
-          <li><b style="--c:var(--uptempo)">INDIGO</b><span>Tillsammans med BLACK den djupaste raw-bokningen på hela europeiska kalendern.</span></li>
-          <li><b style="--c:var(--muted)">Roterande</b><span>MAGENTA, GREEN, PINK, UV och GOLD byter roll mellan åren. GOLD är klassiker- och legendsscenen.</span></li>
+          <li><b>RED</b><span>Mainstage, utomhus. Hardstyle och euphoric, de största namnen. Här ligger Opening Ceremony och Endshow.</span></li>
+          <li><b>BLUE</b><span>Inomhus. Hardstyle och raw, ofta det tyngre och mer experimentella. Öppnar helgen på torsdag med The Gathering.</span></li>
+          <li><b>BLACK</b><span>Inomhus. Hardcore, frenchcore och uptempo. Ligger djupare in på området än RED — räkna med 5–8 minuters promenad, mer när det är fullt.</span></li>
+          <li><b>INDIGO</b><span>Tillsammans med BLACK den djupaste raw-bokningen på hela europeiska kalendern.</span></li>
+          <li><b>Roterande</b><span>MAGENTA, GREEN, PINK, UV och GOLD byter roll mellan åren. GOLD är klassiker- och legendsscenen.</span></li>
         </ul>
 
-        <h3>Dagarna</h3>
+        <h4>Dagarna</h4>
         <ul>
           <li><strong>Torsdag</strong> — The Gathering. Bara några scener öppnar, sen kväll. Lugnaste dagen och bäst för att lära känna området innan det blir fullt.</li>
           <li><strong>Fredag</strong> — full festivaldag, i praktiken likvärdig med lördag.</li>
@@ -1176,8 +253,8 @@ footer{
           <li><strong>Söndag</strong> — Legends Day, avslutas med Endshow på RED.</li>
         </ul>
 
-        <h3>Att röra sig på området</h3>
-        <div class="callout">
+        <h4>Att röra sig på området</h4>
+        <div class="not">
           <b>Snabbaste vägen ut från RED</b>
           Enligt besökare är det oftast <strong>bakåt, bakom scenen</strong> — inte tillbaka samma väg. Publiken strömmar mot huvudingången medan transportytorna bakom mainstage står nästan tomma. Exakt var utgången ligger flyttas mellan åren, så ladda ner Q-dance <strong>officiella interaktiva karta</strong> i mobilen innan du åker, medan du har nät.
         </div>
@@ -1192,17 +269,17 @@ footer{
           <li><strong>Bestäm en fast mötesplats</strong> — en matvagn eller ett stagenamn, aldrig "vid scenen".</li>
         </ul>
 
-        <div class="callout tip">
+        <div class="not">
           <b>Har du ett riktigt insidertips?</b>
           Vet du var den snabba passagen mellan RED och BLACK går, eller vilken ingång som alltid är tom? <a href="mailto:hardlisthelp@gmail.com">Skicka in det</a> så läggs det upp här med ditt namn.
         </div>
       </article>
 
       <!-- ============ DECIBEL ============ -->
-      <article class="panel" id="decibel" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>Decibel Outdoor</h2>
-          <span class="place">Beekse Bergen, Hilvarenbeek, NL · mitten av augusti</span>
+      <article class="panel" id="decibel" role="tabpanel" aria-labelledby="flik-decibel" hidden>
+        <header class="panel-huvud">
+          <h3>Decibel Outdoor</h3>
+          <ul class="panel-fakta"><li>Beekse Bergen, Hilvarenbeek, NL</li><li>mitten av augusti</li></ul>
         </header>
         <dl class="facts">
           <div><dt>Bredd</dt><dd>Störst spännvidd av alla. Över 30 scener som täcker mainstream hardstyle, raw, hardcore, uptempo, frenchcore och hard techno — varje gren får sin egen scen.</dd></div>
@@ -1210,21 +287,21 @@ footer{
           <div><dt>Alkohol</dt><dd>1,5 liter per person på campingen, under 15 procent. Alkoholfritt obegränsat.</dd></div>
           <div><dt>Viktigt</dt><dd>Ingen dryck alls får bäras in på festivalområdet, inte ens alkoholfri.</dd></div>
         </dl>
-        <h3>Vad du behöver veta</h3>
+        <h4>Vad du behöver veta</h4>
         <ul>
           <li>Med 30+ scener kan du <strong>inte se allt</strong>. Välj tre scener per dag och släpp resten.</li>
           <li>Bästa festivalen om du inte vet vilken gren du gillar — du kan prova hela spektrumet på en helg.</li>
           <li>Eftersom ingen dryck får tas in på området, <strong>budgetera för barpriser</strong> alla dagarna.</li>
           <li>Campingen är en semesterpark, inte en åker. Högre komfort, men också fler regler.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
+        <div class="not"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ INTENTS ============ -->
-      <article class="panel" id="intents" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>Intents Festival</h2>
-          <span class="place">Oisterwijk, NL · början av juni · 3 dagar</span>
+      <article class="panel" id="intents" role="tabpanel" aria-labelledby="flik-intents" hidden>
+        <header class="panel-huvud">
+          <h3>Intents Festival</h3>
+          <ul class="panel-fakta"><li>Oisterwijk, NL</li><li>början av juni</li><li>3 dagar</li></ul>
         </header>
         <dl class="facts">
           <div><dt>2026</dt><dd>5–7 juni under temat "Rise of Titans". Anthem av Vertile och The Saints.</dd></div>
@@ -1232,42 +309,42 @@ footer{
           <div><dt>Camping</dt><dd>IntentsCity. Egen mat och dryck tillåten på campingen, inte på festivalområdet.</dd></div>
           <div><dt>Tältregel</dt><dd>Tältet får vara för högst en person mer än ni är. Sover ni fyra får ni ha ett femmannatält.</dd></div>
         </dl>
-        <h3>Vad du behöver veta</h3>
+        <h4>Vad du behöver veta</h4>
         <ul>
           <li>Du får <strong>gå ut och in från campingen</strong> under angivna tider — bra om du vill sova ordentligt en stund.</li>
           <li>Ett badhus har öppet dygnet runt. Ovanligt, och värt mycket på dag tre.</li>
           <li>Butik finns på campingen, så du behöver inte överpacka dryck.</li>
           <li>Ungefär en sixpack öl eller två flaskor vin per person är gränsen på campingen.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
+        <div class="not"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ DOMINATOR ============ -->
-      <article class="panel" id="dominator" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>Dominator</h2>
-          <span class="place">E3 Strand, Eersel, NL · juli</span>
+      <article class="panel" id="dominator" role="tabpanel" aria-labelledby="flik-dominator" hidden>
+        <header class="panel-huvud">
+          <h3>Dominator</h3>
+          <ul class="panel-fakta"><li>E3 Strand, Eersel, NL</li><li>juli</li></ul>
         </header>
         <dl class="facts">
           <div><dt>2026</dt><dd>17–18 juli under temat "Fatal Fortune". 10 scener, över 200 artister, med fullt program även på fredagen.</dd></div>
           <div><dt>Profil</dt><dd>Världens största renodlade hardcore-festival. Hela programmet ligger i den hårdare änden — ingen euphoric hardstyle att tala om.</dd></div>
           <div><dt>Camping</dt><dd>Ja, sedan återkomsten 2022. Även förfest.</dd></div>
         </dl>
-        <h3>Vad du behöver veta</h3>
+        <h4>Vad du behöver veta</h4>
         <ul>
           <li>Det här är <strong>inte en nybörjarfestival</strong>. Publiken kan sina låtar och tempot ligger högt hela dagen.</li>
           <li>Öronproppar är obligatoriskt, inte valfritt.</li>
           <li>Drar den mest hängivna publiken i hela scenen. Stämningen är därefter.</li>
           <li>Kolla arrangörens sida för årets camping- och dryckesregler — jag har inte verifierat dem.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
+        <div class="not"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ REBIRTH ============ -->
-      <article class="panel" id="rebirth" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>REBiRTH Festival</h2>
-          <span class="place">Helvoirt, NL · april · 3 dagar</span>
+      <article class="panel" id="rebirth" role="tabpanel" aria-labelledby="flik-rebirth" hidden>
+        <header class="panel-huvud">
+          <h3>REBiRTH Festival</h3>
+          <ul class="panel-fakta"><li>Helvoirt, NL</li><li>april</li><li>3 dagar</li></ul>
         </header>
         <dl class="facts">
           <div><dt>Roll</dt><dd>Öppnar den nederländska utomhussäsongen. Här hör du vad som kommer dominera resten av året.</dd></div>
@@ -1275,20 +352,20 @@ footer{
           <div><dt>Plats</dt><dd>Antwerpsebaan i Helvoirt. Festivalen har flyttat — äldre guider anger Haaksbergen.</dd></div>
           <div><dt>Väder</dt><dd>April i Nederländerna. Kallaste campingen bland de stora.</dd></div>
         </dl>
-        <h3>Vad du behöver veta</h3>
+        <h4>Vad du behöver veta</h4>
         <ul>
           <li><strong>Packa som för svensk vår</strong>, inte sommarfestival. Sovsäck som tål nollgradigt, inte en sommarsäck.</li>
           <li>Att den ligger tidigt gör den till en bra "test-festival" innan du bokar de stora.</li>
           <li>Camping- och dryckesregler har jag inte kunnat verifiera. Läs arrangörens do's &amp; don'ts.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
+        <div class="not"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ REVERZE ============ -->
-      <article class="panel" id="reverze" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>Reverze</h2>
-          <span class="place">Antwerpen, BE · februari · inomhus</span>
+      <article class="panel" id="reverze" role="tabpanel" aria-labelledby="flik-reverze" hidden>
+        <header class="panel-huvud">
+          <h3>Reverze</h3>
+          <ul class="panel-fakta"><li>Antwerpen, BE</li><li>februari</li><li>inomhus</li></ul>
         </header>
         <dl class="facts">
           <div><dt>Nästa</dt><dd>26–27 februari 2027.</dd></div>
@@ -1296,20 +373,20 @@ footer{
           <div><dt>Roll</dt><dd>Öppnar hela hard dance-säsongen i Europa. Först på kalendern varje år.</dd></div>
           <div><dt>Camping</dt><dd>Nej. Hotell i Antwerpen.</dd></div>
         </dl>
-        <h3>Vad du behöver veta</h3>
+        <h4>Vad du behöver veta</h4>
         <ul>
           <li>Antwerpen är enkelt att nå med tåg från Amsterdam eller Bryssel.</li>
           <li>Två arenor betyder att du behöver <strong>bestämma i förväg</strong> vilken du prioriterar — det är inte gjort på två minuter att byta.</li>
           <li>Inomhus i februari betyder garderob. Räkna med kö både in och ut.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
+        <div class="not"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ SUPREMACY ============ -->
-      <article class="panel" id="supremacy" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>Supremacy</h2>
-          <span class="place">Brabanthallen, 's-Hertogenbosch, NL · 26 september 2026 · inomhus</span>
+      <article class="panel" id="supremacy" role="tabpanel" aria-labelledby="flik-supremacy" hidden>
+        <header class="panel-huvud">
+          <h3>Supremacy</h3>
+          <ul class="panel-fakta"><li>Brabanthallen, 's-Hertogenbosch, NL</li><li>26 september 2026</li><li>inomhus</li></ul>
         </header>
         <dl class="facts">
           <div><dt>2026</dt><dd>Tolfte upplagan, tema "State of Distortion". En dag, 26 september.</dd></div>
@@ -1317,21 +394,21 @@ footer{
           <div><dt>Format</dt><dd>Nästan hela programmet är liveshows på en enda scen. Det skiljer Supremacy från i princip alla andra festivaler i genren, där man springer mellan tält.</dd></div>
           <div><dt>Biljetter</dt><dd>Medlemsbiljetterna till 2026 års upplaga tog slut på ett dygn. Bevaka släppen om du vill in.</dd></div>
         </dl>
-        <h3>Vad du behöver veta</h3>
+        <h4>Vad du behöver veta</h4>
         <ul>
           <li>Är raw din grej är det här eventet du inte ska missa. Är den inte det, hoppa över — här finns ingen euphoric-scen att fly till.</li>
           <li><strong>En scen betyder att du inte behöver planera.</strong> Du kommer, du står kvar, du ser allt. Motsatsen till Decibel.</li>
           <li>Art of Dance är kända för sina scenbyggen och produktioner. Det är en stor del av varför folk kommer tillbaka.</li>
           <li>Inomhus i september, ingen camping. Boende i 's-Hertogenbosch eller dagsresa.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
+        <div class="not"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ MASTERS OF HARDCORE ============ -->
-      <article class="panel" id="moh" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>Masters of Hardcore</h2>
-          <span class="place">Brabanthallen, 's-Hertogenbosch, NL · vår · inomhus</span>
+      <article class="panel" id="moh" role="tabpanel" aria-labelledby="flik-moh" hidden>
+        <header class="panel-huvud">
+          <h3>Masters of Hardcore</h3>
+          <ul class="panel-fakta"><li>Brabanthallen, 's-Hertogenbosch, NL</li><li>vår</li><li>inomhus</li></ul>
         </header>
         <dl class="facts">
           <div><dt>2026</dt><dd>28 mars. Endagsevent.</dd></div>
@@ -1339,153 +416,325 @@ footer{
           <div><dt>2026-lineup</dt><dd>Bland de bekräftade huvudnamnen: Miss K8, Nosferatu, Tha Playah, Paul Elstak och Angerfist.</dd></div>
           <div><dt>Camping</dt><dd>Nej. Inomhus, en dag.</dd></div>
         </dl>
-        <h3>Vad du behöver veta</h3>
+        <h4>Vad du behöver veta</h4>
         <ul>
           <li>Har en egen skivlabel med samma namn och en publik med extremt stark lojalitet. Det märks på plats.</li>
           <li>Endagsevent inomhus gör det till den billigaste vägen in i hardcore-scenen — ingen camping, ingen helgbiljett.</li>
           <li>Går normalt i april, men 2026-upplagan låg i mars. <strong>Kolla datumet varje år.</strong></li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
+        <div class="not"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ HARMONY OF HARDCORE ============ -->
-      <article class="panel" id="hoh" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>Harmony of Hardcore</h2>
-          <span class="place">De Roost, Erp, NL · maj</span>
+      <article class="panel" id="hoh" role="tabpanel" aria-labelledby="flik-hoh" hidden>
+        <header class="panel-huvud">
+          <h3>Harmony of Hardcore</h3>
+          <ul class="panel-fakta"><li>De Roost, Erp, NL</li><li>maj</li></ul>
         </header>
         <dl class="facts">
           <div><dt>2026</dt><dd>Lördag 23 maj under temat "The Awakening". Anthem av N-Vitral presents BOMBSQUAD och Nolz.</dd></div>
           <div><dt>Profil</dt><dd>Hardcore och frenchcore utomhus. 2026 hade Sefa, Angerfist, Miss K8 och N-Vitral BOMBSQUAD på mainstage, plus 13 sidoscener.</dd></div>
           <div><dt>Camping</dt><dd>Kolla arrangören — jag har inte verifierat.</dd></div>
         </dl>
-        <h3>Vad du behöver veta</h3>
+        <h4>Vad du behöver veta</h4>
         <ul>
           <li>Många sidoscener i förhållande till storleken — bra om du vill upptäcka nytt istället för att stå vid mainstage hela dagen.</li>
           <li>Ligger i maj, vilket gör den till en av de första utomhusdagarna på säsongen.</li>
           <li>Endagsevent, så du hinner inte allt. Planera.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
+        <div class="not"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
 
       <!-- ============ ONE VISION ============ -->
-      <article class="panel" id="onevision" role="tabpanel" hidden>
-        <header class="phead">
-          <h2>One Vision</h2>
-          <span class="place">Kristianstad, SE · augusti</span>
+      <article class="panel" id="onevision" role="tabpanel" aria-labelledby="flik-onevision" hidden>
+        <header class="panel-huvud">
+          <h3>One Vision</h3>
+          <ul class="panel-fakta"><li>Kristianstad, SE</li><li>augusti</li></ul>
         </header>
         <dl class="facts">
           <div><dt>Profil</dt><dd>Sveriges hardstyle-festival med camping.</dd></div>
           <div><dt>Fördelen</dt><dd>Du kan köra dit. Ingen flygvikt, ingen valuta, ingen språkbarriär.</dd></div>
           <div><dt>Alkohol</dt><dd>Svenska regler, som är stramare än de nederländska. Utgå inte från Defqon-gränserna.</dd></div>
         </dl>
-        <h3>Vad du behöver veta</h3>
+        <h4>Vad du behöver veta</h4>
         <ul>
           <li>Eftersom du kör: ta med ordentligt tält, kylbox och för mycket mat. Det kostar dig ingenting extra.</li>
           <li>Minst av festivalerna i listan — kortare köer, och du hittar tillbaka till tältet.</li>
           <li>Bästa första camping-festivalen innan du satsar på en resa till Nederländerna.</li>
           <li>Kolla arrangörens sida för årets datum och regler.</li>
         </ul>
-        <div class="callout tip"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
+        <div class="not"><b>Tips önskas</b><a href="mailto:hardlisthelp@gmail.com">Skicka in</a> om du varit där.</div>
       </article>
-
-      <div class="callout" style="margin-top:34px">
+    <div class="not">
         <b>Fler som är värda att känna till</b>
         <strong>HARDFEST</strong> är ett nyare namn som bokar raw och uptempo och drar en publik som vill ha snabbast möjliga kickar. <strong>Emporium</strong> och <strong>Ground Zero</strong> hör också till de etablerade. Och en varning: <strong>Qlimax, Qapital, The Qontinent, Q-BASE, Impaqt, EPIQ</strong> och alla <strong>X-Qlusive</strong>-event är nedlagda av Q-dance — hittar du gamla guider som listar dem är de föråldrade.
       </div>
-    </div>
   </section>
+
+  <section class="sektion" id="omradet" aria-labelledby="omrRubrik">
+    <div class="sektionshuvud">
+      <h2 id="omrRubrik">Så ser ett festivalområde ut</h2>
+    </div>
+    <p class="sektionstext">Schematisk bild, inte en karta över en specifik festival. Men proportionerna stämmer: de stora nederländska festivalerna är byggda ungefär så här, och avstånden är verkliga.</p>
+    <div class="karta">
+      <svg viewBox="0 0 900 620" role="img" aria-label="Schematisk karta över ett typiskt festivalområde: camping och parkering till vänster, entrén i mitten, inomhushallar och mainstage till höger, och en genväg bakom mainstage.">
+        <defs>
+          <pattern id="trad" width="16" height="16" patternUnits="userSpaceOnUse">
+            <circle cx="8" cy="8" r="2" fill="#251D31"/>
+          </pattern>
+        </defs>
+        <rect width="900" height="620" fill="#1A1424"/>
+        <rect width="900" height="620" fill="url(#trad)" opacity=".6"/>
+
+        <path d="M150 560 L150 120 L760 120" stroke="#251D31" stroke-width="14" fill="none"/>
+        <path d="M150 330 L620 330" stroke="#251D31" stroke-width="10" fill="none"/>
+        <path d="M420 560 L420 120" stroke="#251D31" stroke-width="10" fill="none"/>
+
+        <rect x="40" y="60" width="160" height="90" rx="12" fill="none" stroke="#8E84A0" stroke-dasharray="4 4"/>
+        <rect x="40" y="170" width="160" height="90" rx="12" fill="none" stroke="#8E84A0" stroke-dasharray="4 4"/>
+        <rect x="40" y="280" width="160" height="90" rx="12" fill="none" stroke="#8E84A0" stroke-dasharray="4 4"/>
+        <text x="120" y="110" class="k-text" text-anchor="middle">Camping 1</text>
+        <text x="120" y="220" class="k-text" text-anchor="middle">Camping 2</text>
+        <text x="120" y="330" class="k-text" text-anchor="middle">Camping 3</text>
+
+        <rect x="40" y="430" width="230" height="130" rx="14" fill="#251D31"/>
+        <text x="155" y="500" class="k-text" text-anchor="middle">Parkering</text>
+
+        <rect x="300" y="300" width="90" height="60" rx="12" fill="#F6F2FB"/>
+        <text x="345" y="336" class="k-text k-mork" text-anchor="middle">Entré</text>
+
+        <rect x="620" y="70" width="240" height="200" rx="18" fill="#251D31"/>
+        <rect x="700" y="82" width="80" height="26" rx="6" fill="#F6F2FB"/>
+        <text x="740" y="180" class="k-stor" text-anchor="middle">Mainstage</text>
+        <text x="740" y="208" class="k-text k-dov" text-anchor="middle">utomhus, störst</text>
+
+        <rect x="450" y="70" width="140" height="100" rx="14" fill="#251D31"/>
+        <text x="520" y="118" class="k-mellan" text-anchor="middle">Hall A</text>
+        <text x="520" y="142" class="k-text k-dov" text-anchor="middle">inomhus</text>
+
+        <rect x="450" y="195" width="140" height="100" rx="14" fill="#251D31"/>
+        <text x="520" y="243" class="k-mellan" text-anchor="middle">Hall B</text>
+        <text x="520" y="267" class="k-text k-dov" text-anchor="middle">hardcore, uptempo</text>
+
+        <rect x="640" y="330" width="110" height="80" rx="14" fill="#251D31"/>
+        <text x="695" y="377" class="k-mellan" text-anchor="middle">UV</text>
+
+        <rect x="770" y="330" width="100" height="80" rx="14" fill="#251D31"/>
+        <text x="820" y="366" class="k-text" text-anchor="middle">Hard</text>
+        <text x="820" y="388" class="k-text" text-anchor="middle">techno</text>
+
+        <rect x="450" y="360" width="150" height="46" rx="12" fill="#251D31"/>
+        <text x="525" y="389" class="k-text" text-anchor="middle">Mat och marknad</text>
+
+        <circle cx="410" cy="230" r="16" fill="none" stroke="#F6F2FB" stroke-width="2"/>
+        <path d="M403 230 h14 M410 223 v14" stroke="#F6F2FB" stroke-width="2"/>
+        <text x="410" y="268" class="k-text" text-anchor="middle">Sjukvård</text>
+
+        <g class="k-avstand">
+          <path d="M155 430 L155 375" stroke="#B9AFC9" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="168" y="405">15–20 min med vagn</text>
+          <path d="M205 330 L295 330" stroke="#B9AFC9" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="215" y="318">10 min</text>
+          <path d="M595 120 L615 120" stroke="#B9AFC9" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="450" y="52">5–8 min mellan scener, mer när det är fullt</text>
+          <path d="M700 302 L700 325" stroke="#B9AFC9" stroke-width="1.5" stroke-dasharray="3 3"/>
+        </g>
+
+        <path d="M860 90 L882 90 L882 300 L760 300" stroke="#F6F2FB" stroke-width="3" fill="none" stroke-dasharray="7 5"/>
+        <text x="866" y="292" class="k-text" text-anchor="end">Genväg bakom mainstage</text>
+      </svg>
+    </div>
+    <div class="not">
+        <b>Räkna med att gå — mycket</b>
+        Det här är den enskilt vanligaste överraskningen för förstagångsbesökare. Från parkeringen till tältplatsen är det ofta 15–20 minuter, med allt du äger på en vagn. Från campingen till entrén ytterligare tio. Väl inne är det 5–8 minuter mellan scenerna, och betydligt mer när femtiotusen personer rör sig samtidigt. Över en helg landar många på 15–25 kilometer. Skorna du väljer spelar större roll än jackan.
+      </div>
+    <div class="not">
+        <b>Tips från besökare</b>
+        Snabbaste vägen ut från mainstage är oftast <strong>bakåt, bakom scenen</strong>, istället för tillbaka samma väg du kom. Publikströmmen går mot huvudingången, medan ytorna bakom scenen är byggda för transport och står nästan tomma. Kolla den officiella kartan för året så du vet var utgången bakom scenen ligger — den finns inte alltid utmarkerad på plats.
+      </div>
+  </section>
+
+  <a class="kort med-ikon camping-kort" href="/guider/">
+    <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 4l9 16H3z"/><path d="M12 20v-6"/></svg></span>
+    <span class="kort-delar">
+      <span class="kort-titel">Campingguiden</span>
+      <span class="kort-text">Packlista och vad du får ta med in</span>
+    </span>
+  </a>
+
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="foot-topp">
-      <div class="foot-om">
-        <div class="mark">Hard<span>list</span></div>
-        <p>Releaser och rave i Norden.<br><b>Uppdateras automatiskt varje dygn.</b></p>
+<footer class="sidfot">
+  <div class="sidfot-inre">
+    <div class="sidfot-topp">
+      <div class="sidfot-om">
+        <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+        <p>Releaser, event och spel för den hårda scenen i Norden.</p>
       </div>
-      <nav class="foot-kol">
-        <h4>Sajten</h4>
-        <a href="/#releaser">Releaser</a>
-        <a href="/#events">Kalender</a>
-        <a href="/events/">Festivalguider</a>
-        <a href="/guider/">Camping</a>
-        <a href="/nyborjare/">Nybörjarguide</a>
-        <a href="/anthems/">Anthem-arkivet</a>
-        <a href="/quiz/">Dagens fråga</a>
-        <a href="/latspel/">Låtspelet</a>
-        <a href="/integritet/">Integritet</a>
-      </nav>
-      <div class="foot-kol">
-        <h4>Bidra</h4>
-        <a href="mailto:hardlisthelp@gmail.com">Tipsa om ett event</a>
-        <a href="mailto:hardlisthelp@gmail.com">Saknad artist</a>
-        <a href="mailto:hardlisthelp@gmail.com">Insidertips</a>
-        <a href="mailto:hardlisthelp@gmail.com">Rätta ett fel</a>
-        <a href="/releaser.xml">RSS-flöde</a>
+      <div class="sidfot-grupper">
+        <nav aria-labelledby="sf-sajten">
+          <span class="sidfot-rubrik" id="sf-sajten">Sajten</span>
+          <a href="/releaser/">Releaser</a>
+          <a href="/events/">Event</a>
+          <a href="/spel/">Spel</a>
+          <a href="/scenen/">Scenen</a>
+        </nav>
+        <nav aria-labelledby="sf-prenumerera">
+          <span class="sidfot-rubrik" id="sf-prenumerera">Prenumerera</span>
+          <a href="webcal://hardlist.se/kalender.ics">Kalendern i mobilen</a>
+          <a href="/releaser.xml">Releaser som RSS</a>
+        </nav>
+        <nav aria-labelledby="sf-bidra">
+          <span class="sidfot-rubrik" id="sf-bidra">Bidra</span>
+          <a href="mailto:hardlisthelp@gmail.com?subject=Tips%20om%20event">Tipsa om ett event</a>
+          <a href="mailto:hardlisthelp@gmail.com?subject=R%C3%A4ttelse">Rätta en uppgift</a>
+          <a class="bara-dator" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
+        </nav>
+        <nav aria-labelledby="sf-om">
+          <span class="sidfot-rubrik" id="sf-om">Om sajten</span>
+          <a href="/integritet/">Integritet</a>
+          <a href="/konto/">Ditt konto</a>
+        </nav>
       </div>
     </div>
-    <div class="foot-loften">
-      <span>Inga annonser</span>
-      <span>Inga cookies</span>
-      <span>Ingen spårning</span>
-      <span>Gratis, alltid</span>
-    </div>
-
-    <div class="colophon">
-      <span class="by">Jonathan H</span>
-      <span class="ar">2026</span>
+    <div class="sidfot-status">
+      <span id="sidfotStatus">Releaserna uppdateras varje morgon.</span>
+      <span>Inga annonser och inga cookies.</span>
+      <a class="sidfot-post" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
     </div>
   </div>
 </footer>
 
 <script>
-document.getElementById('picker').addEventListener('click', e => {
-  const b = e.target.closest('.fbtn');
-  if (!b) return;
-  document.querySelectorAll('.fbtn').forEach(x => x.setAttribute('aria-selected', String(x === b)));
-  document.querySelectorAll('.panel').forEach(p => { p.hidden = (p.id !== b.dataset.f); });
-});
-</script>
+const MANADER = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+const KALENDER_URL = 'https://hardlist.se/kalender.ics';
 
-<script>
-/* Tonar in sektioner när de kommer i vy. Utan JS eller med reducerad rörelse
-   visas allt direkt — inget innehåll döljs permanent. */
-(function(){
-  if (!('IntersectionObserver' in window)) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const idag = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+/* new Date('2026-08-14') tolkas som UTC-midnatt. Datumet byggs lokalt så
+   att ett event inte hoppar en dag i svensk tid. */
+function lasDatum(s){
+  const [y, m, d] = String(s).split('-').map(Number);
+  return new Date(y, (m || 1) - 1, d || 1);
+}
 
-  const mal = document.querySelectorAll('main section, main .hero > .wrap > *');
-  mal.forEach(function(el, i){ if (i > 0) el.classList.add('reveal'); });
+let events = [], region = 'norden';
 
-  const obs = new IntersectionObserver(function(poster){
-    poster.forEach(function(p){
-      if (p.isIntersecting){ p.target.classList.add('inne'); obs.unobserve(p.target); }
-    });
-  }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
+function ritaEvents(){
+  const lista = document.getElementById('evLista');
+  const t = idag();
+  const iRegion = events.filter(e => region === 'alla' || e.region === region);
 
-  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
-})();
-</script>
+  /* Ett event med flera dagar står kvar tills sista dagen passerat, så att
+     en festival inte försvinner ur kalendern medan den pågår. */
+  const daterade = iRegion
+    .filter(e => e.date && lasDatum(e.dateEnd || e.date) >= t)
+    .sort((a, b) => a.date < b.date ? -1 : 1);
+  const utanDatum = iRegion.filter(e => !e.date);
 
-<script>
-/* Visar toningen i högerkanten bara när det finns mer meny att svepa till. */
-(function(){
-  const nav = document.querySelector('.topnav');
-  if (!nav) return;
-  const hylsa = document.createElement('div');
-  hylsa.className = 'topnav-hylsa';
-  nav.parentNode.insertBefore(hylsa, nav);
-  hylsa.appendChild(nav);
-  function kolla(){
-    const mer = nav.scrollWidth - nav.clientWidth - nav.scrollLeft > 8;
-    hylsa.classList.toggle('mer', mer);
+  document.getElementById('evAntal').textContent = daterade.length + ' bekräftade';
+
+  const bevaka = document.getElementById('evBevaka');
+  bevaka.hidden = !utanDatum.length;
+  document.getElementById('evBevakaLista').innerHTML = utanDatum.map(e =>
+    '<li><span class="bevaka-namn">' + esc(e.name) + '</span>' +
+    (e.city ? '<span>' + esc(e.city) + '</span>' : '') +
+    (e.season ? '<span>' + esc(e.season) + '</span>' : '') + '</li>').join('');
+
+  if (!daterade.length){
+    lista.innerHTML = '<p class="tom">Inga bekräftade datum just nu.' +
+      (utanDatum.length ? ' Se bevakningslistan nedanför.' : '') + '</p>';
+    return;
   }
-  nav.addEventListener('scroll', kolla, {passive:true});
-  window.addEventListener('resize', kolla);
-  kolla();
+
+  lista.innerHTML = daterade.map(e => {
+    const d = lasDatum(e.date);
+    const ar = d.getFullYear() !== t.getFullYear() ? ' ' + d.getFullYear() : '';
+    const plats = [e.venue, e.city].filter(Boolean).join(', ');
+    return '<article class="event">' +
+      '<div class="datum"><span class="datum-dag">' + d.getDate() + '</span>' +
+        '<span class="datum-man">' + MANADER[d.getMonth()] + ar + '</span></div>' +
+      '<div class="event-mitt"><h3 class="event-namn">' + esc(e.name) + '</h3>' +
+        (plats ? '<p class="event-plats">' + esc(plats) + '</p>' : '') +
+        (e.lineup ? '<p class="event-text">' + esc(e.lineup) + '</p>' : '') + '</div>' +
+      (e.url
+        ? '<a class="knapp knapp-sek event-lank" href="' + esc(e.url) + '" target="_blank" rel="noopener">' +
+            esc(e.urlText || 'Biljetter') + '</a>'
+        : '<span class="event-saknas">Biljettlänk saknas</span>') +
+      '</article>';
+  }).join('');
+}
+
+async function ladda(){
+  try {
+    const r = await fetch('/data/events.json', { cache: 'no-store' });
+    events = await r.json();
+    if (!Array.isArray(events)) throw 0;
+  } catch(e){
+    document.getElementById('evLista').innerHTML =
+      '<p class="tom">Kalendern gick inte att hämta. Ladda om sidan om en stund.</p>';
+    return;
+  }
+  ritaEvents();
+}
+
+document.getElementById('evFilter').addEventListener('click', e => {
+  const b = e.target.closest('.chip');
+  if (!b) return;
+  region = b.dataset.r;
+  document.querySelectorAll('#evFilter .chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+  ritaEvents();
+});
+
+/* Google Kalender kan inte öppna webcal-länkar, där klistrar man in adressen.
+   Går urklipp inte att använda visas adressen i stället för en dialogruta. */
+document.getElementById('kopieraKal').addEventListener('click', async function(){
+  const svar = document.getElementById('kopieraSvar');
+  try {
+    await navigator.clipboard.writeText(KALENDER_URL);
+    svar.textContent = 'Kopierat. Klistra in adressen i Google Kalender under Andra kalendrar.';
+  } catch(e){
+    svar.textContent = 'Adressen att klistra in: ' + KALENDER_URL;
+  }
+  svar.hidden = false;
+});
+
+/* Festivalflikarna. Pilarna flyttar mellan flikarna, och en adress som
+   /events/#decibel öppnar rätt festival direkt. */
+(function(){
+  const flikar = [...document.querySelectorAll('#picker [role="tab"]')];
+  function valj(flik, fokus){
+    flikar.forEach(f => {
+      const vald = f === flik;
+      f.setAttribute('aria-selected', String(vald));
+      f.tabIndex = vald ? 0 : -1;
+      document.getElementById(f.dataset.f).hidden = !vald;
+    });
+    if (fokus) flik.focus();
+  }
+  document.getElementById('picker').addEventListener('click', e => {
+    const f = e.target.closest('[role="tab"]');
+    if (f) valj(f);
+  });
+  document.getElementById('picker').addEventListener('keydown', e => {
+    const i = flikar.indexOf(document.activeElement);
+    if (i < 0) return;
+    const steg = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+    if (steg){ e.preventDefault(); valj(flikar[(i + steg + flikar.length) % flikar.length], true); }
+    if (e.key === 'Home'){ e.preventDefault(); valj(flikar[0], true); }
+    if (e.key === 'End'){ e.preventDefault(); valj(flikar[flikar.length - 1], true); }
+  });
+  const fran = flikar.find(f => '#' + f.dataset.f === location.hash);
+  if (fran){
+    valj(fran);
+    document.getElementById('festivaler').scrollIntoView();
+  }
 })();
+
+ladda();
 </script>
+<script src="/ram.js" defer></script>
 <script src="/inloggning.js" defer></script>
 <script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
