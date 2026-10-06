@@ -19,6 +19,18 @@ ett anthem-arkiv och ett dagligt quiz.
 
 Bärande idé: **allt utom tre datafiler ska sköta sig självt.**
 
+Menyn har fem val, och varje sida hör till ett av dem:
+
+| Meny | Sidor |
+|---|---|
+| Hem | `/` — idag-vyn: dagens fråga, dagens låt, topplistan, nytt, snart |
+| Releaser | `/releaser/` |
+| Event | `/events/` (kalendern och festivalguiderna), `/guider/` (camping) |
+| Spel | `/spel/`, `/quiz/`, `/latspel/` |
+| Scenen | `/scenen/`, `/nyborjare/`, `/anthems/` |
+
+Konto, integritet och 404 hör inte till något menyval.
+
 ---
 
 ## Filstruktur
@@ -27,33 +39,64 @@ Rena adresser utan filändelse. Varje sida är en `index.html` i egen mapp.
 
 ```
 index.html              →  hardlist.se/
+releaser/index.html     →  hardlist.se/releaser/
 events/index.html       →  hardlist.se/events/
 guider/index.html       →  hardlist.se/guider/
-nyborjare/index.html    →  hardlist.se/nyborjare/
-anthems/index.html      →  hardlist.se/anthems/
+spel/index.html         →  hardlist.se/spel/
 quiz/index.html         →  hardlist.se/quiz/
 latspel/index.html      →  hardlist.se/latspel/
+scenen/index.html       →  hardlist.se/scenen/
+nyborjare/index.html    →  hardlist.se/nyborjare/
+anthems/index.html      →  hardlist.se/anthems/
+konto/index.html        →  hardlist.se/konto/
+integritet/index.html   →  hardlist.se/integritet/
 404.html                →  egen felsida
 CNAME                   →  RADERA ALDRIG. Utan den slutar domänen fungera.
+
+stil.css                →  all gemensam stil, se nedan
+ram.js                  →  statusraden i sidfoten, läser data/status.json
+inloggning.js           →  inloggningen, laddas av varje sida
+rader.js                →  releaseraden, delad av startsidan och /releaser/
+typsnitt/               →  Archivo, ligger här i stället för hos Google Fonts
 ```
 
 Alla länkar och alla `fetch()` måste vara **absoluta** (`/events/`,
 `/data/releases.json`). Relativa sökvägar bryts eftersom sidorna ligger i
 undermappar.
 
+Gamla adresser fortsätter fungera: `/#releaser` och `/#kommande` leder till
+`/releaser/`, `/#events` till `/events/#kalender`.
+
 ---
 
-## CSS ligger inbakad i varje sida
+## Stilen och den gemensamma koden
 
-`style.css` är **bara en referenskopia**. Sidorna använder ett `<style>`-block
-högst upp i filen.
+All gemensam stil ligger i `stil.css`, som varje sida laddar. En sida får
+dessutom ha **högst ett** eget `<style>`-block för det som bara finns där.
 
-Ändrar du CSS: redigera `style.css`, och inlina sedan om i **alla tio** sidorna
-(de åtta ovan plus `konto/` och `integritet/`).
-Glömmer du en sida ser den annorlunda ut än resten — det har hänt, och det syns
-direkt på headern.
+- **Ändrar du `stil.css`: ändra datumet i `?v=` i alla sidor.** GitHub Pages
+  låter webbläsare spara filen i tio minuter, och utan nytt datum kan någon
+  få ny markup med gammal stil. Ändras den flera gånger samma dag, lägg till
+  en bokstav: `?v=2026-10-08b`.
+- **Menyn och sidfoten finns som kopior i varje sida.** De måste vara
+  identiska — kontrollskriptet larmar annars. Ändrar du dem, ändra i alla.
+- **`rader.js` och sidans eget skript delar namnrymd.** Deklarerar sidan ett
+  namn som redan finns i `rader.js` stoppas hela sidans skript. Även det
+  larmar kontrollskriptet för.
+- **Typsnittet ligger i `/typsnitt/`**, så att ingen sidvisning går till
+  Google. Licensen (SIL Open Font License) ligger bredvid.
 
-Kontrollera alltid att klammerparenteserna balanserar efteråt.
+Referensen för utseendet är designfilen Jonte har godkänt (`hardlist-design.md`,
+inte i repot). Det viktigaste ur den:
+
+- Färgerna och genrefärgerna står som variabler överst i `stil.css`. Rosa är
+  den enda färgen för huvudknappar, alltid med mörk text.
+- Ett typsnitt, Archivo. Rubriker och stora siffror i det smala snittet.
+- Inga etiketter i VERSALER, inget monospace, inga tunna ramar runt allt,
+  inga "A · B · C"-rader med mittpunkter och inga pilar i knapptexter.
+- Högst en nivå yta: en ruta i en ruta blir rader med luft emellan.
+- Rörelse bara som svar på något man gör, aldrig när sidan laddas.
+- Synligt fokus: 2 px cyan ring med 2 px avstånd.
 
 ---
 
@@ -93,9 +136,15 @@ raderas serverns riktiga innehåll.
 gången 47 ljudadresser till quizet. Skripten har numera spärrar som vägrar
 skriva över större data med mindre, men rör dem inte alls.
 
-Samma sak gäller `SEED_LATSPEL` i `latspel/index.html` och
-`SEED_EVENTS` i `index.html`. De är reservkopior som byggskriptet fyller. Kör du bygget utan
-nätverk skrivs de tomma.
+Samma sak gäller reservkopiorna i sidorna. Rör dem aldrig för hand, och flytta
+aldrig deras markörer — saknas en markör stoppar byggskriptet, och då commitas
+inte morgonens releaser:
+
+| Reservkopia | Fylls av |
+|---|---|
+| `SEED_EVENTS` och JSON-LD (`EVENTS-LD`) i `index.html` | `bygg-metadata.mjs`, ur `data/events.json` |
+| `SEED_ANTHEMS` i `anthems/index.html` | `bygg-metadata.mjs`, ur `data/anthems.json` |
+| `SEED_LATSPEL` i `latspel/index.html` | ingen — står still tills låtspelet byggs om, se **Låtspelet** |
 
 ---
 
@@ -343,9 +392,14 @@ Mörkt, hårt, kompromisslöst. Passar ämnet.
   ut som vilken sida som helst och tappar trovärdighet i scenen.
 - **Inga påhittade emblem eller certifikat.** Det som bygger förtroende är att
   säga vem som ligger bakom, hur ofta sidan uppdateras, och att den saknar
-  annonser och spårning. Allt tre är sant.
+  annonser och cookies. Allt tre är sant. Skriv inte "ingen spårning":
+  sajten räknar sidvisningar med GoatCounter, utan cookies och utan att
+  känna igen besökare, och det står på integritetssidan.
 - **Inget cringe.** Inga hjärtan, inga "made with love", inga utropstecken.
-- Fem genrefärger: euphoric, raw, uptempo, hardcore, techno.
+- Fem genrefärger: hardstyle (cyan), raw (rosa), uptempo (gul), hardcore
+  (lila) och hard techno (grå). I koden heter de `hardstyle`, `raw`,
+  `uptempo`, `hardcore` och `techno`. Äldre data kan ha `euphoric`, som
+  räknas som hardstyle.
 - **Färg betyder genre, aldrig dekoration.** Undantagen är exakt dessa:
   - Defqon-scenerna heter färger (RED, BLUE, BLACK, INDIGO, UV, MAGENTA,
     GREEN, PINK, GOLD) och får en prick i sin egen färg i Defqon-guidens
@@ -365,14 +419,26 @@ säga "många" än att hitta på en procentsats.
 
 ## Innan du säger att något är klart
 
-- Alla tio HTML-filer: balanserade taggar, ett `<style>`-block, giltig JS
-- Alla `getElementById`-mål finns i markup
-- Inga dubbletter av id
-- JSON-filerna parsar
-- Inga brutna interna länkar
-- Klamrarna i `style.css` balanserar
-- Mobilen: inget bredare än 360 px, tryckytor minst 44 px, `font-size: 16px` på
-  inmatningsfält så iOS inte zoomar
+**Kör kontrollskriptet:** `node scripts/kontrollera.mjs`
+
+Det går igenom alla 13 sidor och larmar för:
+
+- obalanserade taggar, JavaScript som inte parsar, och mer än ett eget
+  `<style>`-block
+- `getElementById`-mål som inte finns, och dubbletter av id
+- JSON-filer som inte parsar
+- brutna interna länkar, relativa sökvägar och `url()` i `stil.css` som leder
+  ingenstans
+- obalanserade klamrar i CSS:en, och inmatningsfält under 16 px
+- saknade eller felvända markörer för byggskriptet
+- meny eller sidfot som skiljer sig mellan sidorna
+- två skript på samma sida som deklarerar samma namn
+- gamla typsnitt, monospace eller anrop till Google Fonts
+
+Det kan inte se hur sidan ser ut. Titta själv, på mobil och dator:
+`node scripts/lokal-server.mjs` visar sajten som GitHub Pages gör, med rena
+adresser och felsidan, och skriver ut adressen för mobilen på samma wifi.
+Mobilen: inget bredare än 360 px och tryckytor minst 44 px.
 
 **Kör bygget efter varje ändring i datafilerna:**
 `node scripts/bygg-metadata.mjs`

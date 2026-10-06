@@ -4,8 +4,8 @@
   "description": "Nya hardstyle-releaser och rave i Norden",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A0612",
-  "theme_color": "#0A0612",
+  "background_color": "#100C17",
+  "theme_color": "#100C17",
   "lang": "sv-SE",
   "icons": [
     {

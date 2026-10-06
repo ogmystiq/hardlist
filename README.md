@@ -1,385 +1,146 @@
 # HARDLIST
 
-Sajt för hardstyle-, raw-, uptempo- och hardcore-releaser plus hard dance-kalender.
-Öppna vilken HTML-fil som helst i webbläsaren — CSS:en ligger inbakad i varje sida,
-inga sidofiler behövs.
+Releaser, event och spel för den hårda scenen i Norden. Ligger på
+[hardlist.se](https://hardlist.se), publicerad med GitHub Pages från `main`.
+
+Nya släpp hämtas varje morgon från Deezer och Spotify. Kalendern, guiderna och
+anthem-arkivet bygger på tre datafiler som skrivs för hand. Quizet och kontona
+ligger i Supabase.
+
+**Arbetsreglerna står i [`CLAUDE.md`](CLAUDE.md)** — vad som får ändras för
+hand, Spotifys gränser, hur quizet fungerar och designreglerna. Läs den innan
+du ändrar något. Den här filen beskriver bara vad som finns var.
+
+---
+
+## Sidorna
+
+Varje sida är en `index.html` i egen mapp, så att adresserna saknar filändelse.
+
+| Adress | Innehåll |
+|---|---|
+| `/` | Idag: dagens fråga, dagens låt, topplistan, nytt den här veckan, snart |
+| `/releaser/` | Alla släpp, grupperade per dag, med genrefilter och sökning |
+| `/events/` | Kalendern, festivalguiderna och en karta över ett festivalområde |
+| `/guider/` | Campingguiden: packlista och regler per festival |
+| `/spel/` | Ingång till quizet och låtspelet |
+| `/quiz/` | Dagens fråga, rättas på servern, topplista med konto |
+| `/latspel/` | Känn igen dagens låt på sex klipp, och dueller |
+| `/scenen/` | Ingång till nybörjarguiden och anthem-arkivet |
+| `/nyborjare/` | Stilarna, artisterna, klassikerna och slangen |
+| `/anthems/` | Festivalernas anthems år för år |
+| `/konto/` | Inloggning med Google, visningsnamn, radera kontot |
+| `/integritet/` | Vad som sparas och var |
+| `404.html` | Felsidan |
+
+Gemensamt för alla sidor:
 
 ```
-index.html      releaser + kalender med Norden-filter
-quiz.html       dagens fråga, rättas på servern, topplista med konto
-anthems.html    varje Defqon-anthem år för år
-404.html        egen felsida
-events.html     festivalguider med knappväljare, 10 event
-guider.html     packlista, campingregler per festival, värmeavsnitt
-nyborjare.html  historik, subgenrer, artister, klassiker, slang
-style.css       referenskopia — sidorna använder sin inbakade kopia
-data/releases.json    skrivs av skriptet
-data/artist-ids.json  cache, skrivs av skriptet
-data/events.json      fyller du i själv
-data/kommande.json    fyller du i själv — handskrivna förhandssläpp, se nedan
-scripts/hamta-releaser.mjs      hämtar från Spotify
-scripts/bygg-metadata.mjs       bygger allt härlett: SEED-kopior, JSON-LD,
-                                kalender.ics, releaser.xml, sitemap-datum
-scripts/quiz-lagg-till.mjs      lägger in quizfrågor i databasen från en fil
-scripts/quiz-exportera.mjs      kopia av frågebanken till ../hardlist-privat
-data/anthems.json               anthem-arkivet
-kalender.ics                    genereras — prenumererbar kalender
-releaser.xml                    genereras — RSS på releaserna
-.github/workflows/releaser.yml  kör skriptet varje fredag
+stil.css          all gemensam stil — ändra ?v= i alla sidor när den ändras
+ram.js            statusraden i sidfoten, läser data/status.json
+inloggning.js     inloggningen, laddar Supabase bara när den behövs
+rader.js          releaseraden, delad av startsidan och /releaser/
+typsnitt/         Archivo med licens, så att inget hämtas från Google
 ```
 
-**Ändrar du CSS** gör du det i `<style>`-blocket högst upp i en sida och kopierar
-till de andra tre. `style.css` finns kvar som referens.
+## Datafilerna
 
----
+**Tre filer skrivs för hand.** Allt annat i `data/` skrivs av skript — rör det
+inte, se `CLAUDE.md`.
 
-## Releaser sorteras alltid efter datum
-
-| Grupp | Innehåll |
-|---|---|
-| Kommande | Releasedatum i framtiden. Visas som "Imorgon", "Om 1 vecka". |
-| Nyss släppt | Singlar: de senaste 7 dagarna. Album: de senaste 30 dagarna. |
-
-**Singlar äldre än en vecka och album äldre än en månad visas inte.**
-Skriptet rensar bort dem ur `data/releases.json` vid varje körning (olika
-fönster per typ, se `DAGAR_BAKAT`/`DAGAR_BAKAT_ALBUM`), och sidan filtrerar
-dessutom bort dem vid rendering ifall filen skulle vara gammal.
-
-Vill du ha en längre svans ändrar du fyra ställen, parvis matchade:
-`DAGAR_BAKAT` (`scripts/hamta-releaser.mjs`) mot `DAGAR_VISAS` (`index.html`)
-för singlar, och `DAGAR_BAKAT_ALBUM` mot `DAGAR_VISAS_ALBUM` för album.
-
-Genrefiltret ändrar bara vad som visas, aldrig ordningen.
-
-**"Kommande" finns i två separata, orelaterade versioner.** Den i tabellen
-ovan är `relevant()`s inbyggda golv utan tak i `scripts/hamta-releaser.mjs`
-— ett Spotify-släpp med framtida `release_date` filtreras aldrig bort. I
-praktiken har det aldrig hänt (kollat hela git-historiken 19 aug 2026),
-eftersom Spotify inte lämnar ut osläppt material via API:et.
-
-Den andra är den fristående sektionen "Kommande släpp" på startsidan, som
-läser `data/kommande.json` — en fil du fyller i för hand med bekräftade
-förhandssläpp/pre-save-länkar du själv känner till. De två delar ingen kod
-och ingen data. Sektionen är helt dold när filen saknas eller är tom.
-
----
-
-## Kvotskydd — läs det här
-
-Spotifys Development Mode har en **daglig kvot per utvecklarkonto**. Bränner du
-den är du utelåst i ungefär ett dygn.
-
-**Uppmätt i praktiken: kvoten tar slut runt 200 anrop per dygn.** Två körningar
-à 100 anrop räckte.
-
-Därför kör workflowen **dagligen med rotation** istället för en gång i veckan.
-Varje körning tar upp till `MAX_ANROP` anrop och fortsätter där förra slutade:
-
-| Rotation | Anrop/körning (cachat) | Artister (nu) | Varv tar |
-|---|---|---|---|
-| Singel | 150 | 332 | 3 körningar (≈3 dygn) |
-| Album | 20 | 332 | 17 körningar (≈3 veckor) |
-
-Singelrotationen är snabb nog att kolla varje artist minst en gång inom
-sjudagarsfönstret. Albumrotationen är långsammare med flit (se ovan) — varje
-artist kollas ungefär en gång per 30-dagarsfönster, inte två.
-
-Uppbyggnaden av cachen kostar dubbelt (sökning + singelanrop), så första
-veckan efter att du lagt till många namn går åt till att beta av listan.
-Albumrotationen är en helt separat, långsammare kostnad ovanpå detta.
-
-**Extended Quota Mode är inte ett alternativ.** Sedan maj 2025 tar Spotify bara
-emot ansökningar från organisationer, med krav på registrerat företag och
-250 000 månatliga användare.
-
-Skriptet har fyra spärrar:
-
-| Spärr | Vad den gör |
-|---|---|
-| `MAX_ANROP = 170` | Hårt tak per körning. Nås det sparas resultatet och körningen avslutas. |
-| Rotation | Nästa körning fortsätter på nästa artist. Alla täcks över några körningar. |
-| Sammanslagning | Delkörningar raderar aldrig tidigare fynd. Gammalt läses in, nytt läggs till — singlar äldre än 7 dagar och album äldre än 30 dagar rensas. |
-| `MAX_VANTAN = 180` | Ber Spotify oss vänta längre än 180 s avbryts körningen istället för att hamra på kvoten. |
-
-Plus `timeout-minutes: 12` i workflowen, så inget jobb kan hänga.
-
-**Artist-ID:n cachas** i `data/artist-ids.json`. Första körningen kostar 2 anrop
-per artist, därefter 1. Med 80 artister betyder det två körningar första gången
-och sedan en. Lägger du till artister växer kvotbehovet linjärt.
-
----
-
-## Setup
-
-### 0. Krav: Spotify Premium
-
-Sedan mars 2026 måste kontot som äger appen ha ett **aktivt Premium-abonnemang**.
-Utan det slutar API:et fungera.
-
-### 1. Spotify-nycklar
-
-developer.spotify.com → Dashboard → Create app.
-
-Redirect URI: `http://127.0.0.1:8888` och tryck Add.
-`http://localhost` godkänns **inte** längre — Spotify tog bort okrypterade
-HTTP-URI:er utom loopback-adresser, och portnumret måste vara med.
-Fältet används aldrig av den här sajten; skriptet kör client credentials-flödet.
-
-Kryssa i "Web API", spara, kopiera Client ID och Client Secret.
-
-**Skicka aldrig din Client Secret till någon.** Den läggs i GitHub:
-Settings → Secrets and variables → Actions → New repository secret.
-Två stycken, exakt dessa namn: `SPOTIFY_ID` och `SPOTIFY_SECRET`.
-
-Sätt även Settings → Actions → General → Workflow permissions till
-**Read and write permissions**.
-
-### 2. Kör
-
-Actions → "Hämta releaser" → Run workflow. Kör en andra gång efter några
-minuter så att resten av artistlistan hämtas.
-
-### 3. Publicera
-
-Settings → Pages → Deploy from a branch → `main` / root.
-
-### 4. Events
-
-Ingen API samlar hard dance-event. `data/events.json` fyller du i för hand:
+### `data/events.json` — kalendern och bevakningslistan
 
 ```json
 {
   "name": "Sana Duri",
-  "date": "2026-09-12",
+  "date": "2027-01-30",
+  "dateEnd": "2027-01-31",
   "region": "norden",
-  "city": "Uppsala, SE",
-  "venue": "Studenternas IP",
-  "lineup": "Project One m.fl.",
-  "url": "https://biljettlank"
+  "genrer": ["hardstyle", "raw"],
+  "city": "Mölndal, SE",
+  "venue": "Åby Arena",
+  "lineup": "En eller två meningar om eventet.",
+  "url": "https://arrangorens-biljettsida",
+  "urlText": "Biljetter",
+  "arrangor": "Arrangören"
 }
 ```
 
-`region` är `norden` eller `europa` och styr filtret. Norden är förvalt — det är
-sajtens poäng.
+- `region` är `norden` eller `europa` och styr filtret. Norden är förvalt.
+- `genrer` är en lista med `hardstyle`, `raw`, `uptempo`, `hardcore` och
+  `techno`. Tom lista hellre än gissad — ett event utan genre syns bara när
+  ingen genre är vald.
+- `dateEnd` för event med flera dagar. Eventet står kvar i kalendern tills
+  sista dagen passerat.
+- Utan `date` hamnar eventet i bevakningslistan. Sätt då `season`, till
+  exempel `"normalt i maj"`, och lägg till `date` när datumet släpps.
+- `urlText` när knappen ska säga något annat än Biljetter, till exempel
+  Förhandsanmälan. Leta alltid upp biljettlänken: arrangörens egen
+  biljettsida först, sen officiell leverantör, sen startsidan.
 
-**Leta alltid upp biljettlänken** när du lägger in ett event. Prioriteringen är:
+### `data/anthems.json` — anthem-arkivet
 
-1. Arrangörens egen biljettsida (`decibeloutdoor.com/tickets`)
-2. Officiell biljettleverantör (Ticketmaster, Tickster, Paylogic)
-3. Arrangörens startsida
+En post per festival med namn, ort, intro, en not och en lista med år, titel
+och artist.
 
-Är biljetterna inte släppta än, länka till förhandsanmälan och sätt `urlText`
-så knappen säger rätt sak istället för att lova något som inte finns:
-
-```json
-{ "url": "https://www.reverze.be/pre-registration", "urlText": "Förhandsanmälan" }
-```
-
-Utelämnas `urlText` står det Biljetter. Utelämnas `url` helt visas
-"Biljettlänk saknas", vilket är sämre än att inte ha eventet alls.
-
-**Kalendern visar bara event med bekräftat, ej passerat datum.** Utelämnar du
-`date` hamnar eventet istället i bevakningslistan under kalendern, med ett
-`season`-fält istället:
+### `data/kommande.json` — förhandssläpp
 
 ```json
-{ "name": "Hardstyle DNA", "region": "norden", "city": "Oslo, NO", "season": "normalt i maj" }
+[{ "artist": "D-Sturb", "titel": "Låttitel", "datum": "2026-11-13", "genre": "raw", "lank": "https://pre-save-länk" }]
 ```
 
-Så fort datumet släpps lägger du till `date` och eventet flyttar upp i kalendern
-av sig självt.
+Visas under Kommande på releasesidan. Passerade datum försvinner av sig
+själva. Filen kan inte byggas automatiskt — Spotify lämnar inte ut osläppt
+material.
 
-**Du redigerar bara `data/events.json`.** Två kopior härleds ur den automatiskt:
+**Kör bygget efter varje ändring i datafilerna:** `node scripts/bygg-metadata.mjs`.
+Det skriver om reservkopiorna i sidorna, den strukturerade datan för Google,
+`kalender.ics`, `releaser.xml` och datumen i `sitemap.xml`. Morgonkörningen
+gör samma sak.
 
-| Kopia | Vad den gör |
-|---|---|
-| `SEED_EVENTS` i `index.html` | Reservdata när sidan öppnas direkt från disk, där webbläsaren blockerar `fetch` mot lokala filer. På servern vinner alltid JSON-filen. |
-| JSON-LD i `index.html` | Strukturerad data för Google. Ger rika sökresultat med datum och plats. Bara event med bekräftat `date` tas med. |
+## Morgonkörningen
 
-`scripts/bygg-metadata.mjs` skriver båda utifrån JSON-filen och uppdaterar
-sitemapens datum. Workflowen kör det varje natt, så du behöver inte göra något.
+`.github/workflows/releaser.yml` körs varje dag 05:07 UTC. Den hämtar nya släpp
+(`scripts/hamta-releaser.mjs`), bygger metadata och committar resultatet.
+Hur Deezer, Spotify och rotationen samspelar står i `CLAUDE.md`.
 
-Vill du se ändringen direkt istället för att vänta till nästa natt kan du köra
-`node scripts/bygg-metadata.mjs` lokalt, eller trycka Run workflow i Actions.
+Singlar ligger kvar i en vecka och album i en månad. Fönstren står som
+`DAGAR_BAKAT` och `DAGAR_BAKAT_ALBUM` i hämtningsskriptet och som `DAGAR_VISAS`
+och `DAGAR_VISAS_ALBUM` i `rader.js`. Ändras de ska paren ändras tillsammans.
 
-Skriptet skriver bara mellan markörerna `<!-- EVENTS-LD:START/END -->` och
-`/* SEED_EVENTS:START/END */` i `index.html`. Tar du bort dem avbryter det med
-ett felmeddelande istället för att skriva sönder filen.
+`data/status.json` visar hur senaste körningen gick: när, hur många släpp, hur
+många som har omslag, och om något avbröts. Sidfoten läser den.
 
-**21 event ligger inne** — 5 med bekräftat datum, 16 under bevakning.
+### Sätta upp Spotify
 
-Bästa källan för svenska event är communityt **hardstylesverige.com/pages/events**
-— de listar allt och tar emot tips. Kolla den några gånger per år.
+1. Kontot som äger appen måste ha Spotify Premium.
+2. developer.spotify.com → Dashboard → Create app. Redirect URI
+   `http://127.0.0.1:8888` (fältet används inte, men måste fyllas i). Kryssa i
+   Web API och spara.
+3. I GitHub: Settings → Secrets and variables → Actions. Lägg in `SPOTIFY_ID`
+   och `SPOTIFY_SECRET`. Skicka aldrig nyckeln till någon.
+4. Settings → Actions → General → Workflow permissions: Read and write.
 
----
+Kör inte workflowen manuellt flera gånger samma dag — se `CLAUDE.md`.
 
-## Om kommande releaser
+## Quizet och kontona
 
-Skriptet tar med allt med framtida releasedatum. Men Spotify listar bara en låt i
-förväg om artisten har en **pre-save igång**. Släpp som bara annonserats på
-Instagram syns inte. Praktiskt ger det 1–2 veckors framförhållning på de stora
-namnen, mindre på små artister. Beatport har bättre pre-order-data men ingen
-öppen API.
+Frågebanken, svaren och kontona ligger i Supabase, inte i repot, eftersom repot
+är publikt. Databasens struktur står i `supabase/migrations/`. Nya migrationer
+körs med `npx supabase db push`. Hur frågor läggs till står i `CLAUDE.md`.
 
----
-
-## Spotifys regeländringar 2026
-
-| Endpoint | Status |
-|---|---|
-| `GET /search?type=artist` | Finns kvar. Max `limit` sänkt från 50 till 10 — skriptet använder 1. |
-| `GET /artists/{id}/albums` | Finns kvar. Max `limit` sänkt till 10 (default 5). Skriptet använder 10. |
-
-Borttaget i februari 2026 och får alltså inte användas framåt:
-`/browse/new-releases`, `/artists/{id}/top-tracks`, batch-hämtning av flera
-artister eller album i ett anrop, samt fälten `label` och `popularity`.
-
-Sedan juli 2026 räknas kvoten per utvecklarkonto istället för per app, och
-429-svar innehåller ett `reason`-fält.
-
----
-
-## Nordiska event i kalendern
-
-Hämtade från Hardstyle Sveriges egen eventlista, arrangörernas sidor och
-biljettleverantörer:
-
-**I kalendern med bekräftat datum:**
-
-| Event | Ort | Datum |
-|---|---|---|
-| Sana Duri — The New Beginning | Studenternas IP, Uppsala | 12 sep 2026, kl 11–23.30 |
-| Holy Priest | Berns, Stockholm | 12 sep 2026, kl 23 |
-| Monday Bar Halloween Cruise | Stockholm | 6–7 nov 2026 |
-
-**Under bevakning** — årliga, nästa datum ej annonserat: Lumaniac (Kristianstad,
-mars), Hardstyle Reaction (Platens Bar, Linköping, maj), Swedish Rave Society
-(Hamnplan 1, Örebro, maj), Monday Bar Summer Cruise (Stockholm–Tallinn, juni),
-One Vision Festival (Kristianstad, augusti), Hardstyle DNA (Bjerke Travbane,
-Oslo, maj), Soundvault Festival (Suvilahti, Helsingfors, maj) och Ascend
-(Norrköping).
-
-Sana Duri 2026 är Nordens största hardstyle-satsning hittills: Shuffle Group och
-All Things Live räknar med runt 10 000 besökare, och lineupen har Project One,
-Brennan Heart, Showtek, Rebelion vs Vertile, Rooler vs Warface och Radical
-Redemption bland andra.
-
-## Om CACHE_VERSION
-
-Höjs den i `scripts/hamta-releaser.mjs` kastas alla cachade artist-ID:n och
-byggs upp igen. Det kostar dubbelt så många anrop per artist, alltså **ungefär
-fyra dygn** innan hela listan är genomsökt igen.
-
-**Releaselistan rörs inte.** Den behålls och rensas som vanligt av
-sjudagarsfönstret. En tidigare version tömde den, vilket gav flera dygn med
-nästan tom sajt — gör inte om det.
-
-Höj bara versionen när matchningslogiken faktiskt ändrats.
-
-## Hur rätt artist väljs
-
-Tre spärrar, i den här ordningen:
-
-1. **Exakt namnmatchning.** Spotify rankar sökträffar efter popularitet, inte
-   efter hur väl namnet stämmer — en sökning på Killshot gav Eminem. Bara
-   artister vars namn stämmer tecken för tecken godtas.
-2. **Genretagg.** Finns flera med exakt samma namn väljs den som är taggad
-   hardstyle, hardcore, uptempo, frenchcore eller hard techno.
-3. **Följartröskel.** `MIN_FOLJARE = 2000`, men **vilande**. Spotify slutade
-   lämna ut `followers` i söksvaret, samma väg som `popularity` tog i februari
-   2026. Kontrollen körs bara när fältet finns, annars avvisades varje artist i
-   listan. Den vaknar av sig själv om Spotify återinför fältet.
-
-**Konsekvens:** två artister med exakt samma namn går inte längre att skilja
-automatiskt. Spotifys egen ordning används, vilket nästan alltid ger rätt akt.
-Dyker en fel artist upp i flödet: naglafast rätt Spotify-ID med `id`-fältet på
-raden i artistlistan, eller ta bort namnet om akten inte finns där.
-
-Missar första sökningen görs ett andra försök med ordet hardstyle tillagt. Det
-löser enordsnamn som Requiem och Pavo, som annars drunknar bland Mozart och
-Pavarotti.
-
-Hittas ingen godkänd artist hoppas den över och loggas med `⚠ HOPPAR ÖVER`.
-Det är den enda raden i loggen som kräver åtgärd.
-
-## Quizet
-
-Frågebanken med svar ligger i databasen (Supabase), inte i repot — repot är
-publikt. Servern väljer dagens fråga, rättar svaren och räknar poäng och
-topplista. Hur man lägger till frågor och uppdaterar kopian av banken står i
-`CLAUDE.md` under **Quizet**.
-
-**Musikfrågor visas bara på fredagar.** Det är den globala släppdagen för ny
-musik, så det följer sajtens egen rytm. Ljudet är Apples 30-sekunders
-förhandslyssning från iTunes Search API. Spotifys `preview_url` returnerar
-alltid null sedan november 2024.
-
-## Ladda aldrig upp de genererade filerna
-
-Dessa skapas av GitHub Actions och ligger med flit **inte** i zip-filerna:
+## Prova lokalt
 
 ```
-data/releases.json     data/artist-ids.json
-kalender.ics           releaser.xml
+node scripts/lokal-server.mjs      visar sajten som GitHub Pages gör, port 8080
+node scripts/kontrollera.mjs       kontrollerar alla sidor innan något pushas
 ```
 
-Laddar du upp en tom version raderas serverns riktiga innehåll. Det har hänt två
-gånger: en gång försvann 22 ljudadresser till quizet, en gång tömdes hela
-releaselistan. Skripten har numera spärrar mot att skriva över större data med
-mindre, men den säkraste regeln är att inte röra filerna alls.
+Servern skriver ut en adress för mobilen på samma wifi. Inloggningen fungerar
+lokalt på `localhost:8080`, som är godkänd i Supabase.
 
-**Du redigerar bara tre filer för hand:** `data/events.json`,
-`data/anthems.json` och `data/kommande.json`.
+## Byta mailadress
 
-## Filer som genereras automatiskt
-
-`scripts/bygg-metadata.mjs` skriver dessa vid varje körning. **Redigera dem aldrig
-för hand** — ändringarna skrivs över nästa natt.
-
-| Fil | Källa | Vad den gör |
-|---|---|---|
-| `kalender.ics` | `data/events.json` | Prenumererbar kalender. Folk lägger in den en gång i Google eller Apple Kalender och får nya event automatiskt. Bara event med bekräftat datum. |
-| `releaser.xml` | `data/releases.json` | RSS-flöde med de 50 senaste släppen. |
-| `SEED_EVENTS` / `SEED_ANTHEMS` | respektive JSON | Reservdata när sidan öppnas utan server. |
-| JSON-LD i `index.html` | `data/events.json` | Strukturerad data för Google. |
-
-Flerdagarsevent: sätt `dateEnd` till sista dagen i `data/events.json`, så blir
-kalenderposten rätt lång. Saknas fältet räknas eventet som endags.
-
-## Faktakontroll av guiderna
-
-**Verifierat mot arrangör eller etablerad källa:**
-
-- Defqon.1: Walibi Holland i Biddinghuizen, slutet av juni, fyra dagar.
-  2026-upplagan ("Sacred Oath") ställdes in efter första dagen efter
-  Nederländernas första kod röd för värme någonsin. Helgbiljett 339,95 euro 2026.
-- Decibel Outdoor: Beekse Bergen, Hilvarenbeek, mitten av augusti, 30+ scener.
-- Intents 2026: 5–7 juni, Oisterwijk, "Rise of Titans".
-- Dominator 2026: 17–18 juli, Eersel, "Fatal Fortune", 10 scener.
-- Masters of Hardcore 2026: 28 mars, Brabanthallen, 's-Hertogenbosch.
-- Harmony of Hardcore 2026: 23 maj, De Roost i Erp, "The Awakening".
-- Reverze: Antwerpen, AFAS Dome + Lotto Arena. Nästa 26–27 februari 2027.
-- Alkohol- och campingregler: Defqon.1, Decibel, Intents.
-- Hardstyles historia, subgenredefinitioner, klassikerlistan.
-
-**Står uttryckligen som overifierat på sidan:**
-Rebirth, Supremacy, One Vision, Q-BASE, samt camping- och dryckesregler för
-Dominator och Harmony of Hardcore.
-
-**Nedlagt — finns inte kvar:** Qlimax (sista upplagan november 2024), Qapital,
-The Qontinent och alla X-Qlusive-event. Sidan varnar för gamla guider som
-fortfarande listar dem.
-
-**Rutter inne på områdena finns medvetet inte med.** Q-dance släpper en officiell
-interaktiv karta inför varje edition, och sidan hänvisar dit. Insidertips ska
-komma från besökare via kontaktlänken.
-
-Regler, datum och stagenamn ändras varje år. Gå igenom guiderna en gång per säsong.
-
----
-
-## Byta namn och mailadress
-
-"HARDLIST" står i `<title>`, `.logo` och footern på alla fyra sidor.
-Platshållaradressen `hardlisthelp@gmail.com` finns i footern och i alla tipsa-länkar.
-Sök och ersätt.
+`hardlisthelp@gmail.com` står i sidfoten på alla sidor, i tipsa- och
+rättelselänkarna och på integritetssidan. Sök och ersätt i alla
+`index.html` och `404.html`.

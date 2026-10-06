@@ -73,7 +73,9 @@ function kollaStil(html, fil){
   const block = html.match(/<style\b/gi) || [];
   const gemensam = /<link[^>]+href="\/stil\.css(\?[^"]*)?"/.test(html);
   if (gemensam && block.length > 1) fel.push(`${rel(fil)}: ${block.length} <style>-block, högst ett eget får finnas`);
-  if (!gemensam && block.length !== 1) fel.push(`${rel(fil)}: ${block.length} <style>-block, gamla sidor ska ha exakt ett`);
+  /* Alla sidor är i den nya designen. En sida utan stil.css är en ny sida
+     som glömt den, eller en gammal som kommit tillbaka. */
+  if (!gemensam) fel.push(`${rel(fil)}: länkar inte /stil.css`);
   for (const css of html.match(/<style\b[^>]*>([\s\S]*?)<\/style>/gi) || []) kollaCss(css.replace(/^<style[^>]*>|<\/style>$/gi, ''), rel(fil));
   if (gemensam && /monospace|JetBrains|Space Grotesk|Big Shoulders/.test(html))
     fel.push(`${rel(fil)}: gamla typsnitt eller monospace kvar, den nya designen har bara Archivo`);
@@ -243,7 +245,7 @@ async function run(){
     if (r.meny !== ramar[0].meny) fel.push(`${rel(r.fil)}: menyn skiljer sig från ${rel(ramar[0].fil)}`);
     if (r.sidfot !== ramar[0].sidfot) fel.push(`${rel(r.fil)}: sidfoten skiljer sig från ${rel(ramar[0].fil)}`);
   }
-  for (const f of ['style.css', 'stil.css']){
+  for (const f of ['stil.css']){
     if (!existsSync(resolve(ROOT, f))) continue;
     const css = await readFile(resolve(ROOT, f), 'utf8');
     kollaCss(css, f);
