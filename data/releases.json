@@ -1,173 +1,11 @@
 [
   {
-    "artist": "Frontliner",
-    "title": "Running Running Running (Drum & Bass Edit)",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/68jbOY6RdQleg9Uy0qnVDf",
-    "typ": "single"
-  },
-  {
-    "artist": "Devin Wild",
-    "title": "We Desire",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/5uOTpsYOHFXpVWwb7wqK8y",
-    "typ": "single"
-  },
-  {
-    "artist": "D-Block & S-te-Fan",
-    "title": "Embers",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/0MJDL62UIHs9OxHimtS1Hk",
-    "typ": "single"
-  },
-  {
-    "artist": "LunaKorpz",
-    "title": "BLOW IT UP",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/3K43GNFb1jENaU5WaaMyFr",
-    "typ": "single"
-  },
-  {
-    "artist": "LARSTIG & GASDROP × Korsakoff × Anita Doth",
-    "title": "We Are Back",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/2nqixmN4kK7di1DVzTd6rR",
-    "typ": "single"
-  },
-  {
-    "artist": "Drokz",
-    "title": "DROKZ46",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/1qCjpD0kOrNTpg1Pr49sjN",
-    "typ": "single"
-  },
-  {
-    "artist": "Unexist",
-    "title": "UNDERGROUND",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/6GF81v5xu4FkWTakmT0KS6",
-    "typ": "single"
-  },
-  {
-    "artist": "Gunz For Hire × Max Alexander",
-    "title": "Dream On",
+    "artist": "Satirized × Barber × Unproven",
+    "title": "Detonation",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/6OM4XfvWH66YrPIobPYlpH",
-    "typ": "single"
-  },
-  {
-    "artist": "Bass Chaserz × De Sfeermakers",
-    "title": "Ik Meen Het (Hardstyle Remix)",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/4y0mr7ubcc3T4bUClGyO5N",
-    "typ": "single"
-  },
-  {
-    "artist": "Showtek",
-    "title": "Runaway (feat. Francis Waves)",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/0tH67xdL2JIlPS6mnU1if5",
-    "typ": "single"
-  },
-  {
-    "artist": "Minus Militia × Radical Redemption × Nolz",
-    "title": "Recover The Archive (Hard Bass 2026 Anthem)",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/7yOeocY6jDT3KOvbcqo84F",
-    "typ": "single"
-  },
-  {
-    "artist": "The Purge × Dimatik × Und3rsound",
-    "title": "ONE NIGHT",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/2Ajy0i8kJ5q8ALeLmSBMyT",
-    "typ": "single"
-  },
-  {
-    "artist": "Dr Donk × TMPR",
-    "title": "Step Up",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/1Ys96E5xqKHMS6v03nBg7H",
-    "typ": "single"
-  },
-  {
-    "artist": "Hyrule War × Discipl!ne",
-    "title": "Built For War",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/0NA3d3LQbs7n7zBMAvomQJ",
-    "typ": "single"
-  },
-  {
-    "artist": "Sara Landry",
-    "title": "Awakening",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/1FTdKsBQiet2njV85fnF5U",
-    "typ": "single"
-  },
-  {
-    "artist": "Demi Kanon × Caelum",
-    "title": "Paralyzed",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/7BGayhAXntLeWKz8UcaYz2",
-    "typ": "single"
-  },
-  {
-    "artist": "Dr Rude × The Darkraver",
-    "title": "House Of God",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/7dm5tZlKl90HqovltJPUzH",
-    "typ": "single"
-  },
-  {
-    "artist": "Atmozfears × Xense",
-    "title": "eye of the storm - hardcore edit",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/31Rq76nnZaGUtss2YhhTzj",
-    "typ": "single"
-  },
-  {
-    "artist": "Atmozfears × Xense",
-    "title": "eye of the storm",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/5Nd1FxfpZZx9J8egYNwZGz",
+    "url": "https://open.spotify.com/album/53twqjm1JKRhxe6QIvsDTe",
     "typ": "single"
   },
   {
@@ -180,30 +18,174 @@
     "typ": "single"
   },
   {
-    "artist": "Satirized × Barber × Unproven",
-    "title": "Detonation",
+    "artist": "Atmozfears × Xense",
+    "title": "eye of the storm",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/5Nd1FxfpZZx9J8egYNwZGz",
+    "typ": "single"
+  },
+  {
+    "artist": "Atmozfears × Xense",
+    "title": "eye of the storm - hardcore edit",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/31Rq76nnZaGUtss2YhhTzj",
+    "typ": "single"
+  },
+  {
+    "artist": "Dr Rude × The Darkraver",
+    "title": "House Of God",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/7dm5tZlKl90HqovltJPUzH",
+    "typ": "single"
+  },
+  {
+    "artist": "Demi Kanon × Caelum",
+    "title": "Paralyzed",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/7BGayhAXntLeWKz8UcaYz2",
+    "typ": "single"
+  },
+  {
+    "artist": "Sara Landry",
+    "title": "Awakening",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/1FTdKsBQiet2njV85fnF5U",
+    "typ": "single"
+  },
+  {
+    "artist": "Hyrule War × Discipl!ne",
+    "title": "Built For War",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/0NA3d3LQbs7n7zBMAvomQJ",
+    "typ": "single"
+  },
+  {
+    "artist": "Dr Donk × TMPR",
+    "title": "Step Up",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/1Ys96E5xqKHMS6v03nBg7H",
+    "typ": "single"
+  },
+  {
+    "artist": "The Purge × Dimatik × Und3rsound",
+    "title": "ONE NIGHT",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-10-02",
-    "url": "https://open.spotify.com/album/53twqjm1JKRhxe6QIvsDTe",
+    "url": "https://open.spotify.com/album/2Ajy0i8kJ5q8ALeLmSBMyT",
     "typ": "single"
   },
   {
-    "artist": "TNT × Ruffneck × Technoboy × Tuneboy",
-    "title": "MINDCONTROLLER 2K26",
+    "artist": "Minus Militia × Radical Redemption × Nolz",
+    "title": "Recover The Archive (Hard Bass 2026 Anthem)",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/7yOeocY6jDT3KOvbcqo84F",
+    "typ": "single"
+  },
+  {
+    "artist": "Showtek",
+    "title": "Runaway (feat. Francis Waves)",
     "genre": "hardstyle",
     "bpm": 150,
-    "date": "2026-10-01",
-    "url": "https://open.spotify.com/album/6bCW8FMSTndSVRbR46FOww",
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/0tH67xdL2JIlPS6mnU1if5",
     "typ": "single"
   },
   {
-    "artist": "D-Sturb",
-    "title": "LADY",
+    "artist": "Bass Chaserz × De Sfeermakers",
+    "title": "Ik Meen Het (Hardstyle Remix)",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/4y0mr7ubcc3T4bUClGyO5N",
+    "typ": "single"
+  },
+  {
+    "artist": "Gunz For Hire × Max Alexander",
+    "title": "Dream On",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-10-01",
-    "url": "https://open.spotify.com/album/6VkBY3JSCL82vdglV5mULT",
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/6OM4XfvWH66YrPIobPYlpH",
+    "typ": "single"
+  },
+  {
+    "artist": "Unexist",
+    "title": "UNDERGROUND",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/6GF81v5xu4FkWTakmT0KS6",
+    "typ": "single"
+  },
+  {
+    "artist": "Drokz",
+    "title": "DROKZ46",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/1qCjpD0kOrNTpg1Pr49sjN",
+    "typ": "single"
+  },
+  {
+    "artist": "LARSTIG & GASDROP × Korsakoff × Anita Doth",
+    "title": "We Are Back",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/2nqixmN4kK7di1DVzTd6rR",
+    "typ": "single"
+  },
+  {
+    "artist": "LunaKorpz",
+    "title": "BLOW IT UP",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/3K43GNFb1jENaU5WaaMyFr",
+    "typ": "single"
+  },
+  {
+    "artist": "D-Block & S-te-Fan",
+    "title": "Embers",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/0MJDL62UIHs9OxHimtS1Hk",
+    "typ": "single"
+  },
+  {
+    "artist": "Devin Wild",
+    "title": "We Desire",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/5uOTpsYOHFXpVWwb7wqK8y",
+    "typ": "single"
+  },
+  {
+    "artist": "Frontliner",
+    "title": "Running Running Running (Drum & Bass Edit)",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-02",
+    "url": "https://open.spotify.com/album/68jbOY6RdQleg9Uy0qnVDf",
     "typ": "single"
   },
   {
@@ -216,12 +198,21 @@
     "typ": "single"
   },
   {
-    "artist": "Andy the Core × Purple Mash × Dirty Workz",
-    "title": "I GOT",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-09-30",
-    "url": "https://open.spotify.com/album/7e2pSFxsy72QsxidCUV3Gw",
+    "artist": "D-Sturb",
+    "title": "LADY",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-01",
+    "url": "https://open.spotify.com/album/6VkBY3JSCL82vdglV5mULT",
+    "typ": "single"
+  },
+  {
+    "artist": "TNT × Ruffneck × Technoboy × Tuneboy",
+    "title": "MINDCONTROLLER 2K26",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-01",
+    "url": "https://open.spotify.com/album/6bCW8FMSTndSVRbR46FOww",
     "typ": "single"
   },
   {
@@ -231,6 +222,15 @@
     "bpm": 190,
     "date": "2026-09-30",
     "url": "https://open.spotify.com/album/1k0y1hQ5FpuRfRe7AKOVpE",
+    "typ": "single"
+  },
+  {
+    "artist": "Andy the Core × Purple Mash × Dirty Workz",
+    "title": "I GOT",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-09-30",
+    "url": "https://open.spotify.com/album/7e2pSFxsy72QsxidCUV3Gw",
     "typ": "single"
   }
 ]
