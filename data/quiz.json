@@ -838,6 +838,842 @@
       "fk": "Qlimax: The Source. Sefa producerade en egen frenchcore-del till filmen."
     },
     {
+      "f": "Vad heter Headhunterz egentligen?",
+      "s": [
+        "Willem Rebergen",
+        "Joram Metekohy",
+        "Fabian Bohn",
+        "Barry Drooger"
+      ],
+      "r": 0,
+      "fk": "Willem Rebergen, född i Veenendaal 1985."
+    },
+    {
+      "f": "Vad heter Wildstylez egentligen?",
+      "s": [
+        "Joram Metekohy",
+        "Willem Rebergen",
+        "Koen Bauweraerts",
+        "Danny Masseling"
+      ],
+      "r": 0,
+      "fk": "Joram Metekohy. Han började sin karriär på The Prophets skivbolag Scantraxx."
+    },
+    {
+      "f": "Vilken artist heter egentligen Fabian Bohn?",
+      "s": [
+        "Brennan Heart",
+        "Frontliner",
+        "Coone",
+        "Zatox"
+      ],
+      "r": 0,
+      "fk": "Brennan Heart."
+    },
+    {
+      "f": "Vilken artist heter egentligen Barry Drooger?",
+      "s": [
+        "Frontliner",
+        "Noisecontrollers",
+        "Brennan Heart",
+        "Atmozfears"
+      ],
+      "r": 0,
+      "fk": "Frontliner."
+    },
+    {
+      "f": "Vilket skivbolag startade Headhunterz och Wildstylez 2018?",
+      "s": [
+        "Art of Creation",
+        "Scantraxx",
+        "Dirty Workz",
+        "Roughstate"
+      ],
+      "r": 0,
+      "fk": "Art of Creation."
+    },
+    {
+      "f": "Var gjorde Headhunterz sitt allra första soloframträdande, 2006?",
+      "s": [
+        "Defqon.1",
+        "Qlimax",
+        "Decibel Outdoor",
+        "Hard Bass"
+      ],
+      "r": 0,
+      "fk": "På Defqon.1 2006. Tre år senare gjorde han festivalens anthem, Scrap Attack."
+    },
+    {
+      "f": "Vilken hardstylepionjär är en del av Donkey Rollers?",
+      "s": [
+        "Zany",
+        "DJ Isaac",
+        "The Prophet",
+        "Technoboy"
+      ],
+      "r": 0,
+      "fk": "Zany, alltså Raoul van Grinsven, tillsammans med Jowan och Michel Pollen."
+    },
+    {
+      "f": "Var hölls X-Qlusive Headhunterz i januari 2010?",
+      "s": [
+        "Heineken Music Hall i Amsterdam",
+        "GelreDome i Arnhem",
+        "Ahoy i Rotterdam",
+        "Jaarbeurs i Utrecht"
+      ],
+      "r": 0,
+      "fk": "Heineken Music Hall i Amsterdam. Headhunterz kallade kvällen årets höjdpunkt."
+    },
+    {
+      "f": "Vad bär Angerfist på scen?",
+      "s": [
+        "En vit hockeymask",
+        "En gasmask",
+        "En guldmask",
+        "Svarta solglasögon"
+      ],
+      "r": 0,
+      "fk": "En vit hockeymask inspirerad av Fredagen den 13:e, ihop med en svart huvtröja."
+    },
+    {
+      "f": "Vilket land kommer hardcore-DJ:n Miss K8 från?",
+      "s": [
+        "Ukraina",
+        "Ryssland",
+        "Polen",
+        "Nederländerna"
+      ],
+      "r": 0,
+      "fk": "Ukraina — Kateryna Kremko från Kyiv."
+    },
+    {
+      "f": "Vilket album släppte Angerfist 2006?",
+      "s": [
+        "Pissin' Razorbladez",
+        "Raise Your Fist",
+        "Diabolic Dice",
+        "Bare Knuckle Fist"
+      ],
+      "r": 0,
+      "fk": "Pissin' Razorbladez. Då var han redan ett av de största namnen i hardcore."
+    },
+    {
+      "f": "Vad heter Angerfists alias för lägre tempo, som han startade 2023?",
+      "s": [
+        "M4ZE PUSHER",
+        "Menace II Society",
+        "Kid Morbid",
+        "Bloodcage"
+      ],
+      "r": 0,
+      "fk": "M4ZE PUSHER, för techno, progressive och trance. Menace II Society och Kid Morbid var tidiga alias."
+    },
+    {
+      "f": "Vem kallas Queen of Hardstyle?",
+      "s": [
+        "Dana",
+        "Miss K8",
+        "Korsakoff",
+        "Lady Dammage"
+      ],
+      "r": 0,
+      "fk": "Dana. Hon släppte musik med The Prophet på Scantraxx redan 2002."
+    },
+    {
+      "f": "Vad är speciellt med Alpha Twins?",
+      "s": [
+        "De är bröder, men inte tvillingar",
+        "De har aldrig visat sina ansikten",
+        "De är tre personer",
+        "De gör bara hardcore"
+      ],
+      "r": 0,
+      "fk": "Bröderna Arjan och Anco kallar sig tvillingar, men är det inte."
+    },
+    {
+      "f": "Vad står ID&T för?",
+      "s": [
+        "Grundarnas förnamn",
+        "International Dance & Techno",
+        "Independent Dance & Thunder",
+        "Industrial Dance & Trance"
+      ],
+      "r": 0,
+      "fk": "Grundarna Irfan van Ewijk, Duncan Stutterheim och Theo Lelie, som startade bolaget 1992."
+    },
+    {
+      "f": "Var hölls den allra första Thunderdome, 1992?",
+      "s": [
+        "I en isstadion i Heerenveen",
+        "I Jaarbeurs i Utrecht",
+        "I Ahoy i Rotterdam",
+        "I Heineken Music Hall i Amsterdam"
+      ],
+      "r": 0,
+      "fk": "I skridskoarenan Thialf i Heerenveen, den 3 oktober 1992."
+    },
+    {
+      "f": "Vad hette ID&T:s allra första event, 1992?",
+      "s": [
+        "The Final Exam",
+        "Thunderdome",
+        "Mysteryland",
+        "Sensation"
+      ],
+      "r": 0,
+      "fk": "The Final Exam — en examensfest i Jaarbeurs i Utrecht. Thunderdome kom senare samma år."
+    },
+    {
+      "f": "Vad är Thunderdomes symbol?",
+      "s": [
+        "En trollkarl",
+        "En dödskalle",
+        "En örn",
+        "En smiley"
+      ],
+      "r": 0,
+      "fk": "Trollkarlen, The Wizard. Från början var den ID&T:s egen logga."
+    },
+    {
+      "f": "Vilket klädmärke förknippas mest med gabberkulturen på 90-talet?",
+      "s": [
+        "Australian",
+        "Carhartt",
+        "Burberry",
+        "Dr. Martens"
+      ],
+      "r": 0,
+      "fk": "Australian. De färgglada träningsoverallerna kallades helt enkelt aussies."
+    },
+    {
+      "f": "Vilka skor hörde till gabberns uniform?",
+      "s": [
+        "Nike Air Max",
+        "Dr. Martens",
+        "Converse",
+        "Timberland"
+      ],
+      "r": 0,
+      "fk": "Nike Air Max, ihop med bomberjacka, rakat huvud och aussies."
+    },
+    {
+      "f": "Vilken ID&T-festival började som en hardcorefestival?",
+      "s": [
+        "Mysteryland",
+        "Sensation",
+        "Tomorrowland",
+        "Trance Energy"
+      ],
+      "r": 0,
+      "fk": "Mysteryland. Den gick från nattfestival med hardcore till dagfestival med bred lineup 2002."
+    },
+    {
+      "f": "Thunderdome lades ner 2012. Vilket år kom det tillbaka?",
+      "s": [
+        "2017",
+        "2014",
+        "2015",
+        "2019"
+      ],
+      "r": 0,
+      "fk": "2017, för att fira 25 år."
+    },
+    {
+      "f": "Vad var Thunderdome förutom ett event?",
+      "s": [
+        "En serie samlingsskivor",
+        "En radiostation",
+        "Ett tv-program",
+        "En klädkedja"
+      ],
+      "r": 0,
+      "fk": "En lång serie samlingsskivor med gabber, som var viktig för att sprida musiken under 90-talet."
+    },
+    {
+      "f": "Vilken skiva var den första på Rotterdam Records, 1992?",
+      "s": [
+        "Amsterdam Waar Lech Dat Dan?",
+        "Rotterdam Hardcore",
+        "Feyenoord Reactivate",
+        "James Brown Is Still Alive"
+      ],
+      "r": 0,
+      "fk": "Amsterdam Waar Lech Dat Dan? av Euromasters. Omslaget visar Euromast som kissar på en karta över Amsterdam."
+    },
+    {
+      "f": "Vad betyder Amsterdam Waar Lech Dat Dan?",
+      "s": [
+        "Amsterdam, var ligger det?",
+        "Amsterdam, här kommer vi",
+        "Amsterdam brinner",
+        "Amsterdam, sov gott"
+      ],
+      "r": 0,
+      "fk": "Ungefär Amsterdam, var ligger det? En känga mot att media bara brydde sig om Amsterdam."
+    },
+    {
+      "f": "Vilket skivbolag var Amsterdams svar på Rotterdam Records?",
+      "s": [
+        "Mokum Records",
+        "Industrial Strength Records",
+        "Offensive Records",
+        "Scantraxx"
+      ],
+      "r": 0,
+      "fk": "Mokum Records, startat 1993 av Fred Berkhout. Mokum är ett gammalt smeknamn på Amsterdam."
+    },
+    {
+      "f": "Vilken klubb var gabberns centrum i Rotterdam i början av 90-talet?",
+      "s": [
+        "Parkzicht",
+        "Multigroove",
+        "Thialf",
+        "Ahoy"
+      ],
+      "r": 0,
+      "fk": "Parkzicht, på fredagskvällarna. Där startade också Nightmare in Rotterdam i december 1992."
+    },
+    {
+      "f": "Var är Paul Elstak född?",
+      "s": [
+        "Den Haag",
+        "Rotterdam",
+        "Amsterdam",
+        "Utrecht"
+      ],
+      "r": 0,
+      "fk": "Den Haag, 1966 — trots att han kallas Rotterdams hardcoregudfar."
+    },
+    {
+      "f": "Vilken fotbollsrivalitet speglas i gabberns Rotterdam mot Amsterdam?",
+      "s": [
+        "Feyenoord mot Ajax",
+        "PSV mot Ajax",
+        "Feyenoord mot PSV",
+        "Ajax mot AZ"
+      ],
+      "r": 0,
+      "fk": "Feyenoord mot Ajax. Rotterdam Termination Source gjorde till och med låten Feyenoord Reactivate 1992."
+    },
+    {
+      "f": "Vilken grupp gjorde James Brown Is Still Alive 1991?",
+      "s": [
+        "Holy Noise",
+        "Euromasters",
+        "Neophyte",
+        "Rotterdam Termination Source"
+      ],
+      "r": 0,
+      "fk": "Holy Noise, med bland andra Paul Elstak. Samma gäng låg bakom Euromasters."
+    },
+    {
+      "f": "Vem grundade skivbolaget Scantraxx 2002?",
+      "s": [
+        "The Prophet",
+        "Headhunterz",
+        "Zatox",
+        "Brennan Heart"
+      ],
+      "r": 0,
+      "fk": "The Prophet. Både Headhunterz och Wildstylez började sina karriärer där."
+    },
+    {
+      "f": "Vad heter The Prophet egentligen?",
+      "s": [
+        "Dov Elkabas",
+        "Koen Bauweraerts",
+        "Danny Masseling",
+        "Willem Rebergen"
+      ],
+      "r": 0,
+      "fk": "Dov Elkabas."
+    },
+    {
+      "f": "Vilken låt släppte The Prophet tillsammans med DJ Duro 2005?",
+      "s": [
+        "Shizzle My Dizzle",
+        "Wreck Thiz Place",
+        "Masterblade",
+        "Scrap Attack"
+      ],
+      "r": 0,
+      "fk": "Shizzle My Dizzle, en av de största hardstylelåtarna genom tiderna."
+    },
+    {
+      "f": "Under vilket alias debuterade Brennan Heart på Scantraxx 2005?",
+      "s": [
+        "Blademasterz",
+        "Hardheadz",
+        "Outsiders",
+        "Taq 9"
+      ],
+      "r": 0,
+      "fk": "Blademasterz, med låten Masterblade."
+    },
+    {
+      "f": "Vilka två är Hardheadz?",
+      "s": [
+        "The Prophet och Pavo",
+        "The Prophet och DJ Gizmo",
+        "Headhunterz och Wildstylez",
+        "Zany och DJ Isaac"
+      ],
+      "r": 0,
+      "fk": "The Prophet och Pavo. The Prophet och DJ Gizmo var i stället Taq 9."
+    },
+    {
+      "f": "Vem grundade skivbolaget Dirty Workz 2006?",
+      "s": [
+        "Coone",
+        "The Prophet",
+        "Da Tweekaz",
+        "Brennan Heart"
+      ],
+      "r": 0,
+      "fk": "Coone. Bolaget gav först ut både jumpstyle och hardstyle."
+    },
+    {
+      "f": "Vilket land kommer Coone från?",
+      "s": [
+        "Belgien",
+        "Nederländerna",
+        "Tyskland",
+        "Frankrike"
+      ],
+      "r": 0,
+      "fk": "Belgien — Koen Bauweraerts från Turnhout."
+    },
+    {
+      "f": "Vilken känd rocklåt remixade Coone under aliaset The Artist Also Known As?",
+      "s": [
+        "Song 2 med Blur",
+        "Smells Like Teen Spirit med Nirvana",
+        "Seven Nation Army med The White Stripes",
+        "Bohemian Rhapsody med Queen"
+      ],
+      "r": 0,
+      "fk": "Song 2 med Blur. Remixen hette Eating Donuts och blev hans genombrott."
+    },
+    {
+      "f": "Vad hette Brennan Hearts skivbolag innan det blev I AM HARDSTYLE?",
+      "s": [
+        "WE R",
+        "Keep It Up Music",
+        "Lose Control Music",
+        "Art of Creation"
+      ],
+      "r": 0,
+      "fk": "WE R."
+    },
+    {
+      "f": "Vilket skivbolag har varit hem för både Da Tweekaz och Wasted Penguinz?",
+      "s": [
+        "Dirty Workz",
+        "Art of Creation",
+        "Roughstate",
+        "Masters of Hardcore"
+      ],
+      "r": 0,
+      "fk": "Dirty Workz, Coones belgiska bolag."
+    },
+    {
+      "f": "Vilken svensk stad kommer Wasted Penguinz från?",
+      "s": [
+        "Helsingborg",
+        "Göteborg",
+        "Malmö",
+        "Stockholm"
+      ],
+      "r": 0,
+      "fk": "Helsingborg. Pontuz Bergman driver projektet vidare ensam sedan 2020."
+    },
+    {
+      "f": "Vilken låt blev Wasted Penguinz stora genombrott 2011?",
+      "s": [
+        "Melancholia",
+        "Wistfulness",
+        "Clarity",
+        "Elysian"
+      ],
+      "r": 0,
+      "fk": "Melancholia. Wistfulness, Clarity och Elysian är deras album."
+    },
+    {
+      "f": "Wasted Penguinz och Da Tweekaz gjorde anthemet till ett Q-dance-event 2013. Vilket?",
+      "s": [
+        "The Qontinent",
+        "Qlimax",
+        "Defqon.1",
+        "Q-BASE"
+      ],
+      "r": 0,
+      "fk": "The Qontinent, med Island Refuge."
+    },
+    {
+      "f": "Vilket land kommer Da Tweekaz från?",
+      "s": [
+        "Norge",
+        "Sverige",
+        "Danmark",
+        "Finland"
+      ],
+      "r": 0,
+      "fk": "Norge — Kenth Kvien och Marcus Nordli från Oslo."
+    },
+    {
+      "f": "Vilken norsk artist har Da Tweekaz remixat?",
+      "s": [
+        "Alan Walker",
+        "Avicii",
+        "Martin Garrix",
+        "Alesso"
+      ],
+      "r": 0,
+      "fk": "Alan Walker, med On My Way."
+    },
+    {
+      "f": "I vilken arena hölls Qlimax från 2003 och framåt?",
+      "s": [
+        "GelreDome i Arnhem",
+        "Ziggo Dome i Amsterdam",
+        "Ahoy i Rotterdam",
+        "Jaarbeurs i Utrecht"
+      ],
+      "r": 0,
+      "fk": "GelreDome i Arnhem, ända till sista upplagan 2024."
+    },
+    {
+      "f": "Var hölls den allra första Qlimax, år 2000?",
+      "s": [
+        "Beursgebouw i Eindhoven",
+        "GelreDome i Arnhem",
+        "Heineken Music Hall i Amsterdam",
+        "SilverDome i Zoetermeer"
+      ],
+      "r": 0,
+      "fk": "Beursgebouw i Eindhoven. Sen flyttade eventet runt mellan flera lokaler."
+    },
+    {
+      "f": "Vilken av de här spelade på första Qlimax år 2000?",
+      "s": [
+        "Armin van Buuren",
+        "Headhunterz",
+        "Wildstylez",
+        "Noisecontrollers"
+      ],
+      "r": 0,
+      "fk": "Armin van Buuren. Första upplagan bokade trancenamn — Headhunterz, Wildstylez och Noisecontrollers fanns inte ens än."
+    },
+    {
+      "f": "Vem gjorde Qlimax-anthemet The Power of the Mind 2007?",
+      "s": [
+        "Headhunterz",
+        "Brennan Heart",
+        "Showtek",
+        "Alpha Twins"
+      ],
+      "r": 0,
+      "fk": "Headhunterz, 2007."
+    },
+    {
+      "f": "Vilket var Coones första Qlimax-anthem, 2016?",
+      "s": [
+        "Rise of the Celestials",
+        "The Power of the Mind",
+        "The Darkside",
+        "No Way Back"
+      ],
+      "r": 0,
+      "fk": "Rise of the Celestials, 2016."
+    },
+    {
+      "f": "Vem gjorde Qlimax-anthemet The Darkside 2006?",
+      "s": [
+        "Alpha Twins",
+        "Zatox",
+        "Headhunterz",
+        "Showtek"
+      ],
+      "r": 0,
+      "fk": "Alpha Twins, med JDX som medproducent."
+    },
+    {
+      "f": "Vad skilde Qlimax från de flesta andra stora event?",
+      "s": [
+        "En enda scen i en enda hall",
+        "Det var gratis",
+        "Det hölls utomhus",
+        "Det pågick i fyra dagar"
+      ],
+      "r": 0,
+      "fk": "En enda scen i en enda hall — alla upplevde samma show samtidigt."
+    },
+    {
+      "f": "Vilka två festivaler satsade Q-dance på 2025, efter att Qlimax lagts ner?",
+      "s": [
+        "Defqon.1 och Dominator",
+        "Defqon.1 och Decibel Outdoor",
+        "Defqon.1 och Masters of Hardcore",
+        "Dominator och REBiRTH Festival"
+      ],
+      "r": 0,
+      "fk": "Defqon.1 och Dominator."
+    },
+    {
+      "f": "Var hölls första Q-BASE, 2004?",
+      "s": [
+        "På en nedlagd flygbas i Tyskland",
+        "I en fotbollsarena i Dortmund",
+        "På en strand i Almere",
+        "I en mässhall i Eindhoven"
+      ],
+      "r": 0,
+      "fk": "På den gamla flygbasen i Weeze i Tyskland — Q-dance:s första event utanför Nederländerna."
+    },
+    {
+      "f": "Vad var QrimeTime?",
+      "s": [
+        "Ett Q-dance-event där publiken klädde ut sig till gangsters",
+        "En festival med bara hardcore",
+        "Ett event på en kryssningsfärja",
+        "Q-dance:s radioprogram"
+      ],
+      "r": 0,
+      "fk": "Ett Q-dance-event från 2004 där publiken klädde ut sig till gangsters och maffiosi."
+    },
+    {
+      "f": "Var hölls första Defqon.1, 2003?",
+      "s": [
+        "Almere Beach",
+        "Biddinghuizen",
+        "Hilvarenbeek",
+        "Weeze"
+      ],
+      "r": 0,
+      "fk": "Almere Beach. Festivalen flyttade senare till Biddinghuizen."
+    },
+    {
+      "f": "Vilket år flyttade Defqon.1 till Biddinghuizen och började med camping?",
+      "s": [
+        "2011",
+        "2008",
+        "2013",
+        "2015"
+      ],
+      "r": 0,
+      "fk": "2011. Då gick det för första gången att campa på festivalen."
+    },
+    {
+      "f": "Var arrangerades Defqon.1 för första gången utanför Nederländerna, 2009?",
+      "s": [
+        "Australien",
+        "Chile",
+        "Belgien",
+        "Tyskland"
+      ],
+      "r": 0,
+      "fk": "Australien — Sydney, 2009."
+    },
+    {
+      "f": "Defqon.1 2023 slog publikrekord. Ungefär hur många kom under de fyra dagarna?",
+      "s": [
+        "250 000",
+        "100 000",
+        "150 000",
+        "400 000"
+      ],
+      "r": 0,
+      "fk": "Runt 250 000, från 110 länder."
+    },
+    {
+      "f": "Vad hette Q-dance:s allra första event?",
+      "s": [
+        "Houseqlassics",
+        "Qlimax",
+        "Defqon.1",
+        "Qontact"
+      ],
+      "r": 0,
+      "fk": "Houseqlassics, med oldschool house. Namnet Q-dance kom 2001."
+    },
+    {
+      "f": "Sedan vilket år har Q-dance en egen scen på Tomorrowland?",
+      "s": [
+        "2005",
+        "2008",
+        "2012",
+        "2015"
+      ],
+      "r": 0,
+      "fk": "Sedan första Tomorrowland, 2005."
+    },
+    {
+      "f": "I vilken stad hölls den första belgiska Qlimax, 2006?",
+      "s": [
+        "Hasselt",
+        "Antwerpen",
+        "Gent",
+        "Bryssel"
+      ],
+      "r": 0,
+      "fk": "Hasselt."
+    },
+    {
+      "f": "Vilken månad hölls Qlimax traditionellt?",
+      "s": [
+        "November",
+        "Januari",
+        "April",
+        "Juli"
+      ],
+      "r": 0,
+      "fk": "November."
+    },
+    {
+      "f": "Hur hölls Defqon.1 2021?",
+      "s": [
+        "Digitalt, som en stream",
+        "På en ny plats i Belgien",
+        "Som en endagsfestival",
+        "Som vanligt i Biddinghuizen"
+      ],
+      "r": 0,
+      "fk": "Digitalt. Festivalen ställdes in 2020, och 2021 sändes en virtuell upplaga via Q-dance."
+    },
+    {
+      "f": "Vad var grejen med Hard Bass i GelreDome?",
+      "s": [
+        "Artisterna spelade i färglag som tävlade mot varandra",
+        "Bara basgångar, inga melodier",
+        "Publiken röstade fram varje låt",
+        "Det hölls på en kryssningsfärja"
+      ],
+      "r": 0,
+      "fk": "Artisterna delades in i lag som Team Blue, Green, Yellow och Red, som körde mot varandra."
+    },
+    {
+      "f": "Vilket år hölls den sista Hard Bass, The Last Formation?",
+      "s": [
+        "2019",
+        "2017",
+        "2020",
+        "2022"
+      ],
+      "r": 0,
+      "fk": "2019, i GelreDome i Arnhem."
+    },
+    {
+      "f": "Vem arrangerade Hard Bass?",
+      "s": [
+        "B2S",
+        "Q-dance",
+        "ID&T",
+        "Art of Dance"
+      ],
+      "r": 0,
+      "fk": "B2S. Hard Bass var bolagets största inomhusevent."
+    },
+    {
+      "f": "Vad menas med rawphoric?",
+      "s": [
+        "Raw med euphoriska melodier",
+        "Euphoric utan kick",
+        "Raw i uptempo-tempo",
+        "Hardcore med frenchcore-bas"
+      ],
+      "r": 0,
+      "fk": "Raw med euphoriska melodier — hårda kickar och screech, men med stora melodier."
+    },
+    {
+      "f": "Vilken av de här grenarna är snabbast?",
+      "s": [
+        "Speedcore",
+        "Uptempo",
+        "Frenchcore",
+        "Rawstyle"
+      ],
+      "r": 0,
+      "fk": "Speedcore, som definieras av sitt extrema tempo."
+    },
+    {
+      "f": "Vad kallas det klassiska dammsugarljudet från tidig rave och hardcore?",
+      "s": [
+        "Hoover",
+        "Screech",
+        "Reverse bass",
+        "Kickroll"
+      ],
+      "r": 0,
+      "fk": "Hoover, ett av de mest kända ljuden från tidigt 90-tal."
+    },
+    {
+      "f": "Vad betyder B2B på en lineup?",
+      "s": [
+        "Två artister spelar tillsammans och turas om",
+        "Två scener spelar samma set",
+        "Ett set på dubbel längd",
+        "Artisten spelar bara egna låtar"
+      ],
+      "r": 0,
+      "fk": "Back to back — två artister delar ett set och turas om vid spelarna."
+    },
+    {
+      "f": "I vilken stad kör Swedish Rave Society sina kvällar?",
+      "s": [
+        "Örebro",
+        "Västerås",
+        "Linköping",
+        "Karlstad"
+      ],
+      "r": 0,
+      "fk": "Örebro, på Skybar Svampen."
+    },
+    {
+      "f": "Var kör Nektra?",
+      "s": [
+        "Nöjesfabriken i Karlstad",
+        "Valand i Göteborg",
+        "Skybar Svampen i Örebro",
+        "Centralteatern i Gävle"
+      ],
+      "r": 0,
+      "fk": "Nöjesfabriken i Karlstad."
+    },
+    {
+      "f": "Vilken Göteborgsklubb kör Nonstop Events sina kvällar på?",
+      "s": [
+        "Valand",
+        "Nöjesfabriken",
+        "Skybar Svampen",
+        "Centralteatern"
+      ],
+      "r": 0,
+      "fk": "Valand i Göteborg. Nonstop Events är ett samarbete mellan flera svenska arrangörer."
+    },
+    {
+      "f": "Vad är Monday Bar känt för i den hårda scenen?",
+      "s": [
+        "Kryssningar med egen floor för de hårdare stilarna",
+        "En festival på Gotland",
+        "En klubb i Malmö",
+        "Ett radioprogram"
+      ],
+      "r": 0,
+      "fk": "Kryssningar, med en egen floor för de hårdare stilarna."
+    },
+    {
+      "f": "Gävleklubben Zaandam är uppkallad efter en nederländsk ort. Varför just den?",
+      "s": [
+        "Klubben säger att den första hardstylefesten hölls där",
+        "Det är där Defqon.1 startade",
+        "Det är Q-dance:s hemstad",
+        "Det är där Thunderdome startade"
+      ],
+      "r": 0,
+      "fk": "Enligt klubben själv hölls den första hardstylefesten i Zaandam år 2000. Mottot är att ta hård dansmusik norr om Dalälven."
+    },
+    {
       "typ": "musik",
       "sok": "Headhunterz Dragonborn",
       "f": "Vilken låt är det här?",
