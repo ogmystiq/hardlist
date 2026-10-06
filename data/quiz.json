@@ -563,6 +563,281 @@
       "fk": "Publiken strömmar mot huvudingången medan ytorna bakom scenen står tomma."
     },
     {
+      "f": "Defqon.1 startade 2003. Vilket år fick festivalen sitt första anthem?",
+      "s": [
+        "2005",
+        "2003",
+        "2004",
+        "2006"
+      ],
+      "r": 0,
+      "fk": "2005, med The Prophets Emergency Call. 2003 och 2004 hade inget anthem."
+    },
+    {
+      "f": "Vilket Defqon.1-anthem fick bära tre år i rad?",
+      "s": [
+        "Primal Energy",
+        "One Tribe",
+        "Maximum Force",
+        "Power of the Tribe"
+      ],
+      "r": 0,
+      "fk": "Primal Energy av D-Block & S-te-Fan. Festivalen ställdes in under pandemin, så anthemet från 2020 användes ända till 2022."
+    },
+    {
+      "f": "Headhunterz, Wildstylez och Noisecontrollers gjorde varsitt Defqon.1-anthem tre år i rad. Vilket år gjorde de ett tillsammans?",
+      "s": [
+        "2012",
+        "2011",
+        "2013",
+        "2010"
+      ],
+      "r": 0,
+      "fk": "2012, med World of Madness — efter Scrap Attack 2009, No Time to Waste 2010 och Unite 2011."
+    },
+    {
+      "f": "Vilket år fick frenchcore för första gången plats i ett Defqon.1-anthem?",
+      "s": [
+        "2019",
+        "2017",
+        "2018",
+        "2023"
+      ],
+      "r": 0,
+      "fk": "2019. Sefa stod för frenchcoren i One Tribe, det första Defqon.1-anthemet med frenchcore."
+    },
+    {
+      "f": "Vilka tre gjorde One Tribe, Defqon.1-anthemet 2019?",
+      "s": [
+        "Phuture Noize, KELTEK & Sefa",
+        "Phuture Noize, D-Sturb & Sefa",
+        "Sub Zero Project, KELTEK & Sefa",
+        "Phuture Noize, KELTEK & Dr. Peacock"
+      ],
+      "r": 0,
+      "fk": "Phuture Noize, KELTEK och Sefa."
+    },
+    {
+      "f": "Vilken duo gjorde Biological Insanity, Defqon.1-anthemet 2008?",
+      "s": [
+        "Luna & Deepack",
+        "Technoboy & Tuneboy",
+        "Josh & Wesz",
+        "Showtek"
+      ],
+      "r": 0,
+      "fk": "Luna & Deepack, 2008."
+    },
+    {
+      "f": "Vad hette Bass Modulators Defqon.1-anthem från 2016?",
+      "s": [
+        "Dragonblood",
+        "Dragonborn",
+        "Maximum Force",
+        "Victory Forever"
+      ],
+      "r": 0,
+      "fk": "Dragonblood. Lätt att blanda ihop med Headhunterz Dragonborn."
+    },
+    {
+      "f": "Ran-D:s Decibel-anthem 2016 och Noisecontrollers Defqon.1-anthem 2011 har nästan samma namn. Vilka?",
+      "s": [
+        "United och Unite",
+        "Unity och Unite",
+        "United och Unity",
+        "Union och Unite"
+      ],
+      "r": 0,
+      "fk": "Ran-D gjorde United för Decibel Outdoor 2016, Noisecontrollers Unite för Defqon.1 2011."
+    },
+    {
+      "f": "Två Defqon.1-anthems har Tribe i titeln. Vilka år?",
+      "s": [
+        "2019 och 2024",
+        "2018 och 2024",
+        "2019 och 2023",
+        "2020 och 2025"
+      ],
+      "r": 0,
+      "fk": "One Tribe 2019 och Power of the Tribe 2024, av Sound Rush."
+    },
+    {
+      "f": "Vilket av de här Defqon.1-anthemen gjordes av två artister ihop?",
+      "s": [
+        "No Guts No Glory",
+        "Unite",
+        "Scrap Attack",
+        "Weekend Warriors"
+      ],
+      "r": 0,
+      "fk": "No Guts No Glory, av Ran-D & Skits Vicious 2015. De andra tre gjordes av en artist var."
+    },
+    {
+      "f": "Vilket av de här Defqon.1-anthemen är nyast?",
+      "s": [
+        "Sacred Oath",
+        "Where Legends Rise",
+        "Power of the Tribe",
+        "Path of the Warrior"
+      ],
+      "r": 0,
+      "fk": "Sacred Oath av D-Sturb, 2026. Where Legends Rise kom 2025, Power of the Tribe 2024 och Path of the Warrior 2023."
+    },
+    {
+      "f": "Vilken artist gjorde både Defqon.1-anthemet Get Wasted och Decibel Outdoor-anthemet Fuelled by Fanatics?",
+      "s": [
+        "Brennan Heart",
+        "Headhunterz",
+        "Wildstylez",
+        "Coone"
+      ],
+      "r": 0,
+      "fk": "Brennan Heart — Get Wasted 2007 och Fuelled by Fanatics 2018."
+    },
+    {
+      "f": "D-Sturb har gjort anthem åt både Decibel Outdoor och Defqon.1. Vilket par stämmer?",
+      "s": [
+        "Break Free och Sacred Oath",
+        "Break Free och Where Legends Rise",
+        "Raging City och Sacred Oath",
+        "Cosmic Frequency och Power of the Tribe"
+      ],
+      "r": 0,
+      "fk": "Break Free med ATILAX för Decibel Outdoor 2022, och Sacred Oath för Defqon.1 2026."
+    },
+    {
+      "f": "Vilken artist var med på Defqon.1-anthemet 2015 och på Decibel Outdoors anthem både 2016 och 2025?",
+      "s": [
+        "Ran-D",
+        "D-Sturb",
+        "Brennan Heart",
+        "Noisecontrollers"
+      ],
+      "r": 0,
+      "fk": "Ran-D — No Guts No Glory med Skits Vicious, United, och Cosmic Frequency med Unresolved."
+    },
+    {
+      "f": "Vilket av de här är ett Decibel Outdoor-anthem av Noisecontrollers?",
+      "s": [
+        "Destination, med Bass Modulators",
+        "United, med Bass Modulators",
+        "Break Free, med ATILAX",
+        "Raging City, med Act of Rage"
+      ],
+      "r": 0,
+      "fk": "Destination, med Bass Modulators, Decibel Outdoor 2017."
+    },
+    {
+      "f": "Vilket av de här Decibel Outdoor-anthemen är äldst?",
+      "s": [
+        "D.E.C.I.B.E.L.",
+        "United",
+        "Destination",
+        "Fuelled by Fanatics"
+      ],
+      "r": 0,
+      "fk": "D.E.C.I.B.E.L. av Zatox, 2012. United kom 2016, Destination 2017 och Fuelled by Fanatics 2018."
+    },
+    {
+      "f": "Vilka gjorde Echoes of Existence, Decibel Outdoors anthem 2024?",
+      "s": [
+        "Rejecta & LXCPR",
+        "Ran-D & Unresolved",
+        "D-Sturb & ATILAX",
+        "Noisecontrollers & Bass Modulators"
+      ],
+      "r": 0,
+      "fk": "Rejecta & LXCPR, 2024."
+    },
+    {
+      "f": "I vilken ort ligger Decibel Outdoor?",
+      "s": [
+        "Hilvarenbeek",
+        "Biddinghuizen",
+        "Helvoirt",
+        "Eersel"
+      ],
+      "r": 0,
+      "fk": "Hilvarenbeek i Nederländerna."
+    },
+    {
+      "f": "Vilken festival kallar sig The Loudest City on Earth?",
+      "s": [
+        "Decibel Outdoor",
+        "Defqon.1",
+        "Dominator",
+        "REBiRTH Festival"
+      ],
+      "r": 0,
+      "fk": "Decibel Outdoor."
+    },
+    {
+      "f": "Var ligger REBiRTH Festival?",
+      "s": [
+        "Helvoirt",
+        "Haaksbergen",
+        "Biddinghuizen",
+        "Hilvarenbeek"
+      ],
+      "r": 0,
+      "fk": "Helvoirt i Nederländerna."
+    },
+    {
+      "f": "Vilket av de här Q-dance-eventen finns kvar?",
+      "s": [
+        "Defqon.1",
+        "Qlimax",
+        "The Qontinent",
+        "Q-BASE"
+      ],
+      "r": 0,
+      "fk": "Defqon.1. Qlimax, The Qontinent och Q-BASE är alla nedlagda."
+    },
+    {
+      "f": "Vilket av de här eventen är nedlagt?",
+      "s": [
+        "Impaqt",
+        "Defqon.1",
+        "Decibel Outdoor",
+        "REBiRTH Festival"
+      ],
+      "r": 0,
+      "fk": "Impaqt, ett av Q-dance-eventen som lagts ner."
+    },
+    {
+      "f": "Masters of Hardcore startade frenchcore-labeln Rapture Records tillsammans med en artist. Vem?",
+      "s": [
+        "Re-Style",
+        "Sefa",
+        "Dr. Peacock",
+        "Angerfist"
+      ],
+      "r": 0,
+      "fk": "Re-Style. Labeln startades för euphoric frenchcore."
+    },
+    {
+      "f": "Vad hette Sefas första album?",
+      "s": [
+        "Leven is Lijden",
+        "Het Ergste Moet Nog Komen",
+        "Requiem for Frenchcore",
+        "Symphony of Life"
+      ],
+      "r": 0,
+      "fk": "Leven is Lijden — nederländska för ungefär livet är lidande."
+    },
+    {
+      "f": "Vad hette Q-dance:s första film, som kom hösten 2020?",
+      "s": [
+        "Qlimax: The Source",
+        "Qlimax: The Movie",
+        "Defqon.1: The Gathering",
+        "Q-dance: Origins"
+      ],
+      "r": 0,
+      "fk": "Qlimax: The Source. Sefa producerade en egen frenchcore-del till filmen."
+    },
+    {
       "typ": "musik",
       "sok": "Headhunterz Dragonborn",
       "f": "Vilken låt är det här?",
@@ -1201,7 +1476,7 @@
     },
     {
       "typ": "musik",
-      "sok": "Sefa Ik Wil Dansen",
+      "sok": "Sefa Requiem For Frenchcore",
       "f": "Vem gör den här låten?",
       "s": [
         "Sefa",
@@ -1210,7 +1485,7 @@
         "Radium"
       ],
       "r": 0,
-      "fk": "Sefa, en av frenchcorens största idag."
+      "fk": "Sefa — Requiem For Frenchcore. En av frenchcorens största idag."
     }
   ]
 }
