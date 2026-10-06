@@ -212,8 +212,10 @@ svar. Fram till oktober 2026 låg alla svar öppet i `data/quiz-live.json` och
   kontot hämtade frågan — sidan hämtar den först när man trycker på "Visa
   dagens fråga", så att bara titta på topplistan inte bränner dagen. För sent
   eller inget svar räknas som fel.
-- **Poäng:** 10 + min(svit − 1, 10) × 2 för rätt svar. Fel svar ger noll och
-  bryter sviten, en missad dag också. Rangskalan finns bara i `quiz.rang` i
+- **Poäng:** grundpoäng + min(svit − 1, 10) × 2 för rätt svar. Grundpoängen
+  är 10 för en textfråga och 20 för en låtfråga (fredag, eller en extrainsatt
+  låtdag) — det avgörs av frågans `musik`-flagga i `quiz.registrera`. Fel svar
+  ger noll och bryter sviten, en missad dag också. Rangskalan finns bara i `quiz.rang` i
   databasen.
 - **Topplistan** (`quiz_topplista`) lämnar bara ut visningsnamn, poäng och
   rang. Totalt och innevarande månad, topp 50.
@@ -344,10 +346,15 @@ Mörkt, hårt, kompromisslöst. Passar ämnet.
   annonser och spårning. Allt tre är sant.
 - **Inget cringe.** Inga hjärtan, inga "made with love", inga utropstecken.
 - Fem genrefärger: euphoric, raw, uptempo, hardcore, techno.
-- **Färg betyder genre, aldrig dekoration.** Ett enda undantag: Defqon-scenerna
-  heter färger (RED, BLUE, BLACK, INDIGO, UV, MAGENTA, GREEN, PINK, GOLD) och
-  får en prick i sin egen färg i Defqon-guidens scenlista. BLACK har en ljus
-  ring så den syns mot bakgrunden. Inga fler undantag.
+- **Färg betyder genre, aldrig dekoration.** Undantagen är exakt dessa:
+  - Defqon-scenerna heter färger (RED, BLUE, BLACK, INDIGO, UV, MAGENTA,
+    GREEN, PINK, GOLD) och får en prick i sin egen färg i Defqon-guidens
+    scenlista. BLACK har en ljus ring så den syns mot bakgrunden.
+  - I spelen: rätt svar i cyan, fel svar i rosa och klockans sista tio
+    sekunder i rosa.
+
+  Färgen står aldrig ensam — alltid tillsammans med ikon eller text. Inga fler
+  undantag.
 - BPM visas inte — Spotify lämnar inte ut den, och att gissa och presentera det
   som fakta är sämre än att utelämna.
 

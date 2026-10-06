@@ -225,7 +225,7 @@
 
     <section class="q-om text" aria-labelledby="qOmRubrik">
       <h2 id="qOmRubrik">Så funkar quizet</h2>
-      <p>Samma fråga för alla, ny varje dygn. På fredagar spelas musik istället — lyssna och gissa. Logga in för att samla poäng och komma med i topplistan — då har du 30 sekunder på dig. Utan konto kan du svara och se facit, men inga poäng räknas.</p>
+      <p>Samma fråga för alla, ny varje dygn. På fredagar spelas musik istället — lyssna och gissa. Låtfrågan på fredagar ger dubbla poäng. Logga in för att samla poäng och komma med i topplistan — då har du 30 sekunder på dig. Utan konto kan du svara och se facit, men inga poäng räknas.</p>
       <p>
         Frågan rättas på servern, och rätt svar skickas hit först när du svarat.
         Utan konto sparar servern ingenting om dig och inga poäng räknas — webbläsaren minns
@@ -415,7 +415,7 @@ function ritaFraga(){
       '<h2 class="q-fraga">Dagens fråga väntar</h2>' +
       '<p class="q-regel">Du har <b>30 sekunder</b> från att du öppnar frågan. ' +
       'Att ladda om sidan startar inte om tiden, och svar efter 30 sekunder räknas som fel.' +
-      (dag.latquiz ? ' Idag är det låtquiz — ha ljudet på innan du startar.' : '') + '</p>' +
+      (dag.latquiz ? ' Idag är det låtquiz, och rätt svar ger dubbla poäng — ha ljudet på innan du startar.' : '') + '</p>' +
       '<button class="knapp q-start" id="qStart" type="button">Visa dagens fråga</button>';
     document.getElementById('qStart').addEventListener('click', starta);
     ritaFredagsnot();
@@ -570,8 +570,8 @@ function ritaFredagsnot(){
 
   if (dag.latquiz){
     box.innerHTML = '<b>Låtquiz</b> ' + (idag === FREDAG
-      ? 'Idag är det fredag — lyssna på klippet och gissa.'
-      : 'Extrainsatt idag — lyssna på klippet och gissa.');
+      ? 'Idag är det fredag — lyssna på klippet och gissa. Rätt svar ger dubbla poäng.'
+      : 'Extrainsatt idag — lyssna på klippet och gissa. Rätt svar ger dubbla poäng.');
     return;
   }
   if (idag === FREDAG){
@@ -580,7 +580,7 @@ function ritaFredagsnot(){
   }
   const kvar = (FREDAG - idag + 7) % 7;
   box.innerHTML = '<b>Låtquiz varje fredag</b> Då spelas 30 sekunder musik istället för ' +
-    'en textfråga. ' + (kvar === 1 ? 'Nästa är imorgon.' : 'Nästa om ' + kvar + ' dagar.');
+    'en textfråga, och rätt svar ger dubbla poäng. ' + (kvar === 1 ? 'Nästa är imorgon.' : 'Nästa om ' + kvar + ' dagar.');
 }
 
 /* Ljudet är Apples officiella 30-sekunders förhandslyssning. Artist och titel
