@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ditt konto — HARDLIST</title>
+<meta name="description" content="Logga in på hardlist.se med Google, välj visningsnamn, byt namn eller radera kontot.">
+<link rel="canonical" href="https://hardlist.se/konto/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0A0612">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
 :root{
   --ink:#0A0612;
   --surface:#140B23;
@@ -855,3 +872,387 @@ footer{
   .konto-kort{padding:20px}
   .konto-rad .knapp{flex:1 1 auto}
 }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/">Hard<span>list</span></a>
+    <nav class="topnav">
+      <a href="/#releaser">Releaser</a>
+      <a href="/#events">Kalender</a>
+      <a href="/events/">Festivaler</a>
+      <a href="/guider/">Camping</a>
+      <a href="/nyborjare/">Nybörjare</a>
+      <a href="/anthems/">Anthems</a>
+      <a href="/quiz/">Quiz</a>
+    </nav>
+    <a class="konto-knapp" id="konto-knapp" href="/konto/" aria-current="page">Logga in</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Konto</p>
+      <h1>Ditt<br><em>konto.</em></h1>
+      <p class="lede">Ett namn i topplistorna. Inloggning med Google, inget lösenord att hålla reda på.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap konto">
+
+      <p class="konto-laddar" id="k-laddar">Läser in…</p>
+
+      <noscript>
+        <div class="konto-kort">
+          <h2>Kräver JavaScript</h2>
+          <p>Inloggningen fungerar inte utan JavaScript. Resten av sajten gör det.</p>
+        </div>
+      </noscript>
+
+      <!-- Utloggad -->
+      <div id="k-ut" hidden>
+        <div class="konto-kort">
+          <h2>Logga in</h2>
+          <p>Inloggning sker bara med Google. Hardlist får din mejladress och ditt Google-id, aldrig ditt lösenord.</p>
+          <div class="konto-rad">
+            <button class="knapp fylld" id="k-google" type="button">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.2l7.9 6.2C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 7l7.4 5.7c4.3-4 6.9-9.9 6.9-17.2z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.2C1 16.6 0 20.2 0 24s1 7.4 2.6 10.8l7.9-6.2z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.1-13.5-9.9l-7.9 6.2C6.6 42.6 14.6 48 24 48z"/></svg>
+              Logga in med Google
+            </button>
+          </div>
+          <p class="konto-besked" id="k-ut-besked" role="status"></p>
+        </div>
+        <p class="konto-hint">Vad som sparas och hur du raderar det: <a href="/integritet/">integritet</a>.</p>
+      </div>
+
+      <!-- Inloggad men inget namn valt än -->
+      <div id="k-nytt" hidden>
+        <div class="konto-kort">
+          <h2>Välj visningsnamn</h2>
+          <p>Det här är namnet som syns i topplistorna. Ditt riktiga namn och din mejl visas aldrig.</p>
+          <form id="k-nytt-form" novalidate>
+            <label class="konto-etikett" for="k-nytt-falt">Visningsnamn</label>
+            <input class="konto-falt" id="k-nytt-falt" name="namn" autocomplete="nickname"
+                   autocapitalize="off" spellcheck="false" minlength="3" maxlength="20" required>
+            <p class="konto-hint">3–20 tecken. Bokstäver a–ö, siffror, bindestreck och understreck.</p>
+            <div class="konto-rad">
+              <button class="knapp fylld" type="submit">Spara namnet</button>
+            </div>
+            <p class="konto-besked" id="k-nytt-besked" role="status"></p>
+          </form>
+        </div>
+        <p class="konto-meta" id="k-nytt-mejl"></p>
+      </div>
+
+      <!-- Inloggad med profil -->
+      <div id="k-in" hidden>
+        <div class="konto-kort">
+          <span class="konto-etikett">Visningsnamn</span>
+          <div class="konto-namn" id="k-namn"></div>
+          <p class="konto-meta" id="k-meta"></p>
+        </div>
+
+        <div class="konto-kort">
+          <h2>Byt namn</h2>
+          <form id="k-byt-form" novalidate>
+            <label class="konto-etikett" for="k-byt-falt">Nytt visningsnamn</label>
+            <input class="konto-falt" id="k-byt-falt" name="namn" autocomplete="nickname"
+                   autocapitalize="off" spellcheck="false" minlength="3" maxlength="20" required>
+            <p class="konto-hint">3–20 tecken. Bokstäver a–ö, siffror, bindestreck och understreck.</p>
+            <div class="konto-rad">
+              <button class="knapp" type="submit">Byt namn</button>
+            </div>
+            <p class="konto-besked" id="k-byt-besked" role="status"></p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Gemensamt för alla inloggade -->
+      <div id="k-alltid" hidden>
+        <div class="konto-kort">
+          <h2>Logga ut</h2>
+          <p>Loggar ut på den här enheten.</p>
+          <div class="konto-rad">
+            <button class="knapp" id="k-ut-knapp" type="button">Logga ut</button>
+          </div>
+        </div>
+
+        <div class="konto-kort fara">
+          <h2>Radera kontot</h2>
+          <p>Tar bort inloggningen, visningsnamnet och allt som hör till kontot. Det går inte att ångra.</p>
+          <div class="konto-rad">
+            <button class="knapp fara" id="k-radera" type="button" aria-expanded="false" aria-controls="k-bekrafta">Radera kontot</button>
+          </div>
+          <div class="konto-bekrafta" id="k-bekrafta" hidden>
+            <p>Säker? Kontot och allt som hör till det försvinner direkt.</p>
+            <div class="konto-rad">
+              <button class="knapp fara fylld" id="k-radera-ja" type="button">Ja, radera kontot</button>
+              <button class="knapp" id="k-radera-nej" type="button">Avbryt</button>
+            </div>
+          </div>
+          <p class="konto-besked" id="k-radera-besked" role="status"></p>
+        </div>
+      </div>
+
+      <!-- Efter radering -->
+      <div id="k-raderat" hidden>
+        <div class="konto-kort">
+          <h2>Kontot är raderat</h2>
+          <p>Inloggningen och visningsnamnet är borttagna. Du kan skapa ett nytt konto när du vill.</p>
+          <div class="konto-rad">
+            <a class="knapp" href="/">Till startsidan</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-topp">
+      <div class="foot-om">
+        <div class="mark">Hard<span>list</span></div>
+        <p>Releaser och rave i Norden.<br><b>Uppdateras automatiskt varje dygn.</b></p>
+      </div>
+      <nav class="foot-kol">
+        <h4>Sajten</h4>
+        <a href="/#releaser">Releaser</a>
+        <a href="/#events">Kalender</a>
+        <a href="/events/">Festivalguider</a>
+        <a href="/guider/">Camping</a>
+        <a href="/nyborjare/">Nybörjarguide</a>
+        <a href="/anthems/">Anthem-arkivet</a>
+        <a href="/quiz/">Dagens fråga</a>
+        <a href="/latspel/">Låtspelet</a>
+        <a href="/integritet/">Integritet</a>
+      </nav>
+      <div class="foot-kol">
+        <h4>Bidra</h4>
+        <a href="mailto:hardlisthelp@gmail.com">Tipsa om ett event</a>
+        <a href="mailto:hardlisthelp@gmail.com">Saknad artist</a>
+        <a href="mailto:hardlisthelp@gmail.com">Insidertips</a>
+        <a href="mailto:hardlisthelp@gmail.com">Rätta ett fel</a>
+        <a href="/releaser.xml">RSS-flöde</a>
+      </div>
+    </div>
+    <div class="foot-loften">
+      <span>Inga annonser</span>
+      <span>Inga cookies</span>
+      <span>Ingen spårning</span>
+      <span>Gratis, alltid</span>
+    </div>
+
+    <div class="colophon">
+      <span class="by">Jonathan H</span>
+      <span class="ar">2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Visar toningen i högerkanten bara när det finns mer meny att svepa till. */
+(function(){
+  const nav = document.querySelector('.topnav');
+  if (!nav) return;
+  const hylsa = document.createElement('div');
+  hylsa.className = 'topnav-hylsa';
+  nav.parentNode.insertBefore(hylsa, nav);
+  hylsa.appendChild(nav);
+  function kolla(){
+    const mer = nav.scrollWidth - nav.clientWidth - nav.scrollLeft > 8;
+    hylsa.classList.toggle('mer', mer);
+  }
+  nav.addEventListener('scroll', kolla, {passive:true});
+  window.addEventListener('resize', kolla);
+  kolla();
+})();
+</script>
+<script src="/inloggning.js"></script>
+<script>
+(function(){
+  const K = window.hardlistKonto;
+  const $ = function(id){ return document.getElementById(id); };
+  const VYER = ['k-laddar','k-ut','k-nytt','k-in','k-alltid','k-raderat'];
+
+  function visa(){
+    const synliga = Array.prototype.slice.call(arguments);
+    VYER.forEach(function(id){ $(id).hidden = synliga.indexOf(id) === -1; });
+  }
+  function besked(id, text, sort){
+    const el = $(id);
+    el.textContent = text || '';
+    el.className = 'konto-besked' + (sort ? ' ' + sort : '');
+  }
+  function datum(iso){
+    try { return new Date(iso).toLocaleDateString('sv-SE', {year:'numeric', month:'long', day:'numeric'}); }
+    catch(e){ return ''; }
+  }
+
+  // Felkoderna kommer från Postgres: 23505 är unikhetsspärren, 23514
+  // formatspärren. Spärrarna i databasen gäller även om JS:en kringgås.
+  function namnfel(err){
+    if (!err) return 'Något gick fel. Försök igen.';
+    if (err.code === '23505') return 'Namnet är upptaget. Välj ett annat.';
+    if (err.code === '23514' && /reserverat/.test(err.message || '')) return 'Namnet är reserverat. Välj ett annat.';
+    if (err.code === '23514') return 'Namnet följer inte reglerna nedan.';
+    return 'Kunde inte spara namnet. Försök igen om en stund.';
+  }
+  function kollaNamn(falt, beskedId){
+    const namn = falt.value.trim();
+    if (!K.NAMNREGEL.test(namn)){
+      falt.setAttribute('aria-invalid', 'true');
+      besked(beskedId, namn.length < 3 || namn.length > 20
+        ? 'Namnet ska vara 3–20 tecken.'
+        : 'Bara bokstäver a–ö, siffror, bindestreck och understreck.', 'fel');
+      return null;
+    }
+    falt.removeAttribute('aria-invalid');
+    return namn;
+  }
+
+  let anvandare = null;
+
+  function visaProfil(p){
+    $('k-namn').textContent = p.visningsnamn;
+    $('k-meta').textContent = 'Inloggad med Google som ' + (anvandare.email || 'okänd adress')
+      + ' · konto skapat ' + datum(p.skapad);
+    $('k-byt-falt').value = '';
+    besked('k-byt-besked', '');
+    K.sparaNamn(p.visningsnamn);
+    visa('k-in', 'k-alltid');
+  }
+
+  async function start(){
+    try {
+      const s = await K.session();
+      if (!s){ K.sparaNamn(null); visa('k-ut'); return; }
+      anvandare = s.user;
+      const p = await K.profil(anvandare.id);
+      if (!p){
+        K.visaKnapp({ namn: null });
+        $('k-nytt-mejl').textContent = 'Inloggad med Google som ' + (anvandare.email || 'okänd adress') + '.';
+        visa('k-nytt', 'k-alltid');
+        $('k-nytt-falt').focus();
+        return;
+      }
+      // Kom personen hit direkt från Google och har redan ett namn, skicka
+      // tillbaka till sidan där Logga in trycktes.
+      const dit = K.tillbaka();
+      if (dit){ K.sparaNamn(p.visningsnamn); location.replace(dit); return; }
+      visaProfil(p);
+    } catch(e){
+      visa('k-ut');
+      besked('k-ut-besked', 'Kunde inte nå inloggningen. Kontrollera nätet och ladda om sidan.', 'fel');
+    }
+  }
+
+  $('k-google').addEventListener('click', async function(){
+    this.disabled = true;
+    besked('k-ut-besked', 'Skickar dig till Google…');
+    try { await K.loggaIn(); }
+    catch(e){
+      this.disabled = false;
+      besked('k-ut-besked', 'Kunde inte starta inloggningen. Försök igen.', 'fel');
+    }
+  });
+
+  $('k-nytt-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const namn = kollaNamn($('k-nytt-falt'), 'k-nytt-besked');
+    if (!namn) return;
+    const knapp = this.querySelector('button');
+    knapp.disabled = true;
+    besked('k-nytt-besked', 'Sparar…');
+    try {
+      const k = await K.klient();
+      const { data, error } = await k.from('profiler')
+        .insert({ id: anvandare.id, visningsnamn: namn })
+        .select('visningsnamn, skapad').single();
+      if (error) throw error;
+      const dit = K.tillbaka();
+      if (dit){ K.sparaNamn(data.visningsnamn); location.replace(dit); return; }
+      visaProfil(data);
+    } catch(err){
+      besked('k-nytt-besked', namnfel(err), 'fel');
+    } finally {
+      knapp.disabled = false;
+    }
+  });
+
+  $('k-byt-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const namn = kollaNamn($('k-byt-falt'), 'k-byt-besked');
+    if (!namn) return;
+    if (namn === $('k-namn').textContent){ besked('k-byt-besked', 'Det är redan ditt namn.', 'fel'); return; }
+    const knapp = this.querySelector('button');
+    knapp.disabled = true;
+    besked('k-byt-besked', 'Sparar…');
+    try {
+      const k = await K.klient();
+      const { data, error } = await k.from('profiler')
+        .update({ visningsnamn: namn })
+        .eq('id', anvandare.id)
+        .select('visningsnamn, skapad').single();
+      if (error) throw error;
+      visaProfil(data);
+      besked('k-byt-besked', 'Namnet är bytt.', 'ok');
+    } catch(err){
+      besked('k-byt-besked', namnfel(err), 'fel');
+    } finally {
+      knapp.disabled = false;
+    }
+  });
+
+  $('k-ut-knapp').addEventListener('click', async function(){
+    this.disabled = true;
+    try { await K.loggaUt(); } catch(e){}
+    this.disabled = false;
+    anvandare = null;
+    visa('k-ut');
+  });
+
+  $('k-radera').addEventListener('click', function(){
+    const oppen = $('k-bekrafta').hidden;
+    $('k-bekrafta').hidden = !oppen;
+    this.setAttribute('aria-expanded', String(oppen));
+    if (oppen) $('k-radera-nej').focus();
+  });
+  $('k-radera-nej').addEventListener('click', function(){
+    $('k-bekrafta').hidden = true;
+    $('k-radera').setAttribute('aria-expanded', 'false');
+    $('k-radera').focus();
+  });
+
+  $('k-radera-ja').addEventListener('click', async function(){
+    const knappar = [this, $('k-radera-nej'), $('k-radera')];
+    knappar.forEach(function(b){ b.disabled = true; });
+    besked('k-radera-besked', 'Raderar…');
+    try {
+      const k = await K.klient();
+      const { error } = await k.functions.invoke('radera-konto', { method: 'POST' });
+      if (error) throw error;
+      // Inloggningen finns inte längre på servern, så utloggningen kan
+      // misslyckas. Det som spelar roll är att den lokala sessionen töms.
+      try { await K.loggaUt(); } catch(e){ K.sparaNamn(null); }
+      anvandare = null;
+      visa('k-raderat');
+    } catch(err){
+      knappar.forEach(function(b){ b.disabled = false; });
+      besked('k-radera-besked', 'Kunde inte radera kontot. Försök igen, eller mejla hardlisthelp@gmail.com så raderar jag det åt dig.', 'fel');
+    }
+  });
+
+  start();
+})();
+</script>
+<!-- Fast sökväg: efter Google-inloggningen bär adressen en engångskod som
+     inte ska skickas vidare till besöksräknaren. -->
+<script data-goatcounter="https://hardlist.goatcounter.com/count" data-goatcounter-settings='{"path": "/konto/"}' async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

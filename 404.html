@@ -540,6 +540,30 @@ footer{
   position:absolute;left:0;top:0;bottom:0;width:0;background:var(--raw);
   box-shadow:0 0 8px var(--raw);
 }
+.q-volym{display:flex;align-items:center;gap:10px;margin-top:9px}
+.q-volym svg{width:15px;height:15px;fill:var(--muted);flex:none}
+.q-volym input[type=range]{
+  -webkit-appearance:none;appearance:none;flex:1;max-width:150px;
+  height:3px;background:var(--line);border-radius:2px;outline:none;cursor:pointer;
+}
+.q-volym input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:15px;height:15px;border-radius:50%;
+  background:var(--bone);cursor:pointer;border:0;
+}
+.q-volym input[type=range]::-moz-range-thumb{
+  width:15px;height:15px;border-radius:50%;background:var(--bone);cursor:pointer;border:0;
+}
+.q-volym input[type=range]:focus-visible{outline:2px solid var(--raw);outline-offset:4px}
+@media (max-width:640px){
+  .q-volym input[type=range]{max-width:none;height:5px}
+  .q-volym input[type=range]::-webkit-slider-thumb{width:19px;height:19px}
+}
+
+.q-volnivå{
+  font-family:var(--data);font-size:10px;letter-spacing:.06em;color:#5C5175;
+  min-width:38px;text-align:right;flex:none;
+}
+
 .q-tid{
   font-family:var(--data);font-size:10px;color:#463C5E;margin-top:7px;letter-spacing:.06em;
 }
@@ -695,6 +719,157 @@ footer{
   .facts>div{grid-template-columns:1fr;gap:2px}
   .stages li{grid-template-columns:1fr;gap:4px}
 }
+
+/* ---------- låtspelet ---------- */
+/* Klippstapeln är skalad mot 16 sekunder. Upplåst del syns ljusare, så man
+   ser hur mycket nästa överhopp ger innan man trycker. */
+.l-bar{height:6px;background:var(--line);position:relative;overflow:hidden}
+.l-bar .upplast{position:absolute;left:0;top:0;bottom:0;background:#3A2757;transition:width .3s ease}
+.l-bar .spelat{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--raw);box-shadow:0 0 8px var(--raw)}
+.l-bar .streck{position:absolute;top:0;bottom:0;width:1px;background:var(--ink)}
+
+.l-forsok{list-style:none;display:grid;gap:6px;margin:0 0 20px}
+.l-forsok li{
+  display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 14px;
+  border:1px solid var(--line);background:var(--ink);font-size:14px;color:#CFC5E0;line-height:1.3;
+}
+.l-forsok li i{flex:none;width:10px;height:10px;background:var(--line)}
+.l-forsok li.tom{background:none;border-style:dashed}
+.l-forsok li.fel i{background:var(--raw)}
+.l-forsok li.hopp{color:var(--muted)}
+.l-forsok li.hopp i{background:var(--muted)}
+.l-forsok li.ratt{border-color:var(--euphoric);color:var(--bone)}
+.l-forsok li.ratt i{background:var(--euphoric);box-shadow:0 0 8px var(--euphoric)}
+
+.l-etikett{
+  display:block;font-family:var(--data);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:#5C5175;margin-bottom:8px;
+}
+.l-sok{
+  display:block;width:100%;min-height:48px;padding:12px 14px;border-radius:2px;
+  background:var(--ink);border:1px solid var(--line);color:var(--bone);
+  font-family:var(--body);font-size:16px;
+}
+.l-sok::placeholder{color:#5C5175}
+.l-sok:focus{outline:none;border-color:var(--muted)}
+.l-forslag{list-style:none;border:1px solid var(--line);border-top:0}
+.l-forslag:empty{display:none}
+.l-forslag button{
+  display:block;width:100%;min-height:44px;padding:10px 14px;text-align:left;cursor:pointer;
+  background:var(--surface-2);border:0;border-top:1px solid var(--line);color:#CFC5E0;
+  font-family:var(--body);font-size:15px;line-height:1.3;
+}
+.l-forslag li:first-child button{border-top:0}
+.l-forslag button b{color:var(--bone);font-weight:700}
+.l-forslag button:hover,.l-forslag button[aria-selected="true"]{background:var(--line);color:var(--bone)}
+
+.l-knappar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.l-knapp{
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+  background:none;border:1px solid var(--line);color:var(--bone);cursor:pointer;text-decoration:none;
+  font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:0 18px;border-radius:2px;transition:border-color .18s,transform .18s,color .18s;
+}
+.l-knapp:hover{border-color:var(--muted);transform:translateY(-1px)}
+.l-knapp.skarp{border-color:var(--raw);color:var(--raw)}
+.l-knapp.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
+
+.l-facit{margin:0 0 20px}
+.l-facit b{
+  display:block;font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(26px,5vw,38px);line-height:.95;color:var(--bone);
+}
+.l-facit span{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:20px;color:var(--muted);margin-top:6px}
+
+.l-fordelning{display:grid;gap:4px;margin-top:24px;max-width:420px}
+.l-fordelning div{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:center}
+.l-fordelning em{font-style:normal;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted)}
+.l-fordelning span{
+  display:block;min-width:24px;padding:3px 7px;text-align:right;background:var(--surface-2);
+  font-family:var(--data);font-size:11px;color:var(--bone);
+}
+.l-fordelning .nu span{background:var(--raw)}
+
+.l-mot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:4px 0 14px}
+.l-mot div{background:var(--ink);padding:14px 16px}
+.l-mot b{display:block;font-family:var(--display);font-weight:900;font-size:40px;line-height:1;color:var(--bone)}
+.l-mot span{display:block;font-family:var(--data);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5C5175;margin-top:7px}
+.l-mot .ledare b{color:var(--raw)}
+
+.l-lista{list-style:none;margin:6px 0 0}
+.l-lista li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:baseline;padding:11px 0;border-top:1px solid var(--line);font-size:14px;color:#CFC5E0}
+.l-lista li:last-child{border-bottom:1px solid var(--line)}
+.l-lista b{font-family:var(--data);font-size:12px;color:var(--euphoric);font-weight:400}
+.l-lista .noll b{color:var(--raw)}
+
+/* ---------- konto ---------- */
+/* Auto-marginalen skjuter menyn mot högerkanten så att den hamnar intill
+   kontoknappen i stället för mitt i headern. */
+.top .wrap>.topnav,.top .topnav-hylsa{margin-left:auto}
+.konto-knapp{
+  flex:none;display:block;height:44px;line-height:42px;padding:0 14px;max-width:180px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  border:1px solid var(--line);border-radius:2px;text-decoration:none;
+  font-family:var(--data);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--bone);transition:border-color .18s,color .18s;
+}
+.konto-knapp:hover,.konto-knapp:focus-visible{border-color:var(--muted)}
+/* Visningsnamnet visas som det skrevs — versalerna är en del av namnet. */
+.konto-knapp.inloggad{text-transform:none;letter-spacing:.03em;color:var(--euphoric)}
+.konto-knapp[aria-busy="true"]{opacity:.6}
+
+.konto{max-width:560px}
+.konto-kort{border:1px solid var(--line);background:var(--surface);padding:26px;margin-bottom:14px}
+.konto-kort h2{font-size:clamp(24px,5vw,32px);margin-bottom:12px}
+.konto-kort p{color:#CFC5E0;font-size:15px;margin-bottom:14px;max-width:60ch}
+.konto-kort p:last-child{margin-bottom:0}
+.konto-kort a{color:var(--bone)}
+.konto-etikett{
+  display:block;font-family:var(--data);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#5C5175;margin-bottom:8px;
+}
+.konto-namn{
+  font-family:var(--display);font-weight:900;font-size:clamp(30px,7vw,44px);line-height:1;
+  color:var(--euphoric);overflow-wrap:anywhere;margin-bottom:8px;
+}
+.konto-meta{font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--muted);overflow-wrap:anywhere}
+.konto-falt{
+  display:block;width:100%;height:46px;padding:0 14px;border-radius:2px;
+  background:var(--ink);border:1px solid var(--line);color:var(--bone);
+  font-family:var(--data);font-size:16px;letter-spacing:.02em;
+}
+.konto-falt:focus{outline:none;border-color:var(--muted)}
+.konto-falt[aria-invalid="true"]{border-color:var(--raw)}
+.konto-hint{font-family:var(--data);font-size:10px;letter-spacing:.07em;color:#5C5175;margin-top:8px;line-height:1.7}
+.konto-rad{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.knapp{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:44px;padding:0 18px;border-radius:2px;cursor:pointer;text-decoration:none;
+  border:1px solid var(--line);background:none;color:var(--bone);
+  font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  transition:border-color .18s,transform .18s,background .18s;
+}
+.knapp:hover:not(:disabled){border-color:var(--muted);transform:translateY(-1px)}
+.knapp:disabled{opacity:.5;cursor:default}
+.knapp.fylld{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.knapp.fylld:hover:not(:disabled){background:#fff;border-color:#fff}
+.knapp.fara{border-color:var(--raw);color:var(--raw)}
+.knapp.fara.fylld{background:var(--raw);color:var(--ink)}
+.knapp svg{width:16px;height:16px;flex:none}
+.konto-besked{font-family:var(--data);font-size:11px;letter-spacing:.05em;line-height:1.6;margin-top:12px}
+.konto-besked:empty{display:none}
+.konto-besked.fel{color:var(--raw)}
+.konto-besked.ok{color:var(--euphoric)}
+.konto-kort.fara{border-color:#3A1525}
+.konto-bekrafta{border-left:2px solid var(--raw);background:#1A0810;padding:14px 16px;margin-top:14px}
+.konto-bekrafta p{font-size:14px}
+.konto-laddar{font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+@media (max-width:640px){
+  .konto-knapp{max-width:112px;padding:0 10px;font-size:10px;letter-spacing:.1em}
+  .konto-kort{padding:20px}
+  .konto-rad .knapp{flex:1 1 auto}
+}
 </style>
 </head>
 <body>
@@ -711,6 +886,7 @@ footer{
       <a href="/anthems/">Anthems</a>
       <a href="/quiz/">Quiz</a>
     </nav>
+    <a class="konto-knapp" id="konto-knapp" href="/konto/">Logga in</a>
   </div>
 </header>
 
@@ -761,6 +937,7 @@ footer{
         <a href="/anthems/">Anthem-arkivet</a>
         <a href="/quiz/">Dagens fråga</a>
         <a href="/latspel/">Låtspelet</a>
+        <a href="/integritet/">Integritet</a>
       </nav>
       <div class="foot-kol">
         <h4>Bidra</h4>
@@ -803,6 +980,7 @@ footer{
   kolla();
 })();
 </script>
+<script src="/inloggning.js" defer></script>
 <script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

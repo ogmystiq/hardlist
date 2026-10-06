@@ -42,4 +42,16 @@
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://hardlist.se/konto/</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://hardlist.se/integritet/</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
 </urlset>

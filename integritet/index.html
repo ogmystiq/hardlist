@@ -1,3 +1,29 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integritet — vad HARDLIST sparar om dig</title>
+<meta name="description" content="Vad hardlist.se sparar när du loggar in med Google, varför, var, hur länge, och hur du raderar ditt konto.">
+<link rel="canonical" href="https://hardlist.se/integritet/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0A0612">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HARDLIST">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:url" content="https://hardlist.se/integritet/">
+<meta property="og:title" content="Integritet — vad HARDLIST sparar om dig">
+<meta property="og:description" content="Vad hardlist.se sparar när du loggar in med Google, varför, var, hur länge, och hur du raderar ditt konto.">
+<meta property="og:image" content="https://hardlist.se/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
 :root{
   --ink:#0A0612;
   --surface:#140B23;
@@ -855,3 +881,143 @@ footer{
   .konto-kort{padding:20px}
   .konto-rad .knapp{flex:1 1 auto}
 }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/">Hard<span>list</span></a>
+    <nav class="topnav">
+      <a href="/#releaser">Releaser</a>
+      <a href="/#events">Kalender</a>
+      <a href="/events/">Festivaler</a>
+      <a href="/guider/">Camping</a>
+      <a href="/nyborjare/">Nybörjare</a>
+      <a href="/anthems/">Anthems</a>
+      <a href="/quiz/">Quiz</a>
+    </nav>
+    <a class="konto-knapp" id="konto-knapp" href="/konto/">Logga in</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Integritet <span class="badge">Senast ändrad 6 oktober 2026</span></p>
+      <h1>Vad som<br><em>sparas.</em></h1>
+      <p class="lede">Kort och utan juristspråk. Allt på den här sidan gäller kontot på hardlist.se och inget annat.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap prose">
+      <h2>Utan konto</h2>
+      <p>Det mesta av sajten kräver inget konto. Utan att logga in sparas ingenting om dig på någon server.</p>
+      <ul>
+        <li><strong>Besöksräkning.</strong> GoatCounter räknar sidvisningar utan cookies och utan att känna igen dig mellan besöken. Det ger mig siffror på hur många som läser vad, inte vem.</li>
+        <li><strong>Quizpoäng och låtspel.</strong> Ligger i din egen webbläsare (localStorage) och skickas ingenstans.</li>
+      </ul>
+
+      <h2>Med konto</h2>
+      <p>Inloggning sker bara med Google. Ditt lösenord ser jag aldrig — det stannar hos Google.</p>
+
+      <h3>Det här sparas</h3>
+      <ul>
+        <li><strong>Din mejladress hos Google.</strong> Kommer från Google vid inloggningen.</li>
+        <li><strong>Ditt Google-id.</strong> Ett nummer som Google ger ditt konto. Behövs för att känna igen dig nästa gång.</li>
+        <li><strong>Ditt namn och din profilbild hos Google.</strong> Google skickar med dem och inloggningstjänsten sparar dem automatiskt. Hardlist använder dem inte och visar dem aldrig.</li>
+        <li><strong>Visningsnamnet du väljer.</strong> Syns för alla, i topplistor. Det är det enda om dig som andra kan se.</li>
+        <li><strong>När kontot skapades och när du senast loggade in.</strong></li>
+        <li><strong>IP-adress och webbläsartyp</strong> för dina inloggningar. Används för att hålla inloggningen säker.</li>
+        <li><strong>Senare: spelresultat.</strong> När quizet och låtspelet kopplas till kontot sparas dina resultat där. Den här sidan uppdateras innan det sker.</li>
+      </ul>
+
+      <h3>Varför</h3>
+      <p>För att du ska kunna ha ett namn i topplistorna och få med dig dina resultat mellan enheter. Uppgifterna används inte till något annat. Hardlist säljer inga uppgifter, visar inga annonser och delar ingenting med annonsörer.</p>
+
+      <h3>Var</h3>
+      <p>Kontona ligger hos <strong>Supabase</strong>, en databastjänst. Databasen står i Amazons datacenter i <strong>Irland</strong> (AWS eu-west-1), alltså inom EU. Supabase är ett amerikanskt företag.</p>
+      <p>Inloggningen sparas i din webbläsares lokala lagring (localStorage) på hardlist.se, inte i cookies. Google sätter egna cookies på google.com när du loggar in där — de styrs av Google, inte av mig.</p>
+
+      <h3>Hur länge</h3>
+      <p>Så länge kontot finns. Raderar du kontot tas allt bort direkt — inloggningen, visningsnamnet och allt annat som hör till kontot.</p>
+
+      <h2>Radera ditt konto</h2>
+      <p>Två sätt:</p>
+      <ul>
+        <li><strong>Själv.</strong> Logga in, gå till <a href="/konto/">ditt konto</a> och tryck <strong>Radera kontot</strong>. Allt försvinner på en gång.</li>
+        <li><strong>Via mejl.</strong> Skriv till <a href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a> från mejladressen du loggat in med, så raderar jag kontot åt dig.</li>
+      </ul>
+
+      <h2>Dina rättigheter</h2>
+      <p>Du kan när som helst få veta vad som finns sparat om dig, få det rättat eller raderat. Mejla <a href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>. Tycker du att något hanteras fel kan du klaga hos Integritetsskyddsmyndigheten, <a href="https://www.imy.se/">imy.se</a>.</p>
+      <p>Ansvarig för uppgifterna är Jonathan Heimdahl, som driver hardlist.se.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-topp">
+      <div class="foot-om">
+        <div class="mark">Hard<span>list</span></div>
+        <p>Releaser och rave i Norden.<br><b>Uppdateras automatiskt varje dygn.</b></p>
+      </div>
+      <nav class="foot-kol">
+        <h4>Sajten</h4>
+        <a href="/#releaser">Releaser</a>
+        <a href="/#events">Kalender</a>
+        <a href="/events/">Festivalguider</a>
+        <a href="/guider/">Camping</a>
+        <a href="/nyborjare/">Nybörjarguide</a>
+        <a href="/anthems/">Anthem-arkivet</a>
+        <a href="/quiz/">Dagens fråga</a>
+        <a href="/latspel/">Låtspelet</a>
+        <a href="/integritet/" aria-current="page">Integritet</a>
+      </nav>
+      <div class="foot-kol">
+        <h4>Bidra</h4>
+        <a href="mailto:hardlisthelp@gmail.com">Tipsa om ett event</a>
+        <a href="mailto:hardlisthelp@gmail.com">Saknad artist</a>
+        <a href="mailto:hardlisthelp@gmail.com">Insidertips</a>
+        <a href="mailto:hardlisthelp@gmail.com">Rätta ett fel</a>
+        <a href="/releaser.xml">RSS-flöde</a>
+      </div>
+    </div>
+    <div class="foot-loften">
+      <span>Inga annonser</span>
+      <span>Inga cookies</span>
+      <span>Ingen spårning</span>
+      <span>Gratis, alltid</span>
+    </div>
+
+    <div class="colophon">
+      <span class="by">Jonathan H</span>
+      <span class="ar">2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Visar toningen i högerkanten bara när det finns mer meny att svepa till. */
+(function(){
+  const nav = document.querySelector('.topnav');
+  if (!nav) return;
+  const hylsa = document.createElement('div');
+  hylsa.className = 'topnav-hylsa';
+  nav.parentNode.insertBefore(hylsa, nav);
+  hylsa.appendChild(nav);
+  function kolla(){
+    const mer = nav.scrollWidth - nav.clientWidth - nav.scrollLeft > 8;
+    hylsa.classList.toggle('mer', mer);
+  }
+  nav.addEventListener('scroll', kolla, {passive:true});
+  window.addEventListener('resize', kolla);
+  kolla();
+})();
+</script>
+<script src="/inloggning.js" defer></script>
+<script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
