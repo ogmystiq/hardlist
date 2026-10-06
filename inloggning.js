@@ -110,6 +110,15 @@
     if (error) throw error;
   }
 
+  /* Till kontosidan för att välja visningsnamn, och tillbaka hit efteråt.
+     Samma återvägsnyckel som efter Google, så kontosidan skickar tillbaka
+     utan att behöva veta varifrån personen kom. */
+  function valjNamn(){
+    const har = location.pathname + location.search + location.hash;
+    if (location.pathname !== '/konto/' && sakerSokvag(har)) skriv(sessionStorage, TILLBAKANYCKEL, har);
+    location.href = '/konto/';
+  }
+
   function tillbaka(){
     const s = las(sessionStorage, TILLBAKANYCKEL);
     skriv(sessionStorage, TILLBAKANYCKEL, null);
@@ -187,6 +196,7 @@
     loggaIn: loggaIn,
     loggaUt: loggaUt,
     tillbaka: tillbaka,
+    valjNamn: valjNamn,
     sparaNamn: sparaNamn,
     visaKnapp: visaKnapp,
     NAMNREGEL: NAMNREGEL

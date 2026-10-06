@@ -1181,6 +1181,20 @@ function ritaFraga(){
 
   const svar = dagensSvar();
 
+  /* Konto utan visningsnamn får inte frågan av servern. Tiden har inte
+     börjat — den startar först när namnet är valt och frågan öppnas. */
+  if (dag.inloggad && dag.krav === 'visningsnamn'){
+    kort.innerHTML = datumRad() +
+      '<h2 class="q-fraga">Välj ett visningsnamn först</h2>' +
+      '<p class="q-regel">Dagens fråga visas bara för konton med visningsnamn. Namnet syns i ' +
+      'topplistan tillsammans med dina poäng. Du kommer tillbaka hit när det är valt, ' +
+      'och de 30 sekunderna har inte börjat.</p>' +
+      '<button class="q-start" id="qValjNamn">Välj visningsnamn</button>';
+    document.getElementById('qValjNamn').addEventListener('click', function(){ hardlistKonto.valjNamn(); });
+    ritaFredagsnot();
+    return;
+  }
+
   /* Inloggad och inte startad: frågan har inte skickats hit än. Tiden börjar
      när knappen trycks, inte när sidan öppnas — annars brändes dagens fråga
      av den som bara ville titta på topplistan. */
@@ -1295,6 +1309,10 @@ async function svara(plats){
   if (res.fel === 'ny_dag'){
     if (felrad) felrad.textContent = 'Ett nytt dygn har börjat. Hämtar dagens fråga.';
     setTimeout(start, 1200);
+    return;
+  }
+  if (res.fel === 'visningsnamn_saknas'){
+    start();
     return;
   }
   if (res.fel){
@@ -1522,7 +1540,11 @@ function ritaTopplista(){
     jag.innerHTML = '';
   } else if (dag && dag.inloggad && konto && !konto.har_namn){
     jag.innerHTML = 'Välj ett visningsnamn för att synas i topplistan.' +
-      '<a class="l-knapp" href="/konto/">Välj namn</a>';
+      '<a class="l-knapp" href="/konto/" id="qValjNamnLista">Välj namn</a>';
+    document.getElementById('qValjNamnLista').addEventListener('click', function(e){
+      e.preventDefault();
+      hardlistKonto.valjNamn();
+    });
   } else if (dag && dag.inloggad){
     jag.innerHTML = 'Du syns här när du tagit poäng' + (period === 'manad' ? ' den här månaden.' : '.');
   } else {

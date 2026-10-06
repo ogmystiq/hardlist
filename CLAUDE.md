@@ -201,7 +201,9 @@ svar. Fram till oktober 2026 låg alla svar öppet i `data/quiz-live.json` och
   `localStorage` minns bara dagens svar (`hardlist_quiz_svar`) så att facit
   står kvar vid omladdning. Överst visas en knapp för att logga in. Gamla
   poäng i `hardlist_quiz_v1` raderas när sidan laddas.
-- **Med konto:** ett svar per konto och dygn. 30 sekunder från första gången
+- **Med konto:** kräver visningsnamn. Utan namn ger `quiz_dagens` ingen fråga
+  och ingen starttid, och `quiz_svara` vägrar rätta. Sidan skickar till
+  `/konto/` och tillbaka med `hardlistKonto.valjNamn()`. Ett svar per konto och dygn. 30 sekunder från första gången
   kontot hämtade frågan — sidan hämtar den först när man trycker på "Visa
   dagens fråga", så att bara titta på topplistan inte bränner dagen. För sent
   eller inget svar räknas som fel.
