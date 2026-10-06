@@ -69,6 +69,11 @@ data/kommande.json   kommande släpp, pre-save-länkar
 
 Quizfrågorna ligger i databasen, inte i repot. Se **Quizet** nedan.
 
+Varje event i `data/events.json` har fältet `genrer`, en lista med något av
+`hardstyle`, `raw`, `uptempo`, `hardcore` och `techno` (visas som Hard techno).
+Kalendern visar dem som färgprickar och filtrerar på dem. Ett event med tom
+lista syns bara när ingen genre är vald, så hellre tom än gissad.
+
 `data/kommande.json` går inte att bygga automatiskt. Spotify har ingen
 endpoint för osläppt material — allt skriptet kan hämta är redan utgivet.
 Försök inte ersätta filen med ett script eller en workflow; den är och
@@ -337,6 +342,10 @@ Mörkt, hårt, kompromisslöst. Passar ämnet.
   annonser och spårning. Allt tre är sant.
 - **Inget cringe.** Inga hjärtan, inga "made with love", inga utropstecken.
 - Fem genrefärger: euphoric, raw, uptempo, hardcore, techno.
+- **Färg betyder genre, aldrig dekoration.** Ett enda undantag: Defqon-scenerna
+  heter färger (RED, BLUE, BLACK, INDIGO, UV, MAGENTA, GREEN, PINK, GOLD) och
+  får en prick i sin egen färg i Defqon-guidens scenlista. BLACK har en ljus
+  ring så den syns mot bakgrunden. Inga fler undantag.
 - BPM visas inte — Spotify lämnar inte ut den, och att gissa och presentera det
   som fakta är sämre än att utelämna.
 

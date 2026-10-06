@@ -2,6 +2,13 @@
   {
     "name": "Decibel Outdoor",
     "region": "europa",
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "hardcore",
+      "uptempo",
+      "techno"
+    ],
     "city": "Hilvarenbeek, NL",
     "venue": "Beekse Bergen",
     "lineup": "30+ scener över hela hard dance-spektrumet.",
@@ -14,6 +21,7 @@
     "name": "Monday Bar Halloween Cruise",
     "date": "2026-11-06",
     "region": "norden",
+    "genrer": [],
     "city": "Stockholm, SE",
     "venue": "Birka Gotland",
     "lineup": "6–7 november. Egen black floor för de hårdare stilarna.",
@@ -25,6 +33,7 @@
     "name": "Reverze",
     "date": "2027-02-26",
     "region": "europa",
+    "genrer": [],
     "city": "Antwerpen, BE",
     "venue": "AFAS Dome + Lotto Arena",
     "lineup": "26–27 februari, AFAS Dome + Lotto Arena. Säsongsöppnaren. Biljetterna är inte släppta än — förhandsanmälan ger första tillgång.",
@@ -36,30 +45,35 @@
   {
     "name": "Lumaniac",
     "region": "norden",
+    "genrer": [],
     "city": "Kristianstad, SE",
     "season": "normalt i mars"
   },
   {
     "name": "Hardstyle DNA",
     "region": "norden",
+    "genrer": [],
     "city": "Oslo, NO",
     "season": "normalt i maj"
   },
   {
     "name": "Soundvault Festival",
     "region": "norden",
+    "genrer": [],
     "city": "Helsingfors, FI",
     "season": "normalt i maj"
   },
   {
     "name": "Hardstyle Reaction",
     "region": "norden",
+    "genrer": [],
     "city": "Linköping, SE",
     "season": "normalt i maj"
   },
   {
     "name": "Swedish Rave Society",
     "region": "norden",
+    "genrer": [],
     "city": "Örebro, SE",
     "venue": "Skybar Svampen",
     "url": "https://billetto.se/users/swedish-rave-society",
@@ -69,18 +83,21 @@
   {
     "name": "Monday Bar Summer Cruise",
     "region": "norden",
+    "genrer": [],
     "city": "Stockholm–Tallinn",
     "season": "normalt i juni"
   },
   {
     "name": "One Vision Festival",
     "region": "norden",
+    "genrer": [],
     "city": "Kristianstad, SE",
     "season": "normalt i augusti"
   },
   {
     "name": "Ascend",
     "region": "norden",
+    "genrer": [],
     "city": "Norrköping, SE",
     "season": "datum ej bekräftat"
   },
@@ -88,6 +105,9 @@
     "name": "Masters of Hardcore",
     "date": "2027-03-27",
     "region": "europa",
+    "genrer": [
+      "hardcore"
+    ],
     "city": "'s-Hertogenbosch, NL",
     "venue": "Brabanthallen",
     "url": "https://www.mastersofhardcore.com/",
@@ -97,6 +117,10 @@
     "name": "REBiRTH Festival",
     "date": "2027-04-09",
     "region": "europa",
+    "genrer": [
+      "raw",
+      "hardstyle"
+    ],
     "city": "Helvoirt, NL",
     "url": "https://www.rebirth-festival.nl/",
     "urlText": "Mer info",
@@ -105,6 +129,9 @@
   {
     "name": "Harmony of Hardcore",
     "region": "europa",
+    "genrer": [
+      "hardcore"
+    ],
     "city": "Erp, NL",
     "season": "normalt i maj"
   },
@@ -112,6 +139,11 @@
     "name": "Intents Festival",
     "date": "2027-06-04",
     "region": "europa",
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "hardcore"
+    ],
     "city": "Oisterwijk, NL",
     "venue": "Sportpark d'n Donk",
     "url": "https://www.intentsfestival.nl/",
@@ -121,6 +153,12 @@
     "name": "Defqon.1",
     "date": "2027-06-24",
     "region": "europa",
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "hardcore",
+      "uptempo"
+    ],
     "city": "Biddinghuizen, NL",
     "venue": "Walibi Holland",
     "lineup": "24–27 juni, fyra dagar på Holy Grounds. Efter att 2026 ställdes in fick alla biljettinnehavare välja mellan återbetalning och att behålla biljetten till 2027 — valet stängde i juli. Många behöll, så en stor del av platserna är redan tagna innan försäljningen öppnar. Släpp väntas under hösten, medlemmar först.",
@@ -132,12 +170,18 @@
   {
     "name": "Dominator",
     "region": "europa",
+    "genrer": [
+      "hardcore"
+    ],
     "city": "Eersel, NL",
     "season": "normalt i juli"
   },
   {
     "name": "Supremacy",
     "region": "europa",
+    "genrer": [
+      "raw"
+    ],
     "city": "'s-Hertogenbosch, NL",
     "venue": "Brabanthallen",
     "lineup": "Arrangeras av Art of Dance. Rawstyle-flaggskeppet. Nästan hela programmet består av liveshows på en enda scen, vilket skiljer det från de flesta festivaler i genren.",
@@ -149,6 +193,9 @@
   {
     "name": "Syndicate",
     "region": "europa",
+    "genrer": [
+      "hardcore"
+    ],
     "city": "Dortmund, DE",
     "venue": "Westfalenhallen",
     "lineup": "Tysklands största inomhusevent för de hårdare stilarna sedan 2006. Fyra floors — mainstage, hardstyle, uptempo och early hardcore — med 40+ artister och upp till 20 000 besökare. Åldersgräns 16 år, till skillnad från nästan allt annat i genren.",
@@ -159,6 +206,7 @@
     "name": "REBELLiON Indoor — Break The System",
     "date": "2026-11-14",
     "region": "europa",
+    "genrer": [],
     "city": "Nederländerna",
     "venue": "",
     "lineup": "Raw och uptempo inomhus. Rebelions eget event, tema Break The System.",
@@ -168,6 +216,9 @@
     "name": "Thunderdome",
     "date": "2026-12-11",
     "region": "europa",
+    "genrer": [
+      "hardcore"
+    ],
     "city": "Antwerpen, BE",
     "venue": "AFAS Dome",
     "lineup": "11–12 december. Hardcore-varumärket som startade 1992 och byggde hela gabberkulturen. Hela scenen samlas, från early till terror.",
@@ -178,6 +229,7 @@
   {
     "name": "Ground Zero Festival",
     "region": "europa",
+    "genrer": [],
     "city": "Bussloo, NL",
     "season": "världens enda nattfestival i genren"
   },
@@ -185,6 +237,7 @@
     "name": "Deztination",
     "date": "2026-11-21",
     "region": "norden",
+    "genrer": [],
     "city": "Stockholm, SE",
     "venue": "",
     "lineup": "Upplagan heter Wolf City. Lokal och lineup är inte släppta ännu.",
@@ -195,6 +248,7 @@
     "name": "Nektra",
     "date": "2027-02-13",
     "region": "norden",
+    "genrer": [],
     "city": "Karlstad, SE",
     "venue": "Nöjesfabriken",
     "url": "https://www.tickster.com/se/sv/events/pw1tgn4jx6b8byn/2027-02-13/nektra-february-13-2027"
@@ -203,6 +257,7 @@
     "name": "Timetwister",
     "date": "2026-10-17",
     "region": "norden",
+    "genrer": [],
     "city": "Göteborg, SE",
     "venue": "Valand",
     "lineup": "Hard trance, hardstyle, rawstyle, techno och hardcore. Arrangeras av Nonstop Events, ett samarbete mellan flera svenska arrangörer.",
@@ -213,6 +268,7 @@
     "name": "Zaandam",
     "date": "2027-02-06",
     "region": "norden",
+    "genrer": [],
     "city": "Gävle, SE",
     "venue": "Centralteatern",
     "lineup": "Hardstyle, rawstyle och uptempo i Gävle. Uppkallad efter den nederländska orten där den första hardstylefesten hölls år 2000.",
@@ -222,11 +278,12 @@
     "name": "Sana Duri",
     "date": "2027-01-30",
     "region": "norden",
+    "genrer": [],
     "city": "Mölndal, SE",
     "venue": "Åby Arena",
     "lineup": "Biljetter släpps 25 september kl 12.00. Lineup är inte annonserad ännu.",
     "url": "https://sanaduri.se/",
-    "urlText": "Biljettsläpp 25 september",
+    "urlText": "Biljetter",
     "arrangor": "Shuffle Group"
   }
 ]

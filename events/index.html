@@ -56,6 +56,10 @@
 .event-mitt{min-width:0;display:flex;flex-direction:column;gap:3px;padding-top:2px}
 .event-namn{font-stretch:100%;font-weight:650;font-size:16px;line-height:1.3;letter-spacing:0}
 .event-plats{font-size:14px;color:var(--text-2)}
+.filterrad{gap:16px}
+.chipgrupp{display:flex;gap:8px;flex:none}
+.event-genrer{display:flex;flex-wrap:wrap;gap:4px 12px;margin:4px 0 0;padding:0;list-style:none}
+.event-genrer li{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#D9D1E6}
 .event-text{margin-top:4px;font-size:14px;line-height:1.45;color:var(--text-2)}
 .event-lank{grid-column:2;justify-self:start;min-height:44px;padding:0 18px;font-size:15px}
 .event-saknas{grid-column:2;font-size:14px;color:var(--text-3)}
@@ -84,24 +88,42 @@
 .flikar{margin-top:4px}
 .flikar .chip[aria-selected="true"]{background:var(--text);color:var(--natt)}
 
-.panel{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+/* En guide är en enda yta. Fakta, scener och tips inuti är rader med luft
+   emellan, inte egna lådor — högst en nivå yta. */
+.panel{display:flex;flex-direction:column;gap:18px;margin-top:8px;background:var(--yta);border-radius:24px;padding:22px 20px}
 .panel-huvud{display:flex;flex-direction:column;gap:10px}
 .panel-huvud h3{font-size:34px}
 .panel-fakta{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 .panel-fakta li{padding:7px 12px;border-radius:999px;background:var(--yta-2);font-size:14px}
-.panel h4{margin:10px 0 0;font-size:20px;font-weight:700;line-height:1.2}
-/* Vanliga punktlistor i guiderna. Faktachipsen och scenlistan är också
-   listor men har egen form, därför undantas de här. */
+.panel h4{margin:8px 0 -6px;font-size:20px;font-weight:700;line-height:1.2}
+/* Vanliga punktlistor. Faktachipsen och scenlistan är också listor men har
+   egen form, därför undantas de. */
 .panel p,.panel ul{margin:0;font-size:16px;line-height:1.55;color:var(--text-2)}
 .panel ul:not(.panel-fakta):not(.stages){padding-left:20px;display:flex;flex-direction:column;gap:6px}
 .panel ul strong,.panel p strong{color:var(--text)}
-.facts{margin:0;display:grid;gap:8px}
-.facts div{background:var(--yta);border-radius:16px;padding:12px 16px}
+.panel .not{background:none;border-radius:0;padding:0}
+.facts{margin:0;display:grid;gap:14px}
 .facts dt{font-size:14px;color:var(--text-3)}
 .facts dd{margin:2px 0 0;font-size:15px;line-height:1.5}
-.stages{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
-.stages li{display:flex;flex-direction:column;gap:2px;background:var(--yta);border-radius:16px;padding:12px 16px}
-.stages b{color:var(--text);font-weight:700}
+.stages{list-style:none;padding:0;display:flex;flex-direction:column;gap:12px}
+.stages li{display:flex;flex-direction:column;gap:2px}
+.stages b{display:inline-flex;align-items:center;gap:8px;color:var(--text);font-weight:700}
+
+/* Defqon-scenerna heter färger, så här betyder färgen scenens namn och inte
+   genre. Det enda undantaget på sajten, se CLAUDE.md. */
+.scen{display:inline-block;flex:none;width:10px;height:10px;border-radius:50%;background:var(--scen);vertical-align:1px;margin-right:6px}
+.stages b .scen{margin-right:0}
+/* Pricken och namnet får aldrig hamna på olika rader. */
+.scen-namn{white-space:nowrap}
+.scen-red{--scen:#E5383B}
+.scen-blue{--scen:#2F6FEB}
+.scen-black{--scen:#0B0A0F;box-shadow:0 0 0 1.5px #F6F2FB}
+.scen-indigo{--scen:#4F46E5}
+.scen-uv{--scen:#7B2CFF}
+.scen-magenta{--scen:#E81CA0}
+.scen-green{--scen:#22B04B}
+.scen-pink{--scen:#FF8FC8}
+.scen-gold{--scen:#E0B12E}
 
 /* Kartan behåller sina proportioner. På smal skärm går den att svepa i
    sidled i stället för att krympa till oläsliga etiketter. */
@@ -124,8 +146,9 @@
   .datum-man{font-size:13px}
   .event-lank,.event-saknas{grid-column:3;justify-self:end}
   .prenumerera h3{font-size:32px}
+  .panel{border-radius:28px;padding:32px;gap:20px}
   .panel-huvud h3{font-size:48px}
-  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 32px}
   .not{padding:20px 24px}
   .camping-kort{margin-top:56px;max-width:420px}
 }
@@ -159,10 +182,19 @@
       <h2 id="kalRubrik">Kalendern</h2>
       <span class="antal" id="evAntal"></span>
     </div>
-    <div class="rull" id="evFilter" role="group" aria-label="Visa region">
-      <button class="chip" type="button" data-r="norden" aria-pressed="true">Norden</button>
-      <button class="chip" type="button" data-r="europa" aria-pressed="false">Europa</button>
-      <button class="chip" type="button" data-r="alla" aria-pressed="false">Alla</button>
+    <div class="rull filterrad" id="evFilter">
+      <div class="chipgrupp" role="group" aria-label="Visa region">
+        <button class="chip" type="button" data-r="norden" aria-pressed="true">Norden</button>
+        <button class="chip" type="button" data-r="europa" aria-pressed="false">Europa</button>
+        <button class="chip" type="button" data-r="alla" aria-pressed="false">Alla</button>
+      </div>
+      <div class="chipgrupp" role="group" aria-label="Visa genre">
+        <button class="chip g-hardstyle" type="button" data-g="hardstyle" aria-pressed="false"><span class="prick"></span>Hardstyle</button>
+        <button class="chip g-raw" type="button" data-g="raw" aria-pressed="false"><span class="prick"></span>Raw</button>
+        <button class="chip g-uptempo" type="button" data-g="uptempo" aria-pressed="false"><span class="prick"></span>Uptempo</button>
+        <button class="chip g-hardcore" type="button" data-g="hardcore" aria-pressed="false"><span class="prick"></span>Hardcore</button>
+        <button class="chip g-techno" type="button" data-g="techno" aria-pressed="false"><span class="prick"></span>Hard techno</button>
+      </div>
     </div>
     <p class="sektionstext">Bara bekräftade datum. Passerade event försvinner av sig själva.</p>
     <div class="event-lista" id="evLista">
@@ -238,11 +270,11 @@
         <h4>Stagesen</h4>
         <p>Namnen roterar delvis mellan åren, men strukturen är densamma. Tre är konstanta.</p>
         <ul class="stages">
-          <li><b>RED</b><span>Mainstage, utomhus. Hardstyle och euphoric, de största namnen. Här ligger Opening Ceremony och Endshow.</span></li>
-          <li><b>BLUE</b><span>Inomhus. Hardstyle och raw, ofta det tyngre och mer experimentella. Öppnar helgen på torsdag med The Gathering.</span></li>
-          <li><b>BLACK</b><span>Inomhus. Hardcore, frenchcore och uptempo. Ligger djupare in på området än RED — räkna med 5–8 minuters promenad, mer när det är fullt.</span></li>
-          <li><b>INDIGO</b><span>Tillsammans med BLACK den djupaste raw-bokningen på hela europeiska kalendern.</span></li>
-          <li><b>Roterande</b><span>MAGENTA, GREEN, PINK, UV och GOLD byter roll mellan åren. GOLD är klassiker- och legendsscenen.</span></li>
+          <li><b><span class="scen scen-red" aria-hidden="true"></span>RED</b><span>Mainstage, utomhus. Hardstyle och euphoric, de största namnen. Här ligger Opening Ceremony och Endshow.</span></li>
+          <li><b><span class="scen scen-blue" aria-hidden="true"></span>BLUE</b><span>Inomhus. Hardstyle och raw, ofta det tyngre och mer experimentella. Öppnar helgen på torsdag med The Gathering.</span></li>
+          <li><b><span class="scen scen-black" aria-hidden="true"></span>BLACK</b><span>Inomhus. Hardcore, frenchcore och uptempo. Ligger djupare in på området än RED — räkna med 5–8 minuters promenad, mer när det är fullt.</span></li>
+          <li><b><span class="scen scen-indigo" aria-hidden="true"></span>INDIGO</b><span>Tillsammans med BLACK den djupaste raw-bokningen på hela europeiska kalendern.</span></li>
+          <li><b>Roterande</b><span><span class="scen-namn"><span class="scen scen-magenta" aria-hidden="true"></span>MAGENTA</span>, <span class="scen-namn"><span class="scen scen-green" aria-hidden="true"></span>GREEN</span>, <span class="scen-namn"><span class="scen scen-pink" aria-hidden="true"></span>PINK</span>, <span class="scen-namn"><span class="scen scen-uv" aria-hidden="true"></span>UV</span> och <span class="scen-namn"><span class="scen scen-gold" aria-hidden="true"></span>GOLD</span> byter roll mellan åren. GOLD är klassiker- och legendsscenen.</span></li>
         </ul>
 
         <h4>Dagarna</h4>
@@ -389,7 +421,7 @@
           <ul class="panel-fakta"><li>Brabanthallen, 's-Hertogenbosch, NL</li><li>26 september 2026</li><li>inomhus</li></ul>
         </header>
         <dl class="facts">
-          <div><dt>2026</dt><dd>Tolfte upplagan, tema "State of Distortion". En dag, 26 september.</dd></div>
+          <div><dt>Senaste upplagan</dt><dd>26 september 2026, den tolfte, med temat State of Distortion. Nästa brukar ligga i september, datum inte släppt.</dd></div>
           <div><dt>Profil</dt><dd>Rawstyle-flaggskeppet, arrangerat av Art of Dance. Om Defqon är bredast och Dominator hårdast är Supremacy det event som helt ägnar sig åt raw.</dd></div>
           <div><dt>Format</dt><dd>Nästan hela programmet är liveshows på en enda scen. Det skiljer Supremacy från i princip alla andra festivaler i genren, där man springer mellan tält.</dd></div>
           <div><dt>Biljetter</dt><dd>Medlemsbiljetterna till 2026 års upplaga tog slut på ett dygn. Bevaka släppen om du vill in.</dd></div>
@@ -477,7 +509,7 @@
     </div>
     <p class="sektionstext">Schematisk bild, inte en karta över en specifik festival. Men proportionerna stämmer: de stora nederländska festivalerna är byggda ungefär så här, och avstånden är verkliga.</p>
     <div class="karta">
-      <svg viewBox="0 0 900 620" role="img" aria-label="Schematisk karta över ett typiskt festivalområde: camping och parkering till vänster, entrén i mitten, inomhushallar och mainstage till höger, och en genväg bakom mainstage.">
+      <svg viewBox="0 0 900 620" role="img" aria-label="Schematisk karta över ett typiskt festivalområde: camping och parkering till vänster, entrén i mitten, inomhushallar och mainstage till höger, där Hall B har hardcore och uptempo och en hall har hard techno, och en genväg bakom mainstage.">
         <defs>
           <pattern id="trad" width="16" height="16" patternUnits="userSpaceOnUse">
             <circle cx="8" cy="8" r="2" fill="#251D31"/>
@@ -513,6 +545,8 @@
         <text x="520" y="142" class="k-text k-dov" text-anchor="middle">inomhus</text>
 
         <rect x="450" y="195" width="140" height="100" rx="14" fill="#251D31"/>
+        <rect x="464" y="205" width="54" height="6" rx="3" fill="#A47BFF"/>
+        <rect x="522" y="205" width="54" height="6" rx="3" fill="#FFB224"/>
         <text x="520" y="243" class="k-mellan" text-anchor="middle">Hall B</text>
         <text x="520" y="267" class="k-text k-dov" text-anchor="middle">hardcore, uptempo</text>
 
@@ -520,6 +554,7 @@
         <text x="695" y="377" class="k-mellan" text-anchor="middle">UV</text>
 
         <rect x="770" y="330" width="100" height="80" rx="14" fill="#251D31"/>
+        <rect x="784" y="340" width="72" height="6" rx="3" fill="#A9A9BC"/>
         <text x="820" y="366" class="k-text" text-anchor="middle">Hard</text>
         <text x="820" y="388" class="k-text" text-anchor="middle">techno</text>
 
@@ -619,12 +654,30 @@ function lasDatum(s){
   return new Date(y, (m || 1) - 1, d || 1);
 }
 
-let events = [], region = 'norden';
+const GENRER = ['hardstyle','raw','uptempo','hardcore','techno'];
+const GENRE_NAMN = { hardstyle:'Hardstyle', raw:'Raw', uptempo:'Uptempo', hardcore:'Hardcore', techno:'Hard techno' };
+/* events.json skrivs för hand, så samma genre kan stavas på flera sätt. */
+function genrerFor(e){
+  const ut = [];
+  (Array.isArray(e.genrer) ? e.genrer : []).forEach(g => {
+    let k = String(g).toLowerCase().replace(/[\s-]+/g, '');
+    if (k === 'hardtechno') k = 'techno';
+    if (k === 'euphoric') k = 'hardstyle';
+    if (GENRER.includes(k) && !ut.includes(k)) ut.push(k);
+  });
+  return ut.sort((a, b) => GENRER.indexOf(a) - GENRER.indexOf(b));
+}
+
+/* Region och genre är två filter som gäller samtidigt. Ingen vald genre
+   betyder alla, och bara då syns event som saknar genre. */
+let events = [], region = 'norden', genre = null;
 
 function ritaEvents(){
   const lista = document.getElementById('evLista');
   const t = idag();
-  const iRegion = events.filter(e => region === 'alla' || e.region === region);
+  const iRegion = events
+    .filter(e => region === 'alla' || e.region === region)
+    .filter(e => !genre || genrerFor(e).includes(genre));
 
   /* Ett event med flera dagar står kvar tills sista dagen passerat, så att
      en festival inte försvinner ur kalendern medan den pågår. */
@@ -643,7 +696,7 @@ function ritaEvents(){
     (e.season ? '<span>' + esc(e.season) + '</span>' : '') + '</li>').join('');
 
   if (!daterade.length){
-    lista.innerHTML = '<p class="tom">Inga bekräftade datum just nu.' +
+    lista.innerHTML = '<p class="tom">' + (genre ? 'Inga bekräftade datum med ' + GENRE_NAMN[genre].toLowerCase() + ' här just nu.' : 'Inga bekräftade datum just nu.') +
       (utanDatum.length ? ' Se bevakningslistan nedanför.' : '') + '</p>';
     return;
   }
@@ -657,6 +710,8 @@ function ritaEvents(){
         '<span class="datum-man">' + MANADER[d.getMonth()] + ar + '</span></div>' +
       '<div class="event-mitt"><h3 class="event-namn">' + esc(e.name) + '</h3>' +
         (plats ? '<p class="event-plats">' + esc(plats) + '</p>' : '') +
+        (genrerFor(e).length ? '<ul class="event-genrer">' + genrerFor(e).map(g =>
+          '<li class="g-' + g + '"><span class="prick"></span>' + GENRE_NAMN[g] + '</li>').join('') + '</ul>' : '') +
         (e.lineup ? '<p class="event-text">' + esc(e.lineup) + '</p>' : '') + '</div>' +
       (e.url
         ? '<a class="knapp knapp-sek event-lank" href="' + esc(e.url) + '" target="_blank" rel="noopener">' +
@@ -682,8 +737,14 @@ async function ladda(){
 document.getElementById('evFilter').addEventListener('click', e => {
   const b = e.target.closest('.chip');
   if (!b) return;
-  region = b.dataset.r;
-  document.querySelectorAll('#evFilter .chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+  if (b.dataset.r){
+    region = b.dataset.r;
+    document.querySelectorAll('#evFilter [data-r]').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+  } else {
+    /* Ett tryck till på vald genre släpper filtret. */
+    genre = genre === b.dataset.g ? null : b.dataset.g;
+    document.querySelectorAll('#evFilter [data-g]').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.g === genre)));
+  }
   ritaEvents();
 });
 
