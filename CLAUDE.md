@@ -292,7 +292,9 @@ Ett ID godkänns bara när `artistName` innehåller frågans artist och `trackNa
 lämnar frågan utan ljud om det inte stämmer.
 
 **Extra låtdagar för test:** lägg in datumet i `quiz.extra_latdagar` innan
-någon hämtat dagens fråga — sedan står frågan fast:
+någon hämtat dagens fråga — sedan står frågan fast. Startsidan och kontosidan
+frågar efter dagens fråga åt inloggade besökare, så i praktiken låses den
+strax efter midnatt. Lägg in datumet **dagen innan**:
 `npx supabase db query --linked "insert into quiz.extra_latdagar values ('2026-10-09')"`
 
 **Ljud och volym:** använd aldrig Web Audio för att styra volymen. Det kräver

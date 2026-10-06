@@ -195,6 +195,9 @@
   }
 
   window.hardlistKonto = {
+    // Utan att ladda klienten: finns en sparad inloggning i webbläsaren?
+    // Startsidan frågar bara quizservern om kontot när svaret är ja.
+    inloggad: harSparadSession,
     klient: klient,
     session: session,
     rpc: rpc,

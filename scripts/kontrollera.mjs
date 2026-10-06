@@ -114,6 +114,31 @@ function kollaSkript(html, fil){
   }
 }
 
+/* Vanliga skript på samma sida delar namnrymd. Deklarerar två av dem samma
+   namn på toppnivå stoppar webbläsaren hela det senare skriptet, och var
+   för sig parsar båda. Gemensamma filer som /rader.js räknas med. */
+async function kollaDubblaNamn(html, fil){
+  const skript = [];
+  for (const m of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)){
+    const [, attr, kod] = m;
+    if (/application\/ld\+json|type="module"/.test(attr)) continue;
+    const src = (attr.match(/\bsrc="(\/(?!\/)[^"]+)"/) || [])[1];
+    if (src){
+      const p = resolve(ROOT, '.' + src.split('?')[0]);
+      if (existsSync(p)) skript.push({ namn: src, kod: await readFile(p, 'utf8') });
+    } else if (kod.trim()) skript.push({ namn: 'inbakat skript', kod });
+  }
+  const sedda = new Map();
+  for (const s of skript){
+    const ren = s.kod.replace(/\/\*[\s\S]*?\*\//g, '');
+    for (const m of ren.matchAll(/^(?:const|let|class|function|async function)\s+([A-Za-z_$][\w$]*)/gm)){
+      const namn = m[1];
+      if (sedda.has(namn) && sedda.get(namn) !== s) fel.push(`${rel(fil)}: "${namn}" deklareras både i ${sedda.get(namn).namn} och i ${s.namn}`);
+      else sedda.set(namn, s);
+    }
+  }
+}
+
 function kollaId(html, fil){
   const markup = baraMarkup(html);
   const sedda = new Map();
@@ -204,6 +229,7 @@ async function run(){
     kollaTaggar(html, fil);
     const ny = kollaStil(html, fil);
     kollaSkript(html, fil);
+    await kollaDubblaNamn(html, fil);
     kollaId(html, fil);
     kollaLankar(html, fil);
     if (ny){
