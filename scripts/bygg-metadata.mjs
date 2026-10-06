@@ -28,6 +28,8 @@ const QUIZ    = resolve(ROOT, 'data/quiz.json');
 const RELEASER= resolve(ROOT, 'data/releases.json');
 const INDEX   = resolve(ROOT, 'index.html');
 const QUIZSIDA= resolve(ROOT, 'quiz/index.html');
+const LATSIDA = resolve(ROOT, 'latspel/index.html');
+const LATSPEL = resolve(ROOT, 'data/latspel.json');
 const ANTHEMS = resolve(ROOT, 'data/anthems.json');
 const LJUD    = resolve(ROOT, 'data/ljud.json');
 const ANTSIDA = resolve(ROOT, 'anthems/index.html');
@@ -148,31 +150,48 @@ async function run() {
   let ljudCache = {};
   try { ljudCache = JSON.parse(await readFile(LJUD, 'utf8')); } catch(e){}
 
-  async function hittaLjud(sok){
+  /* Varje musikfråga pekar ut sitt ljud på ett av tre sätt:
+       "itunesId": 123   fast inspelning, hämtas med lookup — alltid samma låt
+       "itunesId": null  ingen säker inspelning finns, frågan får inget ljud
+       inget itunesId    sökning på "sok", första träffen (det gamla sättet)
+     Sökningen kan byta låt när Apples rankning ändras — så hamnade Upchurch
+     och Ariana and the Rose i quizet. Därför fast ID där det går. */
+  function ljudNyckel(q){
+    if ('itunesId' in q) return q.itunesId ? 'id:' + q.itunesId : null;
+    return q.sok || null;
+  }
+
+  async function hittaLjud(nyckel){
     /* Träffar cachas för alltid. Missar cachas INTE — då kan man rätta
-     söksträngen i data/quiz.json och få ett nytt försök nästa körning. */
-  if (ljudCache[sok]) return ljudCache[sok];
+     frågan i data/quiz.json och få ett nytt försök nästa körning. */
+    if (ljudCache[nyckel]) return ljudCache[nyckel];
+    const arId = nyckel.startsWith('id:');
     try {
-      const url = 'https://itunes.apple.com/search?media=music&entity=song&limit=1&term=' +
-                  encodeURIComponent(sok);
+      const url = arId
+        ? 'https://itunes.apple.com/lookup?entity=song&id=' + encodeURIComponent(nyckel.slice(3))
+        : 'https://itunes.apple.com/search?media=music&entity=song&limit=1&term=' + encodeURIComponent(nyckel);
       const r = await fetch(url, { headers: { 'User-Agent': 'HARDLIST/1.0' } });
       if (!r.ok) throw new Error('status ' + r.status);
       const data = await r.json();
-      const traff = data.results?.[0];
-      if (traff?.previewUrl){
-        ljudCache[sok] = traff.previewUrl;
-      } else {
-        console.log(`  ⚠ ingen förhandslyssning för "${sok}" — förenkla söksträngen ` +
-                    'till bara artist och titel i data/quiz.json');
-        return null;
-      }
+      const traff = arId
+        ? data.results?.find(x => String(x.trackId) === nyckel.slice(3))
+        : data.results?.[0];
       /* iTunes tål ungefär 20 anrop per minut. 3,2 s ger drygt 18. */
       await new Promise(r2 => setTimeout(r2, 3200));
+      if (traff?.previewUrl){
+        ljudCache[nyckel] = traff.previewUrl;
+      } else {
+        console.log(arId
+          ? `  ⚠ iTunes-ID ${nyckel.slice(3)} gav ingen förhandslyssning — låten kan ha tagits bort`
+          : `  ⚠ ingen förhandslyssning för "${nyckel}" — förenkla söksträngen ` +
+            'till bara artist och titel i data/quiz.json');
+        return null;
+      }
     } catch(e){
-      console.log(`  ⚠ kunde inte slå upp "${sok}": ${e.message}`);
-      return ljudCache[sok] ?? null;   // behåll gammalt värde vid tillfälligt fel
+      console.log(`  ⚠ kunde inte slå upp "${nyckel}": ${e.message}`);
+      return ljudCache[nyckel] ?? null;   // behåll gammalt värde vid tillfälligt fel
     }
-    return ljudCache[sok];
+    return ljudCache[nyckel];
   }
 
   /* Tak på hur många nya uppslag en körning gör. Cachen är permanent, så
@@ -180,12 +199,14 @@ async function run() {
   const MAX_UPPSLAG = 50;   // 50 × 3,2 s ≈ 2,7 min, ryms i jobbet
   let nya = 0, hoppade = 0;
   for (const q of quiz.fragor){
-    if (q.typ !== 'musik' || !q.sok) continue;
-    if (!ljudCache[q.sok]){
+    if (q.typ !== 'musik') continue;
+    const nyckel = ljudNyckel(q);
+    if (!nyckel){ q.ljud = null; continue; }
+    if (!ljudCache[nyckel]){
       if (nya >= MAX_UPPSLAG){ hoppade++; continue; }
       nya++;
     }
-    q.ljud = await hittaLjud(q.sok);
+    q.ljud = await hittaLjud(nyckel);
   }
   if (hoppade) console.log(`  ${hoppade} låtar kvar att slå upp — tas nästa körning.`);
   /* Skriv aldrig över en större cache med en mindre. Utan den här spärren
@@ -208,13 +229,20 @@ async function run() {
 
   /* Fyll på frågorna från den sammanslagna cachen. */
   for (const q of quiz.fragor){
-    if (q.typ === 'musik' && q.sok && !q.ljud) q.ljud = ljudCache[q.sok] || null;
+    if (q.typ !== 'musik' || q.ljud) continue;
+    const nyckel = ljudNyckel(q);
+    q.ljud = nyckel ? ljudCache[nyckel] || null : null;
   }
 
-  /* Klientversionen: sok bort, frågor utan ljud filtreras ut. */
+  /* Saknar någon fråga ljud den borde ha, har uppslaget misslyckats. Bara då
+     ska spärrarna nedan skydda reservkopiorna — färre låtar för att en fråga
+     medvetet fått "itunesId": null är en riktig ändring som ska slå igenom. */
+  const ljudFattas = quiz.fragor.some(q => q.typ === 'musik' && ljudNyckel(q) && !q.ljud);
+
+  /* Klientversionen: sok och ID bort, frågor utan ljud filtreras ut. */
   const tillKlient = quiz.fragor
     .filter(q => q.typ !== 'musik' || q.ljud)
-    .map(q => { const { sok, ...rest } = q; return rest; });
+    .map(q => { const { sok, latspel, itunesId, ...rest } = q; return rest; });
 
   /* Skriv aldrig över en reservkopia som har mer ljud än den nya. Utan den här
      spärren tömdes SEED_QUIZ varje gång bygget kördes utan nätverk. */
@@ -228,7 +256,7 @@ async function run() {
     gammaltLjud = JSON.parse(bit).filter(q => q.ljud).length;
   } catch(e){}
 
-  if (nyttLjud >= gammaltLjud) {
+  if (nyttLjud >= gammaltLjud || !ljudFattas) {
     qhtml = ersatt(qhtml, '/* SEED_QUIZ:START */', '/* SEED_QUIZ:END */',
       'const SEED_QUIZ = ' + JSON.stringify(tillKlient) + ';', 'quiz/index.html');
     await writeFile(QUIZSIDA, qhtml, 'utf8');
@@ -237,6 +265,44 @@ async function run() {
                 `den här körningen fick ihop ${nyttLjud}.`);
   }
   await skrivJson(resolve(ROOT, 'data/quiz-live.json'), { version: quiz.version, fragor: tillKlient });
+
+  /* --- Låtspelet: samma ljud som låtquizet, men bara artist och titel ---
+     "latspel": false i data/quiz.json håller ute låtar där iTunes ger fel
+     inspelning. Quizfrågan kan ändå fungera, men spelet visar facit som
+     artist och titel, och då måste ljudet vara exakt den låten.
+     Listan sorteras på id så att dagens låt inte byter plats bara för att
+     frågorna i quiz.json flyttats om. */
+  const slugga = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const latar = [];
+  const sedda = new Set();
+  for (const q of quiz.fragor){
+    if (q.typ !== 'musik' || !q.ljud || !q.artist || !q.titel || q.latspel === false) continue;
+    const id = slugga(q.artist + ' ' + q.titel);
+    if (sedda.has(id)) continue;
+    sedda.add(id);
+    latar.push({ id, artist: q.artist, titel: q.titel, ljud: q.ljud });
+  }
+  latar.sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+
+  /* Samma spärr som för SEED_QUIZ: en körning utan ljud får inte tömma
+     reservkopian i sidan. */
+  let lhtml = await readFile(LATSIDA, 'utf8');
+  let gamlaLatar = 0;
+  try {
+    const i = lhtml.indexOf('const SEED_LATSPEL = ');
+    const j = lhtml.indexOf('/* SEED_LATSPEL:END */');
+    gamlaLatar = JSON.parse(lhtml.slice(i + 21, lhtml.lastIndexOf(';', j))).length;
+  } catch(e){}
+  if (latar.length >= gamlaLatar || !ljudFattas) {
+    lhtml = ersatt(lhtml, '/* SEED_LATSPEL:START */', '/* SEED_LATSPEL:END */',
+      'const SEED_LATSPEL = ' + JSON.stringify(latar) + ';', 'latspel/index.html');
+    await writeFile(LATSIDA, lhtml, 'utf8');
+  } else {
+    console.log(`  Behåller reservlåtarna i latspel/index.html (${gamlaLatar} st) — ` +
+                `den här körningen fick ihop ${latar.length}.`);
+  }
+  await skrivJson(LATSPEL, { version: 1, latar });
 
   /* Anthem-arkivet speglas in på samma sätt. */
   const anthems = JSON.parse(await readFile(ANTHEMS, 'utf8'));
@@ -338,7 +404,8 @@ async function run() {
     `Metadata byggd: ${events.length} event i SEED_EVENTS, ` +
     `${daterade.length} med datum i strukturerad data, ` +
     `${tillKlient.length} quizfrågor varav ${tillKlient.filter(q => q.ljud).length} med ljud` +
-    `${nya ? ` (${nya} nya uppslag)` : ''}, ${daterade.length} event i kalender.ics, ` +
+    `${nya ? ` (${nya} nya uppslag)` : ''}, ${latar.length} låtar i låtspelet, ` +
+    `${daterade.length} event i kalender.ics, ` +
     `RSS med senaste releaser, ` +
     `${Object.values(anthems).reduce((n,f)=>n+f.ar.length,0)} anthems över ` +
     `${Object.keys(anthems).length} festivaler. Sitemap satt till ${idag}.`

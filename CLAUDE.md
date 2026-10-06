@@ -32,6 +32,7 @@ guider/index.html       →  hardlist.se/guider/
 nyborjare/index.html    →  hardlist.se/nyborjare/
 anthems/index.html      →  hardlist.se/anthems/
 quiz/index.html         →  hardlist.se/quiz/
+latspel/index.html      →  hardlist.se/latspel/
 404.html                →  egen felsida
 CNAME                   →  RADERA ALDRIG. Utan den slutar domänen fungera.
 ```
@@ -47,7 +48,7 @@ undermappar.
 `style.css` är **bara en referenskopia**. Sidorna använder ett `<style>`-block
 högst upp i filen.
 
-Ändrar du CSS: redigera `style.css`, och inlina sedan om i **alla sju** sidorna.
+Ändrar du CSS: redigera `style.css`, och inlina sedan om i **alla åtta** sidorna.
 Glömmer du en sida ser den annorlunda ut än resten — det har hänt, och det syns
 direkt på headern.
 
@@ -76,7 +77,7 @@ förblir handskriven.
 ```
 data/releases.json      data/artist-ids.json     data/ljud.json
 data/quiz-live.json     kalender.ics             releaser.xml
-data/streckkoder.json
+data/streckkoder.json   data/latspel.json
 ```
 
 De byggs av GitHub Actions. Skriver du en tom eller ofullständig version
@@ -86,8 +87,8 @@ raderas serverns riktiga innehåll.
 gången 47 ljudadresser till quizet. Skripten har numera spärrar som vägrar
 skriva över större data med mindre, men rör dem inte alls.
 
-Samma sak gäller `SEED_QUIZ` i `quiz/index.html` och `SEED_EVENTS` i
-`index.html`. De är reservkopior som byggskriptet fyller. Kör du bygget utan
+Samma sak gäller `SEED_QUIZ` i `quiz/index.html`, `SEED_LATSPEL` i
+`latspel/index.html` och `SEED_EVENTS` i `index.html`. De är reservkopior som byggskriptet fyller. Kör du bygget utan
 nätverk skrivs de tomma.
 
 ---
@@ -197,6 +198,20 @@ avslöja svaret. Byggskriptet skriver `data/quiz-live.json` utan den.
 Söksträngar ska vara **bara artist och titel**. Lägger du till genrenamn hittar
 iTunes ingenting — "Showtek FTS hardstyle" misslyckades, "Showtek FTS" fungerade.
 
+**Fast iTunes-ID vinner över söksträngen.** Sökningens första träff kan byta
+låt när Apple ändrar rankningen — så spelade quizet en gång Upchurch i stället
+för Miss K8. Därför har varje låtfråga fältet `itunesId`:
+
+- `"itunesId": 1234567` — bygget hämtar ljudet med lookup på just den inspelningen.
+- `"itunesId": null` — ingen säker inspelning finns. Frågan får inget ljud och
+  visas aldrig, hellre det än fel låt på en fredag.
+- fältet saknas — bygget söker på `sok` som förut. Bara för nya frågor tills
+  rätt ID är framletat.
+
+Ett ID godkänns bara när `artistName` innehåller frågans artist och `trackName`
+är titeln — ingen remix, ingen annan version. `"latspel": false` håller en låt
+utanför låtspelet.
+
 `EXTRA_LATDAGAR` i `quiz/index.html` tvingar låtquiz på angivna datum. Används
 för test. Passerade datum gör ingenting.
 
@@ -249,7 +264,7 @@ säga "många" än att hitta på en procentsats.
 
 ## Innan du säger att något är klart
 
-- Alla sju HTML-filer: balanserade taggar, ett `<style>`-block, giltig JS
+- Alla åtta HTML-filer: balanserade taggar, ett `<style>`-block, giltig JS
 - Alla `getElementById`-mål finns i markup
 - Inga dubbletter av id
 - JSON-filerna parsar

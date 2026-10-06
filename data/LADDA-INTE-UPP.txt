@@ -5,6 +5,7 @@ Filerna nedan skapas av GitHub Actions och ska ALDRIG laddas upp för hand:
   data/streckkoder.json  Deezer-fynd som Spotify redan prövat
   data/ljud.json         cache av ljudadresser till quizet
   data/quiz-live.json    quizet som webbläsaren läser
+  data/latspel.json      låtspelets låtar, byggs ur data/quiz.json
   kalender.ics           prenumererbar kalender
   releaser.xml           RSS-flödet
 

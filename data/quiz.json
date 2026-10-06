@@ -1676,6 +1676,9 @@
     {
       "typ": "musik",
       "sok": "Headhunterz Dragonborn",
+      "itunesId": 506651335,
+      "artist": "Headhunterz",
+      "titel": "Dragonborn",
       "f": "Vilken låt är det här?",
       "s": [
         "Dragonborn",
@@ -1689,6 +1692,9 @@
     {
       "typ": "musik",
       "sok": "Brennan Heart Coone Fight For Something",
+      "itunesId": 1486348780,
+      "artist": "Brennan Heart & Coone ft. Max P",
+      "titel": "Fight for Something",
       "f": "Vilken låt är det här?",
       "s": [
         "Fight For Something",
@@ -1702,6 +1708,9 @@
     {
       "typ": "musik",
       "sok": "Showtek FTS",
+      "itunesId": 446464618,
+      "artist": "Showtek",
+      "titel": "FTS",
       "f": "Vem ligger bakom den här låten?",
       "s": [
         "Showtek",
@@ -1715,6 +1724,9 @@
     {
       "typ": "musik",
       "sok": "Wasted Penguinz Melancholia",
+      "itunesId": 454108769,
+      "artist": "Wasted Penguinz",
+      "titel": "Melancholia",
       "f": "Vilken låt är det här?",
       "s": [
         "Melancholia",
@@ -1728,6 +1740,9 @@
     {
       "typ": "musik",
       "sok": "Angerfist Raise Your Fist",
+      "itunesId": 942444895,
+      "artist": "Angerfist",
+      "titel": "Raise Your Fist",
       "f": "Vem gör den här låten?",
       "s": [
         "Angerfist",
@@ -1741,6 +1756,9 @@
     {
       "typ": "musik",
       "sok": "Sub Zero Project Path Of The Warrior",
+      "itunesId": 1740387192,
+      "artist": "Sub Zero Project",
+      "titel": "Path of the Warrior",
       "f": "Vilket anthem är det här?",
       "s": [
         "Defqon.1 2023",
@@ -1754,6 +1772,9 @@
     {
       "typ": "musik",
       "sok": "Da Tweekaz Bassleader",
+      "itunesId": 643879463,
+      "artist": "Da Tweekaz",
+      "titel": "Are U Ready?",
       "f": "Vem gör den här låten?",
       "s": [
         "Da Tweekaz",
@@ -1767,6 +1788,9 @@
     {
       "typ": "musik",
       "sok": "Ran-D Zombie",
+      "itunesId": 1393742868,
+      "artist": "Ran-D",
+      "titel": "Zombie",
       "f": "Vem gör den här låten?",
       "s": [
         "Ran-D",
@@ -1780,6 +1804,9 @@
     {
       "typ": "musik",
       "sok": "Sefa Rebirth",
+      "itunesId": null,
+      "artist": "Sefa",
+      "titel": "Rebirth",
       "f": "Vilken gren tillhör den här låten?",
       "s": [
         "Frenchcore",
@@ -1788,11 +1815,15 @@
         "Hard techno"
       ],
       "r": 0,
-      "fk": "Sefa gör frenchcore — den franska grenen, snabbare och mer rullande än hardcore."
+      "fk": "Sefa gör frenchcore — den franska grenen, snabbare och mer rullande än hardcore.",
+      "latspel": false
     },
     {
       "typ": "musik",
       "sok": "D-Block S-te-Fan Music Made Addict",
+      "itunesId": 415386828,
+      "artist": "D-Block & S-te-Fan",
+      "titel": "Music Made Addict",
       "f": "Vilken låt är det här?",
       "s": [
         "Music Made Addict",
@@ -1806,6 +1837,9 @@
     {
       "typ": "musik",
       "sok": "The Prophet Emergency Call",
+      "itunesId": 446464655,
+      "artist": "The Prophet",
+      "titel": "Emergency Call",
       "f": "Vilket Defqon-anthem är det här?",
       "s": [
         "2005",
@@ -1819,6 +1853,9 @@
     {
       "typ": "musik",
       "sok": "Showtek The Colours Of The Harder Styles",
+      "itunesId": 1729698804,
+      "artist": "Showtek",
+      "titel": "The Colours of the Harder Styles",
       "f": "Vem gör den här låten?",
       "s": [
         "Showtek",
@@ -1832,6 +1869,9 @@
     {
       "typ": "musik",
       "sok": "Brennan Heart Get Wasted",
+      "itunesId": null,
+      "artist": "Brennan Heart",
+      "titel": "Get Wasted",
       "f": "Vem gör den här låten?",
       "s": [
         "Brennan Heart",
@@ -1840,11 +1880,15 @@
         "Frontliner"
       ],
       "r": 0,
-      "fk": "Brennan Heart — Get Wasted, Defqon.1 2007."
+      "fk": "Brennan Heart — Get Wasted, Defqon.1 2007.",
+      "latspel": false
     },
     {
       "typ": "musik",
       "sok": "Headhunterz Scrap Attack",
+      "itunesId": 446464606,
+      "artist": "Headhunterz",
+      "titel": "Scrap Attack",
       "f": "Vilken låt är det här?",
       "s": [
         "Scrap Attack",
@@ -1858,6 +1902,9 @@
     {
       "typ": "musik",
       "sok": "Wildstylez No Time To Waste",
+      "itunesId": 375314103,
+      "artist": "Wildstylez",
+      "titel": "No Time to Waste",
       "f": "Vem gör den här låten?",
       "s": [
         "Wildstylez",
@@ -1871,6 +1918,9 @@
     {
       "typ": "musik",
       "sok": "Noisecontrollers Unite",
+      "itunesId": 449901741,
+      "artist": "Noisecontrollers",
+      "titel": "Unite",
       "f": "Vilken låt är det här?",
       "s": [
         "Unite",
@@ -1884,6 +1934,9 @@
     {
       "typ": "musik",
       "sok": "Headhunterz Wildstylez Noisecontrollers World Of Madness",
+      "itunesId": 554150035,
+      "artist": "Headhunterz, Wildstylez & Noisecontrollers",
+      "titel": "World of Madness",
       "f": "Vilken låt är det här?",
       "s": [
         "World of Madness",
@@ -1897,6 +1950,9 @@
     {
       "typ": "musik",
       "sok": "Frontliner Weekend Warriors",
+      "itunesId": 657426290,
+      "artist": "Frontliner",
+      "titel": "Weekend Warriors",
       "f": "Vem gör den här låten?",
       "s": [
         "Frontliner",
@@ -1910,6 +1966,9 @@
     {
       "typ": "musik",
       "sok": "Coone Survival Of The Fittest",
+      "itunesId": 863046886,
+      "artist": "Coone",
+      "titel": "Survival of the Fittest",
       "f": "Vem gör den här låten?",
       "s": [
         "Coone",
@@ -1923,6 +1982,9 @@
     {
       "typ": "musik",
       "sok": "Ran-D Skits Vicious No Guts No Glory",
+      "itunesId": 1495969262,
+      "artist": "Ran-D & Skits Vicious",
+      "titel": "No Guts No Glory",
       "f": "Vilken låt är det här?",
       "s": [
         "No Guts No Glory",
@@ -1936,6 +1998,9 @@
     {
       "typ": "musik",
       "sok": "Bass Modulators Dragonblood",
+      "itunesId": 1740385582,
+      "artist": "Bass Modulators",
+      "titel": "Dragonblood",
       "f": "Vem gör den här låten?",
       "s": [
         "Bass Modulators",
@@ -1949,6 +2014,9 @@
     {
       "typ": "musik",
       "sok": "Frequencerz Victory Forever",
+      "itunesId": 1877332274,
+      "artist": "Frequencerz",
+      "titel": "Victory Forever",
       "f": "Vem gör den här låten?",
       "s": [
         "Frequencerz",
@@ -1962,6 +2030,9 @@
     {
       "typ": "musik",
       "sok": "Project One Maximum Force",
+      "itunesId": 1397889942,
+      "artist": "Project One",
+      "titel": "Maximum Force",
       "f": "Vilka ligger bakom den här låten?",
       "s": [
         "Project One",
@@ -1975,6 +2046,9 @@
     {
       "typ": "musik",
       "sok": "D-Block S-te-Fan Primal Energy",
+      "itunesId": 1629950380,
+      "artist": "D-Block & S-te-Fan",
+      "titel": "Primal Energy",
       "f": "Vem gör den här låten?",
       "s": [
         "D-Block & S-te-Fan",
@@ -1988,6 +2062,9 @@
     {
       "typ": "musik",
       "sok": "Sound Rush Power Of The Tribe",
+      "itunesId": 1739253025,
+      "artist": "Sound Rush",
+      "titel": "Power of the Tribe",
       "f": "Vilket Defqon-anthem är det här?",
       "s": [
         "2024",
@@ -2001,6 +2078,9 @@
     {
       "typ": "musik",
       "sok": "Vertile Where Legends Rise",
+      "itunesId": 1802868062,
+      "artist": "Vertile",
+      "titel": "Where Legends Rise",
       "f": "Vem gör den här låten?",
       "s": [
         "Vertile",
@@ -2014,6 +2094,9 @@
     {
       "typ": "musik",
       "sok": "D-Sturb Sacred Oath",
+      "itunesId": 1884894858,
+      "artist": "D-Sturb",
+      "titel": "Sacred Oath",
       "f": "Vilket anthem är det här?",
       "s": [
         "Defqon.1 2026",
@@ -2027,6 +2110,9 @@
     {
       "typ": "musik",
       "sok": "Zatox Decibel",
+      "itunesId": 540718165,
+      "artist": "Zatox",
+      "titel": "D.E.C.I.B.E.L.",
       "f": "Vem gör den här låten?",
       "s": [
         "Zatox",
@@ -2040,6 +2126,9 @@
     {
       "typ": "musik",
       "sok": "Ran-D United",
+      "itunesId": 1581508326,
+      "artist": "Ran-D",
+      "titel": "United",
       "f": "Vilken låt är det här?",
       "s": [
         "United",
@@ -2053,6 +2142,9 @@
     {
       "typ": "musik",
       "sok": "Noisecontrollers Bass Modulators Destination",
+      "itunesId": 1740379174,
+      "artist": "Noisecontrollers & Bass Modulators",
+      "titel": "Destination",
       "f": "Vilka gör den här låten ihop?",
       "s": [
         "Noisecontrollers & Bass Modulators",
@@ -2066,6 +2158,9 @@
     {
       "typ": "musik",
       "sok": "Brennan Heart Fuelled By Fanatics",
+      "itunesId": 1455265562,
+      "artist": "Brennan Heart",
+      "titel": "Fuelled by Fanatics",
       "f": "Vilken låt är det här?",
       "s": [
         "Fuelled by Fanatics",
@@ -2079,6 +2174,9 @@
     {
       "typ": "musik",
       "sok": "D-Sturb ATILAX Break Free",
+      "itunesId": 1624172279,
+      "artist": "D-Sturb & ATILAX",
+      "titel": "Break Free",
       "f": "Vilket anthem är det här?",
       "s": [
         "Decibel Outdoor 2022",
@@ -2092,6 +2190,9 @@
     {
       "typ": "musik",
       "sok": "Act of Rage Raging City",
+      "itunesId": 1688546487,
+      "artist": "Act of Rage",
+      "titel": "Raging City",
       "f": "Vem gör den här låten?",
       "s": [
         "Act of Rage",
@@ -2105,6 +2206,9 @@
     {
       "typ": "musik",
       "sok": "Ran-D Unresolved Cosmic Frequency",
+      "itunesId": 1822229678,
+      "artist": "Ran-D & Unresolved",
+      "titel": "Cosmic Frequency",
       "f": "Vilka gör den här låten ihop?",
       "s": [
         "Ran-D & Unresolved",
@@ -2118,6 +2222,9 @@
     {
       "typ": "musik",
       "sok": "Headhunterz Wildstylez Noisecontrollers Tonight",
+      "itunesId": 6784198469,
+      "artist": "Headhunterz, Wildstylez & Noisecontrollers",
+      "titel": "Tonight",
       "f": "Vilken låt är det här?",
       "s": [
         "Tonight",
@@ -2131,6 +2238,9 @@
     {
       "typ": "musik",
       "sok": "B-Front Frontliner Magic",
+      "itunesId": 644027089,
+      "artist": "B-Front & Frontliner",
+      "titel": "Magic",
       "f": "Vilken låt är det här?",
       "s": [
         "Magic",
@@ -2144,6 +2254,9 @@
     {
       "typ": "musik",
       "sok": "Brennan Heart Jonathan Mendelsohn Imaginary",
+      "itunesId": 705102122,
+      "artist": "Brennan Heart ft. Jonathan Mendelsohn",
+      "titel": "Imaginary",
       "f": "Vem sjunger på den här låten?",
       "s": [
         "Jonathan Mendelsohn",
@@ -2157,6 +2270,9 @@
     {
       "typ": "musik",
       "sok": "Brennan Heart Wildstylez Lose My Mind",
+      "itunesId": 529461465,
+      "artist": "Brennan Heart & Wildstylez",
+      "titel": "Lose My Mind",
       "f": "Vilka gör den här låten ihop?",
       "s": [
         "Brennan Heart & Wildstylez",
@@ -2170,6 +2286,9 @@
     {
       "typ": "musik",
       "sok": "Atmozfears David Spekter Release",
+      "itunesId": 1002431112,
+      "artist": "Atmozfears ft. David Spekter",
+      "titel": "Release",
       "f": "Vilken låt är det här?",
       "s": [
         "Release",
@@ -2183,6 +2302,9 @@
     {
       "typ": "musik",
       "sok": "Headhunterz The Sacrifice",
+      "itunesId": 281082642,
+      "artist": "Headhunterz",
+      "titel": "The Sacrifice",
       "f": "Vem gör den här låten?",
       "s": [
         "Headhunterz",
@@ -2196,6 +2318,9 @@
     {
       "typ": "musik",
       "sok": "Ran-D Living For The Moment",
+      "itunesId": 415416635,
+      "artist": "Ran-D",
+      "titel": "Living For The Moment",
       "f": "Vem gör den här låten?",
       "s": [
         "Ran-D",
@@ -2209,6 +2334,9 @@
     {
       "typ": "musik",
       "sok": "Euromasters Rotterdam Hardcore",
+      "itunesId": null,
+      "artist": "Euromasters",
+      "titel": "Rotterdam Hardcore",
       "f": "Vad är den här låten känd för?",
       "s": [
         "Att den gav hardcore-genren dess namn",
@@ -2217,11 +2345,15 @@
         "Att den är den snabbaste låten som gjorts"
       ],
       "r": 0,
-      "fk": "Euromasters — Rotterdam Hardcore, 1992. Spåret som satte namn på hela stilen."
+      "fk": "Euromasters — Rotterdam Hardcore, 1992. Spåret som satte namn på hela stilen.",
+      "latspel": false
     },
     {
       "typ": "musik",
       "sok": "Angerfist Incoming",
+      "itunesId": 942444963,
+      "artist": "Angerfist",
+      "titel": "Incoming",
       "f": "Vilken gren tillhör den här låten?",
       "s": [
         "Hardcore",
@@ -2235,6 +2367,9 @@
     {
       "typ": "musik",
       "sok": "Dr Peacock Trip To Paris",
+      "itunesId": null,
+      "artist": "Dr. Peacock",
+      "titel": "Trip To Paris",
       "f": "Vilken gren tillhör den här låten?",
       "s": [
         "Frenchcore",
@@ -2243,11 +2378,15 @@
         "Terror"
       ],
       "r": 0,
-      "fk": "Dr. Peacock är ett av frenchcorens största namn."
+      "fk": "Dr. Peacock är ett av frenchcorens största namn.",
+      "latspel": false
     },
     {
       "typ": "musik",
       "sok": "Sub Zero Project The Contagion",
+      "itunesId": 1458556011,
+      "artist": "Sub Zero Project",
+      "titel": "The Contagion",
       "f": "Vem gör den här låten?",
       "s": [
         "Sub Zero Project",
@@ -2261,6 +2400,9 @@
     {
       "typ": "musik",
       "sok": "Rebelion Do You Believe",
+      "itunesId": null,
+      "artist": "Rebelion",
+      "titel": "Do You Believe",
       "f": "Vem gör den här låten?",
       "s": [
         "Rebelion",
@@ -2269,11 +2411,15 @@
         "Malice"
       ],
       "r": 0,
-      "fk": "Rebelion, ett av raw-scenens tyngsta namn."
+      "fk": "Rebelion, ett av raw-scenens tyngsta namn.",
+      "latspel": false
     },
     {
       "typ": "musik",
       "sok": "Wildstylez Year Of Summer",
+      "itunesId": 1495969951,
+      "artist": "Wildstylez ft. Niels Geusebroek",
+      "titel": "Year of Summer",
       "f": "Vilken låt är det här?",
       "s": [
         "Year of Summer",
@@ -2287,6 +2433,9 @@
     {
       "typ": "musik",
       "sok": "Miss K8 Raise Hell",
+      "itunesId": null,
+      "artist": "Miss K8",
+      "titel": "Raise Hell",
       "f": "Vem gör den här låten?",
       "s": [
         "Miss K8",
@@ -2295,11 +2444,15 @@
         "Tha Playah"
       ],
       "r": 0,
-      "fk": "Miss K8, ett av de största namnen inom mainstream hardcore."
+      "fk": "Miss K8, ett av de största namnen inom mainstream hardcore.",
+      "latspel": false
     },
     {
       "typ": "musik",
       "sok": "Paul Elstak Rainbow In The Sky",
+      "itunesId": 1749639548,
+      "artist": "Paul Elstak",
+      "titel": "Rainbow In The Sky",
       "f": "Vem gör den här låten?",
       "s": [
         "Paul Elstak",
@@ -2313,6 +2466,9 @@
     {
       "typ": "musik",
       "sok": "Sefa Requiem For Frenchcore",
+      "itunesId": 1761580558,
+      "artist": "Sefa",
+      "titel": "Requiem For Frenchcore",
       "f": "Vem gör den här låten?",
       "s": [
         "Sefa",

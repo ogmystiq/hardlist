@@ -704,3 +704,85 @@ footer{
   .facts>div{grid-template-columns:1fr;gap:2px}
   .stages li{grid-template-columns:1fr;gap:4px}
 }
+
+/* ---------- låtspelet ---------- */
+/* Klippstapeln är skalad mot 16 sekunder. Upplåst del syns ljusare, så man
+   ser hur mycket nästa överhopp ger innan man trycker. */
+.l-bar{height:6px;background:var(--line);position:relative;overflow:hidden}
+.l-bar .upplast{position:absolute;left:0;top:0;bottom:0;background:#3A2757;transition:width .3s ease}
+.l-bar .spelat{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--raw);box-shadow:0 0 8px var(--raw)}
+.l-bar .streck{position:absolute;top:0;bottom:0;width:1px;background:var(--ink)}
+
+.l-forsok{list-style:none;display:grid;gap:6px;margin:0 0 20px}
+.l-forsok li{
+  display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 14px;
+  border:1px solid var(--line);background:var(--ink);font-size:14px;color:#CFC5E0;line-height:1.3;
+}
+.l-forsok li i{flex:none;width:10px;height:10px;background:var(--line)}
+.l-forsok li.tom{background:none;border-style:dashed}
+.l-forsok li.fel i{background:var(--raw)}
+.l-forsok li.hopp{color:var(--muted)}
+.l-forsok li.hopp i{background:var(--muted)}
+.l-forsok li.ratt{border-color:var(--euphoric);color:var(--bone)}
+.l-forsok li.ratt i{background:var(--euphoric);box-shadow:0 0 8px var(--euphoric)}
+
+.l-etikett{
+  display:block;font-family:var(--data);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:#5C5175;margin-bottom:8px;
+}
+.l-sok{
+  display:block;width:100%;min-height:48px;padding:12px 14px;border-radius:2px;
+  background:var(--ink);border:1px solid var(--line);color:var(--bone);
+  font-family:var(--body);font-size:16px;
+}
+.l-sok::placeholder{color:#5C5175}
+.l-sok:focus{outline:none;border-color:var(--muted)}
+.l-forslag{list-style:none;border:1px solid var(--line);border-top:0}
+.l-forslag:empty{display:none}
+.l-forslag button{
+  display:block;width:100%;min-height:44px;padding:10px 14px;text-align:left;cursor:pointer;
+  background:var(--surface-2);border:0;border-top:1px solid var(--line);color:#CFC5E0;
+  font-family:var(--body);font-size:15px;line-height:1.3;
+}
+.l-forslag li:first-child button{border-top:0}
+.l-forslag button b{color:var(--bone);font-weight:700}
+.l-forslag button:hover,.l-forslag button[aria-selected="true"]{background:var(--line);color:var(--bone)}
+
+.l-knappar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.l-knapp{
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+  background:none;border:1px solid var(--line);color:var(--bone);cursor:pointer;text-decoration:none;
+  font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:0 18px;border-radius:2px;transition:border-color .18s,transform .18s,color .18s;
+}
+.l-knapp:hover{border-color:var(--muted);transform:translateY(-1px)}
+.l-knapp.skarp{border-color:var(--raw);color:var(--raw)}
+.l-knapp.kopierad{border-color:var(--euphoric);color:var(--euphoric)}
+
+.l-facit{margin:0 0 20px}
+.l-facit b{
+  display:block;font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(26px,5vw,38px);line-height:.95;color:var(--bone);
+}
+.l-facit span{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:20px;color:var(--muted);margin-top:6px}
+
+.l-fordelning{display:grid;gap:4px;margin-top:24px;max-width:420px}
+.l-fordelning div{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:center}
+.l-fordelning em{font-style:normal;font-family:var(--data);font-size:10px;letter-spacing:.08em;color:var(--muted)}
+.l-fordelning span{
+  display:block;min-width:24px;padding:3px 7px;text-align:right;background:var(--surface-2);
+  font-family:var(--data);font-size:11px;color:var(--bone);
+}
+.l-fordelning .nu span{background:var(--raw)}
+
+.l-mot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:4px 0 14px}
+.l-mot div{background:var(--ink);padding:14px 16px}
+.l-mot b{display:block;font-family:var(--display);font-weight:900;font-size:40px;line-height:1;color:var(--bone)}
+.l-mot span{display:block;font-family:var(--data);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5C5175;margin-top:7px}
+.l-mot .ledare b{color:var(--raw)}
+
+.l-lista{list-style:none;margin:6px 0 0}
+.l-lista li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:baseline;padding:11px 0;border-top:1px solid var(--line);font-size:14px;color:#CFC5E0}
+.l-lista li:last-child{border-bottom:1px solid var(--line)}
+.l-lista b{font-family:var(--data);font-size:12px;color:var(--euphoric);font-weight:400}
+.l-lista .noll b{color:var(--raw)}
