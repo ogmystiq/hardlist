@@ -5,70 +5,8 @@ X-WR-CALNAME:HARDLIST — rave i Norden & Europa
 X-WR-CALDESC:Bekräftade hard dance-event. Uppdateras automatiskt.
 REFRESH-INTERVAL;VALUE=DURATION:P1D
 BEGIN:VEVENT
-UID:2026-08-28-decibel-outdoor@hardlist.se
-DTSTAMP:20261006T134200Z
-DTSTART;VALUE=DATE:20260828
-DTEND;VALUE=DATE:20260831
-SUMMARY:Decibel Outdoor
-LOCATION:Beekse Bergen\, Hilvarenbeek\, NL
-DESCRIPTION:28–30 augusti. 30+ scener över hela hard dance-spektrumet.
- \nhttps://www.decibeloutdoor.com/tickets
-URL:https://www.decibeloutdoor.com/tickets
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-09-12-holy-priest@hardlist.se
-DTSTAMP:20261006T134200Z
-DTSTART;VALUE=DATE:20260912
-DTEND;VALUE=DATE:20260913
-SUMMARY:Holy Priest
-LOCATION:Berns\, Stockholm\, SE
-DESCRIPTION:Hard techno\, kl 23.00.\nhttps://www.ticketmaster.se/event/ho
- ly-priest-berns-biljetter/247223915
-URL:https://www.ticketmaster.se/event/holy-priest-berns-biljetter/2472239
- 15
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-09-26-supremacy-state-of-distortion@hardlist.se
-DTSTAMP:20261006T134200Z
-DTSTART;VALUE=DATE:20260926
-DTEND;VALUE=DATE:20260927
-SUMMARY:Supremacy — State of Distortion
-LOCATION:Brabanthallen\, 's-Hertogenbosch\, NL
-DESCRIPTION:Tolfte upplagan\, arrangerad av Art of Dance. Rawstyle-flaggs
- keppet. Nästan hela programmet består av liveshows på en enda scen\, v
- ilket skiljer det från de flesta festivaler i genren. Medlemsbiljetterna
-  tog slut på ett dygn.\nhttps://www.supremacy.nl/
-URL:https://www.supremacy.nl/
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-10-03-swedish-rave-society@hardlist.se
-DTSTAMP:20261006T134200Z
-DTSTART;VALUE=DATE:20261003
-DTEND;VALUE=DATE:20261004
-SUMMARY:Swedish Rave Society
-LOCATION:Skybar Svampen\, Örebro\, SE
-DESCRIPTION:\nhttps://billetto.se/users/swedish-rave-society
-URL:https://billetto.se/users/swedish-rave-society
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-10-03-syndicate@hardlist.se
-DTSTAMP:20261006T134200Z
-DTSTART;VALUE=DATE:20261003
-DTEND;VALUE=DATE:20261004
-SUMMARY:Syndicate
-LOCATION:Westfalenhallen\, Dortmund\, DE
-DESCRIPTION:3 oktober\, 20:00–06:00 på tyska enhetsdagen. Tysklands st
- örsta inomhusevent för de hårdare stilarna sedan 2006. Fyra floors —
-  mainstage\, hardstyle\, uptempo och early hardcore — med 40+ artister 
- och upp till 20 000 besökare. 2026 med Angerfist\, Miss K8\, DJ Mad Dog\
- , Korsakoff\, Paul Elstak och Dr. Peacock. Åldersgräns 16 år\, till sk
- illnad från nästan allt annat i genren.\nhttps://www.syndicate-festival
- .de/en
-URL:https://www.syndicate-festival.de/en
-END:VEVENT
-BEGIN:VEVENT
 UID:2026-10-17-timetwister@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20261017
 DTEND;VALUE=DATE:20261018
 SUMMARY:Timetwister
@@ -82,7 +20,7 @@ URL:https://www.tickster.com/se/sv/events/m2627u9wlmnzwup/2026-10-17/time
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-11-06-monday-bar-halloween-cruise@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20261106
 DTEND;VALUE=DATE:20261108
 SUMMARY:Monday Bar Halloween Cruise
@@ -93,7 +31,7 @@ URL:https://www.mondaybar.com/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-11-14-rebellion-indoor-break-the-system@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20261114
 DTEND;VALUE=DATE:20261115
 SUMMARY:REBELLiON Indoor — Break The System
@@ -104,7 +42,7 @@ URL:https://www.jointherebellion.nl/en/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-11-21-deztination@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20261121
 DTEND;VALUE=DATE:20261122
 SUMMARY:Deztination
@@ -115,7 +53,7 @@ URL:https://deztination.se/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-11-thunderdome@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20261211
 DTEND;VALUE=DATE:20261213
 SUMMARY:Thunderdome
@@ -127,7 +65,7 @@ URL:https://www.thunderdome.com/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-30-sana-duri@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20270130
 DTEND;VALUE=DATE:20270131
 SUMMARY:Sana Duri
@@ -138,7 +76,7 @@ URL:https://sanaduri.se/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-02-06-zaandam@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20270206
 DTEND;VALUE=DATE:20270207
 SUMMARY:Zaandam
@@ -148,7 +86,7 @@ DESCRIPTION:Hardstyle\, rawstyle och uptempo i Gävle. Uppkallad efter de
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-02-13-nektra@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20270213
 DTEND;VALUE=DATE:20270214
 SUMMARY:Nektra
@@ -160,7 +98,7 @@ URL:https://www.tickster.com/se/sv/events/pw1tgn4jx6b8byn/2027-02-13/nekt
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-02-26-reverze@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20270226
 DTEND;VALUE=DATE:20270228
 SUMMARY:Reverze
@@ -171,8 +109,38 @@ DESCRIPTION:26–27 februari\, AFAS Dome + Lotto Arena. Säsongsöppnaren
 URL:https://www.reverze.be/pre-registration
 END:VEVENT
 BEGIN:VEVENT
+UID:2027-03-27-masters-of-hardcore@hardlist.se
+DTSTAMP:20261006T134950Z
+DTSTART;VALUE=DATE:20270327
+DTEND;VALUE=DATE:20270328
+SUMMARY:Masters of Hardcore
+LOCATION:Brabanthallen\, 's-Hertogenbosch\, NL
+DESCRIPTION:\nhttps://www.mastersofhardcore.com/
+URL:https://www.mastersofhardcore.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-04-09-rebirth-festival@hardlist.se
+DTSTAMP:20261006T134950Z
+DTSTART;VALUE=DATE:20270409
+DTEND;VALUE=DATE:20270412
+SUMMARY:REBiRTH Festival
+LOCATION:Helvoirt\, NL
+DESCRIPTION:\nhttps://www.rebirth-festival.nl/
+URL:https://www.rebirth-festival.nl/
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-06-04-intents-festival@hardlist.se
+DTSTAMP:20261006T134950Z
+DTSTART;VALUE=DATE:20270604
+DTEND;VALUE=DATE:20270607
+SUMMARY:Intents Festival
+LOCATION:Sportpark d'n Donk\, Oisterwijk\, NL
+DESCRIPTION:\nhttps://www.intentsfestival.nl/
+URL:https://www.intentsfestival.nl/
+END:VEVENT
+BEGIN:VEVENT
 UID:2027-06-24-defqon-1@hardlist.se
-DTSTAMP:20261006T134200Z
+DTSTAMP:20261006T134950Z
 DTSTART;VALUE=DATE:20270624
 DTEND;VALUE=DATE:20270628
 SUMMARY:Defqon.1
