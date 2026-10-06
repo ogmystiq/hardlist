@@ -77,6 +77,10 @@ function kollaStil(html, fil){
   for (const css of html.match(/<style\b[^>]*>([\s\S]*?)<\/style>/gi) || []) kollaCss(css.replace(/^<style[^>]*>|<\/style>$/gi, ''), rel(fil));
   if (gemensam && /monospace|JetBrains|Space Grotesk|Big Shoulders/.test(html))
     fel.push(`${rel(fil)}: gamla typsnitt eller monospace kvar, den nya designen har bara Archivo`);
+  /* Typsnittet ligger på hardlist.se. Ett anrop till Google Fonts skickar
+     besökarens IP-adress till Google, och det står inte på integritetssidan. */
+  if (gemensam && /fonts\.googleapis\.com|fonts\.gstatic\.com/.test(html))
+    fel.push(`${rel(fil)}: hämtar typsnitt från Google Fonts, ska använda /typsnitt/`);
   return gemensam;
 }
 
@@ -214,7 +218,12 @@ async function run(){
     if (r.sidfot !== ramar[0].sidfot) fel.push(`${rel(r.fil)}: sidfoten skiljer sig från ${rel(ramar[0].fil)}`);
   }
   for (const f of ['style.css', 'stil.css']){
-    if (existsSync(resolve(ROOT, f))) kollaCss(await readFile(resolve(ROOT, f), 'utf8'), f);
+    if (!existsSync(resolve(ROOT, f))) continue;
+    const css = await readFile(resolve(ROOT, f), 'utf8');
+    kollaCss(css, f);
+    for (const m of css.matchAll(/url\(\s*['"]?(\/(?!\/)[^'")]+)['"]?\s*\)/g)){
+      if (!finnsSokvag(m[1])) fel.push(`${f}: url(${m[1]}) leder ingenstans`);
+    }
   }
   await kollaMarkorer();
   await kollaJson();

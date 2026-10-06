@@ -24,7 +24,8 @@ const TYPER = {
   '.json':'application/json; charset=utf-8', '.xml':'application/xml; charset=utf-8',
   '.ics':'text/calendar; charset=utf-8', '.txt':'text/plain; charset=utf-8',
   '.png':'image/png', '.ico':'image/x-icon', '.svg':'image/svg+xml',
-  '.webmanifest':'application/manifest+json'
+  '.webmanifest':'application/manifest+json',
+  '.woff2':'font/woff2'
 };
 
 async function arFil(p){ try { return (await stat(p)).isFile(); } catch { return false; } }

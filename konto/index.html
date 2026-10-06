@@ -11,36 +11,78 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/stil.css?v=2026-10-07">
 <style>
-.kt{max-width:640px;display:flex;flex-direction:column;gap:12px}
+/* Som inställningarna i en app: profilkortet och listan ska rymmas på en
+   skärm i mobilen utan att scrolla. */
+.kt{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:20px;padding-top:4px}
+.kt-rubrik{font-size:38px}
 .kt-vy{display:flex;flex-direction:column;gap:12px}
+.kt-laddar{color:var(--text-2)}
 .kt-ruta h2{font-size:26px}
 .kt-ruta p{font-size:15px;line-height:1.5;color:var(--text-2);max-width:60ch}
-.kt-laddar{color:var(--text-2)}
-.kt-etikett{font-size:14px;color:var(--text-3)}
-.kt-namn{font-stretch:62%;font-weight:900;font-size:44px;line-height:1;overflow-wrap:anywhere}
-.kt-meta{display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--text-3);overflow-wrap:anywhere}
+
+.kt-profil{padding:18px;gap:14px;border-radius:24px}
+.kt-profil-topp{display:flex;align-items:center;gap:14px}
+.kt-bild{
+  flex:none;display:flex;width:60px;height:60px;border-radius:50%;background:var(--yta-2);
+  align-items:center;justify-content:center;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;
+}
+.kt-profil-namn{min-width:0;display:flex;flex-direction:column;gap:4px}
+.kt-namn{font-stretch:62%;font-weight:900;font-size:32px;line-height:1;overflow-wrap:anywhere}
+/* Nivån står i vanlig textfärg. Färg betyder genre, och nivån har ingen. */
+.kt-niva{font-size:14px;color:var(--text-2)}
+.kt-meta{display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:1.5;color:var(--text-3);overflow-wrap:anywhere}
+
+/* Listan: en yta, tunna avdelare mellan raderna, indragna till texten. */
+.kt-lista{background:var(--yta);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.kt-post{position:relative}
+.kt-post:not([hidden]) ~ .kt-post::before{content:"";position:absolute;top:0;left:50px;right:0;height:1px;background:var(--yta-2)}
+.kt-rad{
+  display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:0 16px;
+  border:0;background:none;color:var(--text);text-align:left;font-size:16px;font-weight:600;
+  transition:background .15s;
+}
+.kt-rad:hover{background:var(--yta-hover)}
+.kt-rad:focus-visible{outline-offset:-2px}
+.kt-ikon{flex:none;width:20px;height:20px;color:var(--text-2)}
+.kt-rad-text{flex:1}
+.kt-pil{flex:none;width:18px;height:18px;color:var(--text-3);transition:transform .2s}
+.kt-rad[aria-expanded="true"] .kt-pil{transform:rotate(180deg)}
+.kt-fara,.kt-fara .kt-ikon{color:var(--rosa)}
+.kt-utfall{padding:0 16px 16px 50px;display:flex;flex-direction:column;gap:12px;animation:kt-in .25s ease-out}
+.kt-utfall p{font-size:15px;line-height:1.5;color:#D9D1E6}
+@keyframes kt-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
 .kt-form{display:flex;flex-direction:column;gap:8px}
-.kt-falt{min-height:52px;padding:0 16px;border:0;border-radius:14px;background:var(--yta-2);color:var(--text);font-size:16px}
+.kt-etikett{font-size:13px;color:var(--text-3)}
+.kt-falt{height:46px;padding:0 14px;border:0;border-radius:12px;background:var(--yta-2);color:var(--text);font-size:16px}
 .kt-falt:focus-visible{outline:2px solid var(--hardstyle);outline-offset:2px}
 /* Fel fält markeras med rosa ring, och meddelandet under säger vad som är fel. */
 .kt-falt[aria-invalid="true"]{outline:2px solid var(--rosa);outline-offset:2px}
+.kt-knappar{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.kt-knappar .knapp{min-height:44px;padding:0 20px;font-size:15px}
 .kt-hint{font-size:14px;line-height:1.5;color:var(--text-3)}
-.kt-rad{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
 /* Googles egen logga ska stå på neutral botten, inte på sajtens rosa. */
 .kt-google{background:var(--yta-2);color:var(--text)}
 .kt-google svg{width:18px;height:18px;flex:none}
 .kt-besked{font-size:14px;line-height:1.5;color:var(--text-2)}
 .kt-besked:empty{display:none}
 .kt-besked.fel{color:var(--rosa)}
-.kt-bekrafta{display:flex;flex-direction:column;gap:8px;padding-top:4px}
+
 @media (min-width:860px){
+  .kt{padding-top:20px}
+  .kt-rubrik{font-size:52px}
   .kt-ruta h2{font-size:32px}
-  .kt-namn{font-size:60px}
+  .kt-profil{padding:22px}
+  .kt-profil-topp{gap:18px}
+  .kt-bild{width:72px;height:72px;font-size:36px}
+  .kt-namn{font-size:40px}
+  .kt-niva{font-size:15px}
+  .kt-rad{padding:0 18px}
+  .kt-post:not([hidden]) ~ .kt-post::before{left:52px}
+  .kt-utfall{padding:0 18px 18px 52px}
 }
 </style>
 </head>
@@ -61,13 +103,9 @@
 </header>
 
 <main class="sida" id="innehall">
-
-  <div class="sidhuvud">
-    <h1>Ditt konto</h1>
-    <p class="ingress">Ett namn i topplistorna. Inloggning med Google, inget lösenord att hålla reda på.</p>
-  </div>
-
   <div class="kt">
+
+    <h1 class="kt-rubrik">Ditt konto</h1>
 
     <p class="kt-laddar" id="k-laddar">Läser in kontot.</p>
 
@@ -82,8 +120,8 @@
     <div class="kt-vy" id="k-ut" hidden>
       <div class="ruta kt-ruta">
         <h2>Logga in</h2>
-        <p>Inloggning sker bara med Google. Hardlist får din mejladress och ditt Google-id, aldrig ditt lösenord.</p>
-        <div class="kt-rad">
+        <p>Ett namn i topplistorna. Inloggning sker bara med Google. Hardlist får din mejladress och ditt Google-id, aldrig ditt lösenord.</p>
+        <div class="kt-knappar">
           <button class="knapp kt-google" id="k-google" type="button">
             <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.2l7.9 6.2C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 7l7.4 5.7c4.3-4 6.9-9.9 6.9-17.2z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.2C1 16.6 0 20.2 0 24s1 7.4 2.6 10.8l7.9-6.2z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.1-13.5-9.9l-7.9 6.2C6.6 42.6 14.6 48 24 48z"/></svg>
             Logga in med Google
@@ -100,66 +138,86 @@
         <h2>Välj visningsnamn</h2>
         <p>Det här är namnet som syns i topplistorna. Ditt riktiga namn och din mejl visas aldrig.</p>
         <form class="kt-form" id="k-nytt-form" novalidate>
-          <label class="kt-etikett" for="k-nytt-falt">Visningsnamn</label>
+          <label class="kt-etikett" for="k-nytt-falt">Visningsnamn, 3–20 tecken: bokstäver, siffror, - och _</label>
           <input class="kt-falt" id="k-nytt-falt" name="namn" autocomplete="nickname"
-                 autocapitalize="off" spellcheck="false" minlength="3" maxlength="20" required aria-describedby="k-nytt-hint">
-          <p class="kt-hint" id="k-nytt-hint">3–20 tecken. Bokstäver a–ö, siffror, bindestreck och understreck.</p>
-          <div class="kt-rad">
+                 autocapitalize="off" spellcheck="false" minlength="3" maxlength="20" required>
+          <div class="kt-knappar">
             <button class="knapp" type="submit">Spara namnet</button>
           </div>
           <p class="kt-besked" id="k-nytt-besked" role="status"></p>
         </form>
+        <p class="kt-meta" id="k-nytt-mejl"></p>
       </div>
-      <p class="kt-meta" id="k-nytt-mejl"></p>
     </div>
 
-    <!-- Inloggad med profil -->
+    <!-- Inloggad med profil: profilkortet -->
     <div class="kt-vy" id="k-in" hidden>
-      <div class="ruta kt-ruta">
-        <span class="kt-etikett">Visningsnamn</span>
-        <div class="kt-namn" id="k-namn"></div>
+      <div class="ruta kt-profil">
+        <div class="kt-profil-topp">
+          <span class="kt-bild" id="k-bild" aria-hidden="true"></span>
+          <span class="kt-profil-namn">
+            <span class="kt-namn" id="k-namn"></span>
+            <span class="kt-niva" id="k-niva" hidden></span>
+          </span>
+        </div>
         <p class="kt-meta" id="k-meta"></p>
       </div>
-
-      <div class="ruta kt-ruta">
-        <h2>Byt namn</h2>
-        <form class="kt-form" id="k-byt-form" novalidate>
-          <label class="kt-etikett" for="k-byt-falt">Nytt visningsnamn</label>
-          <input class="kt-falt" id="k-byt-falt" name="namn" autocomplete="nickname"
-                 autocapitalize="off" spellcheck="false" minlength="3" maxlength="20" required aria-describedby="k-byt-hint">
-          <p class="kt-hint" id="k-byt-hint">3–20 tecken. Bokstäver a–ö, siffror, bindestreck och understreck.</p>
-          <div class="kt-rad">
-            <button class="knapp knapp-sek" type="submit">Byt namn</button>
-          </div>
-          <p class="kt-besked" id="k-byt-besked" role="status"></p>
-        </form>
-      </div>
     </div>
 
-    <!-- Gemensamt för alla inloggade -->
+    <!-- Listan för alla inloggade. Namnbytet syns bara när det finns ett namn. -->
     <div class="kt-vy" id="k-alltid" hidden>
-      <div class="ruta kt-ruta">
-        <h2>Logga ut</h2>
-        <p>Loggar ut på den här enheten.</p>
-        <div class="kt-rad">
-          <button class="knapp knapp-sek" id="k-ut-knapp" type="button">Logga ut</button>
-        </div>
-      </div>
+      <div class="kt-lista">
 
-      <div class="ruta kt-ruta">
-        <h2>Radera kontot</h2>
-        <p>Tar bort inloggningen, visningsnamnet och allt som hör till kontot. Det går inte att ångra.</p>
-        <div class="kt-rad">
-          <button class="knapp knapp-sek" id="k-radera" type="button" aria-expanded="false" aria-controls="k-bekrafta">Radera kontot</button>
-        </div>
-        <div class="kt-bekrafta" id="k-bekrafta" hidden>
-          <p>Säker? Kontot och allt som hör till det försvinner direkt.</p>
-          <div class="kt-rad">
-            <button class="knapp" id="k-radera-ja" type="button">Ja, radera kontot</button>
-            <button class="knapp knapp-sek" id="k-radera-nej" type="button">Avbryt</button>
+        <div class="kt-post" id="k-byt-post">
+          <button class="kt-rad" id="k-byt-oppna" type="button" aria-expanded="false" aria-controls="k-byt">
+            <svg class="kt-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m14 6 4 4"/></svg>
+            <span class="kt-rad-text">Byt visningsnamn</span>
+            <svg class="kt-pil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="kt-utfall" id="k-byt" hidden>
+            <form class="kt-form" id="k-byt-form" novalidate>
+              <label class="kt-etikett" for="k-byt-falt">Nytt namn, 3–20 tecken: bokstäver, siffror, - och _</label>
+              <input class="kt-falt" id="k-byt-falt" name="namn" autocomplete="nickname"
+                     autocapitalize="off" spellcheck="false" minlength="3" maxlength="20" required>
+              <div class="kt-knappar">
+                <button class="knapp" type="submit">Spara</button>
+                <button class="knapp knapp-sek" id="k-byt-avbryt" type="button">Avbryt</button>
+              </div>
+              <p class="kt-besked" id="k-byt-besked" role="status"></p>
+            </form>
           </div>
         </div>
-        <p class="kt-besked" id="k-radera-besked" role="status"></p>
+
+        <div class="kt-post">
+          <button class="kt-rad" id="k-ut-knapp" type="button">
+            <svg class="kt-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h4v16h-4"/><path d="M10 8l-4 4 4 4"/><path d="M6 12h10"/></svg>
+            <span class="kt-rad-text">Logga ut</span>
+          </button>
+        </div>
+
+        <div class="kt-post">
+          <a class="kt-rad" href="/integritet/">
+            <svg class="kt-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/></svg>
+            <span class="kt-rad-text">Integritet och data</span>
+            <svg class="kt-pil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="kt-post">
+          <button class="kt-rad kt-fara" id="k-radera" type="button" aria-expanded="false" aria-controls="k-bekrafta">
+            <svg class="kt-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/></svg>
+            <span class="kt-rad-text">Radera kontot</span>
+          </button>
+          <div class="kt-utfall" id="k-bekrafta" hidden>
+            <p>Inloggningen, ditt namn och alla dina resultat tas bort direkt. Det går inte att ångra.</p>
+            <div class="kt-knappar">
+              <button class="knapp" id="k-radera-ja" type="button">Ja, radera kontot</button>
+              <button class="knapp knapp-sek" id="k-radera-nej" type="button">Avbryt</button>
+            </div>
+            <p class="kt-besked" id="k-radera-besked" role="status"></p>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -168,14 +226,13 @@
       <div class="ruta kt-ruta">
         <h2>Kontot är raderat</h2>
         <p>Inloggningen och visningsnamnet är borttagna. Du kan skapa ett nytt konto när du vill.</p>
-        <div class="kt-rad">
+        <div class="kt-knappar">
           <a class="knapp knapp-sek" href="/">Till startsidan</a>
         </div>
       </div>
     </div>
 
   </div>
-
 </main>
 
 <footer class="sidfot">
@@ -230,6 +287,9 @@
   function visa(){
     const synliga = Array.prototype.slice.call(arguments);
     VYER.forEach(function(id){ $(id).hidden = synliga.indexOf(id) === -1; });
+    // Namnbytet ligger i listan men gäller bara den som redan har ett namn.
+    $('k-byt-post').hidden = $('k-in').hidden;
+    stangAllt();
   }
   function besked(id, text, sort){
     const el = $(id);
@@ -263,19 +323,45 @@
     return namn;
   }
 
+  /* Bara en rad i listan är utfälld åt gången. */
+  function stangAllt(){
+    $('k-byt').hidden = true;
+    $('k-byt-oppna').setAttribute('aria-expanded', 'false');
+    $('k-bekrafta').hidden = true;
+    $('k-radera').setAttribute('aria-expanded', 'false');
+  }
+
+  /* Nivå och poäng från quizet. quiz_dagens med p_starta false startar inte
+     klockan. Svarar servern inte, eller finns ingen fråga idag, står raden
+     tom hellre än att visa noll poäng som kanske inte stämmer. */
+  async function hamtaNiva(){
+    const el = $('k-niva');
+    el.hidden = true;
+    try {
+      const d = await K.rpc('quiz_dagens', { p_starta: false });
+      const k = d && d.konto;
+      if (!k || typeof k.poang !== 'number' || !k.rang) return;
+      el.textContent = k.rang + ', ' + k.poang + ' poäng';
+      el.hidden = false;
+    } catch(e){}
+  }
+
   let anvandare = null;
 
   function visaProfil(p){
     $('k-namn').textContent = p.visningsnamn;
+    $('k-bild').textContent = p.visningsnamn.charAt(0).toUpperCase();
     // Två rader i stället för en med mittpunkt emellan.
     const meta = $('k-meta');
     meta.textContent = '';
-    ['Inloggad med Google som ' + (anvandare.email || 'okänd adress'), 'Kontot skapades ' + datum(p.skapad)]
+    ['Inloggad med Google som ' + (anvandare.email || 'okänd adress'), 'Konto sedan ' + datum(p.skapad)]
       .forEach(function(rad){ const s = document.createElement('span'); s.textContent = rad; meta.appendChild(s); });
-    $('k-byt-falt').value = '';
+    $('k-byt-falt').value = p.visningsnamn;
+    $('k-byt-falt').removeAttribute('aria-invalid');
     besked('k-byt-besked', '');
     K.sparaNamn(p.visningsnamn);
     visa('k-in', 'k-alltid');
+    hamtaNiva();
   }
 
   async function start(){
@@ -351,6 +437,7 @@
         .select('visningsnamn, skapad').single();
       if (error) throw error;
       visaProfil(data);
+      oppnaByt();
       besked('k-byt-besked', 'Namnet är bytt.', 'ok');
     } catch(err){
       besked('k-byt-besked', namnfel(err), 'fel');
@@ -367,8 +454,29 @@
     visa('k-ut');
   });
 
+  function oppnaByt(){
+    stangAllt();
+    $('k-byt').hidden = false;
+    $('k-byt-oppna').setAttribute('aria-expanded', 'true');
+  }
+  $('k-byt-oppna').addEventListener('click', function(){
+    if ($('k-byt').hidden){
+      oppnaByt();
+      besked('k-byt-besked', '');
+      $('k-byt-falt').focus();
+      $('k-byt-falt').select();
+    } else stangAllt();
+  });
+  $('k-byt-avbryt').addEventListener('click', function(){
+    stangAllt();
+    $('k-byt-falt').value = $('k-namn').textContent;
+    $('k-byt-falt').removeAttribute('aria-invalid');
+    besked('k-byt-besked', '');
+    $('k-byt-oppna').focus();
+  });
   $('k-radera').addEventListener('click', function(){
     const oppen = $('k-bekrafta').hidden;
+    if (oppen) stangAllt();
     $('k-bekrafta').hidden = !oppen;
     this.setAttribute('aria-expanded', String(oppen));
     if (oppen) $('k-radera-nej').focus();
