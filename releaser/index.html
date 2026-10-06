@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nya hardstylereleaser: veckans släpp — HARDLIST</title>
+<meta name="description" content="Varje nytt släpp inom hardstyle, raw, uptempo, hardcore och hard techno, uppdaterat varje morgon. Filtrera på genre eller sök artist.">
+<link rel="canonical" href="https://hardlist.se/releaser/">
+<link rel="alternate" type="application/rss+xml" title="HARDLIST — nya releaser" href="https://hardlist.se/releaser.xml">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#100C17">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HARDLIST">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:url" content="https://hardlist.se/releaser/">
+<meta property="og:title" content="Nya hardstylereleaser: veckans släpp">
+<meta property="og:description" content="Varje nytt släpp inom hardstyle, raw, uptempo, hardcore och hard techno, uppdaterat varje morgon.">
+<meta property="og:image" content="https://hardlist.se/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="HARDLIST — releaser och rave i Norden">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nya hardstylereleaser: veckans släpp">
+<meta name="twitter:description" content="Varje nytt släpp inom hardstyle, raw, uptempo, hardcore och hard techno, uppdaterat varje morgon.">
+<meta name="twitter:image" content="https://hardlist.se/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/stil.css?v=2026-10-07">
+<style>
+.sektionshuvud{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.antal{font-size:15px;color:var(--text-2)}
+.sektionstext{margin-top:6px;font-size:15px;color:var(--text-2)}
+.kommande,.lista{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.kommande .rader{margin-top:4px}
+.lista .sok{margin-top:4px}
+.tom{padding:20px 0;color:var(--text-2)}
+
+/* Tidslinjen: en kolumn per dag, en prick per släpp i genrens färg.
+   Listan nedanför är samma data i textform, så ingenting går att läsa
+   bara här. */
+.tidslinje{position:relative;background:var(--yta);border-radius:20px;padding:16px 12px 12px}
+.tl-rubrik{font-stretch:100%;font-weight:700;font-size:15px;line-height:1.3;letter-spacing:0;padding:0 4px 14px}
+.tl-dagar{display:flex;align-items:flex-end;gap:2px;min-height:64px}
+.tl-dag{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.tl-stapel{display:flex;flex-wrap:wrap-reverse;justify-content:center;align-content:flex-start;gap:2px;width:34px}
+.tl-prick{width:10px;height:10px;border-radius:3px;background:var(--g);transition:opacity .15s}
+.tl-prick.dov{opacity:.18}
+.tl-etikett{display:flex;flex-direction:column;align-items:center;font-size:12px;line-height:1.25;color:var(--text-3);white-space:nowrap}
+.tl-dag.idag .tl-etikett{color:var(--text);font-weight:700}
+.tl-dag.fram .tl-prick{opacity:.55}
+.tl-tom{padding:8px 4px 4px;font-size:15px;color:var(--text-2)}
+.tl-tips{
+  position:absolute;z-index:2;max-width:240px;padding:8px 12px;border-radius:12px;
+  background:var(--yta-2);color:var(--text);font-size:14px;line-height:1.35;pointer-events:none;
+  transform:translate(-50%,-100%);
+}
+@media (min-width:860px){
+  .tidslinje{border-radius:24px;padding:20px 20px 16px}
+  .tl-stapel{width:40px}
+  .tl-prick{width:12px;height:12px}
+  .tl-etikett{flex-direction:row;gap:4px;font-size:13px}
+  .kommande,.lista{margin-top:48px;gap:16px}
+  .lista .sok{max-width:420px}
+}
+</style>
+</head>
+<body>
+
+<a class="hoppa" href="#innehall">Till innehållet</a>
+
+<header class="topp">
+  <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+  <nav class="meny" aria-label="Huvudmeny">
+    <a href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg>Hem</a>
+    <a href="/releaser/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Releaser</a>
+    <a href="/events/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Event</a>
+    <a href="/spel/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/></svg>Spel</a>
+    <a href="/scenen/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Scenen</a>
+  </nav>
+  <a class="konto" id="konto-knapp" href="/konto/"><span class="konto-bild" aria-hidden="true"></span><span class="konto-namn">Logga in</span></a>
+</header>
+
+<main class="sida" id="innehall">
+
+  <div class="sidhuvud">
+    <h1>Releaser</h1>
+    <p class="ingress">Nytt inom hardstyle, raw, uptempo, hardcore och techno, senaste överst. Singlar ligger kvar en vecka och album en månad.</p>
+  </div>
+
+  <section class="tidslinje" id="tidslinje" aria-labelledby="tlRubrik">
+    <h2 class="tl-rubrik" id="tlRubrik">Den senaste veckan</h2>
+    <div class="tl-dagar" id="tlDagar"></div>
+    <div class="tl-tips" id="tlTips" hidden></div>
+  </section>
+
+  <section class="kommande" id="kommande" aria-labelledby="komRubrik" hidden>
+    <div class="sektionshuvud">
+      <h2 id="komRubrik">Kommande</h2>
+    </div>
+    <p class="sektionstext" id="komText"></p>
+    <div class="rader" id="komLista"></div>
+  </section>
+
+  <section class="lista" aria-labelledby="relRubrik">
+    <div class="sektionshuvud">
+      <h2 id="relRubrik">Släppt</h2>
+      <span class="antal" id="relAntal"></span>
+    </div>
+    <div class="rull" id="filter" role="group" aria-label="Visa genre">
+      <button class="chip" type="button" data-g="alla" aria-pressed="true">Alla</button>
+      <button class="chip g-hardstyle" type="button" data-g="hardstyle" aria-pressed="false"><span class="prick"></span>Hardstyle</button>
+      <button class="chip g-raw" type="button" data-g="raw" aria-pressed="false"><span class="prick"></span>Raw</button>
+      <button class="chip g-uptempo" type="button" data-g="uptempo" aria-pressed="false"><span class="prick"></span>Uptempo</button>
+      <button class="chip g-hardcore" type="button" data-g="hardcore" aria-pressed="false"><span class="prick"></span>Hardcore</button>
+      <button class="chip g-techno" type="button" data-g="techno" aria-pressed="false"><span class="prick"></span>Techno</button>
+    </div>
+    <label class="dold" for="sok">Sök artist eller titel</label>
+    <input class="sok" id="sok" type="search" autocomplete="off" placeholder="Sök artist eller titel">
+    <div class="rader" id="relLista">
+      <p class="tom">Hämtar releaserna.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="sidfot">
+  <div class="sidfot-inre">
+    <div class="sidfot-topp">
+      <div class="sidfot-om">
+        <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+        <p>Releaser, event och spel för den hårda scenen i Norden.</p>
+      </div>
+      <div class="sidfot-grupper">
+        <nav aria-labelledby="sf-sajten">
+          <span class="sidfot-rubrik" id="sf-sajten">Sajten</span>
+          <a href="/releaser/">Releaser</a>
+          <a href="/events/">Event</a>
+          <a href="/spel/">Spel</a>
+          <a href="/scenen/">Scenen</a>
+        </nav>
+        <nav aria-labelledby="sf-prenumerera">
+          <span class="sidfot-rubrik" id="sf-prenumerera">Prenumerera</span>
+          <a href="webcal://hardlist.se/kalender.ics">Kalendern i mobilen</a>
+          <a href="/releaser.xml">Releaser som RSS</a>
+        </nav>
+        <nav aria-labelledby="sf-bidra">
+          <span class="sidfot-rubrik" id="sf-bidra">Bidra</span>
+          <a href="mailto:hardlisthelp@gmail.com?subject=Tips%20om%20event">Tipsa om ett event</a>
+          <a href="mailto:hardlisthelp@gmail.com?subject=R%C3%A4ttelse">Rätta en uppgift</a>
+          <a class="bara-dator" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
+        </nav>
+        <nav aria-labelledby="sf-om">
+          <span class="sidfot-rubrik" id="sf-om">Om sajten</span>
+          <a href="/integritet/">Integritet</a>
+          <a href="/konto/">Ditt konto</a>
+        </nav>
+      </div>
+    </div>
+    <div class="sidfot-status">
+      <span id="sidfotStatus">Releaserna uppdateras varje morgon.</span>
+      <span>Inga annonser och inga cookies.</span>
+      <a class="sidfot-post" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const GENRER = ['hardstyle','raw','uptempo','hardcore','techno'];
+const GENRE_NAMN = { hardstyle:'Hardstyle', raw:'Raw', uptempo:'Uptempo', hardcore:'Hardcore', techno:'Techno' };
+/* Hur många dagar bakåt som visas. Måste matcha DAGAR_BAKAT (singlar) och
+   DAGAR_BAKAT_ALBUM (album) i hamta-releaser.mjs, annars faller ett album
+   ur listan efter en vecka trots att skriptet behåller det i 30 dagar. */
+const DAGAR_VISAS = 7;
+const DAGAR_VISAS_ALBUM = 30;
+/* Längre fram än så ritas inte tidslinjen, annars blir dagarna för smala. */
+const TL_FRAM_MAX = 14;
+const MANADER = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+const VECKODAGAR = ['sön','mån','tis','ons','tor','fre','lör'];
+
+/* Äldre poster i data/releases.json kan ha genren "euphoric" kvar. */
+const normGenre = g => g === 'euphoric' ? 'hardstyle' : (GENRER.includes(g) ? g : 'raw');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const idag = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+/* new Date('2026-08-14') tolkas som UTC-midnatt, vilket i svensk tid lägger
+   dagens släpp under "Kommande". Datumet byggs därför lokalt. */
+function lasDatum(s){
+  const [y, m, d] = String(s).split('-').map(Number);
+  return new Date(y, (m || 1) - 1, d || 1);
+}
+const dagarFran = s => Math.round((lasDatum(s) - idag()) / 86400000);
+const kortDatum = s => { const d = lasDatum(s); return d.getDate() + ' ' + MANADER[d.getMonth()]; };
+/* Spotify skriver samarbeten med ×, sajten med kommatecken. */
+const artister = s => String(s || '').split(/\s+×\s+/).join(', ');
+
+let releaser = [], kommande = [], filter = 'alla', sok = '';
+
+function gransFor(r){
+  const g = idag();
+  g.setDate(g.getDate() - (r.typ === 'album' ? DAGAR_VISAS_ALBUM : DAGAR_VISAS));
+  return g;
+}
+
+function rad(r, datumText){
+  const g = normGenre(r.genre);
+  const titel = r.title || r.titel || '';
+  const inre =
+    '<span class="rad-vanster">' +
+      '<span class="omslag" aria-hidden="true">' + esc(artister(r.artist).charAt(0).toUpperCase()) + '</span>' +
+      '<span class="rad-mitt">' +
+        '<span class="rad-titel">' + esc(titel) +
+          (r.typ === 'album' ? '<span class="rad-typ">Album</span>' : '') + '</span>' +
+        '<span class="rad-under">' + esc(artister(r.artist)) + '</span>' +
+      '</span>' +
+    '</span>' +
+    '<span class="rad-genre"><span class="prick"></span>' + GENRE_NAMN[g] + '</span>' +
+    '<span class="rad-datum">' + esc(datumText) + '</span>';
+  if (!r.url) return '<div class="rad g-' + g + '">' + inre + '<span></span></div>';
+  return '<a class="rad g-' + g + '" href="' + esc(r.url) + '" target="_blank" rel="noopener">' + inre +
+    '<span class="rad-spela" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>' +
+    '</a>';
+}
+
+function ritaTidslinje(){
+  const ruta = document.getElementById('tlDagar');
+  const fram = Math.min(TL_FRAM_MAX, releaser.reduce((m, r) => Math.max(m, dagarFran(r.date)), 0));
+  const perDag = new Map();
+  releaser.forEach(r => {
+    const n = dagarFran(r.date);
+    if (n < -DAGAR_VISAS || n > fram) return;
+    if (!perDag.has(n)) perDag.set(n, []);
+    perDag.get(n).push(r);
+  });
+  if (!perDag.size){
+    ruta.innerHTML = '<p class="tl-tom">Inga släpp den senaste veckan.</p>';
+    return;
+  }
+  let html = '';
+  for (let n = -DAGAR_VISAS; n <= fram; n++){
+    const d = idag(); d.setDate(d.getDate() + n);
+    /* Veckodag och datum på varsin rad på mobil, annars krockar de på 360 px. */
+    const etikett = n === 0 ? '<span>Idag</span>' : '<span>' + VECKODAGAR[d.getDay()] + '</span><span>' + d.getDate() + '</span>';
+    const prickar = (perDag.get(n) || []).map(r => {
+      const g = normGenre(r.genre);
+      const dov = filter !== 'alla' && g !== filter ? ' dov' : '';
+      return '<span class="tl-prick g-' + g + dov + '" data-tips="' +
+        esc(artister(r.artist) + ' — ' + (r.title || '') + ', ' + GENRE_NAMN[g]) + '"></span>';
+    }).join('');
+    html += '<div class="tl-dag' + (n === 0 ? ' idag' : '') + (n > 0 ? ' fram' : '') + '">' +
+      '<div class="tl-stapel">' + prickar + '</div>' +
+      '<span class="tl-etikett">' + etikett + '</span></div>';
+  }
+  ruta.innerHTML = html;
+  document.getElementById('tlRubrik').textContent = fram > 0 ? 'Den senaste veckan och framåt' : 'Den senaste veckan';
+}
+
+/* Kommande samlar två källor: de handskrivna förhandssläppen i
+   data/kommande.json och de släpp i releaselistan som har ett datum efter
+   idag. Passerade datum i kommande.json ignoreras, och sektionen döljs helt
+   när inget är kvar — hellre osynlig än en rubrik som lovar något som inte
+   finns. */
+function ritaKommande(){
+  const forhand = kommande
+    .filter(k => k && k.datum && dagarFran(k.datum) > 0)
+    .map(k => ({ artist: k.artist, title: k.titel, date: k.datum, url: k.lank, genre: k.genre, forhand: true }));
+  const snart = releaser.filter(r => dagarFran(r.date) > 0);
+  const alla = forhand.concat(snart).sort((a, b) => a.date < b.date ? -1 : 1);
+  const sektion = document.getElementById('kommande');
+  sektion.hidden = !alla.length;
+  if (!alla.length) return;
+  document.getElementById('komText').textContent = forhand.length
+    ? 'Släpp som har ett datum. De med länk går att förhandsspara.'
+    : 'Släpp som har ett datum.';
+  document.getElementById('komLista').innerHTML = alla.map(r => {
+    const n = dagarFran(r.date);
+    return rad(r, n === 1 ? 'Imorgon' : kortDatum(r.date));
+  }).join('');
+}
+
+function ritaLista(){
+  const lista = document.getElementById('relLista');
+  const q = sok.trim().toLowerCase();
+  const synliga = releaser
+    .filter(r => dagarFran(r.date) <= 0 && lasDatum(r.date) >= gransFor(r))
+    .filter(r => filter === 'alla' || normGenre(r.genre) === filter)
+    .filter(r => !q || (r.artist + ' ' + r.title).toLowerCase().includes(q))
+    .sort((a, b) => a.date < b.date ? 1 : -1);
+
+  document.getElementById('relAntal').textContent =
+    synliga.length + ' släpp';
+
+  if (!synliga.length){
+    lista.innerHTML = '<p class="tom">' +
+      (q ? 'Inga träffar. Prova ett annat sökord.' : 'Inget släppt i den här genren den senaste veckan.') + '</p>';
+    return;
+  }
+  lista.innerHTML =
+    '<div class="rad-huvud" aria-hidden="true"><span>Titel</span><span>Genre</span><span>Släppt</span><span></span></div>' +
+    synliga.map(r => {
+      const n = dagarFran(r.date);
+      return rad(r, n === 0 ? 'Idag' : n === -1 ? 'Igår' : kortDatum(r.date));
+    }).join('');
+}
+
+function ritaAllt(){ ritaTidslinje(); ritaKommande(); ritaLista(); }
+
+async function ladda(){
+  try {
+    const r = await fetch('/data/releases.json', { cache: 'no-store' });
+    releaser = await r.json();
+    if (!Array.isArray(releaser)) throw 0;
+  } catch(e){
+    /* Ingen exempeldata: påhittade släpp är sämre än ett ärligt fel. */
+    document.getElementById('relLista').innerHTML =
+      '<p class="tom">Releaserna gick inte att hämta. Ladda om sidan om en stund.</p>';
+    document.getElementById('tlDagar').innerHTML = '';
+    return;
+  }
+  /* Handskriven och oftast tom. En saknad fil betyder bara att inget
+     är på gång, inte att något är trasigt. */
+  try {
+    const r = await fetch('/data/kommande.json', { cache: 'no-store' });
+    const k = await r.json();
+    kommande = Array.isArray(k) ? k : [];
+  } catch(e){ kommande = []; }
+  ritaAllt();
+}
+
+document.getElementById('filter').addEventListener('click', e => {
+  const b = e.target.closest('.chip');
+  if (!b) return;
+  filter = b.dataset.g;
+  document.querySelectorAll('#filter .chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+  ritaTidslinje(); ritaLista();
+});
+
+document.getElementById('sok').addEventListener('input', e => { sok = e.target.value; ritaLista(); });
+
+/* Namnet på en prick visas vid hovring eller tryck. Prickarna är för små
+   för att trycka på var för sig med tangentbord, och behöver inte det:
+   samma släpp står i listan nedanför. */
+(function(){
+  const linje = document.getElementById('tidslinje');
+  const tips = document.getElementById('tlTips');
+  function visa(e){
+    const p = e.target.closest('.tl-prick');
+    if (!p){ tips.hidden = true; return; }
+    const a = p.getBoundingClientRect(), b = linje.getBoundingClientRect();
+    tips.textContent = p.dataset.tips;
+    tips.hidden = false;
+    const halv = tips.offsetWidth / 2;
+    const x = Math.max(halv + 4, Math.min(b.width - halv - 4, a.left - b.left + a.width / 2));
+    tips.style.left = x + 'px';
+    tips.style.top = (a.top - b.top - 8) + 'px';
+  }
+  linje.addEventListener('pointerover', visa);
+  linje.addEventListener('pointerdown', visa);
+  linje.addEventListener('pointerleave', () => { tips.hidden = true; });
+})();
+
+ladda();
+</script>
+<script src="/ram.js" defer></script>
+<script src="/inloggning.js" defer></script>
+<script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

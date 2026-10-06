@@ -52,6 +52,9 @@ input,select,textarea{font-size:16px}
 button{cursor:pointer}
 img,svg{display:block;max-width:100%}
 p{margin:0}
+/* Annars slår varje display:flex ut hidden-attributet, och en dold sektion
+   står kvar med sin rubrik. */
+[hidden]{display:none !important}
 :focus-visible{outline:2px solid var(--hardstyle);outline-offset:2px}
 
 h1,h2,h3{margin:0;font-stretch:62%;font-weight:900;line-height:.95;letter-spacing:-.01em}
@@ -208,6 +211,43 @@ a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
 .g-hardcore{--g:var(--hardcore)}
 .g-techno{--g:var(--techno)}
 
+/* Releaserad. Mobil: omslag, titel och artister, genre och datum till höger.
+   Dator: en tabell med titel, genre, släppt och en lyssna-knapp vid hovring.
+   Samma markup i båda, så att listan bara behöver ritas på ett sätt. */
+.rader{display:flex;flex-direction:column}
+.rad-huvud{display:none}
+.rad{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:14px;
+  padding:8px 10px;margin:0 -10px;border-radius:12px;min-height:68px;
+  transition:background .15s;
+}
+a.rad:hover{background:var(--yta)}
+.rad-vanster{grid-row:span 2;display:flex;align-items:center;gap:14px;min-width:0}
+.omslag{
+  flex:none;width:52px;height:52px;border-radius:10px;background:var(--g);color:var(--natt);
+  display:flex;align-items:flex-end;padding:0 0 4px 7px;
+  font-stretch:62%;font-weight:900;font-size:34px;line-height:.8;
+}
+.rad-mitt{min-width:0;display:flex;flex-direction:column;gap:3px}
+.rad-titel,.rad-under{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rad-titel{font-weight:650;font-size:16px}
+.rad-under{font-size:14px;color:var(--text-2)}
+.rad-typ{margin-left:8px;padding:2px 8px;border-radius:999px;background:var(--yta-2);font-size:12px;font-weight:600;color:var(--text-2);vertical-align:2px}
+.rad-genre{align-self:end;justify-self:end;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--g)}
+.rad-genre .prick{display:none}
+.rad-datum{align-self:start;justify-self:end;font-size:13px;color:var(--text-3)}
+.rad-spela{display:none}
+
+.sok{
+  width:100%;min-height:48px;padding:0 20px;border:0;border-radius:999px;
+  background:var(--yta);color:var(--text);font-size:16px;
+}
+.sok::placeholder{color:var(--text-3)}
+
+/* Rad som går att svepa i sidled på mobil, utan synlig rullist. */
+.rull{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--marginal));padding:2px var(--marginal)}
+.rull::-webkit-scrollbar{display:none}
+
 /* Länkar i löptext måste synas som länkar även utan färg. */
 .text a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--text-3)}
 .text a:hover{text-decoration-color:var(--text)}
@@ -264,6 +304,25 @@ a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
   .delad > .ruta{flex:2 1 420px;min-height:300px;justify-content:flex-end}
   .delad-sida{flex:1 1 240px;display:flex;flex-direction:column;gap:16px}
   .delad-sida > .kort{flex:1}
+
+  .rad-huvud,.rad{grid-template-columns:minmax(0,1fr) 130px 90px 48px;column-gap:16px}
+  .rad-huvud{
+    display:grid;padding:0 12px 10px;border-bottom:1px solid var(--yta-2);margin-bottom:4px;
+    font-size:14px;color:var(--text-3);
+  }
+  .rad{margin:0;padding:8px 12px;min-height:72px}
+  .rad-vanster{grid-row:auto}
+  .rad-genre,.rad-datum{align-self:center;justify-self:start;font-size:15px}
+  .rad-genre{font-weight:400;color:#D9D1E6}
+  .rad-genre .prick{display:block}
+  .rad-spela{
+    display:flex;width:44px;height:44px;border-radius:50%;
+    background:var(--text);color:var(--natt);align-items:center;justify-content:center;
+    opacity:0;transition:opacity .15s;
+  }
+  .rad-spela svg{width:16px;height:16px}
+  a.rad:hover .rad-spela,a.rad:focus-visible .rad-spela{opacity:1}
+  .rull{flex-wrap:wrap;overflow:visible;margin:0;padding:0}
   .knapp{min-height:52px;padding:0 28px;font-size:17px}
 
   .sidfot{margin-top:72px}
