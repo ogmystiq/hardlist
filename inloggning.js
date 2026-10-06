@@ -64,6 +64,25 @@
     return data.session;
   }
 
+  /* Anrop till databasfunktionerna, till exempel quizet. Utan sparad session
+     räcker vanlig fetch med den publika nyckeln, så att den som aldrig loggar
+     in inte behöver ladda klienten bara för att svara på dagens fråga. */
+  async function rpc(namn, arg){
+    if (harSparadSession()){
+      const k = await klient();
+      const { data, error } = await k.rpc(namn, arg || {});
+      if (error) throw error;
+      return data;
+    }
+    const r = await fetch(PROJEKT_URL + '/rest/v1/rpc/' + namn, {
+      method: 'POST',
+      headers: { apikey: PUBLIK_NYCKEL, 'Content-Type': 'application/json' },
+      body: JSON.stringify(arg || {})
+    });
+    if (!r.ok) throw new Error('status ' + r.status);
+    return r.json();
+  }
+
   async function profil(anvandarId){
     const k = await klient();
     const { data, error } = await k.from('profiler')
@@ -163,6 +182,7 @@
   window.hardlistKonto = {
     klient: klient,
     session: session,
+    rpc: rpc,
     profil: profil,
     loggaIn: loggaIn,
     loggaUt: loggaUt,

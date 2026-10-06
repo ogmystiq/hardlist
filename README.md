@@ -6,7 +6,7 @@ inga sidofiler behövs.
 
 ```
 index.html      releaser + kalender med Norden-filter
-quiz.html       dagens fråga, poäng sparas lokalt i webbläsaren
+quiz.html       dagens fråga, rättas på servern, topplista med konto
 anthems.html    varje Defqon-anthem år för år
 404.html        egen felsida
 events.html     festivalguider med knappväljare, 10 event
@@ -20,9 +20,8 @@ data/kommande.json    fyller du i själv — handskrivna förhandssläpp, se ned
 scripts/hamta-releaser.mjs      hämtar från Spotify
 scripts/bygg-metadata.mjs       bygger allt härlett: SEED-kopior, JSON-LD,
                                 kalender.ics, releaser.xml, sitemap-datum
-data/quiz.json                  quizfrågor — lägg till fler här
-data/quiz-live.json             genereras — klientversionen utan facit
-data/ljud.json                  genereras — cache av ljudadresser
+scripts/quiz-lagg-till.mjs      lägger in quizfrågor i databasen från en fil
+scripts/quiz-exportera.mjs      kopia av frågebanken till ../hardlist-privat
 data/anthems.json               anthem-arkivet
 kalender.ics                    genereras — prenumererbar kalender
 releaser.xml                    genereras — RSS på releaserna
@@ -303,50 +302,25 @@ Pavarotti.
 Hittas ingen godkänd artist hoppas den över och loggas med `⚠ HOPPAR ÖVER`.
 Det är den enda raden i loggen som kräver åtgärd.
 
-## Musikfrågor i quizet
+## Quizet
 
-En fråga kan spela upp 30 sekunder musik istället för att ställa en textfråga.
-Lägg till den så här i `data/quiz.json`:
-
-```json
-{
-  "typ": "musik",
-  "sok": "Headhunterz Dragonborn",
-  "f": "Vilken låt är det här?",
-  "s": ["Dragonborn", "Scrap Attack", "The Sacrifice", "Rock Civilization"],
-  "r": 0,
-  "fk": "Headhunterz — Dragonborn."
-}
-```
+Frågebanken med svar ligger i databasen (Supabase), inte i repot — repot är
+publikt. Servern väljer dagens fråga, rättar svaren och räknar poäng och
+topplista. Hur man lägger till frågor och uppdaterar kopian av banken står i
+`CLAUDE.md` under **Quizet**.
 
 **Musikfrågor visas bara på fredagar.** Det är den globala släppdagen för ny
-musik, så det följer sajtens egen rytm. Övriga dagar kommer textfrågor. Finns
-inga ljudfrågor tillgängliga faller fredagen tillbaka på en textfråga.
-
-`sok` är söksträngen mot **Apples iTunes Search API**, som är gratis, kräver
-ingen inloggning och lämnar ut 30-sekunders förhandslyssningar lagligt. Skriptet
-slår upp den, sparar adressen i `data/ljud.json` och slår aldrig upp samma sträng
-igen.
-
-**Spotify går inte att använda för det här.** Fältet `preview_url` slutade
-fungera för nya appar i november 2024 och returnerar alltid null. Det finns
-lösningar som skrapar Spotifys embed-spelare, men de bryter mot villkoren.
-
-**Söksträngen skickas aldrig till webbläsaren.** Den skulle avslöja svaret.
-Byggskriptet skriver en separat `data/quiz-live.json` där `sok` är borttagen och
-ersatt av den färdiga ljudadressen. Adressen innehåller inget låtnamn.
-
-Hittas ingen förhandslyssning **utelämnas frågan helt** istället för att visas
-med en trasig spelare. Loggen skriver ut vilka som misslyckades — testa då en
-enklare söksträng, gärna bara artist och låttitel.
+musik, så det följer sajtens egen rytm. Ljudet är Apples 30-sekunders
+förhandslyssning från iTunes Search API. Spotifys `preview_url` returnerar
+alltid null sedan november 2024.
 
 ## Ladda aldrig upp de genererade filerna
 
 Dessa skapas av GitHub Actions och ligger med flit **inte** i zip-filerna:
 
 ```
-data/releases.json     data/artist-ids.json     data/ljud.json
-data/quiz-live.json    kalender.ics             releaser.xml
+data/releases.json     data/artist-ids.json
+kalender.ics           releaser.xml
 ```
 
 Laddar du upp en tom version raderas serverns riktiga innehåll. Det har hänt två
@@ -354,8 +328,8 @@ gånger: en gång försvann 22 ljudadresser till quizet, en gång tömdes hela
 releaselistan. Skripten har numera spärrar mot att skriva över större data med
 mindre, men den säkraste regeln är att inte röra filerna alls.
 
-**Du redigerar bara tre filer för hand:** `data/events.json`, `data/quiz.json`
-och `data/anthems.json`.
+**Du redigerar bara tre filer för hand:** `data/events.json`,
+`data/anthems.json` och `data/kommande.json`.
 
 ## Filer som genereras automatiskt
 
@@ -366,9 +340,7 @@ för hand** — ändringarna skrivs över nästa natt.
 |---|---|---|
 | `kalender.ics` | `data/events.json` | Prenumererbar kalender. Folk lägger in den en gång i Google eller Apple Kalender och får nya event automatiskt. Bara event med bekräftat datum. |
 | `releaser.xml` | `data/releases.json` | RSS-flöde med de 50 senaste släppen. |
-| `data/quiz-live.json` | `data/quiz.json` | Quizet som webbläsaren läser, utan söksträngar. |
-| `data/ljud.json` | iTunes Search API | Cache av ljudadresser. Slås bara upp en gång per låt. |
-| `SEED_EVENTS` / `SEED_QUIZ` / `SEED_ANTHEMS` | respektive JSON | Reservdata när sidan öppnas utan server. |
+| `SEED_EVENTS` / `SEED_ANTHEMS` | respektive JSON | Reservdata när sidan öppnas utan server. |
 | JSON-LD i `index.html` | `data/events.json` | Strukturerad data för Google. |
 
 Flerdagarsevent: sätt `dateEnd` till sista dagen i `data/events.json`, så blir

@@ -3,17 +3,17 @@ Filerna nedan skapas av GitHub Actions och ska ALDRIG laddas upp för hand:
   data/releases.json     Spotify-hämtningen
   data/artist-ids.json   cache av artist-ID
   data/streckkoder.json  Deezer-fynd som Spotify redan prövat
-  data/ljud.json         cache av ljudadresser till quizet
-  data/quiz-live.json    quizet som webbläsaren läser
-  data/latspel.json      låtspelets låtar, byggs ur data/quiz.json
+  data/latspel.json      låtspelets låtar, står still tills låtspelet byggts om
   kalender.ics           prenumererbar kalender
   releaser.xml           RSS-flödet
 
 De ligger med flit inte i zip-filerna. Laddar du upp en tom version raderas
-serverns riktiga innehåll, och quizets ljud försvinner tills nästa körning.
+serverns riktiga innehåll.
 
 Det du redigerar för hand är bara dessa tre:
 
   data/events.json
-  data/quiz.json
   data/anthems.json
+  data/kommande.json
+
+Quizfrågorna ligger i databasen och aldrig i repot. Se CLAUDE.md, Quizet.

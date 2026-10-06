@@ -38,7 +38,7 @@ CNAME                   →  RADERA ALDRIG. Utan den slutar domänen fungera.
 ```
 
 Alla länkar och alla `fetch()` måste vara **absoluta** (`/events/`,
-`/data/quiz-live.json`). Relativa sökvägar bryts eftersom sidorna ligger i
+`/data/releases.json`). Relativa sökvägar bryts eftersom sidorna ligger i
 undermappar.
 
 ---
@@ -48,7 +48,8 @@ undermappar.
 `style.css` är **bara en referenskopia**. Sidorna använder ett `<style>`-block
 högst upp i filen.
 
-Ändrar du CSS: redigera `style.css`, och inlina sedan om i **alla åtta** sidorna.
+Ändrar du CSS: redigera `style.css`, och inlina sedan om i **alla tio** sidorna
+(de åtta ovan plus `konto/` och `integritet/`).
 Glömmer du en sida ser den annorlunda ut än resten — det har hänt, och det syns
 direkt på headern.
 
@@ -58,14 +59,15 @@ Kontrollera alltid att klammerparenteserna balanserar efteråt.
 
 ## Filer du får redigera för hand
 
-Exakt fyra:
+Exakt tre:
 
 ```
 data/events.json     kalender och bevakningslista
-data/quiz.json       quizfrågor
 data/anthems.json    anthem-arkivet
 data/kommande.json   kommande släpp, pre-save-länkar
 ```
+
+Quizfrågorna ligger i databasen, inte i repot. Se **Quizet** nedan.
 
 `data/kommande.json` går inte att bygga automatiskt. Spotify har ingen
 endpoint för osläppt material — allt skriptet kan hämta är redan utgivet.
@@ -75,9 +77,8 @@ förblir handskriven.
 ## Filer du ALDRIG får skriva eller ladda upp
 
 ```
-data/releases.json      data/artist-ids.json     data/ljud.json
-data/quiz-live.json     kalender.ics             releaser.xml
-data/streckkoder.json   data/latspel.json
+data/releases.json      data/artist-ids.json     kalender.ics
+releaser.xml            data/streckkoder.json    data/latspel.json
 ```
 
 De byggs av GitHub Actions. Skriver du en tom eller ofullständig version
@@ -87,8 +88,8 @@ raderas serverns riktiga innehåll.
 gången 47 ljudadresser till quizet. Skripten har numera spärrar som vägrar
 skriva över större data med mindre, men rör dem inte alls.
 
-Samma sak gäller `SEED_QUIZ` i `quiz/index.html`, `SEED_LATSPEL` i
-`latspel/index.html` och `SEED_EVENTS` i `index.html`. De är reservkopior som byggskriptet fyller. Kör du bygget utan
+Samma sak gäller `SEED_LATSPEL` i `latspel/index.html` och
+`SEED_EVENTS` i `index.html`. De är reservkopior som byggskriptet fyller. Kör du bygget utan
 nätverk skrivs de tomma.
 
 ---
@@ -185,41 +186,121 @@ Höj bara versionen när matchningslogiken verkligen ändrats.
 
 ## Quizet
 
-En fråga per dygn, samma för alla, vald utifrån datumet. Poängen sparas i
-`localStorage` och kan bara öka. Fel svar ger noll poäng men bryter sviten.
+En fråga per dygn, samma för alla. **Allt avgörs på servern** (Supabase):
+vilken fråga som gäller, rättningen, poängen och topplistan. Sidan får dagens
+fråga och alternativen, aldrig vilket som är rätt — facit kommer först efter
+svar. Fram till oktober 2026 låg alla svar öppet i `data/quiz-live.json` och
+`SEED_QUIZ`. Lägg aldrig tillbaka svar i något som sajten publicerar.
+
+- **Dygnsgräns** vid midnatt svensk tid. Servern väljer dagens fråga slumpvis
+  första gången någon frågar efter den och sparar valet i `quiz.dagar`, med
+  alternativen blandade. Minst använda frågan väljs först, så ingen upprepas
+  förrän potten är slut. Textfrågor och låtfrågor är skilda pottar.
+- **Utan konto:** servern rättar och visar facit men sparar ingenting. Inga
+  poäng, ingen svit, ingen rang — varken på servern eller i webbläsaren.
+  `localStorage` minns bara dagens svar (`hardlist_quiz_svar`) så att facit
+  står kvar vid omladdning. Överst visas en knapp för att logga in. Gamla
+  poäng i `hardlist_quiz_v1` raderas när sidan laddas.
+- **Med konto:** ett svar per konto och dygn. 30 sekunder från första gången
+  kontot hämtade frågan — sidan hämtar den först när man trycker på "Visa
+  dagens fråga", så att bara titta på topplistan inte bränner dagen. För sent
+  eller inget svar räknas som fel.
+- **Poäng:** 10 + min(svit − 1, 10) × 2 för rätt svar. Fel svar ger noll och
+  bryter sviten, en missad dag också. Rangskalan finns bara i `quiz.rang` i
+  databasen.
+- **Topplistan** (`quiz_topplista`) lämnar bara ut visningsnamn, poäng och
+  rang. Totalt och innevarande månad, topp 50.
+- Allt om ett konto raderas med kontot (`on delete cascade`).
+
+Tabellerna ligger i schemat `quiz`, som API:t inte exponerar. Sajten når dem
+bara genom `quiz_dagens`, `quiz_svara` och `quiz_topplista`. Lägg aldrig till
+`quiz` i `[api] schemas` i `supabase/config.toml`.
+
+**Frågebanken finns inte i repot.** Repot är publikt — allt som committas går
+att läsa för vem som helst, också i historiken.
+
+### Lägga till frågor
+
+1. Skriv frågorna i en fil **utanför repot**, till exempel
+   `C:\Users\jonte\hardlist-privat\nya.json`. Samma format som förut:
+
+   ```json
+   { "fragor": [
+     { "f": "Frågan?", "s": ["Rätt svar", "Fel", "Fel", "Fel"], "r": 0,
+       "fk": "Förklaringen som visas efter svar." },
+     { "typ": "musik", "artist": "Artistnamn", "titel": "Låttitel",
+       "itunesId": 123456789, "f": "Vilken låt är det här?",
+       "s": ["Låttitel", "Annan låt", "Tredje låt", "Fjärde låt"],
+       "r": 0, "fk": "Artistnamn — Låttitel." }
+   ] }
+   ```
+
+   `r` är numret på rätt alternativ räknat från 0. Ordningen spelar ingen
+   roll, servern blandar varje dag.
+2. Prova först: `node scripts/quiz-lagg-till.mjs C:\Users\jonte\hardlist-privat\nya.json --torrkorning`
+3. Skicka in: samma kommando utan `--torrkorning`. Kopian uppdateras
+   automatiskt efteråt.
+
+Skriptet går via `npx supabase db query --linked`, så det kräver att du är
+inloggad i Supabase-CLI:t (`npx supabase login`). Ingen hemlig nyckel behövs.
+
+Samma fråga med samma rätta svar och titel läggs inte in två gånger — den
+uppdateras i stället. Vill du ändra en befintlig fråga: kopiera den ur kopian
+med sitt `id`, ändra, och skicka in. Ta en fråga ur rotation med
+`"aktiv": false` — radera aldrig, gamla dagar pekar på den.
+
+### Kopian av banken
+
+`C:\Users\jonte\hardlist-privat\quiz-bank.json` är en kopia av hela banken,
+med svar, ljud och vilka datum varje fråga använts. Uppdateras av
+`quiz-lagg-till.mjs`, eller för sig:
+
+`node scripts/quiz-exportera.mjs`
+
+Kör den efter ändringar som gjorts direkt i databasen. Mappen får aldrig
+flyttas in i repot.
+
+### Låtfrågor
 
 **Låtquiz på fredagar.** Musikfrågor spelar 30 sekunder från **Apples iTunes
 Search API** — gratis, ingen inloggning, lagligt. Spotify går inte att använda
-eftersom `preview_url` är död.
-
-Söksträngen i `data/quiz.json` skickas **aldrig** till webbläsaren, den skulle
-avslöja svaret. Byggskriptet skriver `data/quiz-live.json` utan den.
-
-Söksträngar ska vara **bara artist och titel**. Lägger du till genrenamn hittar
-iTunes ingenting — "Showtek FTS hardstyle" misslyckades, "Showtek FTS" fungerade.
+eftersom `preview_url` är död. Ljudadressen hämtas en gång när frågan läggs
+in och sparas i databasen. Ingenting slås upp när frågan ställs.
 
 **Fast iTunes-ID vinner över söksträngen.** Sökningens första träff kan byta
 låt när Apple ändrar rankningen — så spelade quizet en gång Upchurch i stället
 för Miss K8. Därför har varje låtfråga fältet `itunesId`:
 
-- `"itunesId": 1234567` — bygget hämtar ljudet med lookup på just den inspelningen.
+- `"itunesId": 1234567` — ljudet hämtas med lookup på just den inspelningen.
 - `"itunesId": null` — ingen säker inspelning finns. Frågan får inget ljud och
   visas aldrig, hellre det än fel låt på en fredag.
-- fältet saknas — bygget söker på `sok` som förut. Bara för nya frågor tills
-  rätt ID är framletat.
+- fältet saknas — skriptet söker på `sok`. Bara för nya frågor tills rätt ID
+  är framletat.
+
+Söksträngar ska vara **bara artist och titel**. Lägger du till genrenamn hittar
+iTunes ingenting — "Showtek FTS hardstyle" misslyckades, "Showtek FTS" fungerade.
 
 Ett ID godkänns bara när `artistName` innehåller frågans artist och `trackName`
-är titeln — ingen remix, ingen annan version. `"latspel": false` håller en låt
-utanför låtspelet.
+är titeln — ingen remix, ingen annan version. Skriptet kontrollerar det och
+lämnar frågan utan ljud om det inte stämmer.
 
-`EXTRA_LATDAGAR` i `quiz/index.html` tvingar låtquiz på angivna datum. Används
-för test. Passerade datum gör ingenting.
+**Extra låtdagar för test:** lägg in datumet i `quiz.extra_latdagar` innan
+någon hämtat dagens fråga — sedan står frågan fast:
+`npx supabase db query --linked "insert into quiz.extra_latdagar values ('2026-10-09')"`
 
 **Ljud och volym:** använd aldrig Web Audio för att styra volymen. Det kräver
 CORS på ljudfilen, och misslyckas det blir det helt tyst i stället för dämpat —
 ett svårare problem än det skulle lösa. Testa i stället om `audio.volume` biter
 (iOS ignorerar den) och visa texten "Volym styrs med knapparna på telefonen" när
 den inte gör det.
+
+### Låtspelet
+
+Låtspelets lista (`data/latspel.json`, `SEED_LATSPEL`) byggdes ur den gamla
+`data/quiz.json` och byggs inte längre — den står still tills låtspelet
+byggts om. Den kopplar ljudadress till artist och titel, så en fredagsfråga
+vars låt finns i listan går att slå upp. Nya låtfrågor ska därför inte läggas
+till i låtspelets lista förrän deras fredag har passerat.
 
 ---
 
@@ -264,7 +345,7 @@ säga "många" än att hitta på en procentsats.
 
 ## Innan du säger att något är klart
 
-- Alla åtta HTML-filer: balanserade taggar, ett `<style>`-block, giltig JS
+- Alla tio HTML-filer: balanserade taggar, ett `<style>`-block, giltig JS
 - Alla `getElementById`-mål finns i markup
 - Inga dubbletter av id
 - JSON-filerna parsar

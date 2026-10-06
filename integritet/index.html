@@ -643,6 +643,93 @@ footer{
   font-family:var(--data);font-size:10px;letter-spacing:.08em;color:#463C5E;
   margin-top:26px;line-height:1.8;
 }
+.q-integritet a{color:var(--muted)}
+
+/* Utloggad: inga poäng att visa, bara vägen till kontot. */
+.q-uppmaning{
+  display:flex;align-items:center;justify-content:space-between;gap:14px 20px;flex-wrap:wrap;
+  border:1px solid var(--line);border-left:2px solid var(--raw);background:var(--surface);
+  padding:16px 18px;margin-bottom:34px;
+}
+.q-uppmaning p{color:#CFC5E0;font-size:15px;margin:0;max-width:46ch}
+.q-uppmaning p b{color:var(--bone)}
+.q-uppmaning .l-knapp{text-align:center;padding:10px 18px;line-height:1.5}
+
+/* Inloggad: frågan visas först när man trycker, eftersom tiden räknas därifrån. */
+.q-regel{color:#CFC5E0;font-size:15px;margin:0 0 20px;max-width:60ch}
+.q-regel b{color:var(--bone)}
+.q-start{
+  display:inline-flex;align-items:center;justify-content:center;min-height:48px;
+  background:rgba(255,46,99,.08);border:1px solid var(--raw);color:var(--raw);cursor:pointer;
+  font-family:var(--data);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  padding:0 22px;border-radius:2px;transition:background .18s,transform .18s;
+}
+.q-start:hover:not(:disabled){background:rgba(255,46,99,.16);transform:translateY(-1px)}
+.q-start:disabled{opacity:.6;cursor:default}
+
+.q-klocka{
+  position:relative;height:26px;margin:-8px 0 18px;
+  border:1px solid var(--line);background:var(--ink);overflow:hidden;
+}
+.q-klocka i{
+  position:absolute;left:0;top:0;bottom:0;width:100%;
+  background:rgba(53,214,232,.16);border-right:2px solid var(--euphoric);
+  transition:width .2s linear;
+}
+.q-klocka span{
+  position:relative;display:block;line-height:24px;padding:0 10px;
+  font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone);
+}
+.q-klocka.snart i{background:rgba(255,46,99,.18);border-right-color:var(--raw)}
+.q-felrad{font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--raw);margin:10px 0 0}
+.q-felrad:empty{display:none}
+
+/* ---------- topplistan ---------- */
+.q-lista{margin-top:34px;border:1px solid var(--line);background:var(--surface)}
+.q-lista-topp{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:16px 18px;border-bottom:1px solid var(--line);
+}
+.q-lista-topp h2{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:24px;line-height:1;color:var(--bone);margin:0;
+}
+.q-flikar{display:flex;border:1px solid var(--line)}
+.q-flikar button{
+  min-height:44px;padding:0 14px;background:none;border:0;cursor:pointer;color:var(--muted);
+  font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+}
+.q-flikar button + button{border-left:1px solid var(--line)}
+.q-flikar button[aria-selected="true"]{background:var(--ink);color:var(--bone)}
+.q-rader{list-style:none;margin:0;padding:0}
+.q-rader li{
+  display:grid;grid-template-columns:34px minmax(0,1fr) auto 56px;align-items:center;gap:10px;
+  padding:11px 18px;border-bottom:1px solid var(--line);font-size:15px;color:var(--bone);
+}
+.q-rader li:last-child{border-bottom:0}
+.q-rader .plats{font-family:var(--data);font-size:11px;color:#5C5175}
+.q-rader .namn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.q-rader .rang{font-family:var(--data);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--raw)}
+.q-rader .poang{font-family:var(--display);font-weight:900;font-size:18px;text-align:right}
+.q-rader li.jag{background:rgba(53,214,232,.06)}
+.q-rader li.jag .namn{color:var(--euphoric)}
+.q-rader li.q-tom{display:block;color:var(--muted);font-size:14px}
+.q-jag{
+  font-family:var(--data);font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.7;
+}
+.q-jag:not(:empty){border-top:1px solid var(--line);padding:13px 18px}
+.q-jag:has(.q-rader){padding:13px 0 0}
+.q-jag .l-knapp{display:flex;width:max-content;margin-top:10px}
+.q-jag-etikett{
+  display:block;padding:0 18px 6px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5C5175;
+}
+@media (max-width:640px){
+  .q-lista-topp{padding:14px}
+  .q-rader li{grid-template-columns:28px minmax(0,1fr) auto 48px;gap:8px;padding:11px 14px}
+  .q-jag:not(:empty){padding:12px 14px}
+  .q-jag:has(.q-rader){padding:12px 0 0}
+  .q-jag-etikett{padding:0 14px 6px}
+}
 
 @media (max-width:640px){
   .q-kort{padding:20px}
@@ -916,7 +1003,8 @@ footer{
       <p>Det mesta av sajten kräver inget konto. Utan att logga in sparas ingenting om dig på någon server.</p>
       <ul>
         <li><strong>Besöksräkning.</strong> GoatCounter räknar sidvisningar utan cookies och utan att känna igen dig mellan besöken. Det ger mig siffror på hur många som läser vad, inte vem.</li>
-        <li><strong>Quizpoäng och låtspel.</strong> Ligger i din egen webbläsare (localStorage) och skickas ingenstans.</li>
+        <li><strong>Quizet.</strong> Dagens fråga hämtas från servern, och ditt svar skickas dit för att rättas. Servern rättar svaret men sparar det inte. Utan konto räknas inga poäng, ingen svit och ingen rang. Din webbläsare minns bara dagens svar (localStorage), så att facit står kvar om du laddar om sidan.</li>
+        <li><strong>Låtspelet.</strong> Ligger helt i din egen webbläsare (localStorage) och skickas ingenstans.</li>
       </ul>
 
       <h2>Med konto</h2>
@@ -927,11 +1015,19 @@ footer{
         <li><strong>Din mejladress hos Google.</strong> Kommer från Google vid inloggningen.</li>
         <li><strong>Ditt Google-id.</strong> Ett nummer som Google ger ditt konto. Behövs för att känna igen dig nästa gång.</li>
         <li><strong>Ditt namn och din profilbild hos Google.</strong> Google skickar med dem och inloggningstjänsten sparar dem automatiskt. Hardlist använder dem inte och visar dem aldrig.</li>
-        <li><strong>Visningsnamnet du väljer.</strong> Syns för alla, i topplistor. Det är det enda om dig som andra kan se.</li>
+        <li><strong>Visningsnamnet du väljer.</strong> Syns för alla i topplistan, tillsammans med dina quizpoäng och din rang. Inget annat om dig kan andra se.</li>
         <li><strong>När kontot skapades och när du senast loggade in.</strong></li>
         <li><strong>IP-adress och webbläsartyp</strong> för dina inloggningar. Används för att hålla inloggningen säker.</li>
-        <li><strong>Senare: spelresultat.</strong> När quizet och låtspelet kopplas till kontot sparas dina resultat där. Den här sidan uppdateras innan det sker.</li>
       </ul>
+
+      <h3>Quizet med konto</h3>
+      <ul>
+        <li><strong>När du öppnade dagens fråga.</strong> De 30 sekunderna räknas därifrån.</li>
+        <li><strong>Ditt svar för varje dag.</strong> Datum, vilken fråga, vilket alternativ du valde eller att tiden gick ut, om det var rätt, hur många poäng det gav och när du svarade.</li>
+        <li><strong>Dina siffror.</strong> Totalpoäng, svit, längsta svit, antal svar och antal rätt.</li>
+        <li><strong>Topplistan</strong> räknas fram ur poängen. Den visar visningsnamn, poäng och rang för konton som tagit poäng — aldrig mejladress eller något annat.</li>
+      </ul>
+      <p>Låtspelet är inte kopplat till kontot. Det ligger fortfarande bara i din webbläsare.</p>
 
       <h3>Varför</h3>
       <p>För att du ska kunna ha ett namn i topplistorna och få med dig dina resultat mellan enheter. Uppgifterna används inte till något annat. Hardlist säljer inga uppgifter, visar inga annonser och delar ingenting med annonsörer.</p>
@@ -941,7 +1037,7 @@ footer{
       <p>Inloggningen sparas i din webbläsares lokala lagring (localStorage) på hardlist.se, inte i cookies. Google sätter egna cookies på google.com när du loggar in där — de styrs av Google, inte av mig.</p>
 
       <h3>Hur länge</h3>
-      <p>Så länge kontot finns. Raderar du kontot tas allt bort direkt — inloggningen, visningsnamnet och allt annat som hör till kontot.</p>
+      <p>Så länge kontot finns. Raderar du kontot tas allt bort direkt — inloggningen, visningsnamnet, dina quizsvar och poäng, och allt annat som hör till kontot. Du försvinner ur topplistan samtidigt.</p>
 
       <h2>Radera ditt konto</h2>
       <p>Två sätt:</p>
