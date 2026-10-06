@@ -111,7 +111,7 @@
     "namn": "Decibel Outdoor",
     "ort": "Hilvarenbeek, NL · The Loudest City on Earth",
     "intro": "Decibel bokar bredare än de flesta, och det syns på anthemen. Här har allt från euphoric till rå raw fått bära året.",
-    "not": "Ofullständig lista. Åren 2013–2015, 2019–2021 och titeln på 2026 års anthem saknas — hittar du dem, hör av dig så läggs de in.",
+    "not": "Ofullständig lista. Åren 2014–2015, 2019–2021 och titeln på 2026 års anthem saknas — hittar du dem, hör av dig så läggs de in.",
     "ar": [
       [
         "2025",
@@ -149,9 +149,117 @@
         "Ran-D"
       ],
       [
+        "2013",
+        "Craving for the Beat",
+        "Noisecontrollers"
+      ],
+      [
         "2012",
         "D.E.C.I.B.E.L.",
         "Zatox"
+      ]
+    ]
+  },
+  "qlimax": {
+    "namn": "Qlimax",
+    "ort": "Arnhem, NL · 2000–2024",
+    "intro": "Q-dance:s inomhusevent i GelreDome, med en enda scen och anthemshowen som årets höjdpunkt. Sista upplagan hölls i november 2024.",
+    "not": "2000–2002 hade inget anthem, och Future Tribes Deadlock 2004 räknas som inofficiellt. 2003 hade två upplagor: The Prophet – Follow the Leader i april och Deepack – The Prophecy i november. 2020 ersattes eventet av filmen Qlimax: The Source. The Reawakening var tänkt för 2021, men eventet ställdes in och anthemet fick vänta till 2022. Sista upplagan 2024 hade inget eget anthem.",
+    "ar": [
+      [
+        "2023",
+        "Enter the Void",
+        "Hard Driver"
+      ],
+      [
+        "2022",
+        "The Reawakening",
+        "Ran-D ft. Charlotte Wessels"
+      ],
+      [
+        "2019",
+        "Symphony of Shadows",
+        "B-Front"
+      ],
+      [
+        "2018",
+        "The Game Changer",
+        "Sub Zero Project"
+      ],
+      [
+        "2017",
+        "Temple of Light",
+        "Wildstylez"
+      ],
+      [
+        "2016",
+        "Rise of the Celestials",
+        "Coone"
+      ],
+      [
+        "2015",
+        "Equilibrium",
+        "Atmozfears"
+      ],
+      [
+        "2014",
+        "The Source Code of Creation",
+        "Noisecontrollers"
+      ],
+      [
+        "2013",
+        "Immortal Essence",
+        "Gunz For Hire ft. Ruffian"
+      ],
+      [
+        "2012",
+        "Fate or Fortune",
+        "Psyko Punkz"
+      ],
+      [
+        "2011",
+        "No Way Back",
+        "Zatox"
+      ],
+      [
+        "2010",
+        "Alternate Reality",
+        "Brennan Heart"
+      ],
+      [
+        "2009",
+        "The Nature of Our Mind",
+        "D-Block & S-te-Fan"
+      ],
+      [
+        "2008",
+        "Next Dimensional World",
+        "Technoboy"
+      ],
+      [
+        "2007",
+        "The Power of the Mind",
+        "Headhunterz"
+      ],
+      [
+        "2006",
+        "The Darkside",
+        "Alpha Twins"
+      ],
+      [
+        "2005",
+        "Science & Religion",
+        "Zany"
+      ],
+      [
+        "2004",
+        "Deadlock",
+        "Future Tribes"
+      ],
+      [
+        "2003",
+        "The Prophecy",
+        "Deepack"
       ]
     ]
   }
