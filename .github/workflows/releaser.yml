@@ -11,7 +11,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15          # skriptet har egen 8-minutersbudget under detta
+    timeout-minutes: 25          # skriptet har egen 21-minutersbudget (TIDSBUDGET) under detta, varav Deezer högst 10
     steps:
       - uses: actions/checkout@v4
 
@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Hämta från Spotify
+      - name: Hämta från Deezer och Spotify
         env:
           SPOTIFY_ID: ${{ secrets.SPOTIFY_ID }}
           SPOTIFY_SECRET: ${{ secrets.SPOTIFY_SECRET }}

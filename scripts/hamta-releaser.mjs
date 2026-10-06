@@ -23,11 +23,28 @@
  *                                  Därför två separata frågor med varsin
  *                                  include_groups, se huvudrotationen och
  *                                  albumrotationen nedan.
+ *   GET /search?type=album&q=upc:  bekräftar Deezer-radarns fynd, se nedan
+ *
+ * Ordning i varje körning:
+ *   1. Deezer-radar över hela listan (scripts/deezer-radar.mjs). Gratis och
+ *      utan dygnskvot, så nya släpp syns dagen de kommer i stället för när
+ *      rotationen råkar nå artisten.
+ *   2. Spotify bekräftar varje nytt fynd via skivans UPC. Bara en skiva där
+ *      någon av våra Spotify-artister står med godkänns — Deezer kan blanda
+ *      ihop artister med samma namn, Spotify-ID:t kan inte det.
+ *   3. Singel- och albumrotationen som tidigare, med kvoten som är kvar. Den
+ *      fångar samarbeten som ligger under någon annans namn på Deezer.
+ *
+ * Torrkörning:  node scripts/hamta-releaser.mjs --torrkorning
+ *   Kör steg 1 och 2, skriver ingenting och kör inte rotationen.
+ *               node scripts/hamta-releaser.mjs --bara-deezer
+ *   Bara steg 1, utan ett enda Spotify-anrop. För dagar när kvoten är slut.
  */
 
 import { writeFile, readFile, mkdir } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { deezerRadar, normNamn, normTitel } from './deezer-radar.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -448,7 +465,17 @@ const ALBUM_ANROP_PER_KORNING = 20;
    kontrollen vilande. Den vaknar av sig själv om fältet återkommer. */
 const MIN_FOLJARE  = 2000;
 const MAX_VANTAN   = 600;   /* längsta enskilda väntan vi accepterar, sekunder */
-const TIDSBUDGET   = 780;   /* hela körningen, sekunder. 120s marginal under jobbets timeout-minutes (15 min = 900s). */
+/* Hela körningen inklusive Deezer-radarn, sekunder. 240s marginal under jobbets
+   timeout-minutes (25 min = 1500s), så att status och releaser hinner skrivas
+   och committas även när Spotify bromsar i slutet. */
+const TIDSBUDGET   = 1260;
+/* Radarn tar runt fem minuter. Taket hindrar ett segt Deezer från att äta
+   tiden rotationen behöver — det radarn missar tar rotationen ändå. */
+const DEEZER_BUDGET = 600;
+/* Högst så många Spotify-anrop går till bekräftelser per körning. Normalt
+   räcker en handfull, men första körningen och dagar efter ett avbrott kan
+   ha många fynd i kö. Resten prövas nästa dag, rotationen får sin del. */
+const BEKRAFTA_TAK = 60;
 const PAUS         = 300;
 
 /* Manuell BPM för enskilda spår: "Artist – Titel": BPM */
@@ -469,6 +496,15 @@ if (!ID || !SECRET) {
 const STATE_FIL  = resolve(ROOT, 'data/artist-ids.json');
 const REL_FIL    = resolve(ROOT, 'data/releases.json');
 const STATUS_FIL = resolve(ROOT, 'data/status.json');
+/* Varje Deezer-fynd som Spotify prövat, godkänt eller avvisat, nycklat på
+   UPC. Utan den skulle samma avvisade skiva kosta ett anrop varje morgon i
+   upp till trettio dagar. */
+const UPC_FIL    = resolve(ROOT, 'data/streckkoder.json');
+
+/* --bara-deezer finns för dagar när Spotify bromsar: radarn kostar ingen
+   kvot, och fynden visar vad bekräftelsen skulle kosta innan den körs. */
+const BARA_DEEZER = process.argv.includes('--bara-deezer');
+const TORR = BARA_DEEZER || process.argv.includes('--torrkorning');
 
 /* Höjs när cachen måste kastas.
    1 → sparade felmatchningar (Killshot → Eminem, Malice → GACKT)
@@ -494,6 +530,9 @@ async function lasJson(fil, fallback) {
 }
 
 async function skrivJson(fil, data) {
+  /* Andra skyddet utöver return-satsen i run(). En torrkörning som skriver
+     ofullständig data är exakt det som raderat releaselistan förut. */
+  if (TORR) throw new Error(`Torrkörning försökte skriva ${fil} — avbryter.`);
   await mkdir(resolve(ROOT, 'data'), { recursive: true });
   await writeFile(fil, JSON.stringify(data, null, 2) + '\n', 'utf8');
 }
@@ -704,6 +743,92 @@ function samlaIn(items, name, genre, typ, dagarBakat, alla) {
   return nya;
 }
 
+/* --- Deezer-fynd bekräftade av Spotify ------------------------------------ */
+
+/* Lokalt datum, samma tidszon som relevant() räknar i. */
+function idag(dagarSedan = 0) {
+  const d = new Date();
+  d.setDate(d.getDate() - dagarSedan);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/* Exakt samma uppslag som hittaId(), men utan att söka: fastnaglat vinner
+   över cachen. Cachen kan innehålla namn som strukits ur listan (t.ex.
+   "Sovereign" före omdöpningen), därför byggs kartorna från ARTISTS och inte
+   från cachen. */
+function kandaIds() {
+  const perId = new Map();     // Spotify-ID → artistpost
+  const perNamn = new Map();   // namn i listan → Spotify-ID
+  for (const a of ARTISTS) {
+    const id = a.id || state.ids[a.name];
+    if (!id) continue;
+    perNamn.set(a.name, id);
+    if (!perId.has(id)) perId.set(id, a);
+  }
+  return { perId, perNamn };
+}
+
+/* Spotify skriver samarbeten som "A × B", Deezer listar namnen separat.
+   Titel plus minst ett gemensamt artistnamn räcker för att det ska vara samma. */
+function finnsRedan(r, alla) {
+  const nt = normTitel(r.titel);
+  const namn = new Set([...r.artister, ...r.fran].map(normNamn));
+  for (const x of alla.values()) {
+    if (normTitel(x.title) === nt && x.artist.split(' × ').some(n => namn.has(normNamn(n)))) return true;
+  }
+  return false;
+}
+
+const artistLista = album => (album.artists || []).map(a => `${a.name} (${a.id})`).join(', ');
+
+/* Returnerar { utfall: 'godkand' | 'avvisad' | 'vantar', skal, album, post }.
+   'vantar' sparas inte — släppet prövas igen nästa morgon. Det används när
+   svaret kan bli ett annat i morgon, aldrig när skivan bevisligen är fel. */
+async function bekrafta(r, { perId, perNamn }, token) {
+  const varArtist = album => (album.artists || []).map(a => perId.get(a.id)).find(Boolean);
+  const saknarId = r.fran.filter(n => !perNamn.has(n));
+
+  const sok = await api(`/search?q=upc:${r.upc}&type=album&limit=5`, token);
+  const traffar = (sok.albums?.items || []).filter(Boolean);
+
+  if (traffar.length) {
+    for (const album of traffar) {
+      const post = varArtist(album);
+      if (post) return { utfall: 'godkand', skal: 'UPC-träff', album, post };
+    }
+    /* Skivan finns, men ingen av våra artister står på den. Saknas ID för
+       någon av artisterna Deezer hittade den under kan det vara rätt skiva
+       ändå — rotationen cachar ID:t inom ett par dygn. */
+    if (saknarId.length) {
+      return { utfall: 'vantar', skal: `UPC-träff, men Spotify-ID saknas ännu för ${saknarId.join(', ')}` };
+    }
+    return { utfall: 'avvisad', skal: `UPC-träff med fel artist: ${traffar.map(artistLista).join(' | ')}` };
+  }
+
+  /* Ingen UPC-träff. Spotify hittar inte alla streckkoder (Murdas
+     12-siffriga gav inget, inte heller med en nolla framför), så ett
+     anrop till artistens egen diskografi får avgöra. */
+  const egen = r.fran.find(n => perNamn.has(n));
+  if (!egen) {
+    return { utfall: 'vantar', skal: `ingen UPC-träff, och Spotify-ID saknas ännu för ${r.fran.join(', ')}` };
+  }
+  const sida = await api(
+    `/artists/${perNamn.get(egen)}/albums?include_groups=${r.typ}&market=SE&limit=10`,
+    token
+  );
+  const nt = normTitel(r.titel);
+  const album = (sida.items || []).find(a => normTitel(a.name) === nt && varArtist(a));
+  if (album) return { utfall: 'godkand', skal: `ingen UPC-träff, titeln finns hos ${egen}`, album, post: varArtist(album) };
+
+  /* Spotify saknar skivan helt. Det är inget säkert besked förrän släppet
+     hunnit in i sökindexet, vilket kan ta ett dygn. Bara fel artist på en
+     skiva Spotify faktiskt har räcker för att avvisa direkt. */
+  if (r.datum >= idag(1)) {
+    return { utfall: 'vantar', skal: `ingen UPC-träff och titeln saknas hos ${egen} — högst ett dygn gammalt, prövas igen` };
+  }
+  return { utfall: 'avvisad', skal: `ingen UPC-träff, och titeln saknas bland ${egen}s senaste på Spotify` };
+}
+
 async function run() {
   state = await lasJson(STATE_FIL, { version: CACHE_VERSION, ids: {}, nextIndex: 0, albumIndex: 0 });
 
@@ -728,18 +853,135 @@ async function run() {
       .map(r => [nyckel(r), r])
   );
 
-  const token = await getToken();
+  let stopp = null;
+
+  /* --- Deezer-radar --------------------------------------------------------- */
+  console.log(`Deezer-radar över ${ARTISTS.length} artister...`);
+  const radar = await deezerRadar({
+    artister: ARTISTS, relevant,
+    dagarBakat: DAGAR_BAKAT, dagarBakatAlbum: DAGAR_BAKAT_ALBUM,
+    budgetSek: DEEZER_BUDGET
+  });
+  console.log(`Deezer: ${radar.releaser.length} släpp med UPC inom fönstret, ` +
+              `${radar.anrop} anrop, ${radar.sekunder}s.` +
+              (radar.avbrott ? `\n${radar.avbrott}` : ''));
+
+  /* Prövade streckkoder rensas när släppet är äldre än det längsta fönstret.
+     Radarn tittar aldrig längre bak än så, så posten kan aldrig behövas igen. */
+  const streckkoder = await lasJson(UPC_FIL, { godkanda: {}, avvisade: {} });
+  for (const grupp of [streckkoder.godkanda, streckkoder.avvisade]) {
+    for (const [upc, p] of Object.entries(grupp)) {
+      if (!relevant(p.datum, DAGAR_BAKAT_ALBUM)) delete grupp[upc];
+    }
+  }
+
+  /* Framtida datum hoppas över utan att sparas: släppet prövas igen när
+     dagen kommit, och Spotify har sällan skivan i sökindexet innan dess. */
+  const dag = idag();
+  const provade = upc => streckkoder.godkanda[upc] || streckkoder.avvisade[upc];
+  const kandidater = radar.releaser
+    .filter(r => r.datum <= dag && !provade(r.upc) && !finnsRedan(r, alla))
+    .sort((a, b) => (a.datum < b.datum ? 1 : -1));
+  const framtida = radar.releaser.filter(r => r.datum > dag).length;
+
+  const token = BARA_DEEZER ? null : await getToken();
+  const ids = kandaIds();
+  const godkanda = [], avvisade = [], vantar = [];
+  let bekraftaAnrop = 0, ejHunna = 0;
+
+  for (const r of kandidater) {
+    if (BARA_DEEZER || stopp || anrop >= BEKRAFTA_TAK) { ejHunna++; continue; }
+    const fore = anrop;
+    try {
+      const svar = await bekrafta(r, ids, token);
+      if (svar.utfall === 'godkand') {
+        const typ = svar.album.album_type === 'album' ? 'album' : 'single';
+        const fonsterDagar = typ === 'album' ? DAGAR_BAKAT_ALBUM : DAGAR_BAKAT;
+        const nya = samlaIn([svar.album], svar.post.name, svar.post.genre, typ, fonsterDagar, alla);
+        godkanda.push({ r, ...svar, nya });
+        streckkoder.godkanda[r.upc] = {
+          titel: r.titel, datum: r.datum, spotify: svar.album.external_urls?.spotify || '', kollad: dag
+        };
+      } else if (svar.utfall === 'avvisad') {
+        avvisade.push({ r, ...svar });
+        streckkoder.avvisade[r.upc] = { titel: r.titel, fran: r.fran, datum: r.datum, skal: svar.skal, kollad: dag };
+      } else {
+        vantar.push({ r, ...svar });
+      }
+    } catch (err) {
+      if (err instanceof Stopp) { stopp = err; ejHunna++; }
+      else { vantar.push({ r, skal: `fel: ${err.message}` }); }
+    }
+    bekraftaAnrop += anrop - fore;
+    await new Promise(res => setTimeout(res, PAUS));
+  }
+  const deezerStatus = {
+    hittade: kandidater.length,
+    bekraftade: godkanda.length,
+    avvisade: avvisade.length,
+    vantar: vantar.length + ejHunna,
+    framtida
+  };
+  console.log(`Bekräftelse: ${godkanda.length} godkända, ${avvisade.length} avvisade, ` +
+              `${vantar.length + ejHunna} prövas igen, ${bekraftaAnrop} Spotify-anrop.`);
+
+  if (TORR) {
+    const rad = r => `${r.datum}  ${r.artister.join(', ') || r.fran.join(', ')} – ${r.titel}  [${r.typ}]  UPC ${r.upc}`;
+    console.log('\n================ TORRKÖRNING — inga filer skrivna ================\n');
+    console.log(`Deezer: ${radar.releaser.length} släpp med UPC inom fönstret ` +
+                `(${radar.utanUpc} utan UPC, ${radar.utanTraff} artister utan exakt namnträff, ${radar.fel} fel), ` +
+                `${radar.anrop} anrop, ${radar.sekunder}s.`);
+    console.log(`Redan i releases.json eller framtida: ${radar.releaser.length - kandidater.length} ` +
+                `(varav ${framtida} med datum efter ${dag}).`);
+    console.log(`Nya fynd skickade till Spotify: ${kandidater.length}\n`);
+
+    console.log(`Skulle läggas till (${godkanda.length}):`);
+    for (const g of godkanda) {
+      console.log('  ' + rad(g.r));
+      console.log(`      → ${g.album.name} | ${artistLista(g.album)} | ${g.album.external_urls?.spotify}`);
+      console.log(`      ${g.skal}, som ${g.post.name}${g.nya ? '' : ' (fanns redan under annan nyckel eller utanför fönstret — läggs inte till)'}`);
+    }
+    console.log(`\nAvvisade (${avvisade.length}):`);
+    for (const a of avvisade) console.log(`  ${rad(a.r)}\n      ${a.skal}`);
+    console.log(`\nPrövas igen nästa körning (${vantar.length + ejHunna}${ejHunna ? `, varav ${ejHunna} över taket` : ''}):`);
+    for (const v of vantar) console.log(`  ${rad(v.r)}\n      ${v.skal}`);
+
+    if (BARA_DEEZER) {
+      /* Ett UPC-anrop per fynd, plus ett diskografianrop när UPC:n inte ger
+         träff och artisten har ett känt ID. Övre gränsen förutsätter att
+         ingen UPC hittas. */
+      const medId = kandidater.filter(r => r.fran.some(n => ids.perNamn.has(n))).length;
+      console.log('Ej prövade mot Spotify (--bara-deezer):');
+      for (const r of kandidater) {
+        const utan = r.fran.filter(n => !ids.perNamn.has(n));
+        console.log('  ' + rad(r) + (utan.length ? `
+      Spotify-ID saknas för ${utan.join(', ')}` : ''));
+      }
+      console.log(`
+Bekräftelsen skulle kosta mellan ${kandidater.length} och ${kandidater.length + medId} Spotify-anrop` +
+                  ` (tak ${BEKRAFTA_TAK}).`);
+    }
+
+    const tolv = radar.releaser.filter(r => r.upc.length === 12).length;
+    const tolvNya = kandidater.filter(r => r.upc.length === 12).length;
+    console.log(`\n12-siffriga UPC: ${tolv} av ${radar.releaser.length} Deezer-fynd, ` +
+                `${tolvNya} av ${kandidater.length} nya fynd.`);
+    console.log(`Spotify-anrop: ${anrop}${BARA_DEEZER ? '' : ' (+1 för token)'}. Tid: ${forbrukat()}s.`);
+    if (stopp) console.log('\n' + stopp.message);
+    return;
+  }
 
   /* --- Singelrotation — huvudspåret, ett anrop per artist -----------------
      Eget tak strax under MAX_ANROP så albumrotationen alltid har sin andel
      kvar. Varvtakten över hela ARTISTS är densamma som innan albumrotationen
-     fanns, bara taket är lite lägre. */
+     fanns, bara taket är lite lägre. Bekräftelserna ovan har redan dragit
+     sina anrop från samma tak. */
   const HUVUD_TAK = MAX_ANROP - ALBUM_ANROP_PER_KORNING;
   const start = state.nextIndex % ARTISTS.length;
-  let klara = 0, stopp = null;
+  let klara = 0;
 
   for (let n = 0; n < ARTISTS.length; n++) {
-    if (anrop >= HUVUD_TAK) break;   // lämnar plats åt albumrotationen nedan
+    if (stopp || anrop >= HUVUD_TAK) break;   // lämnar plats åt albumrotationen nedan
     const i = (start + n) % ARTISTS.length;
     const { name, genre } = ARTISTS[i];
 
@@ -810,6 +1052,7 @@ async function run() {
   const out = [...alla.values()].sort((a, b) => (a.date < b.date ? 1 : -1));
   await skrivJson(REL_FIL, out);
   await skrivJson(STATE_FIL, state);
+  await skrivJson(UPC_FIL, streckkoder);
 
   /* Hälsostämpel. Sajten visar den i sidfoten, så en workflow som tyst slutat
      fungera syns direkt istället för att sajten bara ser normal ut. */
@@ -821,7 +1064,10 @@ async function run() {
     anrop,
     albumAnrop: albumKlara,
     albumIndex: state.albumIndex,
-    avbrott: stopp ? stopp.message : null
+    /* hittade = nya Deezer-fynd som skickades till Spotify i dag, alltså
+       varken redan i listan, redan prövade eller med framtida datum. */
+    deezer: deezerStatus,
+    avbrott: stopp ? stopp.message : (radar.avbrott || null)
   });
 
   console.log(

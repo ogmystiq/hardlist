@@ -76,6 +76,7 @@ förblir handskriven.
 ```
 data/releases.json      data/artist-ids.json     data/ljud.json
 data/quiz-live.json     kalender.ics             releaser.xml
+data/streckkoder.json
 ```
 
 De byggs av GitHub Actions. Skriver du en tom eller ofullständig version
@@ -97,7 +98,7 @@ nätverk skrivs de tomma.
 |---|---|
 | Dagskvot i Development Mode | tar slut runt **200 anrop**. Kör högst en gång per dygn. |
 | `MAX_ANROP` | 170 per körning |
-| Artistlista | 332 namn. Ett helt varv tar två dygn med full cache. |
+| Artistlista | 316 namn. Ett helt rotationsvarv tar tre dygn med full cache, längre de dagar bekräftelserna tar många anrop. |
 | `preview_url` | död sedan nov 2024, returnerar alltid null |
 | `popularity` | borttaget feb 2026 |
 | `followers` | **borttaget ur söksvaret**. Se nedan. |
@@ -110,6 +111,42 @@ räknas som ett anrop och gör återhämtningen långsammare, inte snabbare.
 
 Vid 429: väntetid över en timme betyder dygnskvot, avbryt. Kortare betyder
 tillfällig broms.
+
+---
+
+## Morgonkörningen: Deezer hittar, Spotify bekräftar
+
+Rotationen hinner bara en del av listan per dygn. Deezer har ingen dygnskvot,
+så varje morgon:
+
+1. **Deezer-radar** (`scripts/deezer-radar.mjs`) går igenom hela listan och
+   tar med alla Deezer-artister med exakt samma namn. Släpp inom fönstret som
+   inte redan finns i `data/releases.json` blir kandidater. Högst tio minuter.
+2. **Spotify bekräftar** varje kandidat genom att söka på skivans UPC. Den
+   godkänns bara om en artist på skivan har samma Spotify-ID som skriptet
+   använder för någon i listan — fastnaglat ID vinner över cachen. Ger UPC:n
+   ingen träff görs ett anrop mot artistens egen diskografi efter samma titel.
+   Datum efter idag prövas nästa dag. Högst `BEKRAFTA_TAK` anrop, och de
+   räknas mot `MAX_ANROP`.
+   Avvisas för gott bara när Spotify har skivan med fel artist, eller när
+   skivan saknas helt och släppet är äldre än ett dygn. Ett nytt släpp kan
+   saknas i Spotifys sökindex första dygnet.
+3. **Rotationen** kör som förut med anropen som är kvar. Den fångar samarbeten
+   som Deezer listar under någon annan.
+
+Prövade streckkoder sparas i `data/streckkoder.json` så ingen skiva kollas
+två gånger. Antal fynd, bekräftade och avvisade står i `data/status.json`.
+
+Torrkörning utan att skriva filer eller köra rotationen:
+`node scripts/hamta-releaser.mjs --torrkorning`
+
+Samma sak utan ett enda Spotify-anrop, för dagar när kvoten är slut. Visar
+fynden och vad bekräftelsen skulle kosta:
+`node scripts/hamta-releaser.mjs --bara-deezer`
+
+Namnmatchningen på Deezer räcker inte för att välja rätt artist — Emphasis
+heter likadant som en helt annan artist även på Spotify. Det är ID-jämförelsen
+som skyddar, aldrig namnet.
 
 ---
 

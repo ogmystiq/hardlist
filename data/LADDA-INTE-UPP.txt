@@ -2,6 +2,7 @@ Filerna nedan skapas av GitHub Actions och ska ALDRIG laddas upp för hand:
 
   data/releases.json     Spotify-hämtningen
   data/artist-ids.json   cache av artist-ID
+  data/streckkoder.json  Deezer-fynd som Spotify redan prövat
   data/ljud.json         cache av ljudadresser till quizet
   data/quiz-live.json    quizet som webbläsaren läser
   kalender.ics           prenumererbar kalender
