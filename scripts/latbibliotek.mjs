@@ -197,7 +197,9 @@ const FEL_I_MUSICBRAINZ = new Set(['Nosferatu', 'Outsiders', 'Ghost Stories']);
    Charly Lownoise & Mental Theo. Ett genrefilter räcker inte, eftersom
    psytrance också kan stå som Dance. Hellre inga låtar än fel låtar. */
 const FAST_APPLE = {
-  /* Hardcore, med Destination Thunderdome (Official Thunderdome 2024 Anthem). */
+  /* Hardcore, med Destination Thunderdome (Official Thunderdome 2024 Anthem).
+     Sidan delas med gothrockbandet som heter likadant, därför filtret i
+     APPLE_GENRE. Bandets egen sida, 1652320550, ska aldrig användas. */
   'Nosferatu': [6516983],
   /* Sju av tio titlar på rätt artists Spotify-sida: Felt the Ghost, Ready or
      Not, Embrace the Dark, Fallen Souls, Open Your Mind, The Enemy (You Cannot
@@ -214,7 +216,8 @@ const FAST_APPLE = {
 /* Apple-sidor som delas av flera artister med samma namn, där bara en genre
    är vår artist. Låtar i andra genrer på sidan tas aldrig med. */
 const APPLE_GENRE = {
-  210646815: /^Dance$/
+  210646815: /^Dance$/,
+  6516983: /^Hardcore$/
 };
 
 function utanforEnligtMusicbrainz(l) {
