@@ -226,8 +226,7 @@
       "namn": "Maraton",
       "text": "Spela 100 låtar i fritt spel samma dag.",
       "niva": "Ovanlig",
-      "illu": "burk",
-      "kommer": true
+      "illu": "burk"
     },
     {
       "id": "duell",
@@ -272,8 +271,7 @@
       "text": "Känn igen 50 hardstylelåtar i fritt spel.",
       "niva": "Sällsynt",
       "illu": "vag-hardstyle",
-      "genre": "hardstyle",
-      "kommer": true
+      "genre": "hardstyle"
     },
     {
       "id": "g-raw",
@@ -282,8 +280,7 @@
       "text": "Känn igen 50 rawlåtar i fritt spel.",
       "niva": "Sällsynt",
       "illu": "vag-raw",
-      "genre": "raw",
-      "kommer": true
+      "genre": "raw"
     },
     {
       "id": "g-uptempo",
@@ -292,8 +289,7 @@
       "text": "Känn igen 50 uptempolåtar i fritt spel.",
       "niva": "Sällsynt",
       "illu": "vag-uptempo",
-      "genre": "uptempo",
-      "kommer": true
+      "genre": "uptempo"
     },
     {
       "id": "g-hardcore",
@@ -302,8 +298,7 @@
       "text": "Känn igen 50 hardcorelåtar i fritt spel.",
       "niva": "Sällsynt",
       "illu": "vag-hardcore",
-      "genre": "hardcore",
-      "kommer": true
+      "genre": "hardcore"
     },
     {
       "id": "g-techno",
@@ -312,8 +307,7 @@
       "text": "Känn igen 50 hard technolåtar i fritt spel.",
       "niva": "Sällsynt",
       "illu": "vag-techno",
-      "genre": "techno",
-      "kommer": true
+      "genre": "techno"
     },
     {
       "id": "scenen",
@@ -321,8 +315,7 @@
       "namn": "Hela scenen",
       "text": "Ta alla fem genreöron.",
       "niva": "Extremt sällsynt",
-      "illu": "totem",
-      "kommer": true
+      "illu": "totem"
     },
     {
       "id": "start",
