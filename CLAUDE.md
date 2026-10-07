@@ -26,7 +26,7 @@ Menyn har fem val, och varje sida hör till ett av dem:
 | Hem | `/` — idag-vyn: dagens fråga, dagens låt, topplistan, nytt, snart |
 | Releaser | `/releaser/` |
 | Event | `/events/` (kalendern och festivalguiderna), `/guider/` (camping) |
-| Spel | `/spel/`, `/quiz/`, `/fritt-spel/`, `/rankat/`, `/latspel/`, `/badges/` |
+| Spel | `/spel/`, `/quiz/`, `/latspel/`, `/fritt-spel/`, `/badges/` |
 | Scenen | `/scenen/`, `/nyborjare/`, `/anthems/` |
 
 Konto (`/konto/`, Din profil), den offentliga profilen (`/profil/`), integritet och 404 hör inte till något menyval.
@@ -45,7 +45,6 @@ guider/index.html       →  hardlist.se/guider/
 spel/index.html         →  hardlist.se/spel/
 quiz/index.html         →  hardlist.se/quiz/
 fritt-spel/index.html   →  hardlist.se/fritt-spel/     låtspelet, fritt spel
-rankat/index.html       →  hardlist.se/rankat/         låtspelet, rankat
 latspel/index.html      →  hardlist.se/latspel/        dagens låt, det gamla låtspelet
 scenen/index.html       →  hardlist.se/scenen/
 nyborjare/index.html    →  hardlist.se/nyborjare/
@@ -487,22 +486,17 @@ På iPhone måste ljudet startas av ett tryck. Trycket på Börja spela spelar e
 tyst ljudsnutt i samma spelare, och då får den spela klippen sedan. Klippet
 stoppas efter ljudets egen position, så att laddtiden inte äter av klippet.
 
-### Rankat
+### Rankat (pausat)
 
-`/rankat/` är tio låtar i vald genre, alltid på Svår, med sök som i fritt
-spel och samma poäng per låt. Kräver inloggning med visningsnamn. Allt i
-`supabase/migrations/20261007230000_rankat.sql`.
+Rankat är pausat, eftersom det inte finns någon färdig plan för hur det ska
+fungera. Sidan och kortet är borttagna, men tabellerna och funktionerna på
+servern ligger kvar i `supabase/migrations/20261007230000_rankat.sql`, så
+att arbetet kan fortsätta: `latbibliotek.matcher`, `latbibliotek.rating`,
+låtarnas `rating`, och `rankat_starta`, `rankat_nasta`, `rankat_min` och
+`rankat_topplista`.
 
-- `rankat_starta` väljer tio låtar och skapar matchen. `rankat_nasta` ger
-  nästa låt, eller räknar ihop matchen när alla tio är spelade. Gissningarna
-  går genom `fritt_spela` och `fritt_gissa`.
-- Varje konto har en rating per genre (`latbibliotek.rating`) som börjar på
-  1000, och varje låt har en egen rating. Per låt jämförs andelen av poängen
-  med vad skillnaden i rating förväntar sig, som ELO. Spelaren flyttas högst
-  16 per låt, låten högst 8.
-- Startar man en ny match räknas en påbörjad som klar, med noll på låtarna
-  som är kvar, så att ingen kan fly från en dålig match.
-- `rankat_topplista` ger topp 50 per genre, med länk till profilerna.
+**När rankat kommer tillbaka ska det vara ett val inne i fritt spel, inte en
+egen sida.** Gissningarna går redan genom `fritt_spela` och `fritt_gissa`.
 
 ### Dagens låt
 

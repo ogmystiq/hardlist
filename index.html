@@ -73,6 +73,9 @@
 /* Topplistan finns bara som spalt på dator. I mobilen sammanfattar kortet
    uppe vid dagens fråga samma sak. */
 .topplista{display:none}
+/* Tre kort bredvid frågan: på mobil tar det sista hela raden i stället för
+   att stå ensamt i en halv. */
+@media (max-width:859px){.delad-sida > .kort:last-child:nth-child(odd){grid-column:1 / -1}}
 .topplista-huvud{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:4px 12px 4px}
 .topplista-huvud h2{font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
 .topplista-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
@@ -660,10 +663,17 @@
           </section>
 
           <div class="delad-sida">
+            <a class="kort med-ikon" href="/latspel/">
+              <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M9 13l2 2 4-4"/></svg></span>
+              <span class="kort-delar">
+                <span class="kort-titel">Dagens låt</span>
+                <span class="kort-text">En låt om dagen, samma för alla</span>
+              </span>
+            </a>
             <a class="kort med-ikon" href="/fritt-spel/">
               <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
               <span class="kort-delar">
-                <span class="kort-titel">Låtspelet</span>
+                <span class="kort-titel">Fritt spel</span>
                 <span class="kort-text">Känn igen låten på en halv sekund</span>
               </span>
             </a>

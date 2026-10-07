@@ -165,7 +165,7 @@
     <section class="ruta l-duell" id="duell" aria-label="Duell">
       <div class="l-duell-inre" id="lDuellRuta">
         <h2>Utmana en kompis</h2>
-        <p>Fem låtar, samma för er båda och samma klippregler som dagens låt. Rätt på första klippet ger 6 poäng, på sjätte 1, och en miss ger 0. Du spelar först och skickar sen länken med din poäng.</p>
+        <p>Fem låtar, samma för er båda och samma klippregler som fritt spel: sex försök med sök. Rätt på första klippet ger 6 poäng, på sjätte 1, och en miss ger 0. Du spelar först och skickar sen länken med din poäng.</p>
         <button class="knapp" id="lNyDuell" type="button">Starta en duell</button>
       </div>
     </section>
@@ -1137,7 +1137,7 @@ function lasAdress(){
 function visaDuellHuvud(mot){
   $('lOgonbryn').textContent = 'Duell';
   $('lRubrik').innerHTML = 'Fem låtar.<br><em>Samma för er båda.</em>';
-  $('lIngress').textContent = 'Samma klippregler som dagens låt. Rätt på första klippet ger 6 poäng, ' +
+  $('lIngress').textContent = 'Samma klippregler som fritt spel. Rätt på första klippet ger 6 poäng, ' +
     'på sjätte 1, och en miss ger 0. Max 30.' +
     (mot !== null ? ' Du har blivit utmanad — utmanarens poäng visas när du spelat klart.' : '');
   $('lDuellRuta').innerHTML =
