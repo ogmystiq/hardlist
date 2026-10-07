@@ -489,7 +489,7 @@ API:t inte exponerar, precis som `quiz`. Sajten når dem bara genom
 
 ### Dela ut en badge för hand
 
-Tipsaren, Faktakollen och Påskägget — aldrig Grundaren. Kör i Supabase, SQL Editor, med
+Tipsaren och Faktakollen, och Påskägget om det behövs — aldrig Grundaren. Kör i Supabase, SQL Editor, med
 visningsnamnet och badgens id:
 
 ```sql
@@ -497,6 +497,20 @@ select profil.dela_ut('nattraver', 'faktakollen');
 ```
 
 Personen får popupen nästa gång sajten öppnas.
+
+### Påskägget
+
+På felsidan står ledtråden "Vilse? Hitta takten." Den som trycker på den stora
+404:an i rätt takt, åtta slag i rad, tar Påskägget. Sidan sparar de åtta
+senaste trycken och skickar dem till `profil_hitta` när mellanrummen är jämna
+sinsemellan — sidan vet aldrig vilken takt som är rätt. Servern jämför med
+takten och svarar bara rätt eller fel, aldrig hur nära det var. Högst 20 försök
+per konto och dygn, och bara för inloggade med visningsnamn.
+
+**Takten ligger bara i `profil.hemligheter`** (namnet `paskagg_bpm`) i
+produktionsdatabasen. Den får aldrig hamna i repot, i en migration, i
+kommentarer eller i commit-meddelanden — repot är publikt, och då går
+Påskägget att läsa sig till på GitHub. Ska den ändras, gör det i SQL Editor.
 
 ### Granska rapporterade bilder
 

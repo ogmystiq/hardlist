@@ -369,7 +369,7 @@
       "id": "paskagg",
       "grupp": "hemlig",
       "namn": "Påskägget",
-      "text": "Hittade den gömda grejen på sajten.",
+      "text": "Hittade takten där ingen letar.",
       "niva": "Extremt sällsynt",
       "illu": "agg",
       "hemlig": true
