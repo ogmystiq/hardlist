@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fritt spel: känn igen låten – HARDLIST</title>
+<meta name="description" content="Känn igen hardstyle, raw, uptempo, hardcore och hard techno på en sekund. Fritt spel med tusentals låtar, fyra alternativ och poäng för snabba öron.">
+<link rel="canonical" href="https://hardlist.se/fritt-spel/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#100C17">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HARDLIST">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:url" content="https://hardlist.se/fritt-spel/">
+<meta property="og:title" content="Fritt spel: känn igen låten">
+<meta property="og:description" content="Känn igen hardstyle, raw, uptempo, hardcore och hard techno på en sekund. Fritt spel med tusentals låtar, fyra alternativ och poäng för snabba öron.">
+<meta property="og:image" content="https://hardlist.se/bilder/dela/latspel.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Låtspelet på HARDLIST">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/stil.css?v=2026-10-07d">
+<style>
+/* Mobil först: en kolumn, stora tryckytor. Spelaren, Längre och svaren
+   ligger så att tummen når dem utan att scrolla på en vanlig telefon. */
+.fs{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.fs-topp{margin-bottom:0}
+/* Under en runda behövs bara rubriken, så att alla fyra svar ryms. */
+.fs.spelar .fs-topp .ingress{display:none}
+.fs-dold{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fs-paus{background:var(--yta);border-radius:20px;padding:18px;font-size:16px;line-height:1.5;color:var(--text-2)}
+.fs-paus b{color:var(--text)}
+.fs-val{display:flex;flex-direction:column;gap:20px}
+.fs-grupp{display:flex;flex-direction:column;gap:10px}
+.fs-etikett{font-size:14px;font-weight:700}
+.fs-chips{display:flex;flex-wrap:wrap;gap:8px}
+.fs-chips .chip[aria-checked="true"]{background:var(--text);color:var(--natt)}
+.fs-liten{font-size:14px;line-height:1.5;color:var(--text-3)}
+.fs-liten a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
+.fs-borja{align-self:flex-start}
+.fs-poangtabell{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0}
+.fs-poangtabell div{background:var(--yta);border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.fs-poangtabell dt{font-size:13px;color:var(--text-3)}
+.fs-poangtabell dd{margin:0;font-stretch:62%;font-weight:900;font-size:24px;line-height:1}
+
+.fs-runda{display:flex;flex-direction:column;gap:14px}
+.fs-rad{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fs-summa{font-size:14px;color:var(--text-2)}
+/* Klippstapeln: hela 15 sekunder, det upplåsta klippet ljusare. */
+.fs-bar{position:relative;height:8px;border-radius:999px;background:var(--yta-2);overflow:hidden}
+.fs-bar i{position:absolute;inset:0 auto 0 0}
+.fs-bar .upplast{background:#3A3048;transition:width .2s}
+.fs-bar .spelat{width:0;background:var(--text)}
+.fs-langre{align-self:stretch;min-height:48px}
+.fs-artist{font-size:15px;font-weight:500;color:var(--text-2)}
+.fs-facit{padding:18px;gap:10px;border-radius:20px}
+.fs-facit-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.fs-facit-lat{display:flex;flex-direction:column;gap:2px}
+.fs-facit-lat b{font-stretch:62%;font-weight:900;font-size:30px;line-height:1.05}
+.fs-facit-lat span{font-size:16px;color:var(--text-2)}
+.fs-dagens{margin-top:8px}
+
+/* Rätt alltid cyan med bock, fel alltid rosa med kryss, som i quizet. */
+.alt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 16px 10px 12px;border:1.5px solid var(--yta);border-radius:16px;background:var(--yta);color:var(--text);text-align:left;font-size:17px;font-weight:650;line-height:1.3;transition:background .2s,border-color .2s,opacity .25s,transform .1s}
+.alt:hover:not(:disabled){background:var(--yta-2)}
+.alt:active:not(:disabled){transform:scale(.98)}
+.alt:disabled{cursor:default}
+.alt-text{flex:1;min-width:0;overflow-wrap:anywhere}
+.alt-ratt{background:rgba(61,220,240,.12);border-color:var(--ratt)}
+.alt-ratt .bricka{background:var(--ratt);color:var(--natt)}
+.alt-fel{background:rgba(255,59,107,.12);border-color:var(--fel)}
+.alt-fel .bricka{background:var(--fel);color:var(--natt)}
+.alt-dov{opacity:.4}
+.q-alt{display:flex;flex-direction:column;gap:10px}
+
+@media (min-width:860px){
+  .fs{gap:24px}
+  .fs-langre{align-self:flex-start}
+  .fs-facit-lat b{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<a class="hoppa" href="#innehall">Till innehållet</a>
+
+<header class="topp">
+  <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+  <nav class="meny" aria-label="Huvudmeny">
+    <a href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg>Hem</a>
+    <a href="/releaser/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Releaser</a>
+    <a href="/events/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Event</a>
+    <a href="/spel/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/></svg>Spel</a>
+    <a href="/scenen/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Scenen</a>
+  </nav>
+  <a class="konto" id="konto-knapp" href="/konto/"><span class="konto-bild" aria-hidden="true"></span><span class="konto-namn">Logga in</span></a>
+</header>
+
+<main class="sida" id="innehall">
+  <div class="fs" id="fs">
+
+    <div class="sidhuvud fs-topp">
+      <h1>Fritt spel</h1>
+      <p class="ingress">Känn igen låten på så kort klipp som möjligt. Ju kortare klipp, desto fler poäng.</p>
+    </div>
+
+    <noscript><p class="fs-paus">Låtspelet kräver JavaScript. Resten av sajten fungerar utan.</p></noscript>
+
+    <!-- Avstängt ljud från iTunes, se data/installningar.json -->
+    <div class="fs-paus" id="fsPaus" hidden><b>Låtspelet är pausat.</b> Det kommer tillbaka snart.</div>
+
+    <!-- Val av genre och nivå -->
+    <section class="fs-val" id="fsVal" hidden aria-labelledby="fsValRubrik">
+      <h2 class="fs-dold" id="fsValRubrik">Välj vad du vill spela</h2>
+      <div class="fs-grupp">
+        <span class="fs-etikett" id="fsGenreEtikett">Genre</span>
+        <div class="fs-chips" role="radiogroup" aria-labelledby="fsGenreEtikett" id="fsGenrer">
+          <button class="chip g-hardstyle" type="button" role="radio" data-val="hardstyle" aria-checked="false"><span class="prick"></span>Hardstyle</button>
+          <button class="chip g-raw" type="button" role="radio" data-val="raw" aria-checked="false"><span class="prick"></span>Raw</button>
+          <button class="chip g-uptempo" type="button" role="radio" data-val="uptempo" aria-checked="false"><span class="prick"></span>Uptempo</button>
+          <button class="chip g-hardcore" type="button" role="radio" data-val="hardcore" aria-checked="false"><span class="prick"></span>Hardcore</button>
+          <button class="chip g-techno" type="button" role="radio" data-val="techno" aria-checked="false"><span class="prick"></span>Hard techno</button>
+          <button class="chip" type="button" role="radio" data-val="blandat" aria-checked="true">Blandat</button>
+        </div>
+      </div>
+      <div class="fs-grupp">
+        <span class="fs-etikett" id="fsNivaEtikett">Svårighet</span>
+        <div class="fs-chips" role="radiogroup" aria-labelledby="fsNivaEtikett" id="fsNivaer">
+          <button class="chip" type="button" role="radio" data-niva="latt" aria-checked="true">Lätt</button>
+          <button class="chip" type="button" role="radio" data-niva="svar" aria-checked="false">Svår</button>
+        </div>
+        <p class="fs-liten" id="fsNivaText">Lätt: varje artists mest kända låtar.</p>
+      </div>
+      <button class="knapp fs-borja" id="fsBorja" type="button">Börja spela</button>
+      <p class="fs-liten" id="fsKonto"></p>
+      <dl class="fs-poangtabell" aria-label="Poäng per klipplängd">
+        <div><dt>1 sek</dt><dd>100</dd></div>
+        <div><dt>3 sek</dt><dd>60</dd></div>
+        <div><dt>7 sek</dt><dd>30</dd></div>
+        <div><dt>15 sek</dt><dd>10</dd></div>
+      </dl>
+    </section>
+
+    <!-- En runda -->
+    <section class="fs-runda" id="fsRunda" hidden aria-label="Runda">
+      <div class="fs-rad">
+        <span class="q-chip" id="fsRundaVal"></span>
+        <span class="fs-summa" id="fsSumma"></span>
+      </div>
+
+      <div class="q-spelare-ruta">
+        <div class="q-spelare">
+          <button class="q-play" id="fsPlay" type="button" aria-label="Spela klippet">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z"/></svg>
+          </button>
+          <div class="info">
+            <p class="q-spelare-rubrik" id="fsKlippRubrik">Klipp: 1 sekund</p>
+            <div class="fs-bar" aria-hidden="true"><i class="upplast" id="fsUpplast"></i><i class="spelat" id="fsSpelat"></i></div>
+            <p class="q-tid" id="fsTid">Tryck för att spela.</p>
+          </div>
+        </div>
+        <div id="fsKalla"></div>
+      </div>
+
+      <button class="knapp knapp-sek fs-langre" id="fsLangre" type="button">Längre</button>
+
+      <div class="q-alt" id="fsAlt"></div>
+      <p class="q-felrad" id="fsFel" role="alert"></p>
+
+      <div class="ruta fs-facit" id="fsFacit" hidden>
+        <div class="fs-facit-topp"><span class="q-utfall" id="fsUtfall"></span><span class="q-plus" id="fsPlus"></span></div>
+        <p class="fs-facit-lat" id="fsFacitLat"></p>
+        <p class="fs-liten" id="fsFacitInfo"></p>
+        <div class="q-knappar">
+          <button class="knapp" id="fsNasta" type="button">Nästa låt</button>
+          <button class="knapp knapp-sek" id="fsByt" type="button">Byt genre</button>
+        </div>
+      </div>
+    </section>
+
+    <p class="fs-liten fs-dagens">Vill du hellre gissa dagens låt, samma för alla? <a href="/latspel/">Dagens låt</a></p>
+
+  </div>
+</main>
+
+<footer class="sidfot">
+  <div class="sidfot-inre">
+    <div class="sidfot-topp">
+      <div class="sidfot-om">
+        <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+        <p>Releaser, event och spel för den hårda scenen i Norden.</p>
+      </div>
+      <div class="sidfot-grupper">
+        <nav aria-labelledby="sf-sajten">
+          <span class="sidfot-rubrik" id="sf-sajten">Sajten</span>
+          <a href="/releaser/">Releaser</a>
+          <a href="/events/">Event</a>
+          <a href="/spel/">Spel</a>
+          <a href="/scenen/">Scenen</a>
+        </nav>
+        <nav aria-labelledby="sf-prenumerera">
+          <span class="sidfot-rubrik" id="sf-prenumerera">Prenumerera</span>
+          <a href="webcal://hardlist.se/kalender.ics">Kalendern i mobilen</a>
+          <a href="/releaser.xml">Releaser som RSS</a>
+        </nav>
+        <nav aria-labelledby="sf-bidra">
+          <span class="sidfot-rubrik" id="sf-bidra">Bidra</span>
+          <a href="mailto:hardlisthelp@gmail.com?subject=Tips%20om%20event">Tipsa om ett event</a>
+          <a href="mailto:hardlisthelp@gmail.com?subject=R%C3%A4ttelse">Rätta en uppgift</a>
+          <a class="bara-dator" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
+        </nav>
+        <nav aria-labelledby="sf-om">
+          <span class="sidfot-rubrik" id="sf-om">Om sajten</span>
+          <a href="/integritet/">Integritet</a>
+          <a href="/konto/">Ditt konto</a>
+        </nav>
+      </div>
+    </div>
+    <div class="sidfot-status">
+      <span id="sidfotStatus">Releaserna uppdateras varje morgon.</span>
+      <span>Inga annonser och inga cookies.</span>
+      <a class="sidfot-post" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/ram.js" defer></script>
+<script src="/ljud.js"></script>
+<script src="/inloggning.js"></script>
+<script>
+/* Fritt spel. Servern väljer låten och alternativen och rättar. Sidan vet
+   aldrig vilket alternativ som är rätt förrän den har svarat, och får
+   ljudet först när klockan startar. */
+(function(){
+  const K = window.hardlistKonto;
+  const $ = function(id){ return document.getElementById(id); };
+  const esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+  const KLIPP = [1, 3, 7, 15];
+  const POANG = [100, 60, 30, 10];
+  const NAMN = { hardstyle: 'Hardstyle', raw: 'Raw', uptempo: 'Uptempo', hardcore: 'Hardcore', techno: 'Hard techno', blandat: 'Blandat' };
+  const ORAT = { hardstyle: 'Hardstyleörat', raw: 'Rawörat', uptempo: 'Uptempoörat', hardcore: 'Hardcoreörat', techno: 'Technoörat' };
+  const IKON_PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z"/></svg>';
+  const IKON_PAUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5h4v13H3zM9 1.5h4v13H9z"/></svg>';
+  const IKON_JA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>';
+  const IKON_NEJ = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  // En tyst ljudsnutt. Spelas i trycket på Börja spela, så att Safari på
+  // iPhone sedan låter samma spelare spela klippen.
+  const TYST = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+
+  let val = 'blandat';
+  let niva = 'latt';
+  let runda = null;          // { omgang, alternativ, steg, ljud, klar }
+  let summa = 0, antal = 0, ratta = 0;
+  // Utan konto sparas ingenting. Låtarna minns bara medan sidan är öppen.
+  const horda = [];
+  const spelare = new Audio();
+  spelare.preload = 'auto';
+  let stoppTid = null;
+  let upplast = false;
+
+  /* ---------- val av genre och nivå ---------- */
+
+  function valjEn(grupp, knapp){
+    grupp.querySelectorAll('[role="radio"]').forEach(function(b){ b.setAttribute('aria-checked', String(b === knapp)); });
+  }
+  $('fsGenrer').addEventListener('click', function(e){
+    const b = e.target.closest('[data-val]'); if (!b) return;
+    val = b.getAttribute('data-val'); valjEn(this, b);
+  });
+  $('fsNivaer').addEventListener('click', function(e){
+    const b = e.target.closest('[data-niva]'); if (!b) return;
+    niva = b.getAttribute('data-niva'); valjEn(this, b);
+    $('fsNivaText').textContent = niva === 'latt' ? 'Lätt: varje artists mest kända låtar.' : 'Svår: hela biblioteket.';
+  });
+
+  function kontoRad(min){
+    const el = $('fsKonto');
+    if (!K || !K.inloggad()){
+      el.innerHTML = 'Du spelar utan konto, och ingenting sparas. <a href="/konto/">Logga in</a> för att samla rätt svar mot badges.';
+      return;
+    }
+    if (!min){ el.textContent = ''; return; }
+    const r = min.genrer || {};
+    const delar = Object.keys(ORAT).map(function(g){ return NAMN[g] + ' ' + ((r[g] && r[g].ratt) || 0); });
+    el.textContent = 'Rätt hittills: ' + delar.join(', ') + '. Låtar i dag: ' + (min.rundor_idag || 0) + '.';
+  }
+
+  /* ---------- ljudet ---------- */
+
+  function stoppa(){
+    cancelAnimationFrame(stoppTid);
+    try { spelare.pause(); } catch(e){}
+    $('fsPlay').innerHTML = IKON_PLAY;
+    $('fsPlay').setAttribute('aria-label', 'Spela klippet');
+  }
+
+  function ritaKlipp(){
+    const s = KLIPP[runda.steg];
+    $('fsKlippRubrik').textContent = runda.klar ? 'Hela förlyssningen' : 'Klipp: ' + s + (s === 1 ? ' sekund' : ' sekunder') + ', ' + POANG[runda.steg] + ' poäng';
+    $('fsUpplast').style.width = runda.klar ? '100%' : (s / 15 * 100) + '%';
+    const langre = $('fsLangre');
+    langre.hidden = runda.klar || runda.steg >= 3;
+    if (!langre.hidden){
+      const n = runda.steg + 1;
+      langre.textContent = 'Längre: ' + KLIPP[n] + ' sekunder, ' + POANG[n] + ' poäng';
+    }
+  }
+
+  /* Spelar klippet från början, så länge som steget tillåter. Efter svaret
+     går hela förlyssningen att lyssna på. */
+  function spelaKlipp(){
+    stoppa();
+    try { spelare.currentTime = 0; } catch(e){}
+    $('fsSpelat').style.width = '0';
+    const p = spelare.play();
+    if (p && p.catch) p.catch(function(){ $('fsTid').textContent = 'Kunde inte spela upp ljudet. Tryck igen.'; });
+    $('fsPlay').innerHTML = IKON_PAUS;
+    $('fsPlay').setAttribute('aria-label', 'Pausa');
+  }
+
+  /* Klippet stoppas efter ljudets egen position, inte efter en timer, så att
+     tiden det tar att ladda ljudet inte äter av klippet. */
+  function bevaka(){
+    if (!runda || runda.klar || spelare.paused) return;
+    if (spelare.currentTime >= KLIPP[runda.steg]){ stoppa(); return; }
+    stoppTid = requestAnimationFrame(bevaka);
+  }
+  spelare.addEventListener('playing', function(){
+    if (spelare.src.indexOf('data:') === 0) return;
+    cancelAnimationFrame(stoppTid);
+    stoppTid = requestAnimationFrame(bevaka);
+  });
+
+  spelare.addEventListener('timeupdate', function(){
+    if (!runda || !spelare.src || spelare.src.indexOf('data:') === 0) return;
+    const max = runda.klar ? (spelare.duration || 30) : 15;
+    $('fsSpelat').style.width = Math.min(100, spelare.currentTime / max * 100) + '%';
+    if (!runda.klar && spelare.currentTime >= KLIPP[runda.steg]) stoppa();
+    $('fsTid').textContent = runda.klar ? Math.floor(spelare.currentTime) + ' av ' + Math.floor(spelare.duration || 30) + ' sekunder' : 'Lyssna och välj.';
+  });
+  spelare.addEventListener('ended', stoppa);
+  spelare.addEventListener('error', function(){
+    if (spelare.src && spelare.src.indexOf('data:') !== 0) $('fsTid').textContent = 'Ljudfilen kunde inte laddas.';
+  });
+
+  $('fsPlay').addEventListener('click', async function(){
+    if (!runda) return;
+    if (!spelare.paused && spelare.src.indexOf('data:') !== 0){ stoppa(); return; }
+    if (!runda.ljud){
+      this.disabled = true;
+      $('fsTid').textContent = 'Laddar klippet…';
+      try {
+        const svar = await K.rpc('latspel_spela', { p_omgang: runda.omgang });
+        if (!svar || svar.fel || !svar.ljud) throw new Error(svar && svar.fel);
+        runda.ljud = svar.ljud;
+        spelare.src = svar.ljud;
+      } catch(e){
+        this.disabled = false;
+        $('fsTid').textContent = 'Kunde inte hämta klippet. Tryck igen.';
+        return;
+      }
+      this.disabled = false;
+    }
+    spelaKlipp();
+  });
+
+  $('fsLangre').addEventListener('click', async function(){
+    if (!runda || runda.klar || runda.steg >= 3) return;
+    this.disabled = true;
+    try {
+      // Utan klipp först finns inget att förlänga. Starta det på samma tryck.
+      if (!runda.ljud){
+        const s = await K.rpc('latspel_spela', { p_omgang: runda.omgang });
+        if (!s || s.fel || !s.ljud) throw new Error(s && s.fel);
+        runda.ljud = s.ljud; spelare.src = s.ljud;
+      }
+      const svar = await K.rpc('latspel_langre', { p_omgang: runda.omgang });
+      if (!svar || svar.fel) throw new Error(svar && svar.fel);
+      runda.steg = svar.steg;
+      ritaKlipp();
+      spelaKlipp();
+    } catch(e){
+      $('fsFel').textContent = 'Kunde inte förlänga klippet. Försök igen.';
+    }
+    this.disabled = false;
+  });
+
+  /* ---------- rundan ---------- */
+
+  function ritaSumma(){
+    $('fsSumma').textContent = antal ? summa + ' poäng, ' + ratta + ' av ' + antal + ' rätt' : '';
+  }
+
+  function ritaAlternativ(){
+    $('fsAlt').innerHTML = runda.alternativ.map(function(a, i){
+      return '<button class="alt" type="button" data-plats="' + i + '"><span class="bricka" aria-hidden="true">' + 'ABCD'.charAt(i) + '</span>' +
+        '<span class="alt-text"><b>' + esc(a.titel) + '</b><br><span class="fs-artist">' + esc(a.artist) + '</span></span></button>';
+    }).join('');
+  }
+
+  async function nyRunda(){
+    stoppa();
+    $('fsFel').textContent = '';
+    $('fsFacit').hidden = true;
+    $('fsAlt').innerHTML = '';
+    $('fsTid').textContent = 'Hämtar en låt…';
+    $('fsKalla').innerHTML = hardlistLjud.kalla(null);
+    try {
+      const svar = await K.rpc('latspel_ny', { p_val: val, p_niva: niva, p_horda: horda.slice(-500) });
+      if (!svar || svar.fel) throw new Error(svar && svar.fel);
+      runda = { omgang: svar.omgang, alternativ: svar.alternativ, steg: 0, ljud: null, klar: false };
+      spelare.removeAttribute('src');
+      ritaKlipp();
+      ritaAlternativ();
+      $('fsSpelat').style.width = '0';
+      $('fsTid').textContent = 'Tryck för att spela.';
+      $('fsPlay').focus({ preventScroll: true });
+    } catch(e){
+      $('fsTid').textContent = '';
+      $('fsFel').textContent = 'Kunde inte hämta en låt just nu. Försök igen om en stund.';
+    }
+  }
+
+  $('fsAlt').addEventListener('click', async function(e){
+    const b = e.target.closest('[data-plats]');
+    if (!b || !runda || runda.klar) return;
+    if (!runda.ljud){ $('fsFel').textContent = 'Lyssna på klippet först.'; return; }
+    const plats = +b.getAttribute('data-plats');
+    this.querySelectorAll('.alt').forEach(function(x){ x.disabled = true; });
+    stoppa();
+    let svar;
+    try {
+      svar = await K.rpc('latspel_svara', { p_omgang: runda.omgang, p_plats: plats });
+      if (!svar || svar.fel) throw new Error(svar && svar.fel);
+    } catch(err){
+      this.querySelectorAll('.alt').forEach(function(x){ x.disabled = false; });
+      $('fsFel').textContent = 'Svaret kom inte fram. Tryck igen.';
+      return;
+    }
+    runda.klar = true;
+    antal++; summa += svar.poang; if (svar.ratt) ratta++;
+    if (svar.lat && svar.lat.id) horda.push(svar.lat.id);
+
+    // Rätt alltid cyan med bock, fel alltid rosa med kryss.
+    this.querySelectorAll('.alt').forEach(function(x, i){
+      if (i === svar.ratt_plats){ x.classList.add('alt-ratt'); x.querySelector('.bricka').innerHTML = IKON_JA; }
+      else if (i === plats){ x.classList.add('alt-fel'); x.querySelector('.bricka').innerHTML = IKON_NEJ; }
+      else x.classList.add('alt-dov');
+    });
+
+    $('fsUtfall').className = 'q-utfall ' + (svar.ratt ? 'ja' : 'nej');
+    $('fsUtfall').innerHTML = (svar.ratt ? IKON_JA + 'Rätt' : IKON_NEJ + 'Fel');
+    $('fsPlus').textContent = svar.ratt ? '+' + svar.poang : '';
+    $('fsFacitLat').innerHTML = '<b>' + esc(svar.lat.titel) + '</b><span>' + esc(svar.lat.artist) + '</span>';
+    let info = svar.ratt ? 'Räknat på ' + svar.sekunder + (svar.sekunder === 1 ? ' sekund.' : ' sekunder.') : '';
+    if (svar.konto && ORAT[svar.konto.genre] && svar.konto.ratt_genre < 50){
+      info += (info ? ' ' : '') + ORAT[svar.konto.genre] + ': ' + svar.konto.ratt_genre + ' av 50 rätt.';
+    }
+    $('fsFacitInfo').textContent = info;
+    $('fsKalla').innerHTML = hardlistLjud.kalla(svar.lat.apple);
+    ritaKlipp();
+    $('fsTid').textContent = 'Lyssna på hela förlyssningen om du vill.';
+    ritaSumma();
+    $('fsFacit').hidden = false;
+    $('fsNasta').focus({ preventScroll: true });
+
+    if (svar.nya_badges && svar.nya_badges.length){
+      K.badges().then(function(B){ B.visaNya(svar.nya_badges); }).catch(function(){});
+    }
+  });
+
+  $('fsNasta').addEventListener('click', nyRunda);
+  $('fsByt').addEventListener('click', function(){
+    stoppa(); runda = null;
+    $('fsRunda').hidden = true; $('fsVal').hidden = false;
+    $('fs').classList.remove('spelar');
+    hamtaMin();
+  });
+
+  $('fsBorja').addEventListener('click', function(){
+    // Låser upp ljudet i det här trycket, se TYST ovan.
+    if (!upplast){
+      spelare.src = TYST;
+      const p = spelare.play();
+      if (p && p.then) p.then(function(){ spelare.pause(); }).catch(function(){});
+      upplast = true;
+    }
+    $('fsRundaVal').textContent = NAMN[val] + ', ' + (niva === 'latt' ? 'lätt' : 'svår');
+    $('fsVal').hidden = true; $('fsRunda').hidden = false;
+    $('fs').classList.add('spelar');
+    ritaSumma();
+    nyRunda();
+  });
+
+  function hamtaMin(){
+    if (!K || !K.inloggad()){ kontoRad(null); return; }
+    K.rpc('latspel_min').then(kontoRad).catch(function(){ kontoRad(null); });
+  }
+
+  /* Allt annat än ett uttryckligt ja från installningar.json räknas som av. */
+  hardlistLjud.tillatet.then(function(ok){
+    if (!ok){ $('fsPaus').hidden = false; return; }
+    $('fsVal').hidden = false;
+    hamtaMin();
+  });
+})();
+</script>
+<script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
