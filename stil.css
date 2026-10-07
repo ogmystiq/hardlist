@@ -272,8 +272,14 @@ a.rad:hover{background:var(--yta)}
 
 /* Källraden vid Spotifys innehåll. Ikonen hålls vit och oförändrad i form,
    minst 21 px, som Spotifys riktlinjer kräver. */
-.kalla{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-2)}
+.kalla{display:flex;align-items:center;flex-wrap:wrap;gap:0 10px;font-size:14px;color:var(--text-2)}
 .spotify-ikon{flex:none;width:21px;height:21px;color:var(--text)}
+/* Deezers villkor kräver loggan, inte bara namnet. Den visas i sina egna
+   färger och med bevarade proportioner, därför ingen filter eller beskärning. */
+.kalla-lank{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-left:12px;color:inherit}
+.deezer-ikon{flex:none;width:21px;height:21px;object-fit:contain}
+.kalla-lank span{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--text-3)}
+.kalla-lank:hover span{text-decoration-color:currentColor}
 
 /* Sökfältet är en label med ikon och fält. Fokusringen sitter på hela
    pillret, eftersom fältet självt saknar egen kant. */

@@ -496,6 +496,10 @@ Mörkt, hårt, kompromisslöst. Passar ämnet.
     scenlista. BLACK har en ljus ring så den syns mot bakgrunden.
   - I spelen: rätt svar i cyan, fel svar i rosa och klockans sista tio
     sekunder i rosa.
+  - Deezers logga (`bilder/deezer.png`) är lila och visas i sin egen färg,
+    eftersom Deezers villkor kräver deras logga. Den står i källraden
+    bredvid Spotify med texten "Data från Deezer". Ändra aldrig färg,
+    beskärning eller proportioner.
 
   Färgen står aldrig ensam — alltid tillsammans med ikon eller text. Inga fler
   undantag.
