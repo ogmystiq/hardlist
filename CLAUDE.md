@@ -26,7 +26,7 @@ Menyn har fem val, och varje sida hör till ett av dem:
 | Hem | `/` — idag-vyn: dagens fråga, dagens låt, topplistan, nytt, snart |
 | Releaser | `/releaser/` |
 | Event | `/events/` (kalendern och festivalguiderna), `/guider/` (camping) |
-| Spel | `/spel/`, `/quiz/`, `/latspel/`, `/badges/` |
+| Spel | `/spel/`, `/quiz/`, `/fritt-spel/`, `/latspel/`, `/badges/` |
 | Scenen | `/scenen/`, `/nyborjare/`, `/anthems/` |
 
 Konto (`/konto/`, Din profil), den offentliga profilen (`/profil/`), integritet och 404 hör inte till något menyval.
@@ -44,7 +44,8 @@ events/index.html       →  hardlist.se/events/
 guider/index.html       →  hardlist.se/guider/
 spel/index.html         →  hardlist.se/spel/
 quiz/index.html         →  hardlist.se/quiz/
-latspel/index.html      →  hardlist.se/latspel/
+fritt-spel/index.html   →  hardlist.se/fritt-spel/     låtspelet, fritt spel
+latspel/index.html      →  hardlist.se/latspel/        dagens låt, det gamla låtspelet
 scenen/index.html       →  hardlist.se/scenen/
 nyborjare/index.html    →  hardlist.se/nyborjare/
 anthems/index.html      →  hardlist.se/anthems/
@@ -446,6 +447,43 @@ CORS på ljudfilen, och misslyckas det blir det helt tyst i stället för dämpa
 ett svårare problem än det skulle lösa. Testa i stället om `audio.volume` biter
 (iOS ignorerar den) och visa texten "Volym styrs med knapparna på telefonen" när
 den inte gör det.
+
+### Fritt spel
+
+Låtspelet på `/fritt-spel/` spelar ur låtbiblioteket. Man väljer genre eller
+Blandat och svårighet, lyssnar på ett klipp och svarar bland fyra alternativ.
+Klippet är 1 sekund och blir 3, 7 och 15 med Längre, för 100, 60, 30 och 10
+poäng. Det gamla låtspelet på `/latspel/` finns kvar som Dagens låt och
+länkas från fritt spel.
+
+**Allt avgörs på servern**, i `supabase/migrations/20261007190000_fritt_spel.sql`:
+
+- `latspel_ny` väljer låten och tre fel alternativ från andra artister i
+  samma genre. En artist som är med på rätt låt blir aldrig ett fel
+  alternativ. Sidan får aldrig veta vilket som är rätt.
+- `latspel_spela` lämnar ut ljudet och startar klockan. `latspel_langre`
+  går till nästa klipplängd och startar om den. `latspel_svara` rättar.
+- Poängen räknas på den klipplängd som tiden faktiskt räcker till: klippet
+  plus åtta sekunder att svara, sedan glider det över till nästa längd. Den
+  som lyssnar längre än den säger får inte poängen för det korta klippet.
+- Ljudadressen är Apples egen, så den som vill kan slå upp den. Ska det
+  stoppas måste ljudet gå genom en egen server, vilket inte är gjort.
+- Lätt är varje artists tio första låtar i iTunes ordning, det enda mått på
+  hur kända låtarna är som finns. Svår är hela biblioteket.
+- Inloggade med visningsnamn får rätt per genre (`latbibliotek.statistik`),
+  rundor per dag (`latbibliotek.dagar`) och hörda låtar
+  (`latbibliotek.hort`) sparade. Ingen låt kommer tillbaka förrän alla i
+  urvalet är spelade. Utan konto sparas ingenting om personen, och rundorna
+  rensas efter ett dygn av jobbet `hardlist-latspel-rensa`.
+- Genreöronen (50 rätt i genren), Hela scenen (alla fem) och Maraton (100
+  låtar samma dag) delas ut i ett eget exception-block i `latspel_svara`.
+  Låtspelets andra badges har kvar `kommer` tills dueller och dagens låt finns.
+- Rankat spel och dueller ska använda samma omgångar, med `lage` och
+  `match_id` i `latbibliotek.omgangar`.
+
+På iPhone måste ljudet startas av ett tryck. Trycket på Börja spela spelar en
+tyst ljudsnutt i samma spelare, och då får den spela klippen sedan. Klippet
+stoppas efter ljudets egen position, så att laddtiden inte äter av klippet.
 
 ### Låtspelet
 

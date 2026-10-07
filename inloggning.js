@@ -66,7 +66,7 @@
   /* Badgesens utseende och popuper hämtas först när en sida har något att
      visa, så att de flesta sidvisningar slipper dem. Ändras badges.js eller
      badges.css ska datumet ändras här och i sidorna som laddar dem direkt. */
-  const BADGE_VERSION = '2026-10-07d';
+  const BADGE_VERSION = '2026-10-07e';
   let badgeLofte = null;
   function badges(){
     if (window.hardlistBadges) return Promise.resolve(window.hardlistBadges);

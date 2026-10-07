@@ -383,7 +383,7 @@
     {
       "id": "latspel",
       "namn": "Låtspelet",
-      "under": "Kommer med nya låtspelet och fritt spel, när resultaten sparas på kontot."
+      "under": "Genreöronen, Hela scenen och Maraton räknas i fritt spel. De andra kommer med dueller och dagens låt."
     },
     {
       "id": "sarskild",
