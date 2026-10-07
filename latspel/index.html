@@ -35,6 +35,8 @@
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/stil.css?v=2026-10-07">
 <style>
+.l-paus{background:var(--yta);border-radius:20px;padding:18px;font-size:16px;line-height:1.5;color:var(--text-2)}
+.l-paus b{color:var(--text)}
 .l{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
 .l-sidhuvud{margin-bottom:0}
 .q-siffror.fyra{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -203,6 +205,7 @@
   </div>
 </footer>
 
+<script src="/ljud.js"></script>
 <script>
 const NYCKEL       = 'hardlist_latspel_v1';
 const NYCKEL_DUELL = 'hardlist_latspel_duell_v1';
@@ -562,8 +565,10 @@ function ritaTopp(){
   }
 }
 
-function spelarRuta(etikett, stapel, tid){
-  return '<div class="q-spelare">' +
+/* lank: vart raden om iTunes ska leda. Under gissandet Apple Music i
+   allmänhet, i facit en sökning på låten. */
+function spelarRuta(etikett, stapel, tid, lank){
+  return '<div class="q-spelare-ruta"><div class="q-spelare">' +
     '<button class="q-play" id="lPlay" type="button" aria-label="Spela upp">' + IKON_PLAY + '</button>' +
     '<div class="info">' +
       '<p class="q-spelare-rubrik">' + etikett + '</p>' + stapel +
@@ -573,7 +578,7 @@ function spelarRuta(etikett, stapel, tid){
         '<input type="range" id="lVol" min="0" max="100" step="1" value="50" aria-label="Volym">' +
         '<span class="q-volnivå" id="lVolText">50%</span>' +
       '</div>' +
-    '</div></div>';
+    '</div></div>' + hardlistLjud.kalla(lank) + '</div>';
 }
 
 /* Stapeln visar hela 16 sekunder. Det upplåsta klippet är ljusare, och
@@ -699,8 +704,9 @@ function sokFras(lat){
 function facit(lat){
   const q = encodeURIComponent(sokFras(lat));
   return '<div class="l-facit"><b>' + esc(lat.titel) + '</b><span>' + esc(lat.artist) + '</span></div>' +
-    spelarRuta('Förhandslyssning från Apple Music',
-               '<div class="q-bar"><i id="lSpelat"></i></div>', '30 sekunder. Tryck för att lyssna.') +
+    spelarRuta('Hela klippet',
+               '<div class="q-bar"><i id="lSpelat"></i></div>', '30 sekunder. Tryck för att lyssna.',
+               'https://music.apple.com/se/search?term=' + q) +
     '<div class="l-knappar">' +
       '<a class="knapp knapp-sek" href="https://open.spotify.com/search/' + q + '" target="_blank" rel="noopener">Lyssna på Spotify</a>' +
       '<a class="knapp knapp-sek" href="https://music.apple.com/se/search?term=' + q + '" target="_blank" rel="noopener">Lyssna på Apple Music</a>' +
@@ -887,6 +893,15 @@ async function start(){
     latar = SEED_LATSPEL;
   }
   latar = latar.filter(l => l && l.id && l.ljud && l.artist && l.titel);
+
+  /* Ljudet från iTunes är avstängt i data/installningar.json. Inget laddas,
+     och spelet visar att det är pausat i stället för att låtsas fungera. */
+  if (!(await hardlistLjud.tillatet)){
+    $('lTopp').innerHTML = '';
+    $('lKort').innerHTML = '<p class="l-paus"><b>Låtspelet är pausat.</b> Ljudet från iTunes är avstängt på sajten just nu. Spelet kommer tillbaka när ljudet är på igen.</p>';
+    $('duell').hidden = true;
+    return;
+  }
 
   $('lNyDuell').addEventListener('click', nyDuell);
 

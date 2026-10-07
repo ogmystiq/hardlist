@@ -17,7 +17,7 @@ En automatiserad sida för hardstyle-scenen i Norden. Nya släpp hämtas daglige
 från Spotify, kalendern listar rave i Norden och Europa, och det finns guider,
 ett anthem-arkiv och ett dagligt quiz.
 
-Bärande idé: **allt utom tre datafiler ska sköta sig självt.**
+Bärande idé: **allt utom fyra datafiler ska sköta sig självt.**
 
 Menyn har fem val, och varje sida hör till ett av dem:
 
@@ -57,6 +57,7 @@ stil.css                →  all gemensam stil, se nedan
 ram.js                  →  statusraden i sidfoten, läser data/status.json
 inloggning.js           →  inloggningen, laddas av varje sida
 rader.js                →  releaseraden, delad av startsidan och /releaser/
+ljud.js                 →  avstängningen av iTunes-ljud och raden om förlyssningen
 typsnitt/               →  Archivo, ligger här i stället för hos Google Fonts
 ```
 
@@ -102,13 +103,44 @@ inte i repot). Det viktigaste ur den:
 
 ## Filer du får redigera för hand
 
-Exakt tre:
+Exakt fyra:
 
 ```
-data/events.json     kalender och bevakningslista
-data/anthems.json    anthem-arkivet
-data/kommande.json   kommande släpp, pre-save-länkar
+data/events.json        kalender och bevakningslista
+data/anthems.json       anthem-arkivet
+data/kommande.json      kommande släpp, pre-save-länkar
+data/installningar.json avstängningen av ljud från iTunes, se nedan
 ```
+
+### Stänga av ljudet från iTunes
+
+All förlyssning på sajten kommer från iTunes: låtspelet, fredagens låtfråga
+och senare fritt spel. Apples villkor tillåter förlyssningar för att
+marknadsföra deras butik, inte som underhållning i sig. Vi använder dem ändå,
+och om Apple hör av sig ska ljudet kunna stängas av på en minut.
+
+Öppna `data/installningar.json` på GitHub, tryck på pennan och ändra till:
+
+```json
+{
+  "itunesLjud": false
+}
+```
+
+Tryck Commit changes. Inom ungefär tio minuter (GitHub Pages cache) visar
+låtspelet "Låtspelet är pausat" och fredagens låtfråga "Dagens låtfråga är
+pausad". Inget ljud laddas. Sätt tillbaka `true` för att slå på igen.
+
+- **Allt annat än exakt `true` räknas som av** — även ett stavfel eller en
+  fil som inte går att läsa. En avstängning ska hålla även när något strular.
+- Kör inte bygget efter den här ändringen, det behövs inte.
+- En låtfråga som någon redan öppnat när ljudet stängs av kan inte besvaras,
+  och servern räknar den då som fel när tiden gått ut.
+
+Vid varje förlyssning står "Förhandslyssning från iTunes" med en länk till
+Apple Music, som Apples villkor kräver (`ljud.js`). Före svaret går länken
+till Apple Music i allmänhet, efter svaret till låten — annars hade länken
+avslöjat svaret. Apples officiella märke ska in bredvid när filen finns.
 
 Quizfrågorna ligger i databasen, inte i repot. Se **Quizet** nedan.
 
@@ -171,6 +203,12 @@ tillfällig broms.
 ---
 
 ## Morgonkörningen: Deezer hittar, Spotify bekräftar
+
+**Den kör inte klockan 07:07.** Schemat säger 05:07 UTC, men GitHub köar
+schemalagda jobb, och i praktiken startar den mellan ungefär 12 och 14
+svensk tid. Boten pushar utan att hämta först, så **pusha inte till `main`
+mellan 11:30 och 15:00 svensk tid** — då kan dagens releaser gå förlorade.
+Kolla Actions om du är osäker på om dagens körning är klar.
 
 Rotationen hinner bara en del av listan per dygn. Deezer har ingen dygnskvot,
 så varje morgon:

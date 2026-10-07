@@ -40,12 +40,13 @@ stil.css          all gemensam stil — ändra ?v= i alla sidor när den ändras
 ram.js            statusraden i sidfoten, läser data/status.json
 inloggning.js     inloggningen, laddar Supabase bara när den behövs
 rader.js          releaseraden, delad av startsidan och /releaser/
+ljud.js           avstängningen av iTunes-ljud och raden om förlyssningen
 typsnitt/         Archivo med licens, så att inget hämtas från Google
 ```
 
 ## Datafilerna
 
-**Tre filer skrivs för hand.** Allt annat i `data/` skrivs av skript — rör det
+**Fyra filer skrivs för hand.** Allt annat i `data/` skrivs av skript — rör det
 inte, se `CLAUDE.md`.
 
 ### `data/events.json` — kalendern och bevakningslistan
@@ -93,6 +94,11 @@ Visas under Kommande på releasesidan. Passerade datum försvinner av sig
 själva. Filen kan inte byggas automatiskt — Spotify lämnar inte ut osläppt
 material.
 
+### `data/installningar.json` — avstängningen av iTunes-ljud
+
+`"itunesLjud": false` pausar låtspelet och fredagens låtfråga. Hur och varför
+står i `CLAUDE.md`. Den behöver inget bygge.
+
 **Kör bygget efter varje ändring i datafilerna:** `node scripts/bygg-metadata.mjs`.
 Det skriver om reservkopiorna i sidorna, den strukturerade datan för Google,
 `kalender.ics`, `releaser.xml` och datumen i `sitemap.xml`. Morgonkörningen
@@ -100,7 +106,8 @@ gör samma sak.
 
 ## Morgonkörningen
 
-`.github/workflows/releaser.yml` körs varje dag 05:07 UTC. Den hämtar nya släpp
+`.github/workflows/releaser.yml` är schemalagd 05:07 UTC, men GitHub köar jobbet och
+startar det i praktiken runt 12–14 svensk tid. Den hämtar nya släpp
 (`scripts/hamta-releaser.mjs`), bygger metadata och committar resultatet.
 Hur Deezer, Spotify och rotationen samspelar står i `CLAUDE.md`.
 

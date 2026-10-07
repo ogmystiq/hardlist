@@ -207,7 +207,10 @@ async function kollaMarkorer(){
 
 /* Menyn och sidfoten finns som kopior i varje sida. Det här larmar när en
    kopia glidit isär från de andra, vilket annars syns först på headern. */
-function ramDelar(html){
+function ramDelar(htmlRa){
+  /* Radsluten skiljer sig mellan filer på Windows beroende på vilket verktyg
+     som skrev dem, men Git gör ändå om dem vid commit. Bara innehållet räknas. */
+  const html = htmlRa.replace(/\r\n/g, '\n');
   const meny = (html.match(/<nav class="meny"[\s\S]*?<\/nav>/) || [''])[0]
     .replace(/\s+aria-current="page"/g, '');
   const sidfot = (html.match(/<footer class="sidfot"[\s\S]*?<\/footer>/) || [''])[0];

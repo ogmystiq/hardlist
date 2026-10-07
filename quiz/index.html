@@ -291,6 +291,8 @@ function sparaSvar(s){
 try { localStorage.removeItem('hardlist_quiz_v1'); } catch(e){}
 
 let dag = null;        // senaste svaret från quiz_dagens
+/* Sant när ljudet från iTunes är avstängt i data/installningar.json. */
+let ljudPausat = false;
 let konto = null;      // med konto: poäng och svit som servern räknat
 
 function ritaTopp(){
@@ -341,7 +343,7 @@ function dagensSvar(){
   const s = lasSvar();
   if (!s || s.datum !== dag.datum) return null;
   return { valde: s.valde, ratt: s.ratt, plus: 0, ratt_plats: s.rattPlats,
-           facit: s.facit, tid_ute: false };
+           facit: s.facit, apple: s.apple, tid_ute: false };
 }
 
 let nedrakning = null;
@@ -357,6 +359,18 @@ function ritaFraga(){
   }
 
   const svar = dagensSvar();
+
+  /* Ljudet är avstängt: en låtfråga går inte att svara på utan att höra den,
+     så den visas som pausad och klockan kan inte startas. Är den redan
+     besvarad visas facit som vanligt, men utan spelare. */
+  if (dag.latquiz && ljudPausat && !svar){
+    kort.innerHTML = datumRad() +
+      '<h2 class="q-fraga">Dagens låtfråga är pausad</h2>' +
+      '<p class="q-regel">Ljudet från iTunes är avstängt på sajten just nu. ' +
+      'Frågan kommer tillbaka när ljudet är på igen.</p>';
+    ritaFredagsnot();
+    return;
+  }
 
   /* Konto utan visningsnamn får inte frågan av servern. Tiden har inte
      börjat — den startar först när namnet är valt och frågan öppnas. */
@@ -395,7 +409,7 @@ function ritaFraga(){
       '<div class="q-klocka-topp"><span>Tid kvar</span><span class="q-klocka-tal" id="qKlockaText"></span></div>' +
       '<div class="q-klocka-spar"><i id="qKlockaBar"></i></div></div>' : '') +
     datumRad() +
-    (dag.ljud ? spelare() : '') +
+    (dag.ljud && !ljudPausat ? spelare(svar) : '') +
     '<h2 class="q-fraga">' + esc(dag.fraga) + '</h2>' +
     '<div class="q-alt' + (anim ? ' anim' : '') + '" id="qAlt">' +
       dag.alternativ.map((text, i) => {
@@ -520,7 +534,7 @@ async function svara(plats){
     laddaTopplista();
   } else {
     sparaSvar({ datum: dag.datum, valde: res.svar.valde, ratt: res.svar.ratt,
-                rattPlats: res.svar.ratt_plats, facit: res.svar.facit });
+                rattPlats: res.svar.ratt_plats, facit: res.svar.facit, apple: res.svar.apple });
   }
   ritaTopp();
   ritaFraga();
@@ -550,8 +564,10 @@ function ritaFredagsnot(){
 
 /* Ljudet är Apples officiella 30-sekunders förhandslyssning. Artist och titel
    syns aldrig — varken i spelaren eller i adressen. */
-function spelare(){
-  return '<div class="q-spelare">' +
+/* Efter svaret länkar raden om iTunes till själva låten. Före svaret till
+   Apple Music i allmänhet, annars hade länken avslöjat svaret. */
+function spelare(svar){
+  return '<div class="q-spelare-ruta"><div class="q-spelare">' +
     '<button class="q-play" id="qPlay" type="button" aria-label="Spela upp">' +
       '<svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z"/></svg></button>' +
     '<div class="info">' +
@@ -563,7 +579,7 @@ function spelare(){
         '<input type="range" id="qVol" min="0" max="100" step="1" value="45" aria-label="Volym">' +
         '<span class="q-volnivå" id="qVolText">45%</span>' +
       '</div>' +
-    '</div></div>';
+    '</div></div>' + hardlistLjud.kalla(svar && svar.apple) + '</div>';
 }
 
 const LJUDTEXT = '30 sekunder. Spela så många gånger du vill.';
@@ -775,6 +791,7 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
 
 async function start(){
   ritaTopp();
+  ljudPausat = !(await hardlistLjud.tillatet);
   try {
     dag = await hardlistKonto.rpc('quiz_dagens', { p_starta: false });
     konto = dag && dag.konto || null;
@@ -791,6 +808,7 @@ if (document.readyState === 'loading') document.addEventListener('DOMContentLoad
 else start();
 </script>
 <script src="/ram.js" defer></script>
+<script src="/ljud.js" defer></script>
 <script src="/inloggning.js" defer></script>
 <script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
