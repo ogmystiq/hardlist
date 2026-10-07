@@ -31,7 +31,12 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-07c">
+<link rel="stylesheet" href="/stil.css?v=2026-10-07d">
+<style>
+/* Tre kort bredvid frågan. På mobil står de två i bredd, och det tredje tar
+   hela raden i stället för att stå ensamt i en halv. */
+@media (max-width:859px){.delad-sida > .kort:nth-child(3){grid-column:1 / -1}}
+</style>
 </head>
 <body>
 
@@ -77,6 +82,13 @@
         <span class="kort-delar">
           <span class="kort-titel">Topplistan</span>
           <span class="kort-text">Totalt och den här månaden</span>
+        </span>
+      </a>
+      <a class="kort med-ikon" href="/badges/">
+        <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l2 5M16 3l-2 5"/><circle cx="12" cy="14" r="6"/></svg></span>
+        <span class="kort-delar">
+          <span class="kort-titel">Badges</span>
+          <span class="kort-text">Alla 39, och vad som krävs</span>
         </span>
       </a>
     </div>

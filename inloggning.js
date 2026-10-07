@@ -19,6 +19,11 @@
   // Namnet sparas lokalt så knappen visar rätt direkt, utan att blinka
   // "Logga in" medan klienten laddas.
   const NAMNNYCKEL = 'hardlist-visningsnamn';
+  // Profilbilden sparas lokalt av samma skäl, med tidpunkten då den lästes,
+  // så att servern bara behöver frågas igen när det gått en stund.
+  const BILDNYCKEL = 'hardlist-profilbild';
+  const BILD_GILTIG_MS = 10 * 60 * 1000;
+  const BILD_BORJAN = PROJEKT_URL + '/storage/v1/object/public/profilbilder/';
   // sessionStorage: ska bara överleva rundturen via Google, inte längre.
   const TILLBAKANYCKEL = 'hardlist-tillbaka';
 
@@ -157,7 +162,23 @@
 
   function sparaNamn(namn){
     skriv(localStorage, NAMNNYCKEL, namn);
-    visaKnapp(namn ? { namn: namn } : null);
+    if (!namn) skriv(localStorage, BILDNYCKEL, null);
+    visaKnapp(namn ? { namn: namn, bild: sparadBild().url } : null);
+  }
+
+  /* Bara adresser i den egna bucketen visas, aldrig något annat som råkar
+     ligga i webbläsarens lagring. */
+  function sparadBild(){
+    try {
+      const b = JSON.parse(las(localStorage, BILDNYCKEL) || 'null');
+      if (b && (b.url === null || (typeof b.url === 'string' && b.url.indexOf(BILD_BORJAN) === 0))) return b;
+    } catch(e){}
+    return { url: null, tid: 0 };
+  }
+  function sparaBild(url){
+    skriv(localStorage, BILDNYCKEL, JSON.stringify({ url: url || null, tid: Date.now() }));
+    const namn = las(localStorage, NAMNNYCKEL);
+    if (namn) visaKnapp({ namn: namn, bild: url || null });
   }
 
   /* ---------- knappen i headern ---------- */
@@ -174,7 +195,19 @@
     const bildDel = a.querySelector('.konto-bild');
     const text = !lage ? 'Logga in' : (lage.namn || 'Välj namn');
     if (namnDel) namnDel.textContent = text; else a.textContent = text;
-    if (bildDel) bildDel.textContent = lage && lage.namn ? lage.namn.charAt(0).toUpperCase() : '';
+    if (bildDel){
+      bildDel.textContent = lage && lage.namn ? lage.namn.charAt(0).toUpperCase() : '';
+      // Profilbilden i stället för initialen när det finns en.
+      if (lage && lage.namn && lage.bild && lage.bild.indexOf(BILD_BORJAN) === 0){
+        const img = document.createElement('img');
+        img.src = lage.bild;
+        img.alt = '';
+        img.width = 36; img.height = 36;
+        img.onerror = function(){ bildDel.textContent = lage.namn.charAt(0).toUpperCase(); };
+        bildDel.textContent = '';
+        bildDel.appendChild(img);
+      }
+    }
     if (!lage){
       a.removeAttribute('title');
       return;
@@ -186,13 +219,19 @@
 
   async function uppdateraKnapp(){
     if (!harSparadSession()){ sparaNamn(null); return; }
-    visaKnapp({ namn: las(localStorage, NAMNNYCKEL) });
+    visaKnapp({ namn: las(localStorage, NAMNNYCKEL), bild: sparadBild().url });
     try {
       const s = await session();
       if (!s){ sparaNamn(null); return; }
       const p = await profil(s.user.id);
       sparaNamn(p ? p.visningsnamn : null);
-      if (!p) visaKnapp({ namn: null });
+      if (!p){ visaKnapp({ namn: null }); return; }
+      // Bilden frågas efter högst var tionde minut. Kontosidan sparar den
+      // direkt när den byts.
+      if (Date.now() - sparadBild().tid > BILD_GILTIG_MS){
+        const min = await rpc('profil_min');
+        if (min && !min.fel) sparaBild(min.bild_egen || null);
+      }
     } catch(e){
       // Nätet borta eller Supabase nere: behåll det sparade namnet hellre än
       // att påstå att personen är utloggad.
@@ -251,6 +290,7 @@
     tillbaka: tillbaka,
     valjNamn: valjNamn,
     sparaNamn: sparaNamn,
+    sparaBild: sparaBild,
     visaKnapp: visaKnapp,
     NAMNREGEL: NAMNREGEL
   };
