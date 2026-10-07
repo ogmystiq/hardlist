@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Profil – HARDLIST</title>
+<meta name="description" content="En spelares profil på HARDLIST: badges, rang, poäng och svit från dagens fråga.">
+<link rel="canonical" href="https://hardlist.se/profil/">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#100C17">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HARDLIST">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:url" content="https://hardlist.se/profil/">
+<meta property="og:title" content="Profil på HARDLIST">
+<meta property="og:description" content="En spelares profil på HARDLIST: badges, rang, poäng och svit från dagens fråga.">
+<meta property="og:image" content="https://hardlist.se/bilder/dela/quiz.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="En fråga, 30 sekunder: Vilken gren är äldst?">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/stil.css?v=2026-10-07c">
+<link rel="stylesheet" href="/badges.css?v=2026-10-07">
+<style>
+/* Lägena utan profil. Profilen själv är gemensam stil i stil.css. */
+.kt-laddar{color:var(--text-2)}
+.p-text{font-size:15px;line-height:1.5;color:var(--text-2)}
+.p-knapp{align-self:flex-start;min-height:44px}
+#p-saknas h1,#p-fel h1{font-size:32px}
+#p-hoger{display:flex;justify-content:flex-end}
+</style>
+</head>
+<body>
+
+<a class="hoppa" href="#innehall">Till innehållet</a>
+
+<header class="topp">
+  <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+  <nav class="meny" aria-label="Huvudmeny">
+    <a href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg>Hem</a>
+    <a href="/releaser/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Releaser</a>
+    <a href="/events/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Event</a>
+    <a href="/spel/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/></svg>Spel</a>
+    <a href="/scenen/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Scenen</a>
+  </nav>
+  <a class="konto" id="konto-knapp" href="/konto/"><span class="konto-bild" aria-hidden="true"></span><span class="konto-namn">Logga in</span></a>
+</header>
+
+<main class="sida" id="innehall">
+  <div class="pf">
+
+    <div class="pf-topp">
+      <a class="pf-ikonknapp" id="p-tillbaka" href="/quiz/#topplistan" aria-label="Tillbaka">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+      </a>
+      <span class="pf-topp-titel">Profil</span>
+      <span id="p-hoger"></span>
+    </div>
+
+    <p class="kt-laddar" id="p-laddar">Läser in profilen.</p>
+
+    <noscript>
+      <div class="ruta"><h1>Kräver JavaScript</h1><p>Profilerna läses in med JavaScript. Resten av sajten fungerar utan.</p></div>
+    </noscript>
+
+    <div class="ruta" id="p-saknas" hidden>
+      <h1>Ingen profil med det namnet.</h1>
+      <p class="p-text">Namnet kan ha bytts, eller så finns kontot inte längre.</p>
+      <a class="knapp knapp-sek p-knapp" href="/quiz/#topplistan">Till topplistan</a>
+    </div>
+
+    <div class="ruta" id="p-fel" hidden>
+      <h1>Profilen gick inte att läsa</h1>
+      <p class="p-text">Kontrollera nätet och ladda om sidan.</p>
+    </div>
+
+    <div class="pf" id="p-profil" hidden>
+      <section class="pf-huvud" id="p-huvud" aria-label="Profil"></section>
+      <div class="pf-nasta" id="p-nasta"></div>
+      <div class="pf-siffror" id="p-siffror"></div>
+      <section class="pf-avsnitt" aria-labelledby="p-badges-rubrik">
+        <div class="pf-avsnitt-topp">
+          <h2 id="p-badges-rubrik">Badges</h2>
+          <span class="pf-antal" id="p-antal"></span>
+        </div>
+        <div class="pf-rutnat" id="badges"></div>
+      </section>
+    </div>
+
+  </div>
+</main>
+
+<footer class="sidfot">
+  <div class="sidfot-inre">
+    <div class="sidfot-topp">
+      <div class="sidfot-om">
+        <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+        <p>Releaser, event och spel för den hårda scenen i Norden.</p>
+      </div>
+      <div class="sidfot-grupper">
+        <nav aria-labelledby="sf-sajten">
+          <span class="sidfot-rubrik" id="sf-sajten">Sajten</span>
+          <a href="/releaser/">Releaser</a>
+          <a href="/events/">Event</a>
+          <a href="/spel/">Spel</a>
+          <a href="/scenen/">Scenen</a>
+        </nav>
+        <nav aria-labelledby="sf-prenumerera">
+          <span class="sidfot-rubrik" id="sf-prenumerera">Prenumerera</span>
+          <a href="webcal://hardlist.se/kalender.ics">Kalendern i mobilen</a>
+          <a href="/releaser.xml">Releaser som RSS</a>
+        </nav>
+        <nav aria-labelledby="sf-bidra">
+          <span class="sidfot-rubrik" id="sf-bidra">Bidra</span>
+          <a href="mailto:hardlisthelp@gmail.com?subject=Tips%20om%20event">Tipsa om ett event</a>
+          <a href="mailto:hardlisthelp@gmail.com?subject=R%C3%A4ttelse">Rätta en uppgift</a>
+          <a class="bara-dator" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
+        </nav>
+        <nav aria-labelledby="sf-om">
+          <span class="sidfot-rubrik" id="sf-om">Om sajten</span>
+          <a href="/integritet/">Integritet</a>
+          <a href="/konto/">Ditt konto</a>
+        </nav>
+      </div>
+    </div>
+    <div class="sidfot-status">
+      <span id="sidfotStatus">Releaserna uppdateras varje morgon.</span>
+      <span>Inga annonser och inga cookies.</span>
+      <a class="sidfot-post" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/ram.js" defer></script>
+<script src="/inloggning.js"></script>
+<script src="/badges.js"></script>
+<script src="/profilvy.js"></script>
+<script>
+(function(){
+  const K = window.hardlistKonto;
+  const P = window.hardlistProfil;
+  const $ = function(id){ return document.getElementById(id); };
+  const namn = new URLSearchParams(location.search).get('namn') || '';
+
+  /* Tillbaka i historiken om man kom från sajten, annars till topplistan. */
+  $('p-tillbaka').addEventListener('click', function(e){
+    let fran = null;
+    try { fran = document.referrer && new URL(document.referrer).origin; } catch(err){}
+    if (fran === location.origin && history.length > 1){ e.preventDefault(); history.back(); }
+  });
+
+  const PRICKAR = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>';
+  const FLAGGA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4h12l-2 4 2 4H5"/></svg>';
+  const BOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>';
+
+  /* Är den som tittar inloggad med visningsnamn? Klienten laddas bara när
+     det finns en sparad inloggning. */
+  async function harNamn(){
+    if (!K.inloggad()) return false;
+    try {
+      const s = await K.session();
+      return !!(s && await K.profil(s.user.id));
+    } catch(e){ return false; }
+  }
+
+  /* Menyn "…": rapportera bilden. Finns bara när profilen har en bild. */
+  function meny(p){
+    harNamn().then(function(inloggad){
+      let rad;
+      if (p.rapporterad) rad = '<div class="ark-meny-rad">' + BOCK + '<span class="ark-meny-text">Du har rapporterat bilden<small>Den är dold tills den är granskad.</small></span></div>';
+      else if (inloggad) rad = '<button class="ark-meny-rad" type="button" id="p-rapportera" data-forst>' + FLAGGA + '<span class="ark-meny-text">Rapportera bilden<small>Bilden döljs direkt tills den är granskad.</small></span></button>';
+      else rad = '<button class="ark-meny-rad" type="button" id="p-logga-in" data-forst>' + FLAGGA + '<span class="ark-meny-text">Logga in för att rapportera<small>Bara inloggade med visningsnamn kan rapportera en bild.</small></span></button>';
+      P.ark('Mer för den här profilen', rad +
+        '<p class="ark-besked" id="p-rapport-besked" role="status"></p>' +
+        '<button class="knapp knapp-sek ark-knapp" type="button" data-stang>Stäng</button>',
+        function(ruta){
+          const logga = ruta.querySelector('#p-logga-in');
+          if (logga) logga.addEventListener('click', function(){
+            if (K.inloggad()) K.valjNamn(); else K.loggaIn().catch(function(){ location.href = '/konto/'; });
+          });
+          const rapp = ruta.querySelector('#p-rapportera');
+          if (rapp) rapp.addEventListener('click', async function(){
+            rapp.disabled = true;
+            const besked = ruta.querySelector('#p-rapport-besked');
+            try {
+              const svar = await K.rpc('profil_rapportera_bild', { p_namn: p.namn });
+              if (!svar || svar.fel) throw new Error(svar && svar.fel);
+              rapp.outerHTML = '<div class="ark-meny-rad">' + BOCK + '<span class="ark-meny-text">Tack, bilden är rapporterad<small>Den är dold tills den är granskad.</small></span></div>';
+              hamta();
+            } catch(e){
+              rapp.disabled = false;
+              besked.textContent = 'Kunde inte rapportera. Försök igen.';
+              besked.className = 'ark-besked fel';
+            }
+          });
+        });
+    });
+  }
+
+  function rita(p){
+    document.title = p.namn + ' – HARDLIST';
+    P.huvud($('p-huvud'), p, { egen: false, namnTagg: 'h1' });
+    P.nasta($('p-nasta'), p);
+    P.siffror($('p-siffror'), p);
+    P.rutnat($('badges'), p);
+    $('p-antal').textContent = P.antalTagna(p);
+
+    /* Den egna profilen leder till /konto/, andras har menyn när det finns
+       en bild att rapportera. */
+    const hoger = $('p-hoger');
+    if (p.egen){
+      hoger.innerHTML = '<a class="pf-ikonknapp" href="/konto/" aria-label="Din profil, ändra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m14 6 4 4"/></svg></a>';
+    } else if (p.har_bild || p.rapporterad){
+      hoger.innerHTML = '<button class="pf-ikonknapp" type="button" aria-label="Mer för den här profilen">' + PRICKAR + '</button>';
+      hoger.firstChild.addEventListener('click', function(){ meny(p); });
+    } else {
+      hoger.innerHTML = '';
+    }
+    $('p-profil').hidden = false;
+  }
+
+  async function hamta(){
+    try {
+      const p = namn ? await K.rpc('profil_visa', { p_namn: namn }) : null;
+      $('p-laddar').hidden = true;
+      if (!p){ $('p-saknas').hidden = false; return; }
+      rita(p);
+    } catch(e){
+      $('p-laddar').hidden = true;
+      $('p-fel').hidden = false;
+    }
+  }
+
+  hamta();
+})();
+</script>
+<!-- Fast sökväg, så att besöksräknaren inte sparar vems profil som visades. -->
+<script data-goatcounter="https://hardlist.goatcounter.com/count" data-goatcounter-settings='{"path": "/profil/"}' async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
