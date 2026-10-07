@@ -187,7 +187,7 @@
     const mellan = [];
     for (let i = 1; i < 8; i++) mellan.push(tider[i] - tider[i - 1]);
     const medel = mellan.reduce(function(a, b){ return a + b; }, 0) / mellan.length;
-    if (medel <= 0 || !mellan.every(function(d){ return Math.abs(d - medel) / medel <= 0.12; })) return;
+    if (medel <= 0 || !mellan.every(function(d){ return Math.abs(d - medel) / medel <= 0.20; })) return;
 
     const slag = tider.map(function(t){ return t - tider[0]; });
     tider = [];

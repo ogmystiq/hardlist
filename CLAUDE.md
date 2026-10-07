@@ -505,7 +505,15 @@ På felsidan står ledtråden "Vilse? Hitta takten." Den som trycker på den sto
 senaste trycken och skickar dem till `profil_hitta` när mellanrummen är jämna
 sinsemellan — sidan vet aldrig vilken takt som är rätt. Servern jämför med
 takten och svarar bara rätt eller fel, aldrig hur nära det var. Högst 20 försök
-per konto och dygn, och bara för inloggade med visningsnamn.
+per konto och dygn, och bara för inloggade med visningsnamn. Gränserna är
+vida nog för tryck på en mobilskärm. Varje försök sparas med sina sju
+mellanrum i `profil.hitta_logg`, som API:t inte når, så att det går att se
+hur trycken såg ut om någon inte lyckas:
+
+```sql
+select p.visningsnamn, l.skapad, l.mellanrum, l.ratt from profil.hitta_logg l
+  join public.profiler p on p.id = l.anvandare order by l.skapad desc limit 20;
+```
 
 **Takten ligger bara i `profil.hemligheter`** (namnet `paskagg_bpm`) i
 produktionsdatabasen. Den får aldrig hamna i repot, i en migration, i
