@@ -167,6 +167,16 @@
       blixtTid = setTimeout(function(){ siffra.classList.remove('blixt'); }, 120);
     } else spela('kick');
   }
+  /* Fel takt: en skakning, eller med minskad rörelse två snabba strobe i
+     stället, så att det märks utan att något rör sig. */
+  function fel(){
+    if (!(stilla && stilla.matches)){ spela('skak'); return; }
+    clearTimeout(blixtTid);
+    [0, 240].forEach(function(start){
+      setTimeout(function(){ siffra.classList.add('blixt'); }, start);
+      setTimeout(function(){ siffra.classList.remove('blixt'); }, start + 120);
+    });
+  }
 
   function tryck(e){
     strobe();
@@ -187,7 +197,7 @@
     skickar = true;
     K.rpc('profil_hitta', { p_tider: slag }).then(function(svar){
       if (svar && svar.fel === 'inte_inloggad'){ besked.hidden = false; return; }
-      if (svar && svar.ratt === false){ spela('skak'); return; }
+      if (svar && svar.ratt === false){ fel(); return; }
       if (svar && svar.ratt && svar.nya_badges && svar.nya_badges.length){
         return K.badges().then(function(B){ B.visaNya(svar.nya_badges); });
       }
