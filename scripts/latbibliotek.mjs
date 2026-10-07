@@ -29,7 +29,7 @@
  */
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { dirname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { normNamn, normTitel } from './deezer-radar.mjs';
 
@@ -462,7 +462,12 @@ const PER_ANROP = 200;
 
 function lasNyckel() {
   if (process.env.LATBIBLIOTEK_NYCKEL) return process.env.LATBIBLIOTEK_NYCKEL.trim();
-  if (resolve(NYCKELFIL).startsWith(ROOT)) throw new Error('Nyckelfilen ligger i repot. Flytta den.');
+  /* Avgränsaren räknas med: hardlist-privat börjar också med "hardlist",
+     men ligger utanför repot. */
+  const fil = resolve(NYCKELFIL).toLowerCase();
+  if (fil === ROOT.toLowerCase() || fil.startsWith(ROOT.toLowerCase() + sep)) {
+    throw new Error('Nyckelfilen ligger i repot. Flytta den.');
+  }
   if (!existsSync(NYCKELFIL)) throw new Error(`Ingen nyckel. Lägg den i ${NYCKELFIL}.`);
   const k = readFileSync(NYCKELFIL, 'utf8').trim();
   /* Supabase hemliga nycklar börjar så. En publik nyckel här vore ett misstag. */
