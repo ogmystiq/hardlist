@@ -215,7 +215,26 @@
     }
     // Kontosidan sköter knappen själv, annars krockar två samtidiga
     // inläsningar av samma session när Google precis skickat tillbaka koden.
-    if (location.pathname !== '/konto/') uppdateraKnapp();
+    if (location.pathname !== '/konto/') uppdateraKnapp().then(visaOsedda);
+    else setTimeout(visaOsedda, 1500);
+  }
+
+  /* Badges som popupen inte har visat än, till exempel de som delades ut
+     när månaden tog slut. Varje badge visas en gång och markeras som sedd
+     direkt, så att den inte kommer igen på nästa sida. Ett fel här ska
+     aldrig synas, då kommer popupen nästa gång i stället. */
+  let oseddaKollad = false;
+  async function visaOsedda(){
+    if (oseddaKollad || !harSparadSession()) return;
+    oseddaKollad = true;
+    try {
+      const lista = await rpc('profil_osedda');
+      if (!Array.isArray(lista) || !lista.length) return;
+      // Utseendet först, så att inget markeras som sett utan att ha visats.
+      const B = await badges();
+      await rpc('profil_sedda', { p_ids: lista.map(function(x){ return x.id; }) });
+      B.visaNya(lista);
+    } catch(e){}
   }
 
   window.hardlistKonto = {

@@ -547,6 +547,11 @@ async function svara(plats){
   }
   ritaTopp();
   ritaFraga();
+
+  /* Nya badges visas direkt. Servern har redan markerat dem som sedda. */
+  if (res.nya_badges && res.nya_badges.length){
+    hardlistKonto.badges().then(B => B.visaNya(res.nya_badges)).catch(() => {});
+  }
 }
 
 /* Rad under kortet som talar om när nästa låtquiz kommer. */
