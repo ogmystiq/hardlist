@@ -69,7 +69,7 @@ function eventLd(e) {
       name: e.venue || stad,
       address: { '@type': 'PostalAddress', addressLocality: stad, addressCountry: land }
     },
-    image: DOMAN + '/og-image.png',
+    image: DOMAN + '/bilder/dela/event.png',
     description: (e.lineup || '').slice(0, 300) || ('Hard dance-event i ' + stad)
   };
   if (e.url) ld.url = e.url;
@@ -97,8 +97,9 @@ async function run() {
   const ld = {
     '@context': 'https://schema.org',
     '@graph': [
+      /* name gör att Google visar HARDLIST ovanför länken i stället för domänen. */
       { '@type': 'WebSite', '@id': DOMAN + '/#site', url: DOMAN + '/', name: 'HARDLIST',
-        inLanguage: 'sv-SE',
+        alternateName: 'hardlist.se', inLanguage: 'sv-SE',
         description: 'Nya hardstyle-, raw-, uptempo-, hardcore- och hard techno-releaser i datumordning, plus varje rave i Norden.',
         publisher: { '@id': DOMAN + '/#person' } },
       { '@type': 'Person', '@id': DOMAN + '/#person', name: 'Jonathan H' },

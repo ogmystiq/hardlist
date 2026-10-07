@@ -217,6 +217,41 @@ function ramDelar(htmlRa){
   return { meny, sidfot };
 }
 
+/* Det som syns i Google och när en länk delas. Längre titel och beskrivning
+   än så klipps av i sökresultatet. Delningsbilderna ritas i designen, så en
+   bild utanför bilder/dela/ är antingen gammal eller hemmagjord. */
+const avkoda = s => s.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+
+async function kollaDelning(){
+  const sm = await readFile(resolve(ROOT, 'sitemap.xml'), 'utf8');
+  for (const [, sokvag] of sm.matchAll(/<loc>https:\/\/hardlist\.se(\/[^<]*)<\/loc>/g)){
+    const fil = resolve(ROOT, '.' + sokvag, 'index.html');
+    if (!existsSync(fil)){ fel.push(`sitemap.xml: ${sokvag} har ingen sida`); continue; }
+    const head = (await readFile(fil, 'utf8')).split('</head>')[0];
+    const namn = rel(fil);
+    const meta = (attr, varde) => {
+      const m = head.match(new RegExp(`<meta ${attr}="${varde}" content="([^"]*)"`));
+      return m ? avkoda(m[1]) : null;
+    };
+    const titel = (head.match(/<title>([^<]*)<\/title>/) || [])[1];
+    if (!titel) fel.push(`${namn}: saknar <title>`);
+    else if (avkoda(titel).length > 60) fel.push(`${namn}: titeln är ${avkoda(titel).length} tecken, högst 60`);
+    const beskrivning = meta('name', 'description');
+    if (beskrivning === null) fel.push(`${namn}: saknar description`);
+    else if (beskrivning.length > 160) fel.push(`${namn}: description är ${beskrivning.length} tecken, högst 160`);
+    if (!meta('property', 'og:title')) fel.push(`${namn}: saknar og:title`);
+    if (!meta('property', 'og:description')) fel.push(`${namn}: saknar og:description`);
+    if (!/<link rel="canonical" href="[^"]+">/.test(head)) fel.push(`${namn}: saknar canonical`);
+    const bild = meta('property', 'og:image');
+    if (!bild) fel.push(`${namn}: saknar og:image`);
+    else {
+      const m = bild.match(/^https:\/\/hardlist\.se(\/bilder\/dela\/[^/]+)$/);
+      if (!m) fel.push(`${namn}: og:image ${bild} ligger inte i bilder/dela/`);
+      else if (!existsSync(resolve(ROOT, '.' + m[1]))) fel.push(`${namn}: og:image ${m[1]} finns inte`);
+    }
+  }
+}
+
 async function kollaJson(){
   const filer = (await readdir(resolve(ROOT, 'data'))).filter(f => f.endsWith('.json')).map(f => 'data/' + f);
   filer.push('site.webmanifest');
@@ -258,6 +293,7 @@ async function run(){
   }
   await kollaMarkorer();
   await kollaJson();
+  await kollaDelning();
 
   const nya = ramar.length;
   console.log(`Kontrollerade ${sidor.length} sidor, varav ${nya} i den nya designen.`);

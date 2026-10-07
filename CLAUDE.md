@@ -86,6 +86,12 @@ dessutom ha **högst ett** eget `<style>`-block för det som bara finns där.
   larmar kontrollskriptet för.
 - **Typsnittet ligger i `/typsnitt/`**, så att ingen sidvisning går till
   Google. Licensen (SIL Open Font License) ligger bredvid.
+- **Delningsbilderna i `bilder/dela/` och ikonfilerna i roten ritas i
+  designen.** Ändra dem aldrig för hand. En ny sida får samma head-taggar som
+  de andra (titel, description, robots, og-taggarna, ikonlänkarna) och lånar
+  en av de befintliga delningsbilderna tills Jonte fått en ny ritad.
+  Kontrollskriptet larmar för titel över 60 tecken, description över 160 och
+  delningsbild utanför `bilder/dela/`.
 
 Referensen för utseendet är designfilen Jonte har godkänt (`hardlist-design.md`,
 inte i repot). Det viktigaste ur den:
