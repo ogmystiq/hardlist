@@ -9,6 +9,7 @@
  *   --fyll     bygger låtar enligt väg B och skickar dem till databasen med
  *              den hemliga nyckeln, se lasNyckel(). --torr skickar ingenting.
  *              node scripts/latbibliotek.mjs --fyll --antal 20 --ut provlyssning.html --prov 30
+ *              --alla i stället för --antal tar hela artistlistan.
  *
  *              Artister där MusicBrainz eller Apple pekar utanför scenen stoppas
  *              och listas, se stoppet nedan.
@@ -588,7 +589,7 @@ async function valjUrval(artister, antal) {
   const urval = [], stoppade = [];
   const prova = async a => {
     const B = await valjApple(a);
-    if (B.lage === 'stoppad' || FEL_I_MUSICBRAINZ.has(a.namn)) stoppade.push({ namn: a.namn, skal: B.skal || B.lage });
+    if (B.lage === 'stoppad' || (FEL_I_MUSICBRAINZ.has(a.namn) && !B.ids.length)) stoppade.push({ namn: a.namn, skal: B.skal || B.lage });
     return B.ids.length ? { ...a, B } : null;
   };
   for (const g of GENRER_ORDNING) {
@@ -615,6 +616,18 @@ async function valjUrval(artister, antal) {
 }
 const GENRER_ORDNING = ['hardstyle', 'raw', 'uptempo', 'hardcore', 'techno'];
 
+/* Hela listan: varje artist som klarar samma prov som urvalet, i listans
+   ordning. Stoppade artister hoppas över och listas, som i urvalet. */
+async function valjAlla(artister) {
+  const urval = [], stoppade = [];
+  for (const a of artister.filter(a => a.lankar.mbid || FAST_APPLE[a.namn])) {
+    const B = await valjApple(a);
+    if (B.lage === 'stoppad' || (FEL_I_MUSICBRAINZ.has(a.namn) && !B.ids.length)) stoppade.push({ namn: a.namn, skal: B.skal || B.lage });
+    if (B.ids.length) urval.push({ ...a, B });
+  }
+  return { urval, stoppade };
+}
+
 async function fyll() {
   const antal = Number(arg('--antal')) || 20;
   const torr = process.argv.includes('--torr');
@@ -628,7 +641,7 @@ async function fyll() {
   }
   if (CACHE) writeFileSync(CACHE, JSON.stringify(mbCache));
 
-  const { urval, stoppade } = await valjUrval(artister, antal);
+  const { urval, stoppade } = process.argv.includes('--alla') ? await valjAlla(artister) : await valjUrval(artister, antal);
   console.log(`${urval.length} artister: ${urval.map(a => `${a.namn} (${a.genre}, ${a.B.lage})`).join(', ')}\n`);
 
   const latar = new Map();
@@ -691,6 +704,6 @@ function skrivLyssning(rader, fil, antal = 20) {
 if (RAPPORT) rapport().catch(err => { console.error(err.message || err); process.exit(1); });
 else if (process.argv.includes('--fyll')) fyll().catch(err => { console.error(err.message || err); process.exit(1); });
 else {
-  console.log('node scripts/latbibliotek.mjs --rapport   eller   --fyll [--antal 20] [--torr] [--prov 30]');
+  console.log('node scripts/latbibliotek.mjs --rapport   eller   --fyll [--antal 20 | --alla] [--torr] [--prov 30]');
   process.exit(1);
 }
