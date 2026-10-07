@@ -450,36 +450,37 @@ den inte gör det.
 
 ### Fritt spel
 
-Låtspelet på `/fritt-spel/` spelar ur låtbiblioteket. Man väljer genre eller
-Blandat och svårighet, lyssnar på ett klipp och svarar bland fyra alternativ.
-Klippet är 1 sekund och blir 3, 7 och 15 med Längre, för 100, 60, 30 och 10
-poäng. Det gamla låtspelet på `/latspel/` finns kvar som Dagens låt och
-länkas från fritt spel.
+Låtspelet på `/fritt-spel/` spelar ur låtbiblioteket, med samma sätt att
+gissa som Dagens låt: sökruta med förslag, sex försök, klipp på 0,5, 1, 2, 4,
+8 och 16 sekunder och Hoppa över. Poängen följer försöket låten klaras på:
+100, 70, 50, 30, 20 och 10. Förebilden är songspot.co.
 
-**Allt avgörs på servern**, i `supabase/migrations/20261007190000_fritt_spel.sql`:
+**Allt avgörs på servern**, i `supabase/migrations/20261007210000_fritt_spel_sok.sql`:
 
-- `latspel_ny` väljer låten och tre fel alternativ från andra artister i
-  samma genre. En artist som är med på rätt låt blir aldrig ett fel
-  alternativ. Sidan får aldrig veta vilket som är rätt.
-- `latspel_spela` lämnar ut ljudet och startar klockan. `latspel_langre`
-  går till nästa klipplängd och startar om den. `latspel_svara` rättar.
-- Poängen räknas på den klipplängd som tiden faktiskt räcker till: klippet
-  plus åtta sekunder att svara, sedan glider det över till nästa längd. Den
-  som lyssnar längre än den säger får inte poängen för det korta klippet.
-- Ljudadressen är Apples egen, så den som vill kan slå upp den. Ska det
-  stoppas måste ljudet gå genom en egen server, vilket inte är gjort.
-- Lätt är varje artists tio första låtar i iTunes ordning, det enda mått på
-  hur kända låtarna är som finns. Svår är hela biblioteket.
-- Inloggade med visningsnamn får rätt per genre (`latbibliotek.statistik`),
-  rundor per dag (`latbibliotek.dagar`) och hörda låtar
-  (`latbibliotek.hort`) sparade. Ingen låt kommer tillbaka förrän alla i
-  urvalet är spelade. Utan konto sparas ingenting om personen, och rundorna
-  rensas efter ett dygn av jobbet `hardlist-latspel-rensa`.
-- Genreöronen (50 rätt i genren), Hela scenen (alla fem) och Maraton (100
-  låtar samma dag) delas ut i ett eget exception-block i `latspel_svara`.
-  Låtspelets andra badges har kvar `kommer` tills dueller och dagens låt finns.
-- Rankat spel och dueller ska använda samma omgångar, med `lage` och
-  `match_id` i `latbibliotek.omgangar`.
+- `fritt_ny` väljer låten ur urvalet för genren och svårigheten.
+  `fritt_spela` lämnar ut ljudet och startar klockan. `fritt_gissa` rättar en
+  gissning, eller Hoppa över när låten är null. Sidan får aldrig veta svaret
+  förrän låten är klar.
+- `latspel_sok` ger förslag från hela biblioteket, så att listan inte avslöjar
+  genren eller svaret.
+- Samma låt i en annan version räknas som rätt: `latbibliotek.grundtitel` tar
+  bort Extended Mix, Radio Edit, Original Mix och gästartister. Remixer av
+  andra artister är andra låtar.
+- Svårigheten är andelen av genren efter popularitet: Lätt 15 procent, Medel
+  40, Svår 75 och Expert alla. Måttet är iTunes ordning per artist
+  (`latbibliotek.popularitet`), det enda biblioteket har, och det följer
+  popularitet dåligt.
+- Varje försök får klippet plus 20 sekunder att skriva. Har mer tid gått räknas
+  gissningen på ett senare försök. Ljudadressen är Apples egen, så den som vill
+  kan slå upp den; det stoppas bara med ljud genom en egen server.
+- Inloggade med visningsnamn får rätt per genre, rundor per dag och hörda
+  låtar sparade. Ingen låt kommer tillbaka förrän urvalet är slut, och sedan
+  börjar det om. Utan konto rensas rundorna efter ett dygn
+  (`hardlist-latspel-rensa`).
+- Genreöronen, Hela scenen och Maraton delas ut i `latbibliotek.sok_avsluta`,
+  i ett eget exception-block.
+- Flervalet (`latspel_ny`, `latspel_spela`, `latspel_langre`,
+  `latspel_svara`) står kvar och ska bli Dagens låt.
 
 På iPhone måste ljudet startas av ett tryck. Trycket på Börja spela spelar en
 tyst ljudsnutt i samma spelare, och då får den spela klippen sedan. Klippet
