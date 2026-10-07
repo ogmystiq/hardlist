@@ -22,7 +22,9 @@
     "name": "Monday Bar Halloween Cruise",
     "date": "2026-11-06",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle"
+    ],
     "city": "Stockholm, SE",
     "venue": "Birka Gotland",
     "lineup": "6–7 november. Egen black floor för de hårdare stilarna.",
@@ -276,11 +278,17 @@
     "arrangor": "ID&T"
   },
   {
-    "name": "Ground Zero Festival",
+    "name": "Supremacy – Return to the Classics",
+    "date": "2027-01-16",
     "region": "europa",
-    "genrer": [],
-    "city": "Bussloo, NL",
-    "season": "världens enda nattfestival i genren"
+    "genrer": [
+      "raw"
+    ],
+    "city": "Utrecht, NL",
+    "venue": "Jaarbeurs",
+    "url": "https://www.mastersofhardcore.com/events/supremacy-2027-return-to-the-classics/",
+    "urlText": "Mer info",
+    "arrangor": "Masters of Hardcore"
   },
   {
     "name": "Deztination",
@@ -347,7 +355,9 @@
     "date": "2027-01-30",
     "region": "norden",
     "genrer": [
-      "hardstyle"
+      "hardstyle",
+      "raw",
+      "uptempo"
     ],
     "city": "Mölndal, SE",
     "venue": "Åby Arena",
