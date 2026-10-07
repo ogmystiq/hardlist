@@ -56,6 +56,10 @@
 .kt-pil{flex:none;width:18px;height:18px;color:var(--text-3);transition:transform .2s}
 .kt-rad[aria-expanded="true"] .kt-pil{transform:rotate(180deg)}
 .kt-fara,.kt-fara .kt-ikon{color:var(--rosa)}
+/* Raderingen står för sig längst ner, med luft ovanför. */
+.kt-radera-ruta{margin-top:28px}
+/* Mörk med rosa text: det tydliga valet är Avbryt, inte Radera. */
+.kt-knapp-fara{background:var(--yta-2);color:var(--rosa)}
 .kt-utfall{padding:0 16px 16px 50px;display:flex;flex-direction:column;gap:12px;animation:kt-in .25s ease-out}
 .kt-utfall p{font-size:15px;line-height:1.5;color:#D9D1E6}
 @keyframes kt-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
@@ -211,6 +215,12 @@
           </a>
         </div>
 
+      </div>
+      <p class="kt-meta" id="k-meta"></p>
+
+      <!-- Raderingen i en egen ruta längst ner, långt från Logga ut, så att
+           den inte trycks av misstag. -->
+      <div class="kt-lista kt-radera-ruta">
         <div class="kt-post">
           <button class="kt-rad kt-fara" id="k-radera" type="button" aria-expanded="false" aria-controls="k-bekrafta">
             <svg class="kt-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/></svg>
@@ -218,16 +228,19 @@
           </button>
           <div class="kt-utfall" id="k-bekrafta" hidden>
             <p>Inloggningen, ditt namn, din profilbild, dina badges och alla dina resultat tas bort direkt. Det går inte att ångra.</p>
-            <div class="kt-knappar">
-              <button class="knapp" id="k-radera-ja" type="button">Ja, radera kontot</button>
-              <button class="knapp knapp-sek" id="k-radera-nej" type="button">Avbryt</button>
-            </div>
-            <p class="kt-besked" id="k-radera-besked" role="status"></p>
+            <form class="kt-form" id="k-radera-form" novalidate>
+              <label class="kt-etikett" for="k-radera-falt" id="k-radera-etikett">Skriv ditt visningsnamn för att radera.</label>
+              <input class="kt-falt" id="k-radera-falt" name="bekrafta" autocomplete="off"
+                     autocapitalize="off" spellcheck="false" maxlength="20">
+              <div class="kt-knappar">
+                <button class="knapp" id="k-radera-nej" type="button">Avbryt</button>
+                <button class="knapp kt-knapp-fara" id="k-radera-ja" type="submit" disabled>Radera kontot</button>
+              </div>
+              <p class="kt-besked" id="k-radera-besked" role="status"></p>
+            </form>
           </div>
         </div>
-
       </div>
-      <p class="kt-meta" id="k-meta"></p>
     </section>
 
     <!-- Efter radering -->
@@ -674,21 +687,37 @@
     besked('k-byt-besked', '');
     $('k-byt-oppna').focus();
   });
+  /* Det som ska skrivas för att radera: visningsnamnet, exakt som det står.
+     Ett konto som inte har valt namn än skriver ordet radera i stället. */
+  function raderaOrd(){ return namn || 'radera'; }
+  function kollaRadera(){ $('k-radera-ja').disabled = $('k-radera-falt').value !== raderaOrd(); }
+
   $('k-radera').addEventListener('click', function(){
     const oppen = $('k-bekrafta').hidden;
     if (oppen) stangAllt();
     $('k-bekrafta').hidden = !oppen;
     this.setAttribute('aria-expanded', String(oppen));
-    if (oppen) $('k-radera-nej').focus();
+    if (oppen){
+      $('k-radera-etikett').textContent = namn
+        ? 'Skriv ditt visningsnamn, ' + namn + ', för att radera.'
+        : 'Skriv radera för att bekräfta.';
+      $('k-radera-falt').value = '';
+      besked('k-radera-besked', '');
+      kollaRadera();
+      $('k-radera-falt').focus();
+    }
   });
+  $('k-radera-falt').addEventListener('input', kollaRadera);
   $('k-radera-nej').addEventListener('click', function(){
     $('k-bekrafta').hidden = true;
     $('k-radera').setAttribute('aria-expanded', 'false');
     $('k-radera').focus();
   });
 
-  $('k-radera-ja').addEventListener('click', async function(){
-    const knappar = [this, $('k-radera-nej'), $('k-radera')];
+  $('k-radera-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    if ($('k-radera-falt').value !== raderaOrd()) return;
+    const knappar = [$('k-radera-ja'), $('k-radera-nej'), $('k-radera')];
     knappar.forEach(function(b){ b.disabled = true; });
     besked('k-radera-besked', 'Raderar…');
     try {
