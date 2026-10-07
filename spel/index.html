@@ -35,7 +35,7 @@
 <style>
 /* Tre kort bredvid frågan. På mobil står de två i bredd, och det tredje tar
    hela raden i stället för att stå ensamt i en halv. */
-@media (max-width:859px){.delad-sida > .kort:nth-child(3){grid-column:1 / -1}}
+@media (max-width:859px){.delad-sida > .kort:last-child:nth-child(odd){grid-column:1 / -1}}
 </style>
 </head>
 <body>
@@ -74,7 +74,14 @@
         <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="kort-delar">
           <span class="kort-titel">Låtspelet</span>
-          <span class="kort-text">Känn igen låten på en sekund</span>
+          <span class="kort-text">Känn igen låten på en halv sekund</span>
+        </span>
+      </a>
+      <a class="kort med-ikon" href="/rankat/">
+        <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19l5-6 4 3 7-9"/><path d="M15 7h5v5"/></svg></span>
+        <span class="kort-delar">
+          <span class="kort-titel">Rankat</span>
+          <span class="kort-text">Tio låtar och en rating per genre</span>
         </span>
       </a>
       <a class="kort med-ikon" href="/quiz/#topplistan">

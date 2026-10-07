@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Fritt spel: känn igen låten – HARDLIST</title>
-<meta name="description" content="Känn igen hardstyle, raw, uptempo, hardcore och hard techno på en halv sekund. Sex försök, längre klipp för varje miss och tusentals låtar.">
-<link rel="canonical" href="https://hardlist.se/fritt-spel/">
+<title>Rankat låtspel – HARDLIST</title>
+<meta name="description" content="Rankat låtspel: tio låtar i hardstyle, raw, uptempo, hardcore eller hard techno, och en rating per genre som går upp eller ner efter hur det går.">
+<link rel="canonical" href="https://hardlist.se/rankat/">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#100C17">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -17,9 +17,9 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HARDLIST">
 <meta property="og:locale" content="sv_SE">
-<meta property="og:url" content="https://hardlist.se/fritt-spel/">
-<meta property="og:title" content="Fritt spel: känn igen låten">
-<meta property="og:description" content="Känn igen hardstyle, raw, uptempo, hardcore och hard techno på en halv sekund. Sex försök, längre klipp för varje miss och tusentals låtar.">
+<meta property="og:url" content="https://hardlist.se/rankat/">
+<meta property="og:title" content="Rankat låtspel">
+<meta property="og:description" content="Rankat låtspel: tio låtar i hardstyle, raw, uptempo, hardcore eller hard techno, och en rating per genre som går upp eller ner efter hur det går.">
 <meta property="og:image" content="https://hardlist.se/bilder/dela/latspel.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -98,6 +98,38 @@
   .fs-poangtabell{grid-template-columns:repeat(6,minmax(0,1fr))}
   .fs-facit-lat b{font-size:36px}
 }
+
+/* Rankat: inloggningen, resultatet och topplistan per genre. */
+.rk-logga h2,.rk-resultat h2{font-size:26px}
+.rk-logga p{font-size:15px;line-height:1.5;color:var(--text-2)}
+.rk-logga p a{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+.rk-logga .knapp{align-self:flex-start}
+.rk-mina .q-siffror{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rk-poang{font-size:16px;color:var(--text-2)}
+.rk-lista{padding:10px;gap:4px;border-radius:24px;scroll-margin-top:16px}
+.rk-lista-topp{display:flex;flex-direction:column;gap:10px;padding:6px 8px 8px}
+.rk-lista-topp h2{font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
+.rk-flikar .chip{min-height:40px;padding:0 14px;background:var(--yta-2)}
+.rk-flikar .chip[aria-pressed="true"]{background:var(--text);color:var(--natt)}
+.rk-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.rk-rader li{border-radius:12px}
+.rk-rader li.jag{background:var(--yta-2)}
+.rk-rad{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px;border-radius:12px;color:inherit;text-decoration:none;transition:background .15s}
+.rk-rad:hover{background:var(--yta-hover)}
+.rk-rad:focus-visible{outline-offset:-2px}
+.rk-plats{flex:none;width:26px;font-stretch:62%;font-weight:900;font-size:20px;line-height:1}
+.rk-bild{flex:none;display:flex;width:32px;height:32px;border-radius:50%;overflow:hidden;background:var(--yta-2);align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.rk-bild img{display:block;width:100%;height:100%;object-fit:cover}
+.rk-namndel{flex:1;min-width:0;display:flex;flex-direction:column}
+.rk-namnrad{display:flex;align-items:center;gap:6px;min-width:0}
+.rk-namnrad .bm{flex:none}
+.rk-namn{font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk-matcher{font-size:13px;color:var(--text-3)}
+.rk-rating{flex:none;font-stretch:62%;font-weight:900;font-size:22px}
+.rk-tom{padding:10px;color:var(--text-2);font-size:15px}
+.rk-jag{padding:6px 10px;display:flex;flex-direction:column;gap:8px}
+.rk-jag:empty{display:none}
+.rk-jag-etikett{font-size:13px;color:var(--text-3)}
 </style>
 </head>
 <body>
@@ -120,53 +152,40 @@
   <div class="fs" id="fs">
 
     <div class="sidhuvud fs-topp">
-      <h1>Fritt spel</h1>
-      <p class="ingress">Känn igen låten. Sex försök, och klippet blir längre för varje miss: 0,5, 1, 2, 4, 8 och 16 sekunder.</p>
+      <h1>Rankat</h1>
+      <p class="ingress">Tio låtar i en genre, alltid på Svår. Din rating i genren går upp eller ner efter hur det går jämfört med vad den förväntar sig.</p>
     </div>
 
     <noscript><p class="fs-paus">Låtspelet kräver JavaScript. Resten av sajten fungerar utan.</p></noscript>
-
-    <!-- Avstängt ljud från iTunes, se data/installningar.json -->
     <div class="fs-paus" id="fsPaus" hidden><b>Låtspelet är pausat.</b> Det kommer tillbaka snart.</div>
 
-    <!-- Val av genre och svårighet -->
-    <section class="fs-val" id="fsVal" hidden aria-labelledby="fsValRubrik">
-      <h2 class="fs-dold" id="fsValRubrik">Välj vad du vill spela</h2>
+    <!-- Utloggad -->
+    <div class="ruta rk-logga" id="rkLogga" hidden>
+      <h2>Logga in för att spela rankat</h2>
+      <p>Ratingen sparas på ditt konto, så rankat kräver inloggning och ett visningsnamn. <a href="/fritt-spel/">Fritt spel</a> fungerar utan konto.</p>
+      <a class="knapp" id="rkLoggaIn" href="/konto/">Logga in</a>
+    </div>
+
+    <!-- Val av genre -->
+    <section class="fs-val" id="fsVal" hidden aria-labelledby="rkValRubrik">
+      <h2 class="fs-dold" id="rkValRubrik">Välj genre</h2>
       <div class="fs-grupp">
-        <span class="fs-etikett" id="fsGenreEtikett">Genre</span>
-        <div class="fs-chips" role="radiogroup" aria-labelledby="fsGenreEtikett" id="fsGenrer">
-          <button class="chip g-hardstyle" type="button" role="radio" data-val="hardstyle" aria-checked="false"><span class="prick"></span>Hardstyle</button>
+        <span class="fs-etikett" id="rkGenreEtikett">Genre</span>
+        <div class="fs-chips" role="radiogroup" aria-labelledby="rkGenreEtikett" id="fsGenrer">
+          <button class="chip g-hardstyle" type="button" role="radio" data-val="hardstyle" aria-checked="true"><span class="prick"></span>Hardstyle</button>
           <button class="chip g-raw" type="button" role="radio" data-val="raw" aria-checked="false"><span class="prick"></span>Raw</button>
           <button class="chip g-uptempo" type="button" role="radio" data-val="uptempo" aria-checked="false"><span class="prick"></span>Uptempo</button>
           <button class="chip g-hardcore" type="button" role="radio" data-val="hardcore" aria-checked="false"><span class="prick"></span>Hardcore</button>
           <button class="chip g-techno" type="button" role="radio" data-val="techno" aria-checked="false"><span class="prick"></span>Hard techno</button>
-          <button class="chip" type="button" role="radio" data-val="blandat" aria-checked="true">Blandat</button>
         </div>
       </div>
-      <div class="fs-grupp">
-        <span class="fs-etikett" id="fsNivaEtikett">Svårighet</span>
-        <div class="fs-chips" role="radiogroup" aria-labelledby="fsNivaEtikett" id="fsNivaer">
-          <button class="chip" type="button" role="radio" data-niva="latt" aria-checked="true">Lätt</button>
-          <button class="chip" type="button" role="radio" data-niva="medel" aria-checked="false">Medel</button>
-          <button class="chip" type="button" role="radio" data-niva="svar" aria-checked="false">Svår</button>
-          <button class="chip" type="button" role="radio" data-niva="expert" aria-checked="false">Expert</button>
-        </div>
-        <p class="fs-liten" id="fsNivaText"></p>
-      </div>
-      <button class="knapp fs-borja" id="fsBorja" type="button">Börja spela</button>
-      <p class="fs-liten" id="fsKonto"></p>
-      <dl class="fs-poangtabell" aria-label="Poäng per försök">
-        <div><dt>1:a</dt><dd>100</dd></div>
-        <div><dt>2:a</dt><dd>70</dd></div>
-        <div><dt>3:e</dt><dd>50</dd></div>
-        <div><dt>4:e</dt><dd>30</dd></div>
-        <div><dt>5:e</dt><dd>20</dd></div>
-        <div><dt>6:e</dt><dd>10</dd></div>
-      </dl>
+      <div class="rk-mina" id="rkMina"></div>
+      <p class="fs-liten" id="rkOppen" hidden></p>
+      <button class="knapp fs-borja" id="fsBorja" type="button">Starta en match</button>
     </section>
 
-    <!-- En låt -->
-    <section class="fs-runda" id="fsRunda" hidden aria-label="Låt">
+    <!-- En match -->
+    <section class="fs-runda" id="fsRunda" hidden aria-label="Match">
       <div class="fs-rad">
         <span class="q-chip" id="fsRundaVal"></span>
         <span class="fs-summa" id="fsSumma"></span>
@@ -200,17 +219,42 @@
       <div class="ruta fs-facit" id="fsFacit" hidden>
         <div class="fs-facit-topp"><span class="q-utfall" id="fsUtfall"></span><span class="q-plus" id="fsPlus"></span></div>
         <p class="fs-facit-lat" id="fsFacitLat"></p>
-        <p class="fs-liten" id="fsFacitInfo"></p>
         <div class="q-knappar">
           <button class="knapp" id="fsNasta" type="button">Nästa låt</button>
-          <button class="knapp knapp-sek" id="fsByt" type="button">Byt genre</button>
         </div>
       </div>
 
       <ol class="fs-forsok" id="fsForsok" aria-label="Dina försök"></ol>
     </section>
 
-    <p class="fs-liten fs-dagens">Vill du tävla om en rating? <a href="/rankat/">Rankat</a>. Hellre en låt om dagen, samma för alla? <a href="/latspel/">Dagens låt</a>.</p>
+    <!-- Matchens resultat -->
+    <section class="ruta rk-resultat" id="rkResultat" hidden aria-labelledby="rkResultatRubrik">
+      <h2 id="rkResultatRubrik">Matchen är klar</h2>
+      <p class="rk-poang" id="rkPoang"></p>
+      <div class="q-siffror" id="rkSiffror"></div>
+      <div class="q-knappar">
+        <button class="knapp" id="rkNy" type="button">Ny match</button>
+        <a class="knapp knapp-sek" href="#topplistan">Topplistan</a>
+      </div>
+    </section>
+
+    <!-- Topplistan per genre -->
+    <section class="ruta rk-lista" id="topplistan" aria-labelledby="rkListaRubrik">
+      <div class="rk-lista-topp">
+        <h2 id="rkListaRubrik">Topplistan</h2>
+        <div class="fs-chips rk-flikar" id="rkFlikar">
+          <button class="chip" type="button" data-genre="hardstyle" aria-pressed="true">Hardstyle</button>
+          <button class="chip" type="button" data-genre="raw" aria-pressed="false">Raw</button>
+          <button class="chip" type="button" data-genre="uptempo" aria-pressed="false">Uptempo</button>
+          <button class="chip" type="button" data-genre="hardcore" aria-pressed="false">Hardcore</button>
+          <button class="chip" type="button" data-genre="techno" aria-pressed="false">Hard techno</button>
+        </div>
+      </div>
+      <ol class="rk-rader" id="rkRader"><li class="rk-tom">Hämtar topplistan.</li></ol>
+      <div class="rk-jag" id="rkJag"></div>
+    </section>
+
+    <p class="fs-liten fs-dagens">Vill du spela utan rating? <a href="/fritt-spel/">Fritt spel</a></p>
 
   </div>
 </main>
@@ -260,116 +304,80 @@
 <script src="/ljud.js"></script>
 <script src="/inloggning.js"></script>
 <script>
-/* Fritt spel med sökning. Servern väljer låten, rättar gissningarna och tar
-   tiden. Sidan vet aldrig svaret förrän låten är klar, och förslagen i
-   sökrutan kommer från hela biblioteket. */
+/* Rankat. En match är tio låtar i en genre, med samma sätt att gissa som
+   fritt spel. Servern väljer låtarna, rättar, tar tiden och flyttar
+   ratingen. Sidan vet aldrig svaret förrän låten är klar. */
 (function(){
   const K = window.hardlistKonto;
   const $ = function(id){ return document.getElementById(id); };
   const esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   const sek = function(s){ return String(s).replace('.', ','); };
+  const tal = function(n){ return Math.round(Number(n || 0)).toLocaleString('sv-SE'); };
 
   const KLIPP = [0.5, 1, 2, 4, 8, 16];
   const POANG = [100, 70, 50, 30, 20, 10];
-  const NAMN = { hardstyle: 'Hardstyle', raw: 'Raw', uptempo: 'Uptempo', hardcore: 'Hardcore', techno: 'Hard techno', blandat: 'Blandat' };
-  const NIVA = { latt: 'Lätt', medel: 'Medel', svar: 'Svår', expert: 'Expert' };
-  const NIVATEXT = {
-    latt: 'Lätt: de 15 procent mest kända låtarna i genren.',
-    medel: 'Medel: de 40 procent mest kända.',
-    svar: 'Svår: de 75 procent mest kända.',
-    expert: 'Expert: hela biblioteket.'
-  };
-  const ORAT = { hardstyle: 'Hardstyleörat', raw: 'Rawörat', uptempo: 'Uptempoörat', hardcore: 'Hardcoreörat', techno: 'Technoörat' };
+  const NAMN = { hardstyle: 'Hardstyle', raw: 'Raw', uptempo: 'Uptempo', hardcore: 'Hardcore', techno: 'Hard techno' };
   const IKON_PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z"/></svg>';
   const IKON_PAUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5h4v13H3zM9 1.5h4v13H9z"/></svg>';
   const IKON_JA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
   const IKON_NEJ = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
   const IKON_HOPP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-  // En tyst ljudsnutt. Spelas i trycket på Börja spela, så att Safari på
-  // iPhone sedan låter samma spelare spela klippen.
+  // Tyst ljudsnutt som låser upp ljudet i trycket på Starta, för iPhone.
   const TYST = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
 
-  let val = 'blandat';
-  let niva = 'latt';
-  let runda = null;          // { omgang, steg, forsok, ljud, klar }
-  let summa = 0, antal = 0, ratta = 0;
-  // Utan konto sparas ingenting. Låtarna minns bara medan sidan är öppen.
-  const horda = [];
+  let val = 'hardstyle';
+  let match = null;        // { match, genre, poang, nummer }
+  let runda = null;        // { omgang, steg, forsok, ljud, klar }
+  let min = null;
   const spelare = new Audio();
   spelare.preload = 'auto';
-  let vakt = 0;
-  let upplast = false;
-  let skickar = false;
+  let vakt = 0, upplast = false, skickar = false;
 
-  /* ---------- val av genre och svårighet ---------- */
+  /* ---------- val och mina ratingar ---------- */
 
-  function valjEn(grupp, knapp){
-    grupp.querySelectorAll('[role="radio"]').forEach(function(b){ b.setAttribute('aria-checked', String(b === knapp)); });
-  }
   $('fsGenrer').addEventListener('click', function(e){
     const b = e.target.closest('[data-val]'); if (!b) return;
-    val = b.getAttribute('data-val'); valjEn(this, b);
+    val = b.getAttribute('data-val');
+    this.querySelectorAll('[role="radio"]').forEach(function(x){ x.setAttribute('aria-checked', String(x === b)); });
+    ritaMina();
   });
-  $('fsNivaer').addEventListener('click', function(e){
-    const b = e.target.closest('[data-niva]'); if (!b) return;
-    niva = b.getAttribute('data-niva'); valjEn(this, b);
-    $('fsNivaText').textContent = NIVATEXT[niva];
-  });
-  $('fsNivaText').textContent = NIVATEXT[niva];
 
-  function kontoRad(min){
-    const el = $('fsKonto');
-    if (!K || !K.inloggad()){
-      el.innerHTML = 'Du spelar utan konto, och ingenting sparas. <a href="/konto/">Logga in</a> för att samla rätt svar mot badges.';
-      return;
-    }
-    if (!min){ el.textContent = ''; return; }
-    const r = min.genrer || {};
-    const delar = Object.keys(ORAT).map(function(g){ return NAMN[g] + ' ' + ((r[g] && r[g].ratt) || 0); });
-    el.textContent = 'Rätt hittills: ' + delar.join(', ') + '. Låtar i dag: ' + (min.rundor_idag || 0) + '.';
+  function ritaMina(){
+    const r = (min && min.rating) || {};
+    const g = r[val];
+    $('rkMina').innerHTML = '<div class="q-siffror">' +
+      '<div class="q-ruta"><span>Din rating, ' + NAMN[val].toLowerCase() + '</span><b>' + (g ? tal(g.rating) : '1 000') + '</b></div>' +
+      '<div class="q-ruta"><span>Matcher</span><b>' + (g ? g.matcher : 0) + '</b></div>' +
+      '</div>';
+    const oppen = min && min.oppen;
+    $('rkOppen').hidden = !oppen;
+    if (oppen) $('rkOppen').textContent = 'Du har en påbörjad match i ' + NAMN[oppen.genre].toLowerCase() + '. Starta en ny så räknas den som klar, med noll på låtarna som är kvar.';
+    $('fsBorja').textContent = oppen && oppen.genre === val ? 'Fortsätt matchen' : 'Starta en match';
   }
 
   /* ---------- ljudet ---------- */
 
-  function ikon(spelar){
-    $('fsPlay').innerHTML = spelar ? IKON_PAUS : IKON_PLAY;
-    $('fsPlay').setAttribute('aria-label', spelar ? 'Pausa' : 'Spela klippet');
-  }
-  function stoppa(){
-    cancelAnimationFrame(vakt);
-    try { spelare.pause(); } catch(e){}
-    ikon(false);
-  }
+  function ikon(spelar){ $('fsPlay').innerHTML = spelar ? IKON_PAUS : IKON_PLAY; $('fsPlay').setAttribute('aria-label', spelar ? 'Pausa' : 'Spela klippet'); }
+  function stoppa(){ cancelAnimationFrame(vakt); try { spelare.pause(); } catch(e){} ikon(false); }
   function grans(){ return runda && !runda.klar ? KLIPP[runda.steg] : null; }
-
-  /* Klippet stoppas efter ljudets egen position, så att tiden det tar att
-     ladda ljudet inte äter av klippet. */
+  // Klippet stoppas efter ljudets egen position, så att laddtiden inte äter av det.
   function bevaka(){
-    const g = grans();
-    const t = spelare.currentTime;
+    const g = grans(), t = spelare.currentTime;
     if (g !== null && t >= g){ spelare.pause(); visa(g); return; }
     visa(t);
     if (!spelare.paused) vakt = requestAnimationFrame(bevaka);
   }
   function visa(t){
-    const skala = grans() !== null ? 16 : (spelare.duration || 30);
     const el = $('fsSpelat');
-    if (el) el.style.width = Math.min(100, t / skala * 100) + '%';
-    if (grans() === null && spelare.duration) $('fsTid').textContent = Math.floor(t) + ' av ' + Math.floor(spelare.duration) + ' sekunder';
+    if (el) el.style.width = Math.min(100, t / (grans() !== null ? 16 : (spelare.duration || 30)) * 100) + '%';
   }
   spelare.addEventListener('playing', function(){
     if (spelare.src.indexOf('data:') === 0) return;
-    ikon(true);
-    cancelAnimationFrame(vakt);
-    vakt = requestAnimationFrame(bevaka);
+    ikon(true); cancelAnimationFrame(vakt); vakt = requestAnimationFrame(bevaka);
   });
   spelare.addEventListener('pause', function(){ cancelAnimationFrame(vakt); ikon(false); });
   spelare.addEventListener('ended', function(){ cancelAnimationFrame(vakt); ikon(false); });
-  spelare.addEventListener('error', function(){
-    if (spelare.src && spelare.src.indexOf('data:') !== 0) $('fsTid').textContent = 'Ljudfilen kunde inte laddas.';
-  });
-  // Byter man flik slutar requestAnimationFrame gå, och då skulle klippet
-  // spela vidare.
+  spelare.addEventListener('error', function(){ if (spelare.src && spelare.src.indexOf('data:') !== 0) $('fsTid').textContent = 'Ljudfilen kunde inte laddas.'; });
   document.addEventListener('visibilitychange', function(){ if (document.hidden) stoppa(); });
 
   function spelaFranBorjan(){
@@ -378,16 +386,13 @@
     const p = spelare.play();
     if (p && p.catch) p.catch(function(){ $('fsTid').textContent = 'Kunde inte spela upp ljudet. Tryck igen.'; });
   }
-
   async function hamtaLjud(){
-    if (runda.ljud) return true;
-    const svar = await K.rpc('fritt_spela', { p_omgang: runda.omgang });
-    if (!svar || svar.fel || !svar.ljud) throw new Error(svar && svar.fel);
-    runda.ljud = svar.ljud;
-    spelare.src = svar.ljud;
-    return true;
+    if (runda.ljud) return;
+    const s = await K.rpc('fritt_spela', { p_omgang: runda.omgang });
+    if (!s || s.fel || !s.ljud) throw new Error(s && s.fel);
+    runda.ljud = s.ljud;
+    spelare.src = s.ljud;
   }
-
   $('fsPlay').addEventListener('click', async function(){
     if (!runda) return;
     if (!spelare.paused && spelare.src.indexOf('data:') !== 0){ stoppa(); return; }
@@ -395,30 +400,23 @@
       this.disabled = true;
       $('fsTid').textContent = 'Laddar klippet…';
       try { await hamtaLjud(); }
-      catch(e){
-        this.disabled = false;
-        $('fsTid').textContent = 'Kunde inte hämta klippet. Tryck igen.';
-        return;
-      }
+      catch(e){ this.disabled = false; $('fsTid').textContent = 'Kunde inte hämta klippet. Tryck igen.'; return; }
       this.disabled = false;
       $('fsTid').textContent = 'Tryck för att lyssna, så många gånger du vill.';
     }
     spelaFranBorjan();
   });
 
-  /* ---------- utritning ---------- */
+  /* ---------- utritning av en låt ---------- */
 
-  /* Hela 16 sekunder, det upplåsta klippet ljusare, streck där nästa klipp slutar. */
   function ritaStapel(){
     const g = grans();
     $('fsBar').innerHTML = '<i class="upplast" style="width:' + (g === null ? 100 : g / 16 * 100) + '%"></i><i class="spelat" id="fsSpelat"></i>' +
       (g === null ? '' : KLIPP.slice(0, -1).map(function(k){ return '<i class="streck" style="left:' + (k / 16 * 100) + '%"></i>'; }).join(''));
   }
-
   function ritaKlipp(){
-    if (runda.klar){
-      $('fsKlippRubrik').textContent = 'Hela förlyssningen';
-    } else {
+    if (runda.klar) $('fsKlippRubrik').textContent = 'Hela förlyssningen';
+    else {
       const s = KLIPP[runda.steg];
       $('fsKlippRubrik').textContent = 'Klipp ' + (runda.steg + 1) + ' av 6, ' + sek(s) + ' s, ' + POANG[runda.steg] + ' poäng';
       const nasta = runda.steg < 5 ? KLIPP[runda.steg + 1] - s : 0;
@@ -426,7 +424,6 @@
     }
     ritaStapel();
   }
-
   function ritaForsok(){
     const f = runda.forsok || [];
     let html = '';
@@ -440,9 +437,9 @@
     }
     $('fsForsok').innerHTML = html;
   }
-
-  function ritaSumma(){
-    $('fsSumma').textContent = antal ? summa + ' poäng, ' + ratta + ' av ' + antal + ' rätt' : '';
+  function ritaMatchrad(){
+    $('fsRundaVal').textContent = NAMN[match.genre] + ', låt ' + Math.min(match.nummer, 10) + ' av 10';
+    $('fsSumma').textContent = tal(match.poang) + ' poäng';
   }
 
   /* ---------- sökrutan ---------- */
@@ -459,17 +456,11 @@
     const text = this.value;
     clearTimeout(sokTid);
     if (text.trim().length < 2){ traffar = []; valt = -1; visaForslag(); return; }
-    // Vänta tills man slutat skriva en stund, och visa bara svaret på den
-    // senaste sökningen.
     sokTid = setTimeout(async function(){
       const nr = ++sokNr;
-      try {
-        const svar = await K.rpc('latspel_sok', { p_text: text });
-        if (nr !== sokNr) return;
-        traffar = Array.isArray(svar) ? svar : [];
-      } catch(e){ traffar = []; }
-      valt = -1;
-      visaForslag();
+      try { const s = await K.rpc('latspel_sok', { p_text: text }); if (nr !== sokNr) return; traffar = Array.isArray(s) ? s : []; }
+      catch(e){ traffar = []; }
+      valt = -1; visaForslag();
     }, 180);
   });
   $('fsSok').addEventListener('keydown', function(e){
@@ -477,128 +468,191 @@
     else if (e.key === 'ArrowUp' && traffar.length){ e.preventDefault(); valt = (valt - 1 + traffar.length) % traffar.length; visaForslag(); }
     else if (e.key === 'Enter'){
       e.preventDefault();
-      // Enter gissar bara när det är entydigt vad man menar.
       const l = valt >= 0 ? traffar[valt] : (traffar.length === 1 ? traffar[0] : null);
       if (l) gissa(l.id);
     }
   });
-  $('fsForslag').addEventListener('click', function(e){
-    const b = e.target.closest('button[data-id]');
-    if (b) gissa(+b.getAttribute('data-id'));
-  });
+  $('fsForslag').addEventListener('click', function(e){ const b = e.target.closest('button[data-id]'); if (b) gissa(+b.getAttribute('data-id')); });
   $('fsHoppa').addEventListener('click', function(){ gissa(null); });
 
-  /* ---------- gissningen ---------- */
+  /* ---------- gissning och match ---------- */
 
   async function gissa(id){
     if (!runda || runda.klar || skickar) return;
     skickar = true;
     $('fsFel').textContent = '';
     try {
-      // Utan klipp först finns ingen klocka. Starta den i samma tryck.
       if (!runda.ljud) await hamtaLjud();
       const svar = await K.rpc('fritt_gissa', { p_omgang: runda.omgang, p_lat: id });
       if (!svar || svar.fel) throw new Error(svar && svar.fel);
       stoppa();
       runda.forsok = svar.forsok || [];
       $('fsSok').value = ''; traffar = []; valt = -1; visaForslag();
-      if (svar.klar) return avsluta(svar);
+      if (svar.klar) return lattenKlar(svar);
       runda.steg = svar.steg;
-      ritaKlipp();
-      ritaForsok();
-      $('fsTid').textContent = 'Fel. Lyssna på det längre klippet.';
-      if (id === null) $('fsTid').textContent = 'Överhoppat. Lyssna på det längre klippet.';
+      ritaKlipp(); ritaForsok();
+      $('fsTid').textContent = id === null ? 'Överhoppat. Lyssna på det längre klippet.' : 'Fel. Lyssna på det längre klippet.';
     } catch(e){
       $('fsFel').textContent = 'Gissningen kom inte fram. Försök igen.';
-    } finally {
-      skickar = false;
-    }
+    } finally { skickar = false; }
   }
 
-  function avsluta(svar){
+  function lattenKlar(svar){
     runda.klar = true;
-    antal++; summa += svar.poang; if (svar.ratt) ratta++;
-    if (svar.lat && svar.lat.id) horda.push(svar.lat.id);
+    match.poang += svar.poang;
     $('fsGissa').hidden = true;
-    ritaKlipp();
-    ritaForsok();
+    ritaKlipp(); ritaForsok(); ritaMatchrad();
     $('fsUtfall').className = 'q-utfall ' + (svar.ratt ? 'ja' : 'nej');
     $('fsUtfall').innerHTML = svar.ratt ? IKON_JA + 'Rätt' : IKON_NEJ + 'Inte den här gången';
     $('fsPlus').textContent = svar.ratt ? '+' + svar.poang : '';
     $('fsFacitLat').innerHTML = '<b>' + esc(svar.lat.titel) + '</b><span>' + esc(svar.lat.artist) + '</span>';
-    let info = '';
-    if (svar.ratt){
-      const k = (runda.forsok || []).length - 1;
-      info = 'Rätt efter ' + sek(KLIPP[Math.max(0, k)]) + (KLIPP[k] === 1 ? ' sekund.' : ' sekunder.');
-    }
-    if (svar.konto && ORAT[svar.konto.genre] && svar.konto.ratt_genre < 50){
-      info += (info ? ' ' : '') + ORAT[svar.konto.genre] + ': ' + svar.konto.ratt_genre + ' av 50 rätt.';
-    }
-    $('fsFacitInfo').textContent = info;
     $('fsKalla').innerHTML = hardlistLjud.kalla(svar.lat.apple);
-    $('fsTid').textContent = 'Lyssna på hela förlyssningen om du vill.';
-    ritaSumma();
+    $('fsNasta').textContent = match.nummer >= 10 ? 'Se resultatet' : 'Nästa låt';
     $('fsFacit').hidden = false;
     $('fsNasta').focus({ preventScroll: true });
     $('fsRunda').scrollIntoView({ block: 'start', behavior: 'smooth' });
-    if (svar.nya_badges && svar.nya_badges.length){
-      K.badges().then(function(B){ B.visaNya(svar.nya_badges); }).catch(function(){});
-    }
+    if (svar.nya_badges && svar.nya_badges.length) K.badges().then(function(B){ B.visaNya(svar.nya_badges); }).catch(function(){});
   }
 
-  async function nyRunda(){
+  function visaResultat(r){
+    stoppa();
+    runda = null;
+    $('fsRunda').hidden = true;
+    $('fs').classList.remove('spelar');
+    const andring = Number(r.andring || 0);
+    $('rkPoang').textContent = tal(r.poang) + ' av 1 000 poäng i ' + NAMN[r.genre].toLowerCase() + '.';
+    $('rkSiffror').innerHTML =
+      '<div class="q-ruta"><span>Rating före</span><b>' + tal(r.rating_fore) + '</b></div>' +
+      '<div class="q-ruta"><span>Rating nu</span><b>' + tal(r.rating_efter) + '</b></div>' +
+      '<div class="q-ruta"><span>Ändring</span><b>' + (andring > 0 ? '+' : '') + tal(andring) + '</b></div>';
+    $('rkResultat').hidden = false;
+    $('rkResultat').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    hamtaMin();
+    lista = r.genre; ritaFlikar(); hamtaLista();
+  }
+
+  async function nastaLat(){
     stoppa();
     $('fsFel').textContent = '';
     $('fsFacit').hidden = true;
     $('fsGissa').hidden = false;
-    $('fsTid').textContent = 'Hämtar en låt…';
+    $('fsTid').textContent = 'Hämtar nästa låt…';
     $('fsKalla').innerHTML = hardlistLjud.kalla(null);
     try {
-      const svar = await K.rpc('fritt_ny', { p_val: val, p_niva: niva, p_horda: horda.slice(-500) });
-      if (!svar || svar.fel) throw new Error(svar && svar.fel);
-      runda = { omgang: svar.omgang, steg: 0, forsok: [], ljud: null, klar: false };
+      const s = await K.rpc('rankat_nasta', { p_match: match.match });
+      if (!s) throw new Error();
+      if (s.klar && s.rating_efter !== undefined) return visaResultat(s);
+      if (s.fel) throw new Error(s.fel);
+      match.poang = s.poang; match.nummer = s.nummer;
+      runda = { omgang: s.omgang, steg: s.steg || 0, forsok: s.forsok || [], ljud: null, klar: false };
       spelare.removeAttribute('src');
-      ritaKlipp();
-      ritaForsok();
+      ritaMatchrad(); ritaKlipp(); ritaForsok();
       $('fsTid').textContent = 'Tryck för att lyssna, så många gånger du vill.';
       $('fsPlay').focus({ preventScroll: true });
     } catch(e){
       $('fsTid').textContent = '';
-      $('fsFel').textContent = 'Kunde inte hämta en låt just nu. Försök igen om en stund.';
+      $('fsFel').textContent = 'Kunde inte hämta nästa låt. Försök igen om en stund.';
     }
   }
+  $('fsNasta').addEventListener('click', nastaLat);
 
-  $('fsNasta').addEventListener('click', nyRunda);
-  $('fsByt').addEventListener('click', function(){
-    stoppa(); runda = null;
-    $('fsRunda').hidden = true; $('fsVal').hidden = false;
-    $('fs').classList.remove('spelar');
-    hamtaMin();
-  });
-
-  $('fsBorja').addEventListener('click', function(){
-    // Låser upp ljudet i det här trycket, se TYST ovan.
+  async function startaMatch(){
     if (!upplast){
       spelare.src = TYST;
       const p = spelare.play();
       if (p && p.then) p.then(function(){ spelare.pause(); }).catch(function(){});
       upplast = true;
     }
-    $('fsRundaVal').textContent = NAMN[val] + ', ' + NIVA[niva].toLowerCase();
-    $('fsVal').hidden = true; $('fsRunda').hidden = false;
-    $('fs').classList.add('spelar');
-    ritaSumma();
-    nyRunda();
+    $('fsBorja').disabled = true;
+    try {
+      const oppen = min && min.oppen;
+      let s;
+      if (oppen && oppen.genre === val) s = { match: oppen.match, genre: oppen.genre, poang: 0 };
+      else {
+        s = await K.rpc('rankat_starta', { p_genre: val });
+        if (!s || s.fel) throw new Error(s && s.fel);
+      }
+      match = { match: s.match, genre: s.genre, poang: s.poang || 0, nummer: 1 };
+      $('fsVal').hidden = true; $('rkResultat').hidden = true; $('fsRunda').hidden = false;
+      $('fs').classList.add('spelar');
+      await nastaLat();
+    } catch(e){
+      $('rkOppen').hidden = false;
+      $('rkOppen').textContent = 'Kunde inte starta matchen. Försök igen om en stund.';
+    }
+    $('fsBorja').disabled = false;
+  }
+  $('fsBorja').addEventListener('click', startaMatch);
+  $('rkNy').addEventListener('click', function(){
+    $('rkResultat').hidden = true; $('fsVal').hidden = false;
+    ritaMina();
+    $('fsVal').scrollIntoView({ block: 'start', behavior: 'smooth' });
   });
 
-  function hamtaMin(){
-    if (!K || !K.inloggad()){ kontoRad(null); return; }
-    K.rpc('latspel_min').then(kontoRad).catch(function(){ kontoRad(null); });
+  /* ---------- topplistan ---------- */
+
+  let lista = 'hardstyle';
+  let badgesKlara = null;
+  function ritaFlikar(){
+    $('rkFlikar').querySelectorAll('[data-genre]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-genre') === lista)); });
+  }
+  function rad(r, arJag){
+    const b = r.badge && badgesKlara && badgesKlara.hitta(r.badge);
+    return '<li' + (arJag ? ' class="jag"' : '') + '><a class="rk-rad" href="/profil/?namn=' + encodeURIComponent(r.namn) + '">' +
+      '<span class="rk-plats">' + r.plats + '</span>' +
+      '<span class="rk-bild" aria-hidden="true">' + (r.bild ? '<img src="' + esc(r.bild) + '" alt="" loading="lazy" width="32" height="32">' : esc(String(r.namn).charAt(0).toUpperCase())) + '</span>' +
+      '<span class="rk-namndel"><span class="rk-namnrad"><span class="rk-namn">' + esc(r.namn) + '</span>' + (b ? badgesKlara.medaljHtml(b, true, 24) : '') + '</span>' +
+      '<span class="rk-matcher">' + r.matcher + (r.matcher === 1 ? ' match' : ' matcher') + '</span></span>' +
+      '<span class="rk-rating">' + tal(r.rating) + '</span></a></li>';
+  }
+  async function hamtaLista(){
+    const g = lista;
+    $('rkRader').innerHTML = '<li class="rk-tom">Hämtar topplistan.</li>';
+    $('rkJag').innerHTML = '';
+    let t;
+    try { t = await K.rpc('rankat_topplista', { p_genre: g }); } catch(e){ t = null; }
+    if (g !== lista) return;
+    if (!t){ $('rkRader').innerHTML = '<li class="rk-tom">Topplistan kunde inte hämtas just nu.</li>'; return; }
+    const rita = function(){
+      $('rkRader').innerHTML = t.lista.length
+        ? t.lista.map(function(r){ return rad(r, t.jag && t.jag.listad && r.namn === t.jag.namn); }).join('')
+        : '<li class="rk-tom">Ingen har spelat en match i ' + NAMN[g].toLowerCase() + ' än.</li>';
+      $('rkJag').innerHTML = t.jag && !t.jag.listad ? '<span class="rk-jag-etikett">Din placering</span><ol class="rk-rader">' + rad(t.jag, true) + '</ol>' : '';
+    };
+    rita();
+    if (!badgesKlara && t.lista.some(function(r){ return r.badge; })){
+      K.badges().then(function(B){ badgesKlara = B; rita(); }).catch(function(){});
+    }
+  }
+  $('rkFlikar').addEventListener('click', function(e){
+    const b = e.target.closest('[data-genre]'); if (!b) return;
+    lista = b.getAttribute('data-genre'); ritaFlikar(); hamtaLista();
+  });
+
+  /* ---------- start ---------- */
+
+  async function hamtaMin(){
+    try { min = await K.rpc('rankat_min'); } catch(e){ min = null; }
+    ritaMina();
   }
 
-  /* Allt annat än ett uttryckligt ja från installningar.json räknas som av. */
-  hardlistLjud.tillatet.then(function(ok){
+  async function harNamn(){
+    if (!K.inloggad()) return false;
+    try { const s = await K.session(); return !!(s && await K.profil(s.user.id)); } catch(e){ return false; }
+  }
+
+  hamtaLista();
+  hardlistLjud.tillatet.then(async function(ok){
     if (!ok){ $('fsPaus').hidden = false; return; }
+    if (!(await harNamn())){
+      $('rkLogga').hidden = false;
+      if (K.inloggad()) $('rkLoggaIn').textContent = 'Välj visningsnamn';
+      $('rkLoggaIn').addEventListener('click', function(e){
+        e.preventDefault();
+        if (K.inloggad()) K.valjNamn(); else K.loggaIn().catch(function(){ location.href = '/konto/'; });
+      });
+      return;
+    }
     $('fsVal').hidden = false;
     hamtaMin();
   });
