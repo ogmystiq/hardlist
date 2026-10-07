@@ -84,6 +84,7 @@
     <a class="knapp" href="/">Till startsidan</a>
     <p class="fel-ledtrad">Vilse? Hitta takten.</p>
     <p class="fel-takt" id="felTakt" role="status" hidden>Logga in och hitta takten igen.</p>
+    <p class="fel-takt" id="felSvar" role="status" hidden></p>
   </section>
 
   <nav class="genvagar" aria-label="Prova någon av dessa">
@@ -142,13 +143,16 @@
 </footer>
 
 <script>
-/* Påskägget. Sidan sparar de åtta senaste trycken på 404:an eller ledtråden
+/* Påskägget. Sidan sparar de sex senaste trycken på 404:an eller ledtråden
    och skickar dem när mellanrummen är jämna. Vilken takt som är rätt vet
-   bara servern. */
+   bara servern, som vid fel bara säger åt vilket håll det var fel. */
 (function(){
   const siffra = document.querySelector('.fel-topp .ruta-siffra');
   const ledtrad = document.querySelector('.fel-topp .fel-ledtrad');
   const besked = document.getElementById('felTakt');
+  const svarRad = document.getElementById('felSvar');
+  const TRYCK = 6;
+  let svarTid = null;
   if (!siffra) return;
   siffra.classList.add('takt');
   if (ledtrad) ledtrad.classList.add('takt');
@@ -172,7 +176,15 @@
   }
   /* Fel takt: en skakning, eller med minskad rörelse två snabba strobe i
      stället, så att det märks utan att något rör sig. */
-  function fel(){
+  function fel(svar){
+    // Kort rad under 404:an samtidigt som skakningen, sedan försvinner den.
+    // Utan riktning, som när dygnets försök är slut, blir det bara skakningen.
+    if (svar.takt){
+      svarRad.textContent = svar.nastan ? 'Nästan.' : (svar.takt === 'for_snabb' ? 'Lugnare.' : 'Snabbare.');
+      svarRad.hidden = false;
+      clearTimeout(svarTid);
+      svarTid = setTimeout(function(){ svarRad.hidden = true; }, 2500);
+    }
     if (!(stilla && stilla.matches)){ spela('skak'); return; }
     clearTimeout(blixtTid);
     [0, 240].forEach(function(start){
@@ -184,13 +196,13 @@
   function tryck(e){
     strobe();
     tider.push(Math.round(e.timeStamp));
-    if (tider.length > 8) tider.shift();
-    if (tider.length < 8 || skickar) return;
+    if (tider.length > TRYCK) tider.shift();
+    if (tider.length < TRYCK || skickar) return;
 
     const mellan = [];
-    for (let i = 1; i < 8; i++) mellan.push(tider[i] - tider[i - 1]);
+    for (let i = 1; i < TRYCK; i++) mellan.push(tider[i] - tider[i - 1]);
     const medel = mellan.reduce(function(a, b){ return a + b; }, 0) / mellan.length;
-    if (medel <= 0 || !mellan.every(function(d){ return Math.abs(d - medel) / medel <= 0.20; })) return;
+    if (medel <= 0 || !mellan.every(function(d){ return Math.abs(d - medel) / medel <= 0.25; })) return;
 
     const slag = tider.map(function(t){ return t - tider[0]; });
     tider = [];
@@ -200,7 +212,7 @@
     skickar = true;
     K.rpc('profil_hitta', { p_tider: slag }).then(function(svar){
       if (svar && svar.fel === 'inte_inloggad'){ besked.hidden = false; return; }
-      if (svar && svar.ratt === false){ fel(); return; }
+      if (svar && svar.ratt === false){ fel(svar); return; }
       if (svar && svar.ratt && svar.nya_badges && svar.nya_badges.length){
         return K.badges().then(function(B){ B.visaNya(svar.nya_badges); });
       }

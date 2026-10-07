@@ -500,15 +500,16 @@ Personen får popupen nästa gång sajten öppnas.
 
 ### Påskägget
 
-På felsidan står ledtråden "Vilse? Hitta takten." Den som trycker på den stora
-404:an i rätt takt, åtta slag i rad, tar Påskägget. Sidan sparar de åtta
-senaste trycken och skickar dem till `profil_hitta` när mellanrummen är jämna
-sinsemellan — sidan vet aldrig vilken takt som är rätt. Servern jämför med
-takten och svarar bara rätt eller fel, aldrig hur nära det var. Högst 20 försök
-per konto och dygn, och bara för inloggade med visningsnamn. Gränserna är
-vida nog för tryck på en mobilskärm. Varje försök sparas med sina sju
-mellanrum i `profil.hitta_logg`, som API:t inte når, så att det går att se
-hur trycken såg ut om någon inte lyckas:
+På felsidan står ledtråden "Vilse? Hitta takten." Den som trycker i rätt takt,
+sex slag i rad på den stora 404:an eller på ledtråden, tar Påskägget. Sidan
+sparar de sex senaste trycken och skickar dem till `profil_hitta` när
+mellanrummen är jämna sinsemellan — sidan vet aldrig vilken takt som är rätt.
+Servern räknar bara på medelvärdet, som får avvika högst 6,7 procent från
+takten. Vid fel säger den om det gick för fort eller för långsamt och om det
+var nära, och sidan visar "Lugnare.", "Snabbare." eller "Nästan." Högst 20
+försök per konto och dygn, och bara för inloggade med visningsnamn. Varje
+försök sparas med sina mellanrum i `profil.hitta_logg`, som API:t inte når,
+så att det går att se hur trycken såg ut om någon inte lyckas:
 
 ```sql
 select p.visningsnamn, l.skapad, l.mellanrum, l.ratt from profil.hitta_logg l
