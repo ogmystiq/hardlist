@@ -30,8 +30,21 @@
 /* Rubriken och texten ligger över siffrorna. De släpper igenom trycken, så
    att de når 404:an utan att något ser annorlunda ut. */
 .fel-topp h1,.fel-topp .ingress{pointer-events:none}
-.fel-topp > .ruta-siffra.kick{animation:fel-kick .14s ease-out}
-@keyframes fel-kick{0%{transform:scale(1)}35%{transform:scale(1.06)}100%{transform:scale(1)}}
+/* Ledtråden tar emot trycken också, eftersom 404:an knappt syns i mobilen.
+   Den ser ut som vanlig text. */
+.fel-ledtrad.takt{
+  align-self:flex-start;touch-action:manipulation;cursor:default;
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;
+}
+/* Varje tryck: en kick och en strobe i textens färg, som sedan släpper
+   tillbaka till 404:ans egen färg. */
+.fel-topp > .ruta-siffra.kick{animation:fel-kick .22s ease-out}
+@keyframes fel-kick{0%{transform:scale(1);color:var(--text)}35%{transform:scale(1.06)}100%{transform:scale(1)}}
+/* Med minskad rörelse står animationerna still, så strobet sätts direkt. */
+.fel-topp > .ruta-siffra.blixt{color:var(--text)}
+/* Fel takt: en kort skakning i sidled, ingenting annat. */
+.fel-topp > .ruta-siffra.skak{animation:fel-skak .4s ease-in-out}
+@keyframes fel-skak{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-7px)}80%{transform:translateX(5px)}}
 .fel-takt{font-size:14px;line-height:1.45;color:var(--text-2)}
 @media (min-width:860px){
   .fel-topp{min-height:300px;justify-content:flex-end}
@@ -126,21 +139,37 @@
 </footer>
 
 <script>
-/* Påskägget. Sidan sparar de åtta senaste trycken på 404:an och skickar dem
-   när mellanrummen är jämna. Vilken takt som är rätt vet bara servern. */
+/* Påskägget. Sidan sparar de åtta senaste trycken på 404:an eller ledtråden
+   och skickar dem när mellanrummen är jämna. Vilken takt som är rätt vet
+   bara servern. */
 (function(){
   const siffra = document.querySelector('.fel-topp .ruta-siffra');
+  const ledtrad = document.querySelector('.fel-topp .fel-ledtrad');
   const besked = document.getElementById('felTakt');
   if (!siffra) return;
   siffra.classList.add('takt');
+  if (ledtrad) ledtrad.classList.add('takt');
+  const stilla = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)');
   let tider = [];
   let skickar = false;
+  let blixtTid = null;
 
-  siffra.addEventListener('pointerdown', function(e){
-    siffra.classList.remove('kick');
+  /* Animationen startas om vid varje tryck, även mitt i den förra. */
+  function spela(klass){
+    siffra.classList.remove('kick', 'skak');
     void siffra.offsetWidth;
-    siffra.classList.add('kick');
+    siffra.classList.add(klass);
+  }
+  function strobe(){
+    if (stilla && stilla.matches){
+      siffra.classList.add('blixt');
+      clearTimeout(blixtTid);
+      blixtTid = setTimeout(function(){ siffra.classList.remove('blixt'); }, 120);
+    } else spela('kick');
+  }
 
+  function tryck(e){
+    strobe();
     tider.push(Math.round(e.timeStamp));
     if (tider.length > 8) tider.shift();
     if (tider.length < 8 || skickar) return;
@@ -150,19 +179,23 @@
     const medel = mellan.reduce(function(a, b){ return a + b; }, 0) / mellan.length;
     if (medel <= 0 || !mellan.every(function(d){ return Math.abs(d - medel) / medel <= 0.12; })) return;
 
-    const tryck = tider.map(function(t){ return t - tider[0]; });
+    const slag = tider.map(function(t){ return t - tider[0]; });
     tider = [];
     const K = window.hardlistKonto;
     if (!K || !K.inloggad()){ besked.hidden = false; return; }
 
     skickar = true;
-    K.rpc('profil_hitta', { p_tider: tryck }).then(function(svar){
+    K.rpc('profil_hitta', { p_tider: slag }).then(function(svar){
       if (svar && svar.fel === 'inte_inloggad'){ besked.hidden = false; return; }
+      if (svar && svar.ratt === false){ spela('skak'); return; }
       if (svar && svar.ratt && svar.nya_badges && svar.nya_badges.length){
         return K.badges().then(function(B){ B.visaNya(svar.nya_badges); });
       }
     }).catch(function(){}).then(function(){ skickar = false; });
-  });
+  }
+
+  siffra.addEventListener('pointerdown', tryck);
+  if (ledtrad) ledtrad.addEventListener('pointerdown', tryck);
 })();
 </script>
 <script src="/ram.js" defer></script>
