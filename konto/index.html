@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ditt konto – HARDLIST</title>
-<meta name="description" content="Logga in med Google för att samla poäng och synas i topplistan. Byt visningsnamn eller radera kontot när du vill.">
+<title>Din profil – HARDLIST</title>
+<meta name="description" content="Din profil på HARDLIST: badges, rang och poäng från dagens fråga. Logga in med Google, byt bild och namn eller radera kontot när du vill.">
 <link rel="canonical" href="https://hardlist.se/konto/">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#100C17">
@@ -18,8 +18,8 @@
 <meta property="og:site_name" content="HARDLIST">
 <meta property="og:locale" content="sv_SE">
 <meta property="og:url" content="https://hardlist.se/konto/">
-<meta property="og:title" content="Ditt konto på HARDLIST">
-<meta property="og:description" content="Logga in med Google för att samla poäng och synas i topplistan. Byt visningsnamn eller radera kontot när du vill.">
+<meta property="og:title" content="Din profil på HARDLIST">
+<meta property="og:description" content="Din profil på HARDLIST: badges, rang och poäng från dagens fråga. Logga in med Google, byt bild och namn eller radera kontot när du vill.">
 <meta property="og:image" content="https://hardlist.se/bilder/dela/hem.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -27,28 +27,18 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-07b">
+<link rel="stylesheet" href="/stil.css?v=2026-10-07c">
+<link rel="stylesheet" href="/badges.css?v=2026-10-07">
 <style>
-/* Som inställningarna i en app: profilkortet och listan ska rymmas på en
-   skärm i mobilen utan att scrolla. */
-.kt{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:20px;padding-top:4px}
-.kt-rubrik{font-size:38px}
+/* Lägena utan profil och inställningslistan. Profilen själv är gemensam
+   stil i stil.css, eftersom den offentliga profilen ser likadan ut. */
 .kt-vy{display:flex;flex-direction:column;gap:12px}
+.kt-vy.pf{gap:22px}
 .kt-laddar{color:var(--text-2)}
 .kt-ruta h2{font-size:26px}
 .kt-ruta p{font-size:15px;line-height:1.5;color:var(--text-2);max-width:60ch}
-
-.kt-profil{padding:18px;gap:14px;border-radius:24px}
-.kt-profil-topp{display:flex;align-items:center;gap:14px}
-.kt-bild{
-  flex:none;display:flex;width:60px;height:60px;border-radius:50%;background:var(--yta-2);
-  align-items:center;justify-content:center;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;
-}
-.kt-profil-namn{min-width:0;display:flex;flex-direction:column;gap:4px}
-.kt-namn{font-stretch:62%;font-weight:900;font-size:32px;line-height:1;overflow-wrap:anywhere}
-/* Nivån står i vanlig textfärg. Färg betyder genre, och nivån har ingen. */
-.kt-niva{font-size:14px;color:var(--text-2)}
-.kt-meta{display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:1.5;color:var(--text-3);overflow-wrap:anywhere}
+.kt-installningar{scroll-margin-top:16px}
+.kt-meta{display:flex;flex-direction:column;gap:2px;padding:0 4px;font-size:13px;line-height:1.5;color:var(--text-3);overflow-wrap:anywhere}
 
 /* Listan: en yta, tunna avdelare mellan raderna, indragna till texten. */
 .kt-lista{background:var(--yta);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
@@ -87,14 +77,6 @@
 .kt-besked.fel{color:var(--rosa)}
 
 @media (min-width:860px){
-  .kt{padding-top:20px}
-  .kt-rubrik{font-size:52px}
-  .kt-ruta h2{font-size:32px}
-  .kt-profil{padding:22px}
-  .kt-profil-topp{gap:18px}
-  .kt-bild{width:72px;height:72px;font-size:36px}
-  .kt-namn{font-size:40px}
-  .kt-niva{font-size:15px}
   .kt-rad{padding:0 18px}
   .kt-post:not([hidden]) ~ .kt-post::before{left:52px}
   .kt-utfall{padding:0 18px 18px 52px}
@@ -118,11 +100,19 @@
 </header>
 
 <main class="sida" id="innehall">
-  <div class="kt">
+  <div class="pf">
 
-    <h1 class="kt-rubrik">Ditt konto</h1>
+    <div class="pf-topp">
+      <a class="pf-ikonknapp" id="k-tillbaka" href="/" aria-label="Tillbaka">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+      </a>
+      <h1 class="pf-topp-titel">Din profil</h1>
+      <a class="pf-ikonknapp" id="k-kugg" href="#installningar" aria-label="Inställningar" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </a>
+    </div>
 
-    <p class="kt-laddar" id="k-laddar">Läser in kontot.</p>
+    <p class="kt-laddar" id="k-laddar">Läser in profilen.</p>
 
     <noscript>
       <div class="ruta kt-ruta">
@@ -135,7 +125,7 @@
     <div class="kt-vy" id="k-ut" hidden>
       <div class="ruta kt-ruta">
         <h2>Logga in</h2>
-        <p>Ett namn i topplistorna. Inloggning sker bara med Google. Hardlist får din mejladress och ditt Google-id, aldrig ditt lösenord.</p>
+        <p>En profil med badges och ett namn i topplistorna. Inloggning sker bara med Google. Hardlist får din mejladress och ditt Google-id, aldrig ditt lösenord.</p>
         <div class="kt-knappar">
           <button class="knapp kt-google" id="k-google" type="button">
             <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.2l7.9 6.2C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 7l7.4 5.7c4.3-4 6.9-9.9 6.9-17.2z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.2C1 16.6 0 20.2 0 24s1 7.4 2.6 10.8l7.9-6.2z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.1-13.5-9.9l-7.9 6.2C6.6 42.6 14.6 48 24 48z"/></svg>
@@ -151,7 +141,7 @@
     <div class="kt-vy" id="k-nytt" hidden>
       <div class="ruta kt-ruta">
         <h2>Välj visningsnamn</h2>
-        <p>Det här är namnet som syns i topplistorna. Ditt riktiga namn och din mejl visas aldrig.</p>
+        <p>Det här är namnet som syns på din profil och i topplistorna. Ditt riktiga namn och din mejl visas aldrig.</p>
         <form class="kt-form" id="k-nytt-form" novalidate>
           <label class="kt-etikett" for="k-nytt-falt">Visningsnamn, 3–20 tecken: bokstäver, siffror, - och _</label>
           <input class="kt-falt" id="k-nytt-falt" name="namn" autocomplete="nickname"
@@ -165,22 +155,25 @@
       </div>
     </div>
 
-    <!-- Inloggad med profil: profilkortet -->
-    <div class="kt-vy" id="k-in" hidden>
-      <div class="ruta kt-profil">
-        <div class="kt-profil-topp">
-          <span class="kt-bild" id="k-bild" aria-hidden="true"></span>
-          <span class="kt-profil-namn">
-            <span class="kt-namn" id="k-namn"></span>
-            <span class="kt-niva" id="k-niva" hidden></span>
-          </span>
+    <!-- Inloggad med namn: profilen -->
+    <div class="kt-vy pf" id="k-in" hidden>
+      <section class="pf-huvud" id="k-huvud" aria-label="Profil"></section>
+      <p class="pf-notis" id="k-dold" hidden>Bilden är rapporterad och visas inte för andra förrän den är granskad.</p>
+      <p class="kt-besked fel" id="k-profilfel" role="status"></p>
+      <div class="pf-nasta" id="k-nasta"></div>
+      <div class="pf-siffror" id="k-siffror"></div>
+      <section class="pf-avsnitt" aria-labelledby="k-badges-rubrik">
+        <div class="pf-avsnitt-topp">
+          <h2 id="k-badges-rubrik">Badges</h2>
+          <span class="pf-antal" id="k-antal"></span>
         </div>
-        <p class="kt-meta" id="k-meta"></p>
-      </div>
+        <div class="pf-rutnat" id="badges"></div>
+      </section>
     </div>
 
     <!-- Listan för alla inloggade. Namnbytet syns bara när det finns ett namn. -->
-    <div class="kt-vy" id="k-alltid" hidden>
+    <section class="kt-vy" id="k-alltid" aria-labelledby="installningar" hidden>
+      <h2 class="kt-installningar" id="installningar" tabindex="-1">Inställningar</h2>
       <div class="kt-lista">
 
         <div class="kt-post" id="k-byt-post">
@@ -224,7 +217,7 @@
             <span class="kt-rad-text">Radera kontot</span>
           </button>
           <div class="kt-utfall" id="k-bekrafta" hidden>
-            <p>Inloggningen, ditt namn och alla dina resultat tas bort direkt. Det går inte att ångra.</p>
+            <p>Inloggningen, ditt namn, din profilbild, dina badges och alla dina resultat tas bort direkt. Det går inte att ångra.</p>
             <div class="kt-knappar">
               <button class="knapp" id="k-radera-ja" type="button">Ja, radera kontot</button>
               <button class="knapp knapp-sek" id="k-radera-nej" type="button">Avbryt</button>
@@ -234,18 +227,21 @@
         </div>
 
       </div>
-    </div>
+      <p class="kt-meta" id="k-meta"></p>
+    </section>
 
     <!-- Efter radering -->
     <div class="kt-vy" id="k-raderat" hidden>
       <div class="ruta kt-ruta">
         <h2>Kontot är raderat</h2>
-        <p>Inloggningen och visningsnamnet är borttagna. Du kan skapa ett nytt konto när du vill.</p>
+        <p>Inloggningen, visningsnamnet, profilbilden och dina badges är borttagna. Du kan skapa ett nytt konto när du vill.</p>
         <div class="kt-knappar">
           <a class="knapp knapp-sek" href="/">Till startsidan</a>
         </div>
       </div>
     </div>
+
+    <input type="file" id="k-fil" accept="image/*" hidden>
 
   </div>
 </main>
@@ -293,27 +289,29 @@
 
 <script src="/ram.js" defer></script>
 <script src="/inloggning.js"></script>
+<script src="/badges.js"></script>
+<script src="/profilvy.js"></script>
 <script>
 (function(){
   const K = window.hardlistKonto;
+  const P = window.hardlistProfil;
+  const B = window.hardlistBadges;
   const $ = function(id){ return document.getElementById(id); };
   const VYER = ['k-laddar','k-ut','k-nytt','k-in','k-alltid','k-raderat'];
 
   function visa(){
     const synliga = Array.prototype.slice.call(arguments);
     VYER.forEach(function(id){ $(id).hidden = synliga.indexOf(id) === -1; });
-    // Namnbytet ligger i listan men gäller bara den som redan har ett namn.
+    // Namnbytet och rubriken gäller bara den som redan har ett namn.
     $('k-byt-post').hidden = $('k-in').hidden;
+    $('installningar').hidden = $('k-in').hidden;
+    $('k-kugg').hidden = $('k-in').hidden;
     stangAllt();
   }
   function besked(id, text, sort){
     const el = $(id);
     el.textContent = text || '';
-    el.className = 'kt-besked' + (sort ? ' ' + sort : '');
-  }
-  function datum(iso){
-    try { return new Date(iso).toLocaleDateString('sv-SE', {year:'numeric', month:'long', day:'numeric'}); }
-    catch(e){ return ''; }
+    el.className = (el.className.indexOf('ark-besked') === 0 ? 'ark-besked' : 'kt-besked') + (sort ? ' ' + sort : '');
   }
 
   // Felkoderna kommer från Postgres: 23505 är unikhetsspärren, 23514
@@ -346,37 +344,69 @@
     $('k-radera').setAttribute('aria-expanded', 'false');
   }
 
-  /* Nivå och poäng från quizet. quiz_dagens med p_starta false startar inte
-     klockan. Svarar servern inte, eller finns ingen fråga idag, står raden
-     tom hellre än att visa noll poäng som kanske inte stämmer. */
-  async function hamtaNiva(){
-    const el = $('k-niva');
-    el.hidden = true;
-    try {
-      const d = await K.rpc('quiz_dagens', { p_starta: false });
-      const k = d && d.konto;
-      if (!k || typeof k.poang !== 'number' || !k.rang) return;
-      el.textContent = k.rang + ', ' + k.poang + ' poäng';
-      el.hidden = false;
-    } catch(e){}
-  }
+  /* Tillbaka i historiken om man kom från sajten, annars till startsidan. */
+  $('k-tillbaka').addEventListener('click', function(e){
+    let fran = null;
+    try { fran = document.referrer && new URL(document.referrer).origin; } catch(err){}
+    if (fran === location.origin && history.length > 1){ e.preventDefault(); history.back(); }
+  });
 
   let anvandare = null;
+  let profil = null;     // svaret från profil_min
+  let namn = null;
 
-  function visaProfil(p){
-    $('k-namn').textContent = p.visningsnamn;
-    $('k-bild').textContent = p.visningsnamn.charAt(0).toUpperCase();
+  function meta(skapad){
+    const el = $('k-meta');
+    el.textContent = '';
     // Två rader i stället för en med mittpunkt emellan.
-    const meta = $('k-meta');
-    meta.textContent = '';
-    ['Inloggad med Google som ' + (anvandare.email || 'okänd adress'), 'Konto sedan ' + datum(p.skapad)]
-      .forEach(function(rad){ const s = document.createElement('span'); s.textContent = rad; meta.appendChild(s); });
-    $('k-byt-falt').value = p.visningsnamn;
+    ['Inloggad med Google som ' + (anvandare.email || 'okänd adress'), skapad ? 'Konto sedan ' + P.datum(skapad) : '']
+      .filter(Boolean)
+      .forEach(function(rad){ const s = document.createElement('span'); s.textContent = rad; el.appendChild(s); });
+  }
+
+  function rita(p){
+    profil = p;
+    P.huvud($('k-huvud'), p, { egen: true, namnTagg: 'h2', bytBild: bildArk, valjBadge: valjArk });
+    $('k-dold').hidden = !p.bild_dold;
+    P.nasta($('k-nasta'), p);
+    P.siffror($('k-siffror'), p);
+    P.rutnat($('badges'), p);
+    $('k-antal').textContent = P.antalTagna(p);
+  }
+
+  /* Profilen från servern. Svarar den inte står namnet och inställningarna
+     kvar, så att det går att logga ut och radera kontot ändå. */
+  async function hamtaProfil(){
+    besked('k-profilfel', '', 'fel');
+    try {
+      const p = await K.rpc('profil_min');
+      if (!p || p.fel) throw new Error(p && p.fel);
+      rita(p);
+      return true;
+    } catch(e){
+      $('k-huvud').innerHTML = '<span class="pf-bild"><span class="pf-bild-inre">' + P.esc(P.initial(namn)) + '</span></span>' +
+        '<div class="pf-namnrad"><h2 class="pf-namn">' + P.esc(namn) + '</h2></div>';
+      ['k-nasta', 'k-siffror', 'badges'].forEach(function(id){ $(id).innerHTML = ''; });
+      $('k-antal').textContent = '';
+      besked('k-profilfel', 'Kunde inte läsa in profilen. Ladda om sidan om en stund.', 'fel');
+      return false;
+    }
+  }
+
+  async function visaProfil(rad){
+    namn = rad.visningsnamn;
+    meta(rad.skapad);
+    $('k-byt-falt').value = namn;
     $('k-byt-falt').removeAttribute('aria-invalid');
     besked('k-byt-besked', '');
-    K.sparaNamn(p.visningsnamn);
+    K.sparaNamn(namn);
     visa('k-in', 'k-alltid');
-    hamtaNiva();
+    await hamtaProfil();
+    // Popuperna länkar till /konto/#badges, och kugghjulet till #installningar.
+    if (location.hash === '#badges' || location.hash === '#installningar'){
+      const mal = document.querySelector(location.hash);
+      if (mal) mal.scrollIntoView();
+    }
   }
 
   async function start(){
@@ -396,12 +426,164 @@
       // tillbaka till sidan där Logga in trycktes.
       const dit = K.tillbaka();
       if (dit){ K.sparaNamn(p.visningsnamn); location.replace(dit); return; }
-      visaProfil(p);
+      await visaProfil(p);
     } catch(e){
       visa('k-ut');
       besked('k-ut-besked', 'Kunde inte nå inloggningen. Kontrollera nätet och ladda om sidan.', 'fel');
     }
   }
+
+  /* ---------- badge vid namnet ---------- */
+
+  function valjArk(){
+    if (!profil) return;
+    const tagna = (profil.badges || []).map(function(x){ return B.hitta(x.id); }).filter(Boolean);
+    // Förvalt: det som syns nu, eller Ingen badge om den är bortvald.
+    let vald = profil.badge_val === 'ingen' ? 'ingen' : (profil.badge || 'ingen');
+    const rad = function(id, ikon, text){
+      return '<button class="ark-rad" type="button" role="radio" data-val="' + P.esc(id) + '" aria-checked="' + (vald === id) + '">' +
+        ikon + '<span class="ark-rad-text">' + P.esc(text) + '</span><span class="ark-radio" aria-hidden="true"></span></button>';
+    };
+    P.ark('Badge vid namnet',
+      '<span class="ark-rubrik">Badge vid namnet</span>' +
+      '<p class="ark-text">Välj en av dina badges. Den syns bredvid ditt namn på din profil och i topplistan.</p>' +
+      '<div class="ark-val" role="radiogroup" aria-label="Dina badges">' +
+        tagna.map(function(b){ return rad(b.id, B.medaljHtml(b, true, 40), b.namn); }).join('') +
+        rad('ingen', B.ingenHtml(40), 'Ingen badge') +
+      '</div>' +
+      '<p class="ark-besked" id="k-val-besked" role="status"></p>' +
+      '<button class="knapp ark-knapp" type="button" id="k-val-spara">Spara</button>',
+      function(ruta, stang){
+        const rader = ruta.querySelectorAll('[data-val]');
+        rader.forEach(function(r){
+          r.addEventListener('click', function(){
+            vald = r.getAttribute('data-val');
+            rader.forEach(function(x){ x.setAttribute('aria-checked', String(x === r)); });
+          });
+        });
+        const forvald = ruta.querySelector('[aria-checked="true"]');
+        if (forvald) forvald.setAttribute('data-forst', '');
+        ruta.querySelector('#k-val-spara').addEventListener('click', async function(){
+          this.disabled = true;
+          besked('k-val-besked', 'Sparar…');
+          try {
+            const svar = await K.rpc('profil_valj_badge', { p_id: vald });
+            if (!svar || svar.fel) throw new Error(svar && svar.fel);
+            stang();
+            await hamtaProfil();
+          } catch(e){
+            this.disabled = false;
+            besked('k-val-besked', 'Kunde inte spara. Försök igen.', 'fel');
+          }
+        });
+      });
+  }
+
+  /* ---------- profilbilden ---------- */
+
+  const MAX_ORIGINAL = 5 * 1024 * 1024;
+  const MAX_SPARAD = 300 * 1024;
+  const SIDA = 512;
+  let bildBesked = null;
+
+  function bildArk(){
+    P.ark('Profilbild',
+      '<span class="ark-rubrik">Profilbild</span>' +
+      '<p class="ark-text">Bilden syns på din profil och i topplistan. Den beskärs till en kvadrat och får vara högst 5 MB.</p>' +
+      '<p class="ark-liten">Olämpliga bilder tas bort. Rapporterar någon din bild döljs den tills den är granskad.</p>' +
+      '<p class="ark-besked" id="k-bild-besked" role="status"></p>' +
+      '<button class="knapp ark-knapp" type="button" id="k-valj-bild" data-forst>Välj bild</button>' +
+      '<button class="ark-avbryt" type="button" data-stang>Avbryt</button>',
+      function(ruta, stang){
+        bildBesked = function(text, sort){
+          const el = ruta.querySelector('#k-bild-besked');
+          if (el){ el.textContent = text || ''; el.className = 'ark-besked' + (sort ? ' ' + sort : ''); }
+        };
+        ruta.querySelector('#k-valj-bild').addEventListener('click', function(){
+          $('k-fil').value = '';
+          $('k-fil').onchange = function(){
+            const fil = this.files && this.files[0];
+            if (fil) laddaUpp(fil, ruta.querySelector('#k-valj-bild'), stang);
+          };
+          $('k-fil').click();
+        });
+      });
+  }
+
+  /* Läser bilden i webbläsaren. createImageBitmap vänder mobilbilder rätt;
+     finns den inte används ett vanligt img-element. */
+  async function lasBild(fil){
+    if (window.createImageBitmap){
+      try { return await createImageBitmap(fil, { imageOrientation: 'from-image' }); } catch(e){}
+    }
+    return await new Promise(function(ok, fel){
+      const adr = URL.createObjectURL(fil);
+      const img = new Image();
+      img.onload = function(){ URL.revokeObjectURL(adr); ok(img); };
+      img.onerror = function(){ URL.revokeObjectURL(adr); fel(new Error('oläslig')); };
+      img.src = adr;
+    });
+  }
+
+  function tillBlob(canvas, typ, kvalitet){
+    return new Promise(function(ok){ canvas.toBlob(ok, typ, kvalitet); });
+  }
+
+  /* Kvadrat i mitten, 512×512. Omkodningen tar bort EXIF, och med den
+     GPS-positionen i mobilbilder. WebP om webbläsaren kan, annars JPEG. */
+  async function koda(bild){
+    const b = bild.width, h = bild.height;
+    const sida = Math.min(b, h);
+    const canvas = document.createElement('canvas');
+    canvas.width = SIDA; canvas.height = SIDA;
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(bild, (b - sida) / 2, (h - sida) / 2, sida, sida, 0, 0, SIDA, SIDA);
+    for (const typ of ['image/webp', 'image/jpeg']){
+      for (const kvalitet of [0.86, 0.75, 0.6, 0.45]){
+        const blob = await tillBlob(canvas, typ, kvalitet);
+        // Kan webbläsaren inte göra WebP blir det PNG, och då provas JPEG.
+        if (!blob || blob.type !== typ) break;
+        if (blob.size <= MAX_SPARAD) return blob;
+      }
+    }
+    throw new Error('för stor');
+  }
+
+  async function laddaUpp(fil, knapp, stang){
+    if (fil.size > MAX_ORIGINAL){ bildBesked('Bilden är större än 5 MB. Välj en mindre.', 'fel'); return; }
+    knapp.disabled = true;
+    bildBesked('Förbereder bilden…');
+    let blob;
+    try {
+      blob = await koda(await lasBild(fil));
+    } catch(e){
+      knapp.disabled = false;
+      bildBesked('Bilden gick inte att läsa. Välj en JPG eller PNG.', 'fel');
+      return;
+    }
+    bildBesked('Laddar upp…');
+    try {
+      const k = await K.klient();
+      const sokvag = anvandare.id + '/' + Date.now() + (blob.type === 'image/webp' ? '.webp' : '.jpg');
+      const upp = await k.storage.from('profilbilder').upload(sokvag, blob, {
+        contentType: blob.type, cacheControl: '31536000', upsert: false
+      });
+      if (upp.error) throw upp.error;
+      const svar = await K.rpc('profil_satt_bild', { p_sokvag: sokvag });
+      if (!svar || svar.fel) throw new Error(svar && svar.fel);
+      // Den gamla bilden tas bort. Misslyckas det tas den ändå bort med kontot.
+      if (svar.gammal){ try { await k.storage.from('profilbilder').remove([svar.gammal]); } catch(e){} }
+      stang();
+      await hamtaProfil();
+      if (svar.nya_badges && svar.nya_badges.length) B.visaNya(svar.nya_badges);
+    } catch(e){
+      knapp.disabled = false;
+      bildBesked('Kunde inte ladda upp bilden. Försök igen.', 'fel');
+    }
+  }
+
+  /* ---------- inloggning, namn och radering ---------- */
 
   $('k-google').addEventListener('click', async function(){
     this.disabled = true;
@@ -415,20 +597,20 @@
 
   $('k-nytt-form').addEventListener('submit', async function(e){
     e.preventDefault();
-    const namn = kollaNamn($('k-nytt-falt'), 'k-nytt-besked');
-    if (!namn) return;
+    const nytt = kollaNamn($('k-nytt-falt'), 'k-nytt-besked');
+    if (!nytt) return;
     const knapp = this.querySelector('button');
     knapp.disabled = true;
     besked('k-nytt-besked', 'Sparar…');
     try {
       const k = await K.klient();
       const { data, error } = await k.from('profiler')
-        .insert({ id: anvandare.id, visningsnamn: namn })
+        .insert({ id: anvandare.id, visningsnamn: nytt })
         .select('visningsnamn, skapad').single();
       if (error) throw error;
       const dit = K.tillbaka();
       if (dit){ K.sparaNamn(data.visningsnamn); location.replace(dit); return; }
-      visaProfil(data);
+      await visaProfil(data);
     } catch(err){
       besked('k-nytt-besked', namnfel(err), 'fel');
     } finally {
@@ -438,20 +620,20 @@
 
   $('k-byt-form').addEventListener('submit', async function(e){
     e.preventDefault();
-    const namn = kollaNamn($('k-byt-falt'), 'k-byt-besked');
-    if (!namn) return;
-    if (namn === $('k-namn').textContent){ besked('k-byt-besked', 'Det är redan ditt namn.', 'fel'); return; }
+    const nytt = kollaNamn($('k-byt-falt'), 'k-byt-besked');
+    if (!nytt) return;
+    if (nytt === namn){ besked('k-byt-besked', 'Det är redan ditt namn.', 'fel'); return; }
     const knapp = this.querySelector('button');
     knapp.disabled = true;
     besked('k-byt-besked', 'Sparar…');
     try {
       const k = await K.klient();
       const { data, error } = await k.from('profiler')
-        .update({ visningsnamn: namn })
+        .update({ visningsnamn: nytt })
         .eq('id', anvandare.id)
         .select('visningsnamn, skapad').single();
       if (error) throw error;
-      visaProfil(data);
+      await visaProfil(data);
       oppnaByt();
       besked('k-byt-besked', 'Namnet är bytt.', 'ok');
     } catch(err){
@@ -466,6 +648,7 @@
     try { await K.loggaUt(); } catch(e){}
     this.disabled = false;
     anvandare = null;
+    profil = null;
     visa('k-ut');
   });
 
@@ -484,7 +667,7 @@
   });
   $('k-byt-avbryt').addEventListener('click', function(){
     stangAllt();
-    $('k-byt-falt').value = $('k-namn').textContent;
+    $('k-byt-falt').value = namn || '';
     $('k-byt-falt').removeAttribute('aria-invalid');
     besked('k-byt-besked', '');
     $('k-byt-oppna').focus();
@@ -514,6 +697,7 @@
       // misslyckas. Det som spelar roll är att den lokala sessionen töms.
       try { await K.loggaUt(); } catch(e){ K.sparaNamn(null); }
       anvandare = null;
+      profil = null;
       visa('k-raderat');
     } catch(err){
       knappar.forEach(function(b){ b.disabled = false; });

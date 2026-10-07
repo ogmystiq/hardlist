@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-07b">
+<link rel="stylesheet" href="/stil.css?v=2026-10-07c">
 </head>
 <body>
 
@@ -50,7 +50,7 @@
   <div class="sidhuvud">
     <h1>Vad som sparas</h1>
     <p class="ingress">Kort och utan juristspråk. Allt på den här sidan gäller kontot på hardlist.se och inget annat.</p>
-    <span class="etikett-chip">Senast ändrad 6 oktober 2026</span>
+    <span class="etikett-chip">Senast ändrad 7 oktober 2026</span>
   </div>
 
   <div class="prosa text">
@@ -72,7 +72,7 @@
         <li><strong>Din mejladress hos Google.</strong> Kommer från Google vid inloggningen.</li>
         <li><strong>Ditt Google-id.</strong> Ett nummer som Google ger ditt konto. Behövs för att känna igen dig nästa gång.</li>
         <li><strong>Ditt namn och din profilbild hos Google.</strong> Google skickar med dem och inloggningstjänsten sparar dem automatiskt. Hardlist använder dem inte och visar dem aldrig.</li>
-        <li><strong>Visningsnamnet du väljer.</strong> Syns för alla i topplistan, tillsammans med dina quizpoäng och din rang. Inget annat om dig kan andra se.</li>
+        <li><strong>Visningsnamnet du väljer.</strong> Syns för alla på din profil och i topplistan.</li>
         <li><strong>När kontot skapades och när du senast loggade in.</strong></li>
         <li><strong>IP-adress och webbläsartyp</strong> för dina inloggningar. Används för att hålla inloggningen säker.</li>
       </ul>
@@ -82,7 +82,17 @@
         <li><strong>När du öppnade dagens fråga.</strong> De 30 sekunderna räknas därifrån.</li>
         <li><strong>Ditt svar för varje dag.</strong> Datum, vilken fråga, vilket alternativ du valde eller att tiden gick ut, om det var rätt, hur många poäng det gav och när du svarade.</li>
         <li><strong>Dina siffror.</strong> Totalpoäng, svit, längsta svit, antal svar och antal rätt.</li>
-        <li><strong>Topplistan</strong> räknas fram ur poängen. Den visar visningsnamn, poäng och rang för konton som tagit poäng — aldrig mejladress eller något annat.</li>
+        <li><strong>Topplistan</strong> räknas fram ur poängen. Den visar visningsnamn, profilbild, badge vid namnet, poäng och rang för konton som tagit poäng — aldrig mejladress eller något annat.</li>
+        <li><strong>Din plats när en månad är slut</strong> sparas, så att badges för flera månader i rad kan räknas.</li>
+      </ul>
+
+      <h3>Profilen och badges</h3>
+      <p>Din profil på hardlist.se syns för alla, också för den som inte är inloggad. Den visar visningsnamnet, profilbilden om du har lagt upp en, badgen vid namnet, rang och poäng, din plats i månadens topplista, svit, längsta svit, hur stor andel av dina svar som var rätt, vilken månad du gick med, och vilka badges du har tagit och när. Inget annat om dig visas där.</p>
+      <ul>
+        <li><strong>Dina badges.</strong> Vilka du har tagit, när, och om du har sett beskedet om dem. Servern delar ut dem utifrån dina quizresultat.</li>
+        <li><strong>Profilbilden.</strong> Sparas hos Supabase, på samma ställe som kontot. Din webbläsare beskär och gör om bilden innan den skickas, och då försvinner den extra informationen i bildfilen, till exempel platsen där en mobilbild togs. Bilden har en öppen adress, och adressen innehåller ditt kontos id, en slumpad kod som inte säger något om vem du är. Byter du bild tas den gamla bort.</li>
+        <li><strong>Rapporter om bilder.</strong> Rapporterar du någons profilbild sparas vem du är tillsammans med rapporten, vilken bild det gäller och när. Det är för att samma person inte ska kunna rapportera en bild flera gånger. Den som blir rapporterad får inte veta vem som rapporterade.</li>
+        <li><strong>Om din egen bild har rapporterats</strong>, och om den är dold eller granskad.</li>
       </ul>
       <p>Låtspelet är inte kopplat till kontot. Det ligger fortfarande bara i din webbläsare.</p>
 
@@ -90,11 +100,11 @@
       <p>För att du ska kunna ha ett namn i topplistorna och få med dig dina resultat mellan enheter. Uppgifterna används inte till något annat. Hardlist säljer inga uppgifter, visar inga annonser och delar ingenting med annonsörer.</p>
 
       <h3>Var</h3>
-      <p>Kontona ligger hos <strong>Supabase</strong>, en databastjänst. Databasen står i Amazons datacenter i <strong>Irland</strong> (AWS eu-west-1), alltså inom EU. Supabase är ett amerikanskt företag.</p>
+      <p>Kontona och profilbilderna ligger hos <strong>Supabase</strong>, en databastjänst. Databasen och bilderna står i Amazons datacenter i <strong>Irland</strong> (AWS eu-west-1), alltså inom EU. Supabase är ett amerikanskt företag.</p>
       <p>Inloggningen sparas i din webbläsares lokala lagring (localStorage) på hardlist.se, inte i cookies. Google sätter egna cookies på google.com när du loggar in där — de styrs av Google, inte av mig.</p>
 
       <h3>Hur länge</h3>
-      <p>Så länge kontot finns. Raderar du kontot tas allt bort direkt — inloggningen, visningsnamnet, dina quizsvar och poäng, och allt annat som hör till kontot. Du försvinner ur topplistan samtidigt.</p>
+      <p>Så länge kontot finns. Raderar du kontot tas allt bort direkt — inloggningen, visningsnamnet, profilbilden, dina badges, dina quizsvar och poäng, rapporter du har gjort och rapporter om din bild, och allt annat som hör till kontot. Du försvinner ur topplistan och profilen försvinner samtidigt.</p>
 
       <h2>Radera ditt konto</h2>
       <p>Två sätt:</p>

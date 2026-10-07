@@ -392,6 +392,134 @@ h1 em{font-style:normal}
   }
 }
 
+/* ---------- Profiler: /konto/ och /profil/ ---------- */
+
+/* Som designen i mobilen, och lika smal på dator: en profil är en kolumn. */
+.pf{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.pf-topp{display:grid;grid-template-columns:44px 1fr 44px;align-items:center}
+.pf-topp-titel{margin:0;text-align:center;font-family:inherit;font-stretch:100%;font-weight:700;font-size:17px;line-height:1.2;letter-spacing:0}
+.pf-ikonknapp{
+  display:flex;width:44px;height:44px;padding:0;border:0;border-radius:50%;
+  align-items:center;justify-content:center;background:none;color:var(--text);
+}
+.pf-ikonknapp:hover{background:var(--yta)}
+.pf-ikonknapp svg{width:22px;height:22px}
+
+.pf-huvud{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.pf-bild{position:relative;display:block;width:104px;height:104px;padding:0;border:0;border-radius:50%;background:none;color:var(--text)}
+.pf-bild-inre{
+  display:flex;width:104px;height:104px;border-radius:50%;overflow:hidden;background:var(--yta-2);
+  align-items:center;justify-content:center;font-stretch:62%;font-weight:900;font-size:46px;line-height:1;
+}
+.pf-bild-inre img{display:block;width:100%;height:100%;object-fit:cover}
+.pf-kamera{
+  position:absolute;right:-4px;bottom:-2px;display:flex;width:38px;height:38px;border-radius:50%;
+  border:3px solid var(--natt);background:var(--text);color:var(--natt);align-items:center;justify-content:center;
+}
+.pf-kamera svg{width:18px;height:18px}
+.pf-namnrad{display:flex;align-items:center;justify-content:center;gap:6px;max-width:100%}
+.pf-namn{margin:0;font-stretch:62%;font-weight:900;font-size:38px;line-height:1;letter-spacing:-.01em;overflow-wrap:anywhere}
+.pf-badgeknapp{
+  flex:none;display:flex;width:44px;height:44px;padding:0;border:0;border-radius:50%;
+  align-items:center;justify-content:center;background:none;
+}
+.pf-rang{font-size:16px;color:var(--text-2)}
+.pf-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.pf-chip{padding:7px 12px;border-radius:999px;background:var(--yta);font-size:14px}
+.pf-chip-svag{color:var(--text-2)}
+.pf-knappar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+.pf-pill{
+  min-height:44px;padding:0 18px;border:0;border-radius:999px;background:var(--yta);color:var(--text);
+  font-weight:700;font-size:15px;transition:background .15s;
+}
+.pf-pill:hover{background:var(--yta-hover)}
+/* Raden som bara ägaren ser när bilden är rapporterad. */
+.pf-notis{max-width:40ch;font-size:14px;line-height:1.5;color:var(--text-2)}
+
+.pf-nasta{background:var(--yta);border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.pf-nasta-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.pf-nasta-namn{display:flex;flex-direction:column;gap:2px}
+.pf-nasta-kvar{font-size:14px;color:var(--text-2);text-align:right}
+.pf-etikett{font-size:13px;color:var(--text-3)}
+.pf-stor{font-stretch:62%;font-weight:900;font-size:28px;line-height:1}
+.pf-stapel{height:8px;border-radius:999px;background:var(--yta-2);overflow:hidden}
+.pf-stapel i{display:block;height:8px;border-radius:999px;background:var(--text)}
+.pf-siffror{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pf-siffra{background:var(--yta);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+
+.pf-avsnitt{display:flex;flex-direction:column;gap:12px}
+.pf-avsnitt-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.pf-avsnitt-topp h2{margin:0}
+.pf-avsnitt-topp a{text-decoration:none}
+.pf-avsnitt-topp a:hover{text-decoration:underline;text-underline-offset:3px}
+.pf-antal{font-size:15px;color:var(--text-2)}
+.pf-rutnat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px 4px}
+.pf-badge{
+  display:flex;flex-direction:column;align-items:center;gap:7px;min-width:0;padding:8px 2px 10px;
+  border:0;border-radius:14px;background:none;color:var(--text);transition:background .15s;
+}
+.pf-badge:hover{background:var(--yta)}
+.pf-badge-namn{font-size:12px;font-weight:600;line-height:1.2;text-align:center;color:var(--text-2);hyphens:auto;overflow-wrap:break-word;max-width:100%}
+/* Fyra kolumner på en 360 px-skärm ger inte plats åt Fredagsfeber i 12 px. */
+@media (max-width:379px){.pf-badge-namn{font-size:11px}}
+.pf-badge.tagen .pf-badge-namn{color:var(--text)}
+.pf-badge-under{margin-top:-3px;font-size:11px;color:var(--text-3)}
+
+/* ---------- Arket som glider upp nerifrån ---------- */
+
+html.ark-last{overflow:hidden}
+.ark-lager{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center}
+.ark-fond{position:absolute;inset:0;width:100%;border:0;background:rgba(10,8,14,.72)}
+.ark{
+  position:relative;width:100%;max-width:600px;max-height:88vh;overflow-y:auto;
+  padding:12px 20px calc(26px + env(safe-area-inset-bottom));border-radius:24px 24px 0 0;
+  background:var(--yta);display:flex;flex-direction:column;gap:14px;
+  animation:ark-in .22s ease-out;
+}
+@keyframes ark-in{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.ark-greppe{align-self:center;width:40px;height:4px;border-radius:999px;background:#3A3046}
+.ark-rubrik{font-stretch:62%;font-weight:900;font-size:30px;line-height:1;word-spacing:.05em}
+.ark-text{font-size:16px;line-height:1.5;color:#D9D1E6}
+.ark-liten{font-size:14px;line-height:1.5;color:var(--text-3)}
+.ark-knapp{width:100%;min-height:50px}
+.ark-avbryt{min-height:44px;border:0;border-radius:999px;background:none;color:var(--text-2);font-weight:700;font-size:16px}
+.ark-badge{display:flex;align-items:center;gap:16px}
+.ark-badge-namn{display:flex;flex-direction:column;gap:4px}
+.ark-niva{font-size:14px;color:var(--text-2)}
+.ark-fakta{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--text-3)}
+.pf-stapel-rad{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--text-2)}
+.ark-besked{font-size:14px;line-height:1.5;color:var(--text-2)}
+.ark-besked:empty{display:none}
+.ark-besked.fel{color:var(--rosa)}
+
+/* Valet av badge vid namnet: en radioknapp per rad. */
+.ark-val{display:flex;flex-direction:column}
+.ark-rad{
+  display:flex;align-items:center;gap:14px;min-height:60px;padding:0 10px;border:0;border-radius:14px;
+  background:none;color:var(--text);text-align:left;font-size:16px;font-weight:600;
+}
+.ark-rad:hover{background:var(--yta-hover)}
+.ark-rad-text{flex:1}
+.ark-radio{
+  flex:none;display:flex;width:22px;height:22px;border-radius:50%;border:2px solid #3A3046;
+  align-items:center;justify-content:center;
+}
+.ark-rad[aria-checked="true"] .ark-radio{border-color:var(--text)}
+.ark-rad[aria-checked="true"] .ark-radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--text)}
+.ark-meny-rad{
+  display:flex;align-items:center;gap:14px;min-height:56px;padding:0 14px;border:0;border-radius:14px;
+  background:none;color:var(--text);text-align:left;font-size:16px;font-weight:600;
+}
+.ark-meny-rad:hover{background:var(--yta-hover)}
+.ark-meny-rad svg{flex:none;width:22px;height:22px}
+.ark-meny-text{display:flex;flex-direction:column;gap:2px}
+.ark-meny-text small{font-size:14px;font-weight:400;color:var(--text-2)}
+
+@media (min-width:860px){
+  .ark-lager{align-items:center;padding:24px}
+  .ark{max-width:480px;border-radius:24px;padding-bottom:26px}
+}
+
 /* ---------- Dator ---------- */
 
 @media (min-width:860px){
