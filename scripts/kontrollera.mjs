@@ -261,6 +261,39 @@ async function kollaJson(){
   }
 }
 
+/* Badgesen finns på två ställen: utseendet i badges.js och katalogen i
+   databasen, som delar ut dem. Saknas ett id på ena sidan visas en badge som
+   ingen kan få, eller delas en ut som inte går att rita. */
+async function kollaBadges(){
+  const fil = resolve(ROOT, 'badges.js');
+  if (!existsSync(fil)) return;
+  const fonster = {};
+  try { vm.runInNewContext(await readFile(fil, 'utf8'), { window: fonster, document: {} }); }
+  catch(e){ fel.push('badges.js går inte att köra: ' + e.message); return; }
+  const js = new Map((fonster.hardlistBadges?.BADGES || []).map(b => [b.id, b]));
+
+  const mapp = resolve(ROOT, 'supabase/migrations');
+  const server = new Map();
+  for (const namn of (await readdir(mapp)).sort()){
+    const sql = await readFile(resolve(mapp, namn), 'utf8');
+    for (const block of sql.matchAll(/insert into profil\.katalog[^;]*;/g)){
+      for (const m of block[0].matchAll(/\('([a-z0-9-]+)',\s*(\d),\s*(true|false),\s*(true|false)\)/g)){
+        server.set(m[1], { hemlig: m[3] === 'true', kommer: m[4] === 'true' });
+      }
+    }
+  }
+  if (!server.size){ fel.push('Hittar ingen insert into profil.katalog i migrationerna'); return; }
+  for (const [id, b] of js){
+    const s = server.get(id);
+    if (!s){ fel.push(`badges.js: ${id} finns inte i profil.katalog på servern`); continue; }
+    if (s.hemlig !== !!b.hemlig) fel.push(`badges.js: ${id} är hemlig på ena stället men inte på andra`);
+    if (s.kommer !== !!b.kommer) fel.push(`badges.js: ${id} har kommer på ena stället men inte på andra`);
+  }
+  for (const id of server.keys()){
+    if (!js.has(id)) fel.push(`profil.katalog: ${id} finns inte i badges.js`);
+  }
+}
+
 async function run(){
   const sidor = await hittaSidor();
   const ramar = [];
@@ -294,6 +327,7 @@ async function run(){
   await kollaMarkorer();
   await kollaJson();
   await kollaDelning();
+  await kollaBadges();
 
   const nya = ramar.length;
   console.log(`Kontrollerade ${sidor.length} sidor, varav ${nya} i den nya designen.`);

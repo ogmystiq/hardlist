@@ -26,10 +26,10 @@ Menyn har fem val, och varje sida hör till ett av dem:
 | Hem | `/` — idag-vyn: dagens fråga, dagens låt, topplistan, nytt, snart |
 | Releaser | `/releaser/` |
 | Event | `/events/` (kalendern och festivalguiderna), `/guider/` (camping) |
-| Spel | `/spel/`, `/quiz/`, `/latspel/` |
+| Spel | `/spel/`, `/quiz/`, `/latspel/`, `/badges/` |
 | Scenen | `/scenen/`, `/nyborjare/`, `/anthems/` |
 
-Konto, integritet och 404 hör inte till något menyval.
+Konto (`/konto/`, Din profil), den offentliga profilen (`/profil/`), integritet och 404 hör inte till något menyval.
 
 ---
 
@@ -48,7 +48,9 @@ latspel/index.html      →  hardlist.se/latspel/
 scenen/index.html       →  hardlist.se/scenen/
 nyborjare/index.html    →  hardlist.se/nyborjare/
 anthems/index.html      →  hardlist.se/anthems/
-konto/index.html        →  hardlist.se/konto/
+konto/index.html        →  hardlist.se/konto/          Din profil
+profil/index.html       →  hardlist.se/profil/?namn=…  offentlig profil, noindex
+badges/index.html       →  hardlist.se/badges/         alla badges
 integritet/index.html   →  hardlist.se/integritet/
 404.html                →  egen felsida
 CNAME                   →  RADERA ALDRIG. Utan den slutar domänen fungera.
@@ -58,6 +60,8 @@ ram.js                  →  statusraden i sidfoten, läser data/status.json
 inloggning.js           →  inloggningen, laddas av varje sida
 rader.js                →  releaseraden, delad av startsidan och /releaser/
 ljud.js                 →  avstängningen av iTunes-ljud och raden om förlyssningen
+badges.js, badges.css   →  badgesens utseende, texter och popuper, ritade i designen
+profilvy.js             →  profilens delar, delade av /konto/ och /profil/
 typsnitt/               →  Archivo, ligger här i stället för hos Google Fonts
 ```
 
@@ -102,7 +106,10 @@ inte i repot). Det viktigaste ur den:
 - Inga etiketter i VERSALER, inget monospace, inga tunna ramar runt allt,
   inga "A · B · C"-rader med mittpunkter och inga pilar i knapptexter.
 - Högst en nivå yta: en ruta i en ruta blir rader med luft emellan.
-- Rörelse bara som svar på något man gör, aldrig när sidan laddas.
+- Rörelse bara som svar på något man gör, aldrig när sidan laddas. Undantag:
+  tagna extremt sällsynta badges rör sig hela tiden, och popupen och firandet
+  för en ny badge får visas när sidan laddas. Allt står still med
+  `prefers-reduced-motion`.
 - Synligt fokus: 2 px cyan ring med 2 px avstånd.
 
 ---
@@ -356,7 +363,7 @@ svar. Fram till oktober 2026 låg alla svar öppet i `data/quiz-live.json` och
   låtdag) — det avgörs av frågans `musik`-flagga i `quiz.registrera`. Fel svar
   ger noll och bryter sviten, en missad dag också. Rangskalan finns bara i `quiz.rang` i
   databasen.
-- **Topplistan** (`quiz_topplista`) lämnar bara ut visningsnamn, poäng och
+- **Topplistan** (`quiz_topplista`) lämnar bara ut visningsnamn, bild, badge vid namnet, poäng och
   rang. Totalt och innevarande månad, topp 50.
 - Allt om ett konto raderas med kontot (`on delete cascade`).
 
@@ -454,6 +461,75 @@ till i låtspelets lista förrän deras fredag har passerat.
 
 ---
 
+## Profiler och badges
+
+Din profil ligger på `/konto/` (adressen är kvar, eftersom inloggningen och
+quizet skickar dit) och den offentliga profilen på `/profil/?namn=…`. Båda
+ritas av `profilvy.js`. Badgesens utseende, texter och popuper kommer från
+designen i `badges.js` och `badges.css` — **ändra dem inte för hand.** Ändras
+de: byt datumet i `?v=` i sidorna som laddar dem och i `BADGE_VERSION` i
+`inloggning.js`.
+
+**Servern delar ut alla badges.** Tabellerna ligger i schemat `profil`, som
+API:t inte exponerar, precis som `quiz`. Sajten når dem bara genom
+`profil_visa`, `profil_min`, `profil_valj_badge`, `profil_satt_bild`,
+`profil_rapportera_bild`, `profil_osedda` och `profil_sedda`. Lägg aldrig till
+`profil` i `[api] schemas`.
+
+- **Id:n måste stämma** mellan `badges.js` och `profil.katalog`. Kontrollskriptet
+  larmar annars. Reglerna för när en badge delas ut står i
+  `supabase/migrations/20261007141500_profiler_och_badges.sql`.
+- **Quizet får aldrig gå sönder för badgesens skull.** Utdelningen i
+  `quiz_svara` ligger i ett eget exception-block, och `quiz_topplista` faller
+  tillbaka till det gamla svaret om profildelen kraschar. Behåll det så.
+- **Månadsbadges** delas ut av pg_cron-jobbet `hardlist-manadsbadges` varje natt
+  strax efter midnatt svensk tid. Det sparar förra månadens placeringar en gång
+  och delar ut Vid staketet, I båset, Headliner, Residenten och Veteranen.
+- **Låtspelets badges** (`kommer: true`) delas inte ut än.
+
+### Dela ut en badge för hand
+
+Tipsaren, Faktakollen och Påskägget. Kör i Supabase, SQL Editor, med
+visningsnamnet och badgens id:
+
+```sql
+select profil.dela_ut('nattraver', 'faktakollen');
+```
+
+Personen får popupen nästa gång sajten öppnas.
+
+### Granska rapporterade bilder
+
+En rapport döljer bilden direkt, tills du har granskat den. Ingen avisering
+finns än, så titta då och då:
+
+```sql
+select * from profil.rapporterade_bilder;
+```
+
+Godkänn (bilden syns igen, och nya rapporter döljer den inte):
+
+```sql
+select profil.godkann_bild('nattraver');
+```
+
+Ta bort (profilen blir utan bild direkt):
+
+```sql
+select profil.ta_bort_bild('nattraver');
+```
+
+Storage tillåter inte att filer raderas från SQL, så svaret ger sökvägen till
+filen. Radera den sedan i Supabase: Storage, bucketen `profilbilder`, mappen
+med det id som står först i sökvägen.
+
+### Profilbilder
+
+Bucketen `profilbilder` är publik, högst 300 kB, bara WebP och JPEG. Sidan
+beskär och gör om bilden i webbläsaren, så att EXIF och GPS försvinner.
+Edge Function `radera-konto` tar bort användarens mapp innan inloggningen
+raderas, och raderar inte kontot alls om bilderna inte gick att ta bort.
+
 ## Faktakorrigeringar från Jonte
 
 Han kan scenen. **Hans korrigeringar väger tyngre än research.**
@@ -500,6 +576,10 @@ Mörkt, hårt, kompromisslöst. Passar ämnet.
     eftersom Deezers villkor kräver deras logga. Den står i källraden
     bredvid Spotify med texten "Data från Deezer". Ändra aldrig färg,
     beskärning eller proportioner.
+  - Badges (`badges.js`, `badges.css`): illustrationerna får använda
+    genrefärgerna fritt, de extremt sällsynta bär alla fem i en stjärna, och
+    genreöronen bär sin genres färg. Formen visar alltid nivån, så färgen
+    står aldrig ensam. Badges är spelutmärkelser, inte förtroendeemblem.
 
   Färgen står aldrig ensam — alltid tillsammans med ikon eller text. Inga fler
   undantag.
@@ -515,7 +595,7 @@ säga "många" än att hitta på en procentsats.
 
 **Kör kontrollskriptet:** `node scripts/kontrollera.mjs`
 
-Det går igenom alla 13 sidor och larmar för:
+Det går igenom alla sidor (15 just nu, nya mappar med `index.html` räknas av sig själva) och larmar för:
 
 - obalanserade taggar, JavaScript som inte parsar, och mer än ett eget
   `<style>`-block
@@ -528,6 +608,7 @@ Det går igenom alla 13 sidor och larmar för:
 - meny eller sidfot som skiljer sig mellan sidorna
 - två skript på samma sida som deklarerar samma namn
 - gamla typsnitt, monospace eller anrop till Google Fonts
+- badge-id:n i `badges.js` som saknas i `profil.katalog` på servern, eller tvärtom
 
 Det kan inte se hur sidan ser ut. Titta själv, på mobil och dator:
 `node scripts/lokal-server.mjs` visar sajten som GitHub Pages gör, med rena
