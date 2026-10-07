@@ -486,6 +486,25 @@ På iPhone måste ljudet startas av ett tryck. Trycket på Börja spela spelar e
 tyst ljudsnutt i samma spelare, och då får den spela klippen sedan. Klippet
 stoppas efter ljudets egen position, så att laddtiden inte äter av klippet.
 
+### Dagens låt
+
+`/latspel/` är Dagens låt: flerval med fyra alternativ, klipp på 0,5, 1, 3, 7
+och 15 sekunder, och svar med ett tryck. Samma låt och samma alternativ för
+alla, ny vid midnatt svensk tid, i `supabase/migrations/20261007220000_dagens_lat.sql`.
+
+- `latbibliotek.dagens_rad` väljer låten första gången någon frågar och sparar
+  den i `latbibliotek.dagens`, som dagens fråga. Urvalet är de 40 procent mest
+  kända låtarna, och den minst använda väljs först, så ingen upprepas förrän
+  alla varit dagens låt.
+- `dag_lat`, `dag_spela`, `dag_langre` och `dag_svara` fungerar som
+  flervalet i fritt spel. Ett försök per konto och dag (`latbibliotek.dag_forsok`).
+  Utan konto minns webbläsaren bara dagens svar.
+- Halv sekund (rätt på första klippet) och Radar (tio gånger) delas ut i ett
+  eget exception-block i `dag_svara`.
+- Utmaningen mot en kompis ligger kvar i sidan som förut, med sökning i den
+  gamla listan `data/latspel.json`. Sidan går bara till den nya dagens låt när
+  adressen inte är en duell.
+
 ### Låtspelet
 
 Låtspelets lista (`data/latspel.json`, `SEED_LATSPEL`) byggdes ur den gamla

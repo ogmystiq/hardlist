@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Låtspelet: känn igen dagens hardstylelåt – HARDLIST</title>
-<meta name="description" content="En låt om dagen och sex försök. Första klippet är en halv sekund, sedan blir de längre. Gissa artist och titel, eller utmana en kompis på fem låtar.">
+<meta name="description" content="En låt om dagen och fyra alternativ. Första klippet är en halv sekund, sedan blir det längre om du vill. Eller utmana en kompis på fem låtar.">
 <meta name="keywords" content="hardstyle låtspel, gissa låten hardstyle, hardstyle heardle, hardstyle musikquiz">
 <link rel="canonical" href="https://hardlist.se/latspel/">
 <link rel="alternate" type="application/rss+xml" title="HARDLIST — nya releaser" href="https://hardlist.se/releaser.xml">
@@ -16,14 +16,14 @@
 <meta property="og:locale" content="sv_SE">
 <meta property="og:url" content="https://hardlist.se/latspel/">
 <meta property="og:title" content="Låtspelet: känn igen dagens hardstylelåt">
-<meta property="og:description" content="En låt om dagen och sex försök. Första klippet är en halv sekund, sedan blir de längre. Gissa artist och titel, eller utmana en kompis på fem låtar.">
+<meta property="og:description" content="En låt om dagen och fyra alternativ. Första klippet är en halv sekund, sedan blir det längre om du vill. Eller utmana en kompis på fem låtar.">
 <meta property="og:image" content="https://hardlist.se/bilder/dela/latspel.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Känner du igen låten? Dagens låt med sex klipp, från en halv sekund till 16 sekunder.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Låtspelet: känn igen dagens hardstylelåt">
-<meta name="twitter:description" content="En låt om dagen och sex försök. Första klippet är en halv sekund, sedan blir de längre. Gissa artist och titel, eller utmana en kompis på fem låtar.">
+<meta name="twitter:description" content="En låt om dagen och fyra alternativ. Första klippet är en halv sekund, sedan blir det längre om du vill. Eller utmana en kompis på fem låtar.">
 <meta name="twitter:image" content="https://hardlist.se/bilder/dela/latspel.png">
 
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -106,6 +106,21 @@
 .l-duell-inre h2{font-size:26px}
 .l-duell-inre p{font-size:15px;line-height:1.5;color:var(--text-2)}
 .l-duell-inre .knapp{align-self:flex-start}
+/* Dagens låt: svaren med ett tryck, som i quizet. Rätt alltid cyan med bock,
+   fel alltid rosa med kryss. */
+.q-alt{display:flex;flex-direction:column;gap:10px}
+.alt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 16px 10px 12px;border:1.5px solid var(--yta);border-radius:16px;background:var(--yta);color:var(--text);text-align:left;font-size:17px;font-weight:650;line-height:1.3;transition:background .2s,border-color .2s,opacity .25s,transform .1s}
+.alt:hover:not(:disabled){background:var(--yta-2)}
+.alt:active:not(:disabled){transform:scale(.98)}
+.alt:disabled{cursor:default}
+.alt-text{flex:1;min-width:0;overflow-wrap:anywhere}
+.alt-ratt{background:rgba(61,220,240,.12);border-color:var(--ratt)}
+.alt-ratt .bricka{background:var(--ratt);color:var(--natt)}
+.alt-fel{background:rgba(255,59,107,.12);border-color:var(--fel)}
+.alt-fel .bricka{background:var(--fel);color:var(--natt)}
+.alt-dov{opacity:.4}
+.d-artist{font-size:15px;font-weight:500;color:var(--text-2)}
+.d-langre{min-height:48px}
 .l-integritet{font-size:14px;line-height:1.5;color:var(--text-3)}
 
 @media (min-width:860px){
@@ -138,7 +153,7 @@
     <div class="sidhuvud l-sidhuvud">
       <span class="etikett-chip" id="lOgonbryn">En låt om dagen</span>
       <h1 id="lRubrik">Känner du igen<br><em>dagens låt?</em></h1>
-      <p class="ingress" id="lIngress">Sex försök. Första klippet är en halv sekund, sen dubblas det: 1, 2, 4, 8 och 16 sekunder. Samma låt för alla, ny varje dygn.</p>
+      <p class="ingress" id="lIngress">Fyra alternativ. Första klippet är en halv sekund, och det blir längre om du vill: 1, 3, 7 och 15 sekunder. Samma låt för alla, ny varje dygn.</p>
     </div>
 
     <div class="q-siffror fyra" id="lTopp"></div>
@@ -156,8 +171,7 @@
     </section>
 
     <p class="l-integritet">
-      Statistiken lagras med localStorage i din egen webbläsare och skickas aldrig någonstans.
-      Inget konto behövs. Statistiken sparas bara i din webbläsare. Ljudet är Apples officiella förhandslyssning.
+      Dagens låt avgörs på servern. Med konto sparas ditt svar och dina siffror, utan konto minns bara din webbläsare dagens svar. Duellen sparas bara i din webbläsare. Ljudet är Apples officiella förhandslyssning.
     </p>
 
   </div>
@@ -205,6 +219,258 @@
 </footer>
 
 <script src="/ljud.js"></script>
+<script>
+/* Dagens låt som flerval. Servern väljer låten och alternativen, samma för
+   alla, och rättar svaret. Sidan får ljudet först när klockan startar och
+   vet aldrig vilket alternativ som är rätt förrän den har svarat.
+   Utmaningen mot en kompis i skriptet nedan är orörd. */
+(function(){
+  const KLIPP = [0.5, 1, 3, 7, 15];
+  const POANG = [100, 70, 40, 20, 10];
+  const MANAD = ['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
+  const DAGNAMN = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
+  // Utan konto minns webbläsaren bara dagens svar, så att facit står kvar.
+  const NYCKEL = 'hardlist_dagens_lat';
+  const IKON_PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z"/></svg>';
+  const IKON_PAUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5h4v13H3zM9 1.5h4v13H9z"/></svg>';
+  const IKON_JA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const IKON_NEJ = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  // Tyst ljudsnutt som låser upp ljudet i det första trycket på iPhone, så
+  // att klippet kan spelas när servern har svarat.
+  const TYST = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+
+  const el = function(id){ return document.getElementById(id); };
+  const skydda = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  const sekunder = function(s){ return String(s).replace('.', ',') + (s === 1 ? ' sekund' : ' sekunder'); };
+
+  let K = null;
+  let dag = null;          // svaret från dag_lat
+  let ljudUrl = null;
+  let upplast = false;
+  let vakt = 0;
+  const spelare = new Audio();
+  spelare.preload = 'auto';
+
+  function lasSparat(){ try { return JSON.parse(localStorage.getItem(NYCKEL) || 'null'); } catch(e){ return null; } }
+  function sparaSvar(datum, facit){ try { localStorage.setItem(NYCKEL, JSON.stringify({ datum: datum, facit: facit })); } catch(e){} }
+
+  function datumText(iso){
+    const d = new Date(iso + 'T12:00:00');
+    return DAGNAMN[d.getDay()] + ' ' + d.getDate() + ' ' + MANAD[d.getMonth()];
+  }
+
+  /* ---------- ljudet ---------- */
+
+  function grans(){ return dag && !dag.klar ? KLIPP[dag.steg] : null; }
+  function ikon(spelar){
+    const k = el('dPlay'); if (!k) return;
+    k.innerHTML = spelar ? IKON_PAUS : IKON_PLAY;
+    k.setAttribute('aria-label', spelar ? 'Pausa' : 'Spela klippet');
+  }
+  function stoppa(){ cancelAnimationFrame(vakt); try { spelare.pause(); } catch(e){} ikon(false); }
+  // Klippet stoppas efter ljudets egen position, så att laddtiden inte äter
+  // av en halv sekund.
+  function bevaka(){
+    const g = grans(), t = spelare.currentTime;
+    const st = el('dSpelat');
+    if (g !== null && t >= g){ spelare.pause(); if (st) st.style.width = (g / 15 * 100) + '%'; return; }
+    if (st) st.style.width = Math.min(100, t / (g !== null ? 15 : (spelare.duration || 30)) * 100) + '%';
+    if (!spelare.paused) vakt = requestAnimationFrame(bevaka);
+  }
+  spelare.addEventListener('playing', function(){
+    if (spelare.src.indexOf('data:') === 0) return;
+    ikon(true); cancelAnimationFrame(vakt); vakt = requestAnimationFrame(bevaka);
+  });
+  spelare.addEventListener('pause', function(){ cancelAnimationFrame(vakt); ikon(false); });
+  spelare.addEventListener('ended', function(){ cancelAnimationFrame(vakt); ikon(false); });
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) stoppa(); });
+
+  function lasUpp(){
+    if (upplast) return;
+    upplast = true;
+    spelare.src = TYST;
+    const p = spelare.play();
+    if (p && p.then) p.then(function(){ spelare.pause(); }).catch(function(){});
+  }
+  function spelaFranBorjan(){
+    stoppa();
+    try { spelare.currentTime = 0; } catch(e){}
+    const p = spelare.play();
+    if (p && p.catch) p.catch(function(){ const t = el('dTid'); if (t) t.textContent = 'Kunde inte spela upp ljudet. Tryck igen.'; });
+  }
+  async function hamtaLjud(){
+    if (ljudUrl) return;
+    const s = await K.rpc('dag_spela', { p_omgang: dag.omgang });
+    if (!s || s.fel || !s.ljud) throw new Error(s && s.fel);
+    ljudUrl = s.ljud;
+    spelare.src = ljudUrl;
+  }
+
+  /* ---------- utritning ---------- */
+
+  function ritaTopp(){
+    const topp = el('lTopp');
+    if (!dag || !dag.konto){ topp.innerHTML = ''; return; }
+    const k = dag.konto;
+    topp.className = 'q-siffror';
+    topp.innerHTML = ['Spelade', 'Rätt', 'På första klippet'].map(function(namn, i){
+      const v = [k.spelade, k.ratt, k.forsta_klippet][i];
+      return '<div class="q-ruta"><span>' + namn + '</span><b>' + v + '</b></div>';
+    }).join('');
+  }
+
+  function stapel(){
+    const g = grans();
+    return '<div class="l-bar" aria-hidden="true"><i class="upplast" style="width:' + (g === null ? 100 : g / 15 * 100) + '%"></i><i class="spelat" id="dSpelat"></i>' +
+      (g === null ? '' : KLIPP.slice(0, -1).map(function(k){ return '<i class="streck" style="left:' + (k / 15 * 100) + '%"></i>'; }).join('')) + '</div>';
+  }
+
+  function spelarRuta(rubrik, tid, apple){
+    return '<div class="q-spelare-ruta"><div class="q-spelare">' +
+      '<button class="q-play" id="dPlay" type="button" aria-label="Spela klippet">' + IKON_PLAY + '</button>' +
+      '<div class="info"><p class="q-spelare-rubrik">' + rubrik + '</p>' + stapel() +
+      '<p class="q-tid" id="dTid">' + tid + '</p></div></div>' + hardlistLjud.kalla(apple) + '</div>';
+  }
+
+  function alternativ(facit){
+    return '<div class="q-alt" id="dAlt">' + dag.alternativ.map(function(a, i){
+      let klass = 'alt', bricka = 'ABCD'.charAt(i);
+      if (facit){
+        if (i === facit.ratt_plats){ klass += ' alt-ratt'; bricka = IKON_JA; }
+        else if (i === facit.valde){ klass += ' alt-fel'; bricka = IKON_NEJ; }
+        else klass += ' alt-dov';
+      }
+      return '<button class="' + klass + '" type="button" data-plats="' + i + '"' + (facit ? ' disabled' : '') + '>' +
+        '<span class="bricka" aria-hidden="true">' + bricka + '</span>' +
+        '<span class="alt-text"><b>' + skydda(a.titel) + '</b><br><span class="d-artist">' + skydda(a.artist) + '</span></span></button>';
+    }).join('') + '</div>';
+  }
+
+  function datumRad(){
+    return '<div class="q-datumrad"><p class="q-datum">' + datumText(dag.datum) + '</p></div>';
+  }
+
+  function ritaRunda(){
+    const s = KLIPP[dag.steg];
+    el('lKort').innerHTML = datumRad() +
+      spelarRuta('Klipp ' + (dag.steg + 1) + ' av 5, ' + sekunder(s) + ', ' + POANG[dag.steg] + ' poäng', 'Tryck för att lyssna, så många gånger du vill.', null) +
+      (dag.steg < 4 ? '<button class="knapp knapp-sek d-langre" id="dLangre" type="button">Längre: ' + sekunder(KLIPP[dag.steg + 1]) + ', ' + POANG[dag.steg + 1] + ' poäng</button>' : '') +
+      alternativ(null) +
+      '<p class="q-felrad" id="dFel" role="alert"></p>';
+    kopplaRunda();
+  }
+
+  function ritaFacit(f){
+    stoppa();
+    const imorgon = new Date(dag.datum + 'T12:00:00'); imorgon.setDate(imorgon.getDate() + 1);
+    el('lKort').innerHTML = datumRad() +
+      '<div class="l-utfallrad"><p class="q-utfall ' + (f.ratt ? 'ja' : 'nej') + '">' + (f.ratt ? IKON_JA + 'Rätt på ' + sekunder(f.sekunder) : IKON_NEJ + 'Inte den här gången') + '</p>' +
+      (f.ratt ? '<p class="q-plus">+' + f.poang + '</p>' : '') + '</div>' +
+      '<div class="l-facit"><b>' + skydda(f.lat.titel) + '</b><span>' + skydda(f.lat.artist) + '</span></div>' +
+      spelarRuta('Hela förlyssningen', 'Tryck för att lyssna.', f.lat.apple) +
+      alternativ(f) +
+      '<div class="l-knappar"><button class="knapp" id="dDela" type="button">Dela resultatet</button>' +
+      '<a class="knapp knapp-sek" href="/fritt-spel/">Spela fler låtar</a></div>' +
+      '<p class="q-nasta">Ny låt ' + imorgon.getDate() + ' ' + MANAD[imorgon.getMonth()] + '.</p>';
+    ljudUrl = f.lat.ljud;
+    if (spelare.src !== ljudUrl) spelare.src = ljudUrl;
+    el('dPlay').addEventListener('click', function(){
+      lasUpp();
+      if (!spelare.paused && spelare.src.indexOf('data:') !== 0){ stoppa(); return; }
+      if (spelare.src !== ljudUrl) spelare.src = ljudUrl;
+      spelaFranBorjan();
+    });
+    el('dDela').addEventListener('click', async function(){
+      const text = 'HARDLIST Dagens låt, ' + datumText(dag.datum).toLowerCase() + ': ' +
+        (f.ratt ? 'rätt på ' + sekunder(f.sekunder) : 'inte den här gången') + '\nhttps://hardlist.se/latspel/';
+      if (navigator.share){ try { await navigator.share({ text: text }); return; } catch(e){} }
+      try { await navigator.clipboard.writeText(text); this.textContent = 'Kopierat'; } catch(e){}
+    });
+  }
+
+  function kopplaRunda(){
+    el('dPlay').addEventListener('click', async function(){
+      lasUpp();
+      if (!spelare.paused && spelare.src.indexOf('data:') !== 0){ stoppa(); return; }
+      if (!ljudUrl){
+        this.disabled = true;
+        el('dTid').textContent = 'Laddar klippet…';
+        try { await hamtaLjud(); }
+        catch(e){ this.disabled = false; el('dTid').textContent = 'Kunde inte hämta klippet. Tryck igen.'; return; }
+        this.disabled = false;
+        el('dTid').textContent = 'Tryck för att lyssna, så många gånger du vill.';
+      }
+      spelaFranBorjan();
+    });
+    const langre = el('dLangre');
+    if (langre) langre.addEventListener('click', async function(){
+      lasUpp();
+      this.disabled = true;
+      try {
+        await hamtaLjud();
+        const s = await K.rpc('dag_langre', { p_omgang: dag.omgang });
+        if (!s || s.fel) throw new Error(s && s.fel);
+        dag.steg = s.steg;
+        ritaRunda();
+        spelaFranBorjan();
+      } catch(e){
+        this.disabled = false;
+        el('dFel').textContent = 'Kunde inte förlänga klippet. Försök igen.';
+      }
+    });
+    el('dAlt').addEventListener('click', async function(e){
+      const b = e.target.closest('[data-plats]');
+      if (!b || dag.klar) return;
+      if (!ljudUrl){ el('dFel').textContent = 'Lyssna på klippet först.'; return; }
+      this.querySelectorAll('.alt').forEach(function(x){ x.disabled = true; });
+      stoppa();
+      let svar;
+      try {
+        svar = await K.rpc('dag_svara', { p_omgang: dag.omgang, p_plats: +b.getAttribute('data-plats') });
+        if (!svar || svar.fel) throw new Error(svar && svar.fel);
+      } catch(err){
+        this.querySelectorAll('.alt').forEach(function(x){ x.disabled = false; });
+        el('dFel').textContent = 'Svaret kom inte fram. Tryck igen.';
+        return;
+      }
+      dag.klar = true;
+      if (svar.konto) dag.konto = svar.konto;
+      if (!dag.sparas) sparaSvar(dag.datum, svar);
+      ritaTopp();
+      ritaFacit(svar);
+      if (svar.nya_badges && svar.nya_badges.length){
+        K.badges().then(function(B){ B.visaNya(svar.nya_badges); }).catch(function(){});
+      }
+    });
+  }
+
+  async function hamta(){
+    K = window.hardlistKonto;
+    el('lKort').innerHTML = '<p class="q-datum">Hämtar dagens låt.</p>';
+    try {
+      dag = await K.rpc('dag_lat');
+      if (!dag || dag.fel) throw new Error(dag && dag.fel);
+    } catch(e){
+      el('lKort').innerHTML = '<p class="q-datum">Dagens låt gick inte att hämta just nu. Ladda om sidan om en stund.</p>';
+      return;
+    }
+    ritaTopp();
+    // Utan konto: har webbläsaren redan svarat i dag står facit kvar.
+    const sparat = !dag.sparas && lasSparat();
+    if (sparat && sparat.datum === dag.datum && sparat.facit){ dag.klar = true; return ritaFacit(sparat.facit); }
+    if (dag.klar && dag.facit) return ritaFacit(dag.facit);
+    ritaRunda();
+  }
+
+  window.hardlistDagensLat = {
+    // inloggning.js laddas med defer och finns först när sidan är tolkad.
+    starta: function(){
+      if (window.hardlistKonto) hamta();
+      else document.addEventListener('DOMContentLoaded', hamta);
+    }
+  };
+})();
+</script>
 <script>
 const NYCKEL       = 'hardlist_latspel_v1';
 const NYCKEL_DUELL = 'hardlist_latspel_duell_v1';
@@ -914,7 +1180,10 @@ async function start(){
     visaDuellHuvud(duell.mot);
     startaDuell(duell.fro, duell.mot);
   } else {
-    startaDag();
+    /* Dagens låt avgörs på servern, se skriptet för dagens låt ovan. Den
+       gamla dagliga koden här används inte längre, bara duellen. */
+    window.hardlistDagensLat.starta();
+    return;
   }
   rita();
 }

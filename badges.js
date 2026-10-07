@@ -217,8 +217,7 @@
       "namn": "Halv sekund",
       "text": "Känn igen dagens låt på första klippet.",
       "niva": "Sällsynt",
-      "illu": "stoppur",
-      "kommer": true
+      "illu": "stoppur"
     },
     {
       "id": "maraton",
@@ -252,8 +251,7 @@
       "namn": "Radar",
       "text": "Känn igen dagens låt på första klippet tio gånger.",
       "niva": "Extremt sällsynt",
-      "illu": "radar",
-      "kommer": true
+      "illu": "radar"
     },
     {
       "id": "obesegrad",
