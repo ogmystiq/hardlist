@@ -169,7 +169,6 @@ const ARTISTS = [
   { name: 'Envine',                     genre: 'hardstyle' },
   { name: 'Dailucia',                   genre: 'hardstyle' },
   { name: 'The Pitcher',                genre: 'hardstyle' },
-  { name: 'Ummet Ozcan',                genre: 'hardstyle' },
   { name: 'Bioweapon',                  genre: 'hardstyle' },
 
   /* --- fler raw --- */
@@ -220,7 +219,7 @@ const ARTISTS = [
   { name: 'Deathmachine',               genre: 'hardcore' },
 
   /* --- fler techno --- */
-  { name: 'Lil Texas',                  genre: 'techno' },
+  { name: 'Lil Texas',                  genre: 'uptempo' },
   { name: 'Rebekah',                    genre: 'techno' },
   { name: 'Nico Moreno',                genre: 'techno' },
   { name: 'Sara Landry',                genre: 'techno' },
@@ -305,7 +304,6 @@ const ARTISTS = [
   { name: 'Max Alexander',                 genre: 'hardstyle' },
   { name: 'Snowflake',                     genre: 'hardstyle', id: '1rPM4GwuDLiRsMX0rfNNg5' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Alee',                          genre: 'hardstyle', id: '07E7avQ9K8W8Gr6BCx8aU9' }, // pinnat — verifierat via hardstyle.com
-  { name: 'Neon Future',                   genre: 'hardstyle' },
   { name: 'Bright Visions',                genre: 'hardstyle' },
   { name: 'B-Freqz',                       genre: 'hardstyle' },
   { name: 'NeoBallisticz',                 genre: 'hardstyle' },
@@ -382,7 +380,6 @@ const ARTISTS = [
   { name: 'Neroz',                         genre: 'uptempo' },
   { name: 'Sins Of Insanity',              genre: 'uptempo' },
   { name: 'I Giocatori',                   genre: 'uptempo' },
-  { name: 'Murda',                         genre: 'uptempo' },
   { name: 'Maxtreme',                      genre: 'uptempo' },
   { name: 'TNYA',                          genre: 'uptempo' },
   { name: 'Geck-O',                        genre: 'uptempo' },

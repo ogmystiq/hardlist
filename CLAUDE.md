@@ -186,7 +186,7 @@ inte morgonens releaser:
 |---|---|
 | Dagskvot i Development Mode | tar slut runt **200 anrop**. Kör högst en gång per dygn. |
 | `MAX_ANROP` | 170 per körning |
-| Artistlista | 316 namn. Ett helt rotationsvarv tar tre dygn med full cache, längre de dagar bekräftelserna tar många anrop. |
+| Artistlista | 313 namn. Ett helt rotationsvarv tar tre dygn med full cache, längre de dagar bekräftelserna tar många anrop. |
 | `preview_url` | död sedan nov 2024, returnerar alltid null |
 | `popularity` | borttaget feb 2026 |
 | `followers` | **borttaget ur söksvaret**. Se nedan. |
