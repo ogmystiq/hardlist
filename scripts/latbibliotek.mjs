@@ -62,7 +62,10 @@ const DANCE = new Set([113, 106]);
 const DANCE_ANDEL = 0.5;
 const MIN_SEK = 90;
 const MAX_SEK = 600;
-const MIXORD = /\b(mixed|continuous mix|dj mix|full mix|megamix|minimix|liveset|live set)\b/i;
+/* Klipp ur mixar och årsmixar, inte låtar. "Yearmix" står ihop i ett ord och
+   fångas inte av mix-orden, så den står för sig. Extended Mix, Radio Edit och
+   remixer är riktiga versioner och ska vara kvar. */
+const MIXORD = /\b(mixed|yearmix|continuous mix|dj mix|full mix|megamix|minimix|liveset|live set)\b/i;
 
 /* Samma som i deezer-radar.mjs — ändras den där ska den ändras här. */
 const ALIAS = { 'Paul Elstak': 'DJ Paul Elstak' };
@@ -183,12 +186,34 @@ const UTANFOR = /\bband\b|rapper|singer|\brock\b|\bpop\b|\bgoth|metal|punk|jazz|
    kopplat den till en annan artist. MusicBrainz används aldrig för dem. */
 const FEL_I_MUSICBRAINZ = new Set(['Nosferatu', 'Outsiders', 'Ghost Stories']);
 
-/* Apple-sidor valda för hand, när MusicBrainz inte kan användas. Outsiders
-   och Ghost Stories saknas: ingen sida med deras namn i iTunes var tydligt
-   rätt artist, och hellre inga låtar än fel låtar. */
+/* Apple-sidor valda för hand, när MusicBrainz inte kan användas.
+
+   Outsiders saknas. Apples enda hardstyle-sida med namnet (212315454) delas
+   med den israeliska psytrance-duon Outsiders, med 59 trancelåtar och elva
+   rocklåtar. Av de tio låtarna på rätt artists Spotify-sida fanns bara Gimme
+   Bass och Right Now där. Falling In Love, Flitsmeister, Irrenhaus och
+   Wonderful Days Reloaded ligger under Hardwell, Jebroer, Harris & Ford och
+   Charly Lownoise & Mental Theo. Ett genrefilter räcker inte, eftersom
+   psytrance också kan stå som Dance. Hellre inga låtar än fel låtar. */
 const FAST_APPLE = {
   /* Hardcore, med Destination Thunderdome (Official Thunderdome 2024 Anthem). */
-  'Nosferatu': [6516983]
+  'Nosferatu': [6516983],
+  /* Sju av tio titlar på rätt artists Spotify-sida: Felt the Ghost, Ready or
+     Not, Embrace the Dark, Fallen Souls, Open Your Mind, The Enemy (You Cannot
+     See) och Inside My Head. Ingen annan sida med namnet hade någon av dem.
+     Sidan delas med spökberättelser för barn och ett indieband, därför
+     filtret i APPLE_GENRE. Electronica-låtarna på sidan hålls utanför,
+     eftersom det inte går att avgöra vems de är.
+     Låtarna står som "Ghost Stories & D-Block & S-te-Fan" i fältet artist.
+     Spelfunktionerna, som inte är byggda än, måste läsa det fältet så att
+     D-Block & S-te-Fan aldrig blir ett felaktigt svarsalternativ på dem. */
+  'Ghost Stories': [210646815]
+};
+
+/* Apple-sidor som delas av flera artister med samma namn, där bara en genre
+   är vår artist. Låtar i andra genrer på sidan tas aldrig med. */
+const APPLE_GENRE = {
+  210646815: /^Dance$/
 };
 
 function utanforEnligtMusicbrainz(l) {
@@ -319,6 +344,7 @@ async function lattarItunes(appleIds) {
     const d = await itunes('id=' + id + '&entity=song&limit=200');
     for (const x of d.results || []) {
       if (x.wrapperType !== 'track' || !egna.has(x.artistId) || !x.previewUrl) continue;
+      if (APPLE_GENRE[x.artistId] && !APPLE_GENRE[x.artistId].test(x.primaryGenreName || '')) continue;
       const sek = (x.trackTimeMillis || 0) / 1000;
       if (sek < MIN_SEK || sek > MAX_SEK || MIXORD.test(x.trackName)) continue;
       ut.push({
