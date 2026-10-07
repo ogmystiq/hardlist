@@ -15,7 +15,8 @@
     "url": "https://www.decibeloutdoor.com/",
     "urlText": "Mer info",
     "arrangor": "B2S",
-    "season": "normalt i augusti"
+    "date": "2027-08-27",
+    "dateEnd": "2027-08-29"
   },
   {
     "name": "Monday Bar Halloween Cruise",
@@ -33,7 +34,12 @@
     "name": "Reverze",
     "date": "2027-02-26",
     "region": "europa",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "hardcore",
+      "uptempo"
+    ],
     "city": "Antwerpen, BE",
     "venue": "AFAS Dome + Lotto Arena",
     "lineup": "26–27 februari, AFAS Dome + Lotto Arena. Säsongsöppnaren. Biljetterna är inte släppta än — förhandsanmälan ger första tillgång.",
@@ -45,35 +51,62 @@
   {
     "name": "Lumaniac",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "uptempo"
+    ],
     "city": "Kristianstad, SE",
-    "season": "normalt i mars"
+    "season": "normalt i mars",
+    "venue": "Södra Kasern",
+    "arrangor": "Another Life Events"
   },
   {
     "name": "Hardstyle DNA",
     "region": "norden",
-    "genrer": [],
-    "city": "Oslo, NO",
-    "season": "normalt i maj"
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "uptempo",
+      "hardcore"
+    ],
+    "city": "Lillestrøm, NO",
+    "season": "normalt i maj",
+    "venue": "Hellerudsletta"
   },
   {
     "name": "Soundvault Festival",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "techno"
+    ],
     "city": "Helsingfors, FI",
-    "season": "normalt i maj"
+    "date": "2027-05-21",
+    "dateEnd": "2027-05-22",
+    "venue": "Hanasaaren Voimalaitos"
   },
   {
     "name": "Hardstyle Reaction",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle"
+    ],
     "city": "Linköping, SE",
-    "season": "normalt i maj"
+    "season": "några kvällar om året",
+    "venue": "Platens Bar"
   },
   {
     "name": "Swedish Rave Society",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "uptempo",
+      "hardcore",
+      "techno"
+    ],
     "city": "Örebro, SE",
     "venue": "Skybar Svampen",
     "url": "https://billetto.se/users/swedish-rave-society",
@@ -83,23 +116,36 @@
   {
     "name": "Monday Bar Summer Cruise",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "hardcore"
+    ],
     "city": "Stockholm–Tallinn",
     "season": "normalt i juni"
   },
   {
     "name": "One Vision Festival",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "uptempo",
+      "hardcore",
+      "techno"
+    ],
     "city": "Kristianstad, SE",
     "season": "normalt i augusti"
   },
   {
     "name": "Ascend",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw"
+    ],
     "city": "Norrköping, SE",
-    "season": "datum ej bekräftat"
+    "season": "normalt i slutet av juli",
+    "venue": "Götaparken"
   },
   {
     "name": "Masters of Hardcore",
@@ -133,7 +179,7 @@
       "hardcore"
     ],
     "city": "Erp, NL",
-    "season": "normalt i maj"
+    "date": "2027-05-15"
   },
   {
     "name": "Intents Festival",
@@ -200,15 +246,18 @@
     "venue": "Westfalenhallen",
     "lineup": "Tysklands största inomhusevent för de hårdare stilarna sedan 2006. Fyra floors — mainstage, hardstyle, uptempo och early hardcore — med 40+ artister och upp till 20 000 besökare. Åldersgräns 16 år, till skillnad från nästan allt annat i genren.",
     "url": "https://www.syndicate-festival.de/en",
-    "season": "normalt i oktober"
+    "date": "2027-10-02"
   },
   {
     "name": "REBELLiON Indoor — Break The System",
     "date": "2026-11-14",
     "region": "europa",
-    "genrer": [],
-    "city": "Nederländerna",
-    "venue": "",
+    "genrer": [
+      "raw",
+      "uptempo"
+    ],
+    "city": "Haaren, NL",
+    "venue": "The Dome",
     "lineup": "Raw och uptempo inomhus. Rebelions eget event, tema Break The System.",
     "url": "https://www.jointherebellion.nl/en/"
   },
@@ -237,18 +286,27 @@
     "name": "Deztination",
     "date": "2026-11-21",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "hardcore",
+      "uptempo"
+    ],
     "city": "Stockholm, SE",
-    "venue": "",
-    "lineup": "Upplagan heter Wolf City. Lokal och lineup är inte släppta ännu.",
-    "url": "https://deztination.se/",
-    "urlText": "Biljetter ej släppta"
+    "venue": "Slaktkyrkan, Johanneshov",
+    "lineup": "Upplagan heter Wolf City.",
+    "url": "https://www.tickster.com/se/sv/events/3xagkl1jkl1dh98/2026-11-21/deztination-presents-wolf-city",
+    "urlText": "Biljetter"
   },
   {
     "name": "Nektra",
     "date": "2027-02-13",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "uptempo"
+    ],
     "city": "Karlstad, SE",
     "venue": "Nöjesfabriken",
     "url": "https://www.tickster.com/se/sv/events/pw1tgn4jx6b8byn/2027-02-13/nektra-february-13-2027"
@@ -257,28 +315,40 @@
     "name": "Timetwister",
     "date": "2026-10-17",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "hardcore",
+      "uptempo"
+    ],
     "city": "Göteborg, SE",
     "venue": "Valand",
-    "lineup": "Hard trance, hardstyle, rawstyle, techno och hardcore. Arrangeras av Nonstop Events, ett samarbete mellan flera svenska arrangörer.",
+    "lineup": "Psyked, Rewilo, Shin-De-Ra vs. Bluecore och Eternityz.",
     "url": "https://www.tickster.com/se/sv/events/m2627u9wlmnzwup/2026-10-17/timetwister-17-oktober",
-    "arrangor": "Nonstop Events"
+    "arrangor": "Midnight Collective"
   },
   {
     "name": "Zaandam",
     "date": "2027-02-06",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle",
+      "raw",
+      "uptempo"
+    ],
     "city": "Gävle, SE",
-    "venue": "Centralteatern",
+    "venue": "Gasklockorna, Stora Retorten",
     "lineup": "Hardstyle, rawstyle och uptempo i Gävle. Uppkallad efter den nederländska orten där den första hardstylefesten hölls år 2000.",
-    "urlText": "Biljetter ej släppta"
+    "urlText": "Biljetter",
+    "url": "https://www.tickster.com/se/sv/events/cekbbrwuphb01c7/2027-02-06/zaandam-the-fortress-of-faith"
   },
   {
     "name": "Sana Duri",
     "date": "2027-01-30",
     "region": "norden",
-    "genrer": [],
+    "genrer": [
+      "hardstyle"
+    ],
     "city": "Mölndal, SE",
     "venue": "Åby Arena",
     "lineup": "Lineup är inte annonserad ännu.",
