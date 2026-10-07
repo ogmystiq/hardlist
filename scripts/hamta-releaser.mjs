@@ -190,7 +190,7 @@ const ARTISTS = [
   { name: 'The Saints',                 genre: 'raw' },
   { name: 'Villain',                    genre: 'raw', id: '7iajTuviby3038TmfrpvZ3' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'D-Charged',                  genre: 'raw' },
-  { name: 'Dimitri K',                  genre: 'raw' },
+  { name: 'Dimitri K',                  genre: 'uptempo' },
   { name: 'Sovereign King',             genre: 'raw', id: '4Ub0mdQEa3RhAfwWgVXp46' }, // döpt om från "Sovereign" + pinnat — det kortare namnet gav fel artist
 
   /* --- fler uptempo --- */
@@ -260,8 +260,8 @@ const ARTISTS = [
   { name: 'Brutalizer',                  genre: 'raw', id: '6416cEVN24ELoGBIrpTsUe' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Flux Overload',               genre: 'raw' },
   { name: 'Miss M',                      genre: 'raw' },
-  { name: "D'Ort",                       genre: 'raw' },
-  { name: 'Doris',                       genre: 'raw' },
+  { name: "D'Ort",                       genre: 'hardcore' },
+  { name: 'Doris',                       genre: 'hardcore' },
 
   /* --- uptempo, omgång 2 --- */
   { name: 'Cybergore',                   genre: 'uptempo' },
@@ -304,7 +304,7 @@ const ARTISTS = [
   { name: 'Max Alexander',                 genre: 'hardstyle' },
   { name: 'Snowflake',                     genre: 'hardstyle', id: '1rPM4GwuDLiRsMX0rfNNg5' }, // pinnat — automatisk sökning hittade fel artist
   { name: 'Alee',                          genre: 'hardstyle', id: '07E7avQ9K8W8Gr6BCx8aU9' }, // pinnat — verifierat via hardstyle.com
-  { name: 'Bright Visions',                genre: 'hardstyle' },
+  { name: 'Bright Visions',                genre: 'raw' },
   { name: 'B-Freqz',                       genre: 'hardstyle' },
   { name: 'NeoBallisticz',                 genre: 'hardstyle' },
   { name: 'Hypnose',                       genre: 'hardstyle' },
@@ -324,7 +324,7 @@ const ARTISTS = [
   { name: 'Mish',                          genre: 'raw' },
   { name: 'Infliction',                    genre: 'raw' },
   { name: 'Levenkhan',                     genre: 'raw' },
-  { name: 'Tharken',                       genre: 'raw' },
+  { name: 'Tharken',                       genre: 'uptempo' },
   { name: 'Satirized',                     genre: 'raw' },
   { name: 'The Dope Doctor',               genre: 'raw' },
   { name: 'Vasto',                         genre: 'raw', id: '35l9BKzdhvLy5HOC50NECa' }, // pinnat — automatisk sökning hittade fel artist
@@ -335,7 +335,7 @@ const ARTISTS = [
   { name: 'Unfused',                       genre: 'raw' },
   { name: 'Sakyra',                        genre: 'raw' },
   { name: 'Trespassed',                    genre: 'raw' },
-  { name: 'Major Conspiracy',              genre: 'raw' },
+  { name: 'Major Conspiracy',              genre: 'hardcore' },
   { name: 'Code Crime',                    genre: 'raw' },
   { name: 'Decim8',                        genre: 'raw' },
   { name: 'Re-Mind',                       genre: 'raw' },
@@ -361,7 +361,7 @@ const ARTISTS = [
   { name: 'Outbreak',                      genre: 'raw', id: '5tlPrdBVJtoK1uWzzFs4M1' }, // pinnat — automatisk sökning hittade fel artist, lågt lyssnarantal på nya ID:t, dubbelkolla manuellt
   { name: 'Stormerz',                      genre: 'raw' },
   { name: 'Danny Scandal',                 genre: 'raw' },
-  { name: 'Barber',                        genre: 'raw' },
+  { name: 'Barber',                        genre: 'uptempo' },
 
   /* --- uptempo, omgång 3 --- */
   { name: 'Lekkerfaces',                   genre: 'uptempo' },
@@ -398,7 +398,7 @@ const ARTISTS = [
   { name: 'LunaKorpz',                     genre: 'hardcore' },
   { name: 'Noisekick',                     genre: 'hardcore' },
   { name: 'Paranoizer',                    genre: 'hardcore' },
-  { name: 'Spitnoise',                     genre: 'hardcore' },
+  { name: 'Spitnoise',                     genre: 'uptempo' },
   { name: 'TerrorClown',                   genre: 'hardcore' },
   { name: 'The Dark Horror',               genre: 'hardcore' },
   { name: 'The Destroyer',                 genre: 'hardcore' },

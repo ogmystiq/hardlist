@@ -8,7 +8,10 @@
  *
  *   --fyll     bygger låtar enligt väg B och skickar dem till databasen med
  *              den hemliga nyckeln, se lasNyckel(). --torr skickar ingenting.
- *              node scripts/latbibliotek.mjs --fyll --antal 20 --ut provlyssning.html
+ *              node scripts/latbibliotek.mjs --fyll --antal 20 --ut provlyssning.html --prov 30
+ *
+ *              Artister där MusicBrainz eller Apple pekar utanför scenen stoppas
+ *              och listas, se stoppet nedan.
  *
  * Rapporten nedan jämförde två vägar. Väg B är vald: ingen Deezer-data sparas.
  *
@@ -156,13 +159,71 @@ async function lankar(spotifyId) {
   const u = await musicbrainz(`url?resource=${encodeURIComponent('https://open.spotify.com/artist/' + spotifyId)}&inc=artist-rels&fmt=json`);
   const mb = u?.relations?.find(r => r.artist)?.artist;
   if (!mb) return { mbid: null, deezer: [], apple: [] };
-  const a = await musicbrainz(`artist/${mb.id}?inc=url-rels&fmt=json`);
+  /* Taggarna och beskrivningen följer med i samma anrop. De behövs för
+     stoppet nedan, och kostar inget extra. */
+  const a = await musicbrainz(`artist/${mb.id}?inc=url-rels+tags+genres&fmt=json`);
   const url = (a?.relations || []).map(r => r.url?.resource || '');
   const deezer = [...new Set(url.map(x => (x.match(/deezer\.com\/(?:\w+\/)?artist\/(\d+)/) || [])[1]).filter(Boolean).map(Number))];
   const apple = [...new Set(url.filter(x => /music\.apple\.com|itunes\.apple\.com/.test(x))
     .map(x => (x.match(/\/(?:id)?(\d{5,})(?:[?/#]|$)/) || [])[1]).filter(Boolean).map(Number))];
-  return { mbid: mb.id, mbNamn: mb.name, deezer, apple };
+  const taggar = [...new Set([...(a?.genres || []), ...(a?.tags || [])].map(t => t.name.toLowerCase()))];
+  return { mbid: mb.id, mbNamn: mb.name, beskr: a?.disambiguation || '', taggar, deezer, apple };
 }
+
+/* ---------- stoppet mot fel artist ---------- */
+
+/* MusicBrainz kan koppla vårt Spotify-ID till en annan artist med samma
+   namn. Så fick Nosferatu ett brittiskt gothrockbands låtar i första
+   provbiblioteket. Därför stoppas en artist när MusicBrainz eller Apple
+   pekar utanför scenen, och hamnar på en lista för Jonte i stället. */
+const SCEN = /hardstyle|hardcore|raw ?style|uptempo|frenchcore|gabber|gabba|terror|speedcore|jumpstyle|hard ?dance|techno|schranz|euphoric/i;
+const UTANFOR = /\bband\b|rapper|singer|\brock\b|\bpop\b|\bgoth|metal|punk|jazz|folk|country|composer|hip.?hop|\brap\b|psytrance|psychedelic|big room|electro house|\bedm\b|indie/i;
+
+/* Spotify-sidan är kontrollerad av Jonte och är rätt, men MusicBrainz har
+   kopplat den till en annan artist. MusicBrainz används aldrig för dem. */
+const FEL_I_MUSICBRAINZ = new Set(['Nosferatu', 'Outsiders', 'Ghost Stories']);
+
+/* Apple-sidor valda för hand, när MusicBrainz inte kan användas. Outsiders
+   och Ghost Stories saknas: ingen sida med deras namn i iTunes var tydligt
+   rätt artist, och hellre inga låtar än fel låtar. */
+const FAST_APPLE = {
+  /* Hardcore, med Destination Thunderdome (Official Thunderdome 2024 Anthem). */
+  'Nosferatu': [6516983]
+};
+
+function utanforEnligtMusicbrainz(l) {
+  const kallor = [...(l.taggar || []), l.beskr || ''].filter(Boolean);
+  if (kallor.some(t => SCEN.test(t))) return null;
+  const ut = kallor.filter(t => UTANFOR.test(t));
+  return ut.length ? 'MusicBrainz: ' + ut.slice(0, 3).join(', ') : null;
+}
+
+/* Apples egen genre på låtarna. Scenen hamnar under Dance, Hardcore,
+   Techno eller Elektroniskt — en sida där de flesta låtarna är något
+   annat är fel sida, även när MusicBrainz inte säger något. */
+const APPLE_SCEN = /dance|hardcore|techno|elektron|electronic|hardstyle/i;
+function utanforEnligtApple(latar) {
+  if (latar.length < 5) return null;
+  const scen = latar.filter(t => APPLE_SCEN.test(t.genre || '')).length;
+  if (scen / latar.length >= 0.5) return null;
+  const g = {};
+  for (const t of latar) g[t.genre] = (g[t.genre] || 0) + 1;
+  return 'Apple: ' + Object.entries(g).sort((x, y) => y[1] - x[1]).slice(0, 3).map(([k, n]) => `${k} ${n}`).join(', ');
+}
+
+/* Vilka Apple-sidor en artist ska hämtas från, eller varför den stoppas. */
+async function valjApple(a) {
+  if (FAST_APPLE[a.namn]) return { lage: 'fastnaglad', ids: FAST_APPLE[a.namn] };
+  if (FEL_I_MUSICBRAINZ.has(a.namn)) return { lage: 'fel artist i MusicBrainz, ingen Apple-sida vald', ids: [] };
+  const stopp = utanforEnligtMusicbrainz(a.lankar);
+  if (stopp) return { lage: 'stoppad', skal: stopp, ids: [] };
+  if (a.lankar.apple.length) return { lage: 'musicbrainz', ids: a.lankar.apple };
+  const b = await bekraftaApple(a);
+  return b.ids.length ? { ...b, lage: 'inspelningar' } : b;
+}
+
+/* Gamla cacheposter saknar taggarna, och hämtas då om. */
+const harTaggar = l => l && Array.isArray(l.taggar);
 
 /* iTunes skriver gästartister och ordningen i anthem-titlar annorlunda än
    Deezer: "Stay with Me (feat. X)" mot "Stay With Me", "2022 Anthem" mot
@@ -262,7 +323,8 @@ async function lattarItunes(appleIds) {
       if (sek < MIN_SEK || sek > MAX_SEK || MIXORD.test(x.trackName)) continue;
       ut.push({
         itunesId: x.trackId, itunesArtistId: x.artistId, artist: x.artistName, titel: x.trackName,
-        ljud: x.previewUrl, langdMs: x.trackTimeMillis || null, ordning: ut.length
+        ljud: x.previewUrl, langdMs: x.trackTimeMillis || null, ordning: ut.length,
+        genre: x.primaryGenreName || ''
       });
     }
   }
@@ -348,7 +410,7 @@ async function rapport() {
   console.log('MusicBrainz: Spotify-ID → Deezer och Apple Music');
   for (const [i, a] of artister.entries()) {
     if (!a.spotify) { a.lankar = { mbid: null, deezer: [], apple: [] }; continue; }
-    if (!mbCache[a.spotify]) {
+    if (!harTaggar(mbCache[a.spotify])) {
       try { mbCache[a.spotify] = await lankar(a.spotify); }
       catch (e) { mbCache[a.spotify] = { mbid: null, deezer: [], apple: [], fel: e.message }; }
       if (CACHE) writeFileSync(CACHE, JSON.stringify(mbCache));
@@ -370,9 +432,10 @@ async function rapport() {
   console.log('\nVäg B: iTunes direkt');
   for (const [i, a] of artister.entries()) {
     try {
-      if (a.lankar.apple.length) a.B = { lage: 'musicbrainz', ids: a.lankar.apple };
-      else a.B = await bekraftaApple(a);
+      a.B = await valjApple(a);
       a.B.latar = a.B.ids.length ? await lattarItunes(a.B.ids) : [];
+      const fel = a.B.lage !== 'fastnaglad' && utanforEnligtApple(a.B.latar);
+      if (fel) a.B = { lage: 'stoppad', skal: fel, ids: [], latar: [] };
     } catch (e) { a.B = { lage: 'fel', fel: e.message, latar: [] }; }
     if ((i + 1) % 50 === 0) console.log(`  ${i + 1}/${artister.length}, ${rakna.itunes} iTunes-anrop`);
   }
@@ -492,25 +555,37 @@ const sokText = (artist, titel) => String(artist + ' ' + titel)
 
 /* Första påfyllningen tar ett litet urval: lika många artister ur varje
    genre, och i varje genre en som bekräftats via inspelningar om det finns,
-   så att båda vägarna till identiteten provas. */
+   så att båda vägarna till identiteten provas. Stoppade artister hoppas över
+   och listas. */
 async function valjUrval(artister, antal) {
   const perGenre = Math.max(1, Math.round(antal / GENRER_ORDNING.length));
-  const urval = [];
+  const urval = [], stoppade = [];
+  const prova = async a => {
+    const B = await valjApple(a);
+    if (B.lage === 'stoppad' || FEL_I_MUSICBRAINZ.has(a.namn)) stoppade.push({ namn: a.namn, skal: B.skal || B.lage });
+    return B.ids.length ? { ...a, B } : null;
+  };
   for (const g of GENRER_ORDNING) {
-    const iGenre = artister.filter(a => a.genre === g && a.lankar.mbid);
-    const medApple = iGenre.filter(a => a.lankar.apple.length).slice(0, perGenre - 1);
-    for (const a of medApple) urval.push({ ...a, B: { lage: 'musicbrainz', ids: a.lankar.apple } });
-    for (const a of iGenre.filter(a => !a.lankar.apple.length)) {
-      const b = await bekraftaApple(a);
-      if (b.ids.length) { urval.push({ ...a, B: { ...b, lage: 'inspelningar' } }); break; }
+    const iGenre = artister.filter(a => a.genre === g && (a.lankar.mbid || FAST_APPLE[a.namn]));
+    const valda = [];
+    for (const a of iGenre.filter(a => a.lankar.apple.length || FAST_APPLE[a.namn])) {
+      if (valda.length >= perGenre - 1) break;
+      const v = await prova(a);
+      if (v) valda.push(v);
+    }
+    for (const a of iGenre.filter(a => !a.lankar.apple.length && !FAST_APPLE[a.namn])) {
+      const v = await prova(a);
+      if (v) { valda.push(v); break; }
     }
     /* Ingen bekräftad via inspelningar i genren: fyll ut med en till med Apple-länk. */
-    if (urval.filter(a => a.genre === g).length < perGenre) {
-      const extra = iGenre.filter(a => a.lankar.apple.length && !urval.includes(a)).find(a => !urval.some(u => u.namn === a.namn));
-      if (extra) urval.push({ ...extra, B: { lage: 'musicbrainz', ids: extra.lankar.apple } });
+    for (const a of iGenre.filter(a => a.lankar.apple.length && !valda.some(v => v.namn === a.namn))) {
+      if (valda.length >= perGenre) break;
+      const v = await prova(a);
+      if (v) valda.push(v);
     }
+    urval.push(...valda);
   }
-  return urval.slice(0, antal);
+  return { urval: urval.slice(0, antal), stoppade };
 }
 const GENRER_ORDNING = ['hardstyle', 'raw', 'uptempo', 'hardcore', 'techno'];
 
@@ -522,17 +597,22 @@ async function fyll() {
   const mbCache = CACHE && existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, 'utf8')) : {};
   for (const a of artister) {
     if (!a.spotify) { a.lankar = { mbid: null, deezer: [], apple: [] }; continue; }
-    if (!mbCache[a.spotify]) mbCache[a.spotify] = await lankar(a.spotify);
+    if (!harTaggar(mbCache[a.spotify])) mbCache[a.spotify] = await lankar(a.spotify);
     a.lankar = mbCache[a.spotify];
   }
+  if (CACHE) writeFileSync(CACHE, JSON.stringify(mbCache));
 
-  const urval = await valjUrval(artister, antal);
+  const { urval, stoppade } = await valjUrval(artister, antal);
   console.log(`${urval.length} artister: ${urval.map(a => `${a.namn} (${a.genre}, ${a.B.lage})`).join(', ')}\n`);
 
   const latar = new Map();
+  const godkanda = [];
   for (const a of urval) {
     const egna = await lattarItunes(a.B.ids);
-    a.antal = egna.length;
+    /* En fastnaglad sida är vald för hand och prövas inte igen. */
+    const fel = a.B.lage !== 'fastnaglad' && utanforEnligtApple(egna);
+    if (fel) { stoppade.push({ namn: a.namn, skal: fel }); console.log(`  ${a.namn}: stoppad, ${fel}`); continue; }
+    godkanda.push(a);
     for (const t of egna) {
       if (latar.has(t.itunesId)) continue;
       latar.set(t.itunesId, {
@@ -544,14 +624,18 @@ async function fyll() {
     }
     console.log(`  ${a.namn}: ${egna.length} låtar`);
   }
-  const artistRader = urval.map(a => ({
-    namn: a.namn, genre: a.genre, spotify_id: a.spotify, mbid: a.lankar.mbid,
-    apple_ids: a.B.ids, lage: a.B.lage
+  const artistRader = godkanda.map(a => ({
+    namn: a.namn, genre: a.genre, spotify_id: a.spotify, mbid: FEL_I_MUSICBRAINZ.has(a.namn) ? null : a.lankar.mbid,
+    apple_ids: a.B.ids, lage: a.B.lage === 'inspelningar' || a.B.lage === 'fastnaglad' ? a.B.lage : 'musicbrainz'
   }));
   const rader = [...latar.values()];
   console.log(`\n${rader.length} låtar från ${artistRader.length} artister.`);
+  if (stoppade.length) {
+    console.log(`\nStoppade, Jonte får avgöra (${stoppade.length}):`);
+    for (const s of stoppade) console.log(`  ${s.namn}: ${s.skal}`);
+  }
 
-  if (UT) skrivLyssning(rader, UT);
+  if (UT) skrivLyssning(rader, UT, Number(arg('--prov')) || 20);
   if (torr) { console.log('Torrkörning: ingenting skickat till databasen.'); return; }
 
   let nya = 0, uppdaterade = 0;
@@ -564,14 +648,14 @@ async function fyll() {
   console.log(`Databasen: ${nya} nya låtar, ${uppdaterade} uppdaterade, ${artistRader.length} artister.`);
 }
 
-/* En sida att provlyssna på: 20 slumpade låtar med Apples förlyssning och
+/* En sida att provlyssna på: slumpade låtar med Apples förlyssning och
    länk, så att någon kan höra att låten stämmer med titeln. Bara lokalt. */
-function skrivLyssning(rader, fil) {
-  const urval = [...rader].sort(() => Math.random() - 0.5).slice(0, 20);
+function skrivLyssning(rader, fil, antal = 20) {
+  const urval = [...rader].sort(() => Math.random() - 0.5).slice(0, antal);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   writeFileSync(fil, `<!doctype html><meta charset="utf-8"><title>Provlyssning</title>
 <body style="font-family:system-ui;background:#100C17;color:#F6F2FB;max-width:760px;margin:24px auto;padding:0 16px">
-<h1>Provlyssna 20 slumpade låtar</h1><p>Stämmer låten med titeln och artisten? Notera numret på de som inte gör det.</p><ol>` +
+<h1>Provlyssna ${urval.length} slumpade låtar</h1><p>Stämmer låten med titeln och artisten? Notera numret på de som inte gör det.</p><ol>` +
     urval.map(r => `<li style="margin:14px 0"><b>${esc(r.artist)} — ${esc(r.titel)}</b> <small>(${r.genre}, listad under ${esc(r.artist_namn)})</small><br>
 <audio controls preload="none" src="${esc(r.ljud)}"></audio> <a style="color:#3DDCF0" href="${esc(r.apple_lank)}">Apple Music</a></li>`).join('') +
     `</ol></body>`);
@@ -581,6 +665,6 @@ function skrivLyssning(rader, fil) {
 if (RAPPORT) rapport().catch(err => { console.error(err.message || err); process.exit(1); });
 else if (process.argv.includes('--fyll')) fyll().catch(err => { console.error(err.message || err); process.exit(1); });
 else {
-  console.log('node scripts/latbibliotek.mjs --rapport   eller   --fyll [--antal 20] [--torr]');
+  console.log('node scripts/latbibliotek.mjs --rapport   eller   --fyll [--antal 20] [--torr] [--prov 30]');
   process.exit(1);
 }
