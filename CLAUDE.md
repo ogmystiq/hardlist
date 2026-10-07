@@ -265,10 +265,6 @@ Boten hämtar senaste `main` innan den pushar och lägger sina egna filer ovanp�
 Sedan körs bygget om, så att handskrivna ändringar från `main` alltid vinner.
 Nekas pushen ändå försöker den igen, upp till fem gånger.
 
-**Tills vi har sett att det nya fungerar gäller fortfarande: pusha inte
-till `main` mellan 11:30 och 15:00 svensk tid.** Kolla Actions om du är
-osäker på om dagens körning är klar.
-
 Rotationen hinner bara en del av listan per dygn. Deezer har ingen dygnskvot,
 så varje morgon:
 
