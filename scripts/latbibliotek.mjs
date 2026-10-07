@@ -1,10 +1,16 @@
 /**
  * HARDLIST — låtbiblioteket för fritt spel.
  *
- * Steg 0, bara rapport. Skriver ingenting: inga filer i repot, inget i
- * databasen. Allt hamnar i terminalen, och i filer om --ut och --cache anges.
+ * Två lägen:
  *
- *   node scripts/latbibliotek.mjs --rapport --itunes 300 --ut rapport.json --cache mb.json
+ *   --rapport  skriver ingenting, varken i repot eller i databasen.
+ *              node scripts/latbibliotek.mjs --rapport --itunes 300 --ut rapport.json --cache mb.json
+ *
+ *   --fyll     bygger låtar enligt väg B och skickar dem till databasen med
+ *              den hemliga nyckeln, se lasNyckel(). --torr skickar ingenting.
+ *              node scripts/latbibliotek.mjs --fyll --antal 20 --ut provlyssning.html
+ *
+ * Rapporten nedan jämförde två vägar. Väg B är vald: ingen Deezer-data sparas.
  *
  * Jämför två vägar till samma bibliotek:
  *
@@ -254,7 +260,10 @@ async function lattarItunes(appleIds) {
       if (x.wrapperType !== 'track' || !egna.has(x.artistId) || !x.previewUrl) continue;
       const sek = (x.trackTimeMillis || 0) / 1000;
       if (sek < MIN_SEK || sek > MAX_SEK || MIXORD.test(x.trackName)) continue;
-      ut.push({ itunesId: x.trackId, titel: x.trackName, ordning: ut.length });
+      ut.push({
+        itunesId: x.trackId, itunesArtistId: x.artistId, artist: x.artistName, titel: x.trackName,
+        ljud: x.previewUrl, langdMs: x.trackTimeMillis || null, ordning: ut.length
+      });
     }
   }
   const per = new Map();
@@ -443,8 +452,130 @@ async function rapport() {
   if (UT) { writeFileSync(UT, JSON.stringify(ut, null, 2)); console.log('\nHela rapporten: ' + UT); }
 }
 
-if (!RAPPORT) {
-  console.log('Bara rapportläget finns än: node scripts/latbibliotek.mjs --rapport');
+/* ---------- påfyllning ---------- */
+
+const PROJEKT_URL = 'https://oxblifknwwtehiscukeu.supabase.co';
+/* Den hemliga nyckeln. I GitHub kommer den som hemlighet, på datorn ur en
+   fil utanför repot. Den skrivs aldrig ut och läggs aldrig i repot. */
+const NYCKELFIL = 'C:\\Users\\jonte\\hardlist-privat\\latbibliotek-nyckel.txt';
+const PER_ANROP = 200;
+
+function lasNyckel() {
+  if (process.env.LATBIBLIOTEK_NYCKEL) return process.env.LATBIBLIOTEK_NYCKEL.trim();
+  if (resolve(NYCKELFIL).startsWith(ROOT)) throw new Error('Nyckelfilen ligger i repot. Flytta den.');
+  if (!existsSync(NYCKELFIL)) throw new Error(`Ingen nyckel. Lägg den i ${NYCKELFIL}.`);
+  const k = readFileSync(NYCKELFIL, 'utf8').trim();
+  /* Supabase hemliga nycklar börjar så. En publik nyckel här vore ett misstag. */
+  if (!k.startsWith('sb_secret_')) throw new Error('Filen innehåller inte en hemlig nyckel (sb_secret_…).');
+  return k;
+}
+
+async function skickaTillDatabasen(nyckel, payload) {
+  const res = await fetch(PROJEKT_URL + '/rest/v1/rpc/latbibliotek_fyll', {
+    method: 'POST',
+    headers: { apikey: nyckel, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ p: payload })
+  });
+  const text = await res.text();
+  if (!res.ok) throw new Error(`Databasen svarade ${res.status}: ${text.slice(0, 300)}`);
+  return JSON.parse(text);
+}
+
+/* Normaliserad artist och titel, som sökningen i spelet matchar mot. */
+const sokText = (artist, titel) => String(artist + ' ' + titel)
+  .normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+
+/* Första påfyllningen tar ett litet urval: lika många artister ur varje
+   genre, och i varje genre en som bekräftats via inspelningar om det finns,
+   så att båda vägarna till identiteten provas. */
+async function valjUrval(artister, antal) {
+  const perGenre = Math.max(1, Math.round(antal / GENRER_ORDNING.length));
+  const urval = [];
+  for (const g of GENRER_ORDNING) {
+    const iGenre = artister.filter(a => a.genre === g && a.lankar.mbid);
+    const medApple = iGenre.filter(a => a.lankar.apple.length).slice(0, perGenre - 1);
+    for (const a of medApple) urval.push({ ...a, B: { lage: 'musicbrainz', ids: a.lankar.apple } });
+    for (const a of iGenre.filter(a => !a.lankar.apple.length)) {
+      const b = await bekraftaApple(a);
+      if (b.ids.length) { urval.push({ ...a, B: { ...b, lage: 'inspelningar' } }); break; }
+    }
+    /* Ingen bekräftad via inspelningar i genren: fyll ut med en till med Apple-länk. */
+    if (urval.filter(a => a.genre === g).length < perGenre) {
+      const extra = iGenre.filter(a => a.lankar.apple.length && !urval.includes(a)).find(a => !urval.some(u => u.namn === a.namn));
+      if (extra) urval.push({ ...extra, B: { lage: 'musicbrainz', ids: extra.lankar.apple } });
+    }
+  }
+  return urval.slice(0, antal);
+}
+const GENRER_ORDNING = ['hardstyle', 'raw', 'uptempo', 'hardcore', 'techno'];
+
+async function fyll() {
+  const antal = Number(arg('--antal')) || 20;
+  const torr = process.argv.includes('--torr');
+  const nyckel = torr ? null : lasNyckel();
+  const artister = lasArtister();
+  const mbCache = CACHE && existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, 'utf8')) : {};
+  for (const a of artister) {
+    if (!a.spotify) { a.lankar = { mbid: null, deezer: [], apple: [] }; continue; }
+    if (!mbCache[a.spotify]) mbCache[a.spotify] = await lankar(a.spotify);
+    a.lankar = mbCache[a.spotify];
+  }
+
+  const urval = await valjUrval(artister, antal);
+  console.log(`${urval.length} artister: ${urval.map(a => `${a.namn} (${a.genre}, ${a.B.lage})`).join(', ')}\n`);
+
+  const latar = new Map();
+  for (const a of urval) {
+    const egna = await lattarItunes(a.B.ids);
+    a.antal = egna.length;
+    for (const t of egna) {
+      if (latar.has(t.itunesId)) continue;
+      latar.set(t.itunesId, {
+        itunes_id: t.itunesId, itunes_artist_id: t.itunesArtistId, artist_namn: a.namn,
+        artist: t.artist, titel: t.titel, sok: sokText(t.artist, t.titel), genre: a.genre,
+        ljud: t.ljud, apple_lank: 'https://music.apple.com/se/song/' + t.itunesId,
+        langd_ms: t.langdMs, itunes_ordning: t.ordning
+      });
+    }
+    console.log(`  ${a.namn}: ${egna.length} låtar`);
+  }
+  const artistRader = urval.map(a => ({
+    namn: a.namn, genre: a.genre, spotify_id: a.spotify, mbid: a.lankar.mbid,
+    apple_ids: a.B.ids, lage: a.B.lage
+  }));
+  const rader = [...latar.values()];
+  console.log(`\n${rader.length} låtar från ${artistRader.length} artister.`);
+
+  if (UT) skrivLyssning(rader, UT);
+  if (torr) { console.log('Torrkörning: ingenting skickat till databasen.'); return; }
+
+  let nya = 0, uppdaterade = 0;
+  /* Artisterna först, eftersom låtarna pekar på dem. */
+  await skickaTillDatabasen(nyckel, { artister: artistRader, latar: [] });
+  for (let i = 0; i < rader.length; i += PER_ANROP) {
+    const svar = await skickaTillDatabasen(nyckel, { artister: [], latar: rader.slice(i, i + PER_ANROP) });
+    nya += svar.nya_latar; uppdaterade += svar.uppdaterade_latar;
+  }
+  console.log(`Databasen: ${nya} nya låtar, ${uppdaterade} uppdaterade, ${artistRader.length} artister.`);
+}
+
+/* En sida att provlyssna på: 20 slumpade låtar med Apples förlyssning och
+   länk, så att någon kan höra att låten stämmer med titeln. Bara lokalt. */
+function skrivLyssning(rader, fil) {
+  const urval = [...rader].sort(() => Math.random() - 0.5).slice(0, 20);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  writeFileSync(fil, `<!doctype html><meta charset="utf-8"><title>Provlyssning</title>
+<body style="font-family:system-ui;background:#100C17;color:#F6F2FB;max-width:760px;margin:24px auto;padding:0 16px">
+<h1>Provlyssna 20 slumpade låtar</h1><p>Stämmer låten med titeln och artisten? Notera numret på de som inte gör det.</p><ol>` +
+    urval.map(r => `<li style="margin:14px 0"><b>${esc(r.artist)} — ${esc(r.titel)}</b> <small>(${r.genre}, listad under ${esc(r.artist_namn)})</small><br>
+<audio controls preload="none" src="${esc(r.ljud)}"></audio> <a style="color:#3DDCF0" href="${esc(r.apple_lank)}">Apple Music</a></li>`).join('') +
+    `</ol></body>`);
+  console.log('Provlyssning: ' + fil);
+}
+
+if (RAPPORT) rapport().catch(err => { console.error(err.message || err); process.exit(1); });
+else if (process.argv.includes('--fyll')) fyll().catch(err => { console.error(err.message || err); process.exit(1); });
+else {
+  console.log('node scripts/latbibliotek.mjs --rapport   eller   --fyll [--antal 20] [--torr]');
   process.exit(1);
 }
-rapport().catch(err => { console.error(err.message || err); process.exit(1); });

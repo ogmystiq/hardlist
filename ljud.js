@@ -16,10 +16,14 @@
   /* Apples villkor kräver att förlyssningar står intill deras märke och
      säger varifrån de kommer. Före svaret länkar raden till Apple Music i
      allmänhet — en länk till själva låten hade avslöjat svaret. */
+  /* Märket är Apples eget, från deras marknadsföringsverktyg, och används
+     som det är. Det är själva länken, så ingen textlänk behövs bredvid. */
   function kalla(lank){
     const href = typeof lank === 'string' && /^https:\/\/music\.apple\.com\//.test(lank) ? lank : ALLMAN_LANK;
-    return '<p class="itunes-kalla">Förhandslyssning från iTunes. ' +
-      '<a href="' + href.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener">Lyssna på Apple Music</a></p>';
+    return '<div class="itunes-kalla">' +
+      '<a class="apple-marke" href="' + href.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener">' +
+        '<img src="/bilder/apple-music.svg" alt="Lyssna på Apple Music" width="141" height="41"></a>' +
+      '<span>Förhandslyssning från iTunes</span></div>';
   }
 
   window.hardlistLjud = { tillatet: tillatet, kalla: kalla };

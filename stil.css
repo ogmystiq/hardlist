@@ -354,9 +354,11 @@ h1 em{font-style:normal}
 .q-volym-not{font-size:13px;color:var(--text-3)}
 /* Raden om iTunes står direkt under spelaren, som Apples villkor kräver. */
 .q-spelare-ruta{display:flex;flex-direction:column;gap:8px}
-.itunes-kalla{font-size:13px;line-height:1.5;color:var(--text-3)}
-.itunes-kalla a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--text-3)}
-.itunes-kalla a:hover{color:var(--text)}
+.itunes-kalla{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;font-size:13px;line-height:1.5;color:var(--text-3)}
+/* Märket visas i sin egen storlek och färg. Apple tillåter inte att det
+   ändras, så det står utanför sajtens färgregler. */
+.apple-marke{display:inline-flex;flex:none;border-radius:6px}
+.apple-marke img{display:block;width:141px;height:41px}
 
 /* ---------- Mobil ---------- */
 
