@@ -58,6 +58,30 @@
 
   function harSparadSession(){ return !!las(localStorage, SESSIONSNYCKEL); }
 
+  /* Badgesens utseende och popuper hämtas först när en sida har något att
+     visa, så att de flesta sidvisningar slipper dem. Ändras badges.js eller
+     badges.css ska datumet ändras här och i sidorna som laddar dem direkt. */
+  const BADGE_VERSION = '2026-10-07';
+  let badgeLofte = null;
+  function badges(){
+    if (window.hardlistBadges) return Promise.resolve(window.hardlistBadges);
+    if (badgeLofte) return badgeLofte;
+    badgeLofte = new Promise(function(ok, fel){
+      if (!document.querySelector('link[href^="/badges.css"]')){
+        const l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = '/badges.css?v=' + BADGE_VERSION;
+        document.head.appendChild(l);
+      }
+      const s = document.createElement('script');
+      s.src = '/badges.js?v=' + BADGE_VERSION;
+      s.onload = function(){ ok(window.hardlistBadges); };
+      s.onerror = function(){ badgeLofte = null; fel(new Error('Kunde inte ladda badges')); };
+      document.head.appendChild(s);
+    });
+    return badgeLofte;
+  }
+
   async function session(){
     const k = await klient();
     const { data } = await k.auth.getSession();
@@ -202,6 +226,7 @@
     session: session,
     rpc: rpc,
     profil: profil,
+    badges: badges,
     loggaIn: loggaIn,
     loggaUt: loggaUt,
     tillbaka: tillbaka,

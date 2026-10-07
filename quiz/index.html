@@ -112,10 +112,18 @@
 .q-flikar .chip{min-height:40px;padding:0 14px;background:var(--yta-2)}
 .q-flikar .chip[aria-selected="true"]{background:var(--text);color:var(--natt)}
 .q-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.q-rader li{display:flex;align-items:center;gap:12px;padding:10px;border-radius:12px}
+.q-rader li{border-radius:12px}
 .q-rader li.jag{background:var(--yta-2)}
+/* Hela raden leder till profilen. */
+.q-rad{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px;border-radius:12px;color:inherit;text-decoration:none;transition:background .15s}
+.q-rad:hover{background:var(--yta-hover)}
+.q-rad:focus-visible{outline-offset:-2px}
+.q-rader .bild img{display:block;width:100%;height:100%;object-fit:cover}
+.q-rader .namn-rad{display:flex;align-items:center;gap:6px;min-width:0}
+.q-rader .namn-rad .bm{flex:none}
+.q-rader .du{flex:none;padding:2px 8px;border-radius:999px;background:var(--natt);font-size:12px;font-weight:700;color:var(--text-2)}
 .q-rader .plats{flex:none;width:26px;font-stretch:62%;font-weight:900;font-size:20px;line-height:1}
-.q-rader .bild{flex:none;display:flex;width:32px;height:32px;border-radius:50%;background:var(--yta-2);align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.q-rader .bild{flex:none;display:flex;width:32px;height:32px;border-radius:50%;overflow:hidden;background:var(--yta-2);align-items:center;justify-content:center;font-weight:800;font-size:14px}
 .q-rader .jag .bild{background:var(--natt)}
 .q-rader .namn-del{flex:1;min-width:0;display:flex;flex-direction:column}
 .q-rader .namn{font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -126,6 +134,8 @@
 .q-jag:empty{display:none}
 .q-jag-etikett{font-size:13px;color:var(--text-3)}
 .q-jag .q-rader{align-self:stretch}
+.q-jag.fast{position:sticky;bottom:calc(var(--meny-hojd) + env(safe-area-inset-bottom) + 8px);z-index:2;margin:0 -4px;padding:8px 4px;border-radius:16px;background:var(--yta)}
+@media (min-width:860px){.q-jag.fast{bottom:16px}}
 
 .q-om{display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:var(--text-2)}
 .q-om h2{font-size:26px;color:var(--text)}
@@ -179,8 +189,8 @@
       <div class="q-lista-topp">
         <h2 id="qListaRubrik">Topplistan</h2>
         <div class="q-flikar" id="qFlikar">
-          <button class="chip" type="button" data-period="total" aria-selected="true">Totalt</button>
-          <button class="chip" type="button" data-period="manad" aria-selected="false">Månaden</button>
+          <button class="chip" type="button" data-period="manad" aria-selected="true" id="qFlikManad">Månaden</button>
+          <button class="chip" type="button" data-period="total" aria-selected="false">Totalt</button>
         </div>
       </div>
       <ol class="q-rader" id="qRader"><li class="q-tom">Hämtar topplistan.</li></ol>
@@ -719,7 +729,7 @@ function kopplaDela(ratt){
 
 /* ---------- topplistan ---------- */
 let topplista = null;
-let period = 'total';
+let period = 'manad';
 
 async function laddaTopplista(){
   try {
@@ -728,6 +738,11 @@ async function laddaTopplista(){
     topplista = null;
   }
   ritaTopplista();
+  const medBadge = topplista && ['manad', 'total'].some(p => topplista[p] &&
+    (topplista[p].lista.some(r => r.badge) || (topplista[p].jag && topplista[p].jag.badge)));
+  if (medBadge && !badgesKlara){
+    hardlistKonto.badges().then(B => { badgesKlara = B; ritaTopplista(); }).catch(() => {});
+  }
 }
 
 function ritaTopplista(){
@@ -742,8 +757,14 @@ function ritaTopplista(){
     return;
   }
 
+  /* Fliken heter som månaden, till exempel November. */
+  if (topplista.manad_datum){
+    const m = new Date(topplista.manad_datum + 'T12:00:00Z').toLocaleDateString('sv-SE', { month: 'long', timeZone: 'Europe/Stockholm' });
+    document.getElementById('qFlikManad').textContent = m.charAt(0).toUpperCase() + m.slice(1);
+  }
   const lista = topplista[period].lista;
   const min = topplista[period].jag;
+  jag.classList.toggle('fast', !!(min && !min.listad));
   rader.innerHTML = lista.length
     ? lista.map(r => rad(r, min && min.listad && r.namn === min.namn)).join('')
     : '<li class="q-tom">' + (period === 'manad' ? 'Ingen har tagit poäng den här månaden än.' : 'Ingen har tagit poäng än.') + '</li>';
@@ -769,13 +790,19 @@ function ritaTopplista(){
   }
 }
 
+/* Badgen vid namnet ritas när badges.js har laddats. Den laddas bara när
+   någon i listan har en. */
+let badgesKlara = null;
 function rad(r, arJag){
+  const b = r.badge && badgesKlara && badgesKlara.hitta(r.badge);
   return '<li' + (arJag ? ' class="jag"' : '') + '>' +
+    '<a class="q-rad" href="/profil/?namn=' + encodeURIComponent(r.namn) + '">' +
     '<span class="plats">' + r.plats + '</span>' +
-    '<span class="bild" aria-hidden="true">' + esc(String(r.namn).charAt(0).toUpperCase()) + '</span>' +
-    '<span class="namn-del"><span class="namn">' + esc(r.namn) + '</span>' +
+    '<span class="bild" aria-hidden="true">' + (r.bild ? '<img src="' + esc(r.bild) + '" alt="" loading="lazy" width="32" height="32">' : esc(String(r.namn).charAt(0).toUpperCase())) + '</span>' +
+    '<span class="namn-del"><span class="namn-rad"><span class="namn">' + esc(r.namn) + '</span>' +
+    (b ? badgesKlara.medaljHtml(b, true, 24) : '') + (arJag ? '<span class="du">Du</span>' : '') + '</span>' +
     '<span class="rang">' + esc(r.rang) + '</span></span>' +
-    '<span class="poang">' + r.poang + ' p</span></li>';
+    '<span class="poang">' + r.poang + ' p</span></a></li>';
 }
 
 document.getElementById('qFlikar').addEventListener('click', function(e){

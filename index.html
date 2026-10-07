@@ -76,12 +76,19 @@
 .topplista-huvud{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:4px 12px 4px}
 .topplista-huvud h2{font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
 .topplista-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.topplista-rader li{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px}
+.topplista-rader li{border-radius:14px}
+/* Hela raden leder till profilen. */
+.tp-rad{display:flex;align-items:center;gap:12px;min-height:54px;padding:10px 12px;border-radius:14px;color:inherit;text-decoration:none;transition:background .15s}
+.tp-rad:hover{background:var(--yta-hover)}
+.tp-rad:focus-visible{outline-offset:-2px}
+.tp-namnrad{flex:1;min-width:0;display:flex;align-items:center;gap:6px}
+.tp-namnrad .bm{flex:none}
+.tp-bild img{display:block;width:100%;height:100%;object-fit:cover}
 .topplista-rader li.jag{background:var(--yta-2)}
 .tp-plats{flex:none;width:24px;font-stretch:62%;font-weight:900;font-size:22px;line-height:1}
-.tp-bild{flex:none;display:flex;width:34px;height:34px;border-radius:50%;background:var(--yta-2);align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.tp-bild{flex:none;display:flex;width:34px;height:34px;border-radius:50%;overflow:hidden;background:var(--yta-2);align-items:center;justify-content:center;font-weight:800;font-size:14px}
 .jag .tp-bild{background:var(--natt)}
-.tp-namn{flex:1;min-width:0;font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tp-namn{min-width:0;font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tp-poang{flex:none;font-size:15px;font-weight:700}
 .topplista-not{padding:8px 12px 4px;font-size:14px;line-height:1.45;color:var(--text-3)}
 .topplista-not:empty{display:none}
@@ -1092,12 +1099,18 @@ async function ritaFraga(K){
 }
 
 function toppRad(r, arJag){
+  const b = r.badge && toppBadges && toppBadges.hitta(r.badge);
   return '<li' + (arJag ? ' class="jag"' : '') + '>' +
+    '<a class="tp-rad" href="/profil/?namn=' + encodeURIComponent(r.namn) + '">' +
     '<span class="tp-plats">' + r.plats + '</span>' +
-    '<span class="tp-bild" aria-hidden="true">' + esc(String(r.namn).charAt(0).toUpperCase()) + '</span>' +
-    '<span class="tp-namn">' + esc(r.namn) + '</span>' +
-    '<span class="tp-poang">' + r.poang + ' p</span></li>';
+    '<span class="tp-bild" aria-hidden="true">' + (r.bild ? '<img src="' + esc(r.bild) + '" alt="" loading="lazy" width="34" height="34">' : esc(String(r.namn).charAt(0).toUpperCase())) + '</span>' +
+    '<span class="tp-namnrad"><span class="tp-namn">' + esc(r.namn) + '</span>' + (b ? toppBadges.medaljHtml(b, true, 24) : '') + '</span>' +
+    '<span class="tp-poang">' + r.poang + ' p</span></a></li>';
 }
+
+/* Badgen vid namnet ritas när badges.js har laddats, och den laddas bara
+   när någon i listan har en. */
+let toppBadges = null;
 
 async function ritaTopplista(K){
   const manad = MANADER_HELA[Number(svenskIdag().slice(5, 7)) - 1];
@@ -1128,8 +1141,14 @@ async function ritaTopplista(K){
 
   /* Spalten på dator: de första i listan, och din egen rad om du är med. */
   const visas = lista.slice(0, TOPP_ANTAL);
-  $('toppRader').innerHTML = visas.map(r => toppRad(r, jag && jag.listad && r.namn === jag.namn)).join('') +
-    (jag && !visas.some(r => r.namn === jag.namn) ? toppRad(jag, true) : '');
+  const rita = () => {
+    $('toppRader').innerHTML = visas.map(r => toppRad(r, jag && jag.listad && r.namn === jag.namn)).join('') +
+      (jag && !visas.some(r => r.namn === jag.namn) ? toppRad(jag, true) : '');
+  };
+  rita();
+  if (!toppBadges && K.badges && (visas.some(r => r.badge) || (jag && jag.badge))){
+    K.badges().then(B => { toppBadges = B; rita(); }).catch(() => {});
+  }
   $('toppNot').textContent =
     !lista.length ? 'Ingen har tagit poäng i ' + manad + ' än.'
     : jag ? ''
