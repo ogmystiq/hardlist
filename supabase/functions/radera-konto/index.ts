@@ -67,6 +67,24 @@ Deno.serve(async (req) => {
   const { data, error } = await admin.auth.getUser(token);
   if (error || !data.user) return svar(401, { fel: "Ogiltig inloggning" }, cors);
 
+  // Kaskaden tar bort tabellraderna men inte filerna i Storage. Bilderna tas
+  // bort först, och går det inte raderas inte kontot heller — hellre ett
+  // nytt försök än en bild kvar utan ägare.
+  const bilder = admin.storage.from("profilbilder");
+  for (;;) {
+    const { data: filer, error: listfel } = await bilder.list(data.user.id, { limit: 100 });
+    if (listfel) {
+      console.error("Kunde inte lista profilbilderna", listfel.message);
+      return svar(500, { fel: "Kunde inte radera profilbilden" }, cors);
+    }
+    if (!filer || filer.length === 0) break;
+    const { error: bildfel } = await bilder.remove(filer.map((f) => `${data.user.id}/${f.name}`));
+    if (bildfel) {
+      console.error("Kunde inte radera profilbilderna", bildfel.message);
+      return svar(500, { fel: "Kunde inte radera profilbilden" }, cors);
+    }
+  }
+
   const { error: raderingsfel } = await admin.auth.admin.deleteUser(data.user.id);
   if (raderingsfel) {
     console.error("deleteUser misslyckades", raderingsfel.message);
