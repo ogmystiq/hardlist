@@ -20,6 +20,9 @@
 .fel-ruta{margin-top:28px}
 .fel-ruta h2{font-size:26px}
 .fel-ledtrad{font-size:14px;line-height:1.45;color:var(--text-3)}
+/* Inget dubbeltryck i den första rutan ska zooma, annars går det inte att
+   trycka en takt i mobilen. */
+.fel-topp{touch-action:manipulation}
 /* Den stora 404:an tar emot tryck men är ingen knapp: den ska inte synas
    som något man kan göra. Studsen är svaret på trycket. */
 .fel-topp > .ruta-siffra.takt{
@@ -206,6 +209,13 @@
 
   siffra.addEventListener('pointerdown', tryck);
   if (ledtrad) ledtrad.addEventListener('pointerdown', tryck);
+
+  /* Safari på iPhone kan zooma vid snabba dubbeltryck trots touch-action.
+     Att stoppa touchend på just 404:an och ledtråden hindrar det, och rör
+     inte knappen bredvid. */
+  function ingenZoom(e){ e.preventDefault(); }
+  siffra.addEventListener('touchend', ingenZoom, { passive: false });
+  if (ledtrad) ledtrad.addEventListener('touchend', ingenZoom, { passive: false });
 })();
 </script>
 <script src="/ram.js" defer></script>
