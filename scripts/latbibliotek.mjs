@@ -11,6 +11,9 @@
  *              node scripts/latbibliotek.mjs --fyll --antal 20 --ut provlyssning.html --prov 30
  *              --alla i stället för --antal tar hela artistlistan.
  *
+ *   --rank     hämtar Deezers rank för låtar som inte har en, för
+ *              svårigheten i fritt spel. Bara talet sparas.
+ *
  *              Artister där MusicBrainz eller Apple pekar utanför scenen stoppas
  *              och listas, se stoppet nedan.
  *
@@ -704,9 +707,72 @@ function skrivLyssning(rader, fil, antal = 20) {
   console.log('Provlyssning: ' + fil);
 }
 
+/* ---------- Deezers rank, för svårigheten i fritt spel ---------- */
+
+/* Bara själva talet sparas. Biblioteket har inget Deezer-id och iTunes ger
+   ingen ISRC, så låten söks på artist och titel. Rank tas bara från en
+   träff med samma artist och samma grundtitel, som i latbibliotek.grundtitel
+   på servern: utan gästartister och versionstillägg, men med remixer. Flera
+   versioner av samma låt ger den högsta ranken. */
+const grund = t => String(t)
+  .replace(/\s*[\(\[]\s*(feat\.?|ft\.?|featuring|with)\s[^\)\]]*[\)\]]/gi, '')
+  .replace(/\s*(-\s*|[\(\[]\s*)((extended|radio|original|club|pro|short|full|album|single)\s+)?(mix|edit|version|cut|remaster(ed)?)\s*[\)\]]?\s*$/gi, '')
+  .normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
+
+async function anropa(nyckel, namn, body) {
+  const res = await fetch(PROJEKT_URL + '/rest/v1/rpc/' + namn, {
+    method: 'POST',
+    headers: { apikey: nyckel, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  const text = await res.text();
+  if (!res.ok) throw new Error(`${namn} svarade ${res.status}: ${text.slice(0, 300)}`);
+  return JSON.parse(text);
+}
+
+async function deezerRank(l) {
+  const vill = grund(l.titel);
+  const artist = normNamn(l.artist_namn);
+  // Sökningen fungerar bäst med titeln utan tillägg inom parentes.
+  const kort = String(l.titel).replace(/\s*[\(\[][^\)\]]*[\)\]]/g, '').trim() || l.titel;
+  const fragor = [
+    `/search?q=${encodeURIComponent('artist:"' + l.artist_namn + '" track:"' + kort + '"')}&limit=25`,
+    `/search?q=${encodeURIComponent(l.artist_namn + ' ' + kort)}&limit=25`
+  ];
+  for (const f of fragor) {
+    const d = await deezer(f);
+    const traffar = (d.data || []).filter(x =>
+      grund(x.title) === vill &&
+      (normNamn(x.artist?.name || '') === artist || normNamn(l.artist).includes(normNamn(x.artist?.name || '-'))));
+    if (traffar.length) return Math.max(...traffar.map(x => x.rank || 0));
+  }
+  return null;
+}
+
+async function rank() {
+  const nyckel = lasNyckel();
+  let klara = 0, hittade = 0;
+  for (;;) {
+    const latar = await anropa(nyckel, 'latbibliotek_utan_rank', { p_antal: 100 });
+    if (!latar.length) break;
+    const ut = [];
+    for (const l of latar) {
+      let r = null;
+      try { r = await deezerRank(l); } catch (e) { console.log(`  ${l.artist} — ${l.titel}: ${e.message}`); }
+      ut.push({ id: l.id, rank: r });
+      if (r !== null) hittade++;
+    }
+    await anropa(nyckel, 'latbibliotek_rank', { p: ut });
+    klara += ut.length;
+    console.log(`${klara} låtar prövade, ${hittade} med rank.`);
+  }
+  console.log(`Klart: ${klara} låtar prövade, ${hittade} fick rank.`);
+}
+
 if (RAPPORT) rapport().catch(err => { console.error(err.message || err); process.exit(1); });
 else if (process.argv.includes('--fyll')) fyll().catch(err => { console.error(err.message || err); process.exit(1); });
+else if (process.argv.includes('--rank')) rank().catch(err => { console.error(err.message || err); process.exit(1); });
 else {
-  console.log('node scripts/latbibliotek.mjs --rapport   eller   --fyll [--antal 20 | --alla] [--torr] [--prov 30]');
+  console.log('node scripts/latbibliotek.mjs --rapport   eller   --fyll [--antal 20 | --alla] [--torr] [--prov 30]   eller   --rank');
   process.exit(1);
 }

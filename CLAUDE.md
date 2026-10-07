@@ -467,9 +467,12 @@ gissa som Dagens låt: sökruta med förslag, sex försök, klipp på 0,5, 1, 2,
   bort Extended Mix, Radio Edit, Original Mix och gästartister. Remixer av
   andra artister är andra låtar.
 - Svårigheten är andelen av genren efter popularitet: Lätt 15 procent, Medel
-  40, Svår 75 och Expert alla. Måttet är iTunes ordning per artist
-  (`latbibliotek.popularitet`), det enda biblioteket har, och det följer
-  popularitet dåligt.
+  40, Svår 75 och Expert alla. Måttet är Deezers rank (`latbibliotek.latar.deezer_rank`),
+  bara talet, inga andra Deezer-data. Låtar utan rank räknas efter iTunes
+  ordning per artist, som följer popularitet dåligt (`latbibliotek.popularitet`).
+  Nya låtar får rank med `node scripts/latbibliotek.mjs --rank`, som bara
+  frågar om låtar som inte prövats (`rank_hamtad`). Rank tas bara från en
+  träff med samma artist och samma grundtitel.
 - Varje försök får klippet plus 20 sekunder att skriva. Har mer tid gått räknas
   gissningen på ett senare försök. Ljudadressen är Apples egen, så den som vill
   kan slå upp den; det stoppas bara med ljud genom en egen server.
