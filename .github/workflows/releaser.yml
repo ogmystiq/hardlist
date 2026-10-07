@@ -1,12 +1,27 @@
 name: Hämta releaser
 
 on:
+  # Startas varje morgon 05:07 UTC av pg_cron i Supabase via workflow_dispatch,
+  # eftersom GitHubs eget schema i praktiken startar först vid lunch.
+  # Schemat nedan är kvar som reserv. Spärren gör att det inte gör någonting
+  # om morgonens körning redan har gått.
   schedule:
-    - cron: '7 5 * * *'   # varje dag 05:07 UTC — listan roteras över flera dygn
-  workflow_dispatch:       # + knapp för att köra manuellt
+    - cron: '7 5 * * *'
+  workflow_dispatch:
+    inputs:
+      tvinga:
+        description: 'Kör även om dagens körning redan har gått. Kostar Spotify-anrop av samma dygnskvot.'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
+
+# Två körningar samtidigt hade delat på dygnskvoten och skrivit över varandras
+# filer. Den andra får vänta, och när den startar stoppar spärren den.
+concurrency:
+  group: releaser
+  cancel-in-progress: false
 
 jobs:
   update:
@@ -14,24 +29,85 @@ jobs:
     timeout-minutes: 25          # skriptet har egen 21-minutersbudget (TIDSBUDGET) under detta, varav Deezer högst 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      # Läser status.json från main som den ser ut just nu. Utan ny hämtning
+      # hade en köad körning sett läget från när den köades, före morgonens
+      # körning, och kört en gång till.
+      - name: Spärr, högst en körning per dygn
+        id: sparr
+        env:
+          TVINGA: ${{ github.event_name == 'workflow_dispatch' && inputs.tvinga == true }}
+        run: |
+          git fetch --quiet origin main
+          # Går status.json inte att läsa blir dagen tom och körningen går,
+          # hellre en körning för mycket än en dag utan releaser.
+          read -r dag idag < <(git show origin/main:data/status.json 2>/dev/null | node -e '
+            const svensk = d => d.toLocaleDateString("sv-SE", { timeZone: "Europe/Stockholm" });
+            let s = ""; process.stdin.on("data", d => s += d).on("end", () => {
+              let dag = "-";
+              try { const t = new Date(JSON.parse(s).uppdaterad); if (!isNaN(t)) dag = svensk(t); } catch {}
+              console.log(dag, svensk(new Date()));
+            });')
+          echo "Senaste körning: svensk dag $dag, idag: $idag"
+          if [ "$dag" = "$idag" ] && [ "$TVINGA" != "true" ]; then
+            echo "Dagens körning har redan gått. Avslutar utan anrop och utan commit."
+            echo "kor=nej" >> "$GITHUB_OUTPUT"
+          else
+            [ "$dag" = "$idag" ] && echo "Spärren förbigås, tvinga är valt."
+            echo "kor=ja" >> "$GITHUB_OUTPUT"
+          fi
 
       - uses: actions/setup-node@v4
+        if: steps.sparr.outputs.kor == 'ja'
         with:
           node-version: 20
 
       - name: Hämta från Deezer och Spotify
+        if: steps.sparr.outputs.kor == 'ja'
         env:
           SPOTIFY_ID: ${{ secrets.SPOTIFY_ID }}
           SPOTIFY_SECRET: ${{ secrets.SPOTIFY_SECRET }}
         run: node scripts/hamta-releaser.mjs
 
       - name: Bygg metadata från events.json
+        if: steps.sparr.outputs.kor == 'ja'
         run: node scripts/bygg-metadata.mjs
 
-      - name: Commit
+      # Ovanpå senaste main, så att en push under körningen inte stoppar
+      # dagens releaser. Rebase hade kunnat krocka i index.html, där både
+      # handändrade events och bygget skriver. I stället läggs botens egna
+      # filer ovanpå main som den ser ut nu och bygget körs om, så att
+      # handskrivna filer från main alltid vinner och det härledda följer dem.
+      - name: Commit och push
+        if: steps.sparr.outputs.kor == 'ja'
         run: |
           git config user.name "hardlist-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add -A
-          git diff --staged --quiet || git commit -m "Nya releaser $(date +%F)"
-          git push
+          BOTFILER="data/releases.json data/artist-ids.json data/streckkoder.json data/status.json"
+          SPARAT="$RUNNER_TEMP/botfiler"
+          mkdir -p "$SPARAT/data"
+          # streckkoder.json finns inte förrän Deezer-steget gått första gången.
+          for f in $BOTFILER; do if [ -f "$f" ]; then cp "$f" "$SPARAT/$f"; fi; done
+
+          for forsok in 1 2 3 4 5; do
+            git fetch --quiet origin main
+            git reset --quiet --hard origin/main
+            for f in $BOTFILER; do if [ -f "$SPARAT/$f" ]; then cp "$SPARAT/$f" "$f"; fi; done
+            node scripts/bygg-metadata.mjs
+            git add -A
+            if git diff --staged --quiet; then
+              echo "Inga ändringar att commita."
+              exit 0
+            fi
+            git commit --quiet -m "Nya releaser $(TZ=Europe/Stockholm date +%F)"
+            if git push origin HEAD:main; then
+              echo "Pushat på försök $forsok."
+              exit 0
+            fi
+            echo "Pushen nekades, main har ändrats. Försöker igen om $((forsok * 10)) sekunder."
+            sleep $((forsok * 10))
+          done
+          echo "Pushen nekades fem gånger. Dagens releaser är inte sparade."
+          exit 1

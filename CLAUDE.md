@@ -210,11 +210,57 @@ tillfällig broms.
 
 ## Morgonkörningen: Deezer hittar, Spotify bekräftar
 
-**Den kör inte klockan 07:07.** Schemat säger 05:07 UTC, men GitHub köar
-schemalagda jobb, och i praktiken startar den mellan ungefär 12 och 14
-svensk tid. Boten pushar utan att hämta först, så **pusha inte till `main`
-mellan 11:30 och 15:00 svensk tid** — då kan dagens releaser gå förlorade.
-Kolla Actions om du är osäker på om dagens körning är klar.
+### Så startas den
+
+**Supabase startar körningen 05:07 UTC** (07:07 svensk sommartid, 06:07
+vintertid). Ett pg_cron-jobb, `hardlist-releaser`, anropar GitHubs API med
+workflow_dispatch på `main` (migrationen `20261007120000_morgonkorning.sql`).
+GitHubs eget schema startar i praktiken först mellan 12 och 14 svensk tid och
+ligger kvar som reserv.
+
+Tokenen ligger i Supabase Vault under namnet `github_token`. Den får aldrig
+stå i repot, i en migration eller i ett kommando som sparas i historiken.
+Det är en finkornig token som bara gäller det här repot, med rättigheten
+Actions: läsa och skriva. Går den ut startar ingenting förrän reserven vid
+lunch — byt den i Vault, inget annat behöver ändras.
+
+Om morgonen inte startade, kolla i Supabase SQL Editor:
+
+```sql
+select status, return_message, start_time from cron.job_run_details
+  order by start_time desc limit 5;
+select status_code, content, created from net._http_response
+  order by created desc limit 5;
+```
+
+204 betyder att GitHub tog emot starten.
+
+### Spärren: högst en körning per dygn
+
+Första steget i workflowen läser `data/status.json` från `main` som den ser
+ut just då. Är `uppdaterad` från i dag (svensk tid) avslutas körningen direkt:
+inga anrop till Spotify eller Deezer och ingen commit. Därför gör reserven
+vid lunch ingenting när morgonens körning gått, och en extra start kostar
+ingen kvot.
+
+- **Manuell körning går också in i spärren.** Vill du ändå köra: Actions,
+  Hämta releaser, Run workflow, kryssa i *tvinga*. Det tar av samma
+  dygnskvot, så gör det bara när du vet varför.
+- **Två körningar går aldrig samtidigt.** Startas en medan en annan pågår får
+  den vänta, och stoppas sedan av spärren.
+- **En körning som kraschar** innan den commitat räknas inte. Nästa start
+  samma dag kör igen.
+
+### Push under körningen
+
+Boten hämtar senaste `main` innan den pushar och lägger sina egna filer ovanpå
+(`releases.json`, `artist-ids.json`, `streckkoder.json`, `status.json`).
+Sedan körs bygget om, så att handskrivna ändringar från `main` alltid vinner.
+Nekas pushen ändå försöker den igen, upp till fem gånger.
+
+**Tills vi har sett att det nya fungerar gäller fortfarande: pusha inte
+till `main` mellan 11:30 och 15:00 svensk tid.** Kolla Actions om du är
+osäker på om dagens körning är klar.
 
 Rotationen hinner bara en del av listan per dygn. Deezer har ingen dygnskvot,
 så varje morgon:
