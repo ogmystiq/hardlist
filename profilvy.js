@@ -89,18 +89,21 @@
     return m;
   }
 
-  /* Tagna först i den ordning de togs, sedan påbörjade, inte påbörjade,
-     hemliga och sist de som kommer senare. */
+  /* En unik badge, som Grundaren, finns bara på den profil som har den och
+     står då först. Sedan tagna i den ordning de togs, påbörjade, inte
+     påbörjade, hemliga och sist de som kommer senare. */
   function ordning(p){
     const tagna = tagenMap(p);
     const fr = p.framsteg || {};
     const grupp = function(b){
+      if (b.unik) return -1;
       if (tagna[b.id]) return 0;
       if (b.kommer) return 4;
       if (b.hemlig) return 3;
       return b.mal && fr[b.id] > 0 ? 1 : 2;
     };
-    return B.BADGES.map(function(b, i){ return { b: b, g: grupp(b), i: i }; })
+    return B.BADGES.filter(function(b){ return !b.unik || tagna[b.id]; })
+      .map(function(b, i){ return { b: b, g: grupp(b), i: i }; })
       .sort(function(x, y){
         if (x.g !== y.g) return x.g - y.g;
         if (x.g === 0) return String(tagna[x.b.id]).localeCompare(String(tagna[y.b.id]));
@@ -116,7 +119,7 @@
 
   /* "4 % av spelarna har den." bara på riktiga siffror från servern. */
   function andelText(p, b, tagen){
-    if (b.kommer || (b.hemlig && !tagen)) return '';
+    if (b.kommer || b.unik || (b.hemlig && !tagen)) return '';
     const a = (p.andelar || {})[b.id];
     if (!a) return '';
     if (!a.antal) return 'Ingen har tagit den än.';
@@ -170,9 +173,10 @@
     });
   }
 
+  /* Unika räknas inte, varken bland de tagna eller i totalen. */
   function antalTagna(p){
-    const giltiga = (p.badges || []).filter(function(x){ return B.hitta(x.id); });
-    return giltiga.length + ' av ' + B.BADGES.length;
+    const giltiga = (p.badges || []).filter(function(x){ const b = B.hitta(x.id); return b && !b.unik; });
+    return giltiga.length + ' av ' + B.BADGES.filter(function(b){ return !b.unik; }).length;
   }
 
   /* ---------- huvudet, rangen och siffrorna ---------- */

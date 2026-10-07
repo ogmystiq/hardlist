@@ -23,6 +23,7 @@
 .bm-a-svep{transform-origin:32px 32px}
 .bm-a-pendel,.bm-a-nal{transform-origin:32px 46px}
 .bm-a-vaj{transform-box:fill-box;transform-origin:0 50%}
+.bm-a-sving{transform-box:view-box;transform-origin:32px 1px}
 
 /* bm-yta sätts på knappen eller länken runt en badge. De andra tagna
    rör sig bara medan man håller över eller fokuserar dem. */
@@ -101,6 +102,10 @@
 
 /* Har man stängt av animationer står allt still. Popupen visas ändå i fem
    sekunder och glöden lyser svagt. */
+/* Grundarens passerkort svänger i bandet. */
+.bm-lev .bm-a-sving,.bm-yta:hover .bm-a-sving,.bm-yta:focus-visible .bm-a-sving{animation:bm-sving 2.6s ease-in-out infinite alternate}
+@keyframes bm-sving{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+
 @media (prefers-reduced-motion:reduce){
   .bm *,.bm-toast,.bm-toast *,.bm-fira,.bm-fira *{animation:none !important;transition:none !important}
   .bm-svep,.bm-blixtut{display:none}

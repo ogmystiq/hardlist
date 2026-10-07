@@ -486,10 +486,14 @@ API:t inte exponerar, precis som `quiz`. Sajten når dem bara genom
   strax efter midnatt svensk tid. Det sparar förra månadens placeringar en gång
   och delar ut Vid staketet, I båset, Headliner, Residenten och Veteranen.
 - **Låtspelets badges** (`kommer: true`) delas inte ut än.
+- **Grundaren delas bara ut till Jonte** (kontot mystiq). Den har en egen nivå,
+  Unik (nivå 5 i `profil.katalog`, `unik: true` i `badges.js`), och ett unikt
+  index i databasen gör att den aldrig kan finnas på mer än ett konto. Den
+  syns bara på profilen som har den och räknas inte in i "X av Y".
 
 ### Dela ut en badge för hand
 
-Tipsaren, Faktakollen och Påskägget. Kör i Supabase, SQL Editor, med
+Tipsaren, Faktakollen och Påskägget — aldrig Grundaren. Kör i Supabase, SQL Editor, med
 visningsnamnet och badgens id:
 
 ```sql
