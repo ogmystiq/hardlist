@@ -41,6 +41,42 @@
       "datum": "2026-09-10",
       "spotify": "https://open.spotify.com/album/10d4MEace0WilwuoTS5dc8",
       "kollad": "2026-10-07"
+    },
+    "5064079589823": {
+      "titel": "Bittersweet",
+      "datum": "2026-10-08",
+      "spotify": "https://open.spotify.com/album/3PSWE9HJOHRtxAO1EfquPb",
+      "kollad": "2026-10-08"
+    },
+    "5064090212922": {
+      "titel": "Without You",
+      "datum": "2026-10-08",
+      "spotify": "https://open.spotify.com/album/0ZzhzudsrQX3s8o1grO9ot",
+      "kollad": "2026-10-08"
+    },
+    "8719244873470": {
+      "titel": "Octavius Augustus (Bloodlust & Manji Remix)",
+      "datum": "2026-10-08",
+      "spotify": "https://open.spotify.com/album/0xeuNEHpJqrrJZwBIYeIGH",
+      "kollad": "2026-10-08"
+    },
+    "700574565300": {
+      "titel": "Victory Royale",
+      "datum": "2026-10-08",
+      "spotify": "https://open.spotify.com/album/3uvda2uMCKpVjDvpg6p6Wy",
+      "kollad": "2026-10-08"
+    },
+    "8719244873326": {
+      "titel": "Four Elements (Decibel outdoor 2026 Friday O.S.T.)",
+      "datum": "2026-10-08",
+      "spotify": "https://open.spotify.com/album/18GfRGoIQ71gGHjWihVy7i",
+      "kollad": "2026-10-08"
+    },
+    "5404027351551": {
+      "titel": "SOLDIER",
+      "datum": "2026-10-08",
+      "spotify": "https://open.spotify.com/album/78q3LhYTYglAK0sBEnHpUU",
+      "kollad": "2026-10-08"
     }
   },
   "avvisade": {
@@ -241,6 +277,24 @@
       "datum": "2026-09-18",
       "skal": "UPC-träff med fel artist: Jazzy (3azQQriiSN8pYkNiaAslUQ)",
       "kollad": "2026-10-07"
+    },
+    "729771548169": {
+      "titel": "PROBLEMAS",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-10-08",
+      "skal": "UPC-träff med fel artist: FENIX (4ADweafnYzXYaRqXbdH0eC)",
+      "kollad": "2026-10-08"
+    },
+    "8721639033307": {
+      "titel": "changed",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-10-08",
+      "skal": "UPC-träff med fel artist: fenix (7lKVzqh7iumkWH2JCfrHyN)",
+      "kollad": "2026-10-08"
     }
   }
 }
