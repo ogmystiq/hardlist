@@ -14,7 +14,7 @@
 
   // grupp: fraga, topp, latspel, sarskild eller hemlig.
   // mal och enhet: visas som framsteg, "23 av 100 dagar", innan badgen är tagen.
-  // kommer: hör till låtspelet, som inte sparar resultat än. Visas halvt genomskinlig.
+  // kommer: delas inte ut än. Visas halvt genomskinlig.
   var BADGES = [
     {"id": "grundaren", "grupp": "sarskild", "namn": "Grundaren", "text": "Byggde HARDLIST. Det finns bara en.", "niva": "Unik", "illu": "pass", "unik": true},
     {
@@ -231,10 +231,9 @@
       "id": "duell",
       "grupp": "latspel",
       "namn": "Duellanten",
-      "text": "Vinn tio dueller.",
+      "text": "Vinn din första rankade match.",
       "niva": "Ovanlig",
-      "illu": "glowsticks",
-      "kommer": true
+      "illu": "glowsticks"
     },
     {
       "id": "anthem",
@@ -257,10 +256,9 @@
       "id": "obesegrad",
       "grupp": "latspel",
       "namn": "Obesegrad",
-      "text": "Vinn tio dueller i rad.",
+      "text": "Vinn tio rankade matcher i rad.",
       "niva": "Extremt sällsynt",
-      "illu": "knytnave",
-      "kommer": true
+      "illu": "knytnave"
     },
     {
       "id": "g-hardstyle",
@@ -381,7 +379,7 @@
     {
       "id": "latspel",
       "namn": "Låtspelet",
-      "under": "Genreöronen, Hela scenen och Maraton räknas i fritt spel. De andra kommer med dueller och dagens låt."
+      "under": "Genreöronen, Hela scenen och Maraton räknas i fritt spel, Duellanten och Obesegrad i rankat. Anthemkännaren kommer senare."
     },
     {
       "id": "sarskild",

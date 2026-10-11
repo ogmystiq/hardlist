@@ -489,24 +489,75 @@ gissa som Dagens låt: sökruta med förslag, sex försök, klipp på 0,5, 1, 2,
   (`hardlist-latspel-rensa`).
 - Genreöronen, Hela scenen och Maraton delas ut i `latbibliotek.sok_avsluta`,
   i ett eget exception-block.
-- Flervalet (`latspel_ny`, `latspel_spela`, `latspel_langre`,
-  `latspel_svara`) står kvar och ska bli Dagens låt.
+- Det första flervalet (`latspel_ny`, `latspel_spela`, `latspel_langre` och
+  `latspel_svara`) står kvar på servern men används inte av sajten. Dagens låt
+  har egna funktioner (`dag_*`) och rankat sina (`rankat_*`). Bara
+  `latspel_min`, kontots siffror under valet i fritt spel, används fortfarande.
 
 På iPhone måste ljudet startas av ett tryck. Trycket på Börja spela spelar en
 tyst ljudsnutt i samma spelare, och då får den spela klippen sedan. Klippet
 stoppas efter ljudets egen position, så att laddtiden inte äter av klippet.
 
-### Rankat (pausat)
+### Rankat
 
-Rankat är pausat, eftersom det inte finns någon färdig plan för hur det ska
-fungera. Sidan och kortet är borttagna, men tabellerna och funktionerna på
-servern ligger kvar i `supabase/migrations/20261007230000_rankat.sql`, så
-att arbetet kan fortsätta: `latbibliotek.matcher`, `latbibliotek.rating`,
-låtarnas `rating`, och `rankat_starta`, `rankat_nasta`, `rankat_min` och
-`rankat_topplista`.
+Rankat är ett val inne i fritt spel, "Spela fritt" eller "Rankat", aldrig en
+egen sida. `/fritt-spel/#rankat` öppnar rankat direkt. Vanligt fritt spel är
+oförändrat. Allt avgörs på servern, i
+`supabase/migrations/20261012100000_rankat_matcher.sql`, som bygger vidare på
+tabellerna från `20261007230000_rankat.sql`.
 
-**När rankat kommer tillbaka ska det vara ett val inne i fritt spel, inte en
-egen sida.** Gissningarna går redan genom `fritt_spela` och `fritt_gissa`.
+- **Bara inloggade med visningsnamn.** Utan konto, eller utan namn, står det
+  varför och en knapp till inloggningen eller namnvalet.
+- **Matchen:** tio låtar i vald genre, på Svår under 1 300 i rating och på
+  Expert från 1 300. Varje låt är flerval som Dagens låt: fyra alternativ och
+  klipp på 0,5, 1, 3, 7 och 15 sekunder med "Längre". Ett svar per låt. Rätt
+  ger 100, 70, 40, 20 eller 10 efter klippet, fel eller att tiden går ut ger 0.
+  Sökrutan används inte, så den kan inte kolla låtar.
+- **Tiden mäts på servern.** Varje klipp har klippets längd plus tolv sekunder
+  (`latbibliotek.rankat_svarstid`), räknat från att `rankat_spela` lämnade ut
+  ljudet. Att spela klippet igen startar inte om klockan. Ett svar efter
+  fristen räknas som att tiden gick ut. Alternativen lämnas ut först när
+  klockan går, och vilket som är rätt först efter svaret. Ljudadressen är
+  Apples egen, samma begränsning som i fritt spel.
+- **Funktionerna:** `rankat_starta(genre)`, `rankat_nasta(match)`,
+  `rankat_spela(omgang)`, `rankat_langre(omgang)`, `rankat_svara(omgang, plats)`,
+  `rankat_ge_upp(match)`, `rankat_min()` och `rankat_topplista(genre)`, där
+  genre kan vara `alla`.
+- **Motståndaren, asynkront.** Servern letar upp en annan spelares färdiga
+  match i samma genre, spelad med en rating nära ens egen: ±100, sedan ±200,
+  ±300 och ±400. Man får samma tio låtar med samma alternativ och jämför
+  poängen när man är klar. Aldrig samma låtar två gånger (`matcher.rot`), och
+  aldrig en match med låtar som tagits ur spel. Den som spelade först ändras
+  inte av att någon möter hens resultat. Ingen behöver vänta.
+- **Skuggmotståndaren** spelas när ingen finns i närheten. Ratingen sätts till
+  ens egen ±50, och poängen räknas fram när matchen startar, låt för låt:
+  chansen att klara låten följer Elo mellan skuggans rating och låtens
+  (`latar.rating`), och hur tidigt den klaras följer skuggans rating mot
+  1 000. På 1 000 mot en låt på 1 000 klaras hälften, på något av de tre
+  första klippen. Låtarnas rating flyttas efter varje färdig match, så att
+  skuggan blir rimligare med tiden. Poängen visas först när matchen är klar.
+- **Rating:** 1 000 från början, per genre och totalt (genren `alla` i
+  `latbibliotek.rating`). Elo med K 32, och K 48 de fem första matcherna.
+  Aldrig under 0. Vinst, förlust och oavgjort räknas, liksom vinster i rad.
+  Under fem matcher står "Placeringsmatch". Historiken är `latbibliotek.matcher`.
+- **Ge upp:** två tryck på "Ge upp matchen". Det är förlust, oavsett poängen.
+  Samma sak när man startar en ny match mitt i en annan. En uppgiven match ger
+  inga poäng till rangen, annars kunde man starta och ge upp för att samla
+  förlustpoäng, och den används aldrig som motståndare. Samma match kan bara
+  spelas en gång, och en låt som pågår fortsätter efter omladdning.
+- **Poäng till rangen:** vinst 8, oavgjort 4 och förlust 2, högst 20 per konto
+  och dygn i svensk tid (`quiz.rankat_tak`). Går genom `quiz.ge_spelpoang` med
+  spelet `rankat`, så topplistan, rangen och profilen räknar med dem.
+- **Titlarna** följer ratingen de står bredvid: Intro under 900, Kick 900,
+  Build-up 1 100, Reverse bass 1 300, Screech 1 500, Distortion 1 700, Drop
+  1 900 och Endshow 2 100. Namnen och gränserna står i
+  `latbibliotek.rankat_titel`, färgerna i `stil.css` (`--rt-1` till `--rt-8`).
+  Vid namnet i topplistan och på profilen gäller totalratingen, och bara efter
+  fem matcher. Vid matchen och i genrens lista gäller genrens rating.
+- **Rankat-topplistan** per genre och totalt ligger på `/topplista/`, under
+  den vanliga. Man syns där efter fem matcher.
+- **Badges:** Duellanten vid första vinsten och Obesegrad vid tio vinster i rad,
+  i ett eget exception-block i `latbibliotek.rankat_avsluta`.
 
 ### Dagens låt
 
@@ -548,6 +599,7 @@ rangen räknas på summan. Allt avgörs på servern, i
 | Dagens fråga | Som ovan: 10 (20 på låtfrågan) + min(svit − 1, 10) × 2. Ligger i `quiz.svar.plus`. |
 | Dagens låt | 20, 15, 10, 7 eller 5 efter vilket av de fem klippen svaret räknas på. Fel svar ger 0. |
 | Fritt spel | Per rätt låt: 0,2 på Lätt, 0,4 på Medel, 0,7 på Svår, 1 på Expert. Högst 10 poäng per konto och dygn från fritt spel, räknat i svensk tid. |
+| Rankat | Vinst 8, oavgjort 4, förlust 2. Uppgiven match 0. Högst 20 poäng per konto och dygn från rankat, räknat i svensk tid. |
 
 - **Spelpoängen i spelen (100, 70 och så vidare) är en annan sak** och ändras
   inte. Efter varje låt visar sidan även vad den gav till rangen, till exempel
@@ -556,17 +608,17 @@ rangen räknas på summan. Allt avgörs på servern, i
   2 400, Gabber 5 000, Oldschool 10 000, Legend 20 000. Skalan står på två
   ställen som måste vara lika: `quiz.rang` och `profil.rang_json`. Badgen
   Legend kräver också 20 000 (`badges.js` och `quiz.legend_badge`).
-- **Var poängen ligger:** Dagens låt och fritt spel i `quiz.spelpoang`, en rad
-  per omgång (samma omgång ger aldrig poäng två gånger). Vyn `quiz.alla_poang`
+- **Var poängen ligger:** Dagens låt, fritt spel och rankat i `quiz.spelpoang`,
+  en rad per omgång eller match (samma ger aldrig poäng två gånger). Vyn `quiz.alla_poang`
   lägger ihop dem med dagens fråga, och `quiz.total(konto)` ger summan.
   Topplistan, månaden, rangen, profilen och månadsbadgesen räknas alla från
-  vyn. `quiz.ge_spelpoang` ger poängen och håller taket i fritt spel.
+  vyn. `quiz.ge_spelpoang` ger poängen och håller taken i fritt spel och rankat.
 - **Poängen delas ut i ett eget exception-block** i `dag_svara` och
   `latbibliotek.sok_avsluta`, så att ett fel där aldrig stoppar ett svar.
 - **Bara konton med visningsnamn** samlar poäng, som förut. Utan konto syns
   ingen `rang_plus` och sidan föreslår inloggning.
 - **Topplistan** ligger på `/topplista/` (`public.topplista(p_spel)`, med
-  `alla`, `fraga`, `lat` eller `fritt`). Rangen vid varje namn är alltid
+  `alla`, `fraga`, `lat`, `fritt` eller `rankat`). Rangen vid varje namn är alltid
   summan från alla spel, också när listan visar ett spel. Startsidan, `/spel/`
   och `/quiz/` länkar dit.
 - **Månadsbadgesen** räknas på månadens poäng från alla spel. Ögonblicksbilden
@@ -613,7 +665,8 @@ API:t inte exponerar, precis som `quiz`. Sajten når dem bara genom
     `profil.manader` samt innevarande månad.
   - Bara aggregat, aldrig något om en enskild dag eller vilket alternativ som
     var rätt. Samma sak syns för alla som ser profilen.
-- **Låtspelets badges** (`kommer: true`) delas inte ut än.
+- **Badges med `kommer: true`** delas inte ut än. Just nu bara Anthemkännaren.
+  Duellanten och Obesegrad delas ut i rankat, se **Rankat**.
 - **Grundaren delas bara ut till Jonte** (kontot mystiq). Den har en egen nivå,
   Unik (nivå 5 i `profil.katalog`, `unik: true` i `badges.js`), och ett unikt
   index i databasen gör att den aldrig kan finnas på mer än ett konto. Den
@@ -737,6 +790,11 @@ Mörkt, hårt, kompromisslöst. Passar ämnet.
     genrefärgerna fritt, de extremt sällsynta bär alla fem i en stjärna, och
     genreöronen bär sin genres färg. Formen visar alltid nivån, så färgen
     står aldrig ensam. Badges är spelutmärkelser, inte förtroendeemblem.
+  - Titlarna i rankat (`--rt-1` till `--rt-8` i `stil.css`): namnet får
+    titelns färg i topplistan, på profilen och vid matchen, och ratingen
+    står i samma färg. Titeln står alltid som text bredvid, så färgen är
+    aldrig det enda som visar rangen. Färgerna är valda så att ingen liknar
+    en genrefärg för mycket, och den högsta har ett svagt, stillastående sken.
 
   Färgen står aldrig ensam — alltid tillsammans med ikon eller text. Inga fler
   undantag.

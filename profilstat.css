@@ -71,6 +71,19 @@
 .ps-genrepill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:var(--g);color:var(--natt);font-size:15px;font-weight:700}
 .ps-prick{width:8px;height:8px;border-radius:50%;background:var(--natt)}
 
+/* Rankat: ratingen stor i titelns färg, titeln som text bredvid. */
+.ps-rk-topp{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 16px}
+.ps-rk-tal{display:flex;flex-direction:column;gap:6px}
+.ps-rk-tal b{font-stretch:62%;font-weight:900;font-size:52px;line-height:.9}
+.ps-rk-tal span{font-size:13px;color:var(--text-3)}
+.ps-rk-topp .rt-titel{font-size:15px}
+.ps-rk-placering{font-size:14px;font-weight:700;color:var(--text-2)}
+.ps-rk-genrer{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.ps-rk-genrer li{display:grid;grid-template-columns:minmax(0,1fr) auto 48px;align-items:center;gap:10px;min-height:40px;border-top:1px solid var(--yta-2);font-size:14px}
+.ps-rk-genrer li:first-child{border-top:0}
+.ps-rk-genre{display:inline-flex;align-items:center;gap:8px;color:var(--text-2)}
+.ps-rk-genrer b{text-align:right;font-variant-numeric:tabular-nums}
+
 /* Ett spel som inte spelats: nedtonat kort. */
 .ps-tomt{background:color-mix(in srgb,var(--yta) 55%,transparent);gap:8px}
 .ps-tomt .ps-topp h3,.ps-tomt .ps-pill{opacity:.65}
@@ -82,6 +95,8 @@
   .pn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:32px;padding:28px 32px}
   .pn-namn{font-size:96px}
   .ps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:16px}
+  /* Rankat är det fjärde kortet och får en egen rad i full bredd. */
+  .ps-rankat{grid-column:1 / -1}
   .pf-rutnat{grid-template-columns:repeat(8,minmax(0,1fr))}
 }
 

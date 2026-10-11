@@ -182,6 +182,16 @@
 
   /* ---------- huvudet, rangen och siffrorna ---------- */
 
+  /* Titeln från rankat: totalratingen, efter fem matcher. Färgen ligger på
+     namnet och titeln står alltid som text, så färgen är aldrig ensam. */
+  function rankatAlla(p){ const a = p.rankat && p.rankat.alla; return a && !a.placering ? a : null; }
+  function rankatKlass(p){ const a = rankatAlla(p); return a ? ' rt-namn rt-' + a.niva : ''; }
+  function titelHtml(t){ return t && t.titel ? '<span class="rt-titel rt-' + t.niva + '">' + esc(t.titel) + '</span>' : ''; }
+  function rankatChip(p){
+    const a = rankatAlla(p);
+    return a ? '<span class="pf-chip">' + titelHtml(a) + ' ' + tal(a.rating) + ' i rankat</span>' : '';
+  }
+
   /* opt.egen: knapparna Byt bild och Badge vid namnet, och kameran på bilden.
      opt.bytBild och opt.valjBadge anropas när de trycks. */
   function huvud(el, p, opt){
@@ -195,12 +205,13 @@
         ? '<button class="pf-bild" type="button" data-bild aria-label="Byt profilbild">' + bildDel +
           '<span class="pf-kamera" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span></button>'
         : '<span class="pf-bild">' + bildDel + '</span>') +
-      '<div class="pf-namnrad"><' + namnTagg + ' class="pf-namn">' + esc(p.namn) + '</' + namnTagg + '>' +
+      '<div class="pf-namnrad"><' + namnTagg + ' class="pf-namn' + rankatKlass(p) + '">' + esc(p.namn) + '</' + namnTagg + '>' +
         (b ? '<button class="pf-badgeknapp bm-yta" type="button" data-namnbadge aria-label="Badge vid namnet: ' + esc(b.namn) + '">' + B.medaljHtml(b, true, 32) + '</button>' : '') +
       '</div>' +
       '<span class="pf-rang">' + esc(p.rang) + ', ' + tal(p.poang) + ' poäng</span>' +
       '<div class="pf-chips">' +
         (p.plats ? '<span class="pf-chip">Plats ' + tal(p.plats) + ' i ' + esc(manad(p.manad)) + '</span>' : '') +
+        rankatChip(p) +
         '<span class="pf-chip pf-chip-svag">Med sedan ' + esc(manadAr(p.sedan)) + '</span>' +
       '</div>' +
       (opt.egen
@@ -258,7 +269,8 @@
   const SPELIKON = {
     fraga: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></svg>',
     lat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
-    fritt: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
+    fritt: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
+    rankat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>'
   };
   const KLIPPTEXT = ['0,5 s', '1 s', '3 s', '7 s', '15 s'];
   const GENRENAMN = { hardstyle: 'Hardstyle', raw: 'Raw', uptempo: 'Uptempo', hardcore: 'Hardcore', techno: 'Hard techno' };
@@ -332,7 +344,27 @@
           '<p class="ps-rad">' + tal(t.genre_spelade) + ' av ' + tal(t.spelade) + ' låtar</p></div>'
         : ''), !t.spelade);
 
-    el.innerHTML = kFraga + kLat + kFritt;
+    el.innerHTML = kFraga + kLat + kFritt + rankatKort(p);
+  }
+
+  /* Rankat: totalratingen med titel, matcherna och ratingen per genre. Under
+     fem matcher står placeringen i stället för titeln. */
+  function rankatKort(p){
+    const r = p.rankat;
+    if (!r || !r.alla) return kort('rankat', 'Rankat', p.poang_rankat || 0, '', true);
+    const a = r.alla;
+    const siffra = function(etikett, varde){ return '<div class="ps-siffra"><b>' + tal(varde) + '</b><span>' + etikett + '</span></div>'; };
+    const genrer = Object.keys(GENRENAMN).filter(function(g){ return r.genrer && r.genrer[g]; });
+    return kort('rankat', 'Rankat', p.poang_rankat || 0,
+      '<div class="ps-rk-topp"><div class="ps-rk-tal"><b class="rt-namn rt-' + a.niva + '">' + tal(a.rating) + '</b><span>Rating totalt</span></div>' +
+        (a.placering ? '<span class="ps-rk-placering">Placering ' + a.matcher + ' av 5</span>' : titelHtml(a)) + '</div>' +
+      '<div class="ps-rad-stor">' + siffra('Vinster', a.vinster) + siffra('Förluster', a.forluster) + siffra('Oavgjorda', a.oavgjorda) + '</div>' +
+      (a.basta_svit >= 2 ? '<p class="ps-rad">Flest vinster i rad: ' + tal(a.basta_svit) + '</p>' : '') +
+      (genrer.length ? '<p class="ps-rubrik">Rating per genre</p><ul class="ps-rk-genrer">' + genrer.map(function(g){
+        const x = r.genrer[g];
+        return '<li class="g-' + g + '"><span class="ps-rk-genre"><span class="prick" aria-hidden="true"></span>' + GENRENAMN[g] + '</span>' +
+          '<span>' + (x.placering ? 'Placering ' + x.matcher + ' av 5' : titelHtml(x)) + '</span><b>' + tal(x.rating) + '</b></li>';
+      }).join('') + '</ul>' : ''), false);
   }
 
   window.hardlistProfil = {

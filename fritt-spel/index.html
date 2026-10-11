@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-11b">
+<link rel="stylesheet" href="/stil.css?v=2026-10-12">
 <style>
 /* Mobil först: en kolumn och stora tryckytor. Försöken och sökrutan är
    desamma som i Dagens låt, så att spelen känns igen.
@@ -170,9 +170,104 @@
 .fs-rang a{color:var(--text);text-decoration:underline;text-underline-offset:3px}
 .fs-dagens{margin-top:8px}
 
+/* Valet mellan fritt spel och rankat. Döljs under en låt eller en match. */
+.fs-lagen{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:4px;border-radius:999px;background:var(--yta)}
+.fs-lagen button{min-height:48px;border:0;border-radius:999px;background:none;color:var(--text-2);font-size:16px;font-weight:700;transition:background .15s,color .15s}
+.fs-lagen button:hover{color:var(--text)}
+.fs-lagen button[aria-selected="true"]{background:var(--text);color:var(--natt)}
+.fs.spelar .fs-lagen{display:none}
+
+/* ---------- rankat ---------- */
+.rk,.rk-val,.rk-match{display:flex;flex-direction:column;gap:20px}
+.rk-text{font-size:16px;line-height:1.5;color:var(--text-2)}
+.rk-text b{color:var(--text)}
+.rk-las{gap:12px}
+.rk-las .knapp{align-self:flex-start}
+/* Den egna ratingen överst: stor siffra, titeln som text bredvid. */
+.rk-jag{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px}
+.rk-jag-tal{display:flex;flex-direction:column;gap:4px}
+.rk-jag-tal b{font-stretch:62%;font-weight:900;font-size:56px;line-height:.9}
+.rk-jag-tal span{font-size:14px;color:var(--text-2)}
+.rk-jag .rt-titel{font-size:16px}
+.rk-jag-under{flex-basis:100%;font-size:14px;color:var(--text-3)}
+.rk-genre small{display:block;margin-top:2px;font-size:13px;font-weight:600;color:var(--text-3)}
+.rk-genre .rk-genre-text{display:flex;flex-direction:column;align-items:flex-start;line-height:1.2}
+.rk-oppen{display:flex;flex-direction:column;gap:10px;padding:16px 18px;border-radius:20px;background:var(--yta)}
+.rk-oppen .knapp{align-self:flex-start}
+.rk-regler{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5;color:var(--text-2)}
+.rk-senaste{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.rk-senaste li{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:8px 0;border-top:1px solid var(--yta-2);font-size:15px}
+.rk-senaste li:first-child{border-top:0}
+.rk-senaste b{font-weight:700}
+.rk-senaste span{color:var(--text-2)}
+.rk-andring{flex:none;font-weight:700;font-variant-numeric:tabular-nums}
+.rk-lank{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;font-size:15px;color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
+
+/* Motståndaren på scenen, med titeln som text. */
+.rk-mot{font-size:15px;line-height:1.6;color:var(--text-2);text-align:center}
+.rk-mot .rt-titel{margin-left:6px;vertical-align:1px}
+.rk-mot b{color:var(--text);font-weight:700}
+.rk-mot .rt-namn{font-weight:800}
+
+/* Klockan per klipp. Rosa de sista tio sekunderna, som klockan i quizet. */
+.rk-klocka{align-self:stretch;display:flex;flex-direction:column;gap:6px}
+.rk-klocka-spar{height:6px;border-radius:999px;background:var(--natt);overflow:hidden}
+.rk-klocka-spar i{display:block;height:100%;width:100%;border-radius:999px;background:var(--text)}
+.rk-klocka-text{font-size:14px;font-weight:700;text-align:center;font-variant-numeric:tabular-nums}
+.rk-klocka.snart .rk-klocka-spar i{background:var(--fel)}
+.rk-klocka.snart .rk-klocka-text{color:var(--fel)}
+
+/* Svaren med ett tryck, som i Dagens låt. Rätt alltid cyan med bock, fel
+   alltid rosa med kryss. */
+.rk-alt{display:flex;flex-direction:column;gap:10px}
+.rk-alt-tom{padding:18px;border-radius:16px;box-shadow:inset 0 0 0 1.5px var(--yta);font-size:15px;color:var(--text-3);text-align:center}
+.alt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 16px 10px 12px;border:1.5px solid var(--yta);border-radius:16px;background:var(--yta);color:var(--text);text-align:left;font-size:17px;font-weight:650;line-height:1.3;transition:background .2s,border-color .2s,opacity .25s,transform .1s}
+.alt:hover:not(:disabled){background:var(--yta-2)}
+.alt:active:not(:disabled){transform:scale(.98)}
+.alt:disabled{cursor:default}
+.alt-text{flex:1;min-width:0;overflow-wrap:anywhere}
+.alt-text span{display:block;font-size:15px;font-weight:500;color:var(--text-2)}
+.alt-ratt{background:rgba(61,220,240,.12);border-color:var(--ratt)}
+.alt-ratt .bricka{background:var(--ratt);color:var(--natt)}
+.alt-fel{background:rgba(255,59,107,.12);border-color:var(--fel)}
+.alt-fel .bricka{background:var(--fel);color:var(--natt)}
+.alt-dov{opacity:.4}
+.rk-langre{align-self:stretch;min-height:48px}
+.rk-ge-upp{align-self:center;min-height:44px;padding:0 16px;border:0;border-radius:999px;background:none;color:var(--text-3);font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.rk-ge-upp:hover{color:var(--text-2)}
+.rk-ge-upp.bekrafta{color:var(--text);background:var(--yta-2);text-decoration:none}
+
+/* Resultatet. Siffrorna stora, raderna utan egna ytor. */
+.rk-res{padding:22px;gap:18px;border-radius:24px}
+.rk-res-utfall{display:flex;align-items:center;gap:10px;font-stretch:62%;font-weight:900;font-size:48px;line-height:1}
+.rk-res-utfall svg{flex:none;width:34px;height:34px}
+.rk-tavla{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:end;gap:12px}
+.rk-tavla div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.rk-tavla div:last-child{align-items:flex-end;text-align:right}
+.rk-tavla span{font-size:14px;color:var(--text-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.rk-tavla b{font-stretch:62%;font-weight:900;font-size:52px;line-height:.9;font-variant-numeric:tabular-nums}
+.rk-tavla em{font-style:normal;padding-bottom:8px;font-size:15px;color:var(--text-3)}
+.rk-rating{display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--yta-2)}
+.rk-rating-rad{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.rk-rating-rad b{font-stretch:62%;font-weight:900;font-size:40px;line-height:1}
+.rk-rating-rad strong{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.rk-rating p{font-size:14px;line-height:1.5;color:var(--text-2)}
+.rk-latar{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.rk-latar li{display:grid;grid-template-columns:24px minmax(0,1fr) 44px 44px;align-items:center;gap:10px;min-height:44px;padding:6px 0;border-top:1px solid var(--yta-2);font-size:14px}
+.rk-latar li:first-child{border-top:0}
+.rk-latar .nr{color:var(--text-3)}
+.rk-latar .namn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-2)}
+.rk-latar .p{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.rk-latar .m{text-align:right;color:var(--text-3);font-variant-numeric:tabular-nums}
+.rk-latar .huvud{min-height:28px;font-size:12px;color:var(--text-3)}
+.rk-res .q-knappar{display:flex;flex-wrap:wrap;gap:10px}
+.rk-res .q-knappar .knapp{flex:1 1 180px;white-space:nowrap}
+
 @media (min-width:860px){
   .fs{gap:24px}
   .fs-genrer{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .rk-res{padding:32px}
+  .rk-tavla b{font-size:64px}
   .fs-borja{width:auto;align-self:flex-start;padding:0 40px}
   .fs-scen{padding:22px 24px 24px}
   .fs-ljus{top:140px}
@@ -213,6 +308,12 @@
 
     <!-- Avstängt ljud från iTunes, se data/installningar.json -->
     <div class="fs-paus" id="fsPaus" hidden><b>Låtspelet är pausat.</b> Det kommer tillbaka snart.</div>
+
+    <!-- Fritt spel eller rankat -->
+    <div class="fs-lagen" id="fsLagen" role="tablist" aria-label="Läge" hidden>
+      <button type="button" role="tab" id="fsLageFritt" aria-selected="true" aria-controls="fsVal">Spela fritt</button>
+      <button type="button" role="tab" id="fsLageRankat" aria-selected="false" aria-controls="rk">Rankat</button>
+    </div>
 
     <!-- Val av genre och svårighet -->
     <section class="fs-val" id="fsVal" hidden aria-labelledby="fsValRubrik">
@@ -296,6 +397,69 @@
       </div>
 
       <ol class="fs-forsok" id="fsForsok" aria-label="Dina försök"></ol>
+    </section>
+
+    <!-- Rankat: matcher mot andra spelare, se CLAUDE.md -->
+    <section class="rk" id="rk" role="tabpanel" aria-labelledby="fsLageRankat" hidden>
+      <div class="ruta rk-las" id="rkLas" hidden></div>
+
+      <div class="rk-val" id="rkVal" hidden>
+        <div class="rk-jag" id="rkJag"></div>
+        <div class="rk-oppen" id="rkOppen" hidden></div>
+        <div class="fs-grupp">
+          <span class="fs-etikett" id="rkGenreEtikett">Genre</span>
+          <div class="fs-genrer" role="radiogroup" aria-labelledby="rkGenreEtikett" id="rkGenrer"></div>
+        </div>
+        <button class="knapp fs-borja" id="rkStarta" type="button">Starta match</button>
+        <p class="fs-liten" id="rkRangIdag"></p>
+        <ul class="rk-regler">
+          <li>Tio låtar mot en annan spelare som spelat samma låtar, eller mot en skuggmotståndare på din nivå.</li>
+          <li>Fyra alternativ och ett svar per låt. Rätt ger 100, 70, 40, 20 eller 10 poäng efter klippet. Fel eller att tiden går ut ger 0.</li>
+          <li>Varje klipp har klippets längd och tolv sekunder till på sig.</li>
+          <li>Vinst ger 8 poäng till rangen, oavgjort 4 och förlust 2, högst 20 per dygn. Ger du upp är det förlust utan poäng.</li>
+        </ul>
+        <div id="rkSenaste"></div>
+        <a class="rk-lank" href="/topplista/?lista=rankat">Rankat-topplistan</a>
+      </div>
+
+      <div class="rk-match" id="rkMatch" hidden>
+        <div class="q-spelare-ruta">
+          <div class="fs-scen">
+          <div class="fs-ljus" aria-hidden="true">
+            <i class="fs-stral" style="--v:0deg"></i><i class="fs-stral" style="--v:45deg"></i><i class="fs-stral" style="--v:90deg"></i><i class="fs-stral" style="--v:135deg"></i>
+            <i class="fs-stral" style="--v:180deg"></i><i class="fs-stral" style="--v:225deg"></i><i class="fs-stral" style="--v:270deg"></i><i class="fs-stral" style="--v:315deg"></i>
+          </div>
+            <div class="fs-scen-rad">
+              <span class="fs-val-chip"><span class="prick" aria-hidden="true"></span><span id="rkNummer"></span></span>
+              <span class="fs-summa" id="rkSumma"></span>
+            </div>
+            <p class="rk-mot" id="rkMot"></p>
+            <button class="fs-play" id="rkPlay" type="button" aria-label="Spela klippet">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z"/></svg>
+            </button>
+            <p class="fs-klipp"><span class="fs-klipp-rubrik" id="rkKlipp"></span><span class="fs-klipp-under" id="rkKlippUnder"></span></p>
+            <div class="fs-bar" aria-hidden="true" id="rkBar"></div>
+            <div class="rk-klocka" id="rkKlocka" hidden>
+              <div class="rk-klocka-spar" aria-hidden="true"><i id="rkKlockaBar"></i></div>
+              <p class="rk-klocka-text" id="rkKlockaText"></p>
+            </div>
+            <p class="q-tid" id="rkTid"></p>
+          </div>
+          <p class="q-volym-not" id="rkVolym" hidden>Volymen styr du med knapparna på sidan av telefonen.</p>
+          <div id="rkKalla"></div>
+        </div>
+        <button class="knapp knapp-sek rk-langre" id="rkLangre" type="button" disabled></button>
+        <div class="rk-alt" id="rkAlt"></div>
+        <p class="q-felrad" id="rkFel" role="alert"></p>
+        <div class="ruta fs-facit" id="rkFacit" hidden>
+          <div class="fs-facit-topp"><span class="q-utfall" id="rkUtfall"></span><span class="q-plus" id="rkPlus"></span></div>
+          <p class="fs-facit-lat" id="rkFacitLat"></p>
+          <div class="q-knappar"><button class="knapp" id="rkNasta" type="button">Nästa låt</button></div>
+        </div>
+        <button class="rk-ge-upp" id="rkGeUpp" type="button">Ge upp matchen</button>
+      </div>
+
+      <div id="rkResultat" hidden></div>
     </section>
 
     <p class="fs-liten fs-dagens">Vill du hellre gissa dagens låt, samma för alla? <a href="/latspel/">Dagens låt</a></p>
@@ -708,9 +872,521 @@
   /* Allt annat än ett uttryckligt ja från installningar.json räknas som av. */
   hardlistLjud.tillatet.then(function(ok){
     if (!ok){ $('fsPaus').hidden = false; return; }
-    $('fsVal').hidden = false;
+    $('fsLagen').hidden = false;
+    // Rankat öppnas direkt från en länk till /fritt-spel/#rankat.
+    if (location.hash === '#rankat' && window.hardlistRankat) window.hardlistRankat.visa();
+    else $('fsVal').hidden = false;
     hamtaMin();
   });
+})();
+</script>
+<script>
+/* Rankat. Servern väljer motståndaren och låtarna, lämnar ut alternativen
+   först när klockan går, rättar och tar tiden. Sidan vet aldrig vilket
+   alternativ som är rätt förrän den har svarat, och aldrig motståndarens
+   poäng förrän matchen är klar. Koden för vanligt fritt spel ovan är orörd. */
+(function(){
+  const K = window.hardlistKonto;
+  const $ = function(id){ return document.getElementById(id); };
+  const esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  const tal = function(n){ return Number(n || 0).toLocaleString('sv-SE', { maximumFractionDigits: 1 }); };
+  const sek = function(s){ return String(s).replace('.', ','); };
+  const sekText = function(s){ return sek(s) + (s === 1 ? ' sekund' : ' sekunder'); };
+  const plus = function(n){ return (n > 0 ? '+' : n < 0 ? '−' : '±') + tal(Math.abs(n)); };
+
+  const KLIPP = [0.5, 1, 3, 7, 15];
+  const POANG = [100, 70, 40, 20, 10];
+  const GENRER = ['hardstyle', 'raw', 'uptempo', 'hardcore', 'techno'];
+  const NAMN = { hardstyle: 'Hardstyle', raw: 'Raw', uptempo: 'Uptempo', hardcore: 'Hardcore', techno: 'Hard techno' };
+  const UTFALL = { vinst: 'Vinst', forlust: 'Förlust', oavgjort: 'Oavgjort' };
+  const IKON_PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z"/></svg>';
+  const IKON_PAUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5h4v13H3zM9 1.5h4v13H9z"/></svg>';
+  const IKON_JA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const IKON_NEJ = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  const IKON_LIKA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 9h12M6 15h12"/></svg>';
+  const IKON_RANG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6M6 20l6-6 6 6"/></svg>';
+  // Samma tysta ljudsnutt som ovan, som låser upp ljudet på iPhone.
+  const TYST = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+
+  let min = null;         // rankat_min
+  let genre = null;
+  let match = null;       // läget från servern
+  let lat = null;         // { omgang, steg, startad, alternativ, ljud, klar }
+  let frist = 0, fristTotal = 1, klocka = 0, fraga = 0;
+  let geUppTid = 0;
+  let upplast = false, vakt = 0;
+  let volymText = !!hardlistLjud.telefonVolym;
+  const spelare = new Audio();
+  spelare.preload = 'auto';
+
+  /* Titeln står alltid som text, färgen ligger bara på namnet och titeln. */
+  function titel(t){ return t && t.titel ? '<span class="rt-titel rt-' + t.niva + '">' + esc(t.titel) + '</span>' : ''; }
+
+  /* ---------- läget: fritt spel eller rankat ---------- */
+
+  function visaLage(rankat){
+    $('fsLageFritt').setAttribute('aria-selected', String(!rankat));
+    $('fsLageRankat').setAttribute('aria-selected', String(rankat));
+    $('fsVal').hidden = rankat;
+    $('rk').hidden = !rankat;
+    if (rankat){
+      $('fs').dataset.genre = genre || 'blandat';
+      history.replaceState(null, '', '#rankat');
+      laddaMin();
+    } else {
+      history.replaceState(null, '', location.pathname + location.search);
+      // Fritt spels genreval styr färgen igen.
+      const vald = document.querySelector('#fsGenrer [aria-checked="true"]');
+      $('fs').dataset.genre = vald ? vald.getAttribute('data-val') : 'blandat';
+    }
+  }
+  $('fsLageFritt').addEventListener('click', function(){ visaLage(false); });
+  $('fsLageRankat').addEventListener('click', function(){ visaLage(true); });
+
+  /* ---------- valet ---------- */
+
+  function visaBara(id){
+    ['rkLas', 'rkVal', 'rkMatch', 'rkResultat'].forEach(function(x){ $(x).hidden = x !== id; });
+  }
+
+  function las(html){
+    visaBara('rkLas');
+    $('rkLas').innerHTML = html;
+  }
+
+  async function laddaMin(){
+    if (!K || !K.inloggad()){
+      las('<h2>Rankat kräver ett konto</h2>' +
+        '<p class="rk-text">Ratingen, matcherna och poängen till rangen sparas på kontot, och motståndarna är andra inloggade spelare. Utan konto kan du spela fritt som vanligt.</p>' +
+        '<button class="knapp" type="button" id="rkLoggaIn">Logga in</button>');
+      $('rkLoggaIn').addEventListener('click', function(){ K.loggaIn().catch(function(){ location.href = '/konto/'; }); });
+      return;
+    }
+    las('<p class="rk-text">Hämtar din rating.</p>');
+    try { min = await K.rpc('rankat_min'); }
+    catch(e){ min = null; }
+    if (!min){
+      las('<p class="rk-text">Rankat gick inte att hämta just nu. Försök igen om en stund.</p>');
+      return;
+    }
+    if (!min.har_namn){
+      las('<h2>Välj ett visningsnamn först</h2>' +
+        '<p class="rk-text">Motståndaren ser ditt namn, och rankat-topplistan visar det bredvid din rating. Du kommer tillbaka hit när namnet är valt.</p>' +
+        '<button class="knapp" type="button" id="rkValjNamn">Välj visningsnamn</button>');
+      $('rkValjNamn').addEventListener('click', function(){ K.valjNamn(); });
+      return;
+    }
+    ritaVal();
+  }
+
+  function ritaVal(){
+    visaBara('rkVal');
+    $('fs').classList.remove('spelar');
+    const a = min.alla;
+    $('rkJag').innerHTML =
+      '<div class="rk-jag-tal"><span>Din rating totalt</span><b' + (a.placering ? '' : ' class="rt-namn rt-' + a.niva + '"') + '>' + tal(a.rating) + '</b></div>' +
+      (a.placering ? '<span class="rt-titel">Placering</span>' : titel(a)) +
+      '<p class="rk-jag-under">' + (a.placering
+        ? 'Placeringsmatcher: ' + a.matcher + ' av 5 spelade. Du syns i rankat-topplistan efter fem matcher.'
+        : a.vinster + (a.vinster === 1 ? ' vinst, ' : ' vinster, ') + a.forluster + (a.forluster === 1 ? ' förlust och ' : ' förluster och ') +
+          a.oavgjorda + ' oavgjorda på ' + a.matcher + ' matcher.' + (a.svit >= 2 ? ' ' + a.svit + ' vinster i rad.' : '')) + '</p>';
+
+    if (!genre) genre = (min.oppen && min.oppen.genre) || 'hardstyle';
+    $('rkGenrer').innerHTML = GENRER.map(function(g){
+      const r = min.genrer[g] || {};
+      return '<button class="fs-genre rk-genre g-' + g + '" type="button" role="radio" data-genre="' + g + '" aria-checked="' + (g === genre) + '">' +
+        '<span class="prick"></span><span class="rk-genre-text">' + NAMN[g] +
+        '<small>' + (r.placering ? 'Placering ' + (r.matcher || 0) + ' av 5' : tal(r.rating) + ', ' + esc(r.titel)) + '</small></span></button>';
+    }).join('');
+    $('fs').dataset.genre = genre;
+
+    const o = min.oppen;
+    $('rkOppen').hidden = !o;
+    if (o){
+      $('rkOppen').innerHTML = '<p class="rk-text"><b>Du har en match på gång</b> i ' + NAMN[o.genre] + ', ' + o.spelade + ' av 10 låtar spelade. Startar du en ny räknas den som förlust.</p>' +
+        '<button class="knapp" type="button" id="rkFortsatt">Fortsätt matchen</button>';
+      $('rkFortsatt').addEventListener('click', function(){ fortsatt(o); });
+    }
+    $('rkStarta').textContent = o ? 'Starta en ny match' : 'Starta match';
+    $('rkStarta').className = 'knapp fs-borja' + (o ? ' knapp-sek' : '');
+    $('rkRangIdag').textContent = 'Poäng till rangen från rankat i dag: ' + tal(min.rang_idag) + ' av ' + tal(min.rang_tak) + '.';
+
+    const s = min.senaste || [];
+    $('rkSenaste').innerHTML = s.length ? '<h3 class="fs-etikett">Senaste matcherna</h3><ul class="rk-senaste">' + s.map(function(m){
+      const mot = m.mot.skugga ? 'skuggmotståndare' : esc(m.mot.namn);
+      return '<li><span><b>' + (m.avbruten ? 'Uppgiven' : UTFALL[m.resultat]) + '</b> mot ' + mot + ' i ' + NAMN[m.genre] +
+        (m.avbruten ? '' : ', ' + m.poang + ' mot ' + m.mot_poang) + '</span>' +
+        '<span class="rk-andring">' + plus(m.andring) + '</span></li>';
+    }).join('') + '</ul>' : '';
+  }
+
+  $('rkGenrer').addEventListener('click', function(e){
+    const b = e.target.closest('[data-genre]'); if (!b) return;
+    genre = b.getAttribute('data-genre');
+    this.querySelectorAll('[role="radio"]').forEach(function(x){ x.setAttribute('aria-checked', String(x === b)); });
+    $('fs').dataset.genre = genre;
+  });
+
+  /* ---------- ljudet ---------- */
+
+  function lasUpp(){
+    if (upplast) return;
+    upplast = true;
+    spelare.src = TYST;
+    const p = spelare.play();
+    if (p && p.then) p.then(function(){ spelare.pause(); }).catch(function(){});
+  }
+  function ikon(spelar){
+    $('fs').classList.toggle('ljud', spelar);
+    $('rkPlay').innerHTML = spelar ? IKON_PAUS : IKON_PLAY;
+    $('rkPlay').setAttribute('aria-label', spelar ? 'Pausa' : 'Spela klippet');
+  }
+  function stoppa(){ cancelAnimationFrame(vakt); try { spelare.pause(); } catch(e){} ikon(false); }
+  function grans(){ return lat && !lat.klar ? KLIPP[lat.steg] : null; }
+  // Klippet stoppas efter ljudets egen position, så att laddtiden inte äter
+  // av klippet.
+  function bevaka(){
+    const g = grans(), t = spelare.currentTime;
+    const st = $('rkSpelat');
+    if (g !== null && t >= g){ spelare.pause(); if (st) st.style.width = (g / 15 * 100) + '%'; return; }
+    if (st) st.style.width = Math.min(100, t / (g !== null ? 15 : (spelare.duration || 30)) * 100) + '%';
+    if (!spelare.paused) vakt = requestAnimationFrame(bevaka);
+  }
+  spelare.addEventListener('playing', function(){
+    if (spelare.src.indexOf('data:') === 0) return;
+    volymText = false; $('rkVolym').hidden = true;
+    ikon(true); cancelAnimationFrame(vakt); vakt = requestAnimationFrame(bevaka);
+  });
+  spelare.addEventListener('pause', function(){ cancelAnimationFrame(vakt); ikon(false); });
+  spelare.addEventListener('ended', function(){ cancelAnimationFrame(vakt); ikon(false); });
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) stoppa(); });
+
+  function spelaFranBorjan(){
+    stoppa();
+    try { spelare.currentTime = 0; } catch(e){}
+    const p = spelare.play();
+    if (p && p.catch) p.catch(function(){ $('rkTid').textContent = 'Kunde inte spela upp ljudet. Tryck igen.'; });
+  }
+
+  /* ---------- klockan ---------- */
+
+  /* Servern mäter tiden. Klockan här visar bara hur mycket som är kvar, och
+     frågar servern när den når noll. */
+  function startaKlocka(kvar){
+    stoppaKlocka();
+    frist = Date.now() + kvar * 1000;
+    fristTotal = Math.max(kvar, 1);
+    $('rkKlocka').hidden = false;
+    ritaKlocka();
+    klocka = setInterval(ritaKlocka, 100);
+  }
+  function stoppaKlocka(){ clearInterval(klocka); clearTimeout(fraga); klocka = 0; }
+  function ritaKlocka(){
+    const kvar = Math.max(0, (frist - Date.now()) / 1000);
+    $('rkKlockaBar').style.width = Math.min(100, kvar / fristTotal * 100) + '%';
+    $('rkKlockaText').textContent = Math.ceil(kvar) + ' s kvar';
+    $('rkKlocka').classList.toggle('snart', kvar <= 10);
+    if (kvar <= 0){
+      stoppaKlocka();
+      lasAlt(true);
+      $('rkLangre').disabled = true;
+      // En liten marginal, så att servern säkert också ser att tiden gått.
+      fraga = setTimeout(kollaTid, 600);
+    }
+  }
+  async function kollaTid(){
+    if (!lat || lat.klar) return;
+    try {
+      const v = await K.rpc('rankat_spela', { p_omgang: lat.omgang });
+      if (v && v.klar) return visaFacit(v);
+      if (v && v.kvar > 0){ lasAlt(false); $('rkLangre').disabled = lat.steg >= 4; startaKlocka(v.kvar); return; }
+    } catch(e){}
+    fraga = setTimeout(kollaTid, 1500);
+  }
+
+  /* ---------- matchen ---------- */
+
+  async function starta(){
+    lasUpp();
+    const b = $('rkStarta');
+    b.disabled = true;
+    try {
+      const v = await K.rpc('rankat_starta', { p_genre: genre });
+      if (!v || v.fel) throw new Error(v && v.fel);
+      match = v;
+      borja();
+    } catch(e){
+      $('rkRangIdag').textContent = e && e.message === 'inga_latar'
+        ? 'Det finns inte tillräckligt med låtar i ' + NAMN[genre] + ' för en match än.'
+        : 'Matchen gick inte att starta. Försök igen om en stund.';
+    } finally {
+      b.disabled = false;
+    }
+  }
+  function fortsatt(o){
+    lasUpp();
+    genre = o.genre;
+    match = { match: o.match, genre: o.genre };
+    borja();
+  }
+  function borja(){
+    $('fs').classList.add('spelar');
+    $('fs').dataset.genre = match.genre || genre;
+    visaBara('rkMatch');
+    nasta();
+  }
+
+  async function nasta(){
+    stoppa(); stoppaKlocka();
+    $('rkFel').textContent = '';
+    $('rkFacit').hidden = true;
+    $('rkNasta').disabled = true;
+    let v;
+    try {
+      v = await K.rpc('rankat_nasta', { p_match: match.match });
+      if (!v || v.fel) throw new Error(v && v.fel);
+    } catch(e){
+      $('rkFel').innerHTML = 'Nästa låt gick inte att hämta. <button class="rk-ge-upp" type="button" id="rkForsokIgen">Försök igen</button>';
+      $('rkForsokIgen').addEventListener('click', nasta);
+      return;
+    } finally {
+      $('rkNasta').disabled = false;
+    }
+    match = v;
+    if (v.klar) return visaResultat(v);
+    lat = { omgang: v.omgang, steg: v.steg || 0, startad: !!v.startad, alternativ: v.alternativ || null, ljud: null, klar: false };
+    spelare.removeAttribute('src');
+    ritaLat();
+    // Omladdad mitt i en låt: klockan går redan på servern.
+    if (lat.startad && v.kvar != null) startaKlocka(v.kvar);
+  }
+
+  function ritaMot(){
+    const m = match.mot || {};
+    $('rkMot').innerHTML = m.skugga
+      ? 'Mot <b>skuggmotståndare</b>, ' + tal(m.rating) + titel(m)
+      : 'Mot <b class="rt-namn rt-' + m.niva + '">' + esc(m.namn) + '</b>, ' + tal(m.rating) + titel(m);
+  }
+
+  function ritaLat(){
+    $('rkNummer').textContent = 'Låt ' + match.nummer + ' av ' + match.antal;
+    $('rkSumma').textContent = tal(match.poang) + ' poäng' + (match.jag && match.jag.placering ? ', placeringsmatch' : '');
+    ritaMot();
+    ritaKlipp();
+    $('rkVolym').hidden = !volymText;
+    $('rkKalla').innerHTML = hardlistLjud.kalla(null);
+    $('rkTid').textContent = lat.startad ? 'Klockan går. Tryck för att höra klippet igen.' : 'Klockan startar när du trycker.';
+    $('rkKlocka').hidden = true;
+    ritaAlt(null);
+    $('rkGeUpp').classList.remove('bekrafta');
+    $('rkGeUpp').textContent = 'Ge upp matchen';
+    $('rkPlay').focus({ preventScroll: true });
+  }
+
+  function ritaKlipp(){
+    const s = KLIPP[lat.steg];
+    $('rkKlipp').textContent = lat.klar ? 'Hela förlyssningen' : 'Klipp ' + (lat.steg + 1) + ' av 5';
+    $('rkKlippUnder').textContent = lat.klar ? '' : sekText(s) + ', ' + POANG[lat.steg] + ' poäng';
+    $('rkBar').innerHTML = '<i class="upplast" style="width:' + (lat.klar ? 100 : s / 15 * 100) + '%"></i><i class="spelat" id="rkSpelat"></i>' +
+      (lat.klar ? '' : KLIPP.slice(0, -1).map(function(k){ return '<i class="streck" style="left:' + (k / 15 * 100) + '%"></i>'; }).join(''));
+    const l = $('rkLangre');
+    l.hidden = lat.klar || lat.steg >= 4;
+    if (lat.steg < 4) l.textContent = 'Längre: ' + sekText(KLIPP[lat.steg + 1]) + ', ' + POANG[lat.steg + 1] + ' poäng';
+    l.disabled = !lat.startad;
+  }
+
+  function ritaAlt(facit){
+    if (!lat.alternativ){
+      $('rkAlt').innerHTML = '<p class="rk-alt-tom">Alternativen visas när du spelar klippet.</p>';
+      return;
+    }
+    $('rkAlt').innerHTML = lat.alternativ.map(function(a, i){
+      let klass = 'alt', bricka = 'ABCD'.charAt(i), las = '';
+      if (facit){
+        if (i === facit.ratt_plats){ klass += ' alt-ratt'; bricka = IKON_JA; las = '<span class="fs-dold">, rätt svar</span>'; }
+        else if (i === facit.valde){ klass += ' alt-fel'; bricka = IKON_NEJ; las = '<span class="fs-dold">, ditt svar, fel</span>'; }
+        else klass += ' alt-dov';
+      }
+      return '<button class="' + klass + '" type="button" data-plats="' + i + '"' + (facit ? ' disabled' : '') + '>' +
+        '<span class="bricka" aria-hidden="true">' + bricka + '</span>' +
+        '<span class="alt-text">' + esc(a.titel) + '<span>' + esc(a.artist) + las + '</span></span></button>';
+    }).join('');
+  }
+  function lasAlt(last){ $('rkAlt').querySelectorAll('.alt').forEach(function(x){ x.disabled = last; }); }
+
+  $('rkPlay').addEventListener('click', async function(){
+    if (!lat) return;
+    if (!spelare.paused && spelare.src.indexOf('data:') !== 0){ stoppa(); return; }
+    if (lat.klar){ spelaFranBorjan(); return; }
+    if (!lat.ljud){
+      this.disabled = true;
+      $('rkTid').textContent = 'Laddar klippet…';
+      let v;
+      try {
+        v = await K.rpc('rankat_spela', { p_omgang: lat.omgang });
+        if (!v || (v.fel && !v.klar)) throw new Error(v && v.fel);
+      } catch(e){
+        this.disabled = false;
+        $('rkTid').textContent = 'Kunde inte hämta klippet. Tryck igen.';
+        return;
+      }
+      this.disabled = false;
+      if (v.klar) return visaFacit(v);
+      lat.ljud = v.ljud; lat.startad = true; lat.steg = v.steg;
+      lat.alternativ = v.alternativ;
+      spelare.src = v.ljud;
+      ritaKlipp(); ritaAlt(null);
+      startaKlocka(v.kvar);
+      $('rkTid').textContent = 'Klockan går. Tryck för att höra klippet igen.';
+    }
+    spelaFranBorjan();
+  });
+
+  $('rkLangre').addEventListener('click', async function(){
+    if (!lat || lat.klar) return;
+    lasUpp();
+    this.disabled = true;
+    let v;
+    try {
+      v = await K.rpc('rankat_langre', { p_omgang: lat.omgang });
+      if (!v || (v.fel && !v.klar)) throw new Error(v && v.fel);
+    } catch(e){
+      this.disabled = false;
+      $('rkFel').textContent = 'Klippet gick inte att förlänga. Försök igen.';
+      return;
+    }
+    if (v.klar) return visaFacit(v);
+    lat.steg = v.steg;
+    ritaKlipp();
+    startaKlocka(v.kvar);
+    spelaFranBorjan();
+  });
+
+  $('rkAlt').addEventListener('click', async function(e){
+    const b = e.target.closest('[data-plats]');
+    if (!b || !lat || lat.klar || b.disabled) return;
+    lasAlt(true);
+    stoppa(); stoppaKlocka();
+    $('rkLangre').disabled = true;
+    let v;
+    try {
+      v = await K.rpc('rankat_svara', { p_omgang: lat.omgang, p_plats: +b.getAttribute('data-plats') });
+      if (!v || (v.fel && !v.klar)) throw new Error(v && v.fel);
+    } catch(err){
+      // Svaret kom kanske inte fram. Klockan på servern går, så låt den avgöra.
+      $('rkFel').textContent = 'Svaret kom inte fram. Tryck igen.';
+      lasAlt(false);
+      $('rkLangre').disabled = lat.steg >= 4;
+      if (frist > Date.now()) klocka = setInterval(ritaKlocka, 100);
+      return;
+    }
+    visaFacit(v);
+  });
+
+  function visaFacit(v){
+    stoppa(); stoppaKlocka();
+    lat.klar = true;
+    $('rkKlocka').hidden = true;
+    if (!lat.alternativ) lat.alternativ = null;
+    if (lat.alternativ) ritaAlt(v); else $('rkAlt').innerHTML = '';
+    ritaKlipp();
+    if (v.lat && v.lat.ljud) spelare.src = v.lat.ljud;
+    $('rkUtfall').className = 'q-utfall ' + (v.ratt ? 'ja' : 'nej');
+    $('rkUtfall').innerHTML = v.ratt ? IKON_JA + 'Rätt på ' + sekText(v.sekunder) : IKON_NEJ + (v.tid_ute ? 'Tiden gick ut' : 'Fel');
+    $('rkPlus').textContent = v.ratt ? '+' + v.poang : '';
+    $('rkFacitLat').innerHTML = '<b>' + esc(v.lat.titel) + '</b><span>' + esc(v.lat.artist) + '</span>';
+    $('rkKalla').innerHTML = hardlistLjud.kalla(v.lat.apple);
+    $('rkTid').textContent = '';
+    match.poang = v.poang_match;
+    $('rkSumma').textContent = tal(match.poang) + ' poäng' + (match.jag && match.jag.placering ? ', placeringsmatch' : '');
+    $('rkNasta').textContent = v.sista ? 'Se resultatet' : 'Nästa låt';
+    $('rkFacit').hidden = false;
+    $('rkNasta').focus({ preventScroll: true });
+    $('rkFacit').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  $('rkNasta').addEventListener('click', nasta);
+
+  /* Två tryck, så att ingen ger upp av misstag. */
+  $('rkGeUpp').addEventListener('click', async function(){
+    if (!this.classList.contains('bekrafta') || Date.now() - geUppTid > 5000){
+      this.classList.add('bekrafta');
+      this.textContent = 'Tryck igen för att ge upp. Det räknas som förlust.';
+      geUppTid = Date.now();
+      return;
+    }
+    this.disabled = true;
+    stoppa(); stoppaKlocka();
+    try {
+      const v = await K.rpc('rankat_ge_upp', { p_match: match.match });
+      if (!v || (v.fel && !v.klar)) throw new Error(v && v.fel);
+      visaResultat(v);
+    } catch(e){
+      $('rkFel').textContent = 'Det gick inte att ge upp just nu. Försök igen.';
+    } finally {
+      this.disabled = false;
+    }
+  });
+
+  /* ---------- resultatet ---------- */
+
+  function visaResultat(v){
+    stoppa(); stoppaKlocka();
+    lat = null;
+    $('fs').classList.remove('spelar');
+    visaBara('rkResultat');
+    const m = v.mot || {};
+    const motNamn = m.skugga ? 'Skuggmotståndare' : esc(m.namn);
+    const ikonUt = v.resultat === 'vinst' ? IKON_JA : v.resultat === 'oavgjort' ? IKON_LIKA : IKON_NEJ;
+    const nyTitel = v.titel_fore && v.titel_efter && v.titel_fore.niva !== v.titel_efter.niva;
+    const jag = v.jag || {};
+
+    let rang;
+    if (v.avbruten) rang = '<span class="fs-rang-ikon">' + IKON_RANG + '</span><span>Uppgivna matcher ger inga poäng till rangen.</span>';
+    else if (v.rang_plus > 0) rang = '<span class="fs-rang-ikon">' + IKON_RANG + '</span><span class="fs-rang-tal">+' + tal(v.rang_plus) + '</span><span>till rangen</span>';
+    else rang = '<span class="fs-rang-ikon">' + IKON_RANG + '</span><span>Inget till rangen, dagens tak på 20 poäng från rankat är nått.</span>';
+
+    $('rkResultat').innerHTML =
+      '<section class="ruta rk-res" aria-labelledby="rkResRubrik">' +
+        '<h2 class="rk-res-utfall" id="rkResRubrik">' + ikonUt + (v.avbruten ? 'Uppgiven' : UTFALL[v.resultat]) + '</h2>' +
+        '<div class="rk-tavla">' +
+          '<div><span>Du</span><b>' + tal(v.poang) + '</b></div><em>mot</em>' +
+          '<div><span class="' + (m.skugga ? '' : 'rt-namn rt-' + m.niva) + '">' + motNamn + '</span><b>' + tal(v.mot_poang) + '</b></div>' +
+        '</div>' +
+        '<div class="rk-rating">' +
+          '<span class="fs-etikett">Rating i ' + NAMN[match.genre || genre] + '</span>' +
+          '<div class="rk-rating-rad"><b class="rt-namn rt-' + v.titel_efter.niva + '">' + tal(v.rating_efter) + '</b>' +
+            '<strong>' + plus(v.andring) + '</strong>' + titel(v.titel_efter) + '</div>' +
+          '<p>' + (nyTitel ? 'Ny titel: ' + esc(v.titel_efter.titel) + '. ' : '') +
+            'Från ' + tal(v.rating_fore) + '. Totalt ' + tal(v.alla_efter) + ', ' + plus(v.alla_efter - v.alla_fore) + '.' +
+            (jag.placering ? ' Placeringsmatch ' + jag.matcher + ' av 5.' : (jag.matcher === 5 ? ' Placeringen är klar, och du syns nu i rankat-topplistan.' : '')) + '</p>' +
+        '</div>' +
+        '<p class="fs-rang">' + rang + '</p>' +
+        '<ol class="rk-latar" aria-label="Poäng per låt">' +
+          '<li class="huvud" aria-hidden="true"><span></span><span>Låt</span><span class="p">Du</span><span class="m">Mot</span></li>' +
+          (v.latar || []).map(function(l){
+            return '<li><span class="nr">' + l.nummer + '</span><span class="namn">' + (l.hord ? esc(l.artist) + ' — ' + esc(l.titel) : 'Inte spelad') + '</span>' +
+              '<span class="p">' + l.poang + '</span><span class="m">' + l.mot_poang + '</span></li>';
+          }).join('') +
+        '</ol>' +
+        '<div class="q-knappar">' +
+          '<button class="knapp" type="button" id="rkIgen">Ny match</button>' +
+          '<button class="knapp knapp-sek" type="button" id="rkByt">Byt genre</button>' +
+        '</div>' +
+        '<a class="rk-lank" href="/topplista/?lista=rankat">Rankat-topplistan</a>' +
+      '</section>';
+    $('rkIgen').addEventListener('click', function(){ starta(); });
+    $('rkByt').addEventListener('click', laddaMin);
+    $('rkIgen').focus({ preventScroll: true });
+    $('rkResultat').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    if (v.nya_badges && v.nya_badges.length){
+      K.badges().then(function(B){ B.visaNya(v.nya_badges); }).catch(function(){});
+    }
+  }
+
+  $('rkStarta').addEventListener('click', starta);
+
+  window.hardlistRankat = { visa: function(){ visaLage(true); } };
 })();
 </script>
 <script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

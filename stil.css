@@ -46,6 +46,20 @@
   --ratt:var(--hardstyle);
   --fel:var(--rosa);
 
+  /* Titlarna i rankat, ett uttryckligt undantag från färgregeln. Titeln står
+     alltid som text bredvid färgen. Gränserna och namnen ligger i
+     latbibliotek.rankat_titel på servern. Valda så att ingen liknar en
+     genrefärg för mycket: grått, sand, brons, grönt, blått, magenta, orange
+     och blekt guld. */
+  --rt-1:#B9AFC9;  /* Intro, under 900 */
+  --rt-2:#D3C2A4;  /* Kick, 900 */
+  --rt-3:#C9915E;  /* Build-up, 1 100 */
+  --rt-4:#5ED08D;  /* Reverse bass, 1 300 */
+  --rt-5:#5B90FF;  /* Screech, 1 500 */
+  --rt-6:#E05CD2;  /* Distortion, 1 700 */
+  --rt-7:#FF7A33;  /* Drop, 1 900 */
+  --rt-8:#F7E38A;  /* Endshow, 2 100 */
+
   --marginal:20px;
   --bredd:1240px;
   --meny-hojd:72px;
@@ -392,6 +406,17 @@ h1 em{font-style:normal}
    ändras, så det står utanför sajtens färgregler. */
 .apple-marke{display:inline-flex;flex:none;border-radius:6px}
 .apple-marke img{display:block;width:141px;height:41px}
+
+/* ---------- Titlarna i rankat ---------- */
+
+/* Namnet i titelns färg, och titeln som text bredvid. Används i fritt spel,
+   topplistan och på profilen. */
+.rt-1{--rt:var(--rt-1)} .rt-2{--rt:var(--rt-2)} .rt-3{--rt:var(--rt-3)} .rt-4{--rt:var(--rt-4)}
+.rt-5{--rt:var(--rt-5)} .rt-6{--rt:var(--rt-6)} .rt-7{--rt:var(--rt-7)} .rt-8{--rt:var(--rt-8)}
+.rt-namn{color:var(--rt,inherit)}
+.rt-titel{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--rt,var(--text-2));white-space:nowrap}
+.rt-titel::before{content:"";flex:none;width:8px;height:8px;border-radius:2px;background:currentColor;transform:rotate(45deg)}
+.rt-8.rt-namn,.rt-8 .rt-namn,.rt-titel.rt-8{text-shadow:0 0 12px rgba(247,227,138,.35)}
 
 /* ---------- Mobil ---------- */
 

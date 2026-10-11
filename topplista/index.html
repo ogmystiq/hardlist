@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-11b">
+<link rel="stylesheet" href="/stil.css?v=2026-10-12">
 <style>
 .q{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px;padding-top:4px}
 .q-rubrik{font-size:38px}
@@ -72,6 +72,13 @@
 .q-rader .p2 .plats{color:#C4CAD6}
 .q-rader .p3 .plats{color:#CD8A52}
 .q-jag-etikett{font-size:13px;color:var(--text-3)}
+/* Titeln från rankat bredvid namnet, efter fem matcher. Färgen ligger på
+   namnet, och titeln står alltid som text. */
+.q-rader .rang .rt-titel{margin-left:8px;font-size:12px}
+.q-rk-rubrik{display:flex;flex-direction:column;gap:6px;padding:6px 8px 8px}
+.q-rk-rubrik h2{font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
+.q-rk-rubrik p{font-size:14px;line-height:1.5;color:var(--text-3)}
+.q-rk-rubrik a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
 
 .q-tom{color:var(--text-2);font-size:15px}
 .q-jag{padding:6px 10px;font-size:14px;line-height:1.5;color:var(--text-3);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
@@ -109,7 +116,7 @@
   <div class="q">
 
     <h1 class="q-rubrik">Topplistan</h1>
-    <p class="ingress">Poängen från Dagens fråga, Dagens låt och fritt spel räknas ihop till rangen. Här kan du se dem ihop eller ett spel i taget.</p>
+    <p class="ingress">Poängen från Dagens fråga, Dagens låt, fritt spel och rankat räknas ihop till rangen. Här kan du se dem ihop eller ett spel i taget.</p>
 
     <section class="ruta q-lista" aria-labelledby="qListaRubrik">
       <div class="q-lista-topp">
@@ -124,9 +131,27 @@
         <button class="chip" type="button" data-spel="fraga" aria-pressed="false">Dagens fråga</button>
         <button class="chip" type="button" data-spel="lat" aria-pressed="false">Dagens låt</button>
         <button class="chip" type="button" data-spel="fritt" aria-pressed="false">Fritt spel</button>
+        <button class="chip" type="button" data-spel="rankat" aria-pressed="false">Rankat</button>
       </div>
       <ol class="q-rader" id="qRader"><li class="q-tom">Hämtar topplistan.</li></ol>
       <div class="q-jag" id="qJag"></div>
+    </section>
+
+    <section class="ruta q-lista" id="rankat" aria-labelledby="qRkRubrik">
+      <div class="q-rk-rubrik">
+        <h2 id="qRkRubrik">Rankat</h2>
+        <p>Rating från matcherna i <a href="/fritt-spel/#rankat">rankat</a>. Du syns här efter fem matcher.</p>
+      </div>
+      <div class="q-spel" id="qRkGenrer" role="group" aria-label="Genre">
+        <button class="chip" type="button" data-genre="alla" aria-pressed="true">Totalt</button>
+        <button class="chip" type="button" data-genre="hardstyle" aria-pressed="false"><span class="prick g-hardstyle" aria-hidden="true"></span>Hardstyle</button>
+        <button class="chip" type="button" data-genre="raw" aria-pressed="false"><span class="prick g-raw" aria-hidden="true"></span>Raw</button>
+        <button class="chip" type="button" data-genre="uptempo" aria-pressed="false"><span class="prick g-uptempo" aria-hidden="true"></span>Uptempo</button>
+        <button class="chip" type="button" data-genre="hardcore" aria-pressed="false"><span class="prick g-hardcore" aria-hidden="true"></span>Hardcore</button>
+        <button class="chip" type="button" data-genre="techno" aria-pressed="false"><span class="prick g-techno" aria-hidden="true"></span>Hard techno</button>
+      </div>
+      <ol class="q-rader" id="qRkRader"><li class="q-tom">Hämtar rankat.</li></ol>
+      <div class="q-jag" id="qRkJag"></div>
     </section>
 
     <section class="q-om text" aria-labelledby="qOmRubrik">
@@ -136,6 +161,7 @@
         <li><strong>Dagens fråga.</strong> 10 poäng för rätt svar, och mer för varje dag i rad. Låtfrågan på fredagar ger dubbelt.</li>
         <li><strong>Dagens låt.</strong> 20, 15, 10, 7 eller 5 poäng beroende på vilket klipp du klarar låten på. Fel svar ger 0.</li>
         <li><strong>Fritt spel.</strong> 0,2 poäng per rätt låt på Lätt, 0,4 på Medel, 0,7 på Svår och 1 på Expert. Högst 10 poäng per dygn från fritt spel.</li>
+        <li><strong>Rankat.</strong> 8 poäng för vinst, 4 för oavgjort och 2 för förlust. Högst 20 poäng per dygn från rankat. En uppgiven match ger inget.</li>
       </ul>
       <p>Rangerna är Nybörjare, Raver från 100 poäng, Frontrow från 400, Hardhead från 1 000, Hakker från 2 400, Gabber från 5 000, Oldschool från 10 000 och Legend från 20 000.</p>
       <p>Bara konton med visningsnamn samlar poäng och syns i listan.</p>
@@ -194,9 +220,9 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
 /* Poäng kan ha en decimal. */
 function tal(n){ return Number(n || 0).toLocaleString('sv-SE', { maximumFractionDigits: 1 }); }
 
-const SPELEN = ['alla', 'fraga', 'lat', 'fritt'];
+const SPELEN = ['alla', 'fraga', 'lat', 'fritt', 'rankat'];
 const PERIODER = ['manad', 'total'];
-const SPELNAMN = { alla: 'alla spel', fraga: 'Dagens fråga', lat: 'Dagens låt', fritt: 'fritt spel' };
+const SPELNAMN = { alla: 'alla spel', fraga: 'Dagens fråga', lat: 'Dagens låt', fritt: 'fritt spel', rankat: 'rankat' };
 
 /* Valet följer med i adressen, så att en länk visar samma lista. */
 const fraga = new URLSearchParams(location.search);
@@ -208,17 +234,23 @@ let badgesKlara = null;
 let inloggad = false;
 let harNamn = true;
 
-function rad(r, arJag){
+/* Titeln från rankat: färgen på namnet och titeln som text. t är
+   { niva, titel } eller null. */
+function titelHtml(t){ return t && t.titel ? '<span class="rt-titel rt-' + t.niva + '">' + esc(t.titel) + '</span>' : ''; }
+
+/* under: texten under namnet. hoger: siffran till höger. t: titeln. */
+function rad(r, arJag, under, hoger, t){
   const b = r.badge && badgesKlara && badgesKlara.hitta(r.badge);
   const klass = [arJag ? 'jag' : '', r.plats <= 3 ? 'p' + r.plats : ''].filter(Boolean).join(' ');
+  if (t === undefined) t = r.rankat;
   return '<li' + (klass ? ' class="' + klass + '"' : '') + '>' +
     '<a class="q-rad" href="/profil/?namn=' + encodeURIComponent(r.namn) + '">' +
     '<span class="plats">' + r.plats + '</span>' +
     '<span class="bild" aria-hidden="true">' + (r.bild ? '<img src="' + esc(r.bild) + '" alt="" loading="lazy" width="32" height="32">' : esc(String(r.namn).charAt(0).toUpperCase())) + '</span>' +
-    '<span class="namn-del"><span class="namn-rad"><span class="namn">' + esc(r.namn) + '</span>' +
+    '<span class="namn-del"><span class="namn-rad"><span class="namn' + (t && t.niva ? ' rt-namn rt-' + t.niva : '') + '">' + esc(r.namn) + '</span>' +
     (b ? badgesKlara.medaljHtml(b, true, 24) : '') + (arJag ? '<span class="du">Du</span>' : '') + '</span>' +
-    '<span class="rang">' + esc(r.rang) + '</span></span>' +
-    '<span class="poang">' + tal(r.poang) + ' p</span></a></li>';
+    '<span class="rang">' + esc(under !== undefined ? under : r.rang) + titelHtml(t) + '</span></span>' +
+    '<span class="poang">' + (hoger !== undefined ? hoger : tal(r.poang) + ' p') + '</span></a></li>';
 }
 
 function rita(){
@@ -312,6 +344,65 @@ document.getElementById('qSpel').addEventListener('click', function(e){
   if (b) valj({ spel: b.dataset.spel });
 });
 
+/* ---------- rankat ---------- */
+
+const RK_GENRER = ['alla', 'hardstyle', 'raw', 'uptempo', 'hardcore', 'techno'];
+let rkGenre = RK_GENRER.includes(fraga.get('rgenre')) ? fraga.get('rgenre') : 'alla';
+const rkListor = {};
+
+function rkRad(r, arJag){
+  return rad(r, arJag, r.matcher + (r.matcher === 1 ? ' match, ' : ' matcher, ') + r.vinster + (r.vinster === 1 ? ' vinst' : ' vinster'),
+    tal(r.rating), { niva: r.niva, titel: r.titel });
+}
+
+function ritaRankat(){
+  const rader = document.getElementById('qRkRader');
+  const jag = document.getElementById('qRkJag');
+  document.querySelectorAll('#qRkGenrer button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.genre === rkGenre)));
+  const t = rkListor[rkGenre];
+  if (t === undefined){ rader.innerHTML = '<li class="q-tom">Hämtar rankat.</li>'; jag.innerHTML = ''; return; }
+  if (!t){ rader.innerHTML = '<li class="q-tom">Rankat kunde inte hämtas just nu.</li>'; jag.innerHTML = ''; return; }
+  rader.innerHTML = t.lista.length
+    ? t.lista.map(r => rkRad(r, t.jag && t.jag.listad && r.namn === t.jag.namn)).join('')
+    : '<li class="q-tom">Ingen har spelat fem matcher' + (rkGenre === 'alla' ? '' : ' i den här genren') + ' än.</li>';
+  if (t.jag && !t.jag.listad){
+    jag.innerHTML = '<span class="q-jag-etikett">Din placering</span><ol class="q-rader">' + rkRad(t.jag, true) + '</ol>';
+  } else if (t.jag){
+    jag.innerHTML = '';
+  } else if (t.placering && t.placering.matcher > 0){
+    jag.innerHTML = 'Du har spelat ' + t.placering.matcher + ' av 5 placeringsmatcher' + (rkGenre === 'alla' ? '' : ' i den här genren') + '.';
+  } else {
+    jag.innerHTML = 'Spela fem matcher i rankat för att synas här.';
+  }
+  if (!badgesKlara && hardlistKonto.badges && t.lista.some(r => r.badge)){
+    hardlistKonto.badges().then(B => { badgesKlara = B; rita(); ritaRankat(); }).catch(() => {});
+  }
+}
+
+async function laddaRankat(){
+  if (rkListor[rkGenre] !== undefined) return ritaRankat();
+  const detta = rkGenre;
+  ritaRankat();
+  try {
+    const svar = await hardlistKonto.rpc('rankat_topplista', { p_genre: detta });
+    rkListor[detta] = svar && !svar.fel ? svar : null;
+  } catch(e){
+    rkListor[detta] = null;
+  }
+  if (detta === rkGenre) ritaRankat();
+}
+
+document.getElementById('qRkGenrer').addEventListener('click', function(e){
+  const b = e.target.closest('button');
+  if (!b) return;
+  rkGenre = b.dataset.genre;
+  const url = new URL(location.href);
+  url.searchParams.set('rgenre', rkGenre);
+  history.replaceState(null, '', url);
+  laddaRankat();
+});
+
 async function start(){
   try {
     inloggad = !!hardlistKonto.inloggad();
@@ -319,6 +410,9 @@ async function start(){
     harNamn = !(p && p.konto) || p.konto.har_namn !== false;
   } catch(e){}
   ladda();
+  laddaRankat();
+  // Länkarna från rankat i fritt spel går direkt till rankat-listan.
+  if (fraga.get('lista') === 'rankat') document.getElementById('rankat').scrollIntoView({ block: 'start' });
 }
 
 /* inloggning.js laddas med defer och finns först när sidan tolkats klart. */
