@@ -449,6 +449,12 @@ ett svårare problem än det skulle lösa. Testa i stället om `audio.volume` bi
 (iOS ignorerar den) och visa texten "Volym styrs med knapparna på telefonen" när
 den inte gör det.
 
+I fritt spel och Dagens låt finns inget volymreglage alls. Där står i stället
+"Volymen styr du med knapparna på sidan av telefonen." vid spelaren, eftersom
+iPhone inte låter sidan ändra volymen och den som letar efter ett reglage annars
+tror att något är trasigt. Testet ligger i `ljud.js` (`hardlistLjud.telefonVolym`),
+så texten syns aldrig på dator, och den försvinner när första klippet har spelats.
+
 ### Fritt spel
 
 Låtspelet på `/fritt-spel/` spelar ur låtbiblioteket, med samma sätt att

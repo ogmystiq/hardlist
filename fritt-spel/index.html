@@ -183,6 +183,7 @@
             <p class="q-tid" id="fsTid">Tryck för att lyssna, så många gånger du vill.</p>
           </div>
         </div>
+        <p class="q-volym-not" id="fsVolym" hidden>Volymen styr du med knapparna på sidan av telefonen.</p>
         <div id="fsKalla"></div>
       </div>
 
@@ -358,8 +359,11 @@
     if (el) el.style.width = Math.min(100, t / skala * 100) + '%';
     if (grans() === null && spelare.duration) $('fsTid').textContent = Math.floor(t) + ' av ' + Math.floor(spelare.duration) + ' sekunder';
   }
+  // Texten om volymknapparna behövs bara tills man har hört ett klipp.
+  $('fsVolym').hidden = !hardlistLjud.telefonVolym;
   spelare.addEventListener('playing', function(){
     if (spelare.src.indexOf('data:') === 0) return;
+    $('fsVolym').hidden = true;
     ikon(true);
     cancelAnimationFrame(vakt);
     vakt = requestAnimationFrame(bevaka);

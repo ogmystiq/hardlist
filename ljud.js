@@ -26,5 +26,12 @@
       '<span>Förhandslyssning från iTunes</span></div>';
   }
 
-  window.hardlistLjud = { tillatet: tillatet, kalla: kalla };
+  /* iPhone låter inte sidan styra volymen: audio.volume går att sätta men
+     läses alltid tillbaka som 1. Där, och bara där, behöver spelen säga att
+     knapparna på telefonen gäller. Provas på en egen spelare, så att ingen
+     riktig spelare får halv volym. */
+  let telefonVolym = false;
+  try { const a = new Audio(); a.volume = 0.5; telefonVolym = Math.abs(a.volume - 0.5) > 0.01; } catch(e){}
+
+  window.hardlistLjud = { tillatet: tillatet, kalla: kalla, telefonVolym: telefonVolym };
 })();

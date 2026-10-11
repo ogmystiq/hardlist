@@ -248,6 +248,9 @@
   let ljudUrl = null;
   let upplast = false;
   let vakt = 0;
+  // Texten om volymknapparna visas bara där sidan inte får styra volymen,
+  // och bara tills man har hört ett klipp.
+  let volymText = !!hardlistLjud.telefonVolym;
   const spelare = new Audio();
   spelare.preload = 'auto';
 
@@ -279,6 +282,8 @@
   }
   spelare.addEventListener('playing', function(){
     if (spelare.src.indexOf('data:') === 0) return;
+    volymText = false;
+    const v = el('dVolym'); if (v) v.hidden = true;
     ikon(true); cancelAnimationFrame(vakt); vakt = requestAnimationFrame(bevaka);
   });
   spelare.addEventListener('pause', function(){ cancelAnimationFrame(vakt); ikon(false); });
@@ -329,7 +334,9 @@
     return '<div class="q-spelare-ruta"><div class="q-spelare">' +
       '<button class="q-play" id="dPlay" type="button" aria-label="Spela klippet">' + IKON_PLAY + '</button>' +
       '<div class="info"><p class="q-spelare-rubrik">' + rubrik + '</p>' + stapel() +
-      '<p class="q-tid" id="dTid">' + tid + '</p></div></div>' + hardlistLjud.kalla(apple) + '</div>';
+      '<p class="q-tid" id="dTid">' + tid + '</p></div></div>' +
+      (volymText ? '<p class="q-volym-not" id="dVolym">Volymen styr du med knapparna på sidan av telefonen.</p>' : '') +
+      hardlistLjud.kalla(apple) + '</div>';
   }
 
   function alternativ(facit){
