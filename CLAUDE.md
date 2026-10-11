@@ -522,8 +522,25 @@ tabellerna från `20261007230000_rankat.sql`.
 - **Funktionerna:** `rankat_starta(genre)`, `rankat_nasta(match)`,
   `rankat_spela(omgang)`, `rankat_langre(omgang)`, `rankat_svara(omgang, plats)`,
   `rankat_ge_upp(match)`, `rankat_min()` och `rankat_topplista(genre)`, där
-  genre kan vara `alla`.
-- **Motståndaren, asynkront.** Servern letar upp en annan spelares färdiga
+  genre kan vara `alla`, och för live `rankat_ko(genre)`, `rankat_ko_lamna()`
+  och `rankat_motstandare(match)`.
+- **Live först, i upp till 30 sekunder.** "Hitta motståndare" ställer en i kö
+  (`latbibliotek.ko`, `rankat_ko(genre)`, som sidan frågar varannan sekund).
+  Servern parar ihop två som är inne samtidigt i samma genre, med rating inom
+  ±100 och 20 till för varje sekund den som väntat längst har väntat, högst
+  ±400. Båda får samma tio låtar och alternativ i samma stund (`matcher.live`
+  är lika för båda, `mot_typ` är `live`) och ser varandras låt och poäng
+  (`rankat_motstandare(match)`, var tredje sekund). Var och en spelar i egen
+  takt. Den som är klar först väntar (`vantar` i svaret från `rankat_nasta`),
+  och var och en räknas ihop när båda är klara. Ger någon upp, eller gör
+  ingenting på två minuter (`latbibliotek.rankat_borta`) medan den andra
+  väntar, förlorar hen och den andra vinner. `rankat_ko_lamna()` lämnar kön.
+  Har någon hunnit para ihop sig med en när sidan ger upp kön kommer
+  live-matchen tillbaka i stället för att räknas som uppgiven. Sidan frågar
+  servern i stället för att använda Realtime, så att inget schema behöver
+  öppnas för API:t. Migrationen är `20261012200000_rankat_live.sql`.
+- **Annars asynkront.** Efter 30 sekunder utan live-motståndare startar sidan
+  `rankat_starta`. Servern letar upp en annan spelares färdiga
   match i samma genre, spelad med en rating nära ens egen: ±100, sedan ±200,
   ±300 och ±400. Man får samma tio låtar med samma alternativ och jämför
   poängen när man är klar. Aldrig samma låtar två gånger (`matcher.rot`), och

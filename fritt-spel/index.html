@@ -261,6 +261,19 @@
 .rk-latar .m{text-align:right;color:var(--text-3);font-variant-numeric:tabular-nums}
 .rk-latar .huvud{min-height:28px;font-size:12px;color:var(--text-3)}
 .rk-res .q-knappar{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Kön och väntan på en live-motståndare. Stapeln fylls under de 30 sekunder
+   kön varar, som svar på trycket på Hitta motståndare. */
+.rk-ko,.rk-vantar{gap:14px}
+.rk-ko h2,.rk-vantar h2{font-size:32px}
+.rk-ko .knapp,.rk-vantar .knapp{align-self:flex-start}
+.rk-ko-spar{height:8px;border-radius:999px;background:var(--natt);overflow:hidden}
+.rk-ko-spar i{display:block;height:100%;width:0;border-radius:999px;background:var(--g)}
+.rk-live{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--yta-2);font-size:13px;font-weight:700}
+.rk-live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--text)}
+.rk-motlive{font-size:14px;color:var(--text-2);text-align:center;font-variant-numeric:tabular-nums}
+.rk-motlive b{color:var(--text)}
+.rk-vantar-tal{font-stretch:62%;font-weight:900;font-size:52px;line-height:.9}
 .rk-res .q-knappar .knapp{flex:1 1 180px;white-space:nowrap}
 
 @media (min-width:860px){
@@ -410,16 +423,25 @@
           <span class="fs-etikett" id="rkGenreEtikett">Genre</span>
           <div class="fs-genrer" role="radiogroup" aria-labelledby="rkGenreEtikett" id="rkGenrer"></div>
         </div>
-        <button class="knapp fs-borja" id="rkStarta" type="button">Starta match</button>
+        <button class="knapp fs-borja" id="rkStarta" type="button">Hitta motståndare</button>
+        <p class="fs-liten" id="rkIKon"></p>
         <p class="fs-liten" id="rkRangIdag"></p>
         <ul class="rk-regler">
-          <li>Tio låtar mot en annan spelare som spelat samma låtar, eller mot en skuggmotståndare på din nivå.</li>
+          <li>Först letar vi i upp till 30 sekunder efter någon som spelar just nu. Då möts ni live, med samma tio låtar samtidigt. Annars möter du en annan spelares sparade match, eller en skuggmotståndare på din nivå.</li>
           <li>Fyra alternativ och ett svar per låt. Rätt ger 100, 70, 40, 20 eller 10 poäng efter klippet. Fel eller att tiden går ut ger 0.</li>
           <li>Varje klipp har klippets längd och tolv sekunder till på sig.</li>
           <li>Vinst ger 8 poäng till rangen, oavgjort 4 och förlust 2, högst 20 per dygn. Ger du upp är det förlust utan poäng.</li>
         </ul>
         <div id="rkSenaste"></div>
         <a class="rk-lank" href="/topplista/?lista=rankat">Rankat-topplistan</a>
+      </div>
+
+      <div class="ruta rk-ko" id="rkKo" hidden aria-live="polite">
+        <h2>Letar motståndare</h2>
+        <p class="rk-text" id="rkKoText"></p>
+        <div class="rk-ko-spar" aria-hidden="true"><i id="rkKoBar"></i></div>
+        <p class="fs-liten" id="rkKoUnder"></p>
+        <button class="knapp knapp-sek" id="rkKoAvbryt" type="button">Avbryt</button>
       </div>
 
       <div class="rk-match" id="rkMatch" hidden>
@@ -434,6 +456,7 @@
               <span class="fs-summa" id="rkSumma"></span>
             </div>
             <p class="rk-mot" id="rkMot"></p>
+            <p class="rk-motlive" id="rkMotLive" hidden aria-live="polite"></p>
             <button class="fs-play" id="rkPlay" type="button" aria-label="Spela klippet">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z"/></svg>
             </button>
@@ -456,6 +479,7 @@
           <p class="fs-facit-lat" id="rkFacitLat"></p>
           <div class="q-knappar"><button class="knapp" id="rkNasta" type="button">Nästa låt</button></div>
         </div>
+        <div class="ruta rk-vantar" id="rkVantar" hidden aria-live="polite"></div>
         <button class="rk-ge-upp" id="rkGeUpp" type="button">Ge upp matchen</button>
       </div>
 
@@ -914,6 +938,10 @@
   let lat = null;         // { omgang, steg, startad, alternativ, ljud, klar }
   let frist = 0, fristTotal = 1, klocka = 0, fraga = 0;
   let geUppTid = 0;
+  // Kön och live-matchen: sidan frågar servern med några sekunders mellanrum.
+  const KO_TID = 30000;
+  let koStart = 0, koVakt = 0, koBar = 0, koAktiv = false;
+  let liveVakt = 0, vantaVakt = 0;
   let upplast = false, vakt = 0;
   let volymText = !!hardlistLjud.telefonVolym;
   const spelare = new Audio();
@@ -946,7 +974,7 @@
   /* ---------- valet ---------- */
 
   function visaBara(id){
-    ['rkLas', 'rkVal', 'rkMatch', 'rkResultat'].forEach(function(x){ $(x).hidden = x !== id; });
+    ['rkLas', 'rkVal', 'rkKo', 'rkMatch', 'rkResultat'].forEach(function(x){ $(x).hidden = x !== id; });
   }
 
   function las(html){
@@ -1013,7 +1041,8 @@
         '<button class="knapp" type="button" id="rkFortsatt">Fortsätt matchen</button>';
       $('rkFortsatt').addEventListener('click', function(){ fortsatt(o); });
     }
-    $('rkStarta').textContent = o ? 'Starta en ny match' : 'Starta match';
+    ritaIKon();
+    $('rkStarta').textContent = o ? 'Starta en ny match' : 'Hitta motståndare';
     $('rkStarta').className = 'knapp fs-borja' + (o ? ' knapp-sek' : '');
     $('rkRangIdag').textContent = 'Poäng till rangen från rankat i dag: ' + tal(min.rang_idag) + ' av ' + tal(min.rang_tak) + '.';
 
@@ -1031,7 +1060,14 @@
     genre = b.getAttribute('data-genre');
     this.querySelectorAll('[role="radio"]').forEach(function(x){ x.setAttribute('aria-checked', String(x === b)); });
     $('fs').dataset.genre = genre;
+    ritaIKon();
   });
+
+  /* Hur många som letar en live-match i genren just nu, när någon gör det. */
+  function ritaIKon(){
+    const n = min && min.i_kon && min.i_kon[genre] || 0;
+    $('rkIKon').textContent = n ? (n === 1 ? 'En spelare' : n + ' spelare') + ' letar match i ' + NAMN[genre] + ' just nu.' : '';
+  }
 
   /* ---------- ljudet ---------- */
 
@@ -1112,23 +1148,67 @@
 
   /* ---------- matchen ---------- */
 
-  async function starta(){
+  /* Först kön i upp till 30 sekunder. Paras man ihop blir det live, annars
+     startar en vanlig match mot en sparad match eller en skugga. */
+  function starta(){
     lasUpp();
-    const b = $('rkStarta');
-    b.disabled = true;
+    koStart = Date.now();
+    koAktiv = true;
+    visaBara('rkKo');
+    $('fs').classList.add('spelar');
+    $('fs').dataset.genre = genre;
+    $('rkKoText').textContent = 'Vi letar efter någon i ' + NAMN[genre] + ' som spelar just nu, med en rating nära din.';
+    $('rkKoUnder').textContent = '';
+    ritaKoBar();
+    koBar = setInterval(ritaKoBar, 250);
+    fragaKo();
+  }
+  function ritaKoBar(){
+    const gatt = Date.now() - koStart;
+    $('rkKoBar').style.width = Math.min(100, gatt / KO_TID * 100) + '%';
+  }
+  function stoppaKo(){ koAktiv = false; clearTimeout(koVakt); clearInterval(koBar); }
+  async function fragaKo(){
+    if (!koAktiv) return;
+    if (Date.now() - koStart >= KO_TID) return utanLive();
+    let v = null;
+    try { v = await K.rpc('rankat_ko', { p_genre: genre }); } catch(e){}
+    if (!koAktiv) return;
+    if (v && v.status === 'match'){ stoppaKo(); match = v; return borja(); }
+    if (v && v.fel) return koFel(v.fel);
+    if (v && v.status === 'ko'){
+      $('rkKoUnder').textContent = v.i_kon
+        ? (v.i_kon === 1 ? 'En till letar' : v.i_kon + ' till letar') + ' i ' + NAMN[genre] + ', men med annan rating än din. Fönstret vidgas ju längre ni väntar.'
+        : 'Ingen annan letar i ' + NAMN[genre] + ' just nu.';
+    }
+    koVakt = setTimeout(fragaKo, 2000);
+  }
+  async function utanLive(){
+    stoppaKo();
+    $('rkKoText').textContent = 'Ingen live-motståndare just nu. Matchen startar mot en sparad match eller en skuggmotståndare.';
     try {
       const v = await K.rpc('rankat_starta', { p_genre: genre });
       if (!v || v.fel) throw new Error(v && v.fel);
       match = v;
       borja();
-    } catch(e){
-      $('rkRangIdag').textContent = e && e.message === 'inga_latar'
-        ? 'Det finns inte tillräckligt med låtar i ' + NAMN[genre] + ' för en match än.'
-        : 'Matchen gick inte att starta. Försök igen om en stund.';
-    } finally {
-      b.disabled = false;
-    }
+    } catch(e){ koFel(e && e.message); }
   }
+  function koFel(fel){
+    stoppaKo();
+    ritaVal();
+    $('rkRangIdag').textContent = fel === 'inga_latar'
+      ? 'Det finns inte tillräckligt med låtar i ' + NAMN[genre] + ' för en match än.'
+      : 'Matchen gick inte att starta. Försök igen om en stund.';
+  }
+  $('rkKoAvbryt').addEventListener('click', async function(){
+    stoppaKo();
+    // Hann någon para ihop sig med dig kommer matchen tillbaka här.
+    try {
+      const v = await K.rpc('rankat_ko_lamna');
+      if (v && v.status === 'match'){ match = v; return borja(); }
+    } catch(e){}
+    laddaMin();
+  });
   function fortsatt(o){
     lasUpp();
     genre = o.genre;
@@ -1139,7 +1219,49 @@
     $('fs').classList.add('spelar');
     $('fs').dataset.genre = match.genre || genre;
     visaBara('rkMatch');
+    $('rkVantar').hidden = true;
     nasta();
+  }
+
+  /* Motståndarens framsteg i en live-match: vilken låt och hur många poäng,
+     aldrig vilka svar. */
+  function ritaMotLive(l){
+    const m = match && match.mot;
+    const el = $('rkMotLive');
+    if (!m || !m.live || !l){ el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = l.avbruten ? '<b>' + esc(m.namn) + '</b> gav upp.'
+      : l.klar ? '<b>' + esc(m.namn) + '</b> är klar med ' + tal(l.poang) + ' poäng.'
+      : '<b>' + esc(m.namn) + '</b> är på låt ' + Math.min(10, l.spelade + 1) + ' av 10, ' + tal(l.poang) + ' poäng.';
+  }
+  function startaLive(){
+    clearTimeout(liveVakt);
+    if (!match || !match.mot || !match.mot.live) return;
+    liveVakt = setTimeout(async function fraga(){
+      if (!match || !match.mot || !match.mot.live || $('rkMatch').hidden) return;
+      try { const l = await K.rpc('rankat_motstandare', { p_match: match.match }); if (l) { match.mot_live = l; ritaMotLive(l); } } catch(e){}
+      liveVakt = setTimeout(fraga, 3000);
+    }, 3000);
+  }
+
+  /* Klar före motståndaren: sidan frågar tills hen också är klar, eller har
+     varit borta i två minuter. */
+  function vanta(v){
+    clearTimeout(vantaVakt);
+    stoppa(); stoppaKlocka();
+    document.querySelector('#rkMatch .q-spelare-ruta').hidden = true;
+    $('rkLangre').hidden = true;
+    $('rkAlt').innerHTML = '';
+    $('rkFacit').hidden = true;
+    $('rkGeUpp').hidden = true;
+    const m = v.mot || {}, l = v.mot_live || {};
+    $('rkVantar').hidden = false;
+    $('rkVantar').innerHTML = '<span class="rk-live">Live</span><h2>Du är klar</h2>' +
+      '<p class="rk-vantar-tal">' + tal(v.poang) + ' poäng</p>' +
+      '<p class="rk-text">Väntar på <b class="rt-namn rt-' + m.niva + '">' + esc(m.namn) + '</b>, som är på låt ' +
+        Math.min(10, (l.spelade || 0) + 1) + ' av 10 med ' + tal(l.poang) + ' poäng. Resultatet kommer när hen är klar. ' +
+        'Gör hen ingenting på två minuter vinner du.</p>';
+    vantaVakt = setTimeout(nasta, 3000);
   }
 
   async function nasta(){
@@ -1160,6 +1282,9 @@
     }
     match = v;
     if (v.klar) return visaResultat(v);
+    if (v.vantar) return vanta(v);
+    ritaMotLive(v.mot_live);
+    startaLive();
     lat = { omgang: v.omgang, steg: v.steg || 0, startad: !!v.startad, alternativ: v.alternativ || null, ljud: null, klar: false };
     spelare.removeAttribute('src');
     ritaLat();
@@ -1171,10 +1296,13 @@
     const m = match.mot || {};
     $('rkMot').innerHTML = m.skugga
       ? 'Mot <b>skuggmotståndare</b>, ' + tal(m.rating) + titel(m)
-      : 'Mot <b class="rt-namn rt-' + m.niva + '">' + esc(m.namn) + '</b>, ' + tal(m.rating) + titel(m);
+      : (m.live ? '<span class="rk-live">Live</span> ' : '') + 'Mot <b class="rt-namn rt-' + m.niva + '">' + esc(m.namn) + '</b>, ' + tal(m.rating) + titel(m);
   }
 
   function ritaLat(){
+    document.querySelector('#rkMatch .q-spelare-ruta').hidden = false;
+    $('rkGeUpp').hidden = false;
+    $('rkVantar').hidden = true;
     $('rkNummer').textContent = 'Låt ' + match.nummer + ' av ' + match.antal;
     $('rkSumma').textContent = tal(match.poang) + ' poäng' + (match.jag && match.jag.placering ? ', placeringsmatch' : '');
     ritaMot();
@@ -1323,6 +1451,7 @@
     }
     this.disabled = true;
     stoppa(); stoppaKlocka();
+    clearTimeout(liveVakt);
     try {
       const v = await K.rpc('rankat_ge_upp', { p_match: match.match });
       if (!v || (v.fel && !v.klar)) throw new Error(v && v.fel);
@@ -1338,6 +1467,7 @@
 
   function visaResultat(v){
     stoppa(); stoppaKlocka();
+    clearTimeout(liveVakt); clearTimeout(vantaVakt);
     lat = null;
     $('fs').classList.remove('spelar');
     visaBara('rkResultat');
@@ -1354,6 +1484,7 @@
 
     $('rkResultat').innerHTML =
       '<section class="ruta rk-res" aria-labelledby="rkResRubrik">' +
+        (m.live ? '<span class="rk-live">Live-match</span>' : '') +
         '<h2 class="rk-res-utfall" id="rkResRubrik">' + ikonUt + (v.avbruten ? 'Uppgiven' : UTFALL[v.resultat]) + '</h2>' +
         '<div class="rk-tavla">' +
           '<div><span>Du</span><b>' + tal(v.poang) + '</b></div><em>mot</em>' +
