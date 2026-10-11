@@ -73,6 +73,10 @@
 .l-forslag button b{color:var(--text);font-weight:650}
 .l-forslag button:hover,.l-forslag button[aria-selected="true"]{background:var(--yta-2)}
 .l-knappar{display:flex;flex-wrap:wrap;gap:10px}
+/* Delningsknappen är lika stor som knappen för att gå vidare och grå: lika
+   breda bredvid varandra, och under varandra när de inte får plats. */
+.l-knappar.lika .knapp{flex:1 1 180px;white-space:nowrap}
+.dela-knapp svg{flex:none;width:18px;height:18px}
 
 /* Facit och resultat. */
 .l-facit{display:flex;flex-direction:column;gap:2px}
@@ -254,6 +258,47 @@
   const spelare = new Audio();
   spelare.preload = 'auto';
 
+  /* Delningstexten säger bara datum och på vilket klipp man klarade den,
+     aldrig låten, artisten eller alternativen. Rutorna står bredvid texten,
+     så att de aldrig är det enda som säger resultatet. */
+  const KORTMANAD = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+  function delaText(f){
+    const d = new Date(dag.datum + 'T12:00:00');
+    const borjan = 'HARDLIST Dagens låt ' + d.getDate() + ' ' + KORTMANAD[d.getMonth()] + ': ';
+    const i = KLIPP.indexOf(Number(f.sekunder));
+    if (!f.ratt) return borjan + 'klarade den inte. hardlist.se';
+    if (i < 0) return borjan + 'klarade den. hardlist.se';
+    const rutor = '■'.repeat(i + 1) + '□'.repeat(KLIPP.length - i - 1);
+    return borjan + rutor + ' klarade den på klipp ' + (i + 1) + ' av ' + KLIPP.length +
+      ' (' + String(KLIPP[i]).replace('.', ',') + ' s). hardlist.se';
+  }
+
+  /* Mobil: delningsmenyn. Dator, och där den saknas: urklipp. Windows och
+     Mac har också navigator.share, men där öppnar den en meny som ingen
+     väntar sig, så det är pekaren som avgör. Avbryter man delningsmenyn
+     händer ingenting. */
+  async function delaResultat(knapp, text){
+    const mobil = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    if (mobil && navigator.share){
+      try { await navigator.share({ text: text }); return; }
+      catch(e){ if (e && e.name === 'AbortError') return; }
+    }
+    let ok = false;
+    try { await navigator.clipboard.writeText(text); ok = true; } catch(e){}
+    if (!ok){
+      // Utan säker anslutning finns inget clipboard-API, då går det gamla sättet.
+      const t = document.createElement('textarea');
+      t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      try { ok = document.execCommand('copy'); } catch(e){}
+      t.remove();
+    }
+    const etikett = knapp.querySelector('span');
+    etikett.textContent = ok ? 'Kopierad' : 'Gick inte att kopiera';
+    clearTimeout(knapp._tid);
+    knapp._tid = setTimeout(function(){ etikett.textContent = 'Dela resultatet'; }, 2000);
+  }
+
   function lasSparat(){ try { return JSON.parse(localStorage.getItem(NYCKEL) || 'null'); } catch(e){ return null; } }
   function sparaSvar(datum, facit){ try { localStorage.setItem(NYCKEL, JSON.stringify({ datum: datum, facit: facit })); } catch(e){} }
 
@@ -384,8 +429,8 @@
       '<div class="l-facit"><b>' + skydda(f.lat.titel) + '</b><span>' + skydda(f.lat.artist) + '</span></div>' +
       spelarRuta('Hela förlyssningen', 'Tryck för att lyssna.', f.lat.apple) +
       alternativ(f) +
-      '<div class="l-knappar"><button class="knapp" id="dDela" type="button">Dela resultatet</button>' +
-      '<a class="knapp knapp-sek" href="/fritt-spel/">Spela fler låtar</a></div>' +
+      '<div class="l-knappar lika"><a class="knapp" href="/fritt-spel/">Spela fler låtar</a>' +
+      '<button class="knapp knapp-sek dela-knapp" id="dDela" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg><span aria-live="polite">Dela resultatet</span></button></div>' +
       '<p class="q-nasta">Ny låt ' + imorgon.getDate() + ' ' + MANAD[imorgon.getMonth()] + '.</p>';
     ljudUrl = f.lat.ljud;
     if (spelare.src !== ljudUrl) spelare.src = ljudUrl;
@@ -395,12 +440,7 @@
       if (spelare.src !== ljudUrl) spelare.src = ljudUrl;
       spelaFranBorjan();
     });
-    el('dDela').addEventListener('click', async function(){
-      const text = 'HARDLIST Dagens låt, ' + datumText(dag.datum).toLowerCase() + ': ' +
-        (f.ratt ? 'rätt på ' + sekunder(f.sekunder) : 'inte den här gången') + '\nhttps://hardlist.se/latspel/';
-      if (navigator.share){ try { await navigator.share({ text: text }); return; } catch(e){} }
-      try { await navigator.clipboard.writeText(text); this.textContent = 'Kopierat'; } catch(e){}
-    });
+    el('dDela').addEventListener('click', function(){ delaResultat(this, delaText(f)); });
   }
 
   function kopplaRunda(){

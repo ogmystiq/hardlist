@@ -95,8 +95,12 @@
 .q-svar{padding:18px;gap:10px;border-radius:20px}
 .q-svar-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .q-facit-text{font-size:16px;line-height:1.5;color:#D9D1E6}
-.q-knappar{display:flex;gap:10px}
-.q-knappar .knapp{flex:1;min-height:50px;padding:0 16px}
+.q-knappar{display:flex;flex-wrap:wrap;gap:10px}
+/* Lika breda, och under varandra när de inte får plats på en rad, så att
+   ingen knapptext bryts. */
+.q-knappar .knapp{flex:1 1 180px;min-height:50px;padding:0 16px;white-space:nowrap}
+/* Delningsknappen är lika stor som Topplistan, aldrig större, och grå. */
+.dela-knapp svg{flex:none;width:18px;height:18px}
 
 /* Låtquiz: spelaren ovanför frågan. */
 
@@ -449,7 +453,7 @@ function ritaFraga(){
     });
     if (dag.inloggad) startaNedrakning(dag.sekunder_kvar);
   }
-  if (svar) kopplaDela(svar.ratt);
+  if (svar) kopplaDela(svar);
   if (dag.ljud) kopplaSpelare(dag.ljud);
 
   ritaFredagsnot();
@@ -700,39 +704,52 @@ function svarRuta(svar, anim){
         'Ny fråga ' + imorgon.getDate() + ' ' + MANADER[imorgon.getMonth()] + '.</p>' +
     '</div>' +
     '<div class="q-knappar">' +
-      '<button class="knapp" id="qDela" type="button">Dela resultatet</button>' +
-      '<a class="knapp knapp-sek" href="/topplista/">Topplistan</a>' +
+      '<a class="knapp" href="/topplista/">Topplistan</a>' +
+      '<button class="knapp knapp-sek dela-knapp" id="qDela" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg><span aria-live="polite">Dela resultatet</span></button>' +
     '</div>' +
     '</div>';
 }
 
-/* Delningstext i Wordle-stil: resultat utan att avslöja frågan. Poäng och
-   svit följer bara med för inloggade — utan konto finns inga. */
-function delaText(ratt){
+/* Delningstexten säger bara datum och utfall, aldrig frågan eller något
+   alternativ. Sviten följer med för inloggade som svarat rätt. */
+const KORTMANADER = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+function delaText(svar){
   const d = tillDatum(dag.datum);
   const k = dag.inloggad && konto;
-  return 'HARDLIST dagens fråga ' + d.getDate() + '/' + (d.getMonth()+1) + ' — ' +
-    (ratt ? 'rätt ✅' : 'fel ❌') +
-    (k && k.svit > 1 ? ' · ' + k.svit + ' dagar i rad' : '') +
-    (k ? ' · ' + tal(k.poang) + ' p · ' + k.rang : '') +
-    '\nhttps://hardlist.se/quiz/';
+  const utfall = svar.ratt ? 'rätt' : (svar.tid_ute ? 'tiden gick ut' : 'fel');
+  const svit = svar.ratt && k && k.svit > 0 ? ', svit ' + k.svit + (k.svit === 1 ? ' dag' : ' dagar') : '';
+  return 'HARDLIST Dagens fråga ' + d.getDate() + ' ' + KORTMANADER[d.getMonth()] + ': ' + utfall + svit + '. hardlist.se';
 }
 
-function kopplaDela(ratt){
+/* Mobil: delningsmenyn. Dator, och där den saknas: urklipp. Windows och
+   Mac har också navigator.share, men där öppnar den en meny som ingen
+   väntar sig, så det är pekaren som avgör. Avbryter man delningsmenyn
+   händer ingenting. */
+async function delaResultat(knapp, text){
+  const mobil = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  if (mobil && navigator.share){
+    try { await navigator.share({ text: text }); return; }
+    catch(e){ if (e && e.name === 'AbortError') return; }
+  }
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; } catch(e){}
+  if (!ok){
+    // Utan säker anslutning finns inget clipboard-API, då går det gamla sättet.
+    const t = document.createElement('textarea');
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { ok = document.execCommand('copy'); } catch(e){}
+    t.remove();
+  }
+  const etikett = knapp.querySelector('span');
+  etikett.textContent = ok ? 'Kopierad' : 'Gick inte att kopiera';
+  clearTimeout(knapp._tid);
+  knapp._tid = setTimeout(function(){ etikett.textContent = 'Dela resultatet'; }, 2000);
+}
+
+function kopplaDela(svar){
   const b = document.getElementById('qDela');
-  if (!b) return;
-  b.addEventListener('click', async function(){
-    const text = delaText(ratt);
-    /* Mobil: dela-arket. Dator: urklipp. */
-    if (navigator.share){
-      try { await navigator.share({ text }); return; } catch(e){}
-    }
-    try {
-      await navigator.clipboard.writeText(text);
-      b.textContent = 'Kopierat';
-      setTimeout(() => { b.textContent = 'Dela resultatet'; }, 2000);
-    } catch(e){}
-  });
+  if (b) b.addEventListener('click', function(){ delaResultat(b, delaText(svar)); });
 }
 
 /* ---------- topplistan ---------- */
