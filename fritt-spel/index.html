@@ -30,36 +30,106 @@
 <link rel="stylesheet" href="/stil.css?v=2026-10-07d">
 <style>
 /* Mobil först: en kolumn och stora tryckytor. Försöken och sökrutan är
-   desamma som i Dagens låt, så att spelen känns igen. */
-.fs{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+   desamma som i Dagens låt, så att spelen känns igen.
+
+   Genrens färg är spelets accent: glöden, strålarna och ringen runt
+   spelknappen. Den står alltid tillsammans med genrens namn, och Blandat har
+   ingen genre och därför ingen färg. Strålarna rör sig bara medan ett klipp
+   spelar, alltså som svar på ett tryck. */
+.fs{--g:var(--text);position:relative;isolation:isolate;max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.fs[data-genre="hardstyle"]{--g:var(--hardstyle)}
+.fs[data-genre="raw"]{--g:var(--raw)}
+.fs[data-genre="uptempo"]{--g:var(--uptempo)}
+.fs[data-genre="hardcore"]{--g:var(--hardcore)}
+.fs[data-genre="techno"]{--g:var(--techno)}
+
+/* Glöden bakom sidhuvudet. En suddig fläck i stället för en bild, så att
+   ingenting extra laddas. Ramen klipper den så att sidan aldrig blir bredare
+   än skärmen. */
+.fs-fond{position:absolute;z-index:-1;top:-24px;left:calc(-1 * var(--marginal));right:calc(-1 * var(--marginal));height:460px;overflow:hidden;pointer-events:none}
+.fs-fond::before{content:"";position:absolute;left:20%;right:20%;top:40px;height:240px;border-radius:50%;background:var(--g);opacity:.16;filter:blur(70px);transition:background .4s,opacity .4s}
+.fs[data-genre="blandat"] .fs-fond::before{opacity:.07}
+
 .fs-topp{margin-bottom:0}
 /* Under en låt behövs bara rubriken. */
 .fs.spelar .fs-topp .ingress{display:none}
 .fs-dold{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .fs-paus{background:var(--yta);border-radius:20px;padding:18px;font-size:16px;line-height:1.5;color:var(--text-2)}
 .fs-paus b{color:var(--text)}
-.fs-val{display:flex;flex-direction:column;gap:20px}
+.fs-val{display:flex;flex-direction:column;gap:24px}
 .fs-grupp{display:flex;flex-direction:column;gap:10px}
 .fs-etikett{font-size:14px;font-weight:700}
-.fs-chips{display:flex;flex-wrap:wrap;gap:8px}
-.fs-chips .chip[aria-checked="true"]{background:var(--text);color:var(--natt)}
 .fs-liten{font-size:14px;line-height:1.5;color:var(--text-3)}
 .fs-liten a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
-.fs-borja{align-self:flex-start}
-.fs-poangtabell{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0}
-.fs-poangtabell div{background:var(--yta);border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
-.fs-poangtabell dt{font-size:13px;color:var(--text-3)}
+
+/* Genrerna: stora rutor med prick och namn. Vald genre får en ring i sin
+   färg, och namnet står alltid bredvid. */
+.fs-genrer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.fs-genre{display:flex;align-items:center;gap:12px;min-height:60px;padding:0 16px;border:0;border-radius:18px;background:var(--yta);color:var(--text-2);font-size:16px;font-weight:700;text-align:left;transition:background .15s,color .15s,box-shadow .15s}
+.fs-genre:hover{background:var(--yta-hover);color:var(--text)}
+.fs-genre .prick{width:12px;height:12px}
+.fs-genre[aria-checked="true"]{background:var(--yta-2);color:var(--text);box-shadow:inset 0 0 0 2px var(--g,var(--text))}
+.fs-genre[data-val="blandat"] .prick{background:none;box-shadow:inset 0 0 0 2px var(--text-3)}
+
+/* Svårigheten: fyra steg i rad, med staplar som visar nivån så att valet
+   syns även utan att läsa. */
+.fs-nivaer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px;border-radius:20px;background:var(--yta)}
+.fs-niva{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:72px;padding:8px 4px;border:0;border-radius:16px;background:none;color:var(--text-2);font-size:15px;font-weight:700;line-height:1.1;transition:background .15s,color .15s}
+.fs-niva:hover{color:var(--text)}
+.fs-niva small{font-size:12px;font-weight:500;color:var(--text-3)}
+.fs-niva[aria-checked="true"]{background:var(--text);color:var(--natt)}
+.fs-niva[aria-checked="true"] small{color:#4A4058}
+.fs-staplar{display:flex;align-items:flex-end;gap:3px;height:16px}
+.fs-staplar i{width:5px;border-radius:2px;background:currentColor;opacity:.25}
+.fs-staplar i:nth-child(1){height:6px}
+.fs-staplar i:nth-child(2){height:9px}
+.fs-staplar i:nth-child(3){height:12px}
+.fs-staplar i:nth-child(4){height:16px}
+.fs-niva[data-niva="latt"] i:nth-child(-n+1),
+.fs-niva[data-niva="medel"] i:nth-child(-n+2),
+.fs-niva[data-niva="svar"] i:nth-child(-n+3),
+.fs-niva[data-niva="expert"] i{opacity:1}
+
+.fs-borja{width:100%;min-height:56px;font-size:18px}
+.fs-poangtabell{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin:0}
+.fs-poangtabell div{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0}
+.fs-poangtabell dt{font-size:12px;color:var(--text-3)}
 .fs-poangtabell dd{margin:0;font-stretch:62%;font-weight:900;font-size:24px;line-height:1}
+.fs-poangtabell div:first-child dd{font-size:30px}
 
 .fs-runda{display:flex;flex-direction:column;gap:14px}
-.fs-rad{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* Scenen: spelaren med glöd och strålar i genrens färg. */
+.fs-scen{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 16px 18px;border-radius:24px;background:var(--yta)}
+.fs-scen-rad{align-self:stretch;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fs-val-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--yta-2);font-size:14px;font-weight:600}
+.fs-val-chip .prick{background:var(--g)}
+.fs[data-genre="blandat"] .fs-val-chip .prick{display:none}
 .fs-summa{font-size:14px;color:var(--text-2)}
+.fs-ljus{position:absolute;z-index:-1;left:50%;top:128px;width:0;height:0;pointer-events:none}
+.fs-ljus::before{content:"";position:absolute;left:-110px;top:-110px;width:220px;height:220px;border-radius:50%;background:var(--g);opacity:.22;filter:blur(46px);transition:opacity .3s}
+.fs-stral{position:absolute;left:-2px;top:0;width:4px;height:320px;transform-origin:50% 0;transform:rotate(var(--v));background:linear-gradient(to bottom,var(--g),transparent 70%);opacity:.22;transition:opacity .3s}
+.fs.ljud .fs-ljus::before{opacity:.4}
+.fs.ljud .fs-stral{opacity:.5;animation:fs-svep 2.4s ease-in-out infinite alternate}
+@keyframes fs-svep{from{transform:rotate(calc(var(--v) - 12deg))}to{transform:rotate(calc(var(--v) + 12deg))}}
+
+.fs-play{position:relative;display:flex;width:104px;height:104px;margin-top:8px;border:0;border-radius:50%;background:var(--text);color:var(--natt);align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--yta),0 0 0 9px var(--g);transition:transform .12s}
+.fs-play:active{transform:scale(.95)}
+.fs-play:disabled{opacity:.6;cursor:default}
+.fs-play svg{width:34px;height:34px;fill:currentColor}
+.fs-play:focus-visible{outline:2px solid var(--hardstyle);outline-offset:12px}
+.fs-klipp{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.fs-klipp-rubrik{font-stretch:62%;font-weight:900;font-size:30px;line-height:1}
+.fs-klipp-under{font-size:14px;color:var(--text-2)}
+.fs-scen .q-tid{text-align:center}
+
 /* Klippstapeln: hela 16 sekunder, det upplåsta klippet ljusare, strecken
    där nästa klipp slutar. */
-.fs-bar{position:relative;height:8px;border-radius:999px;background:var(--yta-2);overflow:hidden}
+.fs-bar{position:relative;align-self:stretch;height:10px;border-radius:999px;background:var(--natt);overflow:hidden}
 .fs-bar .upplast{position:absolute;inset:0 auto 0 0;background:#3A3048}
-.fs-bar .spelat{position:absolute;inset:0 auto 0 0;width:0;background:var(--text)}
+.fs-bar .spelat{position:absolute;inset:0 auto 0 0;width:0;background:var(--g)}
 .fs-bar .streck{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--natt)}
+.fs-under-scen{display:flex;flex-direction:column;gap:8px}
 
 /* Försöken: sex rader, en per klipp. */
 .fs-forsok{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
@@ -86,17 +156,30 @@
 .fs-forslag button:hover,.fs-forslag button[aria-selected="true"]{background:var(--yta-2)}
 .fs-hoppa{align-self:flex-start;min-height:44px}
 
-.fs-facit{padding:18px;gap:10px;border-radius:20px}
+.fs-facit{padding:20px;gap:12px;border-radius:24px}
 .fs-facit-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .fs-facit-lat{display:flex;flex-direction:column;gap:2px}
-.fs-facit-lat b{font-stretch:62%;font-weight:900;font-size:30px;line-height:1.05}
+.fs-facit-lat b{font-stretch:62%;font-weight:900;font-size:32px;line-height:1.05}
 .fs-facit-lat span{font-size:16px;color:var(--text-2)}
+/* Vad låten gav till rangen, på en egen rad med stor siffra. */
+.fs-rang{display:flex;align-items:center;gap:12px;padding:12px 0 2px;border-top:1px solid var(--yta-2);font-size:15px;line-height:1.4;color:var(--text-2)}
+.fs-rang:empty{display:none}
+.fs-rang-ikon{flex:none;display:flex;width:40px;height:40px;border-radius:50%;background:var(--yta-2);color:var(--text);align-items:center;justify-content:center}
+.fs-rang-ikon svg{width:20px;height:20px}
+.fs-rang-tal{font-stretch:62%;font-weight:900;font-size:36px;line-height:1;color:var(--text)}
+.fs-rang a{color:var(--text);text-decoration:underline;text-underline-offset:3px}
 .fs-dagens{margin-top:8px}
 
 @media (min-width:860px){
   .fs{gap:24px}
-  .fs-poangtabell{grid-template-columns:repeat(6,minmax(0,1fr))}
-  .fs-facit-lat b{font-size:36px}
+  .fs-genrer{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .fs-borja{width:auto;align-self:flex-start;padding:0 40px}
+  .fs-scen{padding:22px 24px 24px}
+  .fs-ljus{top:140px}
+  .fs-play{width:120px;height:120px}
+  .fs-play svg{width:38px;height:38px}
+  .fs-klipp-rubrik{font-size:36px}
+  .fs-facit-lat b{font-size:40px}
 }
 </style>
 </head>
@@ -119,6 +202,8 @@
 <main class="sida" id="innehall">
   <div class="fs" id="fs">
 
+    <div class="fs-fond" aria-hidden="true"></div>
+
     <div class="sidhuvud fs-topp">
       <h1>Fritt spel</h1>
       <p class="ingress">Känn igen låten. Sex försök, och klippet blir längre för varje miss: 0,5, 1, 2, 4, 8 och 16 sekunder.</p>
@@ -134,22 +219,22 @@
       <h2 class="fs-dold" id="fsValRubrik">Välj vad du vill spela</h2>
       <div class="fs-grupp">
         <span class="fs-etikett" id="fsGenreEtikett">Genre</span>
-        <div class="fs-chips" role="radiogroup" aria-labelledby="fsGenreEtikett" id="fsGenrer">
-          <button class="chip g-hardstyle" type="button" role="radio" data-val="hardstyle" aria-checked="false"><span class="prick"></span>Hardstyle</button>
-          <button class="chip g-raw" type="button" role="radio" data-val="raw" aria-checked="false"><span class="prick"></span>Raw</button>
-          <button class="chip g-uptempo" type="button" role="radio" data-val="uptempo" aria-checked="false"><span class="prick"></span>Uptempo</button>
-          <button class="chip g-hardcore" type="button" role="radio" data-val="hardcore" aria-checked="false"><span class="prick"></span>Hardcore</button>
-          <button class="chip g-techno" type="button" role="radio" data-val="techno" aria-checked="false"><span class="prick"></span>Hard techno</button>
-          <button class="chip" type="button" role="radio" data-val="blandat" aria-checked="true">Blandat</button>
+        <div class="fs-genrer" role="radiogroup" aria-labelledby="fsGenreEtikett" id="fsGenrer">
+          <button class="fs-genre g-hardstyle" type="button" role="radio" data-val="hardstyle" aria-checked="false"><span class="prick"></span>Hardstyle</button>
+          <button class="fs-genre g-raw" type="button" role="radio" data-val="raw" aria-checked="false"><span class="prick"></span>Raw</button>
+          <button class="fs-genre g-uptempo" type="button" role="radio" data-val="uptempo" aria-checked="false"><span class="prick"></span>Uptempo</button>
+          <button class="fs-genre g-hardcore" type="button" role="radio" data-val="hardcore" aria-checked="false"><span class="prick"></span>Hardcore</button>
+          <button class="fs-genre g-techno" type="button" role="radio" data-val="techno" aria-checked="false"><span class="prick"></span>Hard techno</button>
+          <button class="fs-genre" type="button" role="radio" data-val="blandat" aria-checked="true"><span class="prick"></span>Blandat</button>
         </div>
       </div>
       <div class="fs-grupp">
         <span class="fs-etikett" id="fsNivaEtikett">Svårighet</span>
-        <div class="fs-chips" role="radiogroup" aria-labelledby="fsNivaEtikett" id="fsNivaer">
-          <button class="chip" type="button" role="radio" data-niva="latt" aria-checked="true">Lätt</button>
-          <button class="chip" type="button" role="radio" data-niva="medel" aria-checked="false">Medel</button>
-          <button class="chip" type="button" role="radio" data-niva="svar" aria-checked="false">Svår</button>
-          <button class="chip" type="button" role="radio" data-niva="expert" aria-checked="false">Expert</button>
+        <div class="fs-nivaer" role="radiogroup" aria-labelledby="fsNivaEtikett" id="fsNivaer">
+          <button class="fs-niva" type="button" role="radio" data-niva="latt" aria-checked="true"><span class="fs-staplar" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Lätt<small>15 %</small></button>
+          <button class="fs-niva" type="button" role="radio" data-niva="medel" aria-checked="false"><span class="fs-staplar" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Medel<small>40 %</small></button>
+          <button class="fs-niva" type="button" role="radio" data-niva="svar" aria-checked="false"><span class="fs-staplar" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Svår<small>75 %</small></button>
+          <button class="fs-niva" type="button" role="radio" data-niva="expert" aria-checked="false"><span class="fs-staplar" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Expert<small>Alla</small></button>
         </div>
         <p class="fs-liten" id="fsNivaText"></p>
       </div>
@@ -167,21 +252,22 @@
 
     <!-- En låt -->
     <section class="fs-runda" id="fsRunda" hidden aria-label="Låt">
-      <div class="fs-rad">
-        <span class="q-chip" id="fsRundaVal"></span>
-        <span class="fs-summa" id="fsSumma"></span>
-      </div>
-
       <div class="q-spelare-ruta">
-        <div class="q-spelare">
-          <button class="q-play" id="fsPlay" type="button" aria-label="Spela klippet">
+        <div class="fs-scen">
+          <div class="fs-ljus" aria-hidden="true">
+            <i class="fs-stral" style="--v:0deg"></i><i class="fs-stral" style="--v:45deg"></i><i class="fs-stral" style="--v:90deg"></i><i class="fs-stral" style="--v:135deg"></i>
+            <i class="fs-stral" style="--v:180deg"></i><i class="fs-stral" style="--v:225deg"></i><i class="fs-stral" style="--v:270deg"></i><i class="fs-stral" style="--v:315deg"></i>
+          </div>
+          <div class="fs-scen-rad">
+            <span class="fs-val-chip"><span class="prick" aria-hidden="true"></span><span id="fsRundaVal"></span></span>
+            <span class="fs-summa" id="fsSumma"></span>
+          </div>
+          <button class="fs-play" id="fsPlay" type="button" aria-label="Spela klippet">
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z"/></svg>
           </button>
-          <div class="info">
-            <p class="q-spelare-rubrik" id="fsKlippRubrik"></p>
-            <div class="fs-bar" aria-hidden="true" id="fsBar"></div>
-            <p class="q-tid" id="fsTid">Tryck för att lyssna, så många gånger du vill.</p>
-          </div>
+          <p class="fs-klipp"><span class="fs-klipp-rubrik" id="fsKlippRubrik"></span><span class="fs-klipp-under" id="fsKlippUnder"></span></p>
+          <div class="fs-bar" aria-hidden="true" id="fsBar"></div>
+          <p class="q-tid" id="fsTid">Tryck för att lyssna, så många gånger du vill.</p>
         </div>
         <p class="q-volym-not" id="fsVolym" hidden>Volymen styr du med knapparna på sidan av telefonen.</p>
         <div id="fsKalla"></div>
@@ -202,7 +288,7 @@
         <div class="fs-facit-topp"><span class="q-utfall" id="fsUtfall"></span><span class="q-plus" id="fsPlus"></span></div>
         <p class="fs-facit-lat" id="fsFacitLat"></p>
         <p class="fs-liten" id="fsFacitInfo"></p>
-        <p class="fs-liten" id="fsRang"></p>
+        <p class="fs-rang" id="fsRang"></p>
         <div class="q-knappar">
           <button class="knapp" id="fsNasta" type="button">Nästa låt</button>
           <button class="knapp knapp-sek" id="fsByt" type="button">Byt genre</button>
@@ -311,6 +397,7 @@
   $('fsGenrer').addEventListener('click', function(e){
     const b = e.target.closest('[data-val]'); if (!b) return;
     val = b.getAttribute('data-val'); valjEn(this, b);
+    $('fs').dataset.genre = val;
   });
   $('fsNivaer').addEventListener('click', function(e){
     const b = e.target.closest('[data-niva]'); if (!b) return;
@@ -318,6 +405,7 @@
     $('fsNivaText').textContent = NIVATEXT[niva];
   });
   $('fsNivaText').textContent = NIVATEXT[niva];
+  $('fs').dataset.genre = val;
 
   function kontoRad(min){
     const el = $('fsKonto');
@@ -334,6 +422,8 @@
   /* ---------- ljudet ---------- */
 
   function ikon(spelar){
+    // Strålarna på scenen rör sig bara medan ett klipp hörs.
+    $('fs').classList.toggle('ljud', spelar);
     $('fsPlay').innerHTML = spelar ? IKON_PAUS : IKON_PLAY;
     $('fsPlay').setAttribute('aria-label', spelar ? 'Pausa' : 'Spela klippet');
   }
@@ -423,9 +513,11 @@
   function ritaKlipp(){
     if (runda.klar){
       $('fsKlippRubrik').textContent = 'Hela förlyssningen';
+      $('fsKlippUnder').textContent = '';
     } else {
       const s = KLIPP[runda.steg];
-      $('fsKlippRubrik').textContent = 'Klipp ' + (runda.steg + 1) + ' av 6, ' + sek(s) + ' s, ' + POANG[runda.steg] + ' poäng';
+      $('fsKlippRubrik').textContent = 'Klipp ' + (runda.steg + 1) + ' av 6';
+      $('fsKlippUnder').textContent = sek(s) + (s === 1 ? ' sekund, ' : ' sekunder, ') + POANG[runda.steg] + ' poäng';
       const nasta = runda.steg < 5 ? KLIPP[runda.steg + 1] - s : 0;
       $('fsHoppa').textContent = nasta ? 'Hoppa över, +' + sek(nasta) + ' s' : 'Ge upp';
     }
@@ -521,11 +613,14 @@
   }
 
   /* Vad låten gav till rangen. Servern räknar, sidan skriver bara ut. */
-  function rangText(svar){
+  const IKON_RANG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6M6 20l6-6 6 6"/></svg>';
+  function rangHtml(svar){
     if (!svar.ratt) return '';
-    if (svar.rang_plus == null) return K.inloggad() ? '' : 'Logga in för att få poäng till rangen.';
+    if (svar.rang_plus == null) return K.inloggad() ? '' : '<span class="fs-rang-ikon">' + IKON_RANG + '</span><span><a href="/konto/">Logga in</a> för att få poäng till rangen.</span>';
     const p = Number(svar.rang_plus).toLocaleString('sv-SE', { maximumFractionDigits: 1 });
-    return svar.rang_plus > 0 ? '+' + p + ' till rangen' : 'Inget till rangen, dagens tak på 10 poäng från fritt spel är nått.';
+    return svar.rang_plus > 0
+      ? '<span class="fs-rang-ikon">' + IKON_RANG + '</span><span class="fs-rang-tal">+' + p + '</span><span>till rangen</span>'
+      : '<span class="fs-rang-ikon">' + IKON_RANG + '</span><span>Inget till rangen, dagens tak på 10 poäng från fritt spel är nått.</span>';
   }
 
   function avsluta(svar){
@@ -548,7 +643,7 @@
       info += (info ? ' ' : '') + ORAT[svar.konto.genre] + ': ' + svar.konto.ratt_genre + ' av 50 rätt.';
     }
     $('fsFacitInfo').textContent = info;
-    $('fsRang').textContent = rangText(svar);
+    $('fsRang').innerHTML = rangHtml(svar);
     $('fsKalla').innerHTML = hardlistLjud.kalla(svar.lat.apple);
     $('fsTid').textContent = 'Lyssna på hela förlyssningen om du vill.';
     ritaSumma();
