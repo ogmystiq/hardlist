@@ -31,11 +31,25 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-07d">
+<link rel="stylesheet" href="/stil.css?v=2026-10-11">
 <style>
-/* Tre kort bredvid frågan. På mobil står de två i bredd, och det tredje tar
-   hela raden i stället för att stå ensamt i en halv. */
-@media (max-width:859px){.delad-sida > .kort:last-child:nth-child(odd){grid-column:1 / -1}}
+/* Dagens två spel bredvid varandra, som på startsidan, och de tre övriga
+   som en rad av kort under. Rutorna tänjs inte efter korten. */
+.sp{display:flex;flex-direction:column;gap:12px}
+.sp-dagens{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.sp-ruta{min-height:220px;justify-content:flex-end}
+.sp-ruta .ingress{max-width:34ch}
+.sp-ruta .knapp{align-self:flex-start}
+.ruta > .ruta-siffra.smal{letter-spacing:-.06em}
+.sp-kort{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sp-kort > .kort:last-child:nth-child(odd){grid-column:1 / -1}
+@media (min-width:860px){
+  .sp{gap:16px}
+  .sp-dagens{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .sp-ruta{min-height:300px}
+  .sp-kort{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .sp-kort > .kort:last-child:nth-child(odd){grid-column:auto}
+}
 </style>
 </head>
 <body>
@@ -61,22 +75,23 @@
     <p class="ingress">En fråga och en låt om dagen, samma för alla, och fritt spel med tusentals låtar.</p>
   </div>
 
-  <div class="delad">
-    <section class="ruta">
-      <span class="ruta-siffra" aria-hidden="true">30</span>
-      <h2>Dagens fråga</h2>
-      <p class="ingress">En fråga om scenen varje dag. Med konto har du 30 sekunder på dig och samlar poäng till topplistan. På fredagar är frågan en låt, och den ger dubbla poäng.</p>
-      <a class="knapp" href="/quiz/">Öppna frågan</a>
-    </section>
+  <div class="sp">
+    <div class="sp-dagens">
+      <section class="ruta sp-ruta" aria-labelledby="fragaRubrik">
+        <span class="ruta-siffra" aria-hidden="true">30</span>
+        <h2 id="fragaRubrik">Dagens fråga</h2>
+        <p class="ingress">En fråga om scenen varje dag. Med konto har du 30 sekunder på dig och samlar poäng till topplistan. På fredagar är frågan en låt, och den ger dubbla poäng.</p>
+        <a class="knapp" href="/quiz/">Öppna frågan</a>
+      </section>
+      <section class="ruta sp-ruta" aria-labelledby="latRubrik">
+        <span class="ruta-siffra smal" aria-hidden="true">0,5</span>
+        <h2 id="latRubrik">Dagens låt</h2>
+        <p class="ingress">En låt om dagen, samma för alla. Första klippet är en halv sekund, och fyra alternativ att välja på. Ju kortare klipp, desto fler poäng.</p>
+        <a class="knapp" href="/latspel/">Gissa låten</a>
+      </section>
+    </div>
 
-    <div class="delad-sida">
-      <a class="kort med-ikon" href="/latspel/">
-        <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M9 13l2 2 4-4"/></svg></span>
-        <span class="kort-delar">
-          <span class="kort-titel">Dagens låt</span>
-          <span class="kort-text">En låt om dagen, samma för alla. Fyra alternativ.</span>
-        </span>
-      </a>
+    <div class="sp-kort">
       <a class="kort med-ikon" href="/fritt-spel/">
         <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="kort-delar">
