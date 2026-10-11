@@ -969,6 +969,12 @@
       las('<p class="rk-text">Rankat gick inte att hämta just nu. Försök igen om en stund.</p>');
       return;
     }
+    // Servern har inte fått migrationen för rankat än: den gamla rankat_min
+    // saknar totalen.
+    if (!min.alla){
+      las('<h2>Rankat öppnar snart</h2><p class="rk-text">Under tiden kan du spela fritt som vanligt.</p>');
+      return;
+    }
     if (!min.har_namn){
       las('<h2>Välj ett visningsnamn först</h2>' +
         '<p class="rk-text">Motståndaren ser ditt namn, och rankat-topplistan visar det bredvid din rating. Du kommer tillbaka hit när namnet är valt.</p>' +
