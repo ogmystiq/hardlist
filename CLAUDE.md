@@ -705,6 +705,8 @@ Mörkt, hårt, kompromisslöst. Passar ämnet.
   - Defqon-scenerna heter färger (RED, BLUE, BLACK, INDIGO, UV, MAGENTA,
     GREEN, PINK, GOLD) och får en prick i sin egen färg i Defqon-guidens
     scenlista. BLACK har en ljus ring så den syns mot bakgrunden.
+  - Plats 1, 2 och 3 i topplistan: siffran i guld, silver och brons. Aldrig
+    som bakgrund på raden, och siffran står alltid med.
   - I spelen: rätt svar i cyan, fel svar i rosa och klockans sista tio
     sekunder i rosa.
   - Deezers logga (`bilder/deezer.png`) är lila och visas i sin egen färg,

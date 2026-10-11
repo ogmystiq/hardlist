@@ -36,37 +36,50 @@
 .q{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px;padding-top:4px}
 .q-rubrik{font-size:38px}
 .q-lista{padding:10px;gap:4px;border-radius:24px;scroll-margin-top:16px}
-.q-lista-topp{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:6px 8px 8px}
+
+/* Flikraderna: samma avstånd, och de bryter till ny rad i stället för att tryckas ihop. */
+.q-lista-topp{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:6px 8px 4px}
 .q-lista-topp h2{font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
-.q-flikar{display:flex;gap:6px}
-.q-flikar .chip{min-height:40px;padding:0 14px;background:var(--yta-2)}
-.q-flikar .chip[aria-selected="true"]{background:var(--text);color:var(--natt)}
-.q-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.q-rader li{border-radius:12px}
+.q-flikar,.q-spel{display:flex;flex-wrap:wrap;gap:8px;padding:0 8px 8px}
+.q-lista-topp .q-flikar{padding:0}
+.q-flikar .chip,.q-spel .chip{min-height:44px;padding:0 16px;background:var(--yta-2);white-space:nowrap}
+.q-flikar .chip[aria-pressed="true"],.q-spel .chip[aria-pressed="true"]{background:var(--text);color:var(--natt)}
+
+/* Raderna: plats, bild, namn med rang under, poäng. Allt på en rad. */
+.q-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.q-rader li{border-radius:14px}
+.q-rader li:nth-child(even){background:color-mix(in srgb,var(--yta-2) 45%,transparent)}
 .q-rader li.jag{background:var(--yta-2)}
+.q-rad{display:flex;align-items:center;gap:12px;min-height:64px;padding:8px 12px;border-radius:14px;color:inherit;text-decoration:none;transition:background .15s}
+.q-rad:hover{background:var(--yta-hover)}
+.q-rad:focus-visible{outline-offset:-2px}
+.q-rader .plats{flex:none;width:34px;text-align:center;font-stretch:62%;font-weight:900;font-size:22px;line-height:1}
+.q-rader .bild{flex:none;display:flex;width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--yta-2);align-items:center;justify-content:center;font-weight:800;font-size:16px}
+.q-rader .jag .bild{background:var(--natt)}
 .q-rader .bild img{display:block;width:100%;height:100%;object-fit:cover}
+.q-rader .namn-del{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .q-rader .namn-rad{display:flex;align-items:center;gap:6px;min-width:0}
 .q-rader .namn-rad .bm{flex:none}
+.q-rader .namn{min-width:0;font-weight:650;font-size:16px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .q-rader .du{flex:none;padding:2px 8px;border-radius:999px;background:var(--natt);font-size:12px;font-weight:700;color:var(--text-2)}
-.q-rader .plats{flex:none;width:26px;font-stretch:62%;font-weight:900;font-size:20px;line-height:1}
-.q-rader .bild{flex:none;display:flex;width:32px;height:32px;border-radius:50%;overflow:hidden;background:var(--yta-2);align-items:center;justify-content:center;font-weight:800;font-size:14px}
-.q-rader .jag .bild{background:var(--natt)}
-.q-rader .namn-del{flex:1;min-width:0;display:flex;flex-direction:column}
-.q-rader .namn{font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.q-rader .rang{font-size:13px;color:var(--text-3)}
-.q-rader .poang{flex:none;font-size:15px;font-weight:700}
+.q-rader .rang{font-size:13px;line-height:1.2;color:var(--text-3)}
+.q-rader .poang{flex:none;min-width:64px;text-align:right;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* Plats 1 till 3: större siffra med guld, silver och brons som accent. Siffran
+   står alltid med, så färgen är aldrig ensam. */
+.q-rader .p1 .plats,.q-rader .p2 .plats,.q-rader .p3 .plats{font-size:30px}
+.q-rader .p1 .plats{color:#E8B84A}
+.q-rader .p2 .plats{color:#C4CAD6}
+.q-rader .p3 .plats{color:#CD8A52}
+.q-jag-etikett{font-size:13px;color:var(--text-3)}
+
 .q-tom{color:var(--text-2);font-size:15px}
 .q-jag{padding:6px 10px;font-size:14px;line-height:1.5;color:var(--text-3);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 .q-jag:empty{display:none}
-.q-jag-etikett{font-size:13px;color:var(--text-3)}
 .q-jag .q-rader{align-self:stretch}
 .q-jag.fast{position:sticky;bottom:calc(var(--meny-hojd) + env(safe-area-inset-bottom) + 8px);z-index:2;margin:0 -4px;padding:8px 4px;border-radius:16px;background:var(--yta)}
 .q-om{display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:var(--text-2)}
 .q-om h2{font-size:26px;color:var(--text)}
-.q-spel{display:flex;gap:6px;flex-wrap:wrap;padding:0 8px 8px}
-.q-spel .chip{min-height:40px;padding:0 14px;background:var(--yta-2)}
-.q-spel .chip[aria-pressed="true"]{background:var(--text);color:var(--natt)}
-.q-flikar .chip[aria-pressed="true"]{background:var(--text);color:var(--natt)}
 .q-om ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
 .q-om li strong{color:var(--text)}
 @media (min-width:860px){
@@ -197,7 +210,8 @@ let harNamn = true;
 
 function rad(r, arJag){
   const b = r.badge && badgesKlara && badgesKlara.hitta(r.badge);
-  return '<li' + (arJag ? ' class="jag"' : '') + '>' +
+  const klass = [arJag ? 'jag' : '', r.plats <= 3 ? 'p' + r.plats : ''].filter(Boolean).join(' ');
+  return '<li' + (klass ? ' class="' + klass + '"' : '') + '>' +
     '<a class="q-rad" href="/profil/?namn=' + encodeURIComponent(r.namn) + '">' +
     '<span class="plats">' + r.plats + '</span>' +
     '<span class="bild" aria-hidden="true">' + (r.bild ? '<img src="' + esc(r.bild) + '" alt="" loading="lazy" width="32" height="32">' : esc(String(r.namn).charAt(0).toUpperCase())) + '</span>' +
