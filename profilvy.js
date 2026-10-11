@@ -11,7 +11,8 @@
   function esc(s){
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
-  function tal(n){ return Number(n || 0).toLocaleString('sv-SE'); }
+  // Poäng kan ha en decimal, till exempel 0,4 från fritt spel.
+  function tal(n){ return Number(n || 0).toLocaleString('sv-SE', { maximumFractionDigits: 1 }); }
   function datum(iso){
     try { return new Date(iso).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' }); }
     catch(e){ return ''; }
@@ -235,7 +236,11 @@
       return '<div class="pf-siffra"><span class="pf-etikett">' + etikett + '</span><span class="pf-stor">' + varde + '</span></div>';
     };
     el.innerHTML = ruta('Svit', tal(p.svit)) + ruta('Bästa svit', tal(p.basta)) +
-      ruta('Rätt svar', p.ratt_andel == null ? '–' : p.ratt_andel + ' %');
+      ruta('Rätt svar', p.ratt_andel == null ? '–' : p.ratt_andel + ' %') +
+      // Poängen per spel, som tillsammans är rangen.
+      (p.poang_fraga == null ? '' :
+        ruta('Dagens fråga', tal(p.poang_fraga) + ' p') + ruta('Dagens låt', tal(p.poang_lat) + ' p') +
+        ruta('Fritt spel', tal(p.poang_fritt) + ' p'));
   }
 
   window.hardlistProfil = {

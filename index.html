@@ -677,7 +677,7 @@
                 <span class="kort-text">Känn igen låten på en halv sekund</span>
               </span>
             </a>
-            <a class="kort med-ikon" href="/quiz/#topplistan">
+            <a class="kort med-ikon" href="/topplista/">
               <span class="topp-siffra" id="toppSiffra" hidden></span>
               <span class="kort-ikon" id="toppIkon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 20V11M12 20V4M18 20v-6"/></svg></span>
               <span class="kort-delar">
@@ -728,7 +728,7 @@
       <section class="ruta topplista" aria-labelledby="toppRubrik">
         <div class="topplista-huvud">
           <h2 id="toppRubrik">Topplistan</h2>
-          <a class="sektionslank" href="/quiz/#topplistan">Hela listan</a>
+          <a class="sektionslank" href="/topplista/">Hela listan</a>
         </div>
         <ol class="topplista-rader" id="toppRader"></ol>
         <p class="topplista-not" id="toppNot">Hämtar topplistan.</p>
@@ -1312,6 +1312,9 @@ async function ritaFraga(K){
   }
 }
 
+/* Poäng kan ha en decimal. */
+function tal(n){ return Number(n || 0).toLocaleString('sv-SE', { maximumFractionDigits: 1 }); }
+
 function toppRad(r, arJag){
   const b = r.badge && toppBadges && toppBadges.hitta(r.badge);
   return '<li' + (arJag ? ' class="jag"' : '') + '>' +
@@ -1319,7 +1322,7 @@ function toppRad(r, arJag){
     '<span class="tp-plats">' + r.plats + '</span>' +
     '<span class="tp-bild" aria-hidden="true">' + (r.bild ? '<img src="' + esc(r.bild) + '" alt="" loading="lazy" width="34" height="34">' : esc(String(r.namn).charAt(0).toUpperCase())) + '</span>' +
     '<span class="tp-namnrad"><span class="tp-namn">' + esc(r.namn) + '</span>' + (b ? toppBadges.medaljHtml(b, true, 24) : '') + '</span>' +
-    '<span class="tp-poang">' + r.poang + ' p</span></a></li>';
+    '<span class="tp-poang">' + tal(r.poang) + ' p</span></a></li>';
 }
 
 /* Badgen vid namnet ritas när badges.js har laddats, och den laddas bara
@@ -1341,10 +1344,10 @@ async function ritaTopplista(K){
   /* Kortet uppe vid dagens fråga: din placering, annars vem som leder. */
   if (jag){
     $('toppSiffra').textContent = jag.plats;
-    $('toppText').textContent = 'Din placering i ' + manad + ', ' + jag.poang + ' poäng';
+    $('toppText').textContent = 'Din placering i ' + manad + ', ' + tal(jag.poang) + ' poäng';
   } else if (lista.length){
     $('toppSiffra').textContent = lista[0].plats;
-    $('toppText').textContent = lista[0].namn + ' leder ' + manad + ' med ' + lista[0].poang + ' poäng';
+    $('toppText').textContent = lista[0].namn + ' leder ' + manad + ' med ' + tal(lista[0].poang) + ' poäng';
   } else {
     $('toppText').textContent = 'Ingen har tagit poäng i ' + manad + ' än';
   }
@@ -1367,7 +1370,7 @@ async function ritaTopplista(K){
     !lista.length ? 'Ingen har tagit poäng i ' + manad + ' än.'
     : jag ? ''
     : K.inloggad() ? 'Du syns här när du tagit poäng den här månaden.'
-    : 'Logga in och svara på dagens fråga för att komma med.';
+    : 'Logga in och spela för att komma med.';
 }
 
 laddaReleaser();

@@ -201,6 +201,7 @@
         <div class="fs-facit-topp"><span class="q-utfall" id="fsUtfall"></span><span class="q-plus" id="fsPlus"></span></div>
         <p class="fs-facit-lat" id="fsFacitLat"></p>
         <p class="fs-liten" id="fsFacitInfo"></p>
+        <p class="fs-liten" id="fsRang"></p>
         <div class="q-knappar">
           <button class="knapp" id="fsNasta" type="button">Nästa låt</button>
           <button class="knapp knapp-sek" id="fsByt" type="button">Byt genre</button>
@@ -515,6 +516,14 @@
     }
   }
 
+  /* Vad låten gav till rangen. Servern räknar, sidan skriver bara ut. */
+  function rangText(svar){
+    if (!svar.ratt) return '';
+    if (svar.rang_plus == null) return K.inloggad() ? '' : 'Logga in för att få poäng till rangen.';
+    const p = Number(svar.rang_plus).toLocaleString('sv-SE', { maximumFractionDigits: 1 });
+    return svar.rang_plus > 0 ? '+' + p + ' till rangen' : 'Inget till rangen, dagens tak på 10 poäng från fritt spel är nått.';
+  }
+
   function avsluta(svar){
     runda.klar = true;
     antal++; summa += svar.poang; if (svar.ratt) ratta++;
@@ -535,6 +544,7 @@
       info += (info ? ' ' : '') + ORAT[svar.konto.genre] + ': ' + svar.konto.ratt_genre + ' av 50 rätt.';
     }
     $('fsFacitInfo').textContent = info;
+    $('fsRang').textContent = rangText(svar);
     $('fsKalla').innerHTML = hardlistLjud.kalla(svar.lat.apple);
     $('fsTid').textContent = 'Lyssna på hela förlyssningen om du vill.';
     ritaSumma();

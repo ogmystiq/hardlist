@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Topplistan för alla spel – HARDLIST</title>
+<meta name="description" content="Topplistan för Dagens fråga, Dagens låt och fritt spel. Se vem som leder totalt och den här månaden, och hur långt det är till nästa rang.">
+<link rel="canonical" href="https://hardlist.se/topplista/">
+<link rel="alternate" type="application/rss+xml" title="HARDLIST — nya releaser" href="https://hardlist.se/releaser.xml">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#100C17">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HARDLIST">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:url" content="https://hardlist.se/topplista/">
+<meta property="og:title" content="Topplistan för alla spel">
+<meta property="og:description" content="Topplistan för Dagens fråga, Dagens låt och fritt spel. Se vem som leder totalt och den här månaden, och hur långt det är till nästa rang.">
+<meta property="og:image" content="https://hardlist.se/bilder/dela/spel.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Topplistan på HARDLIST: dagens fråga, dagens låt och fritt spel.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Topplistan för alla spel">
+<meta name="twitter:description" content="Topplistan för Dagens fråga, Dagens låt och fritt spel. Se vem som leder totalt och den här månaden, och hur långt det är till nästa rang.">
+<meta name="twitter:image" content="https://hardlist.se/bilder/dela/spel.png">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/stil.css?v=2026-10-07d">
+<style>
+.q{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px;padding-top:4px}
+.q-rubrik{font-size:38px}
+.q-lista{padding:10px;gap:4px;border-radius:24px;scroll-margin-top:16px}
+.q-lista-topp{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:6px 8px 8px}
+.q-lista-topp h2{font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
+.q-flikar{display:flex;gap:6px}
+.q-flikar .chip{min-height:40px;padding:0 14px;background:var(--yta-2)}
+.q-flikar .chip[aria-selected="true"]{background:var(--text);color:var(--natt)}
+.q-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.q-rader li{border-radius:12px}
+.q-rader li.jag{background:var(--yta-2)}
+.q-rader .bild img{display:block;width:100%;height:100%;object-fit:cover}
+.q-rader .namn-rad{display:flex;align-items:center;gap:6px;min-width:0}
+.q-rader .namn-rad .bm{flex:none}
+.q-rader .du{flex:none;padding:2px 8px;border-radius:999px;background:var(--natt);font-size:12px;font-weight:700;color:var(--text-2)}
+.q-rader .plats{flex:none;width:26px;font-stretch:62%;font-weight:900;font-size:20px;line-height:1}
+.q-rader .bild{flex:none;display:flex;width:32px;height:32px;border-radius:50%;overflow:hidden;background:var(--yta-2);align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.q-rader .jag .bild{background:var(--natt)}
+.q-rader .namn-del{flex:1;min-width:0;display:flex;flex-direction:column}
+.q-rader .namn{font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.q-rader .rang{font-size:13px;color:var(--text-3)}
+.q-rader .poang{flex:none;font-size:15px;font-weight:700}
+.q-tom{color:var(--text-2);font-size:15px}
+.q-jag{padding:6px 10px;font-size:14px;line-height:1.5;color:var(--text-3);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.q-jag:empty{display:none}
+.q-jag-etikett{font-size:13px;color:var(--text-3)}
+.q-jag .q-rader{align-self:stretch}
+.q-jag.fast{position:sticky;bottom:calc(var(--meny-hojd) + env(safe-area-inset-bottom) + 8px);z-index:2;margin:0 -4px;padding:8px 4px;border-radius:16px;background:var(--yta)}
+.q-om{display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:var(--text-2)}
+.q-om h2{font-size:26px;color:var(--text)}
+.q-spel{display:flex;gap:6px;flex-wrap:wrap;padding:0 8px 8px}
+.q-spel .chip{min-height:40px;padding:0 14px;background:var(--yta-2)}
+.q-spel .chip[aria-pressed="true"]{background:var(--text);color:var(--natt)}
+.q-flikar .chip[aria-pressed="true"]{background:var(--text);color:var(--natt)}
+.q-om ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.q-om li strong{color:var(--text)}
+@media (min-width:860px){
+  .q{padding-top:20px;gap:26px}
+  .q-rubrik{font-size:52px}
+  .q-om h2{font-size:32px}
+}
+</style>
+</head>
+<body>
+
+<a class="hoppa" href="#innehall">Till innehållet</a>
+
+<header class="topp">
+  <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+  <nav class="meny" aria-label="Huvudmeny">
+    <a href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg>Hem</a>
+    <a href="/releaser/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Releaser</a>
+    <a href="/events/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Event</a>
+    <a href="/spel/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/></svg>Spel</a>
+    <a href="/scenen/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Scenen</a>
+  </nav>
+  <a class="konto" id="konto-knapp" href="/konto/"><span class="konto-bild" aria-hidden="true"></span><span class="konto-namn">Logga in</span></a>
+</header>
+
+<main class="sida" id="innehall">
+  <div class="q">
+
+    <h1 class="q-rubrik">Topplistan</h1>
+    <p class="ingress">Poängen från Dagens fråga, Dagens låt och fritt spel räknas ihop till rangen. Här kan du se dem ihop eller ett spel i taget.</p>
+
+    <section class="ruta q-lista" aria-labelledby="qListaRubrik">
+      <div class="q-lista-topp">
+        <h2 id="qListaRubrik">Topplistan</h2>
+        <div class="q-flikar" id="qFlikar" role="group" aria-label="Period">
+          <button class="chip" type="button" data-period="manad" aria-pressed="true" id="qFlikManad">Månaden</button>
+          <button class="chip" type="button" data-period="total" aria-pressed="false">Totalt</button>
+        </div>
+      </div>
+      <div class="q-spel" id="qSpel" role="group" aria-label="Spel">
+        <button class="chip" type="button" data-spel="alla" aria-pressed="true">Alla spel</button>
+        <button class="chip" type="button" data-spel="fraga" aria-pressed="false">Dagens fråga</button>
+        <button class="chip" type="button" data-spel="lat" aria-pressed="false">Dagens låt</button>
+        <button class="chip" type="button" data-spel="fritt" aria-pressed="false">Fritt spel</button>
+      </div>
+      <ol class="q-rader" id="qRader"><li class="q-tom">Hämtar topplistan.</li></ol>
+      <div class="q-jag" id="qJag"></div>
+    </section>
+
+    <section class="q-om text" aria-labelledby="qOmRubrik">
+      <h2 id="qOmRubrik">Så räknas poängen</h2>
+      <p>Alla poäng räknas till rangen. Rangen är alltid summan från alla spel, också när listan visar ett spel.</p>
+      <ul>
+        <li><strong>Dagens fråga.</strong> 10 poäng för rätt svar, och mer för varje dag i rad. Låtfrågan på fredagar ger dubbelt.</li>
+        <li><strong>Dagens låt.</strong> 20, 15, 10, 7 eller 5 poäng beroende på vilket klipp du klarar låten på. Fel svar ger 0.</li>
+        <li><strong>Fritt spel.</strong> 0,2 poäng per rätt låt på Lätt, 0,4 på Medel, 0,7 på Svår och 1 på Expert. Högst 10 poäng per dygn från fritt spel.</li>
+      </ul>
+      <p>Rangerna är Nybörjare, Raver från 100 poäng, Frontrow från 400, Hardhead från 1 000, Hakker från 2 400, Gabber från 5 000, Oldschool från 10 000 och Legend från 20 000.</p>
+      <p>Bara konton med visningsnamn samlar poäng och syns i listan.</p>
+    </section>
+
+  </div>
+</main>
+
+
+<footer class="sidfot">
+  <div class="sidfot-inre">
+    <div class="sidfot-topp">
+      <div class="sidfot-om">
+        <a class="logga" href="/" aria-label="HARDLIST, till startsidan">HARD<span>LIST</span></a>
+        <p>Releaser, event och spel för den hårda scenen i Norden.</p>
+      </div>
+      <div class="sidfot-grupper">
+        <nav aria-labelledby="sf-sajten">
+          <span class="sidfot-rubrik" id="sf-sajten">Sajten</span>
+          <a href="/releaser/">Releaser</a>
+          <a href="/events/">Event</a>
+          <a href="/spel/">Spel</a>
+          <a href="/scenen/">Scenen</a>
+        </nav>
+        <nav aria-labelledby="sf-prenumerera">
+          <span class="sidfot-rubrik" id="sf-prenumerera">Prenumerera</span>
+          <a href="webcal://hardlist.se/kalender.ics">Kalendern i mobilen</a>
+          <a href="/releaser.xml">Releaser som RSS</a>
+        </nav>
+        <nav aria-labelledby="sf-bidra">
+          <span class="sidfot-rubrik" id="sf-bidra">Bidra</span>
+          <a href="mailto:hardlisthelp@gmail.com?subject=Tips%20om%20event">Tipsa om ett event</a>
+          <a href="mailto:hardlisthelp@gmail.com?subject=R%C3%A4ttelse">Rätta en uppgift</a>
+          <a class="bara-dator" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
+        </nav>
+        <nav aria-labelledby="sf-om">
+          <span class="sidfot-rubrik" id="sf-om">Om sajten</span>
+          <a href="/integritet/">Integritet</a>
+          <a href="/konto/">Ditt konto</a>
+        </nav>
+      </div>
+    </div>
+    <div class="sidfot-status">
+      <span id="sidfotStatus">Releaserna uppdateras varje morgon.</span>
+      <span>Inga annonser och inga cookies.</span>
+      <a class="sidfot-post" href="mailto:hardlisthelp@gmail.com">hardlisthelp@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Listan kommer från servern. Poängen räknas på servern, sidan ritar bara. */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* Poäng kan ha en decimal. */
+function tal(n){ return Number(n || 0).toLocaleString('sv-SE', { maximumFractionDigits: 1 }); }
+
+const SPELEN = ['alla', 'fraga', 'lat', 'fritt'];
+const PERIODER = ['manad', 'total'];
+const SPELNAMN = { alla: 'alla spel', fraga: 'Dagens fråga', lat: 'Dagens låt', fritt: 'fritt spel' };
+
+/* Valet följer med i adressen, så att en länk visar samma lista. */
+const fraga = new URLSearchParams(location.search);
+let spel = SPELEN.includes(fraga.get('spel')) ? fraga.get('spel') : 'alla';
+let period = PERIODER.includes(fraga.get('period')) ? fraga.get('period') : 'manad';
+
+const listor = {};
+let badgesKlara = null;
+let inloggad = false;
+let harNamn = true;
+
+function rad(r, arJag){
+  const b = r.badge && badgesKlara && badgesKlara.hitta(r.badge);
+  return '<li' + (arJag ? ' class="jag"' : '') + '>' +
+    '<a class="q-rad" href="/profil/?namn=' + encodeURIComponent(r.namn) + '">' +
+    '<span class="plats">' + r.plats + '</span>' +
+    '<span class="bild" aria-hidden="true">' + (r.bild ? '<img src="' + esc(r.bild) + '" alt="" loading="lazy" width="32" height="32">' : esc(String(r.namn).charAt(0).toUpperCase())) + '</span>' +
+    '<span class="namn-del"><span class="namn-rad"><span class="namn">' + esc(r.namn) + '</span>' +
+    (b ? badgesKlara.medaljHtml(b, true, 24) : '') + (arJag ? '<span class="du">Du</span>' : '') + '</span>' +
+    '<span class="rang">' + esc(r.rang) + '</span></span>' +
+    '<span class="poang">' + tal(r.poang) + ' p</span></a></li>';
+}
+
+function rita(){
+  const rader = document.getElementById('qRader');
+  const jag = document.getElementById('qJag');
+  document.querySelectorAll('#qFlikar button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.period === period)));
+  document.querySelectorAll('#qSpel button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.spel === spel)));
+
+  const t = listor[spel];
+  if (t === undefined){
+    rader.innerHTML = '<li class="q-tom">Hämtar topplistan.</li>';
+    jag.innerHTML = '';
+    return;
+  }
+  if (!t){
+    rader.innerHTML = '<li class="q-tom">Topplistan kunde inte hämtas just nu.</li>';
+    jag.innerHTML = '';
+    return;
+  }
+
+  /* Fliken heter som månaden, till exempel November. */
+  if (t.manad_datum){
+    const m = new Date(t.manad_datum + 'T12:00:00Z').toLocaleDateString('sv-SE', { month: 'long', timeZone: 'Europe/Stockholm' });
+    document.getElementById('qFlikManad').textContent = m.charAt(0).toUpperCase() + m.slice(1);
+  }
+  const lista = t[period].lista;
+  const min = t[period].jag;
+  jag.classList.toggle('fast', !!(min && !min.listad));
+  rader.innerHTML = lista.length
+    ? lista.map(r => rad(r, min && min.listad && r.namn === min.namn)).join('')
+    : '<li class="q-tom">' + (period === 'manad' ? 'Ingen har tagit poäng i ' + SPELNAMN[spel] + ' den här månaden än.' : 'Ingen har tagit poäng i ' + SPELNAMN[spel] + ' än.') + '</li>';
+
+  /* Raden under listan: egen placering utanför topp 50, annars vad som krävs
+     för att komma med. */
+  if (min && !min.listad){
+    jag.innerHTML = '<span class="q-jag-etikett">Din placering</span><ol class="q-rader">' + rad(min, true) + '</ol>';
+  } else if (min){
+    jag.innerHTML = '';
+  } else if (inloggad && !harNamn){
+    jag.innerHTML = 'Välj ett visningsnamn för att synas i topplistan.' +
+      '<a class="knapp knapp-sek" href="/konto/" id="qValjNamnLista">Välj namn</a>';
+    document.getElementById('qValjNamnLista').addEventListener('click', function(e){
+      e.preventDefault();
+      hardlistKonto.valjNamn();
+    });
+  } else if (inloggad){
+    jag.innerHTML = 'Du syns här när du tagit poäng' + (period === 'manad' ? ' den här månaden.' : '.');
+  } else {
+    jag.innerHTML = 'Bara inloggade samlar poäng och syns i topplistan.';
+  }
+
+  /* Badgen vid namnet ritas när badges.js har laddats. Den laddas bara när
+     någon i listan har en. */
+  if (!badgesKlara && hardlistKonto.badges &&
+      (lista.some(r => r.badge) || (min && min.badge))){
+    hardlistKonto.badges().then(B => { badgesKlara = B; rita(); }).catch(() => {});
+  }
+}
+
+async function ladda(){
+  if (listor[spel] !== undefined) return rita();
+  const detta = spel;
+  rita();
+  try {
+    const svar = await hardlistKonto.rpc('topplista', { p_spel: detta });
+    listor[detta] = svar && !svar.fel ? svar : null;
+  } catch(e){
+    listor[detta] = null;
+  }
+  if (detta === spel) rita();
+}
+
+function valj(nytt){
+  const url = new URL(location.href);
+  if (nytt.spel) spel = nytt.spel;
+  if (nytt.period) period = nytt.period;
+  url.searchParams.set('spel', spel);
+  url.searchParams.set('period', period);
+  history.replaceState(null, '', url);
+  ladda();
+}
+
+document.getElementById('qFlikar').addEventListener('click', function(e){
+  const b = e.target.closest('button');
+  if (b) valj({ period: b.dataset.period });
+});
+document.getElementById('qSpel').addEventListener('click', function(e){
+  const b = e.target.closest('button');
+  if (b) valj({ spel: b.dataset.spel });
+});
+
+async function start(){
+  try {
+    inloggad = !!hardlistKonto.inloggad();
+    const p = inloggad ? await hardlistKonto.rpc('quiz_dagens', { p_starta: false }) : null;
+    harNamn = !(p && p.konto) || p.konto.har_namn !== false;
+  } catch(e){}
+  ladda();
+}
+
+/* inloggning.js laddas med defer och finns först när sidan tolkats klart. */
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+else start();
+</script>
+<script src="/ram.js" defer></script>
+<script src="/inloggning.js" defer></script>
+<script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

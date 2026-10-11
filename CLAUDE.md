@@ -26,7 +26,7 @@ Menyn har fem val, och varje sida hör till ett av dem:
 | Hem | `/` — idag-vyn: dagens fråga, dagens låt, topplistan, nytt, snart |
 | Releaser | `/releaser/` |
 | Event | `/events/` (kalendern och festivalguiderna), `/guider/` (camping) |
-| Spel | `/spel/`, `/quiz/`, `/latspel/`, `/fritt-spel/`, `/badges/` |
+| Spel | `/spel/`, `/quiz/`, `/latspel/`, `/fritt-spel/`, `/topplista/`, `/badges/` |
 | Scenen | `/scenen/`, `/nyborjare/`, `/anthems/` |
 
 Konto (`/konto/`, Din profil), den offentliga profilen (`/profil/`), integritet och 404 hör inte till något menyval.
@@ -52,6 +52,7 @@ anthems/index.html      →  hardlist.se/anthems/
 konto/index.html        →  hardlist.se/konto/          Din profil
 profil/index.html       →  hardlist.se/profil/?namn=…  offentlig profil, noindex
 badges/index.html       →  hardlist.se/badges/         alla badges
+topplista/index.html    →  hardlist.se/topplista/      topplistan, alla spel
 integritet/index.html   →  hardlist.se/integritet/
 404.html                →  egen felsida
 CNAME                   →  RADERA ALDRIG. Utan den slutar domänen fungera.
@@ -358,10 +359,10 @@ svar. Fram till oktober 2026 låg alla svar öppet i `data/quiz-live.json` och
 - **Poäng:** grundpoäng + min(svit − 1, 10) × 2 för rätt svar. Grundpoängen
   är 10 för en textfråga och 20 för en låtfråga (fredag, eller en extrainsatt
   låtdag) — det avgörs av frågans `musik`-flagga i `quiz.registrera`. Fel svar
-  ger noll och bryter sviten, en missad dag också. Rangskalan finns bara i `quiz.rang` i
-  databasen.
-- **Topplistan** (`quiz_topplista`) lämnar bara ut visningsnamn, bild, badge vid namnet, poäng och
-  rang. Totalt och innevarande månad, topp 50.
+  ger noll och bryter sviten, en missad dag också. Det här är poängen från
+  dagens fråga. Poängen till rangen från alla spel står under **Poäng och rang**.
+- **Topplistan** (`quiz_topplista` och `topplista`) lämnar bara ut visningsnamn, bild,
+  badge vid namnet, poäng och rang. Totalt och innevarande månad, topp 50.
 - Allt om ett konto raderas med kontot (`on delete cascade`).
 
 Tabellerna ligger i schemat `quiz`, som API:t inte exponerar. Sajten når dem
@@ -529,6 +530,44 @@ vars låt finns i listan går att slå upp. Nya låtfrågor ska därför inte l�
 till i låtspelets lista förrän deras fredag har passerat.
 
 ---
+
+## Poäng och rang
+
+Alla spel ger poäng till rangen och topplistan. Poängen kan ha en decimal, och
+rangen räknas på summan. Allt avgörs på servern, i
+`supabase/migrations/20261011100000_poang_till_rangen.sql`.
+
+| Spel | Poäng till rangen |
+|---|---|
+| Dagens fråga | Som ovan: 10 (20 på låtfrågan) + min(svit − 1, 10) × 2. Ligger i `quiz.svar.plus`. |
+| Dagens låt | 20, 15, 10, 7 eller 5 efter vilket av de fem klippen svaret räknas på. Fel svar ger 0. |
+| Fritt spel | Per rätt låt: 0,2 på Lätt, 0,4 på Medel, 0,7 på Svår, 1 på Expert. Högst 10 poäng per konto och dygn från fritt spel, räknat i svensk tid. |
+
+- **Spelpoängen i spelen (100, 70 och så vidare) är en annan sak** och ändras
+  inte. Efter varje låt visar sidan även vad den gav till rangen, till exempel
+  "+0,4 till rangen" (`rang_plus` och `rang_tak` i svaret).
+- **Rangerna:** Nybörjare 0, Raver 100, Frontrow 400, Hardhead 1 000, Hakker
+  2 400, Gabber 5 000, Oldschool 10 000, Legend 20 000. Skalan står på två
+  ställen som måste vara lika: `quiz.rang` och `profil.rang_json`. Badgen
+  Legend kräver också 20 000 (`badges.js` och `quiz.legend_badge`).
+- **Var poängen ligger:** Dagens låt och fritt spel i `quiz.spelpoang`, en rad
+  per omgång (samma omgång ger aldrig poäng två gånger). Vyn `quiz.alla_poang`
+  lägger ihop dem med dagens fråga, och `quiz.total(konto)` ger summan.
+  Topplistan, månaden, rangen, profilen och månadsbadgesen räknas alla från
+  vyn. `quiz.ge_spelpoang` ger poängen och håller taket i fritt spel.
+- **Poängen delas ut i ett eget exception-block** i `dag_svara` och
+  `latbibliotek.sok_avsluta`, så att ett fel där aldrig stoppar ett svar.
+- **Bara konton med visningsnamn** samlar poäng, som förut. Utan konto syns
+  ingen `rang_plus` och sidan föreslår inloggning.
+- **Topplistan** ligger på `/topplista/` (`public.topplista(p_spel)`, med
+  `alla`, `fraga`, `lat` eller `fritt`). Rangen vid varje namn är alltid
+  summan från alla spel, också när listan visar ett spel. Startsidan, `/spel/`
+  och `/quiz/` länkar dit.
+- **Månadsbadgesen** räknas på månadens poäng från alla spel. Ögonblicksbilden
+  i `profil.manader` sparar poängen avrundad till heltal, men placeringen
+  räknas på de exakta.
+- Ändras reglerna: ändra dem här också, och skriv en ny migration. Det som
+  redan getts räknas inte om av sig självt.
 
 ## Profiler och badges
 

@@ -360,12 +360,20 @@
     kopplaRunda();
   }
 
+  /* Vad låten gav till rangen. Servern räknar, sidan skriver bara ut. */
+  function rangRad(f){
+    if (!f.ratt) return '';
+    const konto = window.hardlistKonto;
+    if (f.rang_plus == null) return konto && konto.inloggad() ? '' : '<p class="q-nasta">Logga in för att få poäng till rangen.</p>';
+    return '<p class="q-nasta">+' + Number(f.rang_plus).toLocaleString('sv-SE', { maximumFractionDigits: 1 }) + ' till rangen</p>';
+  }
+
   function ritaFacit(f){
     stoppa();
     const imorgon = new Date(dag.datum + 'T12:00:00'); imorgon.setDate(imorgon.getDate() + 1);
     el('lKort').innerHTML = datumRad() +
       '<div class="l-utfallrad"><p class="q-utfall ' + (f.ratt ? 'ja' : 'nej') + '">' + (f.ratt ? IKON_JA + 'Rätt på ' + sekunder(f.sekunder) : IKON_NEJ + 'Inte den här gången') + '</p>' +
-      (f.ratt ? '<p class="q-plus">+' + f.poang + '</p>' : '') + '</div>' +
+      (f.ratt ? '<p class="q-plus">+' + f.poang + '</p>' : '') + '</div>' + rangRad(f) +
       '<div class="l-facit"><b>' + skydda(f.lat.titel) + '</b><span>' + skydda(f.lat.artist) + '</span></div>' +
       spelarRuta('Hela förlyssningen', 'Tryck för att lyssna.', f.lat.apple) +
       alternativ(f) +

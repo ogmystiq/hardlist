@@ -205,10 +205,10 @@
       "id": "legend",
       "grupp": "topp",
       "namn": "Legend",
-      "text": "Nå rangen Legend, 10 000 poäng.",
+      "text": "Nå rangen Legend, 20 000 poäng.",
       "niva": "Extremt sällsynt",
       "illu": "stjarna",
-      "mal": 10000,
+      "mal": 20000,
       "enhet": "poäng"
     },
     {
