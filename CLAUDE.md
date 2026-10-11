@@ -557,6 +557,17 @@ tabellerna från `20261007230000_rankat.sql`.
   `latbibliotek.rating`). Elo med K 32, och K 48 de fem första matcherna.
   Aldrig under 0. Vinst, förlust och oavgjort räknas, liksom vinster i rad.
   Under fem matcher står "Placeringsmatch". Historiken är `latbibliotek.matcher`.
+- **Skydd mot att två konton hjälper varandra** (`20261013100000_rankat_skydd.sql`).
+  Facit visas efter varje låt, så en person med två konton kan låta det ena
+  lära sig svaren åt det andra. Därför möts samma två konton högst två gånger
+  per dygn, live och asynkront (`latbibliotek.rankat_for_ofta`), och en
+  färdig match används som motståndare högst fem gånger
+  (`rankat_max_ateranvandning`). Poäng till rangen från rankat är högst 20
+  per dygn (`quiz.rankat_tak`), och en match som lämnas när alla låtar är
+  besvarade räknas som den blev, inte som uppgiven. Tid, poäng och rättning
+  räknas på servern, och inga tabeller i `latbibliotek` är öppna för API:t.
+  Det som inte går att stoppa: en person som spelar med två konton vid samma
+  skärm, och att Apples ljudadress går att slå upp.
 - **Ge upp:** två tryck på "Ge upp matchen". Det är förlust, oavsett poängen.
   Samma sak när man startar en ny match mitt i en annan. En uppgiven match ger
   inga poäng till rangen, annars kunde man starta och ge upp för att samla
