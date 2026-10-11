@@ -593,6 +593,20 @@ API:t inte exponerar, precis som `quiz`. Sajten når dem bara genom
 - **Månadsbadges** delas ut av pg_cron-jobbet `hardlist-manadsbadges` varje natt
   strax efter midnatt svensk tid. Det sparar förra månadens placeringar en gång
   och delar ut Vid staketet, I båset, Headliner, Residenten och Veteranen.
+- **Statistiken per spel** på profilen (`profil.statistik`, i `profil_visa` och
+  `profil_min` under `statistik`) räknas ur det som redan sparas, i
+  `supabase/migrations/20261011200000_profilstatistik.sql`. Ritas av
+  `profilvy.js` med stilen i `profilstat.css`. Kraschar den visas profilen ändå.
+  - *Dagens fråga:* `quiz.konton` (spelade, rätt, svit, bästa svit) och poängen.
+  - *Dagens låt:* `dag_forsok` och omgångarna: spelade, rätt, klippet svaret
+    räknades på (oftast, vid lika det kortaste) och dagar i rad med rätt. Är
+    dagens låt spelad och fel är sviten bruten.
+  - *Fritt spel:* omgångarna med läge `fritt`: spelade, rätt, rätt per
+    svårighet och mest spelade genre. Fritt spel har ingen svit.
+  - *Plats:* totalt ur `quiz.alla_poang`, och bästa månadsplats ur
+    `profil.manader` samt innevarande månad.
+  - Bara aggregat, aldrig något om en enskild dag eller vilket alternativ som
+    var rätt. Samma sak syns för alla som ser profilen.
 - **Låtspelets badges** (`kommer: true`) delas inte ut än.
 - **Grundaren delas bara ut till Jonte** (kontot mystiq). Den har en egen nivå,
   Unik (nivå 5 i `profil.katalog`, `unik: true` i `badges.js`), och ett unikt

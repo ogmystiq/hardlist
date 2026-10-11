@@ -220,7 +220,7 @@
   function nasta(el, p){
     if (!p.nasta_rang){
       el.innerHTML = '<div class="pf-nasta-topp"><span class="pf-nasta-namn"><span class="pf-etikett">Rang</span>' +
-        '<span class="pf-stor">' + esc(p.rang) + '</span></span><span class="pf-nasta-kvar">Högsta rangen</span></div>';
+        '<span class="pf-stor">' + esc(p.rang) + '</span></span><span class="pf-nasta-kvar">Högsta rangen</span></div>' + placeringar(p);
       return;
     }
     const spann = Math.max(1, p.nasta_grans - p.rang_fran);
@@ -228,19 +228,70 @@
     el.innerHTML = '<div class="pf-nasta-topp"><span class="pf-nasta-namn"><span class="pf-etikett">Nästa rang</span>' +
       '<span class="pf-stor">' + esc(p.nasta_rang) + '</span></span>' +
       '<span class="pf-nasta-kvar">' + tal(p.kvar) + ' poäng kvar</span></div>' +
-      '<div class="pf-stapel" role="img" aria-label="' + andel + ' procent av vägen till ' + esc(p.nasta_rang) + '"><i style="width:' + andel + '%"></i></div>';
+      '<div class="pf-stapel" role="img" aria-label="' + andel + ' procent av vägen till ' + esc(p.nasta_rang) + '"><i style="width:' + andel + '%"></i></div>' + placeringar(p);
   }
 
+  /* Statistik per spel, ett kort vardera. Allt räknas på servern ur det som
+     redan sparas, och visar aldrig något om dagens fråga eller låt. */
+  function procent(ratt, spelade){ return spelade ? Math.round(100 * ratt / spelade) + ' %' : '–'; }
+  function rutor(lista){
+    return '<dl class="ps-rutor">' + lista.map(function(r){
+      return '<div class="ps-ruta"><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>';
+    }).join('') + '</dl>';
+  }
+  function kort(namn, poang, innehall, tomt){
+    return '<section class="ps-kort" aria-label="' + namn + '"><div class="ps-topp"><h3>' + namn + '</h3>' +
+      '<span class="ps-poang">' + tal(poang) + ' p till rangen</span></div>' +
+      (tomt ? '<p class="ps-tom">Inte spelad än.</p>' : innehall) + '</section>';
+  }
+  const KLIPPTEXT = ['0,5 s', '1 s', '3 s', '7 s', '15 s'];
+  const SVAR_NAMN = { hardstyle: 'Hardstyle', raw: 'Raw', uptempo: 'Uptempo', hardcore: 'Hardcore', techno: 'Hard techno' };
+
   function siffror(el, p){
-    const ruta = function(etikett, varde){
-      return '<div class="pf-siffra"><span class="pf-etikett">' + etikett + '</span><span class="pf-stor">' + varde + '</span></div>';
-    };
-    el.innerHTML = ruta('Svit', tal(p.svit)) + ruta('Bästa svit', tal(p.basta)) +
-      ruta('Rätt svar', p.ratt_andel == null ? '–' : p.ratt_andel + ' %') +
-      // Poängen per spel, som tillsammans är rangen.
-      (p.poang_fraga == null ? '' :
-        ruta('Dagens fråga', tal(p.poang_fraga) + ' p') + ruta('Dagens låt', tal(p.poang_lat) + ' p') +
-        ruta('Fritt spel', tal(p.poang_fritt) + ' p'));
+    const s = p.statistik;
+    el.className = 'ps';
+    if (!s){ el.innerHTML = ''; return; }
+    const f = s.fraga, l = s.lat, t = s.fritt;
+
+    const kFraga = kort('Dagens fråga', f.poang, rutor([
+      ['Spelade', tal(f.spelade)], ['Rätt', tal(f.ratt)], ['Träff', procent(f.ratt, f.spelade)],
+      ['Svit', tal(f.svit)], ['Bästa svit', tal(f.basta)]
+    ]), !f.spelade);
+
+    const hogsta = Math.max.apply(null, l.klipp || [0]);
+    const kLat = kort('Dagens låt', l.poang, rutor([
+      ['Spelade', tal(l.spelade)], ['Rätt', tal(l.ratt)], ['Träff', procent(l.ratt, l.spelade)],
+      ['Svit', tal(l.svit)], ['Bästa svit', tal(l.basta)]
+    ]) + (l.oftast == null ? '' :
+      '<p class="ps-rubrik">Rätt efter klipp, oftast ' + KLIPPTEXT[l.oftast] + '</p>' +
+      '<ol class="ps-klipp" aria-label="Antal rätt per klipp">' + l.klipp.map(function(n, i){
+        return '<li' + (n === hogsta && n > 0 ? ' class="ps-mest"' : '') + '><b>' + tal(n) + '</b><span>' + KLIPPTEXT[i] + '</span></li>';
+      }).join('') + '</ol>'), !l.spelade);
+
+    const n = t.niva || {};
+    const kFritt = kort('Fritt spel', t.poang, rutor([
+      ['Spelade', tal(t.spelade)], ['Rätt', tal(t.ratt)], ['Träff', procent(t.ratt, t.spelade)]
+    ]) +
+      '<p class="ps-rubrik">Rätta låtar per svårighet</p>' +
+      '<ol class="ps-klipp ps-niva" aria-label="Rätta låtar per svårighet">' +
+        [['Lätt', n.latt], ['Medel', n.medel], ['Svår', n.svar], ['Expert', n.expert]].map(function(r){
+          return '<li><b>' + tal(r[1]) + '</b><span>' + r[0] + '</span></li>';
+        }).join('') + '</ol>' +
+      (t.genre ? '<p class="ps-rad">Mest spelade genre: <b>' + esc(SVAR_NAMN[t.genre] || t.genre) + '</b>, ' + tal(t.genre_spelade) + ' låtar.</p>' : ''),
+      !t.spelade);
+
+    el.innerHTML = kFraga + kLat + kFritt;
+  }
+
+  /* Placeringarna under raden för nästa rang. */
+  function placeringar(p){
+    const s = p.statistik;
+    if (!s || (!s.plats_total && !s.basta_manad_plats)) return '';
+    return '<p class="ps-plats">' +
+      (s.plats_total ? 'Totalt plats <b>' + tal(s.plats_total) + '</b>' : '') +
+      (s.plats_total && s.basta_manad_plats ? '. ' : '') +
+      (s.basta_manad_plats ? 'Bästa månadsplats <b>' + tal(s.basta_manad_plats) + '</b>, ' + esc(manad(s.basta_manad)) : '') +
+      '.</p>';
   }
 
   window.hardlistProfil = {
