@@ -36,12 +36,6 @@
       "spotify": "https://open.spotify.com/album/10FDM8wQBZOzd6iDq2TXqP",
       "kollad": "2026-10-07"
     },
-    "8721244825397": {
-      "titel": "Tripping with Dr. Peacock (Live at Harmony Of Hardcore 2026)",
-      "datum": "2026-09-10",
-      "spotify": "https://open.spotify.com/album/10d4MEace0WilwuoTS5dc8",
-      "kollad": "2026-10-07"
-    },
     "5064079589823": {
       "titel": "Bittersweet",
       "datum": "2026-10-08",
@@ -529,6 +523,42 @@
       "datum": "2026-10-02",
       "skal": "UPC-träff med fel artist: Villain (0V1PeYjNZNeWtz0Tjm5UVS)",
       "kollad": "2026-10-09"
+    },
+    "5064090517515": {
+      "titel": "Llamas Violetas",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-10-11",
+      "skal": "UPC-träff med fel artist: fenix (68nnr4aBk3IwIoyLeP9s6s)",
+      "kollad": "2026-10-11"
+    },
+    "700521832851": {
+      "titel": "On the Useful Abstraction Principle",
+      "fran": [
+        "I:gor"
+      ],
+      "datum": "2026-10-10",
+      "skal": "UPC-träff med fel artist: I-GOR (7ILoqOmtZIwe61KGkOeuDW)",
+      "kollad": "2026-10-11"
+    },
+    "7333596221171": {
+      "titel": "Нәзігім",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-10-10",
+      "skal": "UPC-träff med fel artist: baq (3sYhdayJPSnHmbqBCExCeH)",
+      "kollad": "2026-10-11"
+    },
+    "7333596220440": {
+      "titel": "Жоспарда болмаған қыз",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-10-10",
+      "skal": "UPC-träff med fel artist: baq (3sYhdayJPSnHmbqBCExCeH)",
+      "kollad": "2026-10-11"
     }
   }
 }
