@@ -1,24 +1,90 @@
-/* Statistik per spel på profilen, ritad av profilvy.js. Ett kort per spel.
-   Ingen färg: siffrorna står i textfärg, markeringen är en ljusare yta. */
+/* Rang och statistik per spel på profilen, ritade av profilvy.js.
+   Färg bara där den betyder något: genrens färg för mest spelade genre i fritt
+   spel. Allt annat står i textfärg och ytor. Inget rör sig när sidan laddas. */
+
+/* ---------- rangen ---------- */
+.pn{padding:20px;gap:18px;border-radius:24px}
+.pn-huvud{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 24px}
+.pn-rang{display:flex;flex-direction:column;gap:4px;min-width:0}
+.pn-namn{font-stretch:62%;font-weight:900;font-size:clamp(54px,17vw,76px);line-height:.95;letter-spacing:-.01em;overflow-wrap:anywhere}
+.pn-poang{font-size:18px;color:var(--text-2)}
+.pn-plats{margin:0;display:flex;gap:24px}
+.pn-plats-ruta{display:flex;flex-direction:column;gap:2px}
+.pn-plats-ruta dd{margin:0;font-stretch:62%;font-weight:900;font-size:34px;line-height:1}
+.pn-plats-ruta dt{font-size:13px;color:var(--text-3)}
+.pn-plats-ruta small{font-size:12px;color:var(--text-3)}
+.pn-mal{display:flex;flex-direction:column;gap:10px}
+.pn-text{margin:0;font-size:16px;color:var(--text-2)}
+.pn-text b{color:var(--text)}
+.pn-stapel{height:18px;border-radius:999px;background:var(--yta-2);overflow:hidden}
+.pn-stapel i{display:block;height:100%;min-width:18px;border-radius:999px;background:var(--text)}
+.pn-grans{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--text-3)}
+
+/* ---------- spelkorten ---------- */
 .ps{display:flex;flex-direction:column;gap:12px}
-.ps-kort{background:var(--yta);border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
-.ps-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.ps-topp h3{margin:0;font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
-.ps-poang{font-size:14px;color:var(--text-2)}
-.ps-rutor{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 8px}
-.ps-ruta{display:flex;flex-direction:column;gap:2px;min-width:0}
-.ps-ruta dt{font-size:13px;color:var(--text-3)}
-.ps-ruta dd{margin:0;font-stretch:62%;font-weight:900;font-size:28px;line-height:1}
+.ps-kort{background:var(--yta);border-radius:24px;padding:18px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.ps-topp{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap}
+.ps-topp h3{margin:0;display:flex;align-items:center;gap:8px;font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
+.ps-topp h3 svg{flex:none;width:20px;height:20px;color:var(--text-2)}
+.ps-pill{flex:none;padding:6px 12px;border-radius:999px;background:var(--yta-2);font-size:13px;font-weight:600;color:var(--text-2)}
+
+.ps-rad-stor{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:start}
+.ps-siffra{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ps-siffra b{font-stretch:62%;font-weight:900;font-size:44px;line-height:56px}
+.ps-siffra span,.ps-ring span{font-size:13px;color:var(--text-3)}
+.ps-ring{position:relative;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ps-ring svg{width:56px;height:56px}
+.ps-ring-spar{stroke:var(--yta-2)}
+.ps-ring-fyll{stroke:var(--text)}
+.ps-ring b{position:absolute;top:0;left:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-stretch:62%;font-weight:900;font-size:17px;line-height:1}
+.ps-ring b small{font-size:11px;margin-left:1px;color:var(--text-2)}
+
+.ps-svit{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.ps-svit-nu{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;background:var(--yta-2);font-size:15px;font-weight:700}
+.ps-svit-nu svg{width:16px;height:16px}
+.ps-svit-nu.het{background:var(--text);color:var(--natt)}
+.ps-svit-basta{font-size:13px;color:var(--text-3)}
+
 .ps-rubrik{margin:0;font-size:13px;color:var(--text-3)}
-.ps-klipp{list-style:none;margin:-6px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
-.ps-klipp.ps-niva{grid-template-columns:repeat(4,minmax(0,1fr))}
-.ps-klipp li{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;border-radius:14px;background:var(--yta-2)}
-.ps-klipp b{font-stretch:62%;font-weight:900;font-size:22px;line-height:1}
-.ps-klipp span{font-size:12px;color:var(--text-2);text-align:center}
-.ps-klipp li.ps-mest{background:var(--text);color:var(--natt)}
-.ps-klipp li.ps-mest span{color:var(--natt)}
-.ps-rad{margin:0;font-size:14px;line-height:1.5;color:var(--text-2)}
-.ps-rad b{color:var(--text)}
-.ps-tom{margin:0;font-size:15px;color:var(--text-2)}
-.ps-plats{margin:0;font-size:14px;line-height:1.5;color:var(--text-2)}
-.ps-plats b{color:var(--text)}
+.ps-rad{margin:0;font-size:14px;color:var(--text-2)}
+
+/* Dagens låt: antal rätt per klipp, höjden visar antalet. */
+.ps-diagram{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:end}
+.ps-diagram li{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;height:152px}
+.ps-diagram b{font-size:16px;line-height:1;color:var(--text-2)}
+.ps-diagram i{display:block;width:100%;max-width:44px;border-radius:10px 10px 4px 4px;background:var(--yta-2)}
+.ps-diagram span{font-size:12px;color:var(--text-3)}
+.ps-diagram .ps-mest b{color:var(--text)}
+.ps-diagram .ps-mest i{background:var(--text)}
+.ps-diagram .ps-mest span{color:var(--text)}
+
+/* Fritt spel: rätta låtar per svårighet och mest spelade genre. */
+.ps-staplar{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.ps-staplar li{display:grid;grid-template-columns:52px minmax(0,1fr) 32px;align-items:center;gap:10px}
+.ps-staplar span{font-size:14px;color:var(--text-2)}
+.ps-staplar b{text-align:right;font-size:15px}
+.ps-spar{height:10px;border-radius:999px;background:var(--yta-2);overflow:hidden}
+.ps-spar i{display:block;height:100%;border-radius:999px;background:var(--text)}
+.ps-genre{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.ps-genre .ps-spar{align-self:stretch}
+.ps-genre .ps-spar i{background:var(--g)}
+.ps-genrepill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:var(--g);color:var(--natt);font-size:15px;font-weight:700}
+.ps-prick{width:8px;height:8px;border-radius:50%;background:var(--natt)}
+
+/* Ett spel som inte spelats: nedtonat kort. */
+.ps-tomt{background:color-mix(in srgb,var(--yta) 55%,transparent);gap:8px}
+.ps-tomt .ps-topp h3,.ps-tomt .ps-pill{opacity:.65}
+.ps-tom{margin:0;font-size:15px;color:var(--text-3)}
+
+/* ---------- dator ---------- */
+@media (min-width:900px){
+  .pf{max-width:1040px}
+  .pn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:32px;padding:28px 32px}
+  .pn-namn{font-size:96px}
+  .ps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:16px}
+  .pf-rutnat{grid-template-columns:repeat(8,minmax(0,1fr))}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .pn *,.ps *{transition:none !important;animation:none !important}
+}
