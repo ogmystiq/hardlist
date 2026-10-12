@@ -179,6 +179,12 @@
       "datum": "2026-10-09",
       "spotify": "https://open.spotify.com/album/3ZrBUSijdZYlPvSokYosxa",
       "kollad": "2026-10-09"
+    },
+    "5054290220988": {
+      "titel": "Resistance Is Futile",
+      "datum": "2026-10-12",
+      "spotify": "https://open.spotify.com/album/4RECX5txDpumJO8II7p2BN",
+      "kollad": "2026-10-12"
     }
   },
   "avvisade": {
@@ -559,6 +565,33 @@
       "datum": "2026-10-10",
       "skal": "UPC-träff med fel artist: baq (3sYhdayJPSnHmbqBCExCeH)",
       "kollad": "2026-10-11"
+    },
+    "8721711023837": {
+      "titel": "Happy Friday! SKA Cover",
+      "fran": [
+        "GPF"
+      ],
+      "datum": "2026-10-12",
+      "skal": "UPC-träff med fel artist: GPF (73cgArs7H4tSAMFI34DguU)",
+      "kollad": "2026-10-12"
+    },
+    "8721711023813": {
+      "titel": "En runda till!",
+      "fran": [
+        "GPF"
+      ],
+      "datum": "2026-10-12",
+      "skal": "UPC-träff med fel artist: GPF (73cgArs7H4tSAMFI34DguU)",
+      "kollad": "2026-10-12"
+    },
+    "8721711023752": {
+      "titel": "Efterfest!",
+      "fran": [
+        "GPF"
+      ],
+      "datum": "2026-10-12",
+      "skal": "UPC-träff med fel artist: GPF (73cgArs7H4tSAMFI34DguU)",
+      "kollad": "2026-10-12"
     }
   }
 }
