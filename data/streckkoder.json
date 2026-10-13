@@ -185,6 +185,24 @@
       "datum": "2026-10-12",
       "spotify": "https://open.spotify.com/album/4RECX5txDpumJO8II7p2BN",
       "kollad": "2026-10-12"
+    },
+    "700573177337": {
+      "titel": "Pendulum (Hardshift 2026 Anthem)",
+      "datum": "2026-10-13",
+      "spotify": "https://open.spotify.com/album/6B3OpaS5XL8urm9DmAFIvf",
+      "kollad": "2026-10-13"
+    },
+    "5054290292534": {
+      "titel": "Miracle",
+      "datum": "2026-10-13",
+      "spotify": "https://open.spotify.com/album/4c0lPduTD5mWNx3kzWPmet",
+      "kollad": "2026-10-13"
+    },
+    "700573388238": {
+      "titel": "Echoes (Radio Edit)",
+      "datum": "2026-10-09",
+      "spotify": "https://open.spotify.com/album/2iLy9fjORnBWK6Uj3HmjjN",
+      "kollad": "2026-10-13"
     }
   },
   "avvisade": {
@@ -592,6 +610,24 @@
       "datum": "2026-10-12",
       "skal": "UPC-träff med fel artist: GPF (73cgArs7H4tSAMFI34DguU)",
       "kollad": "2026-10-12"
+    },
+    "5064090566674": {
+      "titel": "la heladera",
+      "fran": [
+        "Kronos"
+      ],
+      "datum": "2026-10-13",
+      "skal": "UPC-träff med fel artist: kronos (7mIhcSQnI2KyWABjOXP6R1)",
+      "kollad": "2026-10-13"
+    },
+    "7333596239626": {
+      "titel": "Despierta",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-10-12",
+      "skal": "UPC-träff med fel artist: Fenix (7HQhGjQRRyHpsJbGUyvMgI)",
+      "kollad": "2026-10-13"
     }
   }
 }
