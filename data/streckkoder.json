@@ -407,6 +407,12 @@
       "datum": "2026-10-14",
       "spotify": "https://open.spotify.com/album/04NAzAnjuK7vQvahkSeFYm",
       "kollad": "2026-10-16"
+    },
+    "1200220088225": {
+      "titel": "Self Aware",
+      "datum": "2026-10-16",
+      "spotify": "https://open.spotify.com/album/5KeX0nAZ396KZKudRiUnkv",
+      "kollad": "2026-10-17"
     }
   },
   "avvisade": {
@@ -1030,6 +1036,42 @@
       "datum": "2026-10-15",
       "skal": "UPC-träff med fel artist: Snowflake (5BrXJ2g9KbeEczqAcfPpho)",
       "kollad": "2026-10-16"
+    },
+    "700521004579": {
+      "titel": "Vacation Again (Radio Edit)",
+      "fran": [
+        "DJ Vince"
+      ],
+      "datum": "2026-10-16",
+      "skal": "UPC-träff med fel artist: DJ VINCE (3ZzGDfzuFRPT7V4ZNUNQSy)",
+      "kollad": "2026-10-17"
+    },
+    "700486666775": {
+      "titel": "BADLOSS BABY",
+      "fran": [
+        "A-RIZE"
+      ],
+      "datum": "2026-10-16",
+      "skal": "UPC-träff med fel artist: Reddeth (1PMgleGWaGAEQYDJtBaNQO), AriZe (6KeO4gWWAU3A6mI7lTW0Fd)",
+      "kollad": "2026-10-17"
+    },
+    "859746223750": {
+      "titel": "DESTRUCTION",
+      "fran": [
+        "Broken Minds"
+      ],
+      "datum": "2026-10-16",
+      "skal": "UPC-träff med fel artist: Broken Minds (4tqa7001tSx1uEOLegPDl0)",
+      "kollad": "2026-10-17"
+    },
+    "742040361627": {
+      "titel": "Kuqonywe Mina",
+      "fran": [
+        "Delete"
+      ],
+      "datum": "2026-10-16",
+      "skal": "UPC-träff med fel artist: Ngambie (2U8Z2FVpkhWhLXVCagJRKP), DELETE (4jOrJgQlOcAFOSWoNj3LpQ), Willie Gates Africca (5VZXlLkQrE1d6M7HoaSPHs)",
+      "kollad": "2026-10-17"
     }
   }
 }
