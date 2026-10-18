@@ -413,6 +413,30 @@
       "datum": "2026-10-16",
       "spotify": "https://open.spotify.com/album/5KeX0nAZ396KZKudRiUnkv",
       "kollad": "2026-10-17"
+    },
+    "991061432957": {
+      "titel": "GTFU",
+      "datum": "2026-10-18",
+      "spotify": "https://open.spotify.com/album/0YAVz50gXavEpo0essoat4",
+      "kollad": "2026-10-18"
+    },
+    "8721639349682": {
+      "titel": "Jus De Cul",
+      "datum": "2026-10-16",
+      "spotify": "https://open.spotify.com/album/28fZs0tnyabN3PyXAPcDwN",
+      "kollad": "2026-10-18"
+    },
+    "8721639349705": {
+      "titel": "Holy Ground",
+      "datum": "2026-10-16",
+      "spotify": "https://open.spotify.com/album/64nMLE9OdSsuWUAjKtX93R",
+      "kollad": "2026-10-18"
+    },
+    "8721639349187": {
+      "titel": "Blade",
+      "datum": "2026-10-16",
+      "spotify": "https://open.spotify.com/album/4idCJtYUb3UOmSgpSK4xMR",
+      "kollad": "2026-10-18"
     }
   },
   "avvisade": {
@@ -1072,6 +1096,24 @@
       "datum": "2026-10-16",
       "skal": "UPC-träff med fel artist: Ngambie (2U8Z2FVpkhWhLXVCagJRKP), DELETE (4jOrJgQlOcAFOSWoNj3LpQ), Willie Gates Africca (5VZXlLkQrE1d6M7HoaSPHs)",
       "kollad": "2026-10-17"
+    },
+    "5064090828918": {
+      "titel": "ya no habla",
+      "fran": [
+        "Kronos"
+      ],
+      "datum": "2026-10-18",
+      "skal": "UPC-träff med fel artist: kronos (7mIhcSQnI2KyWABjOXP6R1)",
+      "kollad": "2026-10-18"
+    },
+    "881061382225": {
+      "titel": "Rocket Science",
+      "fran": [
+        "JAZZY"
+      ],
+      "datum": "2026-10-16",
+      "skal": "ingen UPC-träff, och titeln saknas bland JAZZYs senaste på Spotify",
+      "kollad": "2026-10-18"
     }
   }
 }
