@@ -1,5 +1,45 @@
 [
   {
+    "artist": "Thyron",
+    "title": "clouds don't stay forever",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-22",
+    "url": "https://open.spotify.com/album/5Ky5g2tnnKeBaXNq3RtJf5",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02e14240aa12656daa5db61a5f"
+  },
+  {
+    "artist": "Flux Overload",
+    "title": "Brace For Impact",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-22",
+    "url": "https://open.spotify.com/album/43JiRgbhcQwq2a6x9vpZqO",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02308013ca834c6955ee7b049f"
+  },
+  {
+    "artist": "Darren Styles × TOZA",
+    "title": "GIVE IT TO ME",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-22",
+    "url": "https://open.spotify.com/album/2TBpNGoinXQc6qCi60I2El",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02988d9fb0a2bfa4cffb60a584"
+  },
+  {
+    "artist": "The Dope Doctor",
+    "title": "Make It Bun Dem",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-22",
+    "url": "https://open.spotify.com/album/2mWH4yPDAsHPSkPGvfqNO3",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0282739c5311a0a11b5421a639"
+  },
+  {
     "artist": "Vazooka",
     "title": "GTFU",
     "genre": "raw",
@@ -8,246 +48,6 @@
     "url": "https://open.spotify.com/album/0YAVz50gXavEpo0essoat4",
     "typ": "single",
     "omslag": "https://i.scdn.co/image/ab67616d00001e02fc4fbaab6f35d5077f2a4063"
-  },
-  {
-    "artist": "Shogun × Endymion",
-    "title": "HARDCORE SOUND",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/6s1OzcQnL9RKkPqY3fZIQd",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0242398739d6543478372c05b6"
-  },
-  {
-    "artist": "Aftershock × DJ Gollum × Refold × Shadow Legacy",
-    "title": "Self Aware",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/5KeX0nAZ396KZKudRiUnkv",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02e805bbf13febf5827e13c6ba"
-  },
-  {
-    "artist": "Spitnoise",
-    "title": "Naughty Boys",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/2fGdvyMigZKQKHDs1WGYJP",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02fc66a9e705b134183201e5cf"
-  },
-  {
-    "artist": "EQUAL2 × Invaderz × Wavehi",
-    "title": "WHIPLASH",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/3raynIIIvZfSQQ4gH50vtN",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02bd162f4a50d2bde2ab1dce9c"
-  },
-  {
-    "artist": "DEEZL",
-    "title": "IN YOUR ARMS",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/7lm9xSXs95HPR0pRIkokTB",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02384d6524fccd74e74fac47c3"
-  },
-  {
-    "artist": "Sasha F",
-    "title": "World Is Mine",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/7dGT061kiZ3HkOScVLX5eq",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e023ea0d6085ad128bb6d2bc36d"
-  },
-  {
-    "artist": "High Resistance × CRAZY TWINS",
-    "title": "VODKA",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/0ztcIMb7nWQDv3wFOKvIN2",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e029d1d3c2a3db56d7a5316865f"
-  },
-  {
-    "artist": "Sara Landry",
-    "title": "Divine Intervention",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/3TZ4XJmyRk7Tf5SWGeWyXC",
-    "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02a24eeeb4cfd962279b6eba36"
-  },
-  {
-    "artist": "Hellsystem",
-    "title": "Eternal Afraid",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/2q0mbHdwr60pRM3e6eEg6e",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e026fec4faedf57d28ff4701027"
-  },
-  {
-    "artist": "Art Of Fighters",
-    "title": "Cheesegrater",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/4pgjp5seAUxILrAYCleE8k",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02b1ef9e9a3ebe6824ead5faf4"
-  },
-  {
-    "artist": "Dimitri K",
-    "title": "Fckn Master",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/3uCiYnrD7UiKPgehDJNmoJ",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e021dc3ab79e38ad8dfe94a5134"
-  },
-  {
-    "artist": "Envine × Vero & Wes",
-    "title": "Daydream",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/5kRDWKei0fibFZI1UBzZ0i",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e024497d838ea002bd662590a30"
-  },
-  {
-    "artist": "The Purge × Testarossa",
-    "title": "PRODIGY",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/51dYn1QzrNlOIcT95DIImx",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02b513d54854a85aa2552debae"
-  },
-  {
-    "artist": "Evil Activities × Nosferatu",
-    "title": "Live Ammunition (Nosferatu Remix)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/2bBLCBW1MNCS2ODKgtZjHa",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e023ca6ac0bf15f09eecc8f0f8c"
-  },
-  {
-    "artist": "Dr. Peacock × Partyraiser × Bulletproof",
-    "title": "Trip to New Zealand",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/5Clu13oYNuAfXUlTdTSEJs",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e027732a88988e36b7dfb90f767"
-  },
-  {
-    "artist": "Dr Donk × Explorers of the Internet",
-    "title": "Box Breathing",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/6bb0xspiFr8D1wu8KwGxR7",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0223d42b7b7d5d067eaa793517"
-  },
-  {
-    "artist": "Paul Elstak × Never Surrender",
-    "title": "Hardcore Beats From Rotterdam",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/76fLI6l27BLhZeTqv65KwQ",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0235a10b4bc0412b4bf17525ec"
-  },
-  {
-    "artist": "Rejecta × ARK8",
-    "title": "Dance Again",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/10yFM0JOHCDesze8v8jEdk",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0254b04839f8f132461ec17d0f"
-  },
-  {
-    "artist": "Digital Punk",
-    "title": "Born For Greatness",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/0LK7PPhJ97MMTYYVvchVNn",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0252592f2bff56817895d6bf20"
-  },
-  {
-    "artist": "Devin Wild",
-    "title": "When The Book Is Closed",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/5xN9DjmAlqrnIVicMoEjrh",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0237ae8a7a4411768f45ba8ed3"
-  },
-  {
-    "artist": "Sound Rush",
-    "title": "In And Out Of Love",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/5HLK7W25TJNHyvqmEjCgcm",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0252a4123b7f3ddf11bfa18330"
-  },
-  {
-    "artist": "Da Tweekaz × Rebelion",
-    "title": "This Feeling",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/21ErRWoB4IH5DIWfpU6ajn",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e021ba3f80603aa763ecaa405e4"
-  },
-  {
-    "artist": "Tieum × Tripped",
-    "title": "Jus De Cul",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/28fZs0tnyabN3PyXAPcDwN",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02e62b55c854b9b53e0c0720a3"
-  },
-  {
-    "artist": "The Destroyer",
-    "title": "Holy Ground",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-16",
-    "url": "https://open.spotify.com/album/64nMLE9OdSsuWUAjKtX93R",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02c41d02a1c1415e4c5249409d"
   },
   {
     "artist": "Unexist × Tripped",
@@ -260,114 +60,244 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e024af19591ad45f54a0fe368f9"
   },
   {
-    "artist": "Doris",
-    "title": "Eenie Meenie",
+    "artist": "The Destroyer",
+    "title": "Holy Ground",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/4uzVQ4zGzGPhd07Vo59sPA",
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/64nMLE9OdSsuWUAjKtX93R",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e025f6a6293e9f40bba727046aa"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02c41d02a1c1415e4c5249409d"
   },
   {
-    "artist": "Exproz × Regain × MC Livid",
-    "title": "Break The System (Official REBELLiON Indoor 2026 Anthem)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/1EsfRitcHkh2DXIxKghoyC",
+    "artist": "Tieum × Tripped",
+    "title": "Jus De Cul",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/28fZs0tnyabN3PyXAPcDwN",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0237b3979895748cb4e413de72"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02e62b55c854b9b53e0c0720a3"
   },
   {
-    "artist": "Deadly Guns",
-    "title": "Hardcore Nation",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/277eKOCYsBgd2nOwgAngv8",
-    "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e028a18df8f119cae131fa7196e"
-  },
-  {
-    "artist": "Kruelty × Vieze Asbak",
-    "title": "POISON IN MY BODY",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/4K64cPZSkstVOFhLUqPaWz",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e024657e89173615f90fbacb4bf"
-  },
-  {
-    "artist": "Galactixx × Zany",
-    "title": "Que Rico",
+    "artist": "Da Tweekaz × Rebelion",
+    "title": "This Feeling",
     "genre": "hardstyle",
     "bpm": 150,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/56PkzP5gk1ldQ8dYJbBg9I",
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/21ErRWoB4IH5DIWfpU6ajn",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e023fe54925effc97f55d58ecab"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e021ba3f80603aa763ecaa405e4"
   },
   {
-    "artist": "So Juice",
-    "title": "Bassface",
+    "artist": "Sound Rush",
+    "title": "In And Out Of Love",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/5HLK7W25TJNHyvqmEjCgcm",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0252a4123b7f3ddf11bfa18330"
+  },
+  {
+    "artist": "Devin Wild",
+    "title": "When The Book Is Closed",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/5xN9DjmAlqrnIVicMoEjrh",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0237ae8a7a4411768f45ba8ed3"
+  },
+  {
+    "artist": "Digital Punk",
+    "title": "Born For Greatness",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/1PpXpcLvjqs7Z9YkgJJbZX",
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/0LK7PPhJ97MMTYYVvchVNn",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e021f631c8eb104c6496db7feb5"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0252592f2bff56817895d6bf20"
   },
   {
-    "artist": "Unexist × Art Of Fighters × Catscan × Starving Insect",
-    "title": "Order & Chaos",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/7LC9ePeF5szELu3fQN9xtt",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02cc9e5de0574aa44716dd4a63"
-  },
-  {
-    "artist": "Doris",
-    "title": "Eeniemeenie",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/4uzVQ4zGzGPhd07Vo59sPA",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02ad472ea83aa0eb4302e3f28c"
-  },
-  {
-    "artist": "Pinotello × Jacksko",
-    "title": "BIEM",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/361dgIgXhEyYGBGwQnfl1u",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e023545fb453dba4e62c3771fdc"
-  },
-  {
-    "artist": "Arzadous",
-    "title": "Cover Up",
+    "artist": "Rejecta × ARK8",
+    "title": "Dance Again",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/5B0HVJbkTZrMsvF778n8yg",
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/10yFM0JOHCDesze8v8jEdk",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e021b3ce9d53ba23c5902387780"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0254b04839f8f132461ec17d0f"
   },
   {
-    "artist": "Geck-O × D00d",
-    "title": "JUICE!",
+    "artist": "Paul Elstak × Never Surrender",
+    "title": "Hardcore Beats From Rotterdam",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/76fLI6l27BLhZeTqv65KwQ",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0235a10b4bc0412b4bf17525ec"
+  },
+  {
+    "artist": "Dr Donk × Explorers of the Internet",
+    "title": "Box Breathing",
     "genre": "uptempo",
     "bpm": 200,
-    "date": "2026-10-15",
-    "url": "https://open.spotify.com/album/1eWW1fvTIKuf9xiuMsKU7p",
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/6bb0xspiFr8D1wu8KwGxR7",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e024767f804563656e34a668375"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0223d42b7b7d5d067eaa793517"
+  },
+  {
+    "artist": "Dr. Peacock × Partyraiser × Bulletproof",
+    "title": "Trip to New Zealand",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/5Clu13oYNuAfXUlTdTSEJs",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e027732a88988e36b7dfb90f767"
+  },
+  {
+    "artist": "Evil Activities × Nosferatu",
+    "title": "Live Ammunition (Nosferatu Remix)",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/2bBLCBW1MNCS2ODKgtZjHa",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e023ca6ac0bf15f09eecc8f0f8c"
+  },
+  {
+    "artist": "The Purge × Testarossa",
+    "title": "PRODIGY",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/51dYn1QzrNlOIcT95DIImx",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b513d54854a85aa2552debae"
+  },
+  {
+    "artist": "Envine × Vero & Wes",
+    "title": "Daydream",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/5kRDWKei0fibFZI1UBzZ0i",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e024497d838ea002bd662590a30"
+  },
+  {
+    "artist": "Dimitri K",
+    "title": "Fckn Master",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/3uCiYnrD7UiKPgehDJNmoJ",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e021dc3ab79e38ad8dfe94a5134"
+  },
+  {
+    "artist": "Art Of Fighters",
+    "title": "Cheesegrater",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/4pgjp5seAUxILrAYCleE8k",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b1ef9e9a3ebe6824ead5faf4"
+  },
+  {
+    "artist": "Hellsystem",
+    "title": "Eternal Afraid",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/2q0mbHdwr60pRM3e6eEg6e",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e026fec4faedf57d28ff4701027"
+  },
+  {
+    "artist": "Sara Landry",
+    "title": "Divine Intervention",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/3TZ4XJmyRk7Tf5SWGeWyXC",
+    "typ": "album",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02a24eeeb4cfd962279b6eba36"
+  },
+  {
+    "artist": "High Resistance × CRAZY TWINS",
+    "title": "VODKA",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/0ztcIMb7nWQDv3wFOKvIN2",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e029d1d3c2a3db56d7a5316865f"
+  },
+  {
+    "artist": "Sasha F",
+    "title": "World Is Mine",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/7dGT061kiZ3HkOScVLX5eq",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e023ea0d6085ad128bb6d2bc36d"
+  },
+  {
+    "artist": "DEEZL",
+    "title": "IN YOUR ARMS",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/7lm9xSXs95HPR0pRIkokTB",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02384d6524fccd74e74fac47c3"
+  },
+  {
+    "artist": "EQUAL2 × Invaderz × Wavehi",
+    "title": "WHIPLASH",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/3raynIIIvZfSQQ4gH50vtN",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02bd162f4a50d2bde2ab1dce9c"
+  },
+  {
+    "artist": "Spitnoise",
+    "title": "Naughty Boys",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/2fGdvyMigZKQKHDs1WGYJP",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02fc66a9e705b134183201e5cf"
+  },
+  {
+    "artist": "Aftershock × DJ Gollum × Refold × Shadow Legacy",
+    "title": "Self Aware",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/5KeX0nAZ396KZKudRiUnkv",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02e805bbf13febf5827e13c6ba"
+  },
+  {
+    "artist": "Shogun × Endymion",
+    "title": "HARDCORE SOUND",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-16",
+    "url": "https://open.spotify.com/album/6s1OzcQnL9RKkPqY3fZIQd",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0242398739d6543478372c05b6"
   },
   {
     "artist": "Unexist × Art Of Fighters × Catscan × Starving Insect",
@@ -380,34 +310,114 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e02cc9e5de0574aa44716dd4a63"
   },
   {
-    "artist": "Forever Lost × Anklebreaker",
-    "title": "Risen Again (Hardstyle DNA 2017 Anthem)",
+    "artist": "Geck-O × D00d",
+    "title": "JUICE!",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/1eWW1fvTIKuf9xiuMsKU7p",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e024767f804563656e34a668375"
+  },
+  {
+    "artist": "Arzadous",
+    "title": "Cover Up",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-10-14",
-    "url": "https://open.spotify.com/album/0pN21A2RJOEwrcdLXUEdEO",
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/5B0HVJbkTZrMsvF778n8yg",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e025316ef8de14b3fb126aab1e2"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e021b3ce9d53ba23c5902387780"
   },
   {
-    "artist": "Distinction",
-    "title": "Lost",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-14",
-    "url": "https://open.spotify.com/album/781uBW9gGoKcV10bSmrUAT",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02f26629196ac00c2326498392"
-  },
-  {
-    "artist": "Catscan × Starving Insect",
-    "title": "Chaos (Official Thunderdome 2026 Anthem)",
+    "artist": "Pinotello × Jacksko",
+    "title": "BIEM",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-10-14",
-    "url": "https://open.spotify.com/album/2Mt0wt5Q6SxPJNU4SMAB4x",
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/361dgIgXhEyYGBGwQnfl1u",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02fb7a4a4fe9a64a8370d78aa6"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e023545fb453dba4e62c3771fdc"
+  },
+  {
+    "artist": "Doris",
+    "title": "Eeniemeenie",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/4uzVQ4zGzGPhd07Vo59sPA",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02ad472ea83aa0eb4302e3f28c"
+  },
+  {
+    "artist": "Unexist × Art Of Fighters × Catscan × Starving Insect",
+    "title": "Order & Chaos",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/7LC9ePeF5szELu3fQN9xtt",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02cc9e5de0574aa44716dd4a63"
+  },
+  {
+    "artist": "So Juice",
+    "title": "Bassface",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/1PpXpcLvjqs7Z9YkgJJbZX",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e021f631c8eb104c6496db7feb5"
+  },
+  {
+    "artist": "Galactixx × Zany",
+    "title": "Que Rico",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/56PkzP5gk1ldQ8dYJbBg9I",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e023fe54925effc97f55d58ecab"
+  },
+  {
+    "artist": "Kruelty × Vieze Asbak",
+    "title": "POISON IN MY BODY",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/4K64cPZSkstVOFhLUqPaWz",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e024657e89173615f90fbacb4bf"
+  },
+  {
+    "artist": "Deadly Guns",
+    "title": "Hardcore Nation",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/277eKOCYsBgd2nOwgAngv8",
+    "typ": "album",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e028a18df8f119cae131fa7196e"
+  },
+  {
+    "artist": "Exproz × Regain × MC Livid",
+    "title": "Break The System (Official REBELLiON Indoor 2026 Anthem)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/1EsfRitcHkh2DXIxKghoyC",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0237b3979895748cb4e413de72"
+  },
+  {
+    "artist": "Doris",
+    "title": "Eenie Meenie",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-15",
+    "url": "https://open.spotify.com/album/4uzVQ4zGzGPhd07Vo59sPA",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e025f6a6293e9f40bba727046aa"
   },
   {
     "artist": "The Dark Horror",

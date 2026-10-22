@@ -437,6 +437,30 @@
       "datum": "2026-10-16",
       "spotify": "https://open.spotify.com/album/4idCJtYUb3UOmSgpSK4xMR",
       "kollad": "2026-10-18"
+    },
+    "700521053355": {
+      "titel": "Make It Bun Dem",
+      "datum": "2026-10-22",
+      "spotify": "https://open.spotify.com/album/2mWH4yPDAsHPSkPGvfqNO3",
+      "kollad": "2026-10-22"
+    },
+    "5404027352220": {
+      "titel": "GIVE IT TO ME",
+      "datum": "2026-10-22",
+      "spotify": "https://open.spotify.com/album/2TBpNGoinXQc6qCi60I2El",
+      "kollad": "2026-10-22"
+    },
+    "5054290312096": {
+      "titel": "Brace For Impact",
+      "datum": "2026-10-22",
+      "spotify": "https://open.spotify.com/album/43JiRgbhcQwq2a6x9vpZqO",
+      "kollad": "2026-10-22"
+    },
+    "8721244826851": {
+      "titel": "clouds don't stay forever",
+      "datum": "2026-10-22",
+      "spotify": "https://open.spotify.com/album/5Ky5g2tnnKeBaXNq3RtJf5",
+      "kollad": "2026-10-22"
     }
   },
   "avvisade": {
@@ -1160,6 +1184,42 @@
       "datum": "2026-10-19",
       "skal": "ingen UPC-träff, och titeln saknas bland Angerfists senaste på Spotify",
       "kollad": "2026-10-21"
+    },
+    "700245256544": {
+      "titel": "KESHIR MENI",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-10-22",
+      "skal": "UPC-träff med fel artist: BAQ (0BzXt7atkdxT5Gf8odjTxE)",
+      "kollad": "2026-10-22"
+    },
+    "7333596279073": {
+      "titel": "costa",
+      "fran": [
+        "Alee"
+      ],
+      "datum": "2026-10-22",
+      "skal": "UPC-träff med fel artist: Alee! (0IH8SgSu4mFSqeaQk630vA)",
+      "kollad": "2026-10-22"
+    },
+    "4988021200820": {
+      "titel": "THE FEARLESS",
+      "fran": [
+        "TNT"
+      ],
+      "datum": "2026-10-21",
+      "skal": "UPC-träff med fel artist: T.N.T (7hPdXB6soJMZG24vdbfPOC)",
+      "kollad": "2026-10-22"
+    },
+    "7333596454180": {
+      "titel": "Estratega",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-10-21",
+      "skal": "UPC-träff med fel artist: Fenix (7HQhGjQRRyHpsJbGUyvMgI)",
+      "kollad": "2026-10-22"
     }
   }
 }
