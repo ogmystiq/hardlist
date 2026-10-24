@@ -539,6 +539,12 @@
       "datum": "2026-10-23",
       "spotify": "https://open.spotify.com/album/15w3AzPWC3rEN9mLbyLPB3",
       "kollad": "2026-10-23"
+    },
+    "366574112427": {
+      "titel": "23H23",
+      "datum": "2026-10-23",
+      "spotify": "https://open.spotify.com/album/4UiLoBnfzjWlZp9Xz1i0qy",
+      "kollad": "2026-10-24"
     }
   },
   "avvisade": {
@@ -1361,6 +1367,24 @@
       "datum": "2026-10-23",
       "skal": "UPC-träff med fel artist: PAVO (4EuxL5X25LqyvHhwgc8ljN)",
       "kollad": "2026-10-23"
+    },
+    "7333596493622": {
+      "titel": "Соққыла",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-10-23",
+      "skal": "UPC-träff med fel artist: baq (3sYhdayJPSnHmbqBCExCeH)",
+      "kollad": "2026-10-24"
+    },
+    "991061708359": {
+      "titel": "Latent State",
+      "fran": [
+        "Disarray"
+      ],
+      "datum": "2026-10-23",
+      "skal": "UPC-träff med fel artist: LoserDub (3VZelnnW9OR0DyR2qRn4Oq), Disarray (6TlAxGL1Hm4FRWfTxprlMi)",
+      "kollad": "2026-10-24"
     }
   }
 }
