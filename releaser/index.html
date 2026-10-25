@@ -31,63 +31,39 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25b">
+<link rel="stylesheet" href="/stil.css?v=2026-10-25c">
 <style>
 .tom{padding:20px 0;color:var(--text-2)}
 .sektionstext{font-size:15px;color:var(--text-2)}
 
-/* Veckorutan: antal släpp, stapel där varje genre är lika bred som sin
-   andel, och antal per genre. Allt räknas ur releases.json. */
-.vecka{background:var(--yta);border-radius:24px;padding:20px;display:flex;flex-direction:column;gap:14px}
-.vecka-siffra{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.vecka-tal{display:flex;align-items:baseline;gap:8px}
-.vecka-antal{font-stretch:62%;font-weight:900;font-size:52px;line-height:.85}
-.vecka-enhet{font-size:16px;font-weight:600}
-.vecka-etikett{font-size:14px;color:var(--text-2)}
-.vecka-delar{display:flex;flex-direction:column;gap:14px;min-width:0}
-.stapel{display:flex;gap:3px;height:12px}
-.stapel:empty{background:var(--yta-2);border-radius:999px}
-.seg{border-radius:999px;background:var(--g);transition:opacity .2s}
-.seg.dov{opacity:.2}
-.forklaring{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0;padding:0;list-style:none}
-.forklaring li{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:#D9D1E6}
-.forklaring b{font-weight:400;color:var(--text-3)}
-.vecka-not{font-size:14px;line-height:1.45;color:var(--text-3)}
+/* Veckan överst: genreriggen i sin lägre form, som också är filtret. */
+.vecka{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+/* Fredagsraden står efter listan, som en förklaring till den. */
+.vecka-not{margin-top:24px;font-size:14px;line-height:1.45;color:var(--text-2)}
 
 .kommande{display:flex;flex-direction:column;gap:8px;margin-top:28px}
-.verktyg{display:flex;flex-direction:column;gap:10px;margin-top:22px}
-.kalla{margin-top:16px}
+.verktyg{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+/* Källraden står sist, efter listan, så att första släppet syns direkt. */
+.kalla{margin-top:20px}
 
 /* Dagrubriken ligger kvar överst medan man scrollar genom dagen. */
 .dag{display:flex;flex-direction:column}
 .dag-huvud{
   position:sticky;top:0;z-index:1;
   display:flex;align-items:baseline;justify-content:space-between;gap:16px;
-  padding:20px 0 8px;background:var(--natt);
+  padding:18px 0 8px;background:var(--bg);
 }
 .dag-huvud h2{font-size:26px}
-.dag-antal{font-size:14px;color:var(--text-3)}
+.dag-antal{font-size:14px;color:var(--text-2)}
 .kommande .dag-huvud{position:static;padding-top:0}
 
 @media (min-width:860px){
-  .vecka{flex-direction:row;flex-wrap:wrap;align-items:center;gap:24px 48px;border-radius:28px;padding:28px 32px}
-  .vecka-siffra{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px}
-  .vecka-tal{gap:10px}
-  .vecka-antal{font-size:76px;line-height:.82}
-  .vecka-enhet{font-size:18px}
-  .vecka-etikett{font-size:15px}
-  .vecka-delar{flex:1 1 420px}
-  .stapel{gap:4px;height:14px}
-  .forklaring{gap:8px 20px}
-  .forklaring li{gap:8px;font-size:15px}
-  .forklaring .prick{width:9px;height:9px}
-  .vecka-not{font-size:15px}
-
+  .vecka{gap:14px}
   .kommande{margin-top:40px}
-  .verktyg{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;margin-top:32px}
-  .verktyg .sok{flex:0 1 360px}
+  .verktyg{flex-direction:row;align-items:center;gap:12px 24px;margin-top:28px}
+  .verktyg .sok{flex:0 1 420px}
 
-  .dag-huvud{justify-content:flex-start;padding:28px 12px 12px;border-bottom:1px solid var(--yta-2);margin-bottom:4px}
+  .dag-huvud{justify-content:flex-start;padding:28px 12px 12px;border-bottom:1px solid var(--linje);margin-bottom:4px}
   .dag-huvud h2{font-size:34px}
   .dag-antal{font-size:15px}
   .kommande .dag-huvud{padding-top:0}
@@ -117,17 +93,17 @@
     <p class="ingress">Varje nytt släpp inom hardstyle, raw, uptempo, hardcore och hard techno. Uppdateras varje morgon.</p>
   </div>
 
-  <section class="vecka" aria-labelledby="veckaEtikett">
-    <div class="vecka-siffra">
-      <span class="vecka-tal"><span class="vecka-antal" id="veckaAntal">0</span> <span class="vecka-enhet">släpp</span></span>
-      <span class="vecka-etikett" id="veckaEtikett">Senaste sju dagarna</span>
-    </div>
-    <div class="vecka-delar">
-      <div class="stapel" id="stapel" aria-hidden="true"></div>
-      <ul class="forklaring" id="forklaring"></ul>
-      <p class="vecka-not" id="veckaNot" hidden>Fredag är släppdag i hela världen, så det mesta landar då.</p>
-    </div>
+  <section class="vecka" aria-label="Senaste sju dagarna">
+    <div id="rigg"></div>
   </section>
+
+  <div class="verktyg">
+    <label class="sok">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="dold">Sök artist eller låt</span>
+      <input id="sok" type="search" autocomplete="off" placeholder="Sök artist eller låt">
+    </label>
+  </div>
 
   <section class="kommande" id="kommande" aria-labelledby="komRubrik" hidden>
     <div class="dag-huvud">
@@ -138,31 +114,16 @@
     <div class="rader med-datum" id="komLista"></div>
   </section>
 
-  <div class="verktyg">
-    <div class="rull" id="filter" role="group" aria-label="Visa genre">
-      <button class="chip" type="button" data-g="alla" aria-pressed="true">Alla</button>
-      <button class="chip g-hardstyle" type="button" data-g="hardstyle" aria-pressed="false"><span class="prick"></span>Hardstyle</button>
-      <button class="chip g-raw" type="button" data-g="raw" aria-pressed="false"><span class="prick"></span>Raw</button>
-      <button class="chip g-uptempo" type="button" data-g="uptempo" aria-pressed="false"><span class="prick"></span>Uptempo</button>
-      <button class="chip g-hardcore" type="button" data-g="hardcore" aria-pressed="false"><span class="prick"></span>Hardcore</button>
-      <button class="chip g-techno" type="button" data-g="techno" aria-pressed="false"><span class="prick"></span>Hard techno</button>
-    </div>
-    <label class="sok">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <span class="dold">Sök artist eller låt</span>
-      <input id="sok" type="search" autocomplete="off" placeholder="Sök artist eller låt">
-    </label>
+  <div class="dagar" id="dagar">
+    <p class="tom">Hämtar releaserna.</p>
   </div>
 
+  <p class="vecka-not" id="veckaNot" hidden>Fredag är släppdag i hela världen, så det mesta landar då.</p>
   <p class="kalla">
     <svg class="spotify-ikon" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Spotify"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
     <span>Omslag och data från Spotify</span>
     <a class="kalla-lank" href="https://www.deezer.com/" rel="noopener"><img class="deezer-ikon" src="/bilder/deezer.png" alt="" width="21" height="21"><span>Data från Deezer</span></a>
   </p>
-
-  <div class="dagar" id="dagar">
-    <p class="tom">Hämtar releaserna.</p>
-  </div>
 
 </main>
 
@@ -208,6 +169,7 @@
 </footer>
 
 <script src="/rader.js"></script>
+<script src="/rigg.js?v=2026-10-25"></script>
 <script>
 /* "Senaste sju dagarna" är idag och de sex dagarna före. */
 const VECKA = 6;
@@ -220,20 +182,16 @@ function dagRubrik(s){
   return VECKODAGAR[d.getDay()] + ' ' + d.getDate() + ' ' + MANADER[d.getMonth()] +
     (d.getFullYear() !== idag().getFullYear() ? ' ' + d.getFullYear() : '');
 }
-let releaser = [], kommande = [], filter = 'alla', sok = '';
+let releaser = [], kommande = [], filter = 'alla', sok = '', riggStatus = null, hamtningFel = false;
 
+/* Veckans antal räknas i rigg.js, samma som på startsidan. Riggen är också
+   filtret: ett tryck på en lampa visar den genren, ett tryck till alla. */
 function ritaVecka(){
+  window.hardlistRigg.rita(document.getElementById('rigg'), {
+    releaser, status: riggStatus, vald: filter, fel: hamtningFel, kompakt: true, valj
+  });
+  if (hamtningFel){ document.getElementById('veckaNot').hidden = true; return; }
   const veckan = releaser.filter(r => { const n = dagarFran(r.date); return n >= -VECKA && n <= 0; });
-  const antal = {};
-  veckan.forEach(r => { const g = normGenre(r.genre); antal[g] = (antal[g] || 0) + 1; });
-  const finns = GENRER.filter(g => antal[g]);
-
-  document.getElementById('veckaAntal').textContent = veckan.length;
-  document.getElementById('stapel').innerHTML = finns.map(g =>
-    '<span class="seg g-' + g + (filter !== 'alla' && filter !== g ? ' dov' : '') +
-    '" style="flex:' + antal[g] + ' 1 0%"></span>').join('');
-  document.getElementById('forklaring').innerHTML = finns.map(g =>
-    '<li class="g-' + g + '"><span class="prick"></span>' + GENRE_NAMN[g] + ' <b>' + antal[g] + '</b></li>').join('');
 
   /* Bara när det faktiskt stämmer den här veckan: mer än hälften på en fredag. */
   const fredag = veckan.filter(r => lasDatum(r.date).getDay() === FREDAG).length;
@@ -291,17 +249,29 @@ function ritaLista(){
   }).join('');
 }
 
+function valj(g){
+  if (g === 'forsok'){ ladda(); return; }
+  filter = (g === 'alla' || g === filter) ? 'alla' : g;
+  ritaVecka(); ritaLista();
+}
+
 async function ladda(){
+  const st = fetch('/data/status.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null);
   try {
     const r = await fetch('/data/releases.json', { cache: 'no-store' });
-    releaser = await r.json();
-    if (!Array.isArray(releaser)) throw 0;
+    const data = await r.json();
+    if (!Array.isArray(data)) throw 0;
+    releaser = data;
+    hamtningFel = false;
   } catch(e){
     /* Ingen exempeldata: påhittade släpp är sämre än ett ärligt fel. */
+    hamtningFel = true;
+    ritaVecka();
     document.getElementById('dagar').innerHTML =
       '<p class="tom">Releaserna gick inte att hämta. Ladda om sidan om en stund.</p>';
     return;
   }
+  riggStatus = await st;
   /* Handskriven och oftast tom. En saknad fil betyder bara att inget
      är på gång, inte att något är trasigt. */
   try {
@@ -312,13 +282,6 @@ async function ladda(){
   ritaVecka(); ritaKommande(); ritaLista();
 }
 
-document.getElementById('filter').addEventListener('click', e => {
-  const b = e.target.closest('.chip');
-  if (!b) return;
-  filter = b.dataset.g;
-  document.querySelectorAll('#filter .chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
-  ritaVecka(); ritaLista();
-});
 
 document.getElementById('sok').addEventListener('input', e => { sok = e.target.value; ritaLista(); });
 

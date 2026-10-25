@@ -494,8 +494,10 @@ h1 em{font-style:normal}
 .rigg-puls{display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:var(--text);vertical-align:1px}
 .rigg-besked{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-top:14px;font-size:15px;color:var(--text-2)}
 .rigg-forsok{background:var(--yta-2);color:var(--text)}
-/* Den lägre riggen på releasesidan. */
-.rigg-kompakt{--kagla:72px}
+/* Den lägre riggen på releasesidan. Raden om uppdateringen står redan i
+   sidfoten, och här ska första släppet hinna synas på mobilens första skärm. */
+.rigg-kompakt{--kagla:60px}
+.rigg-kompakt .rigg-lever{display:none}
 .rigg-kompakt .rigg-antal{font-size:64px}
 
 @media (min-width:860px){
@@ -503,7 +505,7 @@ h1 em{font-style:normal}
   .rigg-topp{grid-column:1;grid-row:1;flex-direction:column;align-items:flex-start;gap:12px;margin:0}
   .rigg-antal{font-size:168px}
   .rigg-text{font-size:20px;max-width:12ch}
-  .rigg-alla{margin-left:0;padding:0 16px;font-size:15px}
+  .rigg-alla{margin-left:0;align-self:flex-start;padding:0 16px;font-size:15px}
   .rigg-ram{grid-column:2;grid-row:1 / span 2}
   .rigg-lever{grid-column:1;grid-row:2;margin-top:22px}
   .rigg-fel{display:block}

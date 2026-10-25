@@ -187,10 +187,20 @@ try {
       const namn = adress.startsWith('/finns-inte') ? '/404' : adress;
       /* Sidorna hämtar data i bakgrunden. Tystnar nätet inte, granska ändå
          det som hunnit ritas: en sida som aldrig blir klar är också ett svar. */
-      await sida.goto(BAS + adress, { waitUntil: 'networkidle', timeout: 15000 }).catch(() => {});
-      await sida.evaluate(() => document.fonts.ready);
-      await sida.waitForTimeout(300);
-      for (const p of await sida.evaluate(granskaSidan, { MIN_HOJD, tryck: b.tryck })){
+      /* Laddas sidan om mitt i granskningen, eller svarar servern inte en
+         gång, försöker skriptet igen innan det räknas som ett fel. */
+      let problem = null;
+      for (let forsok = 0; forsok < 2 && !problem; forsok++){
+        try {
+          await sida.goto(BAS + adress, { waitUntil: 'networkidle', timeout: 15000 }).catch(() => {});
+          await sida.evaluate(() => document.fonts.ready);
+          await sida.waitForTimeout(300);
+          problem = await sida.evaluate(granskaSidan, { MIN_HOJD, tryck: b.tryck });
+        } catch(e){
+          if (forsok) problem = ['sidan gick inte att granska: ' + e.message.split('\n')[0]];
+        }
+      }
+      for (const p of problem){
         const nyckel = namn + ' ' + b.namn + ' ' + p;
         if (!UNDANTAG.has(nyckel)) fel.push(namn + ' (' + b.namn + '): ' + p);
       }
