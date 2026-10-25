@@ -33,20 +33,19 @@
 <link rel="manifest" href="/site.webmanifest">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25c">
+<link rel="stylesheet" href="/stil.css?v=2026-10-25d">
 <style>
-.fest-lista{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.fest-lista{display:flex;flex-direction:column;gap:var(--glipa);margin-top:4px}
 .fest{gap:14px}
 .fest-huvud{display:flex;flex-direction:column;gap:10px}
 .fest-huvud h3{font-size:28px}
 .fest-fakta{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-.fest-fakta li{padding:7px 12px;border-radius:999px;background:var(--yta-2);font-size:14px}
+.fest-fakta li{padding:7px 12px;border-radius:var(--horn);background:var(--yta-2);font-size:14px}
 /* Reglerna är rader i festivalens ruta, inte egna lådor. */
 .rules{margin:0;display:grid;gap:14px}
 .rule dt{font-size:14px;color:var(--text-3)}
 .rule dd{margin:2px 0 0;font-size:15px;line-height:1.5}
 @media (min-width:860px){
-  .fest-lista{gap:16px}
   .fest-huvud h3{font-size:36px}
   .rules{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 32px}
 }
@@ -75,7 +74,7 @@
     <p class="ingress">En packlista som funkar överallt, plus reglerna som faktiskt skiljer festivalerna åt — mest alkohol, högtalare och gasol.</p>
   </div>
 
-  <section class="avsnitt prosa text">
+  <section class="avsnitt prosa text med-spalt">
       <h2>Packlistan</h2>
       <p>Det här är basen. Den funkar på varje camping i den här listan.</p>
 
@@ -220,7 +219,7 @@
       </div>
     </section>
 
-  <section class="avsnitt prosa text">
+  <section class="avsnitt prosa text med-spalt">
       <h2>Om du flyger</h2>
       <ul>
         <li>Köp tält, liggunderlag och kylbox på plats. En Decathlon eller Action i närmaste stad kostar mindre än övervikten.</li>

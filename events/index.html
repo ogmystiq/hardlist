@@ -31,33 +31,45 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25c">
+<link rel="stylesheet" href="/stil.css?v=2026-10-25d">
 <style>
 .sektion{display:flex;flex-direction:column;gap:12px;margin-top:36px;scroll-margin-top:16px}
-.sektionshuvud{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
 .antal{font-size:15px;color:var(--text-2)}
 .sektionstext{max-width:60ch;font-size:15px;line-height:1.5;color:var(--text-2)}
 .tom{padding:12px 0;color:var(--text-2)}
 
 /* Eventrad: datumblock, namn och plats, sen texten om eventet och länken. */
-.event-lista{display:flex;flex-direction:column;gap:8px}
+.event-lista{display:flex;flex-direction:column;gap:var(--glipa)}
 .event{
   display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:16px;row-gap:12px;align-items:start;
-  padding:12px 16px 14px 12px;background:var(--yta);border-radius:16px;
+  padding:12px 16px 14px 12px;background:var(--yta);border-radius:var(--horn-stor);color:inherit;
 }
+/* Bara nästa event har en biljettknapp. De andra raderna är länkar i sin
+   helhet, så att "Biljetter" inte upprepas på varje rad. */
+a.event{transition:background .15s}
+a.event:hover{background:var(--yta-hover)}
+.event-pil{grid-column:2;justify-self:start;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:650;color:var(--text)}
+.event-pil svg{width:16px;height:16px;flex:none}
+/* Står det bara en pil tar den ingen egen rad på mobil. */
+a.event{position:relative}
+.event-pil.bara-pil{position:absolute;right:14px;top:16px;color:var(--text-2)}
+a.event .event-mitt{padding-right:22px}
 .datum{
   display:flex;flex-direction:column;align-items:center;padding:6px 0;
-  border-radius:12px;background:var(--yta-2);
+  border-radius:var(--horn);background:var(--yta-2);
 }
 .datum-dag{font-stretch:62%;font-weight:900;font-size:28px;line-height:1}
-.datum-man{font-size:12px;color:var(--text-2);white-space:nowrap}
+.datum-man{font-size:13px;color:var(--text-2);white-space:nowrap}
 .event-mitt{min-width:0;display:flex;flex-direction:column;gap:3px;padding-top:2px}
 .event-namn{font-stretch:100%;font-weight:650;font-size:16px;line-height:1.3;letter-spacing:0}
 .event-plats{font-size:14px;color:var(--text-2)}
-.filterrad{gap:16px}
-.chipgrupp{display:flex;gap:8px;flex:none}
+/* Region och genre är två olika val och står som två grupper, var och en
+   med sin etikett. Raderna bryts i stället för att rulla i sidled. */
+.filterrad{display:flex;flex-direction:column;gap:14px}
+.chipgrupp{display:flex;flex-wrap:wrap;gap:8px}
+.filtergrupp .val-etikett{margin-bottom:8px}
 .event-genrer{display:flex;flex-wrap:wrap;gap:4px 12px;margin:4px 0 0;padding:0;list-style:none}
-.event-genrer li{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#D9D1E6}
+.event-genrer li{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2)}
 .event-text{margin-top:4px;font-size:14px;line-height:1.45;color:var(--text-2)}
 .event-lank{grid-column:2;justify-self:start;min-height:44px;padding:0 18px;font-size:15px}
 .event-saknas{grid-column:2;font-size:14px;color:var(--text-3)}
@@ -69,14 +81,14 @@
 
 .bevaka{display:flex;flex-direction:column;gap:8px;margin-top:20px}
 .bevaka h3{font-size:24px}
-.bevaka-lista{list-style:none;margin:4px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
-.bevaka-lista li{background:var(--yta);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.bevaka-lista{list-style:none;margin:4px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--glipa)}
+.bevaka-lista li{background:var(--yta);border-radius:var(--horn-stor);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
 .bevaka-namn{font-weight:650;font-size:15px}
 .bevaka-lista span{font-size:13px;line-height:1.4;color:var(--text-2)}
 
 /* Faktarutor i guiderna. Skiljs åt med ytor, inte ramar. */
 .not{
-  background:var(--yta);border-radius:20px;padding:16px 18px;
+  background:var(--yta);border-radius:var(--horn-stor);padding:16px 18px;
   font-size:15px;line-height:1.55;color:var(--text-2);
 }
 .not b:first-child{display:block;margin-bottom:4px;font-size:16px;color:var(--text)}
@@ -84,15 +96,14 @@
 .not a{color:var(--text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--text-3)}
 
 .flikar{margin-top:4px}
-.flikar .chip[aria-selected="true"]{background:var(--text);color:var(--natt)}
 
 /* En guide är en enda yta. Fakta, scener och tips inuti är rader med luft
    emellan, inte egna lådor — högst en nivå yta. */
-.panel{display:flex;flex-direction:column;gap:18px;margin-top:8px;background:var(--yta);border-radius:24px;padding:22px 20px}
+.panel{display:flex;flex-direction:column;gap:18px;margin-top:8px;background:var(--yta);border-radius:var(--horn-stor);padding:22px 20px}
 .panel-huvud{display:flex;flex-direction:column;gap:10px}
 .panel-huvud h3{font-size:34px}
 .panel-fakta{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-.panel-fakta li{padding:7px 12px;border-radius:999px;background:var(--yta-2);font-size:14px}
+.panel-fakta li{padding:7px 12px;border-radius:var(--horn);background:var(--yta-2);font-size:14px}
 .panel h4{margin:8px 0 -6px;font-size:20px;font-weight:700;line-height:1.2}
 /* Vanliga punktlistor. Faktachipsen och scenlistan är också listor men har
    egen form, därför undantas de. */
@@ -125,10 +136,10 @@
 
 /* Kartan behåller sina proportioner. På smal skärm går den att svepa i
    sidled i stället för att krympa till oläsliga etiketter. */
-.karta{overflow-x:auto;border-radius:20px;background:var(--yta)}
+.karta{overflow-x:auto;border-radius:var(--horn-stor);background:var(--yta)}
 .karta svg{display:block;width:100%;min-width:640px;height:auto}
 .k-text{font-family:'Archivo',system-ui,sans-serif;font-size:15px;font-weight:600;fill:#F6F2FB}
-.k-mork{fill:#100C17}
+.k-mork{fill:#070708}
 .k-dov{font-weight:400;fill:#B9AFC9}
 .k-mellan{font-family:'Archivo',system-ui,sans-serif;font-stretch:62%;font-size:26px;font-weight:800;fill:#F6F2FB}
 .k-stor{font-family:'Archivo',system-ui,sans-serif;font-stretch:62%;font-size:44px;font-weight:900;fill:#F6F2FB}
@@ -138,13 +149,15 @@
 
 @media (min-width:860px){
   .sektion{margin-top:56px;gap:16px}
-  .event{grid-template-columns:56px minmax(0,1fr) auto;align-items:center;padding:12px 16px 12px 12px;border-radius:18px}
+  .event{grid-template-columns:56px minmax(0,1fr) auto;align-items:center;padding:12px 16px 12px 12px}
   .datum{padding:7px 0}
   .datum-dag{font-size:30px}
   .datum-man{font-size:13px}
-  .event-lank,.event-saknas{grid-column:3;justify-self:end}
+  .event-lank,.event-saknas,.event-pil{grid-column:3;justify-self:end}
+  .event-pil.bara-pil{position:static}
+  a.event .event-mitt{padding-right:0}
   .prenumerera h3{font-size:32px}
-  .panel{border-radius:28px;padding:32px;gap:20px}
+  .panel{padding:32px;gap:20px}
   .panel-huvud h3{font-size:48px}
   .facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 32px}
   .not{padding:20px 24px}
@@ -180,18 +193,24 @@
       <h2 id="kalRubrik">Kalendern</h2>
       <span class="antal" id="evAntal"></span>
     </div>
-    <div class="rull filterrad" id="evFilter">
-      <div class="chipgrupp" role="group" aria-label="Visa region">
+    <div class="filterrad" id="evFilter">
+      <div class="filtergrupp">
+      <p class="val-etikett" id="evRegionEtikett">Region</p>
+      <div class="chipgrupp" role="group" aria-labelledby="evRegionEtikett">
         <button class="chip" type="button" data-r="norden" aria-pressed="true">Norden</button>
         <button class="chip" type="button" data-r="europa" aria-pressed="false">Europa</button>
         <button class="chip" type="button" data-r="alla" aria-pressed="false">Alla</button>
       </div>
-      <div class="chipgrupp" role="group" aria-label="Visa genre">
+      </div>
+      <div class="filtergrupp">
+      <p class="val-etikett" id="evGenreEtikett">Genre</p>
+      <div class="chipgrupp" role="group" aria-labelledby="evGenreEtikett">
         <button class="chip g-hardstyle" type="button" data-g="hardstyle" aria-pressed="false"><span class="prick"></span>Hardstyle</button>
         <button class="chip g-raw" type="button" data-g="raw" aria-pressed="false"><span class="prick"></span>Raw</button>
         <button class="chip g-uptempo" type="button" data-g="uptempo" aria-pressed="false"><span class="prick"></span>Uptempo</button>
         <button class="chip g-hardcore" type="button" data-g="hardcore" aria-pressed="false"><span class="prick"></span>Hardcore</button>
         <button class="chip g-techno" type="button" data-g="techno" aria-pressed="false"><span class="prick"></span>Hard techno</button>
+      </div>
       </div>
     </div>
     <p class="sektionstext">Bara bekräftade datum. Passerade event försvinner av sig själva.</p>
@@ -702,11 +721,24 @@ function ritaEvents(){
     return;
   }
 
-  lista.innerHTML = daterade.map(e => {
+  const pil = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
+  lista.innerHTML = daterade.map((e, i) => {
     const d = lasDatum(e.date);
     const ar = d.getFullYear() !== t.getFullYear() ? ' ' + d.getFullYear() : '';
     const plats = [e.venue, e.city].filter(Boolean).join(', ');
-    return '<article class="event">' +
+    /* Nästa event har biljettknappen. Senare event med länk är länkar i sin
+       helhet, och står det en egen text om biljetterna (urlText) syns den
+       på raden, så att knappen aldrig lovar något som inte finns. */
+    const forst = i === 0;
+    /* "Biljetter" i urlText är samma som standardtexten och säger inget nytt. */
+    const egenText = e.urlText && e.urlText !== 'Biljetter';
+    const rad = !forst && e.url;
+    const slut = e.url
+      ? (forst
+        ? '<a class="knapp knapp-sek event-lank" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.urlText || 'Biljetter') + '</a>'
+        : '<span class="event-pil' + (egenText ? '' : ' bara-pil') + '">' + (egenText ? esc(e.urlText) : '<span class="dold">Biljetter</span>') + pil + '</span>')
+      : '<span class="event-saknas">Biljettlänk saknas</span>';
+    return (rad ? '<a class="event" href="' + esc(e.url) + '" target="_blank" rel="noopener">' : '<article class="event">') +
       '<div class="datum"><span class="datum-dag">' + d.getDate() + '</span>' +
         '<span class="datum-man">' + MANADER[d.getMonth()] + ar + '</span></div>' +
       '<div class="event-mitt"><h3 class="event-namn">' + esc(e.name) + '</h3>' +
@@ -714,11 +746,7 @@ function ritaEvents(){
         (genrerFor(e).length ? '<ul class="event-genrer">' + genrerFor(e).map(g =>
           '<li class="g-' + g + '"><span class="prick"></span>' + GENRE_NAMN[g] + '</li>').join('') + '</ul>' : '') +
         (e.lineup ? '<p class="event-text">' + esc(e.lineup) + '</p>' : '') + '</div>' +
-      (e.url
-        ? '<a class="knapp knapp-sek event-lank" href="' + esc(e.url) + '" target="_blank" rel="noopener">' +
-            esc(e.urlText || 'Biljetter') + '</a>'
-        : '<span class="event-saknas">Biljettlänk saknas</span>') +
-      '</article>';
+      slut + (rad ? '</a>' : '</article>');
   }).join('');
 }
 

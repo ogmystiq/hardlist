@@ -381,6 +381,17 @@ a.rad:hover{background:var(--yta)}
    kursiven gör det inte. */
 h1 em{font-style:normal}
 
+/* Textsidor på dator: rubriken i en egen kolumn till vänster, i höjd med
+   sin första textrad, och texten i en läsbar spalt bredvid. Annars stod
+   texten smalt till vänster och halva skärmen var tom. Rubriken står kvar
+   först i markupen, så att ordningen är densamma för skärmläsare. */
+@media (min-width:900px){
+  .prosa.med-spalt{display:grid;grid-template-columns:240px minmax(0,68ch);column-gap:56px;row-gap:14px;max-width:none;align-items:start}
+  .prosa.med-spalt > *{grid-column:2}
+  .prosa.med-spalt > h2{grid-column:1;margin-top:0;position:sticky;top:24px}
+  .prosa.med-spalt > h2 ~ h2{margin-top:32px}
+}
+
 /* Sektioner i guiderna, och faktarutor som står för sig själva. Inuti en
    ruta används .not aldrig — högst en nivå yta. */
 .avsnitt{display:flex;flex-direction:column;gap:12px;margin-top:36px;scroll-margin-top:16px}
