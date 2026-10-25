@@ -7,7 +7,7 @@
 <meta name="description" content="En spelares profil på HARDLIST: badges, rang, poäng och svit från dagens fråga.">
 <link rel="canonical" href="https://hardlist.se/profil/">
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#100C17">
+<meta name="theme-color" content="#070708">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25d">
+<link rel="stylesheet" href="/stil.css?v=2026-10-25e">
 <link rel="stylesheet" href="/profilstat.css?v=2026-10-12">
 <link rel="stylesheet" href="/badges.css?v=2026-10-12">
 <style>
@@ -59,9 +59,6 @@
   <div class="pf">
 
     <div class="pf-topp">
-      <a class="pf-ikonknapp" id="p-tillbaka" href="/topplista/" aria-label="Tillbaka">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
-      </a>
       <span class="pf-topp-titel">Profil</span>
       <span id="p-hoger"></span>
     </div>
@@ -150,13 +147,6 @@
   const P = window.hardlistProfil;
   const $ = function(id){ return document.getElementById(id); };
   const namn = new URLSearchParams(location.search).get('namn') || '';
-
-  /* Tillbaka i historiken om man kom från sajten, annars till topplistan. */
-  $('p-tillbaka').addEventListener('click', function(e){
-    let fran = null;
-    try { fran = document.referrer && new URL(document.referrer).origin; } catch(err){}
-    if (fran === location.origin && history.length > 1){ e.preventDefault(); history.back(); }
-  });
 
   const PRICKAR = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>';
   const FLAGGA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4h12l-2 4 2 4H5"/></svg>';

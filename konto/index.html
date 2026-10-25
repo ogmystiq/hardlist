@@ -7,7 +7,7 @@
 <meta name="description" content="Din profil på HARDLIST: badges, rang och poäng från dagens fråga. Logga in med Google, byt bild och namn eller radera kontot när du vill.">
 <link rel="canonical" href="https://hardlist.se/konto/">
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#100C17">
+<meta name="theme-color" content="#070708">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25d">
+<link rel="stylesheet" href="/stil.css?v=2026-10-25e">
 <link rel="stylesheet" href="/profilstat.css?v=2026-10-12">
 <link rel="stylesheet" href="/badges.css?v=2026-10-12">
 <style>
@@ -42,7 +42,7 @@
 .kt-meta{display:flex;flex-direction:column;gap:2px;padding:0 4px;font-size:13px;line-height:1.5;color:var(--text-3);overflow-wrap:anywhere}
 
 /* Listan: en yta, tunna avdelare mellan raderna, indragna till texten. */
-.kt-lista{background:var(--yta);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.kt-lista{background:var(--yta);border-radius:var(--horn-stor);overflow:hidden;display:flex;flex-direction:column}
 .kt-post{position:relative}
 .kt-post:not([hidden]) ~ .kt-post::before{content:"";position:absolute;top:0;left:50px;right:0;height:1px;background:var(--yta-2)}
 .kt-rad{
@@ -65,12 +65,12 @@
    klipper fokusringen. Den andra knappen har ingen fasning. */
 .kt-knapp-fara::before,.kt-google::before{background:var(--yta-2);clip-path:none;border-radius:var(--horn)}
 .kt-utfall{padding:0 16px 16px 50px;display:flex;flex-direction:column;gap:12px;animation:kt-in .25s ease-out}
-.kt-utfall p{font-size:15px;line-height:1.5;color:#D9D1E6}
+.kt-utfall p{font-size:15px;line-height:1.5;color:var(--text)}
 @keyframes kt-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 
 .kt-form{display:flex;flex-direction:column;gap:8px}
 .kt-etikett{font-size:13px;color:var(--text-3)}
-.kt-falt{height:46px;padding:0 14px;border:0;border-radius:12px;background:var(--yta-2);color:var(--text);font-size:16px}
+.kt-falt{height:46px;padding:0 14px;border:0;border-radius:var(--horn);background:var(--yta-2);color:var(--text);font-size:16px}
 .kt-falt:focus-visible{outline:2px solid var(--hardstyle);outline-offset:2px}
 /* Fel fält markeras med rosa ring, och meddelandet under säger vad som är fel. */
 .kt-falt[aria-invalid="true"]{outline:2px solid var(--rosa);outline-offset:2px}
@@ -111,9 +111,6 @@
   <div class="pf">
 
     <div class="pf-topp">
-      <a class="pf-ikonknapp" id="k-tillbaka" href="/" aria-label="Tillbaka">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
-      </a>
       <h1 class="pf-topp-titel">Din profil</h1>
       <a class="pf-ikonknapp" id="k-kugg" href="#installningar" aria-label="Inställningar" hidden>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
@@ -360,13 +357,6 @@
     $('k-bekrafta').hidden = true;
     $('k-radera').setAttribute('aria-expanded', 'false');
   }
-
-  /* Tillbaka i historiken om man kom från sajten, annars till startsidan. */
-  $('k-tillbaka').addEventListener('click', function(e){
-    let fran = null;
-    try { fran = document.referrer && new URL(document.referrer).origin; } catch(err){}
-    if (fran === location.origin && history.length > 1){ e.preventDefault(); history.back(); }
-  });
 
   let anvandare = null;
   let profil = null;     // svaret från profil_min

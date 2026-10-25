@@ -5,18 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sidan finns inte — HARDLIST</title>
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#100C17">
+<meta name="theme-color" content="#070708">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25d">
+<link rel="stylesheet" href="/stil.css?v=2026-10-25e">
 <style>
-.fel-topp{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+/* På mobil får rutan luft upptill, så att 404:an står ovanför rubriken och
+   aldrig bakom texten. På dator står den till höger om texten. */
+.fel-topp{display:flex;flex-direction:column;gap:14px;margin-top:8px;padding-top:144px}
 .fel-topp .knapp{align-self:flex-start}
-.genvagar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}
+.genvagar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--glipa);margin-top:28px}
 .fel-ruta{margin-top:28px}
 .fel-ruta h2{font-size:26px}
 .fel-ledtrad{font-size:14px;line-height:1.45;color:var(--text-3)}
@@ -50,10 +52,10 @@
 @keyframes fel-skak{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-7px)}80%{transform:translateX(5px)}}
 .fel-takt{font-size:14px;line-height:1.45;color:var(--text-2)}
 @media (min-width:860px){
-  .fel-topp{min-height:300px;justify-content:flex-end}
+  .fel-topp{min-height:300px;justify-content:flex-end;padding-top:32px}
   /* Under 404:an, som på dator står till höger. */
   .fel-takt{position:absolute;right:22px;top:262px;text-align:right}
-  .genvagar{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:40px}
+  .genvagar{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:40px}
   .fel-ruta{margin-top:40px}
   .fel-ruta h2{font-size:32px}
 }

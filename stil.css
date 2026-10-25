@@ -578,10 +578,13 @@ h1 em{font-style:normal}
 
 /* ---------- Profiler: /konto/ och /profil/ ---------- */
 
-/* Som designen i mobilen, och lika smal på dator: en profil är en kolumn. */
+/* Som designen i mobilen, och lika smal på dator: en profil är en kolumn.
+   Rubriken står som på andra sidor, stor och till vänster, och ikonen för
+   inställningar eller mer till höger. Den gamla bakåtpilen är borta:
+   menyn och webbläsarens egen bakåtknapp räcker. */
 .pf{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
-.pf-topp{display:grid;grid-template-columns:44px 1fr 44px;align-items:center}
-.pf-topp-titel{margin:0;text-align:center;font-family:inherit;font-stretch:100%;font-weight:700;font-size:17px;line-height:1.2;letter-spacing:0}
+.pf-topp{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+.pf-topp-titel{margin:0;font-family:inherit;font-stretch:62%;font-weight:900;font-size:50px;line-height:.95;letter-spacing:-.01em}
 .pf-ikonknapp{
   display:flex;width:44px;height:44px;padding:0;border:0;border-radius:50%;
   align-items:center;justify-content:center;background:none;color:var(--text);
@@ -711,7 +714,7 @@ html.ark-last{overflow:hidden}
   .topp{padding-top:22px;padding-bottom:22px}
   .logga{font-size:30px}
 
-  h1{font-size:72px;line-height:.9;letter-spacing:-.015em}
+  h1,.pf-topp-titel{font-size:72px;line-height:.9;letter-spacing:-.015em}
   h2{font-size:40px}
   h3{font-size:26px}
 
