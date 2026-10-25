@@ -54,31 +54,33 @@
 /* Under en låt behövs bara rubriken. */
 .fs.spelar .fs-topp .ingress{display:none}
 .fs-dold{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.fs-paus{background:var(--yta);border-radius:20px;padding:18px;font-size:16px;line-height:1.5;color:var(--text-2)}
+.fs-paus{background:var(--yta);border-radius:var(--horn-stor);padding:18px;font-size:16px;line-height:1.5;color:var(--text-2)}
 .fs-paus b{color:var(--text)}
 .fs-val{display:flex;flex-direction:column;gap:24px}
 .fs-grupp{display:flex;flex-direction:column;gap:10px}
-.fs-etikett{font-size:14px;font-weight:700}
+/* Etiketterna ovanför valen i det breda snittet, som .val-etikett. */
+.fs-etikett{font-stretch:118%;font-size:13px;font-weight:650;color:var(--text-2)}
 .fs-liten{font-size:14px;line-height:1.5;color:var(--text-3)}
 .fs-liten a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
 
 /* Genrerna: stora rutor med prick och namn. Vald genre får en ring i sin
    färg, och namnet står alltid bredvid. */
 .fs-genrer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.fs-genre{display:flex;align-items:center;gap:12px;min-height:60px;padding:0 16px;border:0;border-radius:18px;background:var(--yta);color:var(--text-2);font-size:16px;font-weight:700;text-align:left;transition:background .15s,color .15s,box-shadow .15s}
+.fs-genre{display:flex;align-items:center;gap:12px;min-height:60px;padding:0 16px;border:0;border-radius:var(--horn-stor);background:var(--yta);color:var(--text-2);font-size:16px;font-weight:700;text-align:left;transition:background .15s,color .15s,box-shadow .15s}
 .fs-genre:hover{background:var(--yta-hover);color:var(--text)}
 .fs-genre .prick{width:12px;height:12px}
-.fs-genre[aria-checked="true"]{background:var(--yta-2);color:var(--text);box-shadow:inset 0 0 0 2px var(--g,var(--text))}
+/* Valt läge är detsamma som på resten av sajten. Pricken visar genren. */
+.fs-genre[aria-checked="true"]{background:var(--text);color:var(--mork-text)}
 .fs-genre[data-val="blandat"] .prick{background:none;box-shadow:inset 0 0 0 2px var(--text-3)}
 
 /* Svårigheten: fyra steg i rad, med staplar som visar nivån så att valet
    syns även utan att läsa. */
-.fs-nivaer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px;border-radius:20px;background:var(--yta)}
-.fs-niva{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:72px;padding:8px 4px;border:0;border-radius:16px;background:none;color:var(--text-2);font-size:15px;font-weight:700;line-height:1.1;transition:background .15s,color .15s}
+.fs-nivaer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px;border-radius:var(--horn-stor);background:var(--yta)}
+.fs-niva{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:72px;padding:8px 4px;border:0;border-radius:var(--horn-stor);background:none;color:var(--text-2);font-size:15px;font-weight:700;line-height:1.1;transition:background .15s,color .15s}
 .fs-niva:hover{color:var(--text)}
-.fs-niva small{font-size:12px;font-weight:500;color:var(--text-3)}
-.fs-niva[aria-checked="true"]{background:var(--text);color:var(--natt)}
-.fs-niva[aria-checked="true"] small{color:#4A4058}
+.fs-niva small{font-size:13px;font-weight:500;color:var(--text-2)}
+.fs-niva[aria-checked="true"]{background:var(--text);color:var(--mork-text)}
+.fs-niva[aria-checked="true"] small{color:#3A3A44}
 .fs-staplar{display:flex;align-items:flex-end;gap:3px;height:16px}
 .fs-staplar i{width:5px;border-radius:2px;background:currentColor;opacity:.25}
 .fs-staplar i:nth-child(1){height:6px}
@@ -91,18 +93,28 @@
 .fs-niva[data-niva="expert"] i{opacity:1}
 
 .fs-borja{width:100%;min-height:56px;font-size:18px}
-.fs-poangtabell{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin:0}
-.fs-poangtabell div{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0}
-.fs-poangtabell dt{font-size:12px;color:var(--text-3)}
-.fs-poangtabell dd{margin:0;font-stretch:62%;font-weight:900;font-size:24px;line-height:1}
-.fs-poangtabell div:first-child dd{font-size:30px}
+/* Poängtrappan: stapelns höjd är poängen för försöket, och klippets längd
+   står under. Förut var det en rad små siffror som var svår att läsa. */
+.fs-trappa{display:flex;flex-direction:column;gap:10px;padding:16px 16px 14px;background:var(--yta);border-radius:var(--horn-stor)}
+.fs-poangtabell{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;align-items:end;margin:0}
+.fs-poangtabell div{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
+.fs-poangtabell div:nth-child(1){--p:100;--k:"0,5 s"}
+.fs-poangtabell div:nth-child(2){--p:70;--k:"1 s"}
+.fs-poangtabell div:nth-child(3){--p:50;--k:"2 s"}
+.fs-poangtabell div:nth-child(4){--p:30;--k:"4 s"}
+.fs-poangtabell div:nth-child(5){--p:20;--k:"8 s"}
+.fs-poangtabell div:nth-child(6){--p:10;--k:"16 s"}
+.fs-poangtabell dd{order:1;margin:0;font-stretch:62%;font-weight:900;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+.fs-poangtabell div::before{content:"";order:2;align-self:stretch;height:calc(var(--p) * 1.1px);border-radius:1px;background:var(--text)}
+.fs-poangtabell dt{order:3;font-size:13px;font-weight:650;color:var(--text-2);text-align:center;line-height:1.2}
+.fs-poangtabell dt::after{content:var(--k);display:block;font-weight:500;color:var(--text-3)}
 
 .fs-runda{display:flex;flex-direction:column;gap:14px}
 
 /* Scenen: spelaren med glöd och strålar i genrens färg. */
-.fs-scen{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 16px 18px;border-radius:24px;background:var(--yta)}
+.fs-scen{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 16px 18px;border-radius:var(--horn-stor);background:var(--yta)}
 .fs-scen-rad{align-self:stretch;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.fs-val-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--yta-2);font-size:14px;font-weight:600}
+.fs-val-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--horn);background:var(--yta-2);font-size:14px;font-weight:600}
 .fs-val-chip .prick{background:var(--g)}
 .fs[data-genre="blandat"] .fs-val-chip .prick{display:none}
 .fs-summa{font-size:14px;color:var(--text-2)}
@@ -125,15 +137,15 @@
 
 /* Klippstapeln: hela 16 sekunder, det upplåsta klippet ljusare, strecken
    där nästa klipp slutar. */
-.fs-bar{position:relative;align-self:stretch;height:10px;border-radius:999px;background:var(--natt);overflow:hidden}
-.fs-bar .upplast{position:absolute;inset:0 auto 0 0;background:#3A3048}
+.fs-bar{position:relative;align-self:stretch;height:10px;border-radius:1px;background:var(--natt);overflow:hidden}
+.fs-bar .upplast{position:absolute;inset:0 auto 0 0;background:#34343C}
 .fs-bar .spelat{position:absolute;inset:0 auto 0 0;width:0;background:var(--g)}
 .fs-bar .streck{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--natt)}
 .fs-under-scen{display:flex;flex-direction:column;gap:8px}
 
 /* Försöken: sex rader, en per klipp. */
 .fs-forsok{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-.fs-forsok li{display:flex;align-items:center;gap:12px;min-height:44px;padding:6px 14px 6px 8px;border-radius:14px;background:var(--yta);font-size:15px;font-weight:600;overflow-wrap:anywhere}
+.fs-forsok li{display:flex;align-items:center;gap:12px;min-height:44px;padding:6px 14px 6px 8px;border-radius:var(--horn-stor);background:var(--yta);font-size:15px;font-weight:600;overflow-wrap:anywhere}
 .fs-forsok .bricka{width:30px;height:30px;font-size:13px}
 .fs-forsok .tom{background:none;box-shadow:inset 0 0 0 1.5px var(--yta)}
 .fs-forsok .tom .bricka{background:none;color:var(--text-3)}
@@ -145,10 +157,10 @@
 /* Gissningen. */
 .fs-gissa{display:flex;flex-direction:column;gap:8px}
 .fs-gissa[hidden]{display:none}
-.fs-sok{width:100%;min-height:52px;padding:0 18px;border:0;border-radius:999px;background:var(--yta);color:var(--text);font-size:16px}
+.fs-sok{width:100%;min-height:52px;padding:0 18px;border:0;border-radius:var(--horn);background:var(--yta);color:var(--text);font-size:16px}
 .fs-sok::placeholder{color:var(--text-3)}
 .fs-sok:focus-visible{outline:2px solid var(--hardstyle);outline-offset:2px}
-.fs-forslag{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:var(--yta)}
+.fs-forslag{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-radius:var(--horn-stor);overflow:hidden;background:var(--yta)}
 .fs-forslag:empty{display:none}
 .fs-forslag button{display:block;width:100%;min-height:48px;padding:12px 16px;border:0;background:none;color:var(--text-2);text-align:left;font-size:15px;line-height:1.35}
 .fs-forslag li + li button{border-top:1px solid var(--yta-2)}
@@ -156,7 +168,7 @@
 .fs-forslag button:hover,.fs-forslag button[aria-selected="true"]{background:var(--yta-2)}
 .fs-hoppa{align-self:flex-start;min-height:44px}
 
-.fs-facit{padding:20px;gap:12px;border-radius:24px}
+.fs-facit{padding:20px;gap:12px;border-radius:var(--horn-stor)}
 .fs-facit-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .fs-facit-lat{display:flex;flex-direction:column;gap:2px}
 .fs-facit-lat b{font-stretch:62%;font-weight:900;font-size:32px;line-height:1.05}
@@ -171,8 +183,8 @@
 .fs-dagens{margin-top:8px}
 
 /* Valet mellan fritt spel och rankat. Döljs under en låt eller en match. */
-.fs-lagen{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:4px;border-radius:999px;background:var(--yta)}
-.fs-lagen button{min-height:48px;border:0;border-radius:999px;background:none;color:var(--text-2);font-size:16px;font-weight:700;transition:background .15s,color .15s}
+.fs-lagen{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:4px;border-radius:var(--horn);background:var(--yta)}
+.fs-lagen button{min-height:48px;border:0;border-radius:var(--horn);background:none;color:var(--text-2);font-size:16px;font-weight:700;transition:background .15s,color .15s}
 .fs-lagen button:hover{color:var(--text)}
 .fs-lagen button[aria-selected="true"]{background:var(--text);color:var(--natt)}
 .fs.spelar .fs-lagen{display:none}
@@ -192,7 +204,7 @@
 .rk-jag-under{flex-basis:100%;font-size:14px;color:var(--text-3)}
 .rk-genre small{display:block;margin-top:2px;font-size:13px;font-weight:600;color:var(--text-3)}
 .rk-genre .rk-genre-text{display:flex;flex-direction:column;align-items:flex-start;line-height:1.2}
-.rk-oppen{display:flex;flex-direction:column;gap:10px;padding:16px 18px;border-radius:20px;background:var(--yta)}
+.rk-oppen{display:flex;flex-direction:column;gap:10px;padding:16px 18px;border-radius:var(--horn-stor);background:var(--yta)}
 .rk-oppen .knapp{align-self:flex-start}
 .rk-regler{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5;color:var(--text-2)}
 .rk-senaste{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
@@ -211,8 +223,8 @@
 
 /* Klockan per klipp. Rosa de sista tio sekunderna, som klockan i quizet. */
 .rk-klocka{align-self:stretch;display:flex;flex-direction:column;gap:6px}
-.rk-klocka-spar{height:6px;border-radius:999px;background:var(--natt);overflow:hidden}
-.rk-klocka-spar i{display:block;height:100%;width:100%;border-radius:999px;background:var(--text)}
+.rk-klocka-spar{height:6px;border-radius:1px;background:var(--natt);overflow:hidden}
+.rk-klocka-spar i{display:block;height:100%;width:100%;border-radius:1px;background:var(--text)}
 .rk-klocka-text{font-size:14px;font-weight:700;text-align:center;font-variant-numeric:tabular-nums}
 .rk-klocka.snart .rk-klocka-spar i{background:var(--fel)}
 .rk-klocka.snart .rk-klocka-text{color:var(--fel)}
@@ -220,8 +232,8 @@
 /* Svaren med ett tryck, som i Dagens låt. Rätt alltid cyan med bock, fel
    alltid rosa med kryss. */
 .rk-alt{display:flex;flex-direction:column;gap:10px}
-.rk-alt-tom{padding:18px;border-radius:16px;box-shadow:inset 0 0 0 1.5px var(--yta);font-size:15px;color:var(--text-3);text-align:center}
-.alt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 16px 10px 12px;border:1.5px solid var(--yta);border-radius:16px;background:var(--yta);color:var(--text);text-align:left;font-size:17px;font-weight:650;line-height:1.3;transition:background .2s,border-color .2s,opacity .25s,transform .1s}
+.rk-alt-tom{padding:18px;border-radius:var(--horn-stor);box-shadow:inset 0 0 0 1.5px var(--yta);font-size:15px;color:var(--text-3);text-align:center}
+.alt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 16px 10px 12px;border:1.5px solid var(--yta);border-radius:var(--horn-stor);background:var(--yta);color:var(--text);text-align:left;font-size:17px;font-weight:650;line-height:1.3;transition:background .2s,border-color .2s,opacity .25s,transform .1s}
 .alt:hover:not(:disabled){background:var(--yta-2)}
 .alt:active:not(:disabled){transform:scale(.98)}
 .alt:disabled{cursor:default}
@@ -233,12 +245,12 @@
 .alt-fel .bricka{background:var(--fel);color:var(--natt)}
 .alt-dov{opacity:.4}
 .rk-langre{align-self:stretch;min-height:48px}
-.rk-ge-upp{align-self:center;min-height:44px;padding:0 16px;border:0;border-radius:999px;background:none;color:var(--text-3);font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.rk-ge-upp{align-self:center;min-height:44px;padding:0 16px;border:0;border-radius:var(--horn);background:none;color:var(--text-3);font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .rk-ge-upp:hover{color:var(--text-2)}
 .rk-ge-upp.bekrafta{color:var(--text);background:var(--yta-2);text-decoration:none}
 
 /* Resultatet. Siffrorna stora, raderna utan egna ytor. */
-.rk-res{padding:22px;gap:18px;border-radius:24px}
+.rk-res{padding:22px;gap:18px;border-radius:var(--horn-stor)}
 .rk-res-utfall{display:flex;align-items:center;gap:10px;font-stretch:62%;font-weight:900;font-size:48px;line-height:1}
 .rk-res-utfall svg{flex:none;width:34px;height:34px}
 .rk-tavla{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:end;gap:12px}
@@ -267,9 +279,9 @@
 .rk-ko,.rk-vantar{gap:14px}
 .rk-ko h2,.rk-vantar h2{font-size:32px}
 .rk-ko .knapp,.rk-vantar .knapp{align-self:flex-start}
-.rk-ko-spar{height:8px;border-radius:999px;background:var(--natt);overflow:hidden}
-.rk-ko-spar i{display:block;height:100%;width:0;border-radius:999px;background:var(--g)}
-.rk-live{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--yta-2);font-size:13px;font-weight:700}
+.rk-ko-spar{height:8px;border-radius:1px;background:var(--natt);overflow:hidden}
+.rk-ko-spar i{display:block;height:100%;width:0;border-radius:1px;background:var(--g)}
+.rk-live{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--horn);background:var(--yta-2);font-size:13px;font-weight:700}
 .rk-live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--text)}
 .rk-motlive{font-size:14px;color:var(--text-2);text-align:center;font-variant-numeric:tabular-nums}
 .rk-motlive b{color:var(--text)}
@@ -277,7 +289,16 @@
 .rk-res .q-knappar .knapp{flex:1 1 180px;white-space:nowrap}
 
 @media (min-width:860px){
-  .fs{gap:24px}
+  /* På dator: valen till vänster och poängtrappan till höger. Själva
+     låten och matchen står i en smalare spalt, som på mobilen. */
+  .fs{gap:24px;max-width:1100px}
+  .fs > .fs-runda,.fs > .rk,.fs > .fs-lagen,.fs > .fs-paus{width:100%;max-width:640px}
+  .fs-val{display:grid;grid-template-columns:minmax(0,640px) minmax(0,1fr);column-gap:56px;row-gap:24px;align-items:start}
+  .fs-val > *{grid-column:1}
+  .fs-val > .fs-trappa{grid-column:2;grid-row:1 / span 4;padding:26px 28px 22px}
+  .fs-poangtabell{gap:10px}
+  .fs-poangtabell div::before{height:calc(var(--p) * 1.9px)}
+  .fs-poangtabell dd{font-size:38px}
   .fs-genrer{grid-template-columns:repeat(3,minmax(0,1fr))}
   .rk-res{padding:32px}
   .rk-tavla b{font-size:64px}
@@ -354,7 +375,9 @@
       </div>
       <button class="knapp fs-borja" id="fsBorja" type="button">Börja spela</button>
       <p class="fs-liten" id="fsKonto"></p>
-      <dl class="fs-poangtabell" aria-label="Poäng per försök">
+      <div class="fs-trappa">
+      <span class="fs-etikett" id="fsPoangEtikett">Poäng per låt, efter försöket du klarar den på</span>
+      <dl class="fs-poangtabell" aria-labelledby="fsPoangEtikett">
         <div><dt>1:a</dt><dd>100</dd></div>
         <div><dt>2:a</dt><dd>70</dd></div>
         <div><dt>3:e</dt><dd>50</dd></div>
@@ -362,6 +385,7 @@
         <div><dt>5:e</dt><dd>20</dd></div>
         <div><dt>6:e</dt><dd>10</dd></div>
       </dl>
+      </div>
     </section>
 
     <!-- En låt -->

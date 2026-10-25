@@ -33,22 +33,44 @@
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/stil.css?v=2026-10-25d">
 <style>
-/* Dagens två spel bredvid varandra, som på startsidan, och de tre övriga
-   som en rad av kort under. Rutorna tänjs inte efter korten. */
-.sp{display:flex;flex-direction:column;gap:12px}
-.sp-dagens{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
-.sp-ruta{min-height:220px;justify-content:flex-end}
-.sp-ruta .ingress{max-width:34ch}
-.sp-ruta .knapp{align-self:flex-start}
-.ruta > .ruta-siffra.smal{letter-spacing:-.06em}
-.sp-kort{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.sp-kort > .kort:last-child:nth-child(odd){grid-column:1 / -1}
+/* Tre lika spelrutor med glipa emellan, och resten som rader under. Hela
+   rutan är länken, som på startsidan, så att inte tre rosa knappar tävlar
+   om blicken. Den stora siffran står på en egen rad överst, aldrig bakom
+   texten: sekunderna i Dagens fråga, första klippet i Dagens låt och de
+   sex försöken i fritt spel. */
+.sp{display:flex;flex-direction:column;gap:24px}
+.sp-spel{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--glipa)}
+.sp-ruta{
+  display:flex;flex-direction:column;gap:10px;min-width:0;padding:18px 20px 20px;
+  background:var(--yta);border-radius:var(--horn-stor);color:var(--text);transition:background .15s;
+}
+.sp-ruta:hover{background:var(--yta-hover)}
+.sp-siffra{
+  align-self:flex-end;margin:-6px -4px -18px 0;
+  font-stretch:62%;font-weight:900;font-size:96px;line-height:1;letter-spacing:-.04em;
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.3);
+}
+.sp-ruta h2{font-size:30px}
+.sp-ruta p{max-width:36ch;font-size:15px;line-height:1.45;color:var(--text-2)}
+.sp-lank{margin-top:auto;padding-top:6px;font-weight:750;font-size:15px}
+.sp-rader{display:flex;flex-direction:column;gap:var(--glipa)}
+.sp-rad{
+  display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 16px;
+  background:var(--yta);border-radius:var(--horn-stor);transition:background .15s;
+}
+.sp-rad:hover{background:var(--yta-hover)}
+.sp-rad-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.sp-rad-text b{font-size:16px}
+.sp-rad-text span{font-size:14px;color:var(--text-2)}
+.sp-pil{flex:none;width:20px;height:20px;color:var(--text-2)}
 @media (min-width:860px){
-  .sp{gap:16px}
-  .sp-dagens{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-  .sp-ruta{min-height:300px}
-  .sp-kort{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .sp-kort > .kort:last-child:nth-child(odd){grid-column:auto}
+  .sp{gap:32px}
+  .sp-spel{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sp-ruta{min-height:340px;padding:22px 26px 26px}
+  .sp-siffra{font-size:150px;margin-bottom:-26px}
+  .sp-ruta h2{font-size:38px}
+  .sp-rader{flex-direction:row}
+  .sp-rad{flex:1}
 }
 </style>
 </head>
@@ -76,42 +98,35 @@
   </div>
 
   <div class="sp">
-    <div class="sp-dagens">
-      <section class="ruta sp-ruta" aria-labelledby="fragaRubrik">
-        <span class="ruta-siffra" aria-hidden="true">30</span>
+    <div class="sp-spel">
+      <a class="sp-ruta" href="/quiz/" aria-labelledby="fragaRubrik fragaLank">
+        <span class="sp-siffra" aria-hidden="true">30</span>
         <h2 id="fragaRubrik">Dagens fråga</h2>
-        <p class="ingress">En fråga om scenen varje dag. Med konto har du 30 sekunder på dig och samlar poäng till topplistan. På fredagar är frågan en låt, och den ger dubbla poäng.</p>
-        <a class="knapp" href="/quiz/">Öppna frågan</a>
-      </section>
-      <section class="ruta sp-ruta" aria-labelledby="latRubrik">
-        <span class="ruta-siffra smal" aria-hidden="true">0,5</span>
+        <p>En fråga om scenen varje dag. Med konto har du 30 sekunder på dig och samlar poäng till topplistan. På fredagar är frågan en låt, och den ger dubbla poäng.</p>
+        <span class="sp-lank" id="fragaLank">Öppna frågan</span>
+      </a>
+      <a class="sp-ruta" href="/latspel/" aria-labelledby="latRubrik latLank">
+        <span class="sp-siffra" aria-hidden="true">0,5</span>
         <h2 id="latRubrik">Dagens låt</h2>
-        <p class="ingress">En låt om dagen, samma för alla. Första klippet är en halv sekund, och fyra alternativ att välja på. Ju kortare klipp, desto fler poäng.</p>
-        <a class="knapp" href="/latspel/">Gissa låten</a>
-      </section>
+        <p>En låt om dagen, samma för alla. Första klippet är en halv sekund, och fyra alternativ att välja på. Ju kortare klipp, desto fler poäng.</p>
+        <span class="sp-lank" id="latLank">Gissa låten</span>
+      </a>
+      <a class="sp-ruta" href="/fritt-spel/" aria-labelledby="frittRubrik frittLank">
+        <span class="sp-siffra" aria-hidden="true">6</span>
+        <h2 id="frittRubrik">Fritt spel</h2>
+        <p>Känn igen låten på en halv sekund, med sex försök. Spela fritt, eller rankat mot andra.</p>
+        <span class="sp-lank" id="frittLank">Spela fritt</span>
+      </a>
     </div>
 
-    <div class="sp-kort">
-      <a class="kort med-ikon" href="/fritt-spel/">
-        <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="kort-delar">
-          <span class="kort-titel">Fritt spel</span>
-          <span class="kort-text">Känn igen låten på en halv sekund. Spela fritt, eller rankat mot andra.</span>
-        </span>
+    <div class="sp-rader">
+      <a class="sp-rad" href="/topplista/">
+        <span class="sp-rad-text"><b>Topplistan</b><span>Totalt och den här månaden</span></span>
+        <svg class="sp-pil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
       </a>
-      <a class="kort med-ikon" href="/topplista/">
-        <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 20V11M12 20V4M18 20v-6"/></svg></span>
-        <span class="kort-delar">
-          <span class="kort-titel">Topplistan</span>
-          <span class="kort-text">Totalt och den här månaden</span>
-        </span>
-      </a>
-      <a class="kort med-ikon" href="/badges/">
-        <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l2 5M16 3l-2 5"/><circle cx="12" cy="14" r="6"/></svg></span>
-        <span class="kort-delar">
-          <span class="kort-titel">Badges</span>
-          <span class="kort-text">Alla 39, och vad som krävs</span>
-        </span>
+      <a class="sp-rad" href="/badges/">
+        <span class="sp-rad-text"><b>Badges</b><span>Alla 39, och vad som krävs</span></span>
+        <svg class="sp-pil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
       </a>
     </div>
   </div>

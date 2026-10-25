@@ -59,14 +59,14 @@
 .q-klocka-topp{display:flex;align-items:baseline;justify-content:space-between}
 .q-klocka-topp > span:first-child{font-size:14px;color:var(--text-2)}
 .q-klocka-tal{font-stretch:62%;font-weight:900;font-size:26px;line-height:1;color:var(--klocka);transition:color .3s}
-.q-klocka-spar{height:8px;border-radius:999px;background:var(--yta-2);overflow:hidden}
-.q-klocka-spar i{display:block;height:8px;width:100%;border-radius:999px;background:var(--klocka);transition:width .2s linear,background .3s}
+.q-klocka-spar{height:8px;border-radius:1px;background:var(--yta-2);overflow:hidden}
+.q-klocka-spar i{display:block;height:8px;width:100%;border-radius:1px;background:var(--klocka);transition:width .2s linear,background .3s}
 
 /* Svaren: 64 px höga rader med en rund bricka för bokstaven. */
 .q-alt{display:flex;flex-direction:column;gap:10px}
 .alt{
   display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 16px 10px 12px;
-  border:1.5px solid var(--yta);border-radius:16px;background:var(--yta);color:var(--text);
+  border:1.5px solid var(--yta);border-radius:var(--horn-stor);background:var(--yta);color:var(--text);
   text-align:left;font-size:17px;font-weight:650;line-height:1.3;
   transition:background .2s,border-color .2s,opacity .25s,transform .1s;
 }
@@ -92,9 +92,9 @@
 .q-facit{display:flex;flex-direction:column;gap:14px}
 .q-facit.anim{animation:q-in .38s ease-out}
 @keyframes q-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.q-svar{padding:18px;gap:10px;border-radius:20px}
+.q-svar{padding:18px;gap:10px;border-radius:var(--horn-stor)}
 .q-svar-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.q-facit-text{font-size:16px;line-height:1.5;color:#D9D1E6}
+.q-facit-text{font-size:16px;line-height:1.5;color:var(--text)}
 .q-knappar{display:flex;flex-wrap:wrap;gap:10px}
 /* Lika breda, och under varandra när de inte får plats på en rad, så att
    ingen knapptext bryts. */
@@ -109,25 +109,25 @@
 .q-fredag b{color:var(--text)}
 
 /* Topplistan. */
-.q-lista{padding:10px;gap:4px;border-radius:24px;scroll-margin-top:16px}
+.q-lista{padding:10px;gap:4px;border-radius:var(--horn-stor);scroll-margin-top:16px}
 .q-lista-topp{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:6px 8px 8px}
 .sektionslank{flex:none;font-size:15px;color:var(--text-2);min-height:44px;display:inline-flex;align-items:center}
 .sektionslank:hover{color:var(--text)}
 .q-lista-topp h2{font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
 .q-flikar{display:flex;gap:6px}
-.q-flikar .chip{min-height:40px;padding:0 14px;background:var(--yta-2)}
-.q-flikar .chip[aria-selected="true"]{background:var(--text);color:var(--natt)}
+/* 44 px, som alla tryckytor på mobil. Valt läge kommer från stil.css. */
+.q-flikar .chip{min-height:44px;padding:0 14px}
 .q-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.q-rader li{border-radius:12px}
+.q-rader li{border-radius:var(--horn)}
 .q-rader li.jag{background:var(--yta-2)}
 /* Hela raden leder till profilen. */
-.q-rad{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px;border-radius:12px;color:inherit;text-decoration:none;transition:background .15s}
+.q-rad{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px;border-radius:var(--horn);color:inherit;text-decoration:none;transition:background .15s}
 .q-rad:hover{background:var(--yta-hover)}
 .q-rad:focus-visible{outline-offset:-2px}
 .q-rader .bild img{display:block;width:100%;height:100%;object-fit:cover}
 .q-rader .namn-rad{display:flex;align-items:center;gap:6px;min-width:0}
 .q-rader .namn-rad .bm{flex:none}
-.q-rader .du{flex:none;padding:2px 8px;border-radius:999px;background:var(--natt);font-size:12px;font-weight:700;color:var(--text-2)}
+.q-rader .du{flex:none;padding:2px 8px;border-radius:var(--horn);background:var(--natt);font-size:12px;font-weight:700;color:var(--text-2)}
 .q-rader .plats{flex:none;width:26px;font-stretch:62%;font-weight:900;font-size:20px;line-height:1}
 .q-rader .bild{flex:none;display:flex;width:32px;height:32px;border-radius:50%;overflow:hidden;background:var(--yta-2);align-items:center;justify-content:center;font-weight:800;font-size:14px}
 .q-rader .jag .bild{background:var(--natt)}
@@ -140,7 +140,7 @@
 .q-jag:empty{display:none}
 .q-jag-etikett{font-size:13px;color:var(--text-3)}
 .q-jag .q-rader{align-self:stretch}
-.q-jag.fast{position:sticky;bottom:calc(var(--meny-hojd) + env(safe-area-inset-bottom) + 8px);z-index:2;margin:0 -4px;padding:8px 4px;border-radius:16px;background:var(--yta)}
+.q-jag.fast{position:sticky;bottom:calc(var(--meny-hojd) + env(safe-area-inset-bottom) + 8px);z-index:2;margin:0 -4px;padding:8px 4px;border-radius:var(--horn-stor);background:var(--yta)}
 @media (min-width:860px){.q-jag.fast{bottom:16px}}
 
 .q-om{display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:var(--text-2)}

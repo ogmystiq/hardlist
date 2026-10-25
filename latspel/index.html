@@ -35,7 +35,7 @@
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/stil.css?v=2026-10-25d">
 <style>
-.l-paus{background:var(--yta);border-radius:20px;padding:18px;font-size:16px;line-height:1.5;color:var(--text-2)}
+.l-paus{background:var(--yta);border-radius:var(--horn-stor);padding:18px;font-size:16px;line-height:1.5;color:var(--text-2)}
 .l-paus b{color:var(--text)}
 .l{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
 .l-sidhuvud{margin-bottom:0}
@@ -44,14 +44,14 @@
 
 /* Klippstapeln: hela 16 sekunder, det upplåsta klippet ljusare, strecken där
    nästa klipp slutar. */
-.l-bar{position:relative;height:8px;border-radius:999px;background:var(--yta-2);overflow:hidden}
-.l-bar .upplast{position:absolute;inset:0 auto 0 0;background:#3A3048}
+.l-bar{position:relative;height:8px;border-radius:1px;background:var(--yta-2);overflow:hidden}
+.l-bar .upplast{position:absolute;inset:0 auto 0 0;background:#34343C}
 .l-bar .spelat{position:absolute;inset:0 auto 0 0;width:0;background:var(--text)}
 .l-bar .streck{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--natt)}
 
 /* Försöken: sex rader, en per klipp. */
 .l-forsok{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-.l-forsok li{display:flex;align-items:center;gap:12px;min-height:48px;padding:6px 14px 6px 8px;border-radius:14px;background:var(--yta);font-size:15px;font-weight:600}
+.l-forsok li{display:flex;align-items:center;gap:12px;min-height:48px;padding:6px 14px 6px 8px;border-radius:var(--horn-stor);background:var(--yta);font-size:15px;font-weight:600}
 .l-forsok .bricka{width:32px;height:32px;font-size:13px}
 .l-forsok .tom{background:none;box-shadow:inset 0 0 0 1.5px var(--yta)}
 .l-forsok .tom .bricka{background:none;color:var(--text-3)}
@@ -63,10 +63,10 @@
 /* Gissningen. */
 .l-gissa{position:relative;display:flex;flex-direction:column;gap:6px}
 .l-etikett{font-size:14px;color:var(--text-2)}
-.l-sok{width:100%;min-height:52px;padding:0 18px;border:0;border-radius:999px;background:var(--yta);color:var(--text);font-size:16px}
+.l-sok{width:100%;min-height:52px;padding:0 18px;border:0;border-radius:var(--horn);background:var(--yta);color:var(--text);font-size:16px}
 .l-sok::placeholder{color:var(--text-3)}
 .l-sok:focus-visible{outline:2px solid var(--hardstyle);outline-offset:2px}
-.l-forslag{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:var(--yta)}
+.l-forslag{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-radius:var(--horn-stor);overflow:hidden;background:var(--yta)}
 .l-forslag:empty{display:none}
 .l-forslag button{display:block;width:100%;min-height:48px;padding:12px 16px;border:0;background:none;color:var(--text-2);text-align:left;font-size:15px;line-height:1.35}
 .l-forslag li + li button{border-top:1px solid var(--yta-2)}
@@ -87,13 +87,13 @@
 .l-fordelning div{display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;gap:10px}
 .l-fordelning em{font-style:normal;font-size:13px;color:var(--text-3)}
 .l-fordelning-spar{display:block}
-.l-fordelning-spar span{display:block;min-width:28px;padding:3px 8px;border-radius:999px;background:var(--yta-2);font-size:13px;font-weight:700;text-align:right}
+.l-fordelning-spar span{display:block;min-width:28px;padding:3px 8px;border-radius:1px;background:var(--yta-2);font-size:13px;font-weight:700;text-align:right}
 .l-fordelning .nu em{color:var(--text)}
 .l-fordelning .nu .l-fordelning-spar span{background:var(--text);color:var(--natt)}
 
 .l-mot-rubrik{font-size:26px}
 .l-mot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.l-mot div{background:var(--yta);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.l-mot div{background:var(--yta);border-radius:var(--horn-stor);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
 .l-mot span{font-size:13px;color:var(--text-3)}
 .l-mot b{font-stretch:62%;font-weight:900;font-size:36px;line-height:1}
 .l-mot .ledare{box-shadow:inset 0 0 0 1.5px var(--text)}
@@ -113,7 +113,7 @@
 /* Dagens låt: svaren med ett tryck, som i quizet. Rätt alltid cyan med bock,
    fel alltid rosa med kryss. */
 .q-alt{display:flex;flex-direction:column;gap:10px}
-.alt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 16px 10px 12px;border:1.5px solid var(--yta);border-radius:16px;background:var(--yta);color:var(--text);text-align:left;font-size:17px;font-weight:650;line-height:1.3;transition:background .2s,border-color .2s,opacity .25s,transform .1s}
+.alt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 16px 10px 12px;border:1.5px solid var(--yta);border-radius:var(--horn-stor);background:var(--yta);color:var(--text);text-align:left;font-size:17px;font-weight:650;line-height:1.3;transition:background .2s,border-color .2s,opacity .25s,transform .1s}
 .alt:hover:not(:disabled){background:var(--yta-2)}
 .alt:active:not(:disabled){transform:scale(.98)}
 .alt:disabled{cursor:default}

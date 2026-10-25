@@ -41,10 +41,6 @@ const INTE_SIDOR = new Set(['scripts', 'supabase', 'data', 'node_modules', 'docs
 /* Kända avvikelser som är avsiktliga. Varje rad behöver en motivering, och
    listan ska krympa, inte växa. Nyckeln är sida, bredd och vad som larmar. */
 const UNDANTAG = new Map([
-  /* Flikarna i quizets topplista är 40 px. De byggs om i uppgift 7 i
-     planen för omdesignen, och då ska de här två raderna bort. */
-  ['/quiz/ mobil tryckyta 40 px hög: "Månaden"', 'rättas i omdesignen, uppgift 7'],
-  ['/quiz/ mobil tryckyta 40 px hög: "Totalt"', 'rättas i omdesignen, uppgift 7'],
 ]);
 
 async function hittaSidor(){
