@@ -61,6 +61,7 @@ stil.css                →  all gemensam stil, se nedan
 ram.js                  →  statusraden i sidfoten, läser data/status.json
 inloggning.js           →  inloggningen, laddas av varje sida
 rader.js                →  releaseraden, delad av startsidan och /releaser/
+rigg.js                 →  genreriggen, veckans släpp per genre, se nedan
 ljud.js                 →  avstängningen av iTunes-ljud och raden om förlyssningen
 badges.js, badges.css   →  badgesens utseende, texter och popuper, ritade i designen
 profilvy.js             →  profilens delar, delade av /konto/ och /profil/
@@ -94,6 +95,11 @@ dessutom ha **högst ett** eget `<style>`-block för det som bara finns där.
   de fasade hörnen inte klipper fokusringen. Ska en knapp ha en annan färg,
   sätt den på `::before` (och `clip-path:none` om den inte ska fasas). En
   bakgrund på själva knappen hamnar under det rosa lagret och syns inte.
+- **Genreriggen (`rigg.js`) är sajtens kännetecken.** Den räknar veckans
+  släpp, samma sju dagar som releasesidans "Senaste sju dagarna", och den
+  räkningen finns bara där. Ändra den aldrig på en sida för sig. Går
+  hämtningen inte visar riggen felet, aldrig nollor. Test:
+  `node scripts/test-rigg.mjs`.
 - **Typsnittet ligger i `/typsnitt/`**, så att ingen sidvisning går till
   Google. Licensen (SIL Open Font License) ligger bredvid.
 - **Delningsbilderna i `bilder/dela/` och ikonfilerna i roten ritas i
