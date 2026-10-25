@@ -834,6 +834,20 @@ säga "många" än att hitta på en procentsats.
 
 ---
 
+## Skills i `.claude/skills/`
+
+Skillsen i `.claude/skills/` är kopior av superpowers, UI UX Pro Max och
+frontend-design. De ligger i repot för att molnsessionerna inte kan installera
+plugins. Var de kommer ifrån, vilken commit och vilken licens står i
+`.claude/skills/KALLOR.md`.
+
+- **Ändra dem aldrig för hand.** De uppdateras genom att hämtas på nytt från
+  källan, och då byts commit och datum i `KALLOR.md`.
+- Gäller en skill något annat än den här filen, till exempel om typsnitt,
+  färger eller rundade former, vinner den här filen och designfilen.
+
+---
+
 ## Innan du säger att något är klart
 
 **Kör kontrollskriptet:** `node scripts/kontrollera.mjs`
