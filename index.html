@@ -35,49 +35,53 @@
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/stil.css?v=2026-10-25b">
 <style>
-/* Startsidan är dagens anledning att komma tillbaka: dagens två spel överst,
-   sedan vem som leder, vad som händer härnäst och vad som släppts. På dator
-   ligger releaserna till vänster och resten i en spalt till höger. */
-.hem{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"idag" "sida" "nytt";gap:36px}
-.idag{grid-area:idag}
-.hem-sida{grid-area:sida}
+/* Startsidan ska få den som kommer hit att stanna. Överst genreriggen,
+   veckans släpp som ljus, och direkt under den dagens två spel som en tunn
+   rad. Sedan releaserna, sist topplistan och eventen. På dator ligger
+   releaserna till vänster och topplistan och eventen i en spalt till höger. */
+.hem{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"idag" "nytt" "sida";gap:40px}
+.idag{grid-area:idag;display:flex;flex-direction:column;gap:18px;padding-top:6px}
+.hem-sida{grid-area:sida;display:flex;flex-direction:column;gap:40px;min-width:0}
 .nytt{grid-area:nytt}
-.hem-sida{display:flex;flex-direction:column;gap:36px;min-width:0}
 .tom{padding:12px 0;color:var(--text-2)}
 
-.idag{display:flex;flex-direction:column;gap:14px}
-.idag-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.idag-datum{font-size:15px;color:var(--text-2)}
-.idag-spel{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
-.spel-ruta{min-height:220px;justify-content:flex-end}
-.spel-ruta .ingress{max-width:34ch}
-.spel-rad{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.spel-rad .knapp{min-width:150px}
-.status-chip{padding:7px 12px;border-radius:999px;background:var(--yta-2);font-size:14px}
-/* Den stora siffran bakom Dagens låt är första klippets längd. */
-.ruta > .ruta-siffra.smal{letter-spacing:-.06em}
-
-/* Fritt spel som en rad under dagens två spel. */
-.fritt-rad{display:flex;align-items:center;gap:14px;min-height:72px;padding:12px 18px 12px 12px;border-radius:20px;background:var(--yta);transition:background .15s}
+/* Dagens fråga och Dagens låt som en tunn rad. Hela rutan är länken, och
+   texten under rubriken är dagens läge, som får ta den plats den behöver. */
+.spelrad{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--glipa)}
+.spel-tunn{
+  display:flex;flex-direction:column;gap:6px;min-width:0;padding:14px 14px 12px;
+  background:var(--yta);border-radius:var(--horn-stor);color:var(--text);transition:background .15s;
+}
+.spel-tunn:hover{background:var(--yta-hover)}
+.spel-tunn h2{font-size:24px}
+.spel-tunn-text{font-size:14px;line-height:1.35;color:var(--text-2)}
+.spel-tunn-lank{margin-top:auto;padding-top:4px;font-size:14px;font-weight:750;color:var(--text)}
+.spel-tunn-status{display:flex;flex-wrap:wrap;gap:4px}
+.spel-tunn-status:not(:has(:not([hidden]))){display:none}
+.status-chip{padding:3px 8px;border-radius:var(--horn);background:var(--yta-2);font-size:13px;color:var(--text-2)}
+.fritt-rad{
+  grid-column:1 / -1;display:flex;align-items:center;gap:14px;min-height:56px;padding:10px 16px;
+  background:var(--yta);border-radius:var(--horn-stor);transition:background .15s;
+}
 .fritt-rad:hover{background:var(--yta-hover)}
-.fritt-rad .kort-ikon{width:48px;height:48px}
 .fritt-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .fritt-text b{font-size:16px}
 .fritt-text span{font-size:14px;line-height:1.35;color:var(--text-2)}
-.fritt-pil{flex:none;width:20px;height:20px;color:var(--text-3)}
+.fritt-pil{flex:none;width:20px;height:20px;color:var(--text-2)}
 
-.sektionshuvud{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
 .sektionslank{flex:none;font-size:15px;color:var(--text-2);min-height:44px;display:inline-flex;align-items:center}
 .sektionslank:hover{color:var(--text)}
 .nytt,.snart,.topp3{display:flex;flex-direction:column;gap:12px;min-width:0}
-.nytt .rader{margin-top:2px}
+.sektionshuvud{margin-bottom:0}
+.nytt-val{margin:-2px 0 0;font-size:14px;color:var(--text-2)}
+.nytt-val a{color:var(--text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--text-3)}
 
 /* Topplistans tre i topp. Guld, silver och brons bara på siffran, som på
    /topplista/, och siffran står alltid med. */
-.topplista-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-.topplista-rader li{border-radius:16px;background:var(--yta)}
+.topplista-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--glipa)}
+.topplista-rader li{border-radius:var(--horn-stor);background:var(--yta)}
 .topplista-rader li.jag{background:var(--yta-2)}
-.tp-rad{display:flex;align-items:center;gap:12px;min-height:60px;padding:10px 14px;border-radius:16px;color:inherit;text-decoration:none;transition:background .15s}
+.tp-rad{display:flex;align-items:center;gap:12px;min-height:60px;padding:10px 14px;border-radius:var(--horn-stor);color:inherit;text-decoration:none;transition:background .15s}
 .tp-rad:hover{background:var(--yta-hover)}
 .tp-namnrad{flex:1;min-width:0;display:flex;align-items:center;gap:6px}
 .tp-namnrad .bm{flex:none}
@@ -91,13 +95,13 @@
 .jag .tp-bild{background:var(--natt)}
 .tp-namn{min-width:0;font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tp-poang{flex:none;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
-.topplista-not{font-size:14px;line-height:1.45;color:var(--text-3)}
+.topplista-not{font-size:14px;line-height:1.45;color:var(--text-2)}
 .topplista-not:empty{display:none}
 
-/* Nästa event: ett stort kort, och de närmaste efter det som rader. */
+/* Nästa event: en ruta, och de närmaste efter det som rader. */
 .nasta{gap:12px}
 .nasta-topp{display:flex;align-items:center;gap:16px}
-.nasta-datum{flex:none;width:68px;display:flex;flex-direction:column;align-items:center;padding:8px 0;border-radius:16px;background:var(--yta-2)}
+.nasta-datum{flex:none;width:64px;display:flex;flex-direction:column;align-items:center;padding:8px 0;border-radius:var(--horn);background:var(--yta-2)}
 .nasta-dag{font-stretch:62%;font-weight:900;font-size:40px;line-height:1}
 .nasta-man{font-size:13px;color:var(--text-2);white-space:nowrap}
 .nasta-namnet{display:flex;flex-direction:column;gap:4px;min-width:0}
@@ -109,36 +113,35 @@
 .nasta-genrer span{display:inline-flex;align-items:center;gap:6px}
 .nasta-knappar{display:flex;flex-wrap:wrap;gap:8px}
 
-.snart-lista{display:flex;flex-direction:column;gap:8px}
+.snart-lista{display:flex;flex-direction:column;gap:var(--glipa)}
 .snart-rad{
   display:flex;align-items:center;gap:16px;min-height:72px;
-  padding:12px 16px 12px 12px;background:var(--yta);border-radius:16px;transition:background .15s;
+  padding:12px 16px 12px 12px;background:var(--yta);border-radius:var(--horn-stor);transition:background .15s;
 }
 .snart-rad:hover{background:var(--yta-hover)}
-.snart-datum{flex:none;width:52px;display:flex;flex-direction:column;align-items:center;padding:6px 0;border-radius:12px;background:var(--yta-2)}
+.snart-datum{flex:none;width:52px;display:flex;flex-direction:column;align-items:center;padding:6px 0;border-radius:var(--horn);background:var(--yta-2)}
 .snart-dag{font-stretch:62%;font-weight:900;font-size:28px;line-height:1}
-.snart-man{font-size:12px;color:var(--text-2);white-space:nowrap}
+.snart-man{font-size:13px;color:var(--text-2);white-space:nowrap}
 .snart-mitt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
 .snart-namn{font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .snart-plats{font-size:14px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 @media (min-width:860px){
-  .hem{grid-template-columns:minmax(0,1fr) 360px;grid-template-areas:"idag idag" "nytt sida";gap:48px 40px}
-  .hem-sida{gap:40px}
-  .idag{gap:16px}
-  .idag-topp{justify-content:flex-start;gap:18px;flex-wrap:wrap}
-  .idag-datum{font-size:17px}
-  .idag-spel{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-  .spel-ruta{min-height:300px}
-  .spel-rad{gap:10px}
-  .status-chip{padding:8px 14px;font-size:15px}
-  .fritt-rad{border-radius:24px;padding:14px 22px 14px 14px}
+  .hem{grid-template-columns:minmax(0,1fr) 360px;grid-template-areas:"idag idag" "nytt sida";gap:56px 48px}
+  .idag{gap:28px;padding-top:12px}
+  .spelrad{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .spel-tunn{min-height:128px;padding:20px 22px 18px}
+  .spel-tunn h2{font-size:32px}
+  .spel-tunn-text{font-size:15px}
+  .spel-tunn-lank{font-size:15px}
+  .fritt-rad{grid-column:auto;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:20px 22px 18px;position:relative}
+  .fritt-text b{font-stretch:62%;font-weight:900;font-size:32px;line-height:.95}
+  .fritt-pil{position:absolute;right:18px;top:20px}
   .nytt,.snart,.topp3{gap:16px}
   .sektionslank{font-size:16px}
-  .snart-rad{border-radius:18px;min-height:76px}
+  .snart-rad{min-height:76px}
   .snart-datum{width:56px;padding:7px 0}
   .snart-dag{font-size:30px}
-  .snart-man{font-size:13px}
   .hem-sida h2{font-size:32px}
   .nasta{padding:24px}
 }
@@ -669,38 +672,45 @@
   <div class="hem">
 
     <section class="idag" aria-labelledby="idagRubrik">
-      <div class="idag-topp">
-        <h1 id="idagRubrik">Idag</h1>
-        <span class="idag-datum" id="idagDatum"></span>
-      </div>
+      <h1 class="dold" id="idagRubrik">Idag, <span id="idagDatum"></span></h1>
+      <div id="rigg"></div>
 
-      <div class="idag-spel">
-        <section class="ruta spel-ruta" aria-labelledby="fragaRubrik">
-          <span class="ruta-siffra" aria-hidden="true">30</span>
+      <div class="spelrad">
+        <a class="spel-tunn" id="fragaKnapp" href="/quiz/" aria-labelledby="fragaRubrik fragaLank">
           <h2 id="fragaRubrik">Dagens fråga</h2>
-          <p class="ingress" id="fragaText">En fråga om scenen varje dag, samma för alla. Med konto har du 30 sekunder på dig och samlar poäng till topplistan.</p>
-          <div class="spel-rad">
-            <a class="knapp" id="fragaKnapp" href="/quiz/">Öppna frågan</a>
+          <span class="spel-tunn-text" id="fragaText">En fråga om scenen, 30 sekunder.</span>
+          <span class="spel-tunn-status">
             <span class="status-chip" id="fragaSvit" hidden></span>
             <span class="status-chip" id="fragaNiva" hidden></span>
-          </div>
-        </section>
-
-        <section class="ruta spel-ruta" aria-labelledby="latRubrik">
-          <span class="ruta-siffra smal" aria-hidden="true">0,5</span>
+          </span>
+          <span class="spel-tunn-lank" id="fragaLank">Öppna frågan</span>
+        </a>
+        <a class="spel-tunn" id="latKnapp" href="/latspel/" aria-labelledby="latRubrik latLank">
           <h2 id="latRubrik">Dagens låt</h2>
-          <p class="ingress" id="latText">En låt om dagen, samma för alla. Första klippet är en halv sekund. Ju kortare klipp du klarar dig på, desto fler poäng.</p>
-          <div class="spel-rad">
-            <a class="knapp" id="latKnapp" href="/latspel/">Gissa låten</a>
-          </div>
-        </section>
+          <span class="spel-tunn-text" id="latText">En låt, från en halv sekund.</span>
+          <span class="spel-tunn-lank" id="latLank">Gissa låten</span>
+        </a>
+        <a class="fritt-rad" href="/fritt-spel/">
+          <span class="fritt-text"><b>Fritt spel</b><span>Känn igen låten, så många du vill</span></span>
+          <svg class="fritt-pil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </a>
       </div>
+    </section>
 
-      <a class="fritt-rad" href="/fritt-spel/">
-        <span class="kort-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="fritt-text"><b>Fritt spel</b><span>Känn igen låten på en halv sekund, så många du vill</span></span>
-        <svg class="fritt-pil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-      </a>
+    <section class="nytt" aria-labelledby="nyttRubrik">
+      <div class="sektionshuvud">
+        <h2 id="nyttRubrik">Nytt den här veckan</h2>
+        <a class="sektionslank" href="/releaser/">Alla releaser</a>
+      </div>
+      <p class="nytt-val" id="nyttVal" aria-live="polite" hidden></p>
+      <div class="rader med-datum" id="nyttLista">
+        <p class="tom">Hämtar releaserna.</p>
+      </div>
+      <p class="kalla">
+        <svg class="spotify-ikon" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Spotify"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        <span>Omslag och data från Spotify</span>
+        <a class="kalla-lank" href="https://www.deezer.com/" rel="noopener"><img class="deezer-ikon" src="/bilder/deezer.png" alt="" width="21" height="21"><span>Data från Deezer</span></a>
+      </p>
     </section>
 
     <aside class="hem-sida">
@@ -724,29 +734,6 @@
         </div>
       </section>
     </aside>
-
-    <section class="nytt" aria-labelledby="nyttRubrik">
-      <div class="sektionshuvud">
-        <h2 id="nyttRubrik">Nytt den här veckan</h2>
-        <a class="sektionslank" href="/releaser/">Alla releaser</a>
-      </div>
-      <div class="rull" id="nyttFilter" role="group" aria-label="Visa genre">
-        <button class="chip" type="button" data-g="alla" aria-pressed="true">Alla</button>
-        <button class="chip g-hardstyle" type="button" data-g="hardstyle" aria-pressed="false"><span class="prick"></span>Hardstyle</button>
-        <button class="chip g-raw" type="button" data-g="raw" aria-pressed="false"><span class="prick"></span>Raw</button>
-        <button class="chip g-uptempo" type="button" data-g="uptempo" aria-pressed="false"><span class="prick"></span>Uptempo</button>
-        <button class="chip g-hardcore" type="button" data-g="hardcore" aria-pressed="false"><span class="prick"></span>Hardcore</button>
-        <button class="chip g-techno" type="button" data-g="techno" aria-pressed="false"><span class="prick"></span>Hard techno</button>
-      </div>
-      <div class="rader med-datum" id="nyttLista">
-        <p class="tom">Hämtar releaserna.</p>
-      </div>
-      <p class="kalla">
-        <svg class="spotify-ikon" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Spotify"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-        <span>Omslag och data från Spotify</span>
-        <a class="kalla-lank" href="https://www.deezer.com/" rel="noopener"><img class="deezer-ikon" src="/bilder/deezer.png" alt="" width="21" height="21"><span>Data från Deezer</span></a>
-      </p>
-    </section>
 
   </div>
 </main>
@@ -793,6 +780,7 @@
 </footer>
 
 <script src="/rader.js"></script>
+<script src="/rigg.js?v=2026-10-25"></script>
 <script>
 /* Reservkopia av data/events.json, så att "Snart" visar något även när
    filen inte går att hämta. Fylls av scripts/bygg-metadata.mjs mellan
@@ -1187,12 +1175,40 @@ const svenskIdag = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Eur
   $('idagDatum').textContent = VECKODAGAR_HELA[dag.getDay()] + ' ' + d + ' ' + MANADER_HELA[m - 1];
 })();
 
-/* ---------- Nytt den här veckan ---------- */
+/* ---------- Riggen och nytt den här veckan ---------- */
 
-let releaser = [], filter = 'alla';
+/* Riggen överst är också filtret för listan. releaser är null tills
+   hämtningen lyckats, och då ritar riggen felet i stället för nollor. */
+let releaser = null, riggStatus = null, filter = 'alla', hamtningFel = false;
+
+function ritaRigg(){
+  window.hardlistRigg.rita($('rigg'), {
+    releaser: releaser || [], status: riggStatus, vald: filter, fel: hamtningFel, valj
+  });
+}
+
+function valj(g){
+  if (g === 'forsok'){ laddaReleaser(); return; }
+  /* Ett andra tryck på samma lampa visar alla igen. */
+  filter = (g === 'alla' || g === filter) ? 'alla' : g;
+  ritaRigg();
+  ritaNytt();
+}
 
 function ritaNytt(){
   const lista = $('nyttLista');
+  const val = $('nyttVal');
+  if (filter === 'alla'){
+    val.hidden = true;
+  } else {
+    /* Listan följer sina egna regler, där album syns i 30 dagar och bara
+       sex rader står här, så raden säger vad riggens siffra betyder. */
+    const n = window.hardlistRigg.rakna(releaser).antal[filter];
+    val.innerHTML = (n ? GENRE_NAMN[filter] + ', ' + n + ' släpp de senaste sju dagarna. '
+                       : 'Inga släpp i ' + GENRE_NAMN[filter] + ' den här veckan. ') +
+      '<a href="/releaser/">Alla på releasesidan</a>';
+    val.hidden = false;
+  }
   const synliga = releaser
     .filter(r => dagarFran(r.date) <= 0 && lasDatum(r.date) >= gransFor(r))
     .filter(r => filter === 'alla' || normGenre(r.genre) === filter)
@@ -1208,24 +1224,26 @@ function ritaNytt(){
 }
 
 async function laddaReleaser(){
+  /* Statusraden i riggen är bara en bonus. Går den inte att läsa ritas
+     riggen ändå. */
+  const st = fetch('/data/status.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null);
   try {
     const r = await fetch('/data/releases.json', { cache: 'no-store' });
-    releaser = await r.json();
-    if (!Array.isArray(releaser)) throw 0;
+    const data = await r.json();
+    if (!Array.isArray(data)) throw 0;
+    releaser = data;
+    hamtningFel = false;
   } catch(e){
+    hamtningFel = true;
+    ritaRigg();
+    $('nyttVal').hidden = true;
     $('nyttLista').innerHTML = '<p class="tom">Releaserna gick inte att hämta. Ladda om sidan om en stund.</p>';
     return;
   }
+  riggStatus = await st;
+  ritaRigg();
   ritaNytt();
 }
-
-$('nyttFilter').addEventListener('click', e => {
-  const b = e.target.closest('.chip');
-  if (!b) return;
-  filter = b.dataset.g;
-  document.querySelectorAll('#nyttFilter .chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
-  ritaNytt();
-});
 
 /* ---------- Snart ---------- */
 
@@ -1280,10 +1298,9 @@ function ritaNasta(e, t){
       (genrer.length ? '<p class="nasta-genrer">' + genrer.map(g =>
         '<span class="g-' + g + '"><span class="prick" aria-hidden="true"></span>' + GENRE_NAMN[g] + '</span>').join('') + '</p>' : '') +
       (e.lineup ? '<p class="nasta-text">' + esc(e.lineup) + '</p>' : '') +
-      '<div class="nasta-knappar">' +
-        (e.url ? '<a class="knapp knapp-sek" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.urlText || 'Biljetter') + '</a>' : '') +
-        '<a class="knapp knapp-sek" href="/events/#kalender">Hela kalendern</a>' +
-      '</div>' +
+      /* Hela kalendern står redan i sektionens huvud, så rutan har bara
+         biljettknappen. */
+      (e.url ? '<div class="nasta-knappar"><a class="knapp knapp-sek" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.urlText || 'Biljetter') + '</a></div>' : '') +
     '</article>';
 }
 
@@ -1319,21 +1336,21 @@ function ritaLat(){
   const f = s.facit;
   const sek = n => String(n).replace('.', ',') + (n === 1 ? ' sekund' : ' sekunder');
   $('latText').textContent = (f.ratt && f.sekunder ? 'Rätt på ' + sek(f.sekunder) + ' idag.' : 'Inte den här gången.') + ' Ny låt i morgon.';
-  $('latKnapp').textContent = 'Se facit';
-  $('latKnapp').classList.add('knapp-sek');
+  $('latLank').textContent = 'Se facit';
 }
 
-function satKnapp(text, sekundar){
-  const k = $('fragaKnapp');
-  k.textContent = text;
-  k.classList.toggle('knapp-sek', !!sekundar);
+/* Hela rutan är länken, så det är bara länktexten längst ned som byts.
+   Den andra parametern betydde en knapp i den andra färgen, och rutan har
+   ingen sådan. */
+function satKnapp(text){
+  $('fragaLank').textContent = text;
 }
 
 async function ritaFraga(K){
   if (!K || !K.inloggad()){
     if (lokaltSvarIdag()){
       $('fragaText').textContent = 'Du har svarat idag. Ny fråga i morgon.';
-      satKnapp('Se facit', true);
+      satKnapp('Se facit');
     }
     return;
   }
@@ -1365,7 +1382,7 @@ async function ritaFraga(K){
       s.ratt ? 'Rätt idag, +' + s.plus + ' poäng. Ny fråga i morgon.'
       : s.tid_ute ? 'Tiden gick ut idag. Ny fråga i morgon.'
       : 'Fel idag. Ny fråga i morgon.';
-    satKnapp('Se facit', true);
+    satKnapp('Se facit');
   } else if (d.startad){
     $('fragaText').textContent = 'Du har öppnat frågan och klockan går.';
     satKnapp('Till frågan');
