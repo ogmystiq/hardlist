@@ -100,7 +100,7 @@ knappen "Försök igen", som hämtar på nytt. *Mitt beslut.*
 **Mobil**, uppifrån:
 1. Toppen med logga och Logga in.
 2. Riggen.
-3. Dagens fråga och Dagens låt som en tunn rad, två rutor sida vid sida med 2 px glipa. Hela rutan är länken, utan rosa knapp. Fritt spel står som en smal rad under.
+3. Dagens fråga och Dagens låt som en tunn rad, två rutor sida vid sida med 2 px glipa. Hela rutan är länken, utan rosa knapp och utan stor siffra, eftersom konturerna krockade med texten (Jonte). Fritt spel står som en smal rad under.
 4. Releaserna, filtrerade av riggen.
 5. Topplistan.
 6. Eventen.
@@ -171,7 +171,8 @@ egna färger och påverkas inte. Varken `badges.js`, `badges.css` eller
 - **Ovalda knappar:** fyllda med `--yta` eller `--yta-2`, utan ram.
 - **Huvudknapp:** rosa med 10 px fasning uppe till vänster och nere till höger. Fasningen ligger på ett `::before`-lager, så att fokusringen aldrig klipps.
 - **Sektionshuvud:** en vit linje på 4 px över, rubriken och en "Alla …"-länk till höger. Bara över sidans sektioner, aldrig inne i rutor.
-- **Spelruta:** rubrik, en mening och en knapp, med den konturerade siffran ("30" eller "0,5") uppe till höger. Konturen används bara från ungefär 100 px. Är siffran mindre blir den svagare.
+- **Spelruta:** rubrik, en mening och en knapp, med den konturerade siffran ("30" eller "0,5") uppe till höger. Bara i de stora spelrutorna på `/spel/`, aldrig i den tunna raden på startsidan och aldrig bakom text.
+- **Skivomslag:** Spotifys omslag ur `data/releases.json` (fältet `omslag`, alla 26 släpp har det den 25 oktober 2026). `rader.js` visar dem redan, och bokstavsrutan tar bara över när adressen saknas eller bilden inte laddar (`omslag()` och felhanteraren i `rader.js`). Den logiken ändras inte. Spotifys villkor gäller: aldrig beskuret och inget ovanpå. Bilden får 3 px hörn (`--hörn`), högst 4 px. Bokstavsrutan får samma storlek och samma hörn, så att reserven inte ser ut som ett annat element. Skisserna och skärmbilderna i fas 1 visar bokstavsrutor, eftersom sessionen som tog dem inte nådde i.scdn.co. På hardlist.se visas omslagen.
 - **Poängtrappan:** staplar där höjden är poängen, med klipplängd och försök under.
 - **Bakgrund:** en stillastående strålkastare uppifrån, utan rutnät och utan brus.
 - **Fokus:** 2 px cyan ring med 2 px avstånd, som i dag.
@@ -228,5 +229,8 @@ Riktning A med Jontes svar inbyggda. Skisserna själva ligger inte i repot.
 - Riggens lägen på 360 px, från vänster: vanlig vecka, lugn vecka (tre släpp), Raw vald och hämtningen misslyckad: `bilder/start-riggens-lagen-mobil.jpg`
 - Fritt spel på 360 px och dator: `bilder/fritt-spel-mobil.jpg` och `bilder/fritt-spel-dator.jpg`
 
-Namn och poäng i topplistan är exempel i skisserna. Allt annat är riktiga data
+De stora siffrorna 30 och 0,5 i den tunna raden syns i bilderna men är borttagna
+efter Jontes svar. Bokstavsrutorna syns i stället för omslagen, eftersom
+sessionen inte nådde i.scdn.co. Namn och poäng i topplistan är exempel. Allt
+annat är riktiga data
 från 25 oktober 2026.
