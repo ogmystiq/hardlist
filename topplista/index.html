@@ -35,22 +35,29 @@
 <style>
 .q{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px;padding-top:4px}
 .q-rubrik{font-size:38px}
-.q-lista{padding:10px;gap:4px;border-radius:24px;scroll-margin-top:16px}
+.q-lista{padding:10px;gap:4px;border-radius:var(--horn-stor);scroll-margin-top:16px}
 
-/* Flikraderna: samma avstånd, och de bryter till ny rad i stället för att tryckas ihop. */
-.q-lista-topp{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:6px 8px 4px}
+/* Perioden och spelet är två olika val och ska se olika ut. Perioden är en
+   lägesväljare, två lika breda knappar som sitter ihop. Spelet är fyllda
+   filterknappar under, som bryter till ny rad i stället för att tryckas ihop. */
+.q-lista-topp{display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:6px 8px 4px}
 .q-lista-topp h2{font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
-.q-flikar,.q-spel{display:flex;flex-wrap:wrap;gap:8px;padding:0 8px 8px}
-.q-lista-topp .q-flikar{padding:0}
-.q-flikar .chip,.q-spel .chip{min-height:44px;padding:0 16px;background:var(--yta-2);white-space:nowrap}
-.q-flikar .chip[aria-pressed="true"],.q-spel .chip[aria-pressed="true"]{background:var(--text);color:var(--natt)}
+.q-val{display:flex;flex-direction:column;padding:0 8px 8px}
+.q-lista-topp .q-val{padding:0}
+.q-val .val-etikett{margin-bottom:8px}
+.q-flikar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--glipa);max-width:340px}
+.q-flikar .chip{justify-content:center;min-height:48px;font-weight:750;background:var(--yta-2)}
+.q-spel{display:flex;flex-wrap:wrap;gap:8px}
+.q-spel .chip{min-height:44px;padding:0 14px;background:var(--yta-2);white-space:nowrap}
+.q-flikar .chip[aria-pressed="true"],.q-spel .chip[aria-pressed="true"]{background:var(--text);color:var(--mork-text)}
+.q-forsok{margin-left:10px;min-height:44px;background:var(--yta-2);color:var(--text)}
 
 /* Raderna: plats, bild, namn med rang under, poäng. Allt på en rad. */
 .q-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
-.q-rader li{border-radius:14px}
+.q-rader li{border-radius:var(--horn-stor)}
 .q-rader li:nth-child(even){background:color-mix(in srgb,var(--yta-2) 45%,transparent)}
 .q-rader li.jag{background:var(--yta-2)}
-.q-rad{display:flex;align-items:center;gap:12px;min-height:64px;padding:8px 12px;border-radius:14px;color:inherit;text-decoration:none;transition:background .15s}
+.q-rad{display:flex;align-items:center;gap:12px;min-height:64px;padding:8px 12px;border-radius:var(--horn-stor);color:inherit;text-decoration:none;transition:background .15s}
 .q-rad:hover{background:var(--yta-hover)}
 .q-rad:focus-visible{outline-offset:-2px}
 .q-rader .plats{flex:none;width:34px;text-align:center;font-stretch:62%;font-weight:900;font-size:22px;line-height:1}
@@ -61,7 +68,7 @@
 .q-rader .namn-rad{display:flex;align-items:center;gap:6px;min-width:0}
 .q-rader .namn-rad .bm{flex:none}
 .q-rader .namn{min-width:0;font-weight:650;font-size:16px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.q-rader .du{flex:none;padding:2px 8px;border-radius:999px;background:var(--natt);font-size:12px;font-weight:700;color:var(--text-2)}
+.q-rader .du{flex:none;padding:2px 8px;border-radius:var(--horn);background:var(--natt);font-size:13px;font-weight:700;color:var(--text-2)}
 .q-rader .rang{font-size:13px;line-height:1.2;color:var(--text-3)}
 .q-rader .poang{flex:none;min-width:64px;text-align:right;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
 
@@ -74,7 +81,7 @@
 .q-jag-etikett{font-size:13px;color:var(--text-3)}
 /* Titeln från rankat bredvid namnet, efter fem matcher. Färgen ligger på
    namnet, och titeln står alltid som text. */
-.q-rader .rang .rt-titel{margin-left:8px;font-size:12px}
+.q-rader .rang .rt-titel{margin-left:8px;font-size:13px}
 .q-rk-rubrik{display:flex;flex-direction:column;gap:6px;padding:6px 8px 8px}
 .q-rk-rubrik h2{font-stretch:100%;font-weight:700;font-size:18px;line-height:1.3;letter-spacing:0}
 .q-rk-rubrik p{font-size:14px;line-height:1.5;color:var(--text-3)}
@@ -84,7 +91,7 @@
 .q-jag{padding:6px 10px;font-size:14px;line-height:1.5;color:var(--text-3);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 .q-jag:empty{display:none}
 .q-jag .q-rader{align-self:stretch}
-.q-jag.fast{position:sticky;bottom:calc(var(--meny-hojd) + env(safe-area-inset-bottom) + 8px);z-index:2;margin:0 -4px;padding:8px 4px;border-radius:16px;background:var(--yta)}
+.q-jag.fast{position:sticky;bottom:calc(var(--meny-hojd) + env(safe-area-inset-bottom) + 8px);z-index:2;margin:0 -4px;padding:8px 4px;border-radius:var(--horn-stor);background:var(--yta)}
 .q-om{display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:var(--text-2)}
 .q-om h2{font-size:26px;color:var(--text)}
 .q-om ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
@@ -121,17 +128,23 @@
     <section class="ruta q-lista" aria-labelledby="qListaRubrik">
       <div class="q-lista-topp">
         <h2 id="qListaRubrik">Topplistan</h2>
-        <div class="q-flikar" id="qFlikar" role="group" aria-label="Period">
-          <button class="chip" type="button" data-period="manad" aria-pressed="true" id="qFlikManad">Månaden</button>
-          <button class="chip" type="button" data-period="total" aria-pressed="false">Totalt</button>
+        <div class="q-val">
+          <p class="val-etikett" id="qPeriodEtikett">Period</p>
+          <div class="q-flikar" id="qFlikar" role="group" aria-labelledby="qPeriodEtikett">
+            <button class="chip" type="button" data-period="manad" aria-pressed="true" id="qFlikManad">Månaden</button>
+            <button class="chip" type="button" data-period="total" aria-pressed="false">Totalt</button>
+          </div>
         </div>
       </div>
-      <div class="q-spel" id="qSpel" role="group" aria-label="Spel">
+      <div class="q-val">
+      <p class="val-etikett" id="qSpelEtikett">Spel</p>
+      <div class="q-spel" id="qSpel" role="group" aria-labelledby="qSpelEtikett">
         <button class="chip" type="button" data-spel="alla" aria-pressed="true">Alla spel</button>
         <button class="chip" type="button" data-spel="fraga" aria-pressed="false">Dagens fråga</button>
         <button class="chip" type="button" data-spel="lat" aria-pressed="false">Dagens låt</button>
         <button class="chip" type="button" data-spel="fritt" aria-pressed="false">Fritt spel</button>
         <button class="chip" type="button" data-spel="rankat" aria-pressed="false">Rankat</button>
+      </div>
       </div>
       <ol class="q-rader" id="qRader"><li class="q-tom">Hämtar topplistan.</li></ol>
       <div class="q-jag" id="qJag"></div>
@@ -142,13 +155,16 @@
         <h2 id="qRkRubrik">Rankat</h2>
         <p>Rating från matcherna i <a href="/fritt-spel/#rankat">rankat</a>. Du syns här efter fem matcher.</p>
       </div>
-      <div class="q-spel" id="qRkGenrer" role="group" aria-label="Genre">
+      <div class="q-val">
+      <p class="val-etikett" id="qRkGenreEtikett">Genre</p>
+      <div class="q-spel" id="qRkGenrer" role="group" aria-labelledby="qRkGenreEtikett">
         <button class="chip" type="button" data-genre="alla" aria-pressed="true">Totalt</button>
         <button class="chip" type="button" data-genre="hardstyle" aria-pressed="false"><span class="prick g-hardstyle" aria-hidden="true"></span>Hardstyle</button>
         <button class="chip" type="button" data-genre="raw" aria-pressed="false"><span class="prick g-raw" aria-hidden="true"></span>Raw</button>
         <button class="chip" type="button" data-genre="uptempo" aria-pressed="false"><span class="prick g-uptempo" aria-hidden="true"></span>Uptempo</button>
         <button class="chip" type="button" data-genre="hardcore" aria-pressed="false"><span class="prick g-hardcore" aria-hidden="true"></span>Hardcore</button>
         <button class="chip" type="button" data-genre="techno" aria-pressed="false"><span class="prick g-techno" aria-hidden="true"></span>Hard techno</button>
+      </div>
       </div>
       <ol class="q-rader" id="qRkRader"><li class="q-tom">Hämtar rankat.</li></ol>
       <div class="q-jag" id="qRkJag"></div>
@@ -268,7 +284,8 @@ function rita(){
     return;
   }
   if (!t){
-    rader.innerHTML = '<li class="q-tom">Topplistan kunde inte hämtas just nu.</li>';
+    rader.innerHTML = '<li class="q-tom">Topplistan kunde inte hämtas just nu.' +
+      '<button class="chip q-forsok" type="button" data-forsok>Försök igen</button></li>';
     jag.innerHTML = '';
     return;
   }
@@ -344,6 +361,13 @@ document.getElementById('qSpel').addEventListener('click', function(e){
   if (b) valj({ spel: b.dataset.spel });
 });
 
+/* Försök igen glömmer det misslyckade svaret och hämtar samma lista på nytt. */
+document.getElementById('qRader').addEventListener('click', function(e){
+  if (!e.target.closest('[data-forsok]')) return;
+  delete listor[spel];
+  ladda();
+});
+
 /* ---------- rankat ---------- */
 
 const RK_GENRER = ['alla', 'hardstyle', 'raw', 'uptempo', 'hardcore', 'techno'];
@@ -362,7 +386,12 @@ function ritaRankat(){
     b.setAttribute('aria-pressed', String(b.dataset.genre === rkGenre)));
   const t = rkListor[rkGenre];
   if (t === undefined){ rader.innerHTML = '<li class="q-tom">Hämtar rankat.</li>'; jag.innerHTML = ''; return; }
-  if (!t){ rader.innerHTML = '<li class="q-tom">Rankat kunde inte hämtas just nu.</li>'; jag.innerHTML = ''; return; }
+  if (!t){
+    rader.innerHTML = '<li class="q-tom">Rankat kunde inte hämtas just nu.' +
+      '<button class="chip q-forsok" type="button" data-forsok>Försök igen</button></li>';
+    jag.innerHTML = '';
+    return;
+  }
   rader.innerHTML = t.lista.length
     ? t.lista.map(r => rkRad(r, t.jag && t.jag.listad && r.namn === t.jag.namn)).join('')
     : '<li class="q-tom">Ingen har spelat fem matcher' + (rkGenre === 'alla' ? '' : ' i den här genren') + ' än.</li>';
@@ -400,6 +429,12 @@ document.getElementById('qRkGenrer').addEventListener('click', function(e){
   const url = new URL(location.href);
   url.searchParams.set('rgenre', rkGenre);
   history.replaceState(null, '', url);
+  laddaRankat();
+});
+
+document.getElementById('qRkRader').addEventListener('click', function(e){
+  if (!e.target.closest('[data-forsok]')) return;
+  delete rkListor[rkGenre];
   laddaRankat();
 });
 
