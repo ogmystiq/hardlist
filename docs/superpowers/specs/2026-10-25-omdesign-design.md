@@ -149,8 +149,8 @@ betydelserna.
 | `--mork-text` | #0B0B0D | Text på rosa och på valt läge |
 | `--rosa` | #FF3B6B | Bara huvudknappar |
 | Genrefärgerna | Oförändrade | Bara genre: riggen, prickar och omslagsrutor |
-| `--hörn` | 3 px | Knappar, filter och valrutor |
-| `--hörn-stor` | 4 px | Rutor |
+| `--horn` | 3 px | Knappar, filter och valrutor |
+| `--horn-stor` | 4 px | Rutor |
 | `--glipa` | 2 px | Mellan spelrutor och valrutor |
 | Fasning | 10 px | Bara huvudknappar |
 
@@ -172,7 +172,7 @@ egna färger och påverkas inte. Varken `badges.js`, `badges.css` eller
 - **Huvudknapp:** rosa med 10 px fasning uppe till vänster och nere till höger. Fasningen ligger på ett `::before`-lager, så att fokusringen aldrig klipps.
 - **Sektionshuvud:** en vit linje på 4 px över, rubriken och en "Alla …"-länk till höger. Bara över sidans sektioner, aldrig inne i rutor.
 - **Spelruta:** rubrik, en mening och en knapp, med den konturerade siffran ("30" eller "0,5") uppe till höger. Bara i de stora spelrutorna på `/spel/`, aldrig i den tunna raden på startsidan och aldrig bakom text.
-- **Skivomslag:** Spotifys omslag ur `data/releases.json` (fältet `omslag`, alla 26 släpp har det den 25 oktober 2026). `rader.js` visar dem redan, och bokstavsrutan tar bara över när adressen saknas eller bilden inte laddar (`omslag()` och felhanteraren i `rader.js`). Den logiken ändras inte. Spotifys villkor gäller: aldrig beskuret och inget ovanpå. Bilden får 3 px hörn (`--hörn`), högst 4 px. Bokstavsrutan får samma storlek och samma hörn, så att reserven inte ser ut som ett annat element. Skisserna och skärmbilderna i fas 1 visar bokstavsrutor, eftersom sessionen som tog dem inte nådde i.scdn.co. På hardlist.se visas omslagen.
+- **Skivomslag:** Spotifys omslag ur `data/releases.json` (fältet `omslag`, alla 26 släpp har det den 25 oktober 2026). `rader.js` visar dem redan, och bokstavsrutan tar bara över när adressen saknas eller bilden inte laddar (`omslag()` och felhanteraren i `rader.js`). Den logiken ändras inte. Spotifys villkor gäller: aldrig beskuret och inget ovanpå. Bilden får 3 px hörn (`--horn`), högst 4 px. Bokstavsrutan får samma storlek och samma hörn, så att reserven inte ser ut som ett annat element. Skisserna och skärmbilderna i fas 1 visar bokstavsrutor, eftersom sessionen som tog dem inte nådde i.scdn.co. På hardlist.se visas omslagen.
 - **Poängtrappan:** staplar där höjden är poängen, med klipplängd och försök under.
 - **Bakgrund:** en stillastående strålkastare uppifrån, utan rutnät och utan brus.
 - **Fokus:** 2 px cyan ring med 2 px avstånd, som i dag.

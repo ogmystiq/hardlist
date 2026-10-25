@@ -90,6 +90,10 @@ dessutom ha **högst ett** eget `<style>`-block för det som bara finns där.
 - **`rader.js` och sidans eget skript delar namnrymd.** Deklarerar sidan ett
   namn som redan finns i `rader.js` stoppas hela sidans skript. Även det
   larmar kontrollskriptet för.
+- **Huvudknappens färg ligger i `.knapp::before`**, inte på knappen, så att
+  de fasade hörnen inte klipper fokusringen. Ska en knapp ha en annan färg,
+  sätt den på `::before` (och `clip-path:none` om den inte ska fasas). En
+  bakgrund på själva knappen hamnar under det rosa lagret och syns inte.
 - **Typsnittet ligger i `/typsnitt/`**, så att ingen sidvisning går till
   Google. Licensen (SIL Open Font License) ligger bredvid.
 - **Delningsbilderna i `bilder/dela/` och ikonfilerna i roten ritas i

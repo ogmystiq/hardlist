@@ -27,14 +27,27 @@
 }
 
 :root{
-  --natt:#100C17;
-  --yta:#1A1424;
-  --yta-2:#251D31;
-  --yta-hover:#211A2C;
-  --text:#F6F2FB;
-  --text-2:#B9AFC9;
-  --text-3:#8E84A0;
+  /* Riktning A, Svart scen. Betydelserna nedan är det sidorna ska använda.
+     De gamla namnen står kvar och pekar på dem, eftersom profilstat.css och
+     sidornas egna stilar läser dem och inte ska ändras för hand. */
+  --bg:#070708;
+  --yta:#111114;
+  --yta-2:#1A1A1F;
+  --yta-hover:#16161A;
+  --linje:rgba(255,255,255,.14);
+  --text:#F4F4F6;
+  --text-2:#B4B4BE;
+  --text-3:#8A8A95;
+  /* Text på rosa och på valt läge. */
+  --mork-text:#0B0B0D;
   --rosa:#FF3B6B;
+  --natt:var(--bg);
+
+  /* Nästan raka hörn. Huvudknappen fasas i stället, se .knapp. */
+  --horn:3px;
+  --horn-stor:4px;
+  --glipa:2px;
+  --fasning:10px;
 
   /* Färg betyder alltid genre, aldrig dekoration. */
   --hardstyle:#3DDCF0;
@@ -78,27 +91,17 @@ body{
   line-height:1.5;
   -webkit-font-smoothing:antialiased;
 }
-/* Bakgrunden är inte en platt färg. Två fasta lager bakom sidan, i samma
-   neutrala toner som ytorna, inga genrefärger, ingen bild som laddas och
-   ingen rörelse:
-   - ::before: ett svagt sken upptill, mörkare hörn nedtill och ett fint
-     brus som ger yta. Skenet hålls svagt, annars smälter rutorna in.
-   - ::after: ett rutnät som tonar bort nedåt, som golvet i ett LED-rum.
-   Lagren följer inte med när man rullar. */
-body::before,body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none}
+/* Bakgrunden är svart med en strålkastare uppifrån: ett mjukt ljus och en
+   smal kon, i vitt, inga genrefärger. Ljuset hör till sidans topp och rullar
+   bort med den, som en scen man går in i. Det står still, och ingen bild
+   laddas för det. */
 body::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:760px;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(80% 50% at 50% -10%,rgba(118,94,160,.14),transparent 70%),
-    radial-gradient(60% 45% at 100% 100%,rgba(58,44,88,.22),transparent 70%),
-    radial-gradient(50% 40% at 0% 85%,rgba(42,32,64,.24),transparent 70%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-body::after{
-  background:
-    linear-gradient(rgba(246,242,251,.07) 1px,transparent 1px) 0 0/44px 44px,
-    linear-gradient(90deg,rgba(246,242,251,.07) 1px,transparent 1px) 0 0/44px 44px;
-  -webkit-mask-image:radial-gradient(100% 75% at 50% 0%,#000 10%,transparent 100%);
-  mask-image:radial-gradient(100% 75% at 50% 0%,#000 10%,transparent 100%);
+    radial-gradient(38% 520px at 50% -120px,rgba(255,255,255,.13),transparent 72%),
+    conic-gradient(from 180deg at 50% -40px,transparent 166deg,rgba(255,255,255,.045) 176deg,rgba(255,255,255,.07) 180deg,rgba(255,255,255,.045) 184deg,transparent 194deg);
+  -webkit-mask-image:linear-gradient(#000 40%,transparent);
+  mask-image:linear-gradient(#000 40%,transparent);
 }
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -113,7 +116,7 @@ p{margin:0}
 :focus-visible{outline:2px solid var(--hardstyle);outline-offset:2px}
 
 h1,h2,h3{margin:0;font-stretch:62%;font-weight:900;line-height:.95;letter-spacing:-.01em}
-h1{font-size:46px}
+h1{font-size:50px}
 h2{font-size:28px;font-weight:800;line-height:1}
 h3{font-size:22px;font-weight:800;line-height:1}
 
@@ -124,7 +127,7 @@ h3{font-size:22px;font-weight:800;line-height:1}
 
 .hoppa{
   position:absolute;left:var(--marginal);top:-100px;z-index:20;
-  padding:12px 20px;border-radius:999px;background:var(--text);color:var(--natt);font-weight:700;
+  padding:12px 20px;border-radius:var(--horn);background:var(--text);color:var(--mork-text);font-weight:700;
 }
 .hoppa:focus{top:12px}
 
@@ -145,11 +148,12 @@ h3{font-size:22px;font-weight:800;line-height:1}
 .meny{display:flex;gap:4px}
 .meny a{
   display:inline-flex;align-items:center;min-height:44px;padding:0 16px;
-  border-radius:999px;color:var(--text-2);font-weight:650;font-size:15px;
-  transition:background .15s,color .15s;
+  border-radius:var(--horn);color:var(--text-2);font-weight:650;font-size:15px;
+  transition:color .15s,box-shadow .15s;
 }
-.meny a:hover{background:var(--yta);color:var(--text)}
-.meny a[aria-current="page"]{background:var(--yta);color:var(--text)}
+.meny a:hover{color:var(--text)}
+/* Var man är: en vit linje under länken. På mobil ligger den över ikonen. */
+.meny a[aria-current="page"]{color:var(--text);box-shadow:inset 0 -3px 0 var(--text)}
 .meny svg{display:none;width:24px;height:24px}
 
 /* Kontoknappen fylls av inloggning.js: initialen i bilden, namnet bredvid.
@@ -157,7 +161,7 @@ h3{font-size:22px;font-weight:800;line-height:1}
 .konto{
   margin-left:auto;flex:none;
   display:inline-flex;align-items:center;gap:10px;
-  min-height:44px;padding:0 18px;border-radius:999px;
+  min-height:44px;padding:0 18px;border-radius:var(--horn);
   background:var(--yta);font-weight:650;font-size:15px;
   transition:background .15s;
 }
@@ -176,7 +180,7 @@ h3{font-size:22px;font-weight:800;line-height:1}
 
 .sida{max-width:var(--bredd);margin:0 auto;padding:12px var(--marginal) 0}
 
-.sidfot{margin-top:56px;border-top:1px solid var(--yta-2)}
+.sidfot{margin-top:56px;border-top:1px solid var(--linje)}
 .sidfot-inre{
   max-width:var(--bredd);margin:0 auto;
   padding:28px var(--marginal) 24px;
@@ -202,38 +206,49 @@ h3{font-size:22px;font-weight:800;line-height:1}
 
 /* ---------- Komponenter ---------- */
 
+/* Huvudknappen är rosa med fasade hörn, som en scenkonstruktion. Fasningen
+   ligger på ett lager bakom texten: klipps själva knappen klipps också
+   fokusringen bort, och den måste synas hel. */
 .knapp{
+  position:relative;isolation:isolate;
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  min-height:48px;padding:0 24px;border:0;border-radius:999px;
-  background:var(--rosa);color:var(--natt);
-  font-weight:700;font-size:16px;line-height:1.2;text-align:center;
+  min-height:48px;padding:0 24px;border:0;border-radius:0;
+  background:none;color:var(--mork-text);
+  font-weight:800;font-size:16px;line-height:1.2;text-align:center;
   transition:transform .12s,filter .15s;
+}
+.knapp::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--rosa);
+  clip-path:polygon(var(--fasning) 0,100% 0,100% calc(100% - var(--fasning)),calc(100% - var(--fasning)) 100%,0 100%,0 var(--fasning));
 }
 .knapp:hover{filter:brightness(1.08)}
 .knapp:active{transform:scale(.97)}
-.knapp-sek{background:var(--yta-2);color:var(--text)}
+/* Den andra knappen är fylld och utan fasning, så att bara huvudknappen har den. */
+.knapp-sek{color:var(--text)}
+.knapp-sek::before{background:var(--yta-2);clip-path:none;border-radius:var(--horn)}
 .knapp:disabled{opacity:.5;cursor:default;filter:none;transform:none}
 
-/* Rutor och kort lyfter från bakgrunden med en ljuskant upptill och en
-   skugga under, i stället för en ram. */
-.ruta,.kort{box-shadow:inset 0 1px 0 rgba(246,242,251,.05),0 16px 32px -20px rgba(0,0,0,.7)}
+/* Rutor står platt mot det svarta, utan ram och utan skugga. Det är
+   ytan själv som skiljer dem från bakgrunden. */
 .ruta{
   position:relative;overflow:hidden;
-  background:var(--yta);border-radius:24px;padding:22px;
+  background:var(--yta);border-radius:var(--horn-stor);padding:22px;
   display:flex;flex-direction:column;gap:14px;
 }
 .ruta > *{position:relative}
-/* Den stora siffran bakom texten i sidans viktigaste ruta. */
+/* Den stora siffran i sidans viktigaste ruta, som kontur. Den ska synas,
+   men aldrig ligga bakom text, så rutan måste ge den plats. */
 .ruta > .ruta-siffra{
   position:absolute;right:-10px;top:-26px;
   font-stretch:62%;font-weight:900;font-size:168px;line-height:1;letter-spacing:-.04em;
-  color:#241C30;pointer-events:none;user-select:none;
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.3);
+  pointer-events:none;user-select:none;
 }
 a.ruta,a.kort{transition:background .15s}
 a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
 
 .kort{
-  background:var(--yta);border-radius:20px;padding:16px;
+  background:var(--yta);border-radius:var(--horn-stor);padding:16px;
   display:flex;flex-direction:column;gap:4px;min-height:96px;
 }
 .kort-titel{font-weight:700;font-size:16px}
@@ -242,7 +257,7 @@ a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
 .kort.med-ikon{gap:14px;min-height:132px;justify-content:space-between}
 .kort-ikon{
   display:flex;flex:none;width:44px;height:44px;border-radius:50%;
-  background:var(--text);color:var(--natt);align-items:center;justify-content:center;
+  background:var(--text);color:var(--mork-text);align-items:center;justify-content:center;
 }
 .kort-ikon svg{width:18px;height:18px}
 .kort-delar{display:flex;flex-direction:column;gap:3px}
@@ -253,17 +268,31 @@ a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
 
 /* Huvudrutan med två mindre kort bredvid på dator och under på mobil,
    som "Dagens fråga" på startsidan. */
-.delad{display:flex;flex-direction:column;gap:12px}
+.delad{display:flex;flex-direction:column;gap:var(--glipa)}
 .delad > .ruta .knapp{align-self:flex-start}
-.delad-sida{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.delad-sida{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--glipa)}
 
+/* Filterknappar och flikar. Ovalda är fyllda med ytan, aldrig en ram. Valt
+   läge är ett och samma överallt: vit fyllning med mörk text. */
 .chip{
   flex:none;display:inline-flex;align-items:center;gap:8px;
-  min-height:44px;padding:0 16px;border:0;border-radius:999px;
-  background:var(--yta);color:var(--text-2);font-size:15px;font-weight:600;
+  min-height:44px;padding:0 16px;border:0;border-radius:var(--horn);
+  background:var(--yta);color:var(--text-2);font-size:15px;font-weight:650;
   transition:background .18s,color .18s;
 }
-.chip[aria-pressed="true"]{background:var(--text);color:var(--natt)}
+.chip:hover{background:var(--yta-2);color:var(--text)}
+.chip[aria-pressed="true"],.chip[aria-selected="true"]{background:var(--text);color:var(--mork-text)}
+
+/* Den lilla etiketten ovanför ett val, som Genre och Svårighet. Archivo i
+   det breda snittet, så att den skiljer sig från rubrikerna utan versaler. */
+.val-etikett{margin:0 0 10px;font-stretch:118%;font-size:13px;font-weight:650;line-height:1.3;color:var(--text-2)}
+
+/* Sektionens huvud: en tjock vit linje över rubriken, och en länk till höger.
+   Bara över sidans sektioner, aldrig inne i en ruta. */
+.sektionshuvud{
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  margin-bottom:16px;padding-top:12px;border-top:4px solid var(--text);
+}
 .prick{flex:none;width:8px;height:8px;border-radius:50%;background:var(--g)}
 
 .g-hardstyle{--g:var(--hardstyle)}
@@ -281,27 +310,28 @@ a.ruta:hover,a.kort:hover{background:var(--yta-hover)}
 .rad-huvud{display:none}
 .rad{
   display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:14px;
-  padding:8px 10px;margin:0 -10px;border-radius:12px;min-height:68px;
+  padding:8px 10px;margin:0 -10px;border-radius:var(--horn);min-height:68px;
   transition:background .15s;
 }
 a.rad:hover{background:var(--yta)}
 .rad-vanster{display:flex;align-items:center;gap:14px;min-width:0}
 .omslag{
-  flex:none;width:52px;height:52px;border-radius:10px;background:var(--g);color:var(--natt);
+  flex:none;width:52px;height:52px;border-radius:var(--horn);background:var(--g);color:var(--mork-text);
   display:flex;align-items:flex-end;padding:0 0 4px 7px;
   font-stretch:62%;font-weight:900;font-size:34px;line-height:.8;
 }
 /* Spotifys omslag: aldrig beskuret och inget ovanpå, högst 4 px rundning.
-   Det är villkoren för att få visa dem. */
+   Det är villkoren för att få visa dem. Bokstavsrutan ovan, som tar över
+   när ett omslag inte laddar, har samma storlek och hörn. */
 .omslag-bild{
-  flex:none;display:block;width:52px;height:52px;border-radius:4px;
+  flex:none;display:block;width:52px;height:52px;border-radius:var(--horn);
   object-fit:contain;background:var(--yta-2);
 }
 .rad-mitt{min-width:0;display:flex;flex-direction:column;gap:3px}
 .rad-titel,.rad-under{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rad-titel{font-weight:650;font-size:16px}
 .rad-under{font-size:14px;color:var(--text-2)}
-.rad-typ{margin-left:8px;padding:2px 8px;border-radius:999px;background:var(--yta-2);font-size:12px;font-weight:600;color:var(--text-2);vertical-align:2px}
+.rad-typ{margin-left:8px;padding:2px 8px;border-radius:var(--horn);background:var(--yta-2);font-size:12px;font-weight:600;color:var(--text-2);vertical-align:2px}
 .rad-genre{justify-self:end;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--g)}
 .rad-genre .prick{display:none}
 .rad-datum{display:none}
@@ -326,7 +356,7 @@ a.rad:hover{background:var(--yta)}
    pillret, eftersom fältet självt saknar egen kant. */
 .sok{
   display:flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;
-  border-radius:999px;background:var(--yta);color:var(--text-3);
+  border-radius:var(--horn);background:var(--yta);color:var(--text-3);
 }
 .sok svg{flex:none;width:18px;height:18px}
 .sok input{flex:1;min-width:0;height:46px;border:0;background:none;color:var(--text);font-size:16px;outline:none}
@@ -354,11 +384,11 @@ h1 em{font-style:normal}
 /* Sektioner i guiderna, och faktarutor som står för sig själva. Inuti en
    ruta används .not aldrig — högst en nivå yta. */
 .avsnitt{display:flex;flex-direction:column;gap:12px;margin-top:36px;scroll-margin-top:16px}
-.not{background:var(--yta);border-radius:20px;padding:16px 18px;font-size:15px;line-height:1.55;color:var(--text-2)}
+.not{background:var(--yta);border-radius:var(--horn-stor);padding:16px 18px;font-size:15px;line-height:1.55;color:var(--text-2)}
 .not b:first-child{display:block;margin-bottom:4px;font-size:16px;color:var(--text)}
 .not strong{color:var(--text)}
 
-.etikett-chip{align-self:flex-start;padding:7px 12px;border-radius:999px;background:var(--yta-2);font-size:14px;color:var(--text-2)}
+.etikett-chip{align-self:flex-start;padding:7px 12px;border-radius:var(--horn);background:var(--yta-2);font-size:14px;color:var(--text-2)}
 
 /* Länkar i löptext måste synas som länkar även utan färg. */
 .text a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--text-3)}
@@ -366,14 +396,14 @@ h1 em{font-style:normal}
 
 /* ---------- Spelen: quizet och låtspelet ---------- */
 
-.q-siffror{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.q-ruta{background:var(--yta);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.q-siffror{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--glipa)}
+.q-ruta{background:var(--yta);border-radius:var(--horn-stor);padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
 .q-ruta span{font-size:13px;color:var(--text-3)}
 .q-ruta b{font-stretch:62%;font-weight:900;font-size:28px;line-height:1;overflow-wrap:anywhere}
 .q-ruta b.q-niva{font-size:22px;line-height:1.27}
 .q-datumrad{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .q-datum{font-size:15px;color:var(--text-3)}
-.q-chip{padding:4px 10px;border-radius:999px;background:var(--yta-2);font-size:13px}
+.q-chip{padding:4px 10px;border-radius:var(--horn);background:var(--yta-2);font-size:13px}
 .bricka{
   flex:none;display:flex;width:36px;height:36px;border-radius:50%;
   align-items:center;justify-content:center;background:var(--yta-2);color:var(--text-2);
@@ -386,13 +416,13 @@ h1 em{font-style:normal}
 .q-utfall.ja,.q-plus{color:var(--ratt)}
 .q-utfall.nej{color:var(--fel)}
 .q-nasta{font-size:14px;color:var(--text-3)}
-.q-spelare{display:flex;align-items:center;gap:14px;background:var(--yta);border-radius:20px;padding:14px 16px}
-.q-play{flex:none;display:flex;width:52px;height:52px;border:0;border-radius:50%;background:var(--text);color:var(--natt);align-items:center;justify-content:center}
+.q-spelare{display:flex;align-items:center;gap:14px;background:var(--yta);border-radius:var(--horn-stor);padding:14px 16px}
+.q-play{flex:none;display:flex;width:52px;height:52px;border:0;border-radius:50%;background:var(--text);color:var(--mork-text);align-items:center;justify-content:center}
 .q-play svg{width:18px;height:18px;fill:currentColor}
 .q-spelare .info{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
 .q-spelare-rubrik{font-weight:700;font-size:15px}
-.q-bar{height:6px;border-radius:999px;background:var(--yta-2);overflow:hidden}
-.q-bar i{display:block;height:6px;width:0;border-radius:999px;background:var(--text)}
+.q-bar{height:6px;border-radius:1px;background:var(--yta-2);overflow:hidden}
+.q-bar i{display:block;height:6px;width:0;border-radius:1px;background:var(--text)}
 .q-tid{font-size:13px;color:var(--text-3)}
 .q-volym{display:flex;align-items:center;gap:10px;min-height:44px}
 .q-volym svg{flex:none;width:16px;height:16px;fill:var(--text-2)}
@@ -427,15 +457,25 @@ h1 em{font-style:normal}
     position:fixed;left:0;right:0;bottom:0;z-index:10;
     display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;
     padding:6px 6px calc(8px + env(safe-area-inset-bottom));
-    background:var(--natt);border-top:1px solid var(--yta-2);
+    background:var(--bg);border-top:1px solid var(--linje);
   }
   .meny a{
     flex-direction:column;justify-content:center;gap:4px;
-    min-height:56px;padding:0;border-radius:12px;
-    font-size:11px;font-weight:600;color:var(--text-3);
+    min-height:56px;padding:0;border-radius:0;
+    font-size:12px;font-weight:600;color:var(--text-3);
   }
   .meny a:hover,.meny a[aria-current="page"]{background:none;color:var(--text)}
+  .meny a[aria-current="page"]{box-shadow:inset 0 3px 0 var(--text)}
   .meny svg{display:block}
+
+  /* Sidfoten var nästan en hel skärm på mobil. Varje grupp blir en rad med
+     länkar som bryts, och gruppens rubrik läses upp men syns inte. Markupen
+     är densamma som på dator, så de 17 kopiorna behöver inte ändras. */
+  .sidfot-inre{gap:18px}
+  .sidfot-topp{gap:14px}
+  .sidfot-grupper{display:flex;flex-direction:column;gap:0}
+  .sidfot nav{flex-direction:row;flex-wrap:wrap;column-gap:18px}
+  .sidfot-rubrik{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
   /* På mobil räcker den runda bilden, namnet läses bara upp. */
   .konto.med-bild{padding:4px;background:none}
@@ -477,27 +517,27 @@ h1 em{font-style:normal}
 }
 .pf-rang{font-size:16px;color:var(--text-2)}
 .pf-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.pf-chip{padding:7px 12px;border-radius:999px;background:var(--yta);font-size:14px}
+.pf-chip{padding:7px 12px;border-radius:var(--horn);background:var(--yta);font-size:14px}
 .pf-chip-svag{color:var(--text-2)}
 .pf-knappar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:4px}
 .pf-pill{
-  min-height:44px;padding:0 18px;border:0;border-radius:999px;background:var(--yta);color:var(--text);
+  min-height:44px;padding:0 18px;border:0;border-radius:var(--horn);background:var(--yta);color:var(--text);
   font-weight:700;font-size:15px;transition:background .15s;
 }
 .pf-pill:hover{background:var(--yta-hover)}
 /* Raden som bara ägaren ser när bilden är rapporterad. */
 .pf-notis{max-width:40ch;font-size:14px;line-height:1.5;color:var(--text-2)}
 
-.pf-nasta{background:var(--yta);border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.pf-nasta{background:var(--yta);border-radius:var(--horn-stor);padding:16px 18px;display:flex;flex-direction:column;gap:10px}
 .pf-nasta-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .pf-nasta-namn{display:flex;flex-direction:column;gap:2px}
 .pf-nasta-kvar{font-size:14px;color:var(--text-2);text-align:right}
 .pf-etikett{font-size:13px;color:var(--text-3)}
 .pf-stor{font-stretch:62%;font-weight:900;font-size:28px;line-height:1}
-.pf-stapel{height:8px;border-radius:999px;background:var(--yta-2);overflow:hidden}
-.pf-stapel i{display:block;height:8px;border-radius:999px;background:var(--text)}
+.pf-stapel{height:8px;border-radius:1px;background:var(--yta-2);overflow:hidden}
+.pf-stapel i{display:block;height:8px;border-radius:1px;background:var(--text)}
 .pf-siffror{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.pf-siffra{background:var(--yta);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.pf-siffra{background:var(--yta);border-radius:var(--horn-stor);padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
 
 .pf-avsnitt{display:flex;flex-direction:column;gap:12px}
 .pf-avsnitt-topp{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
@@ -508,7 +548,7 @@ h1 em{font-style:normal}
 .pf-rutnat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px 4px}
 .pf-badge{
   display:flex;flex-direction:column;align-items:center;gap:7px;min-width:0;padding:8px 2px 10px;
-  border:0;border-radius:14px;background:none;color:var(--text);transition:background .15s;
+  border:0;border-radius:var(--horn);background:none;color:var(--text);transition:background .15s;
 }
 .pf-badge:hover{background:var(--yta)}
 .pf-badge-namn{font-size:12px;font-weight:600;line-height:1.2;text-align:center;color:var(--text-2);hyphens:auto;overflow-wrap:break-word;max-width:100%}
@@ -521,20 +561,20 @@ h1 em{font-style:normal}
 
 html.ark-last{overflow:hidden}
 .ark-lager{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center}
-.ark-fond{position:absolute;inset:0;width:100%;border:0;background:rgba(10,8,14,.72)}
+.ark-fond{position:absolute;inset:0;width:100%;border:0;background:rgba(0,0,0,.72)}
 .ark{
   position:relative;width:100%;max-width:600px;max-height:88vh;overflow-y:auto;
-  padding:12px 20px calc(26px + env(safe-area-inset-bottom));border-radius:24px 24px 0 0;
+  padding:12px 20px calc(26px + env(safe-area-inset-bottom));border-radius:var(--horn-stor) var(--horn-stor) 0 0;
   background:var(--yta);display:flex;flex-direction:column;gap:14px;
   animation:ark-in .22s ease-out;
 }
 @keyframes ark-in{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
-.ark-greppe{align-self:center;width:40px;height:4px;border-radius:999px;background:#3A3046}
+.ark-greppe{align-self:center;width:40px;height:4px;border-radius:2px;background:#3A3A42}
 .ark-rubrik{font-stretch:62%;font-weight:900;font-size:30px;line-height:1;word-spacing:.05em}
-.ark-text{font-size:16px;line-height:1.5;color:#D9D1E6}
+.ark-text{font-size:16px;line-height:1.5;color:var(--text)}
 .ark-liten{font-size:14px;line-height:1.5;color:var(--text-3)}
 .ark-knapp{width:100%;min-height:50px}
-.ark-avbryt{min-height:44px;border:0;border-radius:999px;background:none;color:var(--text-2);font-weight:700;font-size:16px}
+.ark-avbryt{min-height:44px;border:0;border-radius:var(--horn);background:none;color:var(--text-2);font-weight:700;font-size:16px}
 .ark-badge{display:flex;align-items:center;gap:16px}
 .ark-badge-namn{display:flex;flex-direction:column;gap:4px}
 .ark-niva{font-size:14px;color:var(--text-2)}
@@ -547,19 +587,19 @@ html.ark-last{overflow:hidden}
 /* Valet av badge vid namnet: en radioknapp per rad. */
 .ark-val{display:flex;flex-direction:column}
 .ark-rad{
-  display:flex;align-items:center;gap:14px;min-height:60px;padding:0 10px;border:0;border-radius:14px;
+  display:flex;align-items:center;gap:14px;min-height:60px;padding:0 10px;border:0;border-radius:var(--horn);
   background:none;color:var(--text);text-align:left;font-size:16px;font-weight:600;
 }
 .ark-rad:hover{background:var(--yta-hover)}
 .ark-rad-text{flex:1}
 .ark-radio{
-  flex:none;display:flex;width:22px;height:22px;border-radius:50%;border:2px solid #3A3046;
+  flex:none;display:flex;width:22px;height:22px;border-radius:50%;border:2px solid #3A3A42;
   align-items:center;justify-content:center;
 }
 .ark-rad[aria-checked="true"] .ark-radio{border-color:var(--text)}
 .ark-rad[aria-checked="true"] .ark-radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--text)}
 .ark-meny-rad{
-  display:flex;align-items:center;gap:14px;min-height:56px;padding:0 14px;border:0;border-radius:14px;
+  display:flex;align-items:center;gap:14px;min-height:56px;padding:0 14px;border:0;border-radius:var(--horn);
   background:none;color:var(--text);text-align:left;font-size:16px;font-weight:600;
 }
 .ark-meny-rad:hover{background:var(--yta-hover)}
@@ -569,7 +609,7 @@ html.ark-last{overflow:hidden}
 
 @media (min-width:860px){
   .ark-lager{align-items:center;padding:24px}
-  .ark{max-width:480px;border-radius:24px;padding-bottom:26px}
+  .ark{max-width:480px;border-radius:var(--horn-stor);padding-bottom:26px}
 }
 
 /* ---------- Dator ---------- */
@@ -583,9 +623,9 @@ html.ark-last{overflow:hidden}
   h2{font-size:40px}
   h3{font-size:26px}
 
-  .ruta{border-radius:28px;padding:32px;gap:16px}
+  .ruta{padding:32px;gap:16px}
   .ruta > .ruta-siffra{right:-18px;top:-44px;font-size:300px;letter-spacing:-.05em}
-  .kort{border-radius:24px;padding:22px}
+  .kort{padding:22px}
   .kort-titel{font-size:18px}
   .kort-text{font-size:15px;line-height:1.4}
   .kort.med-ikon{min-height:142px;gap:18px}
@@ -599,24 +639,24 @@ html.ark-last{overflow:hidden}
   .prosa h2{margin-top:32px;font-size:32px}
   .prosa h3{font-size:21px}
 
-  .delad{flex-direction:row;flex-wrap:wrap;gap:16px}
+  .delad{flex-direction:row;flex-wrap:wrap;gap:var(--glipa)}
   .delad > .ruta{flex:2 1 420px;min-height:300px;justify-content:flex-end}
-  .delad-sida{flex:1 1 240px;display:flex;flex-direction:column;gap:16px}
+  .delad-sida{flex:1 1 240px;display:flex;flex-direction:column;gap:var(--glipa)}
   .delad-sida > .kort{flex:1}
 
   .rad{grid-template-columns:minmax(0,1fr) 170px 48px;column-gap:16px;margin:0;padding:8px 12px;min-height:72px}
-  .rad-genre{justify-self:start;font-size:15px;font-weight:400;color:#D9D1E6}
+  .rad-genre{justify-self:start;font-size:15px;font-weight:400;color:var(--text)}
   .rad-genre .prick{display:block}
   .med-datum .rad-huvud,.med-datum .rad{grid-template-columns:minmax(0,1fr) 130px 90px 48px;column-gap:16px}
   .med-datum .rad-huvud{
-    display:grid;padding:0 12px 10px;border-bottom:1px solid var(--yta-2);margin-bottom:4px;
+    display:grid;padding:0 12px 10px;border-bottom:1px solid var(--linje);margin-bottom:4px;
     font-size:14px;color:var(--text-3);
   }
   .med-datum .rad-vanster{grid-row:auto}
   .med-datum .rad-genre,.med-datum .rad-datum{align-self:center;justify-self:start;font-size:15px}
   .rad-spela{
     display:flex;width:44px;height:44px;border-radius:50%;
-    background:var(--text);color:var(--natt);align-items:center;justify-content:center;
+    background:var(--text);color:var(--mork-text);align-items:center;justify-content:center;
     opacity:0;transition:opacity .15s;
   }
   .rad-spela svg{width:16px;height:16px}
@@ -624,7 +664,7 @@ html.ark-last{overflow:hidden}
   .rull{flex-wrap:wrap;overflow:visible;margin:0;padding:0}
   .knapp{min-height:52px;padding:0 28px;font-size:17px}
 
-  .q-siffror{gap:12px}
+  .q-siffror{gap:var(--glipa)}
   .q-ruta{padding:14px 18px}
   .q-ruta b{font-size:32px}
   .sidfot{margin-top:72px}

@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-12">
+<link rel="stylesheet" href="/stil.css?v=2026-10-25">
 <link rel="stylesheet" href="/profilstat.css?v=2026-10-12">
 <link rel="stylesheet" href="/badges.css?v=2026-10-12">
 <style>
@@ -60,7 +60,10 @@
 /* Raderingen står för sig längst ner, med luft ovanför. */
 .kt-radera-ruta{margin-top:28px}
 /* Mörk med rosa text: det tydliga valet är Avbryt, inte Radera. */
-.kt-knapp-fara{background:var(--yta-2);color:var(--rosa)}
+.kt-knapp-fara{color:var(--rosa)}
+/* Knappens färg ligger i ::before sedan omdesignen, så att fasningen inte
+   klipper fokusringen. Den andra knappen har ingen fasning. */
+.kt-knapp-fara::before,.kt-google::before{background:var(--yta-2);clip-path:none;border-radius:var(--horn)}
 .kt-utfall{padding:0 16px 16px 50px;display:flex;flex-direction:column;gap:12px;animation:kt-in .25s ease-out}
 .kt-utfall p{font-size:15px;line-height:1.5;color:#D9D1E6}
 @keyframes kt-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
@@ -75,7 +78,7 @@
 .kt-knappar .knapp{min-height:44px;padding:0 20px;font-size:15px}
 .kt-hint{font-size:14px;line-height:1.5;color:var(--text-3)}
 /* Googles egen logga ska stå på neutral botten, inte på sajtens rosa. */
-.kt-google{background:var(--yta-2);color:var(--text)}
+.kt-google{color:var(--text)}
 .kt-google svg{width:18px;height:18px;flex:none}
 .kt-besked{font-size:14px;line-height:1.5;color:var(--text-2)}
 .kt-besked:empty{display:none}

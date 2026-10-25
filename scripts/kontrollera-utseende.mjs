@@ -116,7 +116,15 @@ function granskaSidan({ MIN_HOJD, tryck }){
     for (let e = el; e; e = e.parentElement){
       const s = getComputedStyle(e);
       if (s.backgroundImage !== 'none' && s.backgroundImage.includes('url(')) return null;
-      const c = tolka(s.backgroundColor);
+      /* Huvudknappens färg ligger i ett ::before-lager bakom texten, för att
+         fasningen inte ska klippa fokusringen. Täcker lagret hela elementet
+         räknas det som elementets bakgrund. */
+      const fore = getComputedStyle(e, '::before');
+      const foreFarg = tolka(fore.backgroundColor);
+      const tacker = fore.content !== 'none' && fore.position === 'absolute' &&
+        ['top', 'right', 'bottom', 'left'].every(k => fore[k] === '0px');
+      let c = tolka(s.backgroundColor);
+      if (tacker && foreFarg && foreFarg.a > 0 && (!c || c.a === 0)) c = foreFarg;
       if (c && c.a > 0) lager.push(c);
       if (c && c.a >= 1) break;
     }
