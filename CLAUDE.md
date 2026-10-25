@@ -867,7 +867,20 @@ Det går igenom alla sidor (15 just nu, nya mappar med `index.html` räknas av s
 - gamla typsnitt, monospace eller anrop till Google Fonts
 - badge-id:n i `badges.js` som saknas i `profil.katalog` på servern, eller tvärtom
 
-Det kan inte se hur sidan ser ut. Titta själv, på mobil och dator:
+Det kan inte se hur sidan ser ut. **Kör därför även kontrollskriptet för
+utseendet**, med den lokala servern igång i ett annat fönster:
+`node scripts/kontrollera-utseende.mjs`. Det öppnar varje sida på 360 och
+1440 px och larmar för:
+
+- en sida som går att rulla i sidled
+- knappar och länkar under 44 px höga på mobil (länkar mitt i löptext räknas inte)
+- text med lägre kontrast än WCAG kräver: 4,5:1, och 3:1 för stor text
+
+Med `--bilder <mapp utanför repot>` sparar det en skärmbild per sida och bredd.
+Kända avvikelser står i `UNDANTAG` i skriptet, var och en med en motivering.
+Listan ska krympa, inte växa.
+
+Skriptet ser inte allt heller. Titta själv, på mobil och dator:
 `node scripts/lokal-server.mjs` visar sajten som GitHub Pages gör, med rena
 adresser och felsidan, och skriver ut adressen för mobilen på samma wifi.
 Mobilen: inget bredare än 360 px och tryckytor minst 44 px.
