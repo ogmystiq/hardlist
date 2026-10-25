@@ -1,17 +1,17 @@
 {
-  "uppdaterad": "2026-10-24T05:14:15.281Z",
+  "uppdaterad": "2026-10-25T05:14:13.682Z",
   "artister": 313,
   "cachade": 331,
   "releaser": 26,
   "medOmslag": 26,
-  "anrop": 106,
+  "anrop": 104,
   "albumAnrop": 0,
   "albumIndex": 18,
   "deezer": {
-    "hittade": 4,
-    "bekraftade": 1,
+    "hittade": 2,
+    "bekraftade": 0,
     "avvisade": 2,
-    "vantar": 1,
+    "vantar": 0,
     "framtida": 0
   },
   "avbrott": "KVOTEN ÄR SLUT för dygnet. Spotify ber oss vänta 24.0 timmar. Kör INTE igen förrän dess — varje försök är bortkastat. Kvoten delas av alla dina Development Mode-appar och nollställs av sig själv."

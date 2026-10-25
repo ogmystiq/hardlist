@@ -1385,6 +1385,24 @@
       "datum": "2026-10-23",
       "skal": "UPC-träff med fel artist: LoserDub (3VZelnnW9OR0DyR2qRn4Oq), Disarray (6TlAxGL1Hm4FRWfTxprlMi)",
       "kollad": "2026-10-24"
+    },
+    "5064158067815": {
+      "titel": "Violetas",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-10-25",
+      "skal": "UPC-träff med fel artist: fenix (68nnr4aBk3IwIoyLeP9s6s)",
+      "kollad": "2026-10-25"
+    },
+    "881061023029": {
+      "titel": "Peace & Patience",
+      "fran": [
+        "JAZZY"
+      ],
+      "datum": "2026-10-23",
+      "skal": "ingen UPC-träff, och titeln saknas bland JAZZYs senaste på Spotify",
+      "kollad": "2026-10-25"
     }
   }
 }
