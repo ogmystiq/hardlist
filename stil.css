@@ -111,7 +111,9 @@ body{
    ytterläget och tillbaka, 14 sekunder per varv. Stoppen gör att den ser
    programmerad ut i stället för att gunga. Den bleknar bort innan sidans
    listor börjar, och html och body klipper i sidled så att den vridna konen
-   aldrig ger sidan en rullning åt sidan. */
+   aldrig ger sidan en rullning åt sidan. Hidden står först för
+   webbläsare utan clip, som äldre iOS. */
+html{overflow-x:hidden}
 html,body{overflow-x:clip}
 body{position:relative}
 body::before{
@@ -138,7 +140,7 @@ body::after{
    class="tyst" på html, och när en lista är tom eller inte gick att hämta.
    Den ligger fast i fönstret, under allt innehåll, och är så svag att den
    bara syns mot det svarta. */
-.tyst::after,html:has(.rigg-fel,.tom-lage)::after{
+.tyst::after,html:has(.rigg-fel:not(.rigg-laddar),.tom-lage)::after{
   content:"";position:fixed;left:-50%;bottom:-20px;width:200%;height:260px;z-index:-1;pointer-events:none;
   background:
     radial-gradient(22% 60% at 30% 70%,rgba(255,255,255,.08),transparent 70%),
@@ -576,10 +578,10 @@ h1 em{font-style:normal}
    .intro). Namn och antal syns hela tiden, så att inget innehåll väntar.
    Lamporna tänds utan flimmer, så att inget blinkar flera gånger i sekunden. */
 .rigg-huvud::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:0 0 3px 3px;background:#3A3A42;opacity:0}
-.rigg.intro .rigg-lampa{--d:calc(var(--i) * 70ms)}
+.rigg.intro .rigg-lampa{--d:calc(var(--i) * 40ms)}
 .rigg.intro .rigg-lampa:not([data-av]) .rigg-huvud::after{animation:lins-av 120ms linear var(--d) both}
-.rigg.intro .rigg-kagla::before{transform-origin:50% 0;animation:kagla-in 420ms var(--ease-ut) var(--d) both}
-.rigg.intro .rigg-kagla::after{animation:tona-in 200ms var(--ease-mjuk) calc(var(--d) + 260ms) both}
+.rigg.intro .rigg-kagla::before{transform-origin:50% 0;animation:kagla-in 240ms var(--ease-ut) var(--d) both}
+.rigg.intro .rigg-kagla::after{animation:tona-in 140ms var(--ease-mjuk) calc(var(--d) + 120ms) both}
 @keyframes lins-av{from{opacity:1}to{opacity:0}}
 @keyframes kagla-in{from{opacity:0;transform:scaleY(0)}}
 @keyframes tona-in{from{opacity:0}}
@@ -881,14 +883,16 @@ html.ark-last{overflow:hidden}
 
 /* Loggan: LIST tänds som en neonskylt första gången sidan laddas i ett
    besök (ram.js sätter klassen). Två korta flimmer, sedan står den. */
-.neon .topp .logga span{animation:neon 520ms linear both}
-/* Två dippar: tänds svagt, slår på, flimrar en gång och står. Det håller
-   sig under tre blink per sekund. */
+.neon .topp .logga span{animation:neon 600ms linear both}
+/* Två dippar från tänt läge, så att det inte blir ett extra blink om
+   loggan hunnit ritas innan ram.js satt klassen. Det håller sig under tre
+   blink per sekund. */
 @keyframes neon{
-  0%{opacity:.2}
-  30%{opacity:1}
-  45%{opacity:.4}
-  65%,100%{opacity:1}
+  0%{opacity:1}
+  18%{opacity:.25}
+  38%{opacity:1}
+  52%{opacity:.45}
+  72%,100%{opacity:1}
 }
 
 /* En puls i takten, en eller två gånger. Aldrig som loop. */
@@ -964,7 +968,7 @@ html.rang-last{overflow:hidden}
 .rang-fira-scen{position:relative;width:100%;height:150px;margin-top:10px}
 .rang-fira-stral{position:absolute;left:50%;top:0;width:3px;height:520px;margin-left:-1.5px;transform-origin:50% 0;background:linear-gradient(var(--text),transparent 75%);opacity:.35;transform:rotate(var(--v));animation:rang-stral calc(var(--takt) * 3) var(--ease-ut) both}
 @keyframes rang-stral{from{opacity:0;transform:rotate(calc(var(--v) * 2.4))}}
-.rang-fira-blixt{position:absolute;left:50%;top:10px;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:var(--text);animation:rang-blixt calc(var(--takt) * 2) var(--ease-ut) both}
+.rang-fira-blixt{position:absolute;left:50%;top:10px;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:var(--text);opacity:0;animation:rang-blixt calc(var(--takt) * 2) var(--ease-ut) both}
 @keyframes rang-blixt{0%{transform:scale(.2);opacity:.9}100%{transform:scale(18);opacity:0}}
 .rang-fira-namn{margin:0;font-stretch:62%;font-weight:900;font-size:72px;line-height:.9;letter-spacing:-.01em;animation:rang-namn var(--t-in) var(--ease-studs) 120ms both}
 @keyframes rang-namn{from{opacity:0;transform:translateY(16px) scale(.92)}}

@@ -178,7 +178,11 @@
       '<p class="rang-fira-text">Poängen från alla spel räknas ihop, och nu räcker de till ' + namn + '.</p>' +
       '<button class="knapp rang-fira-knapp" type="button">Fortsätt</button>' +
       '</div>';
+    /* Sidan bakom görs inert, så att Tab och skärmläsaren stannar i
+       firandet tills det stängs. */
+    const bakom = [...document.body.children].filter(el => el !== lager && !el.inert);
     const stang = () => {
+      bakom.forEach(el => { el.inert = false; });
       lager.remove();
       document.documentElement.classList.remove('rang-last');
       document.removeEventListener('keydown', tangent);
@@ -189,6 +193,7 @@
     document.addEventListener('keydown', tangent);
     document.documentElement.classList.add('rang-last');
     document.body.appendChild(lager);
+    bakom.forEach(el => { el.inert = true; });
     lager.querySelector('button').focus({ preventScroll: true });
   }
 

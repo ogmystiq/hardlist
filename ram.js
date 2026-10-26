@@ -1,10 +1,3 @@
-/* Statusraden i sidfoten, gemensam för alla sidor.
-
-   Siffrorna läses ur data/status.json i stället för att stå i markupen,
-   så att de aldrig kan bli inaktuella. Går filen inte att läsa står den
-   allmänna texten ur markupen kvar. Antalet är listans storlek (artister),
-   inte antalet cachade ID:n (cachade). Cachen kan vara större än listan,
-   och det var därför den gamla sidfoten kunde visa "331 av 316". */
 /* Loggan tänds som en neonskylt första gången sidan laddas i ett besök,
    och sedan inte igen förrän nästa besök. Går sessionStorage inte att
    använda tänds den inte alls, hellre det än ett flimmer vid varje sida. */
@@ -23,6 +16,13 @@
   satt();
 })();
 
+/* Statusraden i sidfoten, gemensam för alla sidor.
+
+   Siffrorna läses ur data/status.json i stället för att stå i markupen,
+   så att de aldrig kan bli inaktuella. Går filen inte att läsa står den
+   allmänna texten ur markupen kvar. Antalet är listans storlek (artister),
+   inte antalet cachade ID:n (cachade). Cachen kan vara större än listan,
+   och det var därför den gamla sidfoten kunde visa "331 av 316". */
 (function(){
   const ruta = document.getElementById('sidfotStatus');
   if (!ruta) return;

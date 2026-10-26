@@ -71,7 +71,7 @@
     /* Medan Försök igen hämtar syns det att något händer. Raden kan ta
        fokus, så att den som tryckte inte tappar sin plats på sidan. */
     if (o.laddar){
-      return '<div class="rigg rigg-fel' + (o.kompakt ? ' rigg-kompakt' : '') + '">' + bom +
+      return '<div class="rigg rigg-fel rigg-laddar' + (o.kompakt ? ' rigg-kompakt' : '') + '">' + bom +
         '<p class="rigg-besked" role="status" tabindex="-1" data-fokus="laddar">Hämtar releaserna.</p></div>';
     }
     if (o.fel){
