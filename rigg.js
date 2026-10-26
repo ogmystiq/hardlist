@@ -156,5 +156,20 @@
     };
   }
 
-  window.hardlistRigg = { rakna, langd, markup, rita, uppdateradText };
+  /* Riggen följer med mellan startsidan och releasesidan (View Transitions,
+     namnet rigg i stil.css). Då måste den finnas när nästa sida ritas första
+     gången, så den senaste datan sparas för besöket och nästa sida ritar
+     riggen ur den direkt, innan den färska hämtningen är klar. */
+  const NYCKEL = 'hardlist_rigg';
+  function spara(releaser, status){
+    try { sessionStorage.setItem(NYCKEL, JSON.stringify({ releaser, status })); } catch(e){}
+  }
+  function sparad(){
+    try {
+      const d = JSON.parse(sessionStorage.getItem(NYCKEL));
+      return d && Array.isArray(d.releaser) ? d : null;
+    } catch(e){ return null; }
+  }
+
+  window.hardlistRigg = { rakna, langd, markup, rita, uppdateradText, spara, sparad };
 })();

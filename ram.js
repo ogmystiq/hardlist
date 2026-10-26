@@ -16,6 +16,13 @@
   } catch(e){}
 })();
 
+/* Bakgrundens loopar står still när fliken inte syns (stil.css, .flik-dold). */
+(function(){
+  const satt = () => document.documentElement.classList.toggle('flik-dold', document.hidden);
+  document.addEventListener('visibilitychange', satt);
+  satt();
+})();
+
 (function(){
   const ruta = document.getElementById('sidfotStatus');
   if (!ruta) return;

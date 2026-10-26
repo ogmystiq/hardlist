@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-26c">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26d">
 <style>
 .sektion{display:flex;flex-direction:column;gap:12px;margin-top:36px;scroll-margin-top:16px}
 .antal{font-size:15px;color:var(--text-2)}
@@ -716,7 +716,7 @@ function ritaEvents(){
     (e.season ? '<span>' + esc(e.season) + '</span>' : '') + '</li>').join('');
 
   if (!daterade.length){
-    lista.innerHTML = '<p class="tom">' + (genre ? 'Inga bekräftade datum med ' + GENRE_NAMN[genre].toLowerCase() + ' här just nu.' : 'Inga bekräftade datum just nu.') +
+    lista.innerHTML = '<p class="tom tom-lage">' + (genre ? 'Inga bekräftade datum med ' + GENRE_NAMN[genre].toLowerCase() + ' här just nu.' : 'Inga bekräftade datum just nu.') +
       (utanDatum.length ? ' Se bevakningslistan nedanför.' : '') + '</p>';
     return;
   }
@@ -761,7 +761,7 @@ async function ladda(){
     if (!Array.isArray(events)) throw 0;
   } catch(e){
     document.getElementById('evLista').innerHTML =
-      '<p class="tom">Kalendern gick inte att hämta. Ladda om sidan om en stund.</p>';
+      '<p class="tom tom-lage">Kalendern gick inte att hämta. Ladda om sidan om en stund.</p>';
     return;
   }
   ritaEvents();
@@ -829,7 +829,7 @@ document.getElementById('kopieraKal').addEventListener('click', async function()
 
 ladda();
 </script>
-<script src="/rorelse.js?v=2026-10-26"></script>
+<script src="/rorelse.js?v=2026-10-26b"></script>
 <script src="/ram.js" defer></script>
 <script src="/inloggning.js" defer></script>
 <script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

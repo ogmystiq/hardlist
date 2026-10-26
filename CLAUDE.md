@@ -116,6 +116,12 @@ inte i repot). Det viktigaste ur den:
 - Färgerna och genrefärgerna står som variabler överst i `stil.css`. Rosa är
   den enda färgen för huvudknappar, alltid med mörk text.
 - Ett typsnitt, Archivo. Rubriker och stora siffror i det smala snittet.
+  Etiketten ovanför ett val (`.val-etikett`, som Genre och Svårighet) står i
+  det breda snittet, så att den skiljer sig från rubrikerna utan versaler.
+- **Ett enda sätt att visa valt:** ljus yta med mörk text
+  (`.chip[aria-pressed="true"]` och `[aria-selected="true"]`). Ovalda knappar
+  är fyllda med ytan, aldrig en ram. Riggens lampor är undantaget: där visar
+  en vit ring och understruket namn vilken genre som är vald.
 - Inga etiketter i VERSALER, inget monospace, inga tunna ramar runt allt,
   inga "A · B · C"-rader med mittpunkter och inga pilar i knapptexter.
 - Högst en nivå yta: en ruta i en ruta blir rader med luft emellan.
@@ -127,6 +133,17 @@ inte i repot). Det viktigaste ur den:
   - Inget loopar i onödan.
   - Inget blinkar mer än tre gånger per sekund.
   - Allt står still med `prefers-reduced-motion`.
+
+  **Långsamma loopar i bakgrunden** är tillåtna: strålkastaren i toppen,
+  dimman på de tysta sidorna och lasrarna bakom rubriken på `/spel/` och
+  `/topplista/`. De tysta sidorna har `class="tyst"` på `<html>`: guider,
+  nybörjare, integritet, konto, profil och 404. Dimman syns också när
+  riggen inte gick att hämta och när kalendern är tom (`.tom-lage`). De ska vara så svaga att texten har full kontrast, minst
+  8 sekunder per varv, bara `transform` och `opacity`, pausade när fliken
+  inte syns (`visibilitychange` i `ram.js`) och stilla med
+  `prefers-reduced-motion`. Inget rör sig bakom listor, releaserader,
+  spelens svarsfält eller topplistans rader. Spelknappen får pulsa i loop,
+  men bara medan ett klipp spelar.
 
   Bara `transform` och `opacity` animeras, så att det går mjukt på mobil.
   Tider och easing står som variabler överst i `stil.css` (`--t-…`,
@@ -686,6 +703,12 @@ designen i `badges.js` och `badges.css` — **ändra dem inte för hand.** Ändr
 de: byt datumet i `?v=` i sidorna som laddar dem och i `BADGE_VERSION` i
 `inloggning.js`.
 
+**Det enda undantaget:** bakgrunds- och ytfärgerna i `badges.css` (firandet,
+popupen och knapparna) har bytts till de svarta färgerna i `stil.css`, och
+`theme-color` och `background_color` i `site.webmanifest` likaså. Badgesens
+egna färger, former och animationer, och allt i `badges.js`, är orörda och
+får inte ändras.
+
 **Servern delar ut alla badges.** Tabellerna ligger i schemat `profil`, som
 API:t inte exponerar, precis som `quiz`. Sajten når dem bara genom
 `profil_visa`, `profil_min`, `profil_valj_badge`, `profil_satt_bild`,
@@ -845,6 +868,10 @@ Mörkt, hårt, kompromisslöst. Passar ämnet.
     står i samma färg. Titeln står alltid som text bredvid, så färgen är
     aldrig det enda som visar rangen. Färgerna är valda så att ingen liknar
     en genrefärg för mycket, och den högsta har ett svagt, stillastående sken.
+
+  - Lasrarna bakom rubriken på `/spel/` och `/topplista/` bär genrefärgerna,
+    som ljuset på en scen. De står bara bakom rubriken, aldrig vid något som
+    betyder en genre, och säger ingenting om någon genre.
 
   Färgen står aldrig ensam — alltid tillsammans med ikon eller text. Inga fler
   undantag.

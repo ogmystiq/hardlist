@@ -33,7 +33,7 @@
 <link rel="manifest" href="/site.webmanifest">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-26c">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26d">
 <style>
 /* Startsidan ska få den som kommer hit att stanna. Överst genreriggen,
    veckans släpp som ljus, och direkt under den dagens två spel som en tunn
@@ -664,6 +664,9 @@
 }
 </script>
 <!-- EVENTS-LD:END -->
+<!-- Riggen ska finnas när sidan ritas första gången, så att den kan följa med
+     från förra sidan. Renderingen väntar tills skriptet som ritar den har körts. -->
+<link rel="expect" href="#riggklar" blocking="render">
 </head>
 <body>
 
@@ -793,8 +796,8 @@
 </footer>
 
 <script src="/rader.js"></script>
-<script src="/rigg.js?v=2026-10-26b"></script>
-<script src="/rorelse.js?v=2026-10-26"></script>
+<script src="/rigg.js?v=2026-10-26c"></script>
+<script src="/rorelse.js?v=2026-10-26b"></script>
 <script>
 /* Reservkopia av data/events.json, så att "Snart" visar något även när
    filen inte går att hämta. Fylls av scripts/bygg-metadata.mjs mellan
@@ -1193,11 +1196,11 @@ const svenskIdag = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Eur
 
 /* Riggen överst är också filtret för listan. releaser är null tills
    hämtningen lyckats, och då ritar riggen felet i stället för nollor. */
-let releaser = null, riggStatus = null, filter = 'alla', hamtningFel = false, hamtar = false;
+let releaser = null, riggStatus = null, filter = 'alla', hamtningFel = false, hamtar = false, riggIntro = true;
 
 function ritaRigg(){
   window.hardlistRigg.rita($('rigg'), {
-    releaser: releaser || [], status: riggStatus, vald: filter, fel: hamtningFel, laddar: hamtar, intro: true, valj
+    releaser: releaser || [], status: riggStatus, vald: filter, fel: hamtningFel, laddar: hamtar, intro: riggIntro, valj
   });
 }
 
@@ -1259,6 +1262,7 @@ async function laddaReleaser(){
   }
   hamtar = false;
   riggStatus = await st;
+  window.hardlistRigg.spara(releaser, riggStatus);
   ritaRigg();
   ritaNytt();
 }
@@ -1514,6 +1518,18 @@ async function ritaTopplista(K){
     : 'Logga in och spela för att komma med.';
 }
 
+/* Har riggen ritats tidigare i besöket ritas den direkt ur den sparade
+   datan, utan intro, så att den kan följa med från releasesidan. Showen
+   hör till första gången. */
+(function(){
+  const s = window.hardlistRigg.sparad();
+  if (!s) return;
+  riggIntro = false;
+  releaser = s.releaser;
+  riggStatus = s.status;
+  ritaRigg();
+  ritaNytt();
+})();
 laddaReleaser();
 laddaSnart();
 ritaLat();
@@ -1525,6 +1541,7 @@ document.addEventListener('DOMContentLoaded', () => {
   else $('toppNot').textContent = 'Topplistan gick inte att hämta just nu.';
 });
 </script>
+<span id="riggklar" hidden></span>
 <script src="/ram.js" defer></script>
 <script src="/inloggning.js" defer></script>
 <script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

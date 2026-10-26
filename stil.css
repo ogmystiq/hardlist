@@ -105,16 +105,68 @@ body{
 }
 /* Bakgrunden är svart med en strålkastare uppifrån: ett mjukt ljus och en
    smal kon, i vitt, inga genrefärger. Ljuset hör till sidans topp och rullar
-   bort med den, som en scen man går in i. Det står still, och ingen bild
-   laddas för det. */
+   bort med den, som en scen man går in i. Ingen bild laddas för det.
+
+   Konen sveper som en moving head: en lugn panorering, ett stopp i
+   ytterläget och tillbaka, 14 sekunder per varv. Stoppen gör att den ser
+   programmerad ut i stället för att gunga. Den bleknar bort innan sidans
+   listor börjar, och html och body klipper i sidled så att den vridna konen
+   aldrig ger sidan en rullning åt sidan. */
+html,body{overflow-x:clip}
+body{position:relative}
 body::before{
   content:"";position:absolute;left:0;right:0;top:0;height:760px;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(38% 520px at 50% -120px,rgba(255,255,255,.13),transparent 72%),
-    conic-gradient(from 180deg at 50% -40px,transparent 166deg,rgba(255,255,255,.045) 176deg,rgba(255,255,255,.07) 180deg,rgba(255,255,255,.045) 184deg,transparent 194deg);
+  background:radial-gradient(38% 520px at 50% -120px,rgba(255,255,255,.13),transparent 72%);
   -webkit-mask-image:linear-gradient(#000 40%,transparent);
   mask-image:linear-gradient(#000 40%,transparent);
 }
+body::after{
+  content:"";position:absolute;left:50%;top:-40px;width:1200px;height:600px;margin-left:-600px;z-index:-1;pointer-events:none;
+  background:conic-gradient(from 180deg at 50% 0,transparent 166deg,rgba(255,255,255,.045) 176deg,rgba(255,255,255,.07) 180deg,rgba(255,255,255,.045) 184deg,transparent 194deg);
+  -webkit-mask-image:linear-gradient(#000 35%,transparent 85%);
+  mask-image:linear-gradient(#000 35%,transparent 85%);
+  transform-origin:50% 0;
+  animation:panorera 14s infinite;
+}
+@keyframes panorera{
+  0%,8%{transform:rotate(-7deg);animation-timing-function:cubic-bezier(.45,0,.25,1)}
+  46%,54%{transform:rotate(7deg);animation-timing-function:cubic-bezier(.45,0,.25,1)}
+  92%,100%{transform:rotate(-7deg)}
+}
+
+/* Dimman driver långsamt längs nederkanten på de tysta sidorna, de med
+   class="tyst" på html, och när en lista är tom eller inte gick att hämta.
+   Den ligger fast i fönstret, under allt innehåll, och är så svag att den
+   bara syns mot det svarta. */
+.tyst::after,html:has(.rigg-fel,.tom-lage)::after{
+  content:"";position:fixed;left:-50%;bottom:-20px;width:200%;height:260px;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(22% 60% at 30% 70%,rgba(255,255,255,.08),transparent 70%),
+    radial-gradient(18% 50% at 62% 80%,rgba(255,255,255,.065),transparent 70%),
+    radial-gradient(26% 70% at 85% 75%,rgba(255,255,255,.06),transparent 70%);
+  animation:dimma 34s ease-in-out infinite alternate;
+}
+@keyframes dimma{from{transform:translate3d(-9%,0,0)}to{transform:translate3d(9%,0,0)}}
+
+/* Lasrarna bakom rubriken på /spel/ och /topplista/: tre tunna strålar som
+   korsar varandra från scenkanten, som ljuset på ett mainstage. Varven är
+   olika långa, 11, 13 och 17 sekunder, så att mönstret aldrig går igen på
+   samma sätt. De står bara bakom rubriken och betyder ingen genre. */
+.lasrar-ram{position:relative;isolation:isolate}
+.lasrar{position:absolute;left:calc(-1 * var(--marginal));right:calc(-1 * var(--marginal));top:-14px;height:84px;z-index:-1;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent);
+  mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent)}
+.lasrar i{position:absolute;bottom:-10px;width:1px;height:320px;transform-origin:50% 100%;opacity:.3;
+  background:linear-gradient(to top,var(--g) 0,var(--g) 45%,transparent);animation:laser var(--varv) ease-in-out infinite alternate}
+.lasrar i:nth-child(1){left:18%;--g:var(--hardstyle);--fran:-58deg;--till:24deg;--varv:13s}
+.lasrar i:nth-child(2){left:52%;--g:var(--raw);--fran:48deg;--till:-36deg;--varv:17s}
+.lasrar i:nth-child(3){left:84%;--g:var(--hardcore);--fran:-20deg;--till:-64deg;--varv:11s}
+@keyframes laser{from{transform:rotate(var(--fran))}to{transform:rotate(var(--till))}}
+
+/* Bakgrunden står still när fliken inte syns. Webbläsaren saktar ner då
+   ändå, men det här gör att inget räknas alls. */
+.flik-dold body::after,.flik-dold::after,.flik-dold .lasrar i{animation-play-state:paused}
+
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit;color:inherit}
 /* iOS zoomar in på fält under 16 px och zoomar aldrig ut igen. */
@@ -818,6 +870,10 @@ html.ark-last{overflow:hidden}
    Det som går ut är kortare än det som kommer in. */
 @view-transition{navigation:auto}
 .topp{view-transition-name:topp}
+/* Riggen följer med mellan startsidan och releasesidan: den stora krymper
+   till den lägre och tillbaka, i stället för att tonas över. */
+.rigg{view-transition-name:rigg}
+::view-transition-group(rigg){animation-duration:320ms;animation-timing-function:var(--ease-ut)}
 ::view-transition-old(root){animation:sida-ut 140ms var(--ease-mjuk) both}
 ::view-transition-new(root){animation:sida-in var(--t-byt) var(--ease-ut) both}
 @keyframes sida-ut{to{opacity:0}}
@@ -839,6 +895,11 @@ html.ark-last{overflow:hidden}
 .puls{animation:puls var(--takt) var(--ease-studs) 2}
 .puls-en{animation:puls var(--takt) var(--ease-studs) 1}
 @keyframes puls{0%,100%{transform:none}35%{transform:scale(1.08)}}
+
+/* Medan ett klipp spelar pulsar spelknappen i takten, 150 BPM. Det är den
+   enda pulsen som går i loop, och bara så länge det låter (rorelse.js). */
+.ljud-spelar .fs-play,.ljud-spelar .q-play{animation:slag var(--takt) var(--ease-mjuk) infinite}
+@keyframes slag{0%,100%{transform:none}25%{transform:scale(1.06)}}
 
 /* Rätt svar: en ljusblixt i genrens färg över rutan, och utfallet pulsar.
    Fel svar: en liten skakning. Ett tryck, ett svar. */

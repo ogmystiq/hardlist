@@ -59,7 +59,7 @@
 
 /* ---------- Liten popup: glider ner uppifrån och försvinner efter fem sekunder ---------- */
 
-.bm-toast{box-sizing:border-box;position:fixed;z-index:1000;top:calc(10px + env(safe-area-inset-top,0px));left:12px;right:12px;max-width:420px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 14px 10px 10px;border-radius:18px;background:#251D31;color:#F6F2FB;text-decoration:none;box-shadow:0 14px 36px rgba(0,0,0,.5);animation:bm-toast 5s cubic-bezier(.2,.9,.3,1) both}
+.bm-toast{box-sizing:border-box;position:fixed;z-index:1000;top:calc(10px + env(safe-area-inset-top,0px));left:12px;right:12px;max-width:420px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 14px 10px 10px;border-radius:18px;background:#1A1A1F;color:#F6F2FB;text-decoration:none;box-shadow:0 14px 36px rgba(0,0,0,.5);animation:bm-toast 5s cubic-bezier(.2,.9,.3,1) both}
 .bm-toast:focus-visible{outline:2px solid #3DDCF0;outline-offset:2px}
 .bm-svep{position:absolute;inset:0;border-radius:18px;background:linear-gradient(100deg,transparent 30%,rgba(246,242,251,.14) 50%,transparent 70%);background-size:250% 100%;animation:bm-svep 1.2s .5s ease-out both}
 .bm-pop{display:flex;animation:bm-pop .7s .3s cubic-bezier(.2,1.6,.4,1) both}
@@ -75,7 +75,7 @@
 /* ---------- Firandet: bara för de extremt sällsynta ---------- */
 
 .bm-last{overflow:hidden}
-.bm-fira{position:fixed;z-index:1001;inset:0;overflow:hidden;background:#100C17;color:#F6F2FB;animation:bm-tona .2s ease-out}
+.bm-fira{position:fixed;z-index:1001;inset:0;overflow:hidden;background:#070708;color:#F6F2FB;animation:bm-tona .2s ease-out}
 .bm-fira-inne{box-sizing:border-box;position:relative;height:100%;max-width:440px;margin:0 auto;padding:clamp(40px,11vh,96px) 28px calc(28px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;text-align:center;overflow-y:auto}
 .bm-fira-over{font-size:15px;font-weight:700;color:#B9AFC9}
 /* Lasrarna och blixten utgår från badgens mitt, oavsett skärmens höjd. */
@@ -87,7 +87,7 @@
 .bm-fira-niva{margin-top:12px;font-size:15px;font-weight:600}
 .bm-fira-text{margin:10px 0 0;max-width:30ch;font-size:16px;line-height:1.5;color:#D9D1E6}
 .bm-fira-knappar{margin-top:auto;padding-top:24px;width:100%;display:flex;flex-direction:column;gap:10px}
-.bm-knapp{display:flex;align-items:center;justify-content:center;min-height:48px;border:0;border-radius:999px;background:#251D31;color:#F6F2FB;font:inherit;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer}
+.bm-knapp{display:flex;align-items:center;justify-content:center;min-height:48px;border:0;border-radius:999px;background:#1A1A1F;color:#F6F2FB;font:inherit;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer}
 .bm-knapp-rosa{min-height:52px;background:#FF3B6B;color:#100C17}
 .bm-knapp:focus-visible{outline:2px solid #3DDCF0;outline-offset:2px}
 .bm-textin{animation:bm-textin .5s .6s ease-out both}

@@ -192,6 +192,26 @@
     lager.querySelector('button').focus({ preventScroll: true });
   }
 
+  /* ---------- Spelknappen i takt med klippet ---------- */
+
+  /* Spelen skapar sina spelare med new Audio() utan att lägga dem i sidan,
+     så deras händelser når aldrig dokumentet. Varje spelare kopplas därför
+     första gången den startas. Medan ljudet går sätts .ljud-spelar på sidan,
+     och spelknappen pulsar i 150 BPM. Den slutar när ljudet slutar. */
+  if (typeof HTMLMediaElement !== 'undefined'){
+    const kopplade = new WeakSet();
+    const spelande = new Set();
+    const satt = () => document.documentElement.classList.toggle('ljud-spelar', spelande.size > 0);
+    const koppla = a => {
+      if (kopplade.has(a)) return;
+      kopplade.add(a);
+      a.addEventListener('playing', () => { spelande.add(a); satt(); });
+      ['pause', 'ended', 'emptied', 'error'].forEach(h => a.addEventListener(h, () => { spelande.delete(a); satt(); }));
+    };
+    const spela0 = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function(){ koppla(this); return spela0.apply(this, arguments); };
+  }
+
   window.hardlistRorelse = { stilla, spela, raknaUpp, byt, rang, fira };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bevaka);
   else bevaka();
