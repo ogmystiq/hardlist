@@ -192,7 +192,7 @@ h3{font-size:22px;font-weight:800;line-height:1}
 }
 
 .hoppa{
-  position:absolute;left:var(--marginal);top:-100px;z-index:20;
+  position:absolute;left:var(--marginal);top:-100px;z-index:30;
   padding:12px 20px;border-radius:var(--horn);background:var(--text);color:var(--mork-text);font-weight:700;
 }
 .hoppa:focus{top:12px}
@@ -871,7 +871,9 @@ html.ark-last{overflow:hidden}
    Transitions. Toppen och menyn står still, så att bara innehållet byts.
    Det som går ut är kortare än det som kommer in. */
 @view-transition{navigation:auto}
-.topp{view-transition-name:topp}
+/* Namnet gör toppen till en egen lagernivå. Utan z-index hamnade då
+   mobilmenyn, som ligger i toppen, under releaseraderna. */
+.topp{view-transition-name:topp;position:relative;z-index:20}
 /* Riggen följer med mellan startsidan och releasesidan: den stora krymper
    till den lägre och tillbaka, i stället för att tonas över. */
 .rigg{view-transition-name:rigg}
