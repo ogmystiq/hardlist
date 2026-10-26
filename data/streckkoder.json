@@ -24,12 +24,6 @@
       "spotify": "https://open.spotify.com/album/54aBgzYq0hHNy7sBqgfiW3",
       "kollad": "2026-10-07"
     },
-    "8721244825403": {
-      "titel": "Welcome To Madness Vol. II",
-      "datum": "2026-09-25",
-      "spotify": "https://open.spotify.com/album/1NGHz4DzmMzXWpUmUYnwO3",
-      "kollad": "2026-10-07"
-    },
     "5064079589823": {
       "titel": "Bittersweet",
       "datum": "2026-10-08",
@@ -545,6 +539,12 @@
       "datum": "2026-10-23",
       "spotify": "https://open.spotify.com/album/4UiLoBnfzjWlZp9Xz1i0qy",
       "kollad": "2026-10-24"
+    },
+    "8721569931032": {
+      "titel": "For the Hardcore EP",
+      "datum": "2026-10-26",
+      "spotify": "https://open.spotify.com/album/0EbLtWHOcynI3D898LHGHb",
+      "kollad": "2026-10-26"
     }
   },
   "avvisade": {
@@ -717,15 +717,6 @@
       ],
       "datum": "2026-09-30",
       "skal": "UPC-träff med fel artist: Fēnix (5esiMVrZBwLN8iPqJisqV2)",
-      "kollad": "2026-10-07"
-    },
-    "3701771123314": {
-      "titel": "ROMANCE RODEO",
-      "fran": [
-        "I:gor"
-      ],
-      "datum": "2026-09-25",
-      "skal": "UPC-träff med fel artist: IGOR (4k9plDbRTvmEIQWcSGyWbI)",
       "kollad": "2026-10-07"
     },
     "729771548169": {
@@ -1403,6 +1394,24 @@
       "datum": "2026-10-23",
       "skal": "ingen UPC-träff, och titeln saknas bland JAZZYs senaste på Spotify",
       "kollad": "2026-10-25"
+    },
+    "700224727034": {
+      "titel": "GŁOSY",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-10-25",
+      "skal": "UPC-träff med fel artist: BaQ (4a55DORXOSzeseSJhHPbLr)",
+      "kollad": "2026-10-26"
+    },
+    "7333596529451": {
+      "titel": "La otra versión 9 de septiembre",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-10-25",
+      "skal": "UPC-träff med fel artist: Fenix (7HQhGjQRRyHpsJbGUyvMgI)",
+      "kollad": "2026-10-26"
     }
   }
 }

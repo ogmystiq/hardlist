@@ -1,163 +1,13 @@
 [
   {
-    "artist": "Radical Redemption × Bössels",
-    "title": "Quiet Children",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/1Kw8bEYg9GSxKy46Ga4a5h",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02abb0fca632c70286efde4f6e"
-  },
-  {
-    "artist": "Brennan Heart × Jonathan Mendelsohn",
-    "title": "Come As One",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/15w3AzPWC3rEN9mLbyLPB3",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e026350ec270db2f5b3899fe307"
-  },
-  {
-    "artist": "Hard Driver",
-    "title": "Spark Inside",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/4EwiBLSxRcNFQEsc0Yva3S",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0212d5aba796aea3aa80167ba0"
-  },
-  {
-    "artist": "Riot Shift × Teal",
-    "title": "PSYCHO CITY (Faceless Anthem 2026)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/7rY1eC6EcmbYvhVfl9R0tM",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0227a4d2f8af3e708712888dff"
-  },
-  {
-    "artist": "Porter Robinson × Vertile",
-    "title": "Easier to Love You (Vertile Remix)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/57TG23PChoWiRmbzI8BRrp",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e022e3f4ad3c3d979765b19aa98"
-  },
-  {
-    "artist": "Chapter V",
-    "title": "PsychOSis",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/4IFTgnqZM9jvAmIEDJwd7f",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e022c0d3ab50afe5acdb1ffbd44"
-  },
-  {
-    "artist": "The Saints × Mutilator",
-    "title": "KICKPONG",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/7JqplJtsiA0oypELsRAkXu",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02dc9a7106f89d60fce53e1dc3"
-  },
-  {
-    "artist": "MORTARIUM × Andy the Core",
-    "title": "TAKE CONTROL",
+    "artist": "Paranoizer",
+    "title": "For the Hardcore EP",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/6dIZrss5gYtL4RsDgBzYH5",
+    "date": "2026-10-26",
+    "url": "https://open.spotify.com/album/0EbLtWHOcynI3D898LHGHb",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0231a818eaeb0ad03ce631001d"
-  },
-  {
-    "artist": "Demi Kanon",
-    "title": "Fall Behind (DXCADE Edit)",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/6FhmihTqiPP4vpmMf4STfx",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e025936815fa5962681a80f2d5f"
-  },
-  {
-    "artist": "Crude Intentions × Dr Rude × Ruthless × Dr Ruthless",
-    "title": "Rave Cave",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/4hUmmfk7QEvwBZTtbGQbcN",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e025b0a50a523bfd8cfd4b621b4"
-  },
-  {
-    "artist": "Novah × Marie Vaunt",
-    "title": "Bring Some Acid",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/2zcQ4bAMsYEXtZQyvyRsZr",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0200ce7aea054172a561d72412"
-  },
-  {
-    "artist": "Samuel Moriero",
-    "title": "GAS GOIN UP",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/5OMAj7yRq8x442yOx5nI5X",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02191229c44d9a54790cc21c6a"
-  },
-  {
-    "artist": "The Straikerz",
-    "title": "Oye Papi",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/4yHBRNEhdchHtMdW1i74Dk",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e026630807f1b30d821202da388"
-  },
-  {
-    "artist": "GLDY LX × Pat B",
-    "title": "G.I. Joe",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/6IDkfovA7rCLxhQwRxzxYa",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e022336a186a2aff7e613c9de14"
-  },
-  {
-    "artist": "Hysta × Soulblast",
-    "title": "Gravé dans la roche",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/6ZwE4oBt2d7BfKw6LZpXnT",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0267a3d5340637cc7e9f95a2d2"
-  },
-  {
-    "artist": "Billx",
-    "title": "23H23",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-10-23",
-    "url": "https://open.spotify.com/album/4UiLoBnfzjWlZp9Xz1i0qy",
-    "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02b0b7bb0e1d49a9730832ba2a"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0218a598f871ba7ee4728d17ff"
   },
   {
     "artist": "Nosferatu",
@@ -170,34 +20,164 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e02520052cd1b0729abacd2eb09"
   },
   {
-    "artist": "The Dope Doctor",
-    "title": "Make It Bun Dem",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-22",
-    "url": "https://open.spotify.com/album/2mWH4yPDAsHPSkPGvfqNO3",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0282739c5311a0a11b5421a639"
+    "artist": "Billx",
+    "title": "23H23",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/4UiLoBnfzjWlZp9Xz1i0qy",
+    "typ": "album",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b0b7bb0e1d49a9730832ba2a"
   },
   {
-    "artist": "Darren Styles × TOZA",
-    "title": "GIVE IT TO ME",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-10-22",
-    "url": "https://open.spotify.com/album/2TBpNGoinXQc6qCi60I2El",
+    "artist": "Hysta × Soulblast",
+    "title": "Gravé dans la roche",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/6ZwE4oBt2d7BfKw6LZpXnT",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02988d9fb0a2bfa4cffb60a584"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0267a3d5340637cc7e9f95a2d2"
   },
   {
-    "artist": "Flux Overload",
-    "title": "Brace For Impact",
+    "artist": "GLDY LX × Pat B",
+    "title": "G.I. Joe",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-10-22",
-    "url": "https://open.spotify.com/album/43JiRgbhcQwq2a6x9vpZqO",
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/6IDkfovA7rCLxhQwRxzxYa",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02308013ca834c6955ee7b049f"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e022336a186a2aff7e613c9de14"
+  },
+  {
+    "artist": "The Straikerz",
+    "title": "Oye Papi",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/4yHBRNEhdchHtMdW1i74Dk",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e026630807f1b30d821202da388"
+  },
+  {
+    "artist": "Samuel Moriero",
+    "title": "GAS GOIN UP",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/5OMAj7yRq8x442yOx5nI5X",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02191229c44d9a54790cc21c6a"
+  },
+  {
+    "artist": "Novah × Marie Vaunt",
+    "title": "Bring Some Acid",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/2zcQ4bAMsYEXtZQyvyRsZr",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0200ce7aea054172a561d72412"
+  },
+  {
+    "artist": "Crude Intentions × Dr Rude × Ruthless × Dr Ruthless",
+    "title": "Rave Cave",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/4hUmmfk7QEvwBZTtbGQbcN",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e025b0a50a523bfd8cfd4b621b4"
+  },
+  {
+    "artist": "Demi Kanon",
+    "title": "Fall Behind (DXCADE Edit)",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/6FhmihTqiPP4vpmMf4STfx",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e025936815fa5962681a80f2d5f"
+  },
+  {
+    "artist": "MORTARIUM × Andy the Core",
+    "title": "TAKE CONTROL",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/6dIZrss5gYtL4RsDgBzYH5",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0231a818eaeb0ad03ce631001d"
+  },
+  {
+    "artist": "The Saints × Mutilator",
+    "title": "KICKPONG",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/7JqplJtsiA0oypELsRAkXu",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02dc9a7106f89d60fce53e1dc3"
+  },
+  {
+    "artist": "Chapter V",
+    "title": "PsychOSis",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/4IFTgnqZM9jvAmIEDJwd7f",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e022c0d3ab50afe5acdb1ffbd44"
+  },
+  {
+    "artist": "Porter Robinson × Vertile",
+    "title": "Easier to Love You (Vertile Remix)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/57TG23PChoWiRmbzI8BRrp",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e022e3f4ad3c3d979765b19aa98"
+  },
+  {
+    "artist": "Riot Shift × Teal",
+    "title": "PSYCHO CITY (Faceless Anthem 2026)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/7rY1eC6EcmbYvhVfl9R0tM",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0227a4d2f8af3e708712888dff"
+  },
+  {
+    "artist": "Hard Driver",
+    "title": "Spark Inside",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/4EwiBLSxRcNFQEsc0Yva3S",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0212d5aba796aea3aa80167ba0"
+  },
+  {
+    "artist": "Brennan Heart × Jonathan Mendelsohn",
+    "title": "Come As One",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/15w3AzPWC3rEN9mLbyLPB3",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e026350ec270db2f5b3899fe307"
+  },
+  {
+    "artist": "Radical Redemption × Bössels",
+    "title": "Quiet Children",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-23",
+    "url": "https://open.spotify.com/album/1Kw8bEYg9GSxKy46Ga4a5h",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02abb0fca632c70286efde4f6e"
   },
   {
     "artist": "Thyron",
@@ -210,14 +190,34 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e02e14240aa12656daa5db61a5f"
   },
   {
-    "artist": "Vazooka",
-    "title": "GTFU",
+    "artist": "Flux Overload",
+    "title": "Brace For Impact",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-10-18",
-    "url": "https://open.spotify.com/album/0YAVz50gXavEpo0essoat4",
+    "date": "2026-10-22",
+    "url": "https://open.spotify.com/album/43JiRgbhcQwq2a6x9vpZqO",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02fc4fbaab6f35d5077f2a4063"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02308013ca834c6955ee7b049f"
+  },
+  {
+    "artist": "Darren Styles × TOZA",
+    "title": "GIVE IT TO ME",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-22",
+    "url": "https://open.spotify.com/album/2TBpNGoinXQc6qCi60I2El",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02988d9fb0a2bfa4cffb60a584"
+  },
+  {
+    "artist": "The Dope Doctor",
+    "title": "Make It Bun Dem",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-10-22",
+    "url": "https://open.spotify.com/album/2mWH4yPDAsHPSkPGvfqNO3",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0282739c5311a0a11b5421a639"
   },
   {
     "artist": "Sara Landry",
@@ -248,15 +248,5 @@
     "url": "https://open.spotify.com/album/04NAzAnjuK7vQvahkSeFYm",
     "typ": "album",
     "omslag": "https://i.scdn.co/image/ab67616d00001e0293a374010c1a81d58db80759"
-  },
-  {
-    "artist": "House Of Madness × The Prophet × Da Mouth of Madness",
-    "title": "Welcome To Madness Vol. II",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-09-25",
-    "url": "https://open.spotify.com/album/1NGHz4DzmMzXWpUmUYnwO3",
-    "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e023bc5013abcbdd794306f9968"
   }
 ]
