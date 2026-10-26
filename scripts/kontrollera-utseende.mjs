@@ -5,6 +5,7 @@
    - att knappar och länkar går att träffa med tummen, minst 44 px höga.
      Bara på mobil, som CLAUDE.md säger: på dator pekar man med musen.
    - att texten syns mot sin bakgrund, med WCAG:s krav på kontrast
+   - att fokus står kvar i genreriggen när den ritas om efter ett tryck
 
    Kräver att den lokala servern redan kör, i ett annat fönster:
 
@@ -208,6 +209,30 @@ try {
     }
     await ctx.close();
   }
+
+  /* Riggen ritas om vid varje tryck. Fokus ska stå kvar i den, annars kastas
+     den som använder tangentbord eller skärmläsare upp till sidans början. */
+  const ctx = await webblasare.newContext({ viewport: { width: 360, height: 780 } });
+  const sida = await ctx.newPage();
+  for (const adress of ['/', '/releaser/']){
+    await sida.goto(BAS + adress, { waitUntil: 'networkidle', timeout: 15000 }).catch(() => {});
+    const lampa = sida.locator('.rigg-lampa[data-genre="raw"]');
+    if (!(await lampa.count())){ fel.push(adress + ': riggen ritades inte'); continue; }
+    const fokus = () => sida.evaluate(() => {
+      const a = document.activeElement;
+      return a && a.closest('.rigg') ? (a.dataset.genre || a.dataset.fokus || 'riggen') : (a ? a.tagName : 'inget');
+    });
+    await lampa.focus();
+    await sida.keyboard.press('Enter');
+    let f = await fokus();
+    if (f !== 'raw') fel.push(adress + ': fokus hamnade på ' + f + ' efter Enter på en lampa');
+    await sida.locator('.rigg-alla').focus();
+    await sida.keyboard.press('Enter');
+    f = await fokus();
+    if (!['hardstyle', 'raw', 'uptempo', 'hardcore', 'techno'].includes(f)) fel.push(adress + ': fokus hamnade på ' + f + ' efter Visa alla');
+    granskade++;
+  }
+  await ctx.close();
 } finally {
   await webblasare.close();
 }

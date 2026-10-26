@@ -497,7 +497,9 @@ h1 em{font-style:normal}
 /* Vald lampa: en vit ring runt lampan. Käglan behåller sin längd, så att den
    alltid visar antalet, och de andra dämpas. */
 .rigg-lampa[aria-pressed="true"] .rigg-huvud{box-shadow:inset 0 -3px 0 var(--g),0 0 0 2px var(--text)}
-.rigg-lampa[aria-pressed="true"] .rigg-namn{color:var(--text)}
+/* Namnet stryks under också, så att valet syns lika tydligt som sajtens
+   andra valda knappar och inte bara på den lilla lampan. */
+.rigg-lampa[aria-pressed="true"] .rigg-namn{color:var(--text);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .har-val .rigg-lampa[aria-pressed="false"] .rigg-kagla::before{opacity:.28}
 .rigg-lever{display:grid;gap:2px;min-width:0;margin-top:12px;font-size:14px;color:var(--text-2)}
 .rigg-lever span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

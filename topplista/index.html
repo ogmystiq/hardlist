@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25e">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26">
 <style>
 .q{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px;padding-top:4px}
 .q-rubrik{font-size:38px}
@@ -49,6 +49,7 @@
 .q-flikar .chip{justify-content:center;min-height:48px;font-weight:750;background:var(--yta-2)}
 .q-spel{display:flex;flex-wrap:wrap;gap:8px}
 .q-spel .chip{min-height:44px;padding:0 14px;background:var(--yta-2);white-space:nowrap}
+.q-flikar .chip:hover,.q-spel .chip:hover{background:#26262C;color:var(--text)}
 .q-flikar .chip[aria-pressed="true"],.q-spel .chip[aria-pressed="true"]{background:var(--text);color:var(--mork-text)}
 .q-forsok{margin-left:10px;min-height:44px;background:var(--yta-2);color:var(--text)}
 
@@ -361,11 +362,20 @@ document.getElementById('qSpel').addEventListener('click', function(e){
   if (b) valj({ spel: b.dataset.spel });
 });
 
-/* Försök igen glömmer det misslyckade svaret och hämtar samma lista på nytt. */
-document.getElementById('qRader').addEventListener('click', function(e){
+/* Försök igen glömmer det misslyckade svaret och hämtar samma lista på nytt.
+   Knappen ritas om, så fokus flyttas till den nya knappen eller, när listan
+   kom, till listans rubrik, i stället för att hamna överst på sidan. */
+function fokusEfter(lista, rubrik){
+  const ny = document.querySelector(lista + ' [data-forsok]');
+  const mal = ny || document.getElementById(rubrik);
+  if (!ny) mal.setAttribute('tabindex', '-1');
+  mal.focus({ preventScroll: true });
+}
+document.getElementById('qRader').addEventListener('click', async function(e){
   if (!e.target.closest('[data-forsok]')) return;
   delete listor[spel];
-  ladda();
+  await ladda();
+  fokusEfter('#qRader', 'qListaRubrik');
 });
 
 /* ---------- rankat ---------- */
@@ -432,10 +442,11 @@ document.getElementById('qRkGenrer').addEventListener('click', function(e){
   laddaRankat();
 });
 
-document.getElementById('qRkRader').addEventListener('click', function(e){
+document.getElementById('qRkRader').addEventListener('click', async function(e){
   if (!e.target.closest('[data-forsok]')) return;
   delete rkListor[rkGenre];
-  laddaRankat();
+  await laddaRankat();
+  fokusEfter('#qRkRader', 'qRkRubrik');
 });
 
 async function start(){

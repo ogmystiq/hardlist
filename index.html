@@ -33,7 +33,7 @@
 <link rel="manifest" href="/site.webmanifest">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25e">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26">
 <style>
 /* Startsidan ska få den som kommer hit att stanna. Överst genreriggen,
    veckans släpp som ljus, och direkt under den dagens två spel som en tunn
@@ -676,7 +676,7 @@
       <div id="rigg"></div>
 
       <div class="spelrad">
-        <a class="spel-tunn" id="fragaKnapp" href="/quiz/" aria-labelledby="fragaRubrik fragaLank">
+        <a class="spel-tunn" id="fragaKnapp" href="/quiz/" aria-labelledby="fragaRubrik fragaText fragaLank">
           <h2 id="fragaRubrik">Dagens fråga</h2>
           <span class="spel-tunn-text" id="fragaText">En fråga om scenen, 30 sekunder.</span>
           <span class="spel-tunn-status">
@@ -685,7 +685,7 @@
           </span>
           <span class="spel-tunn-lank" id="fragaLank">Öppna frågan</span>
         </a>
-        <a class="spel-tunn" id="latKnapp" href="/latspel/" aria-labelledby="latRubrik latLank">
+        <a class="spel-tunn" id="latKnapp" href="/latspel/" aria-labelledby="latRubrik latText latLank">
           <h2 id="latRubrik">Dagens låt</h2>
           <span class="spel-tunn-text" id="latText">En låt, från en halv sekund.</span>
           <span class="spel-tunn-lank" id="latLank">Gissa låten</span>
@@ -780,7 +780,7 @@
 </footer>
 
 <script src="/rader.js"></script>
-<script src="/rigg.js?v=2026-10-25"></script>
+<script src="/rigg.js?v=2026-10-26"></script>
 <script>
 /* Reservkopia av data/events.json, så att "Snart" visar något även när
    filen inte går att hämta. Fylls av scripts/bygg-metadata.mjs mellan
@@ -1179,16 +1179,16 @@ const svenskIdag = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Eur
 
 /* Riggen överst är också filtret för listan. releaser är null tills
    hämtningen lyckats, och då ritar riggen felet i stället för nollor. */
-let releaser = null, riggStatus = null, filter = 'alla', hamtningFel = false;
+let releaser = null, riggStatus = null, filter = 'alla', hamtningFel = false, hamtar = false;
 
 function ritaRigg(){
   window.hardlistRigg.rita($('rigg'), {
-    releaser: releaser || [], status: riggStatus, vald: filter, fel: hamtningFel, valj
+    releaser: releaser || [], status: riggStatus, vald: filter, fel: hamtningFel, laddar: hamtar, valj
   });
 }
 
 function valj(g){
-  if (g === 'forsok'){ laddaReleaser(); return; }
+  if (g === 'forsok'){ hamtar = true; ritaRigg(); laddaReleaser(); return; }
   /* Ett andra tryck på samma lampa visar alla igen. */
   filter = (g === 'alla' || g === filter) ? 'alla' : g;
   ritaRigg();
@@ -1235,11 +1235,14 @@ async function laddaReleaser(){
     hamtningFel = false;
   } catch(e){
     hamtningFel = true;
+    hamtar = false;
     ritaRigg();
+    /* Felet och Försök igen står i riggen. Listan säger det inte en gång till. */
     $('nyttVal').hidden = true;
-    $('nyttLista').innerHTML = '<p class="tom">Releaserna gick inte att hämta. Ladda om sidan om en stund.</p>';
+    $('nyttLista').innerHTML = '';
     return;
   }
+  hamtar = false;
   riggStatus = await st;
   ritaRigg();
   ritaNytt();

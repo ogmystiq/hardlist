@@ -62,6 +62,7 @@ lika('ett släpp för sju dagar sedan räknas inte', R.rakna([{ genre: 'raw', da
 lika('ett släpp för sex dagar sedan räknas', R.rakna([{ genre: 'raw', date: '2026-10-19' }]).summa, 1);
 lika('ett album räknas som en singel', R.rakna([{ genre: 'raw', date: '2026-10-25', typ: 'album' }]).summa, 1);
 lika('euphoric räknas som hardstyle', R.rakna([{ genre: 'euphoric', date: '2026-10-24' }]).antal.hardstyle, 1);
+lika('ett släpp utan datum räknas inte', R.rakna([{ genre: 'raw' }, { genre: 'raw', date: 'okänt' }]).summa, 0);
 lika('tom lista', R.rakna([]), { summa: 0, antal: { hardstyle: 0, raw: 0, uptempo: 0, hardcore: 0, techno: 0 } });
 
 /* Ljusets längd: delat med veckans största antal, men aldrig med mindre än 6. */
@@ -95,6 +96,10 @@ sant('fel: ingen lampa', !trasig.includes('rigg-lampa'));
 sant('fel: ingen siffra', !trasig.includes('rigg-antal'));
 sant('fel: säger vad som hänt', trasig.includes('Releaserna gick inte att hämta.'));
 sant('fel: knappen Försök igen', /<button[^>]*data-genre="forsok"[^>]*>Försök igen<\/button>/.test(trasig));
+
+const laddar = R.markup({ laddar: true });
+sant('laddar: säger att den hämtar', laddar.includes('Hämtar releaserna.'));
+sant('laddar: ingen lampa och ingen siffra', !laddar.includes('rigg-lampa') && !laddar.includes('rigg-antal'));
 
 lika('igår', R.uppdateradText({ uppdaterad: '2026-10-24T05:14:00Z' }), 'Uppdaterad igår 07:14');
 lika('äldre', R.uppdateradText({ uppdaterad: '2026-10-20T05:14:00Z' }), 'Uppdaterad den 20 oktober 07:14');

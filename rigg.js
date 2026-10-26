@@ -25,7 +25,8 @@
     let summa = 0;
     (releaser || []).forEach(r => {
       const n = dagarFran(r.date);
-      if (n < -VECKA || n > 0) return;
+      /* Skrivet så att ett släpp utan läsbart datum (NaN) inte räknas. */
+      if (!(n >= -VECKA && n <= 0)) return;
       antal[normGenre(r.genre)]++;
       summa++;
     });
@@ -67,6 +68,12 @@
   function markup(o){
     o = o || {};
     const bom = '<div class="rigg-bom" aria-hidden="true"></div>';
+    /* Medan Försök igen hämtar syns det att något händer. Raden kan ta
+       fokus, så att den som tryckte inte tappar sin plats på sidan. */
+    if (o.laddar){
+      return '<div class="rigg rigg-fel' + (o.kompakt ? ' rigg-kompakt' : '') + '">' + bom +
+        '<p class="rigg-besked" role="status" tabindex="-1" data-fokus="laddar">Hämtar releaserna.</p></div>';
+    }
     if (o.fel){
       return '<div class="rigg rigg-fel' + (o.kompakt ? ' rigg-kompakt' : '') + '">' + bom +
         '<p class="rigg-besked">Releaserna gick inte att hämta. ' +
@@ -107,10 +114,21 @@
   }
 
   /* Ritar om hela riggen varje gång. Klicket fångas på behållaren, och
-     valj får genren, 'alla' eller 'forsok'. */
+     valj får genren, 'alla' eller 'forsok'. Fokus står kvar på samma knapp
+     efter omritningen. Finns den inte längre, som Visa alla efter ett tryck
+     eller Försök igen när hämtningen lyckats, går fokus till första lampan,
+     annars till det som står där i stället. Utan det kastades den som
+     använder tangentbord eller skärmläsare upp till sidans början. */
   function rita(el, o){
     if (!el) return;
+    const aktiv = document.activeElement;
+    const nyckel = aktiv && el.contains(aktiv) ? (aktiv.dataset.genre || aktiv.dataset.fokus || null) : null;
     el.innerHTML = markup(o);
+    if (nyckel){
+      const mal = el.querySelector('[data-genre="' + nyckel + '"]:not([hidden])') ||
+        el.querySelector('.rigg-lampa, .rigg-forsok, [data-fokus]');
+      if (mal) mal.focus({ preventScroll: true });
+    }
     el.onclick = e => {
       const k = e.target.closest('[data-genre]');
       if (k && o && typeof o.valj === 'function') o.valj(k.dataset.genre);

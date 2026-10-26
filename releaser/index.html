@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25e">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26">
 <style>
 .tom{padding:20px 0;color:var(--text-2)}
 .sektionstext{font-size:15px;color:var(--text-2)}
@@ -169,7 +169,7 @@
 </footer>
 
 <script src="/rader.js"></script>
-<script src="/rigg.js?v=2026-10-25"></script>
+<script src="/rigg.js?v=2026-10-26"></script>
 <script>
 /* "Senaste sju dagarna" är idag och de sex dagarna före. */
 const VECKA = 6;
@@ -182,13 +182,13 @@ function dagRubrik(s){
   return VECKODAGAR[d.getDay()] + ' ' + d.getDate() + ' ' + MANADER[d.getMonth()] +
     (d.getFullYear() !== idag().getFullYear() ? ' ' + d.getFullYear() : '');
 }
-let releaser = [], kommande = [], filter = 'alla', sok = '', riggStatus = null, hamtningFel = false;
+let releaser = [], kommande = [], filter = 'alla', sok = '', riggStatus = null, hamtningFel = false, hamtar = false;
 
 /* Veckans antal räknas i rigg.js, samma som på startsidan. Riggen är också
    filtret: ett tryck på en lampa visar den genren, ett tryck till alla. */
 function ritaVecka(){
   window.hardlistRigg.rita(document.getElementById('rigg'), {
-    releaser, status: riggStatus, vald: filter, fel: hamtningFel, kompakt: true, valj
+    releaser, status: riggStatus, vald: filter, fel: hamtningFel, laddar: hamtar, kompakt: true, valj
   });
   if (hamtningFel){ document.getElementById('veckaNot').hidden = true; return; }
   const veckan = releaser.filter(r => { const n = dagarFran(r.date); return n >= -VECKA && n <= 0; });
@@ -250,7 +250,7 @@ function ritaLista(){
 }
 
 function valj(g){
-  if (g === 'forsok'){ ladda(); return; }
+  if (g === 'forsok'){ hamtar = true; ritaVecka(); ladda(); return; }
   filter = (g === 'alla' || g === filter) ? 'alla' : g;
   ritaVecka(); ritaLista();
 }
@@ -263,12 +263,14 @@ async function ladda(){
     if (!Array.isArray(data)) throw 0;
     releaser = data;
     hamtningFel = false;
+    hamtar = false;
   } catch(e){
     /* Ingen exempeldata: påhittade släpp är sämre än ett ärligt fel. */
     hamtningFel = true;
+    hamtar = false;
     ritaVecka();
-    document.getElementById('dagar').innerHTML =
-      '<p class="tom">Releaserna gick inte att hämta. Ladda om sidan om en stund.</p>';
+    /* Felet och Försök igen står i riggen. Listan säger det inte en gång till. */
+    document.getElementById('dagar').innerHTML = '';
     return;
   }
   riggStatus = await st;

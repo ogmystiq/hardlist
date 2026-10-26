@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-25e">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26">
 <style>
 .sektion{display:flex;flex-direction:column;gap:12px;margin-top:36px;scroll-margin-top:16px}
 .antal{font-size:15px;color:var(--text-2)}
@@ -738,7 +738,11 @@ function ritaEvents(){
         ? '<a class="knapp knapp-sek event-lank" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.urlText || 'Biljetter') + '</a>'
         : '<span class="event-pil' + (egenText ? '' : ' bara-pil') + '">' + (egenText ? esc(e.urlText) : '<span class="dold">Biljetter</span>') + pil + '</span>')
       : '<span class="event-saknas">Biljettlänk saknas</span>';
-    return (rad ? '<a class="event" href="' + esc(e.url) + '" target="_blank" rel="noopener">' : '<article class="event">') +
+    /* Hela raden är länken, så namnet får vara kort: eventet, vad länken
+       leder till och att den öppnas i en ny flik. */
+    const namnet = esc(e.name) + ', ' + d.getDate() + ' ' + MANADER[d.getMonth()] + ar + ', ' +
+      esc(egenText ? e.urlText : 'Biljetter').toLowerCase() + ' (öppnas i ny flik)';
+    return (rad ? '<a class="event" href="' + esc(e.url) + '" target="_blank" rel="noopener" aria-label="' + namnet + '">' : '<article class="event">') +
       '<div class="datum"><span class="datum-dag">' + d.getDate() + '</span>' +
         '<span class="datum-man">' + MANADER[d.getMonth()] + ar + '</span></div>' +
       '<div class="event-mitt"><h3 class="event-namn">' + esc(e.name) + '</h3>' +
