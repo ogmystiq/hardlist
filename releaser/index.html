@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-26">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26c">
 <style>
 .tom{padding:20px 0;color:var(--text-2)}
 .sektionstext{font-size:15px;color:var(--text-2)}
@@ -169,7 +169,7 @@
 </footer>
 
 <script src="/rader.js"></script>
-<script src="/rigg.js?v=2026-10-26"></script>
+<script src="/rigg.js?v=2026-10-26b"></script>
 <script>
 /* "Senaste sju dagarna" är idag och de sex dagarna före. */
 const VECKA = 6;
@@ -253,6 +253,7 @@ function valj(g){
   if (g === 'forsok'){ hamtar = true; ritaVecka(); ladda(); return; }
   filter = (g === 'alla' || g === filter) ? 'alla' : g;
   ritaVecka(); ritaLista();
+  window.hardlistRorelse && hardlistRorelse.byt(document.getElementById('dagar'));
 }
 
 async function ladda(){
@@ -289,6 +290,7 @@ document.getElementById('sok').addEventListener('input', e => { sok = e.target.v
 
 ladda();
 </script>
+<script src="/rorelse.js?v=2026-10-26"></script>
 <script src="/ram.js" defer></script>
 <script src="/inloggning.js" defer></script>
 <script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

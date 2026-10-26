@@ -210,7 +210,7 @@ egna färger och påverkas inte. Varken `badges.js`, `badges.css` eller
 |---|---|---|
 | ui-ux-pro-max: andra typsnitt, från Google Fonts | Bara Archivo, och inga anrop till Google | Archivo |
 | ui-ux-pro-max: grön eller guld som accentfärg | Rosa är enda färgen för huvudknappar | Rosa |
-| ui-ux-pro-max: sektioner tonar in när man rullar | Rörelse bara som svar på något man gör | Ingen rörelse |
+| ui-ux-pro-max: sektioner tonar in när man rullar | Rörelse där den betyder något (regeln ändrad 26 oktober) | Ingen intoning per sektion. Ett stort ögonblick, riggen, och rörelse som svar på det man gör, se uppgift 11 i planen |
 | design-system: aldrig råa färgvärden i komponenter | Inget emot | Ett lager med betydelser i `stil.css` |
 | frontend-design: undvik etiketter ovanför innehåll | Inget emot | Etiketterna står kvar, eftersom valen behöver dem |
 

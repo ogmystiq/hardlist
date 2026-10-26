@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-26">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26c">
 <style>
 .sektion{display:flex;flex-direction:column;gap:12px;margin-top:36px;scroll-margin-top:16px}
 .antal{font-size:15px;color:var(--text-2)}
@@ -779,6 +779,7 @@ document.getElementById('evFilter').addEventListener('click', e => {
     document.querySelectorAll('#evFilter [data-g]').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.g === genre)));
   }
   ritaEvents();
+  window.hardlistRorelse && hardlistRorelse.byt(document.getElementById('evLista'));
 });
 
 /* Google Kalender kan inte öppna webcal-länkar, där klistrar man in adressen.
@@ -828,6 +829,7 @@ document.getElementById('kopieraKal').addEventListener('click', async function()
 
 ladda();
 </script>
+<script src="/rorelse.js?v=2026-10-26"></script>
 <script src="/ram.js" defer></script>
 <script src="/inloggning.js" defer></script>
 <script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

@@ -81,14 +81,14 @@
     }
     const { summa, antal } = rakna(o.releaser);
     const vald = GENRER.includes(o.vald) ? o.vald : null;
-    const lampor = GENRER.map(g => {
+    const lampor = GENRER.map((g, i) => {
       const n = antal[g];
-      return '<button class="rigg-lampa" type="button" data-genre="' + g + '"' + (n ? '' : ' data-av') +
-        ' style="--g:var(--' + g + ');--l:' + langd(n, antal).toFixed(3) + '"' +
+      return '<button class="rigg-lampa' + (o.tands === g ? ' tands' : '') + '" type="button" data-genre="' + g + '"' + (n ? '' : ' data-av') +
+        ' style="--g:var(--' + g + ');--l:' + langd(n, antal).toFixed(3) + ';--i:' + i + '"' +
         ' aria-pressed="' + (vald === g) + '" aria-label="' + GENRE_NAMN[g] + ', ' + n + ' släpp">' +
         '<span class="rigg-huvud" aria-hidden="true"></span>' +
         '<span class="rigg-kagla" aria-hidden="true"></span>' +
-        '<b aria-hidden="true">' + n + '</b>' +
+        '<b aria-hidden="true" data-tal="' + n + '">' + n + '</b>' +
         '<span class="rigg-namn" aria-hidden="true">' + GENRE_NAMN[g] + '</span>' +
         '</button>';
     }).join('');
@@ -100,9 +100,9 @@
           (nytt ? '<span>Senast in: ' + esc(nytt.title || nytt.titel || '') + ', ' + esc(artister(nytt.artist)) + '</span>' : '') +
         '</p>'
       : '<p class="rigg-lever"><span>Inga släpp de senaste sju dagarna.</span></p>';
-    return '<div class="rigg' + (vald ? ' har-val' : '') + (o.kompakt ? ' rigg-kompakt' : '') + '">' +
+    return '<div class="rigg' + (vald ? ' har-val' : '') + (o.kompakt ? ' rigg-kompakt' : '') + (o.intro ? ' intro' : '') + '">' +
       '<div class="rigg-topp">' +
-        '<span class="rigg-antal">' + summa + '</span>' +
+        '<span class="rigg-antal" data-tal="' + summa + '">' + summa + '</span>' +
         '<span class="rigg-text">släpp de senaste sju dagarna</span>' +
         '<button class="chip rigg-alla" type="button" data-genre="alla"' + (vald ? '' : ' hidden') + '>Visa alla</button>' +
       '</div>' +
@@ -119,11 +119,32 @@
      eller Försök igen när hämtningen lyckats, går fokus till första lampan,
      annars till det som står där i stället. Utan det kastades den som
      använder tangentbord eller skärmläsare upp till sidans början. */
+  /* Siffrorna räknas upp på 400 ms, så att de är läsbara när ljuset står. */
+  const stilla = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){ return true; } };
+  function raknaUpp(rot){
+    if (stilla() || typeof requestAnimationFrame !== 'function') return;
+    const tal = [...rot.querySelectorAll('[data-tal]')].filter(e => Number(e.dataset.tal) > 0);
+    const start = performance.now(), TID = 400;
+    const steg = nu => {
+      const k = Math.min(1, (nu - start) / TID), e = 1 - Math.pow(1 - k, 3);
+      tal.forEach(el => { el.textContent = String(Math.round(Number(el.dataset.tal) * e)); });
+      if (k < 1) requestAnimationFrame(steg);
+    };
+    requestAnimationFrame(steg);
+  }
+
   function rita(el, o){
     if (!el) return;
+    o = o || {};
     const aktiv = document.activeElement;
     const nyckel = aktiv && el.contains(aktiv) ? (aktiv.dataset.genre || aktiv.dataset.fokus || null) : null;
-    el.innerHTML = markup(o);
+    /* Showen börjar bara första gången riggen ritas med intro, och lampan
+       som just valts tänds på nytt. Övriga omritningar står still. */
+    const forsta = !el.dataset.ritad;
+    const tands = o.vald && o.vald !== el.dataset.vald ? o.vald : null;
+    el.innerHTML = markup(Object.assign({}, o, { intro: o.intro && forsta && !o.fel && !o.laddar, tands }));
+    if (!o.fel && !o.laddar){ el.dataset.ritad = '1'; el.dataset.vald = o.vald || ''; }
+    if (o.intro && forsta && !o.fel && !o.laddar) raknaUpp(el);
     if (nyckel){
       const mal = el.querySelector('[data-genre="' + nyckel + '"]:not([hidden])') ||
         el.querySelector('.rigg-lampa, .rigg-forsok, [data-fokus]');

@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-26">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26c">
 <style>
 .q{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px;padding-top:4px}
 .q-rubrik{font-size:38px}
@@ -80,6 +80,12 @@
 .q-rader .p2 .plats{color:#C4CAD6}
 .q-rader .p3 .plats{color:#CD8A52}
 .q-jag-etikett{font-size:13px;color:var(--text-3)}
+/* Din rad lyser upp en gång, i två slag, när listan laddats. */
+.q-rader li.jag{position:relative;isolation:isolate}
+.q-rader li.jag.lyser::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--text);opacity:0;pointer-events:none;animation:lyser calc(var(--takt) * 2) var(--ease-mjuk) 1}
+@keyframes lyser{0%{opacity:0}25%{opacity:.16}100%{opacity:0}}
+.q-flytt{display:inline-flex;align-items:center;gap:4px;margin-left:8px;font-weight:700;color:var(--text)}
+.q-flytt svg{width:13px;height:13px}
 /* Titeln från rankat bredvid namnet, efter fem matcher. Färgen ligger på
    namnet, och titeln står alltid som text. */
 .q-rader .rang .rt-titel{margin-left:8px;font-size:13px}
@@ -322,12 +328,39 @@ function rita(){
     jag.innerHTML = 'Bara inloggade samlar poäng och syns i topplistan.';
   }
 
+  if (min) visaFlytt(t, min);
+
   /* Badgen vid namnet ritas när badges.js har laddats. Den laddas bara när
      någon i listan har en. */
   if (!badgesKlara && hardlistKonto.badges &&
       (lista.some(r => r.badge) || (min && min.badge))){
     hardlistKonto.badges().then(B => { badgesKlara = B; rita(); }).catch(() => {});
   }
+}
+
+/* Din egen rad lyser upp en gång när listan laddats, och en pil visar om du
+   gått upp eller ner sedan förra besöket. Förra placeringen sparas bara i
+   den här webbläsaren, en per spel och period, så inget behöver ändras i
+   databasen. Jämförelsen görs en gång per sidvisning, så att pilen står
+   kvar när man byter fram och tillbaka mellan listorna. */
+const flytt = {};
+const PIL_UPP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+const PIL_NER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>';
+function visaFlytt(t, min){
+  const nyckel = 'hardlist_topp_' + spel + '_' + period + (period === 'manad' && t.manad_datum ? '_' + t.manad_datum : '');
+  if (!(nyckel in flytt)){
+    let forut = null;
+    try { forut = Number(localStorage.getItem(nyckel)) || null; localStorage.setItem(nyckel, String(min.plats)); } catch(e){}
+    flytt[nyckel] = forut && forut !== min.plats ? forut - min.plats : 0;
+    const rad = document.querySelector('#qRader li.jag, #qJag li.jag');
+    if (rad && window.hardlistRorelse) hardlistRorelse.spela(rad, 'lyser');
+  }
+  const steg = flytt[nyckel];
+  const rang = document.querySelector('#qRader li.jag .rang, #qJag li.jag .rang');
+  if (!steg || !rang) return;
+  const n = Math.abs(steg);
+  rang.insertAdjacentHTML('beforeend', '<span class="q-flytt flyg-upp">' + (steg > 0 ? PIL_UPP + 'Upp ' : PIL_NER + 'Ner ') +
+    n + (n === 1 ? ' plats' : ' platser') + ' sedan sist</span>');
 }
 
 async function ladda(){
@@ -465,6 +498,7 @@ async function start(){
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
 else start();
 </script>
+<script src="/rorelse.js?v=2026-10-26"></script>
 <script src="/ram.js" defer></script>
 <script src="/inloggning.js" defer></script>
 <script data-goatcounter="https://hardlist.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

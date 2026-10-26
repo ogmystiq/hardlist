@@ -33,7 +33,7 @@
 <link rel="manifest" href="/site.webmanifest">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-26">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26c">
 <style>
 .q{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px;padding-top:4px}
 .q-rubrik{font-size:38px}
@@ -332,6 +332,7 @@ function ritaTopp(){
   }
 
   const s = konto || { poang: 0, svit: 0, basta: 0, antal: 0, ratt: 0, rang: 'Nybörjare' };
+  if (konto && window.hardlistRorelse) hardlistRorelse.rang(konto.rang);
   const traff = s.antal ? Math.round(s.ratt / s.antal * 100) : 0;
   /* Poäng, svit och nivå som tre rutor, som på den godkända skärmen. Resten
      av siffrorna står på en rad under. Nivån i vanlig textfärg. */
@@ -339,7 +340,9 @@ function ritaTopp(){
   box.innerHTML =
     '<div class="q-siffror">' +
       '<div class="q-ruta"><span>Poäng</span><b>' + tal(s.poang) + '</b></div>' +
-      '<div class="q-ruta"><span>Svit</span><b>' + s.svit + '</b></div>' +
+      /* Flamman slår upp i rorelse.js när sviten växt sedan förra gången. */
+      '<div class="q-ruta"' + (konto ? ' data-svit="' + s.svit + '" data-svit-nyckel="fraga"' : '') + '><span>Svit</span><b>' +
+        (s.svit >= 2 ? '<span class="svit-flamma" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/></svg></span>' : '') + s.svit + '</b></div>' +
       '<div class="q-ruta"><span>Nivå</span><b class="q-niva">' + esc(s.rang) + '</b></div>' +
     '</div>' +
     '<p class="q-mer">Längsta svit ' + s.basta + (s.basta === 1 ? ' dag' : ' dagar') +
@@ -861,6 +864,7 @@ async function start(){
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
 else start();
 </script>
+<script src="/rorelse.js?v=2026-10-26"></script>
 <script src="/ram.js" defer></script>
 <script src="/ljud.js" defer></script>
 <script src="/inloggning.js" defer></script>

@@ -49,6 +49,18 @@
   --glipa:2px;
   --fasning:10px;
 
+  /* Rörelse. Tiderna och kurvorna kommer ur UI UX Pro Max: kort för svar på
+     tryck, lite längre för det som kommer in, och det som går ut är kortare
+     än det som kommer in. Takten är 150 BPM, som hardstyle: ett slag är
+     0,4 sekunder, och pulser går i den. */
+  --t-snabb:150ms;
+  --t-byt:220ms;
+  --t-in:400ms;
+  --takt:400ms;
+  --ease-ut:cubic-bezier(.16,1,.3,1);
+  --ease-mjuk:cubic-bezier(.33,1,.68,1);
+  --ease-studs:cubic-bezier(.34,1.56,.64,1);
+
   /* Färg betyder alltid genre, aldrig dekoration. */
   --hardstyle:#3DDCF0;
   --raw:#FF3B6B;
@@ -507,6 +519,26 @@ h1 em{font-style:normal}
 .rigg-puls{display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:var(--text);vertical-align:1px}
 .rigg-besked{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-top:14px;font-size:15px;color:var(--text-2)}
 .rigg-forsok{background:var(--yta-2);color:var(--text)}
+/* Showen börjar: lamporna tänds en i taget och käglorna växer fram till sin
+   längd. Bara första gången riggen ritas på startsidan (rigg.js sätter
+   .intro). Namn och antal syns hela tiden, så att inget innehåll väntar.
+   Lamporna tänds utan flimmer, så att inget blinkar flera gånger i sekunden. */
+.rigg-huvud::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:0 0 3px 3px;background:#3A3A42;opacity:0}
+.rigg.intro .rigg-lampa{--d:calc(var(--i) * 70ms)}
+.rigg.intro .rigg-lampa:not([data-av]) .rigg-huvud::after{animation:lins-av 120ms linear var(--d) both}
+.rigg.intro .rigg-kagla::before{transform-origin:50% 0;animation:kagla-in 420ms var(--ease-ut) var(--d) both}
+.rigg.intro .rigg-kagla::after{animation:tona-in 200ms var(--ease-mjuk) calc(var(--d) + 260ms) both}
+@keyframes lins-av{from{opacity:1}to{opacity:0}}
+@keyframes kagla-in{from{opacity:0;transform:scaleY(0)}}
+@keyframes tona-in{from{opacity:0}}
+/* Vald lampa: den riktar sig lite och ger ett kort ljusflimmer, två dippar,
+   och siffran pulsar en gång i takten. */
+.rigg-lampa.tands .rigg-kagla{transform-origin:50% 0;animation:rikta var(--takt) var(--ease-mjuk) 1}
+.rigg-lampa.tands .rigg-kagla::before{animation:flimmer 200ms linear 1}
+.rigg-lampa.tands b{animation:puls var(--takt) var(--ease-studs) 1}
+@keyframes rikta{0%,100%{transform:none}40%{transform:rotate(-5deg)}}
+@keyframes flimmer{0%,100%{opacity:1}25%{opacity:.35}50%{opacity:1}75%{opacity:.5}}
+
 /* Den lägre riggen på releasesidan. Raden om uppdateringen står redan i
    sidfoten, och här ska första släppet hinna synas på mobilens första skärm. */
 .rigg-kompakt{--kagla:60px}
@@ -779,6 +811,106 @@ html.ark-last{overflow:hidden}
   .sidfot-status .sidfot-post{display:none}
 }
 
+/* ---------- Rörelse ---------- */
+
+/* Byte mellan sidor: en kort övertoning där webbläsaren stöder View
+   Transitions. Toppen och menyn står still, så att bara innehållet byts.
+   Det som går ut är kortare än det som kommer in. */
+@view-transition{navigation:auto}
+.topp{view-transition-name:topp}
+::view-transition-old(root){animation:sida-ut 140ms var(--ease-mjuk) both}
+::view-transition-new(root){animation:sida-in var(--t-byt) var(--ease-ut) both}
+@keyframes sida-ut{to{opacity:0}}
+@keyframes sida-in{from{opacity:0;transform:translateY(6px)}}
+
+/* Loggan: LIST tänds som en neonskylt första gången sidan laddas i ett
+   besök (ram.js sätter klassen). Två korta flimmer, sedan står den. */
+.neon .topp .logga span{animation:neon 520ms linear both}
+/* Två dippar: tänds svagt, slår på, flimrar en gång och står. Det håller
+   sig under tre blink per sekund. */
+@keyframes neon{
+  0%{opacity:.2}
+  30%{opacity:1}
+  45%{opacity:.4}
+  65%,100%{opacity:1}
+}
+
+/* En puls i takten, en eller två gånger. Aldrig som loop. */
+.puls{animation:puls var(--takt) var(--ease-studs) 2}
+.puls-en{animation:puls var(--takt) var(--ease-studs) 1}
+@keyframes puls{0%,100%{transform:none}35%{transform:scale(1.08)}}
+
+/* Rätt svar: en ljusblixt i genrens färg över rutan, och utfallet pulsar.
+   Fel svar: en liten skakning. Ett tryck, ett svar. */
+.blixt{position:relative;isolation:isolate}
+.blixt::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(70% 90% at 50% 40%,var(--blixt,var(--ratt)),transparent 70%);
+  opacity:0;animation:blixt var(--takt) var(--ease-mjuk) 1;
+}
+@keyframes blixt{0%{opacity:0}20%{opacity:.45}100%{opacity:0}}
+.skak{animation:skak 320ms var(--ease-mjuk) 1}
+@keyframes skak{0%,100%{transform:none}20%{transform:translateX(-6px)}45%{transform:translateX(5px)}70%{transform:translateX(-3px)}}
+/* "+x till rangen" flyger upp på plats. */
+.flyg-upp{display:inline-block;animation:flyg-upp var(--t-in) var(--ease-ut) both}
+@keyframes flyg-upp{from{opacity:0;transform:translateY(14px) scale(.9)}}
+/* Flamman vid sviten slår upp när sviten växer. */
+.svit-flamma{display:inline-block;width:.8em;height:.8em;margin-right:4px;vertical-align:-.05em;color:var(--uptempo)}
+.svit-flamma svg{width:100%;height:100%;fill:currentColor}
+.svit-flamma.slar-upp{transform-origin:50% 100%;animation:slar-upp calc(var(--takt) * 2) var(--ease-studs) 1}
+@keyframes slar-upp{0%{transform:scale(.6);opacity:.4}25%{transform:scale(1.35)}50%{transform:scale(.95)}75%{transform:scale(1.12)}100%{transform:none}}
+
+/* Huvudknappen: ett ljussvep vid hovring och en tydlig tryckrespons.
+   Svepet ligger i knappens eget färglager, som redan är klippt efter de
+   fasade hörnen, så det kan aldrig synas utanför dem. Ett lager som flyttas
+   med transform tar klippet med sig, därför flyttas här bakgrunden. Det är
+   undantaget från regeln om bara transform och opacity: hovring finns bara
+   med mus, alltså aldrig på mobilen, och lagret är litet. */
+/* Bara bilden sätts här, inte färgen, så att andra knappar behåller sin
+   egen bakgrund. Svepet står utanför knappen tills man hovrar. */
+.knapp::before{
+  background-image:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.42) 50%,transparent 58%);
+  background-repeat:no-repeat;background-size:260% 100%;background-position:160% 0;
+}
+@media (hover:hover){
+  .knapp:not(.knapp-sek):hover::before{animation:svep 700ms var(--ease-mjuk) 1}
+}
+@keyframes svep{from{background-position:160% 0}to{background-position:-60% 0}}
+.knapp{transition:transform 100ms var(--ease-mjuk),filter var(--t-snabb)}
+.knapp:active{transform:scale(.95)}
+
+/* Releaserader på dator: omslaget lyfts lite och får en svag glöd i genrens
+   färg bakom sig. Glöden ligger bakom omslaget, aldrig ovanpå. */
+.rad-vanster{position:relative;isolation:isolate}
+.rad-vanster::before{
+  content:"";position:absolute;left:0;top:50%;width:52px;height:52px;margin-top:-26px;z-index:-1;
+  border-radius:var(--horn);background:var(--g);filter:blur(14px);
+  opacity:0;transform:scale(.7);transition:opacity var(--t-byt) var(--ease-mjuk),transform var(--t-byt) var(--ease-mjuk);
+  pointer-events:none;
+}
+.omslag,.omslag-bild{transition:transform var(--t-byt) var(--ease-ut)}
+@media (hover:hover) and (min-width:860px){
+  a.rad:hover .rad-vanster::before{opacity:.55;transform:none}
+  a.rad:hover .omslag,a.rad:hover .omslag-bild{transform:translateY(-3px)}
+}
+
+/* Ny rang: ett kort firande över hela skärmen, i samma stil som firandet för
+   en ny badge. Ritas av rorelse.js. Strålarna sveper en gång och står sedan. */
+html.rang-last{overflow:hidden}
+.rang-fira{position:fixed;z-index:1001;inset:0;overflow:hidden;background:var(--bg);color:var(--text);animation:sida-in var(--t-byt) var(--ease-ut) both}
+.rang-fira-inne{box-sizing:border-box;position:relative;height:100%;max-width:440px;margin:0 auto;padding:clamp(40px,14vh,120px) 28px calc(28px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;text-align:center}
+.rang-fira-over{font-stretch:118%;font-size:13px;font-weight:650;color:var(--text-2)}
+.rang-fira-scen{position:relative;width:100%;height:150px;margin-top:10px}
+.rang-fira-stral{position:absolute;left:50%;top:0;width:3px;height:520px;margin-left:-1.5px;transform-origin:50% 0;background:linear-gradient(var(--text),transparent 75%);opacity:.35;transform:rotate(var(--v));animation:rang-stral calc(var(--takt) * 3) var(--ease-ut) both}
+@keyframes rang-stral{from{opacity:0;transform:rotate(calc(var(--v) * 2.4))}}
+.rang-fira-blixt{position:absolute;left:50%;top:10px;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:var(--text);animation:rang-blixt calc(var(--takt) * 2) var(--ease-ut) both}
+@keyframes rang-blixt{0%{transform:scale(.2);opacity:.9}100%{transform:scale(18);opacity:0}}
+.rang-fira-namn{margin:0;font-stretch:62%;font-weight:900;font-size:72px;line-height:.9;letter-spacing:-.01em;animation:rang-namn var(--t-in) var(--ease-studs) 120ms both}
+@keyframes rang-namn{from{opacity:0;transform:translateY(16px) scale(.92)}}
+.rang-fira-text{margin:14px 0 0;max-width:30ch;font-size:16px;line-height:1.5;color:var(--text-2)}
+.rang-fira-knapp{margin-top:auto;width:100%}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none !important}
 }

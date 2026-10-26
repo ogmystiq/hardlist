@@ -62,6 +62,7 @@ ram.js                  →  statusraden i sidfoten, läser data/status.json
 inloggning.js           →  inloggningen, laddas av varje sida
 rader.js                →  releaseraden, delad av startsidan och /releaser/
 rigg.js                 →  genreriggen, veckans släpp per genre, se nedan
+rorelse.js              →  animationerna som delas: puls, uppräkning, rangfirandet
 ljud.js                 →  avstängningen av iTunes-ljud och raden om förlyssningen
 badges.js, badges.css   →  badgesens utseende, texter och popuper, ritade i designen
 profilvy.js             →  profilens delar, delade av /konto/ och /profil/
@@ -118,10 +119,21 @@ inte i repot). Det viktigaste ur den:
 - Inga etiketter i VERSALER, inget monospace, inga tunna ramar runt allt,
   inga "A · B · C"-rader med mittpunkter och inga pilar i knapptexter.
 - Högst en nivå yta: en ruta i en ruta blir rader med luft emellan.
-- Rörelse bara som svar på något man gör, aldrig när sidan laddas. Undantag:
-  tagna extremt sällsynta badges rör sig hela tiden, och popupen och firandet
-  för en ny badge får visas när sidan laddas. Allt står still med
-  `prefers-reduced-motion`.
+- **Rörelse.** Korta, genomtänkta animationer när sidan laddas är tillåtna
+  där de betyder något, som riggen som tänds på startsidan och loggan som
+  tänds första gången i ett besök. Animationer som svar på det man gör är
+  välkomna. Fyra krav gäller alltid:
+  - Innehållet väntar aldrig på en animation. Allt går att läsa inom 400 ms.
+  - Inget loopar i onödan.
+  - Inget blinkar mer än tre gånger per sekund.
+  - Allt står still med `prefers-reduced-motion`.
+
+  Bara `transform` och `opacity` animeras, så att det går mjukt på mobil.
+  Tider och easing står som variabler överst i `stil.css` (`--t-…`,
+  `--ease-…`), och takten är 150 BPM, alltså 0,4 sekunder per slag (`--takt`).
+  Det gemensamma ligger i `rorelse.js`. Badges har sina egna regler: tagna
+  extremt sällsynta badges rör sig hela tiden, och popupen och firandet för
+  en ny badge får visas när sidan laddas.
 - Synligt fokus: 2 px cyan ring med 2 px avstånd.
 
 ---

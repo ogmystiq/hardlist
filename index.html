@@ -33,7 +33,7 @@
 <link rel="manifest" href="/site.webmanifest">
 
 <link rel="preload" href="/typsnitt/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/stil.css?v=2026-10-26">
+<link rel="stylesheet" href="/stil.css?v=2026-10-26c">
 <style>
 /* Startsidan ska få den som kommer hit att stanna. Överst genreriggen,
    veckans släpp som ljus, och direkt under den dagens två spel som en tunn
@@ -112,6 +112,19 @@
 .nasta-genrer{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--text-2)}
 .nasta-genrer span{display:inline-flex;align-items:center;gap:6px}
 .nasta-knappar{display:flex;flex-wrap:wrap;gap:8px}
+.nedrakning{display:flex;flex-direction:column;gap:8px;margin:2px 0}
+.ned-rubrik{font-size:14px;font-weight:700;color:var(--text-2)}
+.ned-tal{display:flex;gap:var(--glipa)}
+.ned-del{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px 6px;background:var(--yta-2);border-radius:var(--horn)}
+.ned-ord{font-size:13px;color:var(--text-2)}
+/* Siffran vänder som på en flip-klocka: den gamla fäller bort, den nya
+   fäller fram. Båda ligger i samma cell, så inget hoppar. */
+.flip{display:grid;perspective:240px;font-stretch:62%;font-weight:900;font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.flip-v{grid-area:1 / 1;justify-self:center;backface-visibility:hidden}
+.flip-v.in{animation:flip-in 320ms var(--ease-ut) both}
+.flip-v.ut{animation:flip-ut 200ms var(--ease-mjuk) both}
+@keyframes flip-in{from{opacity:0;transform:rotateX(-90deg)}}
+@keyframes flip-ut{to{opacity:0;transform:rotateX(90deg)}}
 
 .snart-lista{display:flex;flex-direction:column;gap:var(--glipa)}
 .snart-rad{
@@ -780,7 +793,8 @@
 </footer>
 
 <script src="/rader.js"></script>
-<script src="/rigg.js?v=2026-10-26"></script>
+<script src="/rigg.js?v=2026-10-26b"></script>
+<script src="/rorelse.js?v=2026-10-26"></script>
 <script>
 /* Reservkopia av data/events.json, så att "Snart" visar något även när
    filen inte går att hämta. Fylls av scripts/bygg-metadata.mjs mellan
@@ -1183,7 +1197,7 @@ let releaser = null, riggStatus = null, filter = 'alla', hamtningFel = false, ha
 
 function ritaRigg(){
   window.hardlistRigg.rita($('rigg'), {
-    releaser: releaser || [], status: riggStatus, vald: filter, fel: hamtningFel, laddar: hamtar, valj
+    releaser: releaser || [], status: riggStatus, vald: filter, fel: hamtningFel, laddar: hamtar, intro: true, valj
   });
 }
 
@@ -1193,6 +1207,7 @@ function valj(g){
   filter = (g === 'alla' || g === filter) ? 'alla' : g;
   ritaRigg();
   ritaNytt();
+  window.hardlistRorelse && hardlistRorelse.byt($('nyttLista'));
 }
 
 function ritaNytt(){
@@ -1284,19 +1299,70 @@ function kvarText(e, t){
   return 'Om ' + dagar + ' dagar';
 }
 
+/* Nedräkningen till nästa event: dagar, timmar och minuter som vänder som en
+   flip-klocka när en siffra ändras. Eventen har bara datum, ingen starttid,
+   så den räknar till dagens början i svensk tid och säger det: "Kvar till
+   6 november". Den räknar om varje halv minut men rör sig bara när en
+   siffra faktiskt byts. */
+let nedrakning = null;
+function midnattSvensk(datum){
+  const [y, m, d] = datum.split('-').map(Number);
+  const utc = new Date(Date.UTC(y, m - 1, d));
+  const sv = new Date(utc.toLocaleString('en-US', { timeZone: 'Europe/Stockholm' }));
+  const u = new Date(utc.toLocaleString('en-US', { timeZone: 'UTC' }));
+  return utc.getTime() - (sv - u);
+}
+function delar(ms){
+  const min = Math.max(0, Math.floor(ms / 60000));
+  return { d: Math.floor(min / 1440), t: Math.floor(min / 60) % 24, m: min % 60 };
+}
+const ORD = { d: ['dag', 'dagar'], t: ['timme', 'timmar'], m: ['minut', 'minuter'] };
+function ritaNedrakning(rot, mal, namn){
+  clearInterval(nedrakning);
+  rot.innerHTML = '<span class="ned-rubrik">Kvar till ' + namn + '</span><span class="ned-tal" aria-hidden="true">' +
+    ['d', 't', 'm'].map(k => '<span class="ned-del"><span class="flip" data-del="' + k + '"></span><span class="ned-ord" data-ord="' + k + '"></span></span>').join('') +
+    '</span>';
+  const stilla = window.hardlistRorelse ? hardlistRorelse.stilla() : true;
+  const uppdatera = forsta => {
+    const v = delar(mal - Date.now());
+    rot.setAttribute('aria-label', 'Kvar till ' + namn + ': ' + ['d', 't', 'm'].map(k => v[k] + ' ' + ORD[k][v[k] === 1 ? 0 : 1]).join(', '));
+    ['d', 't', 'm'].forEach(k => {
+      const ruta = rot.querySelector('[data-del="' + k + '"]');
+      const text = String(v[k]);
+      rot.querySelector('[data-ord="' + k + '"]').textContent = ORD[k][v[k] === 1 ? 0 : 1];
+      const gammal = ruta.querySelector('.flip-v:not(.ut)');
+      if (gammal && gammal.textContent === text) return;
+      const ny = document.createElement('span');
+      ny.className = 'flip-v' + (forsta || stilla ? '' : ' in');
+      ny.textContent = text;
+      if (gammal){
+        if (stilla) gammal.remove();
+        else { gammal.classList.add('ut'); setTimeout(() => gammal.remove(), 220); }
+      }
+      ruta.appendChild(ny);
+    });
+  };
+  uppdatera(true);
+  nedrakning = setInterval(() => uppdatera(false), 30000);
+}
+
 function ritaNasta(e, t){
   const d = lasDatum(e.date);
   const ar = d.getFullYear() !== t.getFullYear() ? ' ' + d.getFullYear() : '';
   const plats = [e.venue, e.city].filter(Boolean).join(', ');
   const genrer = (Array.isArray(e.genrer) ? e.genrer : []).filter(g => GENRE_NAMN[g]);
+  /* Nedräkningen bara när det är minst två dagar kvar. I dag, i morgon och
+     pågående står som text, som förut. */
+  const framtid = Math.round((d - t) / 86400000) >= 2;
   $('nastaEvent').innerHTML =
     '<article class="ruta nasta">' +
       '<div class="nasta-topp">' +
         '<span class="nasta-datum"><span class="nasta-dag">' + d.getDate() + '</span>' +
           '<span class="nasta-man">' + MANADER_KORT[d.getMonth()] + ar + '</span></span>' +
-        '<div class="nasta-namnet"><span class="nasta-kvar">' + kvarText(e, t) + '</span>' +
+        '<div class="nasta-namnet">' + (framtid ? '' : '<span class="nasta-kvar">' + kvarText(e, t) + '</span>') +
           '<h3 class="nasta-namn">' + esc(e.name) + '</h3></div>' +
       '</div>' +
+      (framtid ? '<p class="nedrakning" role="timer" id="nedrakning"></p>' : '') +
       (plats ? '<p class="nasta-plats">' + esc(plats) + '</p>' : '') +
       (genrer.length ? '<p class="nasta-genrer">' + genrer.map(g =>
         '<span class="g-' + g + '"><span class="prick" aria-hidden="true"></span>' + GENRE_NAMN[g] + '</span>').join('') + '</p>' : '') +
@@ -1305,6 +1371,7 @@ function ritaNasta(e, t){
          biljettknappen. */
       (e.url ? '<div class="nasta-knappar"><a class="knapp knapp-sek" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.urlText || 'Biljetter') + '</a></div>' : '') +
     '</article>';
+  if (framtid) ritaNedrakning($('nedrakning'), midnattSvensk(e.date), d.getDate() + ' ' + MANADER_HELA[d.getMonth()]);
 }
 
 async function laddaSnart(){
@@ -1371,12 +1438,16 @@ async function ritaFraga(K){
 
   const k = d.konto;
   if (k && typeof k.svit === 'number'){
-    $('fragaSvit').textContent = 'Svit ' + k.svit + (k.svit === 1 ? ' dag' : ' dagar');
+    /* Flamman slår upp i rorelse.js när sviten växt sedan förra gången. */
+    $('fragaSvit').innerHTML = (k.svit >= 2 ? FLAMMA : '') + 'Svit ' + k.svit + (k.svit === 1 ? ' dag' : ' dagar');
+    $('fragaSvit').dataset.svitNyckel = 'fraga';
+    $('fragaSvit').dataset.svit = k.svit;
     $('fragaSvit').hidden = false;
   }
   if (k && k.rang){
     $('fragaNiva').textContent = k.rang;
     $('fragaNiva').hidden = false;
+    window.hardlistRorelse && hardlistRorelse.rang(k.rang);
   }
 
   if (d.svar){
@@ -1393,6 +1464,8 @@ async function ritaFraga(K){
     $('fragaText').textContent = 'Klockan startar när du öppnar frågan. Du har 30 sekunder på dig.';
   }
 }
+
+const FLAMMA = '<span class="svit-flamma" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/></svg></span>';
 
 /* Poäng kan ha en decimal. */
 function tal(n){ return Number(n || 0).toLocaleString('sv-SE', { maximumFractionDigits: 1 }); }
