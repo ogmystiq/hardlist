@@ -551,6 +551,66 @@
       "datum": "2026-10-27",
       "spotify": "https://open.spotify.com/album/2Od9fP1EbHwiSEPBJSjg7E",
       "kollad": "2026-10-27"
+    },
+    "8721639287229": {
+      "titel": "In Da Club",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/040i26CVcn0zfDtxJrzOe3",
+      "kollad": "2026-10-29"
+    },
+    "700364604974": {
+      "titel": "Find The Feeling",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/3JohtVKl2zrxRATakIlqFe",
+      "kollad": "2026-10-29"
+    },
+    "8721639212047": {
+      "titel": "Built 2 Break (Deluxe Album)",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/1HvBvjVAF58V2IzCVvyFPO",
+      "kollad": "2026-10-29"
+    },
+    "8719244873760": {
+      "titel": "nothing is infinite",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/35Z0BkKjabpBX0lrLYOYqW",
+      "kollad": "2026-10-29"
+    },
+    "5404027352565": {
+      "titel": "PILLS",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/58kUAhNEJXnzfeYoOVHLZ8",
+      "kollad": "2026-10-29"
+    },
+    "8721244826875": {
+      "titel": "HELL NAH!",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/3ZsfOgHuCiJeHIM1F7gK9u",
+      "kollad": "2026-10-29"
+    },
+    "8719244873739": {
+      "titel": "It's The Memory",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/4URd5Cp152CyCJT0epPKMc",
+      "kollad": "2026-10-29"
+    },
+    "5054290176858": {
+      "titel": "SUPERNOVA",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/6073E6FLHY4HbYvEl16fDP",
+      "kollad": "2026-10-29"
+    },
+    "8721639405548": {
+      "titel": "Knockout 2026 Tool",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/276a6c6F05VXa9Ebu9SBUw",
+      "kollad": "2026-10-29"
+    },
+    "8721554912398": {
+      "titel": "Uncharted",
+      "datum": "2026-10-29",
+      "spotify": "https://open.spotify.com/album/1UNoU9P4TxygF4QiIarWth",
+      "kollad": "2026-10-29"
     }
   },
   "avvisade": {
@@ -1418,6 +1478,15 @@
       "datum": "2026-10-25",
       "skal": "UPC-träff med fel artist: Fenix (7HQhGjQRRyHpsJbGUyvMgI)",
       "kollad": "2026-10-26"
+    },
+    "5064091962246": {
+      "titel": "Printed Souls (Instrumental)",
+      "fran": [
+        "Jowi"
+      ],
+      "datum": "2026-09-29",
+      "skal": "UPC-träff med fel artist: jowi (3MTW8OCO4uQlws8rOx5tNc)",
+      "kollad": "2026-10-29"
     }
   }
 }
