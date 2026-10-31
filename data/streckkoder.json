@@ -701,6 +701,12 @@
       "datum": "2026-10-30",
       "spotify": "https://open.spotify.com/album/0sWn4OdnhZntR3X5m9NP1h",
       "kollad": "2026-10-30"
+    },
+    "700200625095": {
+      "titel": "Feel The Darkness",
+      "datum": "2026-10-30",
+      "spotify": "https://open.spotify.com/album/3p99whZ6vmIvdIWWyHF7uk",
+      "kollad": "2026-10-31"
     }
   },
   "avvisade": {
@@ -846,33 +852,6 @@
       ],
       "datum": "2026-10-01",
       "skal": "UPC-träff med fel artist: The Prophet (5EQz48Ms9hUa25kK5ZNm4j)",
-      "kollad": "2026-10-07"
-    },
-    "700573434652": {
-      "titel": "Mafuta",
-      "fran": [
-        "Winson"
-      ],
-      "datum": "2026-09-30",
-      "skal": "UPC-träff med fel artist: Winson (5Tb9mV0gildSa5Gede9Wj6), Jaspr (4s1W1fneTaHYH1JQQkskjr), Adonai (2VvrZAPb0QsZlesAXvamBP)",
-      "kollad": "2026-10-07"
-    },
-    "700566990547": {
-      "titel": "Beneath the voice",
-      "fran": [
-        "Fenix"
-      ],
-      "datum": "2026-09-30",
-      "skal": "UPC-träff med fel artist: Fēnix (5esiMVrZBwLN8iPqJisqV2)",
-      "kollad": "2026-10-07"
-    },
-    "700573178303": {
-      "titel": "Last thing left to save",
-      "fran": [
-        "Fenix"
-      ],
-      "datum": "2026-09-30",
-      "skal": "UPC-träff med fel artist: Fēnix (5esiMVrZBwLN8iPqJisqV2)",
       "kollad": "2026-10-07"
     },
     "729771548169": {
@@ -1622,6 +1601,33 @@
       "datum": "2026-10-30",
       "skal": "UPC-träff med fel artist: TITAN (3FCzR1zt8KqgsTn9RRRpiB)",
       "kollad": "2026-10-30"
+    },
+    "991061614674": {
+      "titel": "DF",
+      "fran": [
+        "Hi-Lo"
+      ],
+      "datum": "2026-10-31",
+      "skal": "UPC-träff med fel artist: Hilo (0PSLUmmIpKaSRbDf8LjBpt)",
+      "kollad": "2026-10-31"
+    },
+    "7333596660154": {
+      "titel": "Биле жаным",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-10-30",
+      "skal": "UPC-träff med fel artist: baq (3sYhdayJPSnHmbqBCExCeH)",
+      "kollad": "2026-10-31"
+    },
+    "700173607074": {
+      "titel": "burning",
+      "fran": [
+        "Ghost Stories"
+      ],
+      "datum": "2026-10-30",
+      "skal": "UPC-träff med fel artist: Ghost Stories (0f6IdRPXns48vq9xYvhUW1)",
+      "kollad": "2026-10-31"
     }
   }
 }
