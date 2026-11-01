@@ -818,42 +818,6 @@
       "skal": "UPC-träff med fel artist: Dj Fenix (2i1LrKFvlDNbvZi0wd5bhS), Mc Gimenes (2EOtEHNNR9N1dP5J2I1cHo), MAGOTH TTK (5hitUmNxGGfW1T96phuWcp)",
       "kollad": "2026-10-07"
     },
-    "700566381833": {
-      "titel": "REMASTERED",
-      "fran": [
-        "I:gor"
-      ],
-      "datum": "2026-10-01",
-      "skal": "UPC-träff med fel artist: I-GOR (7ILoqOmtZIwe61KGkOeuDW)",
-      "kollad": "2026-10-07"
-    },
-    "708208902415": {
-      "titel": "MIA",
-      "fran": [
-        "Alee"
-      ],
-      "datum": "2026-10-01",
-      "skal": "UPC-träff med fel artist: J.C (0B0vO0RDqLovNXEUUTMpxr), A-LEE (2iMHa8mpnYehOWCpPOs0aT)",
-      "kollad": "2026-10-07"
-    },
-    "823375473343": {
-      "titel": "Umaya",
-      "fran": [
-        "Outsiders"
-      ],
-      "datum": "2026-10-01",
-      "skal": "UPC-träff med fel artist: Outsiders (5qXBN7KQZGEzCs8EwuTErZ), Becker (3WTaU5om1axaFsKlKchl2U)",
-      "kollad": "2026-10-07"
-    },
-    "888193822780": {
-      "titel": "One Take Pt.2",
-      "fran": [
-        "The Prophet"
-      ],
-      "datum": "2026-10-01",
-      "skal": "UPC-träff med fel artist: The Prophet (5EQz48Ms9hUa25kK5ZNm4j)",
-      "kollad": "2026-10-07"
-    },
     "729771548169": {
       "titel": "PROBLEMAS",
       "fran": [
@@ -1628,6 +1592,15 @@
       "datum": "2026-10-30",
       "skal": "UPC-träff med fel artist: Ghost Stories (0f6IdRPXns48vq9xYvhUW1)",
       "kollad": "2026-10-31"
+    },
+    "700173142339": {
+      "titel": "gts",
+      "fran": [
+        "Ghost Stories"
+      ],
+      "datum": "2026-10-31",
+      "skal": "UPC-träff med fel artist: Ghost Stories (0f6IdRPXns48vq9xYvhUW1)",
+      "kollad": "2026-11-01"
     }
   }
 }
