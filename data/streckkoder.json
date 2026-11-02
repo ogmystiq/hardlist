@@ -18,12 +18,6 @@
       "spotify": "https://open.spotify.com/album/5NaMEmUklcMvTr79YTkfLy",
       "kollad": "2026-10-07"
     },
-    "5054290259612": {
-      "titel": "MEMORIES",
-      "datum": "2026-10-02",
-      "spotify": "https://open.spotify.com/album/54aBgzYq0hHNy7sBqgfiW3",
-      "kollad": "2026-10-07"
-    },
     "5064079589823": {
       "titel": "Bittersweet",
       "datum": "2026-10-08",
@@ -791,33 +785,6 @@
       "skal": "UPC-träff med fel artist: Ghost Stories (0f6IdRPXns48vq9xYvhUW1)",
       "kollad": "2026-10-07"
     },
-    "700575267579": {
-      "titel": "戻りたいとは思わない",
-      "fran": [
-        "Re-Mind"
-      ],
-      "datum": "2026-10-02",
-      "skal": "UPC-träff med fel artist: Re:Mind (454OKaKfgrBTM0ewp7Lb17)",
-      "kollad": "2026-10-07"
-    },
-    "4069977562207": {
-      "titel": "Wunder Geschehen (Tomas Tanz Edit)",
-      "fran": [
-        "Snowflake"
-      ],
-      "datum": "2026-10-02",
-      "skal": "UPC-träff med fel artist: Snowflake (5BrXJ2g9KbeEczqAcfPpho)",
-      "kollad": "2026-10-07"
-    },
-    "5064080111051": {
-      "titel": "GARUPA FUNK",
-      "fran": [
-        "Fenix"
-      ],
-      "datum": "2026-10-02",
-      "skal": "UPC-träff med fel artist: Dj Fenix (2i1LrKFvlDNbvZi0wd5bhS), Mc Gimenes (2EOtEHNNR9N1dP5J2I1cHo), MAGOTH TTK (5hitUmNxGGfW1T96phuWcp)",
-      "kollad": "2026-10-07"
-    },
     "729771548169": {
       "titel": "PROBLEMAS",
       "fran": [
@@ -951,15 +918,6 @@
       ],
       "datum": "2026-10-07",
       "skal": "ingen UPC-träff, och titeln saknas bland I:gors senaste på Spotify",
-      "kollad": "2026-10-09"
-    },
-    "3618116850470": {
-      "titel": "Shuffle",
-      "fran": [
-        "Villain"
-      ],
-      "datum": "2026-10-02",
-      "skal": "UPC-träff med fel artist: Villain (0V1PeYjNZNeWtz0Tjm5UVS)",
       "kollad": "2026-10-09"
     },
     "5064090517515": {
@@ -1601,6 +1559,15 @@
       "datum": "2026-10-31",
       "skal": "UPC-träff med fel artist: Ghost Stories (0f6IdRPXns48vq9xYvhUW1)",
       "kollad": "2026-11-01"
+    },
+    "8721711082476": {
+      "titel": "Där satt den!",
+      "fran": [
+        "GPF"
+      ],
+      "datum": "2026-11-02",
+      "skal": "UPC-träff med fel artist: GPF (73cgArs7H4tSAMFI34DguU)",
+      "kollad": "2026-11-02"
     }
   }
 }
