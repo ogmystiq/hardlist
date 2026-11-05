@@ -701,6 +701,54 @@
       "datum": "2026-10-30",
       "spotify": "https://open.spotify.com/album/3p99whZ6vmIvdIWWyHF7uk",
       "kollad": "2026-10-31"
+    },
+    "8721639472021": {
+      "titel": "Nope",
+      "datum": "2026-11-05",
+      "spotify": "https://open.spotify.com/album/4nSxMceFkL3tUr1J1kXjhF",
+      "kollad": "2026-11-05"
+    },
+    "700245262422": {
+      "titel": "Boom Shakalakah",
+      "datum": "2026-11-05",
+      "spotify": "https://open.spotify.com/album/0RaGn34MR2lLFawUALpyGg",
+      "kollad": "2026-11-05"
+    },
+    "8721639507440": {
+      "titel": "Neon Funfair",
+      "datum": "2026-11-05",
+      "spotify": "https://open.spotify.com/album/2XCGEq42bD4eiIagE3mVUN",
+      "kollad": "2026-11-05"
+    },
+    "5404027352732": {
+      "titel": "PRAISE THE BASS",
+      "datum": "2026-11-05",
+      "spotify": "https://open.spotify.com/album/2iATxLkpn020nrz1bKyICI",
+      "kollad": "2026-11-05"
+    },
+    "700235783296": {
+      "titel": "Jungle Law",
+      "datum": "2026-11-05",
+      "spotify": "https://open.spotify.com/album/4EAJvN00uzVFVoVMssjyht",
+      "kollad": "2026-11-05"
+    },
+    "8721244826950": {
+      "titel": "The Light",
+      "datum": "2026-11-05",
+      "spotify": "https://open.spotify.com/album/4kjjzv5HUTEbjZKoVvZP1a",
+      "kollad": "2026-11-05"
+    },
+    "8721639321152": {
+      "titel": "Grand Slam",
+      "datum": "2026-11-05",
+      "spotify": "https://open.spotify.com/album/2CLBPsPBP2VVTb6TGCPaJd",
+      "kollad": "2026-11-05"
+    },
+    "5054290343748": {
+      "titel": "FUEGO",
+      "datum": "2026-11-05",
+      "spotify": "https://open.spotify.com/album/3PFTJfN9mWyKWvP5Fk9ONT",
+      "kollad": "2026-11-05"
     }
   },
   "avvisade": {
@@ -720,42 +768,6 @@
       ],
       "datum": "2026-10-06",
       "skal": "UPC-träff med fel artist: baq (3sYhdayJPSnHmbqBCExCeH)",
-      "kollad": "2026-10-07"
-    },
-    "5064090125604": {
-      "titel": "Golden Hours",
-      "fran": [
-        "Alee"
-      ],
-      "datum": "2026-10-05",
-      "skal": "UPC-träff med fel artist: ALEE (5ETQi94ae2yPITbk1W96zR)",
-      "kollad": "2026-10-07"
-    },
-    "700573679305": {
-      "titel": "GET BACK RIGHT (TYLER LOCKETT)",
-      "fran": [
-        "Aztech"
-      ],
-      "datum": "2026-10-05",
-      "skal": "UPC-träff med fel artist: AzTech (6RxejVSGgBy9MBkteX1KWY)",
-      "kollad": "2026-10-07"
-    },
-    "7333596096878": {
-      "titel": "¿Donde estas?",
-      "fran": [
-        "Fenix"
-      ],
-      "datum": "2026-10-05",
-      "skal": "UPC-träff med fel artist: Fenix (7HQhGjQRRyHpsJbGUyvMgI)",
-      "kollad": "2026-10-07"
-    },
-    "5064090112055": {
-      "titel": "Shomoy",
-      "fran": [
-        "Emphasis"
-      ],
-      "datum": "2026-10-05",
-      "skal": "UPC-träff med fel artist: Emphasis (3ZvpTIgtJYyVY35DqHDoaC)",
       "kollad": "2026-10-07"
     },
     "729771548169": {
@@ -1541,6 +1553,24 @@
       "datum": "2026-11-02",
       "skal": "UPC-träff med fel artist: GPF (73cgArs7H4tSAMFI34DguU)",
       "kollad": "2026-11-02"
+    },
+    "700132920923": {
+      "titel": "Disease",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-11-05",
+      "skal": "UPC-träff med fel artist: Fenix (5cFMiCvy7z5TNR7qIIn5Ga)",
+      "kollad": "2026-11-05"
+    },
+    "700132455135": {
+      "titel": "i cant trust u",
+      "fran": [
+        "Snowflake"
+      ],
+      "datum": "2026-11-04",
+      "skal": "UPC-träff med fel artist: Snowflake (3NdtGrFfMgj5xkV8hYfiRq)",
+      "kollad": "2026-11-05"
     }
   }
 }
