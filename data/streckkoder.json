@@ -1,23 +1,5 @@
 {
   "godkanda": {
-    "700813769971": {
-      "titel": "HYPER v3.0",
-      "datum": "2026-10-07",
-      "spotify": "https://open.spotify.com/album/7aYuI66rgBKTnorrKMTy6r",
-      "kollad": "2026-10-07"
-    },
-    "5064090195027": {
-      "titel": "Nirob Ghore",
-      "datum": "2026-10-07",
-      "spotify": "https://open.spotify.com/album/17R0beWlFtovQAXJwDVzSv",
-      "kollad": "2026-10-07"
-    },
-    "8721554303585": {
-      "titel": "Order (Official Thunderdome 2026 Anthem)",
-      "datum": "2026-10-07",
-      "spotify": "https://open.spotify.com/album/5NaMEmUklcMvTr79YTkfLy",
-      "kollad": "2026-10-07"
-    },
     "5064079589823": {
       "titel": "Bittersweet",
       "datum": "2026-10-08",
@@ -836,15 +818,6 @@
     }
   },
   "avvisade": {
-    "5064090185950": {
-      "titel": "Only You Know",
-      "fran": [
-        "Alee"
-      ],
-      "datum": "2026-10-07",
-      "skal": "UPC-träff med fel artist: ALEE (5ETQi94ae2yPITbk1W96zR)",
-      "kollad": "2026-10-07"
-    },
     "729771548169": {
       "titel": "PROBLEMAS",
       "fran": [
@@ -960,24 +933,6 @@
       ],
       "datum": "2026-10-09",
       "skal": "UPC-träff med fel artist: The Prophet (5EQz48Ms9hUa25kK5ZNm4j)",
-      "kollad": "2026-10-09"
-    },
-    "881061706229": {
-      "titel": "Sacanagem",
-      "fran": [
-        "I:gor"
-      ],
-      "datum": "2026-10-07",
-      "skal": "ingen UPC-träff, och titeln saknas bland I:gors senaste på Spotify",
-      "kollad": "2026-10-09"
-    },
-    "881061706007": {
-      "titel": "Tava Na Hora",
-      "fran": [
-        "I:gor"
-      ],
-      "datum": "2026-10-07",
-      "skal": "ingen UPC-träff, och titeln saknas bland I:gors senaste på Spotify",
       "kollad": "2026-10-09"
     },
     "5064090517515": {
@@ -1709,6 +1664,33 @@
       "datum": "2026-11-05",
       "skal": "UPC-träff med fel artist: DEATH MACHINE (5O6H61T0RKrGO50glNiC5q)",
       "kollad": "2026-11-06"
+    },
+    "859749405214": {
+      "titel": "Des Illusions",
+      "fran": [
+        "Re-Mind"
+      ],
+      "datum": "2026-11-07",
+      "skal": "UPC-träff med fel artist: Remind (19Dkrb9TlsvXEoxh9sL6jg)",
+      "kollad": "2026-11-07"
+    },
+    "4069977631699": {
+      "titel": "The Reason (Tomas Tanz Edit)",
+      "fran": [
+        "Snowflake"
+      ],
+      "datum": "2026-11-07",
+      "skal": "UPC-träff med fel artist: Snowflake (5BrXJ2g9KbeEczqAcfPpho)",
+      "kollad": "2026-11-07"
+    },
+    "700111993573": {
+      "titel": "Hall of Fame",
+      "fran": [
+        "Miss M"
+      ],
+      "datum": "2026-11-05",
+      "skal": "UPC-träff med fel artist: MISS M (6RQVoeLMW9ZdWY2bz9EufN)",
+      "kollad": "2026-11-07"
     }
   }
 }
