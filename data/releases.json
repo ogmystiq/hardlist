@@ -1,143 +1,13 @@
 [
   {
-    "artist": "Radical Redemption",
-    "title": "The Hardcore E.P.",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/5sPdaxaXQ3aJaeNfzBg6wd",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e024fd4d335d6bd49cd30b90d6c"
-  },
-  {
-    "artist": "HI-LO × DJ Deeon",
-    "title": "WANNA GO BANG 2026 (feat. DJ Deeon)",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/7HPJf3edimeydHEz6hJrfL",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02e1866ffeba4a8bfe4da7fc7e"
-  },
-  {
-    "artist": "Hardwell × 4444 OF A KIND × Sub Zero Project × D-Block & S-te-Fan",
-    "title": "RE4SON",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/6gXoFS4tXwFCRPWHfvqCKL",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e024b6c36ca8ff02d7683685c89"
-  },
-  {
-    "artist": "Dr Donk",
-    "title": "ZAAGSTEP",
+    "artist": "Unproven",
+    "title": "Lamborghini Urus",
     "genre": "uptempo",
     "bpm": 200,
     "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/2kxqoTlptNE2OJ5uk4TDmT",
-    "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0270e87a469b0946e0131b2cf0"
-  },
-  {
-    "artist": "Deepack",
-    "title": "Lost In Dreams",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/7klVSRQV9qNzMyhtBRj6Z1",
+    "url": "https://open.spotify.com/album/5Hs0lN5UbsZa1w3InfPHrL",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0201d58b3e29920a381d798a53"
-  },
-  {
-    "artist": "Ecstatic",
-    "title": "Fiction Within",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/4Tbbjo1RmUXDkN12UvXZpE",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e027380e8236ec69b2024f2e34d"
-  },
-  {
-    "artist": "Bass Chaserz × DJ Lady Tess",
-    "title": "State Of Mind",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/5HHoEAI8NR2hD7dczrXI4z",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02be9192b6de619d99e049185b"
-  },
-  {
-    "artist": "Tommyknocker",
-    "title": "System Malfunction",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/3VciYZtpbjLc1bOvPYXQOY",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02e9512724ef0f97c3a2f9be11"
-  },
-  {
-    "artist": "The Sickest Squad",
-    "title": "Like A Bomb",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/6vyB8U0SqsPNjHsAOBmkW5",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02db727f2a8d5ca6669f9e4f4d"
-  },
-  {
-    "artist": "Macby × High Resistance",
-    "title": "Ecuador",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/2B4dcui3cXzutvjBGIv7hT",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0252868e61343b7287bcdb9ae9"
-  },
-  {
-    "artist": "Miss M × Eternal Riot × DJS RECORDS",
-    "title": "Hardcore Rebel",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/1Lii5Ybs750W2zskK8DQBH",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e022a40e46c69a25e8d154cd342"
-  },
-  {
-    "artist": "D'ort",
-    "title": "a Reason to Live",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/3qoEeugPGOk8279JH5oQzH",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e020abaac48b6ba0e2af0e6869b"
-  },
-  {
-    "artist": "Pinotello × Unicorn on K",
-    "title": "PI PI PINOTELLO!",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/1TmgKAeD57bnGaYBASfmH2",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02a6f68660e5fe961aa2e7c3a7"
-  },
-  {
-    "artist": "Digital Madness",
-    "title": "Feel The Magic",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/64goqMM5feD7B3citaV1BU",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e023e63a5916718bfbe8aa9b907"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e020ac7afe9bac14e169bd7fa63"
   },
   {
     "artist": "DEEZL × Exoform",
@@ -150,84 +20,154 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e02607a1b5a66f089aab68d18fe"
   },
   {
-    "artist": "Unproven",
-    "title": "Lamborghini Urus",
+    "artist": "Digital Madness",
+    "title": "Feel The Magic",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/64goqMM5feD7B3citaV1BU",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e023e63a5916718bfbe8aa9b907"
+  },
+  {
+    "artist": "Pinotello × Unicorn on K",
+    "title": "PI PI PINOTELLO!",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/1TmgKAeD57bnGaYBASfmH2",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02a6f68660e5fe961aa2e7c3a7"
+  },
+  {
+    "artist": "D'ort",
+    "title": "a Reason to Live",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/3qoEeugPGOk8279JH5oQzH",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e020abaac48b6ba0e2af0e6869b"
+  },
+  {
+    "artist": "Miss M × Eternal Riot × DJS RECORDS",
+    "title": "Hardcore Rebel",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/1Lii5Ybs750W2zskK8DQBH",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e022a40e46c69a25e8d154cd342"
+  },
+  {
+    "artist": "Macby × High Resistance",
+    "title": "Ecuador",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/2B4dcui3cXzutvjBGIv7hT",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0252868e61343b7287bcdb9ae9"
+  },
+  {
+    "artist": "The Sickest Squad",
+    "title": "Like A Bomb",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/6vyB8U0SqsPNjHsAOBmkW5",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02db727f2a8d5ca6669f9e4f4d"
+  },
+  {
+    "artist": "Tommyknocker",
+    "title": "System Malfunction",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/3VciYZtpbjLc1bOvPYXQOY",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02e9512724ef0f97c3a2f9be11"
+  },
+  {
+    "artist": "Bass Chaserz × DJ Lady Tess",
+    "title": "State Of Mind",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/5HHoEAI8NR2hD7dczrXI4z",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02be9192b6de619d99e049185b"
+  },
+  {
+    "artist": "Ecstatic",
+    "title": "Fiction Within",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/4Tbbjo1RmUXDkN12UvXZpE",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e027380e8236ec69b2024f2e34d"
+  },
+  {
+    "artist": "Deepack",
+    "title": "Lost In Dreams",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/7klVSRQV9qNzMyhtBRj6Z1",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0201d58b3e29920a381d798a53"
+  },
+  {
+    "artist": "Dr Donk",
+    "title": "ZAAGSTEP",
     "genre": "uptempo",
     "bpm": 200,
     "date": "2026-11-06",
-    "url": "https://open.spotify.com/album/5Hs0lN5UbsZa1w3InfPHrL",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e020ac7afe9bac14e169bd7fa63"
+    "url": "https://open.spotify.com/album/2kxqoTlptNE2OJ5uk4TDmT",
+    "typ": "album",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0270e87a469b0946e0131b2cf0"
   },
   {
-    "artist": "Radical Redemption × Miss K8 × Nolz × MC Robs",
-    "title": "Grand Slam",
+    "artist": "Hardwell × 4444 OF A KIND × Sub Zero Project × D-Block & S-te-Fan",
+    "title": "RE4SON",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-11-05",
-    "url": "https://open.spotify.com/album/2CLBPsPBP2VVTb6TGCPaJd",
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/6gXoFS4tXwFCRPWHfvqCKL",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0293d1e372cad3f26d1a3bf8e7"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e024b6c36ca8ff02d7683685c89"
   },
   {
-    "artist": "Dither",
-    "title": "Nope",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-11-05",
-    "url": "https://open.spotify.com/album/4nSxMceFkL3tUr1J1kXjhF",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02c0e4ed5a737ded8348b7e32a"
-  },
-  {
-    "artist": "The Dope Doctor × MC Flo",
-    "title": "Boom Shakalakah",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-05",
-    "url": "https://open.spotify.com/album/0RaGn34MR2lLFawUALpyGg",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02b30f89793f209c1c3c0839c2"
-  },
-  {
-    "artist": "Satirized",
-    "title": "Neon Funfair",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-05",
-    "url": "https://open.spotify.com/album/2XCGEq42bD4eiIagE3mVUN",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0250ab06247dc3d09f3b17b9f8"
-  },
-  {
-    "artist": "Mish × Dead X",
-    "title": "PRAISE THE BASS",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-05",
-    "url": "https://open.spotify.com/album/2iATxLkpn020nrz1bKyICI",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e027282a9a8a3d2c09f31329df1"
-  },
-  {
-    "artist": "Doris",
-    "title": "Jungle Law",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-05",
-    "url": "https://open.spotify.com/album/4EAJvN00uzVFVoVMssjyht",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02cb107a9144e6baa52011e0ba"
-  },
-  {
-    "artist": "Level One × Digital Punk",
-    "title": "The Light",
-    "genre": "hardstyle",
+    "artist": "HI-LO × DJ Deeon",
+    "title": "WANNA GO BANG 2026 (feat. DJ Deeon)",
+    "genre": "techno",
     "bpm": 150,
-    "date": "2026-11-05",
-    "url": "https://open.spotify.com/album/4kjjzv5HUTEbjZKoVvZP1a",
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/7HPJf3edimeydHEz6hJrfL",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02b514e86fda7e99b98528f343"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02e1866ffeba4a8bfe4da7fc7e"
+  },
+  {
+    "artist": "Radical Redemption",
+    "title": "The Hardcore E.P.",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-06",
+    "url": "https://open.spotify.com/album/5sPdaxaXQ3aJaeNfzBg6wd",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e024fd4d335d6bd49cd30b90d6c"
+  },
+  {
+    "artist": "Rooler × Da Tweekaz",
+    "title": "FUEGO",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-05",
+    "url": "https://open.spotify.com/album/3PFTJfN9mWyKWvP5Fk9ONT",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02fa8d503d025696bbd1532fcf"
   },
   {
     "artist": "Miss K8 × Radical Redemption × Nolz × MC Robs",
@@ -240,14 +180,74 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e0293d1e372cad3f26d1a3bf8e7"
   },
   {
-    "artist": "Rooler × Da Tweekaz",
-    "title": "FUEGO",
+    "artist": "Level One × Digital Punk",
+    "title": "The Light",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-05",
+    "url": "https://open.spotify.com/album/4kjjzv5HUTEbjZKoVvZP1a",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b514e86fda7e99b98528f343"
+  },
+  {
+    "artist": "Doris",
+    "title": "Jungle Law",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-05",
+    "url": "https://open.spotify.com/album/4EAJvN00uzVFVoVMssjyht",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02cb107a9144e6baa52011e0ba"
+  },
+  {
+    "artist": "Mish × Dead X",
+    "title": "PRAISE THE BASS",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-11-05",
-    "url": "https://open.spotify.com/album/3PFTJfN9mWyKWvP5Fk9ONT",
+    "url": "https://open.spotify.com/album/2iATxLkpn020nrz1bKyICI",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02fa8d503d025696bbd1532fcf"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e027282a9a8a3d2c09f31329df1"
+  },
+  {
+    "artist": "Satirized",
+    "title": "Neon Funfair",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-05",
+    "url": "https://open.spotify.com/album/2XCGEq42bD4eiIagE3mVUN",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0250ab06247dc3d09f3b17b9f8"
+  },
+  {
+    "artist": "The Dope Doctor × MC Flo",
+    "title": "Boom Shakalakah",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-05",
+    "url": "https://open.spotify.com/album/0RaGn34MR2lLFawUALpyGg",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b30f89793f209c1c3c0839c2"
+  },
+  {
+    "artist": "Dither",
+    "title": "Nope",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-11-05",
+    "url": "https://open.spotify.com/album/4nSxMceFkL3tUr1J1kXjhF",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02c0e4ed5a737ded8348b7e32a"
+  },
+  {
+    "artist": "Radical Redemption × Miss K8 × Nolz × MC Robs",
+    "title": "Grand Slam",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-05",
+    "url": "https://open.spotify.com/album/2CLBPsPBP2VVTb6TGCPaJd",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0293d1e372cad3f26d1a3bf8e7"
   },
   {
     "artist": "Radical Redemption",
@@ -280,14 +280,14 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e02462e3c1a8152025e50691e9f"
   },
   {
-    "artist": "Act of Rage",
-    "title": "Uncharted",
+    "artist": "Dual Damage",
+    "title": "Built 2 Break (Deluxe Album)",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-10-29",
-    "url": "https://open.spotify.com/album/1UNoU9P4TxygF4QiIarWth",
+    "url": "https://open.spotify.com/album/1HvBvjVAF58V2IzCVvyFPO",
     "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02caef7498d7f11413eadbf6d3"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02f5fb5bac8ea95d0fe7abbb1c"
   },
   {
     "artist": "Fraw",
@@ -300,14 +300,14 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e027db988d99fe4989180dbb2d8"
   },
   {
-    "artist": "Dual Damage",
-    "title": "Built 2 Break (Deluxe Album)",
+    "artist": "Act of Rage",
+    "title": "Uncharted",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-10-29",
-    "url": "https://open.spotify.com/album/1HvBvjVAF58V2IzCVvyFPO",
+    "url": "https://open.spotify.com/album/1UNoU9P4TxygF4QiIarWth",
     "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02f5fb5bac8ea95d0fe7abbb1c"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02caef7498d7f11413eadbf6d3"
   },
   {
     "artist": "Billx",
