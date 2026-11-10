@@ -665,6 +665,12 @@
       "datum": "2026-11-06",
       "spotify": "https://open.spotify.com/album/6gXoFS4tXwFCRPWHfvqCKL",
       "kollad": "2026-11-06"
+    },
+    "991061696182": {
+      "titel": "GO BALLISTIC",
+      "datum": "2026-11-10",
+      "spotify": "https://open.spotify.com/album/4iQSH9oBHp8nNVYYxgWy2L",
+      "kollad": "2026-11-10"
     }
   },
   "avvisade": {
@@ -675,33 +681,6 @@
       ],
       "datum": "2026-10-11",
       "skal": "UPC-träff med fel artist: fenix (68nnr4aBk3IwIoyLeP9s6s)",
-      "kollad": "2026-10-11"
-    },
-    "700521832851": {
-      "titel": "On the Useful Abstraction Principle",
-      "fran": [
-        "I:gor"
-      ],
-      "datum": "2026-10-10",
-      "skal": "UPC-träff med fel artist: I-GOR (7ILoqOmtZIwe61KGkOeuDW)",
-      "kollad": "2026-10-11"
-    },
-    "7333596221171": {
-      "titel": "Нәзігім",
-      "fran": [
-        "Baq"
-      ],
-      "datum": "2026-10-10",
-      "skal": "UPC-träff med fel artist: baq (3sYhdayJPSnHmbqBCExCeH)",
-      "kollad": "2026-10-11"
-    },
-    "7333596220440": {
-      "titel": "Жоспарда болмаған қыз",
-      "fran": [
-        "Baq"
-      ],
-      "datum": "2026-10-10",
-      "skal": "UPC-träff med fel artist: baq (3sYhdayJPSnHmbqBCExCeH)",
       "kollad": "2026-10-11"
     },
     "8721711023837": {
@@ -1433,6 +1412,15 @@
       "datum": "2026-11-08",
       "skal": "UPC-träff med fel artist: Max Alexander (38U2Vyy9rwKI5WrvLxQDWv)",
       "kollad": "2026-11-08"
+    },
+    "700088532966": {
+      "titel": "PERDIENDO",
+      "fran": [
+        "Kronos"
+      ],
+      "datum": "2026-11-09",
+      "skal": "UPC-träff med fel artist: KRONOS (6qie9392xyG9hwtVWBENCh)",
+      "kollad": "2026-11-10"
     }
   }
 }
