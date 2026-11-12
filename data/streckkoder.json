@@ -1,11 +1,5 @@
 {
   "godkanda": {
-    "5054290220988": {
-      "titel": "Resistance Is Futile",
-      "datum": "2026-10-12",
-      "spotify": "https://open.spotify.com/album/4RECX5txDpumJO8II7p2BN",
-      "kollad": "2026-10-12"
-    },
     "700573177337": {
       "titel": "Pendulum (Hardshift 2026 Anthem)",
       "datum": "2026-10-13",
@@ -689,36 +683,51 @@
       "datum": "2026-11-11",
       "spotify": "https://open.spotify.com/album/7zqze84O0RVph8dzJeIrhL",
       "kollad": "2026-11-11"
+    },
+    "5054290351316": {
+      "titel": "Fire In My Veins EP",
+      "datum": "2026-11-12",
+      "spotify": "https://open.spotify.com/album/2tRnHi5DRNObzEPOstw8gk",
+      "kollad": "2026-11-12"
+    },
+    "700200823569": {
+      "titel": "GHOST MODE",
+      "datum": "2026-11-12",
+      "spotify": "https://open.spotify.com/album/6gs5nnBRlZmGrA3ONqBSfH",
+      "kollad": "2026-11-12"
+    },
+    "5054290355734": {
+      "titel": "Is It Enough?",
+      "datum": "2026-11-12",
+      "spotify": "https://open.spotify.com/album/7MsnlogWumaSFkEKwGotEN",
+      "kollad": "2026-11-12"
+    },
+    "5054290356199": {
+      "titel": "999",
+      "datum": "2026-11-12",
+      "spotify": "https://open.spotify.com/album/3kfBHuAN0eWtAD7v6lpAz5",
+      "kollad": "2026-11-12"
+    },
+    "5054290380255": {
+      "titel": "FAT BASS SEASON",
+      "datum": "2026-11-12",
+      "spotify": "https://open.spotify.com/album/5cI6tjb0cjJcMtKZzMMmS6",
+      "kollad": "2026-11-12"
+    },
+    "8719244873937": {
+      "titel": "Door Het Geluid",
+      "datum": "2026-11-12",
+      "spotify": "https://open.spotify.com/album/77KKRpRDP2OWiTqnPwr7YA",
+      "kollad": "2026-11-12"
+    },
+    "5404027353166": {
+      "titel": "A Hero Comes Home",
+      "datum": "2026-11-12",
+      "spotify": "https://open.spotify.com/album/46RxjhEUjxPtKy18UPU4hE",
+      "kollad": "2026-11-12"
     }
   },
   "avvisade": {
-    "8721711023837": {
-      "titel": "Happy Friday! SKA Cover",
-      "fran": [
-        "GPF"
-      ],
-      "datum": "2026-10-12",
-      "skal": "UPC-träff med fel artist: GPF (73cgArs7H4tSAMFI34DguU)",
-      "kollad": "2026-10-12"
-    },
-    "8721711023813": {
-      "titel": "En runda till!",
-      "fran": [
-        "GPF"
-      ],
-      "datum": "2026-10-12",
-      "skal": "UPC-träff med fel artist: GPF (73cgArs7H4tSAMFI34DguU)",
-      "kollad": "2026-10-12"
-    },
-    "8721711023752": {
-      "titel": "Efterfest!",
-      "fran": [
-        "GPF"
-      ],
-      "datum": "2026-10-12",
-      "skal": "UPC-träff med fel artist: GPF (73cgArs7H4tSAMFI34DguU)",
-      "kollad": "2026-10-12"
-    },
     "5064090566674": {
       "titel": "la heladera",
       "fran": [
@@ -726,15 +735,6 @@
       ],
       "datum": "2026-10-13",
       "skal": "UPC-träff med fel artist: kronos (7mIhcSQnI2KyWABjOXP6R1)",
-      "kollad": "2026-10-13"
-    },
-    "7333596239626": {
-      "titel": "Despierta",
-      "fran": [
-        "Fenix"
-      ],
-      "datum": "2026-10-12",
-      "skal": "UPC-träff med fel artist: Fenix (7HQhGjQRRyHpsJbGUyvMgI)",
       "kollad": "2026-10-13"
     },
     "700566981019": {
@@ -1430,6 +1430,24 @@
       "datum": "2026-11-09",
       "skal": "UPC-träff med fel artist: KRONOS (6qie9392xyG9hwtVWBENCh)",
       "kollad": "2026-11-10"
+    },
+    "8721639590466": {
+      "titel": "Fênix-eterno Kevin e Daleste 2",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-11-12",
+      "skal": "UPC-träff med fel artist: Fênix (72B1jyzmuqPJEgRab8RJQ3)",
+      "kollad": "2026-11-12"
+    },
+    "885000982477": {
+      "titel": "Etérea",
+      "fran": [
+        "GPF"
+      ],
+      "datum": "2026-11-11",
+      "skal": "UPC-träff med fel artist: GPF (26XvgEUTyBwhoWyzkS64UF)",
+      "kollad": "2026-11-12"
     }
   }
 }
