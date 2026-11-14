@@ -1,23 +1,5 @@
 {
   "godkanda": {
-    "708208166121": {
-      "titel": "Risen Again (Hardstyle DNA 2017 Anthem)",
-      "datum": "2026-10-14",
-      "spotify": "https://open.spotify.com/album/0pN21A2RJOEwrcdLXUEdEO",
-      "kollad": "2026-10-14"
-    },
-    "8721554690036": {
-      "titel": "Lost",
-      "datum": "2026-10-14",
-      "spotify": "https://open.spotify.com/album/781uBW9gGoKcV10bSmrUAT",
-      "kollad": "2026-10-14"
-    },
-    "8721554622495": {
-      "titel": "Chaos (Official Thunderdome 2026 Anthem)",
-      "datum": "2026-10-14",
-      "spotify": "https://open.spotify.com/album/2Mt0wt5Q6SxPJNU4SMAB4x",
-      "kollad": "2026-10-14"
-    },
     "5054290289527": {
       "titel": "JUICE!",
       "datum": "2026-10-15",
@@ -196,12 +178,6 @@
       "titel": "This Feeling",
       "datum": "2026-10-16",
       "spotify": "https://open.spotify.com/album/21ErRWoB4IH5DIWfpU6ajn",
-      "kollad": "2026-10-16"
-    },
-    "700486938933": {
-      "titel": "DARK TEMPO",
-      "datum": "2026-10-14",
-      "spotify": "https://open.spotify.com/album/04NAzAnjuK7vQvahkSeFYm",
       "kollad": "2026-10-16"
     },
     "1200220088225": {
@@ -860,51 +836,6 @@
     }
   },
   "avvisade": {
-    "700566981019": {
-      "titel": "Aster",
-      "fran": [
-        "Barber"
-      ],
-      "datum": "2026-10-14",
-      "skal": "UPC-träff med fel artist: Barber (2mAP2UBO7iqAiMcLNeH0DO)",
-      "kollad": "2026-10-14"
-    },
-    "5064090525428": {
-      "titel": "Dil Ch Entry",
-      "fran": [
-        "JAZZY"
-      ],
-      "datum": "2026-10-14",
-      "skal": "UPC-träff med fel artist: Abdul Kadir Ali (3l6XNhSNNPTF076ydfXVrF), Jazzy (7rOymW6rVLyY7mrxKfySu5)",
-      "kollad": "2026-10-14"
-    },
-    "5064090611800": {
-      "titel": "Pasen Vean Observen",
-      "fran": [
-        "Kronos"
-      ],
-      "datum": "2026-10-14",
-      "skal": "UPC-träff med fel artist: kronos (7mIhcSQnI2KyWABjOXP6R1)",
-      "kollad": "2026-10-14"
-    },
-    "5064090611350": {
-      "titel": "Ayahuasca",
-      "fran": [
-        "Kronos"
-      ],
-      "datum": "2026-10-14",
-      "skal": "UPC-träff med fel artist: kronos (7mIhcSQnI2KyWABjOXP6R1)",
-      "kollad": "2026-10-14"
-    },
-    "5064090611381": {
-      "titel": "Narciso",
-      "fran": [
-        "Kronos"
-      ],
-      "datum": "2026-10-14",
-      "skal": "UPC-träff med fel artist: kronos (7mIhcSQnI2KyWABjOXP6R1)",
-      "kollad": "2026-10-14"
-    },
     "5064078381237": {
       "titel": "Find Your Flow",
       "fran": [
@@ -1643,6 +1574,24 @@
       "datum": "2026-11-12",
       "skal": "UPC-träff med fel artist: KRONOS (6qie9392xyG9hwtVWBENCh)",
       "kollad": "2026-11-13"
+    },
+    "700132899687": {
+      "titel": "CHAKIÑÁN",
+      "fran": [
+        "Jowi"
+      ],
+      "datum": "2026-11-13",
+      "skal": "UPC-träff med fel artist: Jowi (3CQnQtYJ0ds6UX95X6F2hQ)",
+      "kollad": "2026-11-14"
+    },
+    "708208621965": {
+      "titel": "EU SOU DELETE",
+      "fran": [
+        "Delete"
+      ],
+      "datum": "2026-11-13",
+      "skal": "UPC-träff med fel artist: DELETE (5Xu2B7LeXWIlcEJm8E04N1)",
+      "kollad": "2026-11-14"
     }
   }
 }
