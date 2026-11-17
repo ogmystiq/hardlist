@@ -629,6 +629,18 @@
       "datum": "2026-11-13",
       "spotify": "https://open.spotify.com/album/4o1visIS7XVbValWJA0Vqi",
       "kollad": "2026-11-13"
+    },
+    "700235258374": {
+      "titel": "I hear it when you lie",
+      "datum": "2026-11-17",
+      "spotify": "https://open.spotify.com/album/0MiCZor29xx2KrS3lisnqT",
+      "kollad": "2026-11-17"
+    },
+    "5054290399301": {
+      "titel": "je suis libre",
+      "datum": "2026-11-13",
+      "spotify": "https://open.spotify.com/album/2cg2dZAOTCZ5DDCnZrIsAo",
+      "kollad": "2026-11-17"
     }
   },
   "avvisade": {
@@ -1244,6 +1256,51 @@
       "datum": "2026-11-15",
       "skal": "UPC-träff med fel artist: baq (3sYhdayJPSnHmbqBCExCeH)",
       "kollad": "2026-11-16"
+    },
+    "700087071442": {
+      "titel": "АЛАҚАНҒА ЖАСЫРЫЛҒАН МҰҢ",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-11-17",
+      "skal": "UPC-träff med fel artist: BAQ (0BzXt7atkdxT5Gf8odjTxE)",
+      "kollad": "2026-11-17"
+    },
+    "700087300023": {
+      "titel": "SENIN IZIN",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-11-17",
+      "skal": "UPC-träff med fel artist: BAQ (0BzXt7atkdxT5Gf8odjTxE)",
+      "kollad": "2026-11-17"
+    },
+    "700087294179": {
+      "titel": "NE PAIDA",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-11-17",
+      "skal": "UPC-träff med fel artist: BAQ (0BzXt7atkdxT5Gf8odjTxE)",
+      "kollad": "2026-11-17"
+    },
+    "1200220377558": {
+      "titel": "FOREST",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-11-17",
+      "skal": "UPC-träff med fel artist: FEniX (1sPms9e6GbCtTddGRsT4Fz)",
+      "kollad": "2026-11-17"
+    },
+    "5064097320569": {
+      "titel": "WE CAN’T STOP",
+      "fran": [
+        "Snowflake"
+      ],
+      "datum": "2026-11-10",
+      "skal": "UPC-träff med fel artist: Snowflake (4yROrY2q2THTN02BMNlL7A)",
+      "kollad": "2026-11-17"
     }
   }
 }
