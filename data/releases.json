@@ -1,15 +1,5 @@
 [
   {
-    "artist": "DJ ARNE L II × Geck-O",
-    "title": "R.I.P. (Geck-o Remix)",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-11-17",
-    "url": "https://open.spotify.com/album/4vWWgNq0CWoVgZvRB1j5UC",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02e38c649a12f62a7a6fbc5ffb"
-  },
-  {
     "artist": "Maxtreme",
     "title": "I hear it when you lie",
     "genre": "uptempo",
@@ -20,274 +10,14 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e02c26a6dd25c155baadd6f407d"
   },
   {
-    "artist": "Majes × Hysta",
-    "title": "je suis libre",
+    "artist": "DJ ARNE L II × Geck-O",
+    "title": "R.I.P. (Geck-o Remix)",
     "genre": "uptempo",
     "bpm": 200,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/2cg2dZAOTCZ5DDCnZrIsAo",
+    "date": "2026-11-17",
+    "url": "https://open.spotify.com/album/4vWWgNq0CWoVgZvRB1j5UC",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02951146c85991dc8cf640f3a3"
-  },
-  {
-    "artist": "Dr. Peacock",
-    "title": "Trip to Valhalla (5 Years Anniversary)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/6cE4y7AKzbPVgSi2u0UfRS",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0289a1a846b8d64b7d803c7392"
-  },
-  {
-    "artist": "Osiris × Angerfist",
-    "title": "Destroy All Humans (Angerfist Remix)",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/4Us40cHMua6yfcsujP7ZkE",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e026cbee03e5deb35fa9c4b236e"
-  },
-  {
-    "artist": "Coone × Warface",
-    "title": "FCK CRITICS",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/4o1visIS7XVbValWJA0Vqi",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e027853e56ee6bb815236ed5197"
-  },
-  {
-    "artist": "Devin Wild",
-    "title": "Serenity",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/4qVxLrtHurVQOKi7ckv0Wj",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02090ba9b0e9887fdcf5e11db6"
-  },
-  {
-    "artist": "Rejecta × Adaro × Drean",
-    "title": "Against The World",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/5rqt11zEw31wlNcZaNzT9d",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02069bc1b155d87c1b937200bb"
-  },
-  {
-    "artist": "Digital Punk",
-    "title": "Into The Fire",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/4g0Ws9kSTqSgSE5YcTfHm6",
-    "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02f093b96fcbb8271de57404ed"
-  },
-  {
-    "artist": "Digital Punk × Sabacca × Titan",
-    "title": "Toxic (Titan Remix)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/6SMP3UsUVmsXsOCCjsi2ZN",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e025d27631729e78f5aff148074"
-  },
-  {
-    "artist": "Digital Punk × Nolz",
-    "title": "Into The Fire",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/1MI7xLZXnC1nUxfnRpjqF2",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0298f70acba1661f3567ecf498"
-  },
-  {
-    "artist": "Unresolved × Refold",
-    "title": "Blinding Lights",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/4A0fZSUurYT9tSooCCEw4B",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02ee038bec8ec78f1a0083a213"
-  },
-  {
-    "artist": "Forsaken Two × Regain × Nightcraft",
-    "title": "Nightmare",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/5gC9bpUHk9YCR1M5ZBOvid",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02d3d5494a718083297c7d9ca6"
-  },
-  {
-    "artist": "The Straikerz × Yoshiko",
-    "title": "Kick Obsession",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/2pthIESCKt2JKhnRKYkfXU",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02fffea01c3f8f9110915b7050"
-  },
-  {
-    "artist": "Dr. Peacock",
-    "title": "Trip to Valhalla",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/6cE4y7AKzbPVgSi2u0UfRS",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0289a1a846b8d64b7d803c7392"
-  },
-  {
-    "artist": "N-Vitral × Noxiouz × BOMBSQUAD",
-    "title": "SAY MY NAME",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/2DSoYkAHx8js4aMSoO2B26",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02f656c0b9366b0589319f05d0"
-  },
-  {
-    "artist": "The Purge × GLDY LX",
-    "title": "LIKE THAT",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/6FgRWpYNgyPjnXjqPV5qU1",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02f6bac903b84f9b73fc4978a3"
-  },
-  {
-    "artist": "Aftershock × DJ Gollum × Ephoric",
-    "title": "I Follow Rivers",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/6R2Ac0DydOFT6ZoOtjkmkH",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02d86b673fd7c71c23a939a27d"
-  },
-  {
-    "artist": "Envine",
-    "title": "Nora's Song",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/0WBpnlvcThMs9zN542Upy9",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e029a6d8d430d280e40589b246e"
-  },
-  {
-    "artist": "Gunz For Hire",
-    "title": "Forever Gunz (15 Years OST)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/6ut7iXl76pFZJpNiEcxK7s",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02cb1f4a2a6609b3b9ec955a22"
-  },
-  {
-    "artist": "Luna × Chain Reaction",
-    "title": "Spacemind",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/02cW3s4SadK3xGP2ESTee2",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02ce84c4aa605c8760e1dd715e"
-  },
-  {
-    "artist": "Andy the Core",
-    "title": "CROCIFISSI",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/3wEQWOYL8xC3QK9THRFyey",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02cec9eac7b8d98f34c7adbcbc"
-  },
-  {
-    "artist": "LNY TNZ × Lady Faith",
-    "title": "Escape",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/39Dm7x8lBWjudu5w3TPfSv",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e029160fc3b6b48912de5bb7441"
-  },
-  {
-    "artist": "Crude Intentions × Dr Rude",
-    "title": "I Feel Love",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/7aQKX1OeEeZ7Lx55HIAAmt",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02a1b7dfe8876ca3e7f13042b5"
-  },
-  {
-    "artist": "ERABREAK",
-    "title": "OCEAN",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/16tH7wiu5kE9QeOfKFGbfZ",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02fa32449e878da0c783e7809f"
-  },
-  {
-    "artist": "WINSON",
-    "title": "Diamonds",
-    "genre": "techno",
-    "bpm": 150,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/6SF9onweuFro4yjYHAkrTX",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02a65fca0acfc961e6a9b31070"
-  },
-  {
-    "artist": "Infliction",
-    "title": "Prove Them Right",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/2QT36Jq5wDLKRsxw1Hc97L",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0240a37f066464aa979e757581"
-  },
-  {
-    "artist": "Infliction",
-    "title": "The World of Infliction EP",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/3uUPpKWmwyb8PS5nAjbGxx",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0237352533c70b5e9438be0a8e"
-  },
-  {
-    "artist": "Tigaiko × Bumloco × MARE",
-    "title": "This Is the Future (NFS Anthem 2026)",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-13",
-    "url": "https://open.spotify.com/album/3WRd1NM7wAsHDJ3TLX94cQ",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02d2d3da67fc6f7cf0d9ca8809"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02e38c649a12f62a7a6fbc5ffb"
   },
   {
     "artist": "Radical Redemption",
@@ -300,64 +30,274 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e02326fb624ee9a6f946f073d79"
   },
   {
-    "artist": "Anderex",
-    "title": "Fire In My Veins EP",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-11-12",
-    "url": "https://open.spotify.com/album/2tRnHi5DRNObzEPOstw8gk",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02906c64d936776f2e2125b0b1"
-  },
-  {
-    "artist": "The Dope Doctor",
-    "title": "GHOST MODE",
+    "artist": "Tigaiko × Bumloco × MARE",
+    "title": "This Is the Future (NFS Anthem 2026)",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-11-12",
-    "url": "https://open.spotify.com/album/6gs5nnBRlZmGrA3ONqBSfH",
-    "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02de7680869c8783c8acce9222"
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/3WRd1NM7wAsHDJ3TLX94cQ",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02d2d3da67fc6f7cf0d9ca8809"
   },
   {
     "artist": "Infliction",
-    "title": "Is It Enough?",
+    "title": "The World of Infliction EP",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-11-12",
-    "url": "https://open.spotify.com/album/7MsnlogWumaSFkEKwGotEN",
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/3uUPpKWmwyb8PS5nAjbGxx",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0284c3e61420a2ae9d96008014"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0237352533c70b5e9438be0a8e"
   },
   {
-    "artist": "NSIDE × Flux Overload",
-    "title": "999",
+    "artist": "Infliction",
+    "title": "Prove Them Right",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-11-12",
-    "url": "https://open.spotify.com/album/3kfBHuAN0eWtAD7v6lpAz5",
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/2QT36Jq5wDLKRsxw1Hc97L",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0244cc29eac60a4b481ce1dea1"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0240a37f066464aa979e757581"
   },
   {
-    "artist": "Sickmode × Krowdexx",
-    "title": "FAT BASS SEASON",
+    "artist": "WINSON",
+    "title": "Diamonds",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/6SF9onweuFro4yjYHAkrTX",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02a65fca0acfc961e6a9b31070"
+  },
+  {
+    "artist": "ERABREAK",
+    "title": "OCEAN",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/16tH7wiu5kE9QeOfKFGbfZ",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02fa32449e878da0c783e7809f"
+  },
+  {
+    "artist": "Crude Intentions × Dr Rude",
+    "title": "I Feel Love",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/7aQKX1OeEeZ7Lx55HIAAmt",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02a1b7dfe8876ca3e7f13042b5"
+  },
+  {
+    "artist": "LNY TNZ × Lady Faith",
+    "title": "Escape",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/39Dm7x8lBWjudu5w3TPfSv",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e029160fc3b6b48912de5bb7441"
+  },
+  {
+    "artist": "Andy the Core",
+    "title": "CROCIFISSI",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/3wEQWOYL8xC3QK9THRFyey",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02cec9eac7b8d98f34c7adbcbc"
+  },
+  {
+    "artist": "Luna × Chain Reaction",
+    "title": "Spacemind",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/02cW3s4SadK3xGP2ESTee2",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02ce84c4aa605c8760e1dd715e"
+  },
+  {
+    "artist": "Gunz For Hire",
+    "title": "Forever Gunz (15 Years OST)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/6ut7iXl76pFZJpNiEcxK7s",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02cb1f4a2a6609b3b9ec955a22"
+  },
+  {
+    "artist": "Envine",
+    "title": "Nora's Song",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/0WBpnlvcThMs9zN542Upy9",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e029a6d8d430d280e40589b246e"
+  },
+  {
+    "artist": "Aftershock × DJ Gollum × Ephoric",
+    "title": "I Follow Rivers",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/6R2Ac0DydOFT6ZoOtjkmkH",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02d86b673fd7c71c23a939a27d"
+  },
+  {
+    "artist": "The Purge × GLDY LX",
+    "title": "LIKE THAT",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/6FgRWpYNgyPjnXjqPV5qU1",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02f6bac903b84f9b73fc4978a3"
+  },
+  {
+    "artist": "N-Vitral × Noxiouz × BOMBSQUAD",
+    "title": "SAY MY NAME",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/2DSoYkAHx8js4aMSoO2B26",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02f656c0b9366b0589319f05d0"
+  },
+  {
+    "artist": "Dr. Peacock",
+    "title": "Trip to Valhalla",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/6cE4y7AKzbPVgSi2u0UfRS",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0289a1a846b8d64b7d803c7392"
+  },
+  {
+    "artist": "The Straikerz × Yoshiko",
+    "title": "Kick Obsession",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/2pthIESCKt2JKhnRKYkfXU",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02fffea01c3f8f9110915b7050"
+  },
+  {
+    "artist": "Forsaken Two × Regain × Nightcraft",
+    "title": "Nightmare",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/5gC9bpUHk9YCR1M5ZBOvid",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02d3d5494a718083297c7d9ca6"
+  },
+  {
+    "artist": "Unresolved × Refold",
+    "title": "Blinding Lights",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/4A0fZSUurYT9tSooCCEw4B",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02ee038bec8ec78f1a0083a213"
+  },
+  {
+    "artist": "Digital Punk × Nolz",
+    "title": "Into The Fire",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/1MI7xLZXnC1nUxfnRpjqF2",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0298f70acba1661f3567ecf498"
+  },
+  {
+    "artist": "Digital Punk × Sabacca × Titan",
+    "title": "Toxic (Titan Remix)",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/6SMP3UsUVmsXsOCCjsi2ZN",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e025d27631729e78f5aff148074"
+  },
+  {
+    "artist": "Digital Punk",
+    "title": "Into The Fire",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/4g0Ws9kSTqSgSE5YcTfHm6",
+    "typ": "album",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02f093b96fcbb8271de57404ed"
+  },
+  {
+    "artist": "Rejecta × Adaro × Drean",
+    "title": "Against The World",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/5rqt11zEw31wlNcZaNzT9d",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02069bc1b155d87c1b937200bb"
+  },
+  {
+    "artist": "Devin Wild",
+    "title": "Serenity",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/4qVxLrtHurVQOKi7ckv0Wj",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02090ba9b0e9887fdcf5e11db6"
+  },
+  {
+    "artist": "Coone × Warface",
+    "title": "FCK CRITICS",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/4o1visIS7XVbValWJA0Vqi",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e027853e56ee6bb815236ed5197"
+  },
+  {
+    "artist": "Osiris × Angerfist",
+    "title": "Destroy All Humans (Angerfist Remix)",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/4Us40cHMua6yfcsujP7ZkE",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e026cbee03e5deb35fa9c4b236e"
+  },
+  {
+    "artist": "Dr. Peacock",
+    "title": "Trip to Valhalla (5 Years Anniversary)",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/6cE4y7AKzbPVgSi2u0UfRS",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0289a1a846b8d64b7d803c7392"
+  },
+  {
+    "artist": "Majes × Hysta",
+    "title": "je suis libre",
     "genre": "uptempo",
     "bpm": 200,
-    "date": "2026-11-12",
-    "url": "https://open.spotify.com/album/5cI6tjb0cjJcMtKZzMMmS6",
+    "date": "2026-11-13",
+    "url": "https://open.spotify.com/album/2cg2dZAOTCZ5DDCnZrIsAo",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02abd220eb3f8dafb23b912c91"
-  },
-  {
-    "artist": "Never Surrender × EZG",
-    "title": "Door Het Geluid",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-12",
-    "url": "https://open.spotify.com/album/77KKRpRDP2OWiTqnPwr7YA",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0276bc0eb6f77884663cb32de8"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02951146c85991dc8cf640f3a3"
   },
   {
     "artist": "Hard Driver × Max Enforcer",
@@ -370,34 +310,64 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e0217ecf209051cd0e88c887913"
   },
   {
-    "artist": "Infliction × Chapter V",
-    "title": "Down & Dirty",
+    "artist": "Never Surrender × EZG",
+    "title": "Door Het Geluid",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-11-11",
-    "url": "https://open.spotify.com/album/6GmYrc8V2sLFJuuhLX7qBF",
+    "date": "2026-11-12",
+    "url": "https://open.spotify.com/album/77KKRpRDP2OWiTqnPwr7YA",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02204b1d7db4d9b84fa28dc3e1"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0276bc0eb6f77884663cb32de8"
   },
   {
-    "artist": "Toneshifterz",
-    "title": "The Power Is Ours",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-11",
-    "url": "https://open.spotify.com/album/7zqze84O0RVph8dzJeIrhL",
+    "artist": "Sickmode × Krowdexx",
+    "title": "FAT BASS SEASON",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-11-12",
+    "url": "https://open.spotify.com/album/5cI6tjb0cjJcMtKZzMMmS6",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02ea34bbc0900da2741a68be9e"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02abd220eb3f8dafb23b912c91"
+  },
+  {
+    "artist": "NSIDE × Flux Overload",
+    "title": "999",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-12",
+    "url": "https://open.spotify.com/album/3kfBHuAN0eWtAD7v6lpAz5",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0244cc29eac60a4b481ce1dea1"
   },
   {
     "artist": "Infliction",
-    "title": "Down & Dirty",
+    "title": "Is It Enough?",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-11-11",
-    "url": "https://open.spotify.com/album/6GmYrc8V2sLFJuuhLX7qBF",
+    "date": "2026-11-12",
+    "url": "https://open.spotify.com/album/7MsnlogWumaSFkEKwGotEN",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02899263ae556fa41effaffc06"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0284c3e61420a2ae9d96008014"
+  },
+  {
+    "artist": "The Dope Doctor",
+    "title": "GHOST MODE",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-12",
+    "url": "https://open.spotify.com/album/6gs5nnBRlZmGrA3ONqBSfH",
+    "typ": "album",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02de7680869c8783c8acce9222"
+  },
+  {
+    "artist": "Anderex",
+    "title": "Fire In My Veins EP",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-11-12",
+    "url": "https://open.spotify.com/album/2tRnHi5DRNObzEPOstw8gk",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02906c64d936776f2e2125b0b1"
   },
   {
     "artist": "Lekkerfaces",
@@ -410,14 +380,34 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e027625b92f73f220d7d3770dcd"
   },
   {
-    "artist": "Vazooka",
-    "title": "GO BALLISTIC",
+    "artist": "Infliction",
+    "title": "Down & Dirty",
     "genre": "raw",
     "bpm": 155,
-    "date": "2026-11-10",
-    "url": "https://open.spotify.com/album/4iQSH9oBHp8nNVYYxgWy2L",
+    "date": "2026-11-11",
+    "url": "https://open.spotify.com/album/6GmYrc8V2sLFJuuhLX7qBF",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02e46c007690bcd524855d05f1"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02899263ae556fa41effaffc06"
+  },
+  {
+    "artist": "Toneshifterz",
+    "title": "The Power Is Ours",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-11",
+    "url": "https://open.spotify.com/album/7zqze84O0RVph8dzJeIrhL",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02ea34bbc0900da2741a68be9e"
+  },
+  {
+    "artist": "Infliction × Chapter V",
+    "title": "Down & Dirty",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-11",
+    "url": "https://open.spotify.com/album/6GmYrc8V2sLFJuuhLX7qBF",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02204b1d7db4d9b84fa28dc3e1"
   },
   {
     "artist": "Dr Donk",
@@ -430,14 +420,14 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e0270e87a469b0946e0131b2cf0"
   },
   {
-    "artist": "Dual Damage",
-    "title": "Built 2 Break (Deluxe Album)",
+    "artist": "Act of Rage",
+    "title": "Uncharted",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-10-29",
-    "url": "https://open.spotify.com/album/1HvBvjVAF58V2IzCVvyFPO",
+    "url": "https://open.spotify.com/album/1UNoU9P4TxygF4QiIarWth",
     "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02f5fb5bac8ea95d0fe7abbb1c"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02caef7498d7f11413eadbf6d3"
   },
   {
     "artist": "Fraw",
@@ -450,14 +440,14 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e027db988d99fe4989180dbb2d8"
   },
   {
-    "artist": "Act of Rage",
-    "title": "Uncharted",
+    "artist": "Dual Damage",
+    "title": "Built 2 Break (Deluxe Album)",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-10-29",
-    "url": "https://open.spotify.com/album/1UNoU9P4TxygF4QiIarWth",
+    "url": "https://open.spotify.com/album/1HvBvjVAF58V2IzCVvyFPO",
     "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02caef7498d7f11413eadbf6d3"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02f5fb5bac8ea95d0fe7abbb1c"
   },
   {
     "artist": "Billx",

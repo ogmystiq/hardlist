@@ -1,11 +1,5 @@
 {
   "godkanda": {
-    "991061432957": {
-      "titel": "GTFU",
-      "datum": "2026-10-18",
-      "spotify": "https://open.spotify.com/album/0YAVz50gXavEpo0essoat4",
-      "kollad": "2026-10-18"
-    },
     "700521053355": {
       "titel": "Make It Bun Dem",
       "datum": "2026-10-22",
@@ -644,15 +638,6 @@
     }
   },
   "avvisade": {
-    "5064090828918": {
-      "titel": "ya no habla",
-      "fran": [
-        "Kronos"
-      ],
-      "datum": "2026-10-18",
-      "skal": "UPC-träff med fel artist: kronos (7mIhcSQnI2KyWABjOXP6R1)",
-      "kollad": "2026-10-18"
-    },
     "4069977579410": {
       "titel": "Wooden Heart (Tomas Tanz Edit)",
       "fran": [
@@ -661,24 +646,6 @@
       "datum": "2026-10-19",
       "skal": "UPC-träff med fel artist: DJ Leif Bo (6hLGoEOiiSZYnnMnkRBs64), Snowflake (5BrXJ2g9KbeEczqAcfPpho)",
       "kollad": "2026-10-19"
-    },
-    "700299182271": {
-      "titel": "Manifesto (Remastered)",
-      "fran": [
-        "I:gor"
-      ],
-      "datum": "2026-10-18",
-      "skal": "UPC-träff med fel artist: I-GOR (7ILoqOmtZIwe61KGkOeuDW)",
-      "kollad": "2026-10-20"
-    },
-    "8447845400008": {
-      "titel": "Decon",
-      "fran": [
-        "Sara Landry"
-      ],
-      "datum": "2026-10-18",
-      "skal": "ingen UPC-träff, och titeln saknas bland Sara Landrys senaste på Spotify",
-      "kollad": "2026-10-20"
     },
     "5064078622507": {
       "titel": "Think Different",
@@ -1301,6 +1268,51 @@
       "datum": "2026-11-10",
       "skal": "UPC-träff med fel artist: Snowflake (4yROrY2q2THTN02BMNlL7A)",
       "kollad": "2026-11-17"
+    },
+    "700087293240": {
+      "titel": "SONGI ZHOLAUSHY",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-11-18",
+      "skal": "UPC-träff med fel artist: BAQ (0BzXt7atkdxT5Gf8odjTxE)",
+      "kollad": "2026-11-18"
+    },
+    "700087298160": {
+      "titel": "КАЙФТФҢ СЫҢАРЫ",
+      "fran": [
+        "Baq"
+      ],
+      "datum": "2026-11-18",
+      "skal": "UPC-träff med fel artist: BAQ (0BzXt7atkdxT5Gf8odjTxE)",
+      "kollad": "2026-11-18"
+    },
+    "700081293963": {
+      "titel": "Funky Jam",
+      "fran": [
+        "I:gor"
+      ],
+      "datum": "2026-11-17",
+      "skal": "UPC-träff med fel artist: I-GOR (7ILoqOmtZIwe61KGkOeuDW)",
+      "kollad": "2026-11-18"
+    },
+    "700081374488": {
+      "titel": "CANDELA",
+      "fran": [
+        "Kronos"
+      ],
+      "datum": "2026-11-17",
+      "skal": "UPC-träff med fel artist: KRONOS (6qie9392xyG9hwtVWBENCh)",
+      "kollad": "2026-11-18"
+    },
+    "5999524970577": {
+      "titel": "Tizenegy",
+      "fran": [
+        "Titan"
+      ],
+      "datum": "2026-11-11",
+      "skal": "UPC-träff med fel artist: Titan (5uTZlMD7AwJnKuAoZHqXLb)",
+      "kollad": "2026-11-18"
     }
   }
 }
