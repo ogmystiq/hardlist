@@ -665,6 +665,90 @@
       "datum": "2026-11-19",
       "spotify": "https://open.spotify.com/album/57n9dZmR2hqVv2ztgMGMHr",
       "kollad": "2026-11-19"
+    },
+    "4068413261117": {
+      "titel": "Fear",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/6z8IssFI8NHIyeM3TwojxT",
+      "kollad": "2026-11-20"
+    },
+    "708208692729": {
+      "titel": "FAAH!",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/5SbPwfTILKbAtDVILLyaw5",
+      "kollad": "2026-11-20"
+    },
+    "8719244874057": {
+      "titel": "Turn Up The Rave",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/38nITg25D36SqICbW9V1ho",
+      "kollad": "2026-11-20"
+    },
+    "700149076255": {
+      "titel": "Losing All Control",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/4Bh2EicQSt4qOncPlBak3s",
+      "kollad": "2026-11-20"
+    },
+    "7316483880019": {
+      "titel": "Pompie And The Major",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/5miBDHtHNxYbO9MFu93q35",
+      "kollad": "2026-11-20"
+    },
+    "5064159122742": {
+      "titel": "À L'envers",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/7ooKnhsov1QuMxNsZHPJEN",
+      "kollad": "2026-11-20"
+    },
+    "5054290385663": {
+      "titel": "Sacrifice Day (Official 2026 Anthem)",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/68WHo0kP3yLoHKMIQfgELv",
+      "kollad": "2026-11-20"
+    },
+    "5404027353326": {
+      "titel": "What Is This Called",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/1fgDGl84yoUw4MhRGlu4uX",
+      "kollad": "2026-11-20"
+    },
+    "5054290390193": {
+      "titel": "EMERGENCY",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/2UDQNwzDNkohP10Uu46PlX",
+      "kollad": "2026-11-20"
+    },
+    "768697252422": {
+      "titel": "Runaway",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/6PdtyS7zZ82Hq5DApBHs4n",
+      "kollad": "2026-11-20"
+    },
+    "8715576227288": {
+      "titel": "MUSIC MY DRVG",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/5EHodvBfpeRNLeyb5yblbE",
+      "kollad": "2026-11-20"
+    },
+    "5404027353265": {
+      "titel": "We Are Alive",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/2YOr4eOyEIGBqEJTLf3sTX",
+      "kollad": "2026-11-20"
+    },
+    "5404027353418": {
+      "titel": "SLEEP LESS",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/5pkExkGjKdZUKYV4YQUL5Y",
+      "kollad": "2026-11-20"
+    },
+    "8715576226809": {
+      "titel": "Love Is Not Enough",
+      "datum": "2026-11-20",
+      "spotify": "https://open.spotify.com/album/7m0KZSdvMJhKcbX2wYDQ3D",
+      "kollad": "2026-11-20"
     }
   },
   "avvisade": {
@@ -1315,6 +1399,42 @@
       "datum": "2026-11-11",
       "skal": "UPC-träff med fel artist: Titan (5uTZlMD7AwJnKuAoZHqXLb)",
       "kollad": "2026-11-18"
+    },
+    "5054286157762": {
+      "titel": "Gates of Paradise",
+      "fran": [
+        "TNYA"
+      ],
+      "datum": "2026-11-20",
+      "skal": "UPC-träff med fel artist: Phandelic (6zS4ltILFuH0m5C51Rv6qb), TNYA (5uyrncH54t5oHqQVYgisiT)",
+      "kollad": "2026-11-20"
+    },
+    "700085571319": {
+      "titel": "かくれた気持ち",
+      "fran": [
+        "Re-Mind"
+      ],
+      "datum": "2026-11-20",
+      "skal": "UPC-träff med fel artist: Re:Mind (454OKaKfgrBTM0ewp7Lb17)",
+      "kollad": "2026-11-20"
+    },
+    "4069977635925": {
+      "titel": "Angels from Above (Tomas Tanz Edit)",
+      "fran": [
+        "Snowflake"
+      ],
+      "datum": "2026-11-20",
+      "skal": "UPC-träff med fel artist: Snowflake (5BrXJ2g9KbeEczqAcfPpho)",
+      "kollad": "2026-11-20"
+    },
+    "700077234307": {
+      "titel": "nepenthe",
+      "fran": [
+        "Snowflake"
+      ],
+      "datum": "2026-11-19",
+      "skal": "UPC-träff med fel artist: Snowflake (3NdtGrFfMgj5xkV8hYfiRq)",
+      "kollad": "2026-11-20"
     }
   }
 }
