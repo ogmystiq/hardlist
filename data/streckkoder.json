@@ -752,15 +752,6 @@
     }
   },
   "avvisade": {
-    "5064078622507": {
-      "titel": "Think Different",
-      "fran": [
-        "DJ Promo"
-      ],
-      "datum": "2026-10-21",
-      "skal": "UPC-träff med fel artist: Elias-Omar (15meu6bisqkgVybBb1dxoM), DJ Promo (2GEyIaZJeLCXDu80n1jdXn)",
-      "kollad": "2026-10-21"
-    },
     "700245256544": {
       "titel": "KESHIR MENI",
       "fran": [
@@ -777,24 +768,6 @@
       ],
       "datum": "2026-10-22",
       "skal": "UPC-träff med fel artist: Alee! (0IH8SgSu4mFSqeaQk630vA)",
-      "kollad": "2026-10-22"
-    },
-    "4988021200820": {
-      "titel": "THE FEARLESS",
-      "fran": [
-        "TNT"
-      ],
-      "datum": "2026-10-21",
-      "skal": "UPC-träff med fel artist: T.N.T (7hPdXB6soJMZG24vdbfPOC)",
-      "kollad": "2026-10-22"
-    },
-    "7333596454180": {
-      "titel": "Estratega",
-      "fran": [
-        "Fenix"
-      ],
-      "datum": "2026-10-21",
-      "skal": "UPC-träff med fel artist: Fenix (7HQhGjQRRyHpsJbGUyvMgI)",
       "kollad": "2026-10-22"
     },
     "700486835966": {
@@ -1435,6 +1408,42 @@
       "datum": "2026-11-19",
       "skal": "UPC-träff med fel artist: Snowflake (3NdtGrFfMgj5xkV8hYfiRq)",
       "kollad": "2026-11-20"
+    },
+    "700111403492": {
+      "titel": "Phaser",
+      "fran": [
+        "Barber"
+      ],
+      "datum": "2026-11-21",
+      "skal": "UPC-träff med fel artist: Barber (2mAP2UBO7iqAiMcLNeH0DO)",
+      "kollad": "2026-11-21"
+    },
+    "859751090439": {
+      "titel": "Des Maux Plein La Tête",
+      "fran": [
+        "Re-Mind"
+      ],
+      "datum": "2026-11-21",
+      "skal": "UPC-träff med fel artist: Remind (19Dkrb9TlsvXEoxh9sL6jg)",
+      "kollad": "2026-11-21"
+    },
+    "7316483856274": {
+      "titel": "Esencia",
+      "fran": [
+        "Kenai"
+      ],
+      "datum": "2026-11-20",
+      "skal": "UPC-träff med fel artist: Kenai (6lca9phTiMCNjObnwuCFi1)",
+      "kollad": "2026-11-21"
+    },
+    "1963625192583": {
+      "titel": "BACKLASH",
+      "fran": [
+        "Titan"
+      ],
+      "datum": "2026-11-20",
+      "skal": "UPC-träff med fel artist: TITAN (0Mra3Twl0Uf8z68XWEFlhY)",
+      "kollad": "2026-11-21"
     }
   }
 }
