@@ -1,29 +1,5 @@
 {
   "godkanda": {
-    "700521053355": {
-      "titel": "Make It Bun Dem",
-      "datum": "2026-10-22",
-      "spotify": "https://open.spotify.com/album/2mWH4yPDAsHPSkPGvfqNO3",
-      "kollad": "2026-10-22"
-    },
-    "5404027352220": {
-      "titel": "GIVE IT TO ME",
-      "datum": "2026-10-22",
-      "spotify": "https://open.spotify.com/album/2TBpNGoinXQc6qCi60I2El",
-      "kollad": "2026-10-22"
-    },
-    "5054290312096": {
-      "titel": "Brace For Impact",
-      "datum": "2026-10-22",
-      "spotify": "https://open.spotify.com/album/43JiRgbhcQwq2a6x9vpZqO",
-      "kollad": "2026-10-22"
-    },
-    "8721244826851": {
-      "titel": "clouds don't stay forever",
-      "datum": "2026-10-22",
-      "spotify": "https://open.spotify.com/album/5Ky5g2tnnKeBaXNq3RtJf5",
-      "kollad": "2026-10-22"
-    },
     "3667007273515": {
       "titel": "Gravé dans la roche",
       "datum": "2026-10-23",
@@ -752,24 +728,6 @@
     }
   },
   "avvisade": {
-    "700245256544": {
-      "titel": "KESHIR MENI",
-      "fran": [
-        "Baq"
-      ],
-      "datum": "2026-10-22",
-      "skal": "UPC-träff med fel artist: BAQ (0BzXt7atkdxT5Gf8odjTxE)",
-      "kollad": "2026-10-22"
-    },
-    "7333596279073": {
-      "titel": "costa",
-      "fran": [
-        "Alee"
-      ],
-      "datum": "2026-10-22",
-      "skal": "UPC-träff med fel artist: Alee! (0IH8SgSu4mFSqeaQk630vA)",
-      "kollad": "2026-10-22"
-    },
     "700486835966": {
       "titel": "歌のこたえ",
       "fran": [
@@ -1444,6 +1402,78 @@
       "datum": "2026-11-20",
       "skal": "UPC-träff med fel artist: TITAN (0Mra3Twl0Uf8z68XWEFlhY)",
       "kollad": "2026-11-21"
+    },
+    "700074661298": {
+      "titel": "Stand in Faith 凭信而立",
+      "fran": [
+        "Alee"
+      ],
+      "datum": "2026-11-21",
+      "skal": "UPC-träff med fel artist: A.Lee (1nrHTJTzFKj87eJpmcc3XX), Ng Kong Jun (1kWnCvtsNyN2l1x5EtM6ie), Linseay (1b0R8tEeDad8G0DtFFNJ6S)",
+      "kollad": "2026-11-22"
+    },
+    "700074381950": {
+      "titel": "SOLO CONTRO TUTTI",
+      "fran": [
+        "Villain"
+      ],
+      "datum": "2026-11-21",
+      "skal": "UPC-träff med fel artist: VILLAIN (2ZqTwf8dJ5iiWJJwgkpOcW)",
+      "kollad": "2026-11-22"
+    },
+    "700074702250": {
+      "titel": "The Universal Song",
+      "fran": [
+        "I:gor"
+      ],
+      "datum": "2026-11-20",
+      "skal": "UPC-träff med fel artist: I-GOR (7ILoqOmtZIwe61KGkOeuDW)",
+      "kollad": "2026-11-22"
+    },
+    "881061911807": {
+      "titel": "Se Eu Tiver Que Sonhar",
+      "fran": [
+        "I:gor"
+      ],
+      "datum": "2026-11-20",
+      "skal": "ingen UPC-träff, och titeln saknas bland I:gors senaste på Spotify",
+      "kollad": "2026-11-22"
+    },
+    "881061911913": {
+      "titel": "Acostumado A Te Perder",
+      "fran": [
+        "I:gor"
+      ],
+      "datum": "2026-11-20",
+      "skal": "ingen UPC-träff, och titeln saknas bland I:gors senaste på Spotify",
+      "kollad": "2026-11-22"
+    },
+    "881061911906": {
+      "titel": "E Ainda",
+      "fran": [
+        "I:gor"
+      ],
+      "datum": "2026-11-20",
+      "skal": "ingen UPC-träff, och titeln saknas bland I:gors senaste på Spotify",
+      "kollad": "2026-11-22"
+    },
+    "881061911876": {
+      "titel": "É Complicado Né?",
+      "fran": [
+        "I:gor"
+      ],
+      "datum": "2026-11-20",
+      "skal": "ingen UPC-träff, och titeln saknas bland I:gors senaste på Spotify",
+      "kollad": "2026-11-22"
+    },
+    "881061911821": {
+      "titel": "Fácil Falar De Amor",
+      "fran": [
+        "I:gor"
+      ],
+      "datum": "2026-11-20",
+      "skal": "ingen UPC-träff, och titeln saknas bland I:gors senaste på Spotify",
+      "kollad": "2026-11-22"
     }
   }
 }
