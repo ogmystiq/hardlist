@@ -1,16 +1,16 @@
 {
-  "uppdaterad": "2026-11-23T05:14:37.758Z",
+  "uppdaterad": "2026-11-24T05:14:36.610Z",
   "artister": 313,
   "cachade": 331,
   "releaser": 28,
   "medOmslag": 28,
-  "anrop": 106,
+  "anrop": 102,
   "albumAnrop": 0,
   "albumIndex": 18,
   "deezer": {
-    "hittade": 4,
+    "hittade": 0,
     "bekraftade": 0,
-    "avvisade": 4,
+    "avvisade": 0,
     "vantar": 0,
     "framtida": 0
   },
