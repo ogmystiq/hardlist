@@ -638,33 +638,6 @@
     }
   },
   "avvisade": {
-    "5064158067815": {
-      "titel": "Violetas",
-      "fran": [
-        "Fenix"
-      ],
-      "datum": "2026-10-25",
-      "skal": "UPC-träff med fel artist: fenix (68nnr4aBk3IwIoyLeP9s6s)",
-      "kollad": "2026-10-25"
-    },
-    "700224727034": {
-      "titel": "GŁOSY",
-      "fran": [
-        "Baq"
-      ],
-      "datum": "2026-10-25",
-      "skal": "UPC-träff med fel artist: BaQ (4a55DORXOSzeseSJhHPbLr)",
-      "kollad": "2026-10-26"
-    },
-    "7333596529451": {
-      "titel": "La otra versión 9 de septiembre",
-      "fran": [
-        "Fenix"
-      ],
-      "datum": "2026-10-25",
-      "skal": "UPC-träff med fel artist: Fenix (7HQhGjQRRyHpsJbGUyvMgI)",
-      "kollad": "2026-10-26"
-    },
     "8717931359665": {
       "titel": "Alles Op Gevoel",
       "fran": [
@@ -1321,6 +1294,15 @@
       "datum": "2026-11-22",
       "skal": "UPC-träff med fel artist: Kali Kamaq (1JUbbld2PcQwS8RG94mIDo), Requiem. (3XqEkct0CvX9kxClpflmBO)",
       "kollad": "2026-11-23"
+    },
+    "711641408406": {
+      "titel": "NENA YO QUIERO",
+      "fran": [
+        "Fenix"
+      ],
+      "datum": "2026-11-24",
+      "skal": "UPC-träff med fel artist: Bellakeo Inc (21agvAlzJNhEZ3CDPXYZxh), Eddy H (4XuNQZKTxoK9eUrm90KpBW), FENIX (1QKeOxv2JijNU6d3mUeEwe)",
+      "kollad": "2026-11-25"
     }
   }
 }
