@@ -1,11 +1,5 @@
 {
   "godkanda": {
-    "8721569931032": {
-      "titel": "For the Hardcore EP",
-      "datum": "2026-10-26",
-      "spotify": "https://open.spotify.com/album/0EbLtWHOcynI3D898LHGHb",
-      "kollad": "2026-10-26"
-    },
     "700486941537": {
       "titel": "Temporary Heaven",
       "datum": "2026-10-27",
@@ -635,6 +629,54 @@
       "datum": "2026-11-20",
       "spotify": "https://open.spotify.com/album/7m0KZSdvMJhKcbX2wYDQ3D",
       "kollad": "2026-11-20"
+    },
+    "5054290402445": {
+      "titel": "LIAR",
+      "datum": "2026-11-26",
+      "spotify": "https://open.spotify.com/album/1idVEj4itkerWNBlBD4e28",
+      "kollad": "2026-11-26"
+    },
+    "5404027352978": {
+      "titel": "I CHOOSE U",
+      "datum": "2026-11-26",
+      "spotify": "https://open.spotify.com/album/0J9yG4J7B2U2Roga7jfFnO",
+      "kollad": "2026-11-26"
+    },
+    "5404027353302": {
+      "titel": "Lost",
+      "datum": "2026-11-26",
+      "spotify": "https://open.spotify.com/album/0OrKldkjBOT6peYLXOZ6LM",
+      "kollad": "2026-11-26"
+    },
+    "8721639708397": {
+      "titel": "Time To Say Goodbye",
+      "datum": "2026-11-26",
+      "spotify": "https://open.spotify.com/album/6kglBjVo3nheeBVRAEhJlw",
+      "kollad": "2026-11-26"
+    },
+    "8719244874101": {
+      "titel": "Fireman",
+      "datum": "2026-11-26",
+      "spotify": "https://open.spotify.com/album/60P4iYTlyMW7LllEyi2wMv",
+      "kollad": "2026-11-26"
+    },
+    "8721639844583": {
+      "titel": "Resurrexion",
+      "datum": "2026-11-26",
+      "spotify": "https://open.spotify.com/album/4vElm3OCvX0zRj2HBtG52n",
+      "kollad": "2026-11-26"
+    },
+    "5404027353562": {
+      "titel": "BLOW IT UP EP",
+      "datum": "2026-11-26",
+      "spotify": "https://open.spotify.com/album/3uVU7M1qRBMCL8mTbX6b65",
+      "kollad": "2026-11-26"
+    },
+    "5054290408942": {
+      "titel": "One Word",
+      "datum": "2026-11-26",
+      "spotify": "https://open.spotify.com/album/0S6Vv5LeqjlCKsovt0iRHx",
+      "kollad": "2026-11-26"
     }
   },
   "avvisade": {
@@ -1303,6 +1345,15 @@
       "datum": "2026-11-24",
       "skal": "UPC-träff med fel artist: Bellakeo Inc (21agvAlzJNhEZ3CDPXYZxh), Eddy H (4XuNQZKTxoK9eUrm90KpBW), FENIX (1QKeOxv2JijNU6d3mUeEwe)",
       "kollad": "2026-11-25"
+    },
+    "630130009477": {
+      "titel": "Teu carnaval",
+      "fran": [
+        "Caelum"
+      ],
+      "datum": "2026-11-26",
+      "skal": "UPC-träff med fel artist: :: CaeLUM (0OXyQjKPfWi7cwDLJk9vQn)",
+      "kollad": "2026-11-26"
     }
   }
 }

@@ -1,133 +1,83 @@
 [
   {
-    "artist": "TerrorClown × Dyzo",
-    "title": "Fear",
+    "artist": "Regain",
+    "title": "One Word",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-26",
+    "url": "https://open.spotify.com/album/0S6Vv5LeqjlCKsovt0iRHx",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0289c9cf2693046462e2243252"
+  },
+  {
+    "artist": "Vieze Asbak × Kruelty",
+    "title": "BLOW IT UP EP",
+    "genre": "techno",
+    "bpm": 150,
+    "date": "2026-11-26",
+    "url": "https://open.spotify.com/album/3uVU7M1qRBMCL8mTbX6b65",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02dacdeb5b53ff8fa93654782e"
+  },
+  {
+    "artist": "Radical Redemption × Nolz",
+    "title": "Resurrexion",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-26",
+    "url": "https://open.spotify.com/album/4vElm3OCvX0zRj2HBtG52n",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02518833bf5197a08932b0d311"
+  },
+  {
+    "artist": "The Straikerz × Villain",
+    "title": "Fireman",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-26",
+    "url": "https://open.spotify.com/album/60P4iYTlyMW7LllEyi2wMv",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02564b6dcf94d97cfb189299b7"
+  },
+  {
+    "artist": "Unexist",
+    "title": "Time To Say Goodbye",
     "genre": "hardcore",
     "bpm": 190,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/6z8IssFI8NHIyeM3TwojxT",
+    "date": "2026-11-26",
+    "url": "https://open.spotify.com/album/6kglBjVo3nheeBVRAEhJlw",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e021fd0535d92aa9eb757da7407"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0261deecafa07e3f1bd982def6"
   },
   {
-    "artist": "Hans Glock × Chaos Project",
-    "title": "FAAH!",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/5SbPwfTILKbAtDVILLyaw5",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02b71bf1db629204ec66311e57"
-  },
-  {
-    "artist": "Hysta × Advanced Dealer",
-    "title": "Turn Up The Rave",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/38nITg25D36SqICbW9V1ho",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0253667958b41f5ac401536497"
-  },
-  {
-    "artist": "illuszion × EQUAL2",
-    "title": "Losing All Control",
-    "genre": "uptempo",
-    "bpm": 200,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/4Bh2EicQSt4qOncPlBak3s",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e021b95cf0ca344bbb1af914a1c"
-  },
-  {
-    "artist": "Major Conspiracy × HET POMPSTATION",
-    "title": "Pompie And The Major",
-    "genre": "hardcore",
-    "bpm": 190,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/5miBDHtHNxYbO9MFu93q35",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e024bd3db09cccf090107e7804d"
-  },
-  {
-    "artist": "Loic D × High Resistance × Ntoy",
-    "title": "À L'envers",
+    "artist": "Audiofreq",
+    "title": "Lost",
     "genre": "hardstyle",
     "bpm": 150,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/7ooKnhsov1QuMxNsZHPJEN",
+    "date": "2026-11-26",
+    "url": "https://open.spotify.com/album/0OrKldkjBOT6peYLXOZ6LM",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e021bfe6008b52e52194412a945"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02774bee10164d7797ef715359"
   },
   {
-    "artist": "Dimitri K × The Dark Horror × Kili × KEMAL",
-    "title": "Sacrifice Day (Official 2026 Anthem)",
+    "artist": "Dual Damage × TOZA",
+    "title": "I CHOOSE U",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-26",
+    "url": "https://open.spotify.com/album/0J9yG4J7B2U2Roga7jfFnO",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b98527591e27f95c694b7fde"
+  },
+  {
+    "artist": "Krowdexx × Lekkerfaces",
+    "title": "LIAR",
     "genre": "uptempo",
     "bpm": 200,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/68WHo0kP3yLoHKMIQfgELv",
+    "date": "2026-11-26",
+    "url": "https://open.spotify.com/album/1idVEj4itkerWNBlBD4e28",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e021fe95f85d9d0824f87cd0e73"
-  },
-  {
-    "artist": "The Saints × Resensed",
-    "title": "What Is This Called",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/1fgDGl84yoUw4MhRGlu4uX",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02b0327983d04e643db007638f"
-  },
-  {
-    "artist": "Chapter V × Repeller",
-    "title": "EMERGENCY",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/2UDQNwzDNkohP10Uu46PlX",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e023590e8dc509ac9c9464aa87a"
-  },
-  {
-    "artist": "Showtek",
-    "title": "Runaway",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/6PdtyS7zZ82Hq5DApBHs4n",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02ddba2fcb7d11fabf85f74966"
-  },
-  {
-    "artist": "Showtek",
-    "title": "MUSIC MY DRVG",
-    "genre": "hardstyle",
-    "bpm": 150,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/5EHodvBfpeRNLeyb5yblbE",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e025756df5410ae2828144e58f5"
-  },
-  {
-    "artist": "Jay Reeve × Noiseshock",
-    "title": "We Are Alive",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/2YOr4eOyEIGBqEJTLf3sTX",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02bb6437439b68186aa610fab9"
-  },
-  {
-    "artist": "Rebelion × The Dark Horror",
-    "title": "SLEEP LESS",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-20",
-    "url": "https://open.spotify.com/album/5pkExkGjKdZUKYV4YQUL5Y",
-    "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0207f03708d75eeb7260b0cbc0"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b1b91491ddc3ef4ba94dffd8"
   },
   {
     "artist": "Project One × Headhunterz × Wildstylez",
@@ -140,34 +90,144 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e025bf72b06ae9b5458e056a8d2"
   },
   {
-    "artist": "Bass Chaserz × Gezellige Uptempo",
-    "title": "Big Dick (Gezellige Uptempo ‘Spuit Me Vol’ Remix)",
+    "artist": "Rebelion × The Dark Horror",
+    "title": "SLEEP LESS",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/5pkExkGjKdZUKYV4YQUL5Y",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0207f03708d75eeb7260b0cbc0"
+  },
+  {
+    "artist": "Jay Reeve × Noiseshock",
+    "title": "We Are Alive",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/2YOr4eOyEIGBqEJTLf3sTX",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02bb6437439b68186aa610fab9"
+  },
+  {
+    "artist": "Showtek",
+    "title": "MUSIC MY DRVG",
     "genre": "hardstyle",
     "bpm": 150,
-    "date": "2026-11-19",
-    "url": "https://open.spotify.com/album/57n9dZmR2hqVv2ztgMGMHr",
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/5EHodvBfpeRNLeyb5yblbE",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02325a468f2d2459965e420d08"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e025756df5410ae2828144e58f5"
   },
   {
-    "artist": "D-Charged × Synthsoldier",
-    "title": "Showdown",
-    "genre": "raw",
-    "bpm": 155,
-    "date": "2026-11-19",
-    "url": "https://open.spotify.com/album/3ZOBJ3NNV19etS26kTJzcB",
+    "artist": "Showtek",
+    "title": "Runaway",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/6PdtyS7zZ82Hq5DApBHs4n",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02b617877d6886c08511d1c04e"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02ddba2fcb7d11fabf85f74966"
   },
   {
-    "artist": "Thyron",
-    "title": "back 2 life",
+    "artist": "Chapter V × Repeller",
+    "title": "EMERGENCY",
     "genre": "raw",
     "bpm": 155,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/2UDQNwzDNkohP10Uu46PlX",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e023590e8dc509ac9c9464aa87a"
+  },
+  {
+    "artist": "The Saints × Resensed",
+    "title": "What Is This Called",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/1fgDGl84yoUw4MhRGlu4uX",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b0327983d04e643db007638f"
+  },
+  {
+    "artist": "Dimitri K × The Dark Horror × Kili × KEMAL",
+    "title": "Sacrifice Day (Official 2026 Anthem)",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/68WHo0kP3yLoHKMIQfgELv",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e021fe95f85d9d0824f87cd0e73"
+  },
+  {
+    "artist": "Loic D × High Resistance × Ntoy",
+    "title": "À L'envers",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/7ooKnhsov1QuMxNsZHPJEN",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e021bfe6008b52e52194412a945"
+  },
+  {
+    "artist": "Major Conspiracy × HET POMPSTATION",
+    "title": "Pompie And The Major",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/5miBDHtHNxYbO9MFu93q35",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e024bd3db09cccf090107e7804d"
+  },
+  {
+    "artist": "illuszion × EQUAL2",
+    "title": "Losing All Control",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/4Bh2EicQSt4qOncPlBak3s",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e021b95cf0ca344bbb1af914a1c"
+  },
+  {
+    "artist": "Hysta × Advanced Dealer",
+    "title": "Turn Up The Rave",
+    "genre": "uptempo",
+    "bpm": 200,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/38nITg25D36SqICbW9V1ho",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0253667958b41f5ac401536497"
+  },
+  {
+    "artist": "Hans Glock × Chaos Project",
+    "title": "FAAH!",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/5SbPwfTILKbAtDVILLyaw5",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b71bf1db629204ec66311e57"
+  },
+  {
+    "artist": "TerrorClown × Dyzo",
+    "title": "Fear",
+    "genre": "hardcore",
+    "bpm": 190,
+    "date": "2026-11-20",
+    "url": "https://open.spotify.com/album/6z8IssFI8NHIyeM3TwojxT",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e021fd0535d92aa9eb757da7407"
+  },
+  {
+    "artist": "Crypton × Geck-O",
+    "title": "NIGHTCORE BASSBOOSTED",
+    "genre": "uptempo",
+    "bpm": 200,
     "date": "2026-11-19",
-    "url": "https://open.spotify.com/album/7a2E9mxpLxYfSOss2VH7OZ",
-    "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0265d183bb946526f3b76dc309"
+    "url": "https://open.spotify.com/album/07G4zHk4ZH1Su0m1dV6ADL",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0291975ae32a263ac7b13f9337"
   },
   {
     "artist": "GPF",
@@ -180,14 +240,34 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e029fff842050c53b70c23f20f7"
   },
   {
-    "artist": "Crypton × Geck-O",
-    "title": "NIGHTCORE BASSBOOSTED",
-    "genre": "uptempo",
-    "bpm": 200,
+    "artist": "Thyron",
+    "title": "back 2 life",
+    "genre": "raw",
+    "bpm": 155,
     "date": "2026-11-19",
-    "url": "https://open.spotify.com/album/07G4zHk4ZH1Su0m1dV6ADL",
+    "url": "https://open.spotify.com/album/7a2E9mxpLxYfSOss2VH7OZ",
+    "typ": "album",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e0265d183bb946526f3b76dc309"
+  },
+  {
+    "artist": "D-Charged × Synthsoldier",
+    "title": "Showdown",
+    "genre": "raw",
+    "bpm": 155,
+    "date": "2026-11-19",
+    "url": "https://open.spotify.com/album/3ZOBJ3NNV19etS26kTJzcB",
     "typ": "single",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e0291975ae32a263ac7b13f9337"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02b617877d6886c08511d1c04e"
+  },
+  {
+    "artist": "Bass Chaserz × Gezellige Uptempo",
+    "title": "Big Dick (Gezellige Uptempo ‘Spuit Me Vol’ Remix)",
+    "genre": "hardstyle",
+    "bpm": 150,
+    "date": "2026-11-19",
+    "url": "https://open.spotify.com/album/57n9dZmR2hqVv2ztgMGMHr",
+    "typ": "single",
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02325a468f2d2459965e420d08"
   },
   {
     "artist": "Digital Punk",
@@ -230,14 +310,14 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e0270e87a469b0946e0131b2cf0"
   },
   {
-    "artist": "Dual Damage",
-    "title": "Built 2 Break (Deluxe Album)",
+    "artist": "Act of Rage",
+    "title": "Uncharted",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-10-29",
-    "url": "https://open.spotify.com/album/1HvBvjVAF58V2IzCVvyFPO",
+    "url": "https://open.spotify.com/album/1UNoU9P4TxygF4QiIarWth",
     "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02f5fb5bac8ea95d0fe7abbb1c"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02caef7498d7f11413eadbf6d3"
   },
   {
     "artist": "Fraw",
@@ -250,13 +330,13 @@
     "omslag": "https://i.scdn.co/image/ab67616d00001e027db988d99fe4989180dbb2d8"
   },
   {
-    "artist": "Act of Rage",
-    "title": "Uncharted",
+    "artist": "Dual Damage",
+    "title": "Built 2 Break (Deluxe Album)",
     "genre": "raw",
     "bpm": 155,
     "date": "2026-10-29",
-    "url": "https://open.spotify.com/album/1UNoU9P4TxygF4QiIarWth",
+    "url": "https://open.spotify.com/album/1HvBvjVAF58V2IzCVvyFPO",
     "typ": "album",
-    "omslag": "https://i.scdn.co/image/ab67616d00001e02caef7498d7f11413eadbf6d3"
+    "omslag": "https://i.scdn.co/image/ab67616d00001e02f5fb5bac8ea95d0fe7abbb1c"
   }
 ]
