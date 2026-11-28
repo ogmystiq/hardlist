@@ -785,6 +785,18 @@
       "datum": "2026-11-27",
       "spotify": "https://open.spotify.com/album/43tow9Ld1MJTlTFmN2RdCW",
       "kollad": "2026-11-27"
+    },
+    "700111028107": {
+      "titel": "Winter",
+      "datum": "2026-11-28",
+      "spotify": "https://open.spotify.com/album/0xc9OpLeGSpHkg77mPBY8u",
+      "kollad": "2026-11-28"
+    },
+    "8715576226687": {
+      "titel": "Brennan Heart 25 Years",
+      "datum": "2026-11-27",
+      "spotify": "https://open.spotify.com/album/00mFmcCrM2DbGev4rSeD6e",
+      "kollad": "2026-11-28"
     }
   },
   "avvisade": {
@@ -1507,6 +1519,15 @@
       "datum": "2026-11-27",
       "skal": "UPC-träff med fel artist: PAVO (4EuxL5X25LqyvHhwgc8ljN)",
       "kollad": "2026-11-27"
+    },
+    "720575458302": {
+      "titel": "CITY GLOW (Radio Edit)",
+      "fran": [
+        "DJ Vince"
+      ],
+      "datum": "2026-11-27",
+      "skal": "UPC-träff med fel artist: DJ VINCE (3ZzGDfzuFRPT7V4ZNUNQSy)",
+      "kollad": "2026-11-28"
     }
   }
 }
